@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <title>Universités | Atlant-Front</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- END META SECTION -->
+
+    <link rel="stylesheet" type="text/css" href="/Site/css/styles.css" media="screen" />
+    <link rel="stylesheet" type="text/css" id="theme" href="/Site/css/theme-default.css"/>
+
+</head>
+<body>
+
+<div class="page-container">
+
+<!-- page header -->
+<div class="page-header">
+
+    <!-- page header holder -->
+    <div class="page-header-holder">
+
+        <!-- page logo -->
+        <div class="logo">
+            <a href="index.html">Atlant - Front-end Template</a>
+        </div>
+        <!-- ./page logo -->
+
+        <!-- search -->
+        <div class="search">
+            <div class="search-button"><span class="fa fa-search"></span></div>
+            <div class="search-container animated fadeInDown">
+                <form action="#" method="post">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search..."/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary"><span class="fa fa-search"></span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- ./search -->
+
+        <!-- nav mobile bars -->
+        <div class="navigation-toggle">
+            <div class="navigation-toggle-button"><span class="fa fa-bars"></span></div>
+        </div>
+        <!-- ./nav mobile bars -->
+
+        <!-- navigation -->
+        <ul class="navigation">
+            <li>
+                <a href="./">Accueil</a>
+            </li>
+            <li>
+                <a href="universite/list.php">Universités</a>
+                <ul>
+                    <li><a href="universite/list.php?type=1">Universités d'état</a></li>
+                    <li><a href="universite/list.php?type=3">Ecoles de médécine</a></li>
+                    <li><a href="universite/list.php?type=2">Ecoles d'ingenierie</a></li>
+                    <li><a href="universite/list.php?type=4">Autres Universités</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="formations.php">Formations</a>
+            </li>
+            <li><a href="conseil_orientation/">Conseil d'orientation</a></li>
+            <li>
+                <a href="#">Pages</a>
+                <ul>
+                    <li><a href="concours.php">Concours</a></li>
+                    <li><a href="article/list.php">Articles</a></li>
+                    <li><a href="about-us.php">Qui Sommes Nous</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                </ul>
+            </li>
+            <li><a href="recherche.php">Recherche Avancée</a></li>
+        </ul>
+        <!-- ./navigation -->
+
+
+    </div>
+    <!-- ./page header holder -->
+
+</div>
+<!-- ./page header -->
+
+<!-- page content -->
+<div class="page-content">
+
+    <!-- page content wrapper -->
+    <div class="page-content-wrap bg-light">
+        <!-- page content holder -->
+        <div class="page-content-holder no-padding">
+            <!-- page title -->
+            <div class="page-title">
+                <h1>Universités</h1>
+                <!-- breadcrumbs -->
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="#">Universités</a></li><li class="active">Tout</li>                </ul>
+                <!-- ./breadcrumbs -->
+            </div>
+            <!-- ./page title -->
+        </div>
+        <!-- ./page content holder -->
+    </div>
+    <!-- ./page content wrapper -->
+
+
+    <!-- page content wrapper -->
+    <div class="page-content-wrap">
+        <!-- page content holder -->
+        <div class="page-content-holder padding-v-30">
+            <div class="block-heading this-animate" data-animate="fadeInLeft">
+                <h2>Catalogue d'universités</h2>
+                <div class="block-heading-text">
+                    Listes de tous les universités existant sur le territoire camerounais avec leurs écoles partenaires, la ville où vous pouvez les trouver, le type d'enseignement qu'il donne ainsi que le secteur auquel ils appartiennent.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+
+                        <div class="col-md-12 gallery-filter">
+                            <div class="button-panel">
+                                <button data-filter="all" class="btn btn-primary filter">Tout</button>
+                                <button data-filter=".cat_Public" class="btn btn-primary filter">Public</button>
+                                <button data-filter=".cat_Privée" class="btn btn-primary filter">Privée</button>
+                            </div>
+                        </div>
+
+
+                        <div class="row mix-grid thumbnails">
+                            <div class="col-md-3 col-xs-3 mix cat_Public cat_all">
+                                <a class="thumbnail-item"><img src="/Site/assets/img/gallery/music-1.jpg" alt="Space 2"/>
+                                </a>
+                                <div class="blog-data">
+                                    <h6><a href="presentation.php?univ_id=1" style="color:#000000">UNIVERSITE DE DOUALA</a></h6>
+                                    <span class="blog-date">DOUALA</span>
+                                    <p class="type">Université d'état</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xs-3 mix cat_Public cat_all">
+                                <a class="thumbnail-item"><img src="/Site/assets/img/gallery/music-1.jpg" alt="Space 2"/>
+                                </a>
+                                <div class="blog-data">
+                                    <h6><a href="presentation.php?univ_id=2" style="color:#000000">UNIVERSITE DE DSCHANG</a></h6>
+                                    <span class="blog-date">DSCHANG</span>
+                                    <p class="type">Université d'état</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xs-3 mix cat_Public cat_all">
+                                <a class="thumbnail-item"><img src="/Site/assets/img/gallery/music-1.jpg" alt="Space 2"/>
+                                </a>
+                                <div class="blog-data">
+                                    <h6><a href="presentation.php?univ_id=3" style="color:#000000">IUT Fotso Victor</a></h6>
+                                    <span class="blog-date">BANDJOUN</span>
+                                    <p class="type">Université d'état</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xs-3 mix cat_Public cat_all">
+                                <a class="thumbnail-item"><img src="/Site/assets/img/gallery/music-1.jpg" alt="Space 2"/>
+                                </a>
+                                <div class="blog-data">
+                                    <h6><a href="presentation.php?univ_id=4" style="color:#000000">FASA</a></h6>
+                                    <span class="blog-date">DSCHANG</span>
+                                    <p class="type">Université d'état - Ecole d'ingénierie</p>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="pagination pagination-sm pull-right"><li class="disabled"><a>«</a></li><li class="active"><a href="?page=1">1</a></li><li><a href="?page=2">2</a></li><li><a href="?page=3">3</a></li><li><a href="?page=4">4</a></li><li><a href="?page=5">5</a></li><li class=""><a href="?page=2">»</a></li></ul>
+
+                </div>
+                <div class="col-md-3">
+
+                    <div class="text-column this-animate" data-animate="fadeInRight">
+                        <h4>Categories</h4>
+                        <div class="list-links">
+                            <a href="/Site/universites">Tout</a>
+                            <a href="/Site/universites/categorie/Universite-Etat-1">Universités d'état</a>
+                            <a href="/Site/universites/categorie/Ecole-medecine-3">Ecoles de médécine</a>
+                            <a href="/Site/universites/categorie/Ecole-ingenierie-2">Ecoles d'ingénierie</a>
+                            <a href="/Site/universites/categorie/Autre-universite-4">Autres Universités</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <!-- NEWS WIDGET -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir toutes les annonces">
+                                <h3 class="panel-title"><a href="../article/list.php">A lire</a></h3>
+                                <ul class="panel-controls">
+                                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                                </ul>
+                            </div>
+                            <div class="panel-body scroll" style="height: 230px;">
+                            </div>
+                        </div>
+                        <!-- END NEWS WIDGET -->
+                        <div class="panel panel-danger">
+                            <div class="panel-body panel-body-pricing">
+                                <h2>Accès &<br/><small class="pull-right">Concours</small></h2>
+                                <div style="border-bottom: 1px dotted #AAA;"></div>
+                                <p data-toggle="tooltip" data-placement="top" title="<br />
+<b>Notice</b>:  Undefined variable: rows in <b>C:\xampp\htdocs\Site\view\universites\index.php</b> on line <b>145</b><br />
+"><h6><span class="fa fa-ellipsis-h text-success"></span>  <strong style="color: black;">Mercredi  16 septembre 2015</strong><p>&nbsp;&nbsp;&nbsp;&nbsp; FGI</p></h6></p>
+                                <p data-toggle="tooltip" data-placement="top" title="<br />
+<b>Notice</b>:  Undefined variable: rows in <b>C:\xampp\htdocs\Site\view\universites\index.php</b> on line <b>145</b><br />
+"><h6><span class="fa fa-ellipsis-h text-success"></span>  <strong style="color: black;">Jeudi  17 septembre 2015</strong><p>&nbsp;&nbsp;&nbsp;&nbsp; IUT DE DOUALA</p></h6></p>
+                                <p data-toggle="tooltip" data-placement="top" title="<br />
+<b>Notice</b>:  Undefined variable: rows in <b>C:\xampp\htdocs\Site\view\universites\index.php</b> on line <b>145</b><br />
+"><h6><span class="fa fa-ellipsis-h text-success"></span>  <strong style="color: black;">Mardi  22 septembre 2015</strong><p>&nbsp;&nbsp;&nbsp;&nbsp; ESSEC</p></h6></p>
+                                <p data-toggle="tooltip" data-placement="top" title="<br />
+<b>Notice</b>:  Undefined variable: rows in <b>C:\xampp\htdocs\Site\view\universites\index.php</b> on line <b>145</b><br />
+"><h6><span class="fa fa-ellipsis-h text-success"></span>  <strong style="color: black;">Jeudi  24 septembre 2015</strong><p>&nbsp;&nbsp;&nbsp;&nbsp; ENSET</p></h6></p>
+                                <p data-toggle="tooltip" data-placement="top" title="<br />
+<b>Notice</b>:  Undefined variable: rows in <b>C:\xampp\htdocs\Site\view\universites\index.php</b> on line <b>145</b><br />
+"><h6><span class="fa fa-ellipsis-h text-success"></span>  <strong style="color: black;">Vendredi  25 septembre 2015</strong><p>&nbsp;&nbsp;&nbsp;&nbsp; ISH</p></h6></p>
+                            </div>
+                            <div class="panel-footer">
+                                <a href="../concours.php"><button class="btn btn-danger btn-block">Tous les concours</button></a>
+                                <style>
+                                    .panel-footer a:hover{
+                                        text-decoration: none;
+                                    }
+                                </style>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>        </div>
+        <!-- ./page content holder -->
+    </div>
+    <!-- ./page content wrapper -->
+
+</div>
+<!-- ./page content -->
+
+<!-- page footer -->
+<div class="page-footer">
+
+    <!-- page footer wrap -->
+    <div class="page-footer-wrap bg-dark-gray">
+        <!-- page footer holder -->
+        <div class="page-footer-holder page-footer-holder-main">
+
+            <div class="row">
+
+                <!-- about -->
+                <div class="col-md-3">
+                    <h3>About Template</h3>
+                    <p>Lorem ipsum dolor natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                </div>
+                <!-- ./about -->
+
+                <!-- quick links -->
+                <div class="col-md-3">
+                    <h3>Quick links</h3>
+
+                    <div class="list-links">
+                        <a href="#">Home</a>
+                        <a href="#">Pages</a>
+                        <a href="#">Portfolio</a>
+                        <a href="#">Shortcodes</a>
+                    </div>
+                </div>
+                <!-- ./quick links -->
+
+                <!-- recent tweets -->
+                <div class="col-md-3">
+                    <h3>Recent Tweets</h3>
+
+                    <div class="list-with-icon small">
+                        <div class="item">
+                            <div class="icon">
+                                <span class="fa fa-twitter"></span>
+                            </div>
+                            <div class="text">
+                                <a href="#">@JohnDoe</a> Hello, here is my new front-end template. Check it out
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon">
+                                <span class="fa fa-twitter"></span>
+                            </div>
+                            <div class="text">
+                                <a href="#">@Aqvatarius</a> Release of new update for Atlant is done and ready to use
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon">
+                                <span class="fa fa-twitter"></span>
+                            </div>
+                            <div class="text">
+                                <a href="#">@Aqvatarius</a> Check out my new admin template Atlant, it's realy awesome template
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ./recent tweets -->
+
+                <!-- contacts -->
+                <div class="col-md-3">
+                    <h3>Contacts</h3>
+
+                    <div class="footer-contacts">
+                        <div class="fc-row">
+                            <span class="fa fa-home"></span>
+                            000 StreetName, Suite 111,<br/>
+                            City Name, ST 01234
+                        </div>
+                        <div class="fc-row">
+                            <span class="fa fa-phone"></span>
+                            (123) 456-7890
+                        </div>
+                        <div class="fc-row">
+                            <span class="fa fa-envelope"></span>
+                            <strong>John Doe</strong><br>
+                            <a href="mailto:#">johndoe@domain.com</a>
+                        </div>
+                    </div>
+
+                    <h3>Subscribe</h3>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Your email"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary"><span class="fa fa-paper-plane"></span></button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ./contacts -->
+
+            </div>
+
+        </div>
+        <!-- ./page footer holder -->
+    </div>
+    <!-- ./page footer wrap -->
+
+    <!-- page footer wrap -->
+    <div class="page-footer-wrap bg-darken-gray">
+        <!-- page footer holder -->
+        <div class="page-footer-holder">
+
+            <!-- copyright -->
+            <div class="copyright">
+                &copy; 2014 Atlant Theme by <a href="#">Aqvatarius</a> - All Rights Reserved
+            </div>
+            <!-- ./copyright -->
+
+            <!-- social links -->
+            <div class="social-links">
+                <a href="#"><span class="fa fa-facebook"></span></a>
+                <a href="#"><span class="fa fa-twitter"></span></a>
+                <a href="#"><span class="fa fa-google-plus"></span></a>
+                <a href="#"><span class="fa fa-linkedin"></span></a>
+                <a href="#"><span class="fa fa-vimeo-square"></span></a>
+                <a href="#"><span class="fa fa-dribbble"></span></a>
+            </div>
+            <!-- ./social links -->
+
+        </div>
+        <!-- ./page footer holder -->
+    </div>
+    <!-- ./page footer wrap -->
+
+</div>
+<!-- ./page footer -->
+
+</div>
+<!-- ./page container -->
+
+<!-- START SCRIPTS -->
+<!-- START PLUGINS -->
+<script type="text/javascript" src="/Site/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/Site/js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/Site/js/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- END PLUGINS -->
+
+<script type='text/javascript' src="/Site/js/plugins/icheck/icheck.min.js"></script>
+<script type="text/javascript" src="/Site/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+
+<!-- THIS PAGE PLUGINS -->
+<script type="text/javascript" src="/Site/js/plugins/mixitup/jquery.mixitup.js"></script>
+<script type="text/javascript" src="/Site/js/plugins/appear/jquery.appear.js"></script>
+<script type="text/javascript" src="/Site/js/plugins/knob/jquery.knob.min.js"></script>
+<script type="text/javascript" src="/Site/js/plugins/owl/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/Site/js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+<script type="text/javascript" src="/Site/js/plugins/scrolltotop/scrolltopcontrol.js"></script><!-- END THIS PAGE PLUGINS -->
+
+<!-- START TEMPLATE -->
+
+
+<script type="text/javascript" src="/Site/js/actions.js"></script>
+<script type="text/javascript" src="/Site/js/script.js"></script>
+<!-- END TEMPLATE -->
+<!-- END SCRIPTS -->
+
+</body>
+</html>
+<!--<div style="position:fixed;bottom:0; background: #900;color: #fff;line-height: 30px; height: 30px; left: 0; right: 0; padding-left: 10px;">
+</div>-->
+
+
