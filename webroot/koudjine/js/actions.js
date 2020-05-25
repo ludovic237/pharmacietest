@@ -123,15 +123,22 @@ $(document).ready(function(){
     });
     $('.ajouter').on('click', function(){
 
-        //alert($(this).attr('data'));
-        if($('.ajouter').html() == 'Ajouter') {
-            var link = '/Site' + $(this).attr('id') + '/edit';
+        var controller = $(this).attr('controller');
+        alert(controller);
+        if(controller == 'Catalogue'){
+            alert(link);
         }
         else{
-            var link = '/Site/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
+            //alert($(this).attr('data'));
+            if($('.ajouter').html() == 'Ajouter') {
+                var link = '/Site' + $(this).attr('id') + '/edit';
+            }
+            else{
+                var link = '/Site/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
+            }
+            //alert(link);
         }
-        //alert(link);
-        window.location.href=link;
+        //window.location.href=link;
     });
     /* END BouWou Personnalisation */
     

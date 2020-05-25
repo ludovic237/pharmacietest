@@ -16,50 +16,6 @@ class CatalogueController extends Controller
         $this->set($d);
     }*/
 
-    function index()
-    {
-
-        $this->loadModel('Concours');
-        $d['concours'] = $this->Concours->find(array(
-            'fields' => 'DATE_DEBUT_CONCOURS,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
-            'table' => 'acces_concours,universite',
-            'order' => 'DATE_DEBUT_CONCOURS-DESC',
-            'conditions' => array('acces_concours.UNIVERSITE_ID' => 'universite.UNIVERSITE_ID', 'acces_concours.SUPPRIMER' => 0, 'universite.SUPPRIMER' => 0)
-        ));
-
-        if (empty($d['concours'])) {
-            $this->e404('Page introuvable');
-        }
-        $this->set($d);
-    }
-    function presentation($id, $slug)
-    {
-
-        $this->loadModel('Concours');
-        $d['concours'] = $this->Concours->findFirst(array(
-            'fields' => 'C.COMPOSITION_DOSSIER,C.MODALITE_ADMISSION,C.DATE_DEBUT_CONCOURS,C.DATE_FIN_CONCOURS,C.DESCRIPTION,U.NOM as nom,C.DATE_DOSSIER,U.NOM_COMPLET as nomc,C.CONCOURS_ID as id',
-            'table' => 'acces_concours C,universite U',
-            'conditions' => "C.UNIVERSITE_ID = U.UNIVERSITE_ID AND C.SUPPRIMER = 0 AND U.SUPPRIMER = 0  AND C.CONCOURS_ID = " . $id . ""
-        ));
-
-        $d['matiere'] = $this->Concours->find(array(
-            'fields' => 'NOM,DUREE',
-            'table' => 'concours_matiere,matiere',
-            'conditions' => array('concours_matiere.MATIERE_ID' => 'matiere.MATIERE_ID', 'matiere.SUPPRIMER' => 0, 'concours_matiere.CONCOURS_ID' => $id)
-        ));
-
-        //echo str_replace(' ','_',$d['concours']->nom );
-        /*$slug_con = str_replace(' ','_',$d['concours']->nom );
-        $slug_con = strtolower($slug_con);
-        if($slug != $slug_con){
-            $this->redirect("concours/presentation/id:$id/slug:".$slug_con,301);
-        }*/
-
-        if (empty($d['concours'])) {
-            $this->e404('Page introuvable');
-        }
-        $this->set($d);
-    }
 
 
     /**
@@ -213,6 +169,19 @@ class CatalogueController extends Controller
     function koudjine_produit()
     {
         $this->loadModel('Catalogue');
+
+
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'produit.id as idp,produit.nom as nomp,ean13,datePeremption,stock,prixPublic,categorie.nom as nomc,rayon.nom as nomr',
+            'table' => 'produit,categorie,rayon',
+            'order' => 'nomp-ASC',
+            'conditions' => array('produit.categorie_id' => 'categorie.id','produit.rayon_id' => 'rayon.id')
+        ));
+        //die($d);
+        if(empty($d['catalogue'])){
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_produit_impression()

@@ -38,23 +38,24 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($concours as $k => $v): ?>
-                            <tr id="<?php echo $v->CONCOURS_ID; ?>">
-                                <td><strong><?php echo $v->NOM; ?></strong></td>
-                                <td><?php echo $v->DATE_DEBUT_CONCOURS; ?></td>
-                                <td><?php echo $v->DATE_FIN_CONCOURS; ?></td>
+                        <?php foreach ($catalogue as $k => $v): ?>
+                            <tr id="<?php echo $v->idp; ?>">
+                                <td><strong><?php echo $v->nomp; ?></strong></td>
+                                <td><?php echo $v->ean13; ?></td>
+                                <td><?php echo $v->stock; ?></td>
+                                <td><?php echo $v->prixPublic; ?></td>
                                 <td>
-                                    <?php echo $v->DESCRIPTION; ?>
+                                    <?php echo $v->nomc; ?>
                                 </td>
                                 <td>
-                                    <?php echo $v->MODALITE_ADMISSION; ?>
+                                    <?php echo $v->nomr; ?>
                                 </td>
                                 <td>
-                                    <?php echo $v->DATE_DOSSIER; ?>
+                                    <?php echo $v->datePeremption; ?>
                                 </td>
                                 <td>
-                                    <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>
-                                    <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                    <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->idp; ?>)"><span class="fa fa-pencil"></span></button>
+                                    <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

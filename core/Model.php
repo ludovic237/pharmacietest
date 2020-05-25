@@ -2,7 +2,7 @@
 class Model{
 
     static $connections = array();
-    public $conf = 'front';
+    public $conf = 'default';
     public $table = false;
     public $db;
     public $primaryKey = 'id';
