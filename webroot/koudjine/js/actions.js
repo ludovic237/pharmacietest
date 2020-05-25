@@ -125,20 +125,26 @@ $(document).ready(function(){
 
         var controller = $(this).attr('controller');
         alert(controller);
-        if(controller == 'Catalogue'){
-            alert(link);
+        if(controller == 'catalogue'){
+            alert('pass');
+            if($('.ajouter').html() == 'Ajouter') {
+                var link = '/pharmacietest' + $(this).attr('id') + 'add';
+            }
+            else{
+                var link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
+            }
         }
         else{
             //alert($(this).attr('data'));
             if($('.ajouter').html() == 'Ajouter') {
-                var link = '/Site' + $(this).attr('id') + '/edit';
+                var link = '/pharmacietest' + $(this).attr('id') + '/edit';
             }
             else{
-                var link = '/Site/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
+                var link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
             }
             //alert(link);
         }
-        //window.location.href=link;
+        window.location.href=link;
     });
     /* END BouWou Personnalisation */
     
