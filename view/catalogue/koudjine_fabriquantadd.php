@@ -88,43 +88,43 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Code:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom ou Sigle" />
-                            <span class="help-block">exemple: UDM</span>
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <span class="help-block">exemple: SXSQ8090</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Nom:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom ou Sigle" />
-                            <span class="help-block">exemple: UDM</span>
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Téléphone:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom ou Sigle" />
-                            <span class="help-block">exemple: UDM</span>
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <span class="help-block">exemple: 89489233</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Adresse:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom ou Sigle" />
-                            <span class="help-block">exemple: UDM</span>
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <span class="help-block">exemple: Yaounde</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Email:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom ou Sigle" />
-                            <span class="help-block">exemple: UDM</span>
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <span class="help-block">exemple: toto@gmail.com</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Code postal:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom ou Sigle" />
-                            <span class="help-block">exemple: UDM</span>
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <span class="help-block">exemple: 4444</span>
                         </div>
                     </div>
                     <div class="btn-group pull-right">
