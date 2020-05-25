@@ -2,7 +2,7 @@
 
 $title_for_layout = ' Admin -' . 'Universités';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter une produit' : 'Modifier une produit';
-$action_for_layout = 'produitadd';
+$action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
     $position = "Toutes les universités";

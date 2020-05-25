@@ -1,8 +1,8 @@
 <?php
 
 $title_for_layout = ' Admin -' . 'Universités';
-$page_for_layout = ($position == 'Ajouter') ? 'Ajouter une produit' : 'Modifier une produit';
-$action_for_layout = 'produitadd';
+$page_for_layout = ($position == 'Ajouter') ? 'Ajouter un client' : 'Modifier un client';
+$action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
     $position = "Toutes les universités";
