@@ -2,7 +2,7 @@
 
 $title_for_layout = ' Admin -' . 'Universités';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter une produit' : 'Modifier une produit';
-$action_for_layout = 'produitadd';
+$action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
     $position = "Toutes les universités";
@@ -89,28 +89,28 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">ean13:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom ou Sigle" />
-                            <span class="help-block">exemple: UDM</span>
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <span class="help-block">exemple: ean13</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Référence:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="Définition sigle" />
-                            <span class="help-block">exemple: Université Des Montagnes</span>
+                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
+                            <span class="help-block">exemple: AXA</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Nom:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="Ville" />
+                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Contenance:</label>
                         <div class="col-md-9">
-                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="Région" />
+                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
@@ -131,28 +131,28 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Quantité en stock:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom ou Sigle" />
-                            <span class="help-block">exemple: UDM</span>
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <span class="help-block">exemple: 23</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Quantité max en stock:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="Définition sigle" />
-                            <span class="help-block">exemple: Université Des Montagnes</span>
+                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
+                            <span class="help-block">exemple: 40</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Quantité min en stock:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="Ville" />
+                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Date de péremption:</label>
                         <div class="col-md-9">
-                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="Région" />
+                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
@@ -173,15 +173,15 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Prix public:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom ou Sigle" />
-                            <span class="help-block">exemple: UDM</span>
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <span class="help-block">exemple: 2000 FCFA</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Prix achat:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="Définition sigle" />
-                            <span class="help-block">exemple: Université Des Montagnes</span>
+                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
+                            <span class="help-block">exemple: 2000 FCFA</span>
                         </div>
                     </div>
                 </div>
@@ -190,42 +190,42 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Catégorie:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom ou Sigle" />
-                            <span class="help-block">exemple: UDM</span>
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <span class="help-block">exemple: Médicament</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Rayon:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="Définition sigle" />
-                            <span class="help-block">exemple: Université Des Montagnes</span>
+                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
+                            <span class="help-block">exemple: Ray</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Magasin:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="Ville" />
+                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Form:</label>
                         <div class="col-md-9">
-                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="Région" />
+                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Fabriquant:</label>
                         <div class="col-md-9">
-                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="Région" />
+                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Fournisseur:</label>
                         <div class="col-md-9">
-                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="Région" />
+                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
