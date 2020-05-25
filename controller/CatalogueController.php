@@ -77,52 +77,62 @@ class CatalogueController extends Controller{
         $this->set($d);
     }
 
-    function koudjine_assureur_add(){
+    function koudjine_assureuradd(){
         $this->loadModel('Catalogue');
         
     }
 
-    function koudjine_assureur_list(){
+    function koudjine_assureur(){
         $this->loadModel('Catalogue');
         
     }
 
-    function koudjine_fabriquant_add(){
+    function koudjine_clientadd(){
         $this->loadModel('Catalogue');
         
     }
 
-    function koudjine_fabriquant_list(){
+    function koudjine_client(){
         $this->loadModel('Catalogue');
         
     }
 
-    function koudjine_fournisseur_add(){
+    function koudjine_fabriquantadd(){
         $this->loadModel('Catalogue');
         
     }
 
-    function koudjine_fournisseur_list(){
+    function koudjine_fabriquant(){
         $this->loadModel('Catalogue');
         
     }
 
-    function koudjine_prescripteur_add(){
+    function koudjine_fournisseuradd(){
         $this->loadModel('Catalogue');
         
     }
 
-    function koudjine_prescripteur_list(){
+    function koudjine_fournisseur(){
         $this->loadModel('Catalogue');
         
     }
 
-    function koudjine_produit_add(){
+    function koudjine_prescripteuradd(){
         $this->loadModel('Catalogue');
         
     }
 
-    function koudjine_produit_list(){
+    function koudjine_prescripteur(){
+        $this->loadModel('Catalogue');
+        
+    }
+
+    function koudjine_produitadd(){
+        $this->loadModel('Catalogue');
+        
+    }
+
+    function koudjine_produit(){
         $this->loadModel('Catalogue');
         
     }
@@ -132,12 +142,12 @@ class CatalogueController extends Controller{
         
     }
 
-    function koudjine_categorie_add(){
+    function koudjine_categorieadd(){
         $this->loadModel('Catalogue');
         
     }
 
-    function koudjine_categorie_list(){
+    function koudjine_categorie(){
         $this->loadModel('Catalogue');
         
     }

@@ -97,10 +97,58 @@
                     </ul>
                 </li>
                 <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['catalogue'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'catalogue') { ?>active<?php } ?>">
-                    <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">catalogue</span></a>
+                    <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">Catalogue</span></a>
                     <ul>
-                        <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'index') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue'); ?>"><span class="fa lettre">C</span> Tous les catalogue</a></li>
-                        <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'edit') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/edit'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit' || $this->request->controller == 'catalogue' && $this->request->action == 'produitadd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> Produit</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produit'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitadd'); ?>"> Ajouter</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitimpression') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitimpression'); ?>"> Impression code</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'categorie' || $this->request->controller == 'catalogue' && $this->request->action == 'categorieadd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> Categorie</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'categorie') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/categorie'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'categorieadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/categorieadd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'prescripteur' || $this->request->controller == 'catalogue' && $this->request->action == 'prescripteuradd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> Prescripteur</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'prescripteur') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/prescripteur'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'prescripteuradd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/prescripteuradd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'assureur' || $this->request->controller == 'catalogue' && $this->request->action == 'assureuradd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> Assureur</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'assureur') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/assureur'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'assureuradd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/assureuradd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'client' || $this->request->controller == 'catalogue' && $this->request->action == 'clientadd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> Client</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'client') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/client'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'clientadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/clientadd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabirquant' || $this->request->controller == 'catalogue' && $this->request->action == 'fabirquantadd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> Fabriquant</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabirquant') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/fabriquant'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabirquantadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/fabriquantadd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fournisseur' || $this->request->controller == 'catalogue' && $this->request->action == 'fournisseuradd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> Fournisseur</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fournisseur') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/fournisseur'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fournisseuradd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/fournisseuradd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li class="xn-openable">
