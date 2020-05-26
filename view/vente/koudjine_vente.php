@@ -1,7 +1,7 @@
 <!-- <?php
 
 $title_for_layout = ' Admin -'.'Universités';
-$page_for_layout = 'Concours';
+$page_for_layout = 'Liste vente';
 $action_for_layout = 'Ajouter';
 
 if($this->request->action == "index"){
@@ -28,10 +28,12 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
                         <thead>
                         <tr>
                             <th>Nom</th>
-                            <th width="100">Nom</th>
-                            <th width="200">Taux</th>
-                            <th width="200">Téléphpone</th>
-                            <th width="200">Code postal</th>
+                            <th width="100">Date & heure</th>
+                            <th width="200">Ref</th>
+                            <th width="200">Vendeur</th>
+                            <th width="200">Client / prescripteur</th>
+                            <th width="100">Montant TTC</th>
+                            <th width="100">Montant reçu</th>
                             <th width="100">Actions</th>
                         </tr>
                         </thead>

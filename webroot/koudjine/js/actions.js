@@ -148,7 +148,7 @@ $(document).ready(function(){
     });
     /* END BouWou Personnalisation */
     
-    /* WIDGETS (DEMO)*/
+    /* WIDGETS (DEMO)*/ 
     $(".widget-remove").on("click",function(){
         $(this).parents(".widget").fadeOut(400,function(){
             $(this).remove();
