@@ -52,48 +52,14 @@
                     <a href="<?php echo Router::url('bouwou/home'); ?>"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
                 </li>
                 <li class="xn-title">Etudes</li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['universites'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'universites' || $this->request->controller == 'facultes' || $this->request->controller == 'types') { ?>active<?php } ?> ">
-                    <a href="#"><span class="fa fa-home"></span> <span class="xn-text">Universités</span></a>
+                
+                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['vente'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'vente') { ?>active<?php } ?>">
+                    <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">Vente</span></a>
                     <ul>
-                        <li <?php if ($this->request->controller == 'universites' && $this->request->action != 'edit' && $this->request->action != 'presentation') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/universites'); ?>"><span class="fa lettre">U</span> Toutes les universités</a></li>
-                        <li class="xn-openable <?php if ($this->request->controller == 'universites' && $this->request->action == 'edit' || $this->request->controller == 'universites' && $this->request->action == 'presentation') { ?>active <?php } ?>">
-                            <a href="#"> <span class="fa lettre">E</span> Editer</a>
-                            <ul>
-                                <li <?php if ($this->request->controller == 'universites' && $this->request->action == 'edit') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/universites/edit'); ?>"> Ajouter</a></li>
-                                <li <?php if ($this->request->controller == 'universites' && $this->request->action == 'presentation') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/universites/presentation'); ?>"> Présentation</a></li>
-                            </ul>
-                        </li>
-                        <li <?php if ($this->request->controller == 'facultes') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/facultes'); ?>"><span class="fa lettre">F</span> Facultés</a></li>
-                        <li <?php if ($this->request->controller == 'types') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/types'); ?>"><span class="fa lettre">T</span> Types</a></li>
-                    </ul>
-                </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['formations'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'formations') { ?>active<?php } ?>">
-                    <a href="#"><span class="glyphicon glyphicon-book"></span> <span class="xn-text">Formations</span></a>
-                    <ul>
-                        <li <?php if ($this->request->controller == 'formations' && $this->request->action == 'index') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/formations'); ?>"><span class="fa lettre">F</span> Toutes les formations</a></li>
-                        <li class="xn-openable <?php if ($this->request->controller == 'formations' && $this->request->action == 'edit' || $this->request->controller == 'formations' && $this->request->action == 'presentation') { ?>active <?php } ?>">
-                            <a href="#"><span class="fa lettre">E</span> Editer</a>
-                            <ul>
-                                <li <?php if ($this->request->controller == 'formations' && $this->request->action == 'edit') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/formations/edit'); ?>"> Ajouter</a></li>
-                                <li <?php if ($this->request->controller == 'formations' && $this->request->action == 'presentation') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/formations/presentation'); ?>"> Présentation</a></li>
-                            </ul>
-                        </li>
-                        <li <?php if ($this->request->controller == 'formations' && $this->request->action == 'categorie') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/formations/categorie'); ?>"><span class="fa lettre">C</span> Catégories</a></li>
-                    </ul>
-                </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['orientation'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'orientation') { ?>active<?php } ?>">
-                    <a href="#"><span class="glyphicon glyphicon-road"></span> <span class="xn-text">Orientation</span></a>
-                    <ul>
-                        <li <?php if ($this->request->controller == 'orientation' && $this->request->action == 'questions') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/orientation/questions'); ?>"><span class="fa lettre">Q</span> Questions</a></li>
-                        <li <?php if ($this->request->controller == 'orientation' && $this->request->action == 'configuration') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/orientation/configuration'); ?>"><span class="fa lettre">C</span> Configuration</a></li>
-                        <li <?php if ($this->request->controller == 'orientation' && $this->request->action == 'recapitulatif') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/orientation/recapitulatif'); ?>"><span class="fa lettre">R</span> Recapitulatif</a></li>
-                    </ul>
-                </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['concours'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'concours') { ?>active<?php } ?>">
-                    <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">Concours</span></a>
-                    <ul>
-                        <li <?php if ($this->request->controller == 'concours' && $this->request->action == 'index') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/concours'); ?>"><span class="fa lettre">C</span> Tous les concours</a></li>
-                        <li <?php if ($this->request->controller == 'concours' && $this->request->action == 'edit') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/concours/edit'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
+                        <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'vente') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/vente'); ?>"><span class="fa lettre">C</span>Vente</a></li>
+                        <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'venteadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/venteadd'); ?>"><span class="fa lettre">A</span>Ajouter</a></li>
+                        <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'reglement') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/reglement'); ?>"><span class="fa lettre">A</span> Règlement</a></li>
+                        <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'chiffreaffaire') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/chiffreaffaire'); ?>"><span class="fa lettre">A</span> Chiffre d'affaire</a></li>
                     </ul>
                 </li>
                 <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['catalogue'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'catalogue') { ?>active<?php } ?>">
@@ -135,11 +101,11 @@
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'clientadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/clientadd'); ?>"> Ajouter</a></li>
                             </ul>
                         </li>
-                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabirquant' || $this->request->controller == 'catalogue' && $this->request->action == 'fabirquantadd') { ?>active <?php } ?>">
+                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabriquant' || $this->request->controller == 'catalogue' && $this->request->action == 'fabriquantadd') { ?>active <?php } ?>">
                             <a href="#"><span class="fa lettre">E</span> Fabriquant</a>
                             <ul>
-                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabirquant') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/fabriquant'); ?>"> Lister</a></li>
-                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabirquantadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/fabriquantadd'); ?>"> Ajouter</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabriquant') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/fabriquant'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabriquantadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/fabriquantadd'); ?>"> Ajouter</a></li>
                             </ul>
                         </li>
                         <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fournisseur' || $this->request->controller == 'catalogue' && $this->request->action == 'fournisseuradd') { ?>active <?php } ?>">
@@ -151,6 +117,73 @@
                         </li>
                     </ul>
                 </li>
+                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['geonetliste'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'geonetliste') { ?>active<?php } ?>">
+                    <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">geonetliste</span></a>
+                    <ul>
+                        <li class="xn-openable <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'rayon' || $this->request->controller == 'geonetliste' && $this->request->action == 'rayonadd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> rayon</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'rayon') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/rayon'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'rayonadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/rayonadd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'magasin' || $this->request->controller == 'geonetliste' && $this->request->action == 'magasinadd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> magasin</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'magasin') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/magasin'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'magasinadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/magasinadd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'forme' || $this->request->controller == 'geonetliste' && $this->request->action == 'formeadd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> forme</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'forme') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/forme'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'formeadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/formeadd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'unite' || $this->request->controller == 'geonetliste' && $this->request->action == 'uniteadd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> unite</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'unite') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/unite'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'uniteadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/uniteadd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'ville' || $this->request->controller == 'geonetliste' && $this->request->action == 'villeadd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> ville</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'ville') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/ville'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'villeadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/villeadd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                        <li class="xn-openable <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'codepostal' || $this->request->controller == 'geonetliste' && $this->request->action == 'codepostaladd') { ?>active <?php } ?>">
+                            <a href="#"><span class="fa lettre">E</span> codepostal</a>
+                            <ul>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'codepostal') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/codepostal'); ?>"> Lister</a></li>
+                                <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'codepostaladd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/codepostaladd'); ?>"> Ajouter</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['comptabilite'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'comptabilite') { ?>active<?php } ?>">
+                    <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">comptabilite</span></a>
+                    <ul>
+                        <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'budget') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/budget'); ?>"><span class="fa lettre">B</span>budget</a></li>
+                        <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/Caisse'); ?>"><span class="fa lettre">C</span>Caisse</a></li>
+                        <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'consultation') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/consultation'); ?>"><span class="fa lettre">C</span> Consultation</a></li>
+                        <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'entre') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/entre'); ?>"><span class="fa lettre">E</span> Entrée</a></li>
+                        <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortie') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">S</span> Sortie</a></li>
+                    </ul>
+                </li>
+
+                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['pharmanet'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'pharmanet') { ?>active<?php } ?>">
+                    <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">pharmanet</span></a>
+                    <ul>
+                        <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'user') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/user'); ?>"><span class="fa lettre">C</span>User</a></li>
+                        <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'aboutus') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/aboutus'); ?>"><span class="fa lettre">A</span>About us</a></li>
+                        <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'offiline') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/offiline'); ?>"><span class="fa lettre">A</span> Offiline</a></li>
+                    </ul>
+                </li>
+
                 <li class="xn-openable">
                     <a href="#"><span class="fa fa-suitcase"></span> <span class="xn-text">Vie étudiante</span></a>
                     <ul>

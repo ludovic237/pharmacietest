@@ -62,6 +62,17 @@ class CatalogueController extends Controller
     function koudjine_assureur()
     {
         $this->loadModel('Catalogue');
+
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'id,nom,taux,telephone ',
+            'table' => 'assureur',
+
+        ));
+        //die($d);
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_clientadd()
@@ -72,6 +83,17 @@ class CatalogueController extends Controller
     function koudjine_client()
     {
         $this->loadModel('Catalogue');
+
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'id,nom,telephone,modeReglement,poid,taille,reduction ',
+            'table' => 'malade',
+
+        ));
+        //die($d);
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_fabriquantadd()
@@ -82,64 +104,58 @@ class CatalogueController extends Controller
     function koudjine_fabriquant()
     {
         $this->loadModel('Catalogue');
-    }
 
-    function koudjine_fournisseuradd($id = null)
-    {
-        $this->loadModel('Catalogue');
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'id,code,nom,adresse,telephone,email ',
+            'table' => 'fabriquant',
 
-        if ($id != null) {
-            $d['position'] = 'Modifier';
-
-            $d['concours'] = $this->Concours->findFirst(array(
-                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
-                'table' => 'acces_concours',
-                'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
-            ));
-
-
-
-            if (empty($d['concours'])) {
-                $this->e404('Page introuvable');
-            }
-        } else {
-            $d['position'] = 'Ajouter';
+        ));
+        //die($d);
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
         }
         $this->set($d);
+    }
+
+    function koudjine_fournisseuradd()
+    {
+        $this->loadModel('Catalogue');
     }
 
     function koudjine_fournisseur()
     {
         $this->loadModel('Catalogue');
-    }
 
-    function koudjine_prescripteuradd($id = null)
-    {
-        $this->loadModel('Catalogue');
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'id,code,nom,adresse,telephone,email,type ',
+            'table' => 'fournisseur',
 
-        if ($id != null) {
-            $d['position'] = 'Modifier';
-
-            $d['concours'] = $this->Concours->findFirst(array(
-                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
-                'table' => 'acces_concours',
-                'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
-            ));
-
-
-
-            if (empty($d['concours'])) {
-                $this->e404('Page introuvable');
-            }
-        } else {
-            $d['position'] = 'Ajouter';
+        ));
+        //die($d);
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
         }
         $this->set($d);
+    }
+
+    function koudjine_prescripteuradd()
+    {
+        $this->loadModel('Catalogue');
     }
 
     function koudjine_prescripteur()
     {
         $this->loadModel('Catalogue');
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'id,nom,structure,adresse,telephone',
+            'table' => 'prescripteur',
+
+        ));
+        //die($d);
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_produitadd($id = null)
@@ -175,10 +191,10 @@ class CatalogueController extends Controller
             'fields' => 'produit.id as idp,produit.nom as nomp,ean13,datePeremption,stock,prixPublic,categorie.nom as nomc,rayon.nom as nomr',
             'table' => 'produit,categorie,rayon',
             'order' => 'nomp-ASC',
-            'conditions' => array('produit.categorie_id' => 'categorie.id','produit.rayon_id' => 'rayon.id')
+            'conditions' => array('produit.categorie_id' => 'categorie.id', 'produit.rayon_id' => 'rayon.id')
         ));
         //die($d);
-        if(empty($d['catalogue'])){
+        if (empty($d['catalogue'])) {
             $this->e404('Page introuvable');
         }
         $this->set($d);
@@ -216,6 +232,17 @@ class CatalogueController extends Controller
     function koudjine_categorie()
     {
         $this->loadModel('Catalogue');
+
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'id,nom ',
+            'table' => 'categorie',
+
+        ));
+        //die($d);
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_add()

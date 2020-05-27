@@ -117,10 +117,17 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Unité:</label>
                         <div class="col-md-9">
-                            <select class="select" name="statut" id="statut">
-                                <option <?php if ($position != 'Modifier') echo "selected=\"selected\""; ?> value="">Choisir Statut</option>
-                                <option <?php if ($position == 'Modifier' && $universites->STATUT == 'Public') echo "selected=\"selected\""; ?> value="1">Public</option>
-                                <option <?php if ($position == 'Modifier' && $universites->STATUT == 'Privée') echo "selected=\"selected\""; ?> value="0">Privée</option>
+                            <select class="form-control input-xlarge select2me" name="unite" required="">
+                                <option value="1">Kg</option>
+                                <option value="2">G</option>
+                                <option value="3">DG</option>
+                                <option value="6">MG</option>
+                                <option value="7">L</option>
+                                <option value="8">DL</option>
+                                <option value="9">CL</option>
+                                <option value="10">ML</option>
+                                <option value="11"></option>
+                                <option value="12">CL</option>
                             </select>
                             <span class="help-block">Requis</span>
                         </div>
@@ -131,40 +138,44 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Quantité en stock:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="number" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
                             <span class="help-block">exemple: 23</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Quantité max en stock:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
+                            <input type="number" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
                             <span class="help-block">exemple: 40</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Quantité min en stock:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="" />
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Date de péremption:</label>
                         <div class="col-md-9">
-                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="" />
-                            <span class="help-block">Champ requis</span>
+                            <div class="input-group">
+                                <input class="form-control" id="dateDebut" name="datPeremp" placeholder="Date de péremption" type="date" required="">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Date de commande:</label>
                         <div class="col-md-9">
-                            <select class="select" name="statut" id="statut">
-                                <option <?php if ($position != 'Modifier') echo "selected=\"selected\""; ?> value="">Choisir Statut</option>
-                                <option <?php if ($position == 'Modifier' && $universites->STATUT == 'Public') echo "selected=\"selected\""; ?> value="1">Public</option>
-                                <option <?php if ($position == 'Modifier' && $universites->STATUT == 'Privée') echo "selected=\"selected\""; ?> value="0">Privée</option>
-                            </select>
-                            <span class="help-block">Requis</span>
+                            <div class="input-group">
+                                <input class="form-control" id="dateDebut" name="datPeremp" placeholder="Date de péremption" type="date" required="">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -173,14 +184,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Prix public:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="number" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
                             <span class="help-block">exemple: 2000 FCFA</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Prix achat:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
+                            <input type="number" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
                             <span class="help-block">exemple: 2000 FCFA</span>
                         </div>
                     </div>
@@ -190,43 +201,91 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Catégorie:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
-                            <span class="help-block">exemple: Médicament</span>
+                            <select class="form-control input-xlarge select2me" name="cat">
+                                <option value="1">INDEXCAT</option>
+                                <option value="3">CAT</option>
+                                <option value="4">INDEXCAT</option>
+                                <option value="5">SODIUM</option>
+                                <option value="7">INDEXCAT</option>
+                                <option value="9">PARACETAMOL</option>
+                                <option value="10">PARFUMERIE</option>
+                                <option value="11">REHYDRATANT</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Rayon:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
-                            <span class="help-block">exemple: Ray</span>
+                            <select class="form-control input-xlarge select2me" name="cat">
+                                <option value="1">INDEXCAT</option>
+                                <option value="3">CAT</option>
+                                <option value="4">INDEXCAT</option>
+                                <option value="5">SODIUM</option>
+                                <option value="7">INDEXCAT</option>
+                                <option value="9">PARACETAMOL</option>
+                                <option value="10">PARFUMERIE</option>
+                                <option value="11">REHYDRATANT</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Magasin:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="" />
-                            <span class="help-block">Champ requis</span>
+                            <select class="form-control input-xlarge select2me" name="cat">
+                                <option value="1">INDEXCAT</option>
+                                <option value="3">CAT</option>
+                                <option value="4">INDEXCAT</option>
+                                <option value="5">SODIUM</option>
+                                <option value="7">INDEXCAT</option>
+                                <option value="9">PARACETAMOL</option>
+                                <option value="10">PARFUMERIE</option>
+                                <option value="11">REHYDRATANT</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Form:</label>
                         <div class="col-md-9">
-                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="" />
-                            <span class="help-block">Champ requis</span>
+                            <select class="form-control input-xlarge select2me" name="cat">
+                                <option value="1">INDEXCAT</option>
+                                <option value="3">CAT</option>
+                                <option value="4">INDEXCAT</option>
+                                <option value="5">SODIUM</option>
+                                <option value="7">INDEXCAT</option>
+                                <option value="9">PARACETAMOL</option>
+                                <option value="10">PARFUMERIE</option>
+                                <option value="11">REHYDRATANT</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Fabriquant:</label>
                         <div class="col-md-9">
-                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="" />
-                            <span class="help-block">Champ requis</span>
+                            <select class="form-control input-xlarge select2me" name="cat">
+                                <option value="1">INDEXCAT</option>
+                                <option value="3">CAT</option>
+                                <option value="4">INDEXCAT</option>
+                                <option value="5">SODIUM</option>
+                                <option value="7">INDEXCAT</option>
+                                <option value="9">PARACETAMOL</option>
+                                <option value="10">PARFUMERIE</option>
+                                <option value="11">REHYDRATANT</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Fournisseur:</label>
                         <div class="col-md-9">
-                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="" />
-                            <span class="help-block">Champ requis</span>
+                            <select class="form-control input-xlarge select2me" name="cat">
+                                <option value="1">INDEXCAT</option>
+                                <option value="3">CAT</option>
+                                <option value="4">INDEXCAT</option>
+                                <option value="5">SODIUM</option>
+                                <option value="7">INDEXCAT</option>
+                                <option value="9">PARACETAMOL</option>
+                                <option value="10">PARFUMERIE</option>
+                                <option value="11">REHYDRATANT</option>
+                            </select>
                         </div>
                     </div>
                     <div class="btn-group pull-right">
