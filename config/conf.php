@@ -67,6 +67,12 @@ class Conf
             '2'  => 'Universitaire',
             '3'  => 'Informateur'
         ),
+        'pharmanet' => array(
+            '0'      => 'Administrateur',
+            '1'  => 'Superviseur',
+            '2'  => 'Universitaire',
+            '3'  => 'Informateur'
+        ),
         'comptabilite' => array(
             '0'      => 'Administrateur',
             '1'  => 'Superviseur',
