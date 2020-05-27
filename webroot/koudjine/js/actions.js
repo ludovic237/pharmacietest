@@ -124,9 +124,9 @@ $(document).ready(function(){
     $('.ajouter').on('click', function(){
 
         var controller = $(this).attr('controller');
-        alert(controller);
+        //alert(controller);
         if(controller == 'catalogue'){
-            alert('pass');
+            //alert('pass');
             if($('.ajouter').html() == 'Ajouter') {
                 var link = '/pharmacietest' + $(this).attr('id') + 'add';
             }
