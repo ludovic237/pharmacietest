@@ -69,3 +69,100 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
     </div>
 </div>
 <!-- END RESPONSIVE TABLES -->
+
+
+<!-- END RESPONSIVE TABLES -->
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreview" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Université</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="icon-preview"></div>
+                    </div>
+                    <div class="col-md-8 scroll">
+                        <ul class="list-group border-bottom">
+                            <h4>Informations générales</h4>
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                <tr>
+                                    <td width="100">Nom:</td>
+                                    <td class="nom"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Ville:</td>
+                                    <td class="ville"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Région:</td>
+                                    <td class="region"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Statut:</td>
+                                    <td class="statut"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Type:</td>
+                                    <td class="type"></td>
+                                </tr>
+                                <tr>
+                                    <td width="50">Responsable:</td>
+                                    <td class="responsable"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <h4>Informations de contact</h4>
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                <tr>
+                                    <td width="100">B.P:</td>
+                                    <td class="bp"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Téléphone:</td>
+                                    <td class="phone"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Email</td>
+                                    <td class="email"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">URL:</td>
+                                    <td class="site"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <h4>Autres Informations</h4>
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                <tr>
+                                    <td width="100">Cerification:</td>
+                                    <td class="certif"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Parrain:</td>
+                                    <td class="parrain"></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
