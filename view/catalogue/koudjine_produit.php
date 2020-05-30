@@ -29,7 +29,11 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
                         <tr>
                             <th>Nom</th>
                             <th width="100">ean13</th>
+                            <th width="100">Laborex</th>
+                            <th width="100">UbiPharm</th>
                             <th width="200">Quantité en stock</th>
+                            <th width="200">Quantité max</th>
+                            <th width="200">Quantité min</th>
                             <th width="200">Prix public</th>
                             <th width="200">Catégorie</th>
                             <th width="100">Rayon</th>

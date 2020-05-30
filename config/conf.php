@@ -73,7 +73,25 @@ class Conf
             '2'  => 'Universitaire',
             '3'  => 'Informateur'
         ),
+        'commande' => array(
+            '0'      => 'Administrateur',
+            '1'  => 'Superviseur',
+            '2'  => 'Universitaire',
+            '3'  => 'Informateur'
+        ),
+        'stock' => array(
+            '0'      => 'Administrateur',
+            '1'  => 'Superviseur',
+            '2'  => 'Universitaire',
+            '3'  => 'Informateur'
+        ),
         'comptabilite' => array(
+            '0'      => 'Administrateur',
+            '1'  => 'Superviseur',
+            '2'  => 'Universitaire',
+            '3'  => 'Informateur'
+        ),
+        'statistique' => array(
             '0'      => 'Administrateur',
             '1'  => 'Superviseur',
             '2'  => 'Universitaire',

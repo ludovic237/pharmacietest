@@ -35,28 +35,29 @@ class CatalogueController extends Controller
         $this->set($d);
     }
 
-    function koudjine_assureuradd($id = null)
+    function koudjine_prescripteuradd()
     {
         $this->loadModel('Catalogue');
+    }
 
-        if ($id != null) {
-            $d['position'] = 'Modifier';
+    function koudjine_prescripteur()
+    {
+        $this->loadModel('Catalogue');
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'id,nom,structure,adresse,telephone',
+            'table' => 'prescripteur',
 
-            $d['concours'] = $this->Concours->findFirst(array(
-                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
-                'table' => 'acces_concours',
-                'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
-            ));
-
-
-
-            if (empty($d['concours'])) {
-                $this->e404('Page introuvable');
-            }
-        } else {
-            $d['position'] = 'Ajouter';
+        ));
+        //die($d);
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
         }
         $this->set($d);
+    }
+
+    function koudjine_assureuradd()
+    {
+        $this->loadModel('Catalogue');
     }
 
     function koudjine_assureur()
@@ -64,7 +65,7 @@ class CatalogueController extends Controller
         $this->loadModel('Catalogue');
 
         $d['catalogue'] = $this->Catalogue->find(array(
-            'fields' => 'id,nom,taux,telephone ',
+            'fields' => 'id,nom,taux,telephone,CodePostal_id',
             'table' => 'assureur',
 
         ));
@@ -138,25 +139,7 @@ class CatalogueController extends Controller
         $this->set($d);
     }
 
-    function koudjine_prescripteuradd()
-    {
-        $this->loadModel('Catalogue');
-    }
-
-    function koudjine_prescripteur()
-    {
-        $this->loadModel('Catalogue');
-        $d['catalogue'] = $this->Catalogue->find(array(
-            'fields' => 'id,nom,structure,adresse,telephone',
-            'table' => 'prescripteur',
-
-        ));
-        //die($d);
-        if (empty($d['catalogue'])) {
-            $this->e404('Page introuvable');
-        }
-        $this->set($d);
-    }
+    
 
     function koudjine_produitadd($id = null)
     {
