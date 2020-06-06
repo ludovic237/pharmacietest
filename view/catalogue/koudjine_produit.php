@@ -29,15 +29,9 @@
                             <tr>
                                 <th>Nom</th>
                                 <th width="100">ean13</th>
-                                <th width="100">Laborex</th>
-                                <th width="100">UbiPharm</th>
                                 <th width="200">Quantité en stock</th>
-                                <th width="200">Quantité max</th>
-                                <th width="200">Quantité min</th>
-                                <th width="200">Prix public</th>
                                 <th width="200">Catégorie</th>
                                 <th width="100">Rayon</th>
-                                <th width="200">Date de péremption</th>
                                 <th width="100">Actions</th>
                             </tr>
                         </thead>
@@ -47,7 +41,6 @@
                                     <td><strong><?php echo $v->nomp; ?></strong></td>
                                     <td><?php echo $v->ean13; ?></td>
                                     <td><?php echo $v->stock; ?></td>
-                                    <td><?php echo $v->prixPublic; ?></td>
                                     <td>
                                         <?php echo $v->nomc; ?>
                                     </td>
@@ -55,11 +48,8 @@
                                         <?php echo $v->nomr; ?>
                                     </td>
                                     <td>
-                                        <?php echo $v->datePeremption; ?>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row(<?php echo $v->UNIVERSITE_ID; ?>)"><span class="fa fa-info"></span></button>
-                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->idp; ?>)"><span class="fa fa-pencil"></span></button>
+                                        <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row(<?php echo $v->idp; ?>)"><span class="fa fa-info"></span></button>
+                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->idp; ?>)"><span class="fa fa-pencil"></span></button>
                                         <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
                                     </td>
                                 </tr>
@@ -83,7 +73,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Université</h4>
+                <h4 class="modal-title">Produit</h4>
             </div>
             <div class="modal-body">
                 <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;

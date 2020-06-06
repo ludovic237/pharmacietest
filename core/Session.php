@@ -19,7 +19,7 @@ Class Session{
 
     }
     public function isLogged(){
-        return isset($_SESSION['Users']->STATUT);
+        return isset($_SESSION['Users']->type);
     }
     public function user($key){
         if($this->read('Users')){
