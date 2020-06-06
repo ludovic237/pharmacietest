@@ -21,7 +21,7 @@ class Controller{
         if($this->rendered){return false;}
         extract($this->vars);
         if($this->Session->isLogged() && $this->request->prefix == 'koudjine') {
-            if (!in_array($this->Session->user('STATUT'), Conf::$acces[$this->request->controller]) && $this->request->prefix == 'koudjine') {
+            if (!in_array($this->Session->user('type'), Conf::$acces[$this->request->controller]) && $this->request->prefix == 'koudjine') {
                 $this->redirect('bouwou/home');
             }
         }

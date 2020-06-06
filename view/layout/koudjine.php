@@ -39,8 +39,8 @@
                             <img src="<?php echo BASE_URL . '/koudjine/assets/images/users/' . $this->Session->user('PHOTO_PROFIL'); ?>" alt="<?php echo $this->Session->user('NOM') . ' ' . $this->Session->user('PRENOM'); ?>" />
                         </div>
                         <div class="profile-data">
-                            <div class="profile-data-name"><?php echo $this->Session->user('IDENTIFIANT') ?></div>
-                            <div class="profile-data-title"><?php echo $this->Session->user('STATUT') . ' ' ?><?php if ($this->Session->user('FONCTION') != null) echo ' / ' . $this->Session->user('FONCTION') ?></div>
+                            <div class="profile-data-name"><?php echo $this->Session->user('name') ?></div>
+                            <div class="profile-data-title"><?php echo $this->Session->user('type') . ' ' ?><?php if ($this->Session->user('FONCTION') != null) echo ' / ' . $this->Session->user('FONCTION') ?></div>
                         </div>
                         <div class="profile-controls">
                             <a href="<?php echo BASE_URL . '/bouwou/users/profile/' . $this->Session->user('PERSONNE_ID'); ?>" class="profile-control-left"><span class="fa fa-info"></span></a>
@@ -52,8 +52,8 @@
                     <a href="<?php echo Router::url('bouwou/home'); ?>"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
                 </li>
                 <li class="xn-title">Etudes</li>
-                
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['vente'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'vente') { ?>active<?php } ?>">
+
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['vente'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'vente') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">Vente</span></a>
                     <ul>
                         <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'vente') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/vente'); ?>"><span class="fa lettre">C</span>Vente</a></li>
@@ -62,7 +62,7 @@
                         <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'chiffreaffaire') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/chiffreaffaire'); ?>"><span class="fa lettre">A</span> Chiffre d'affaire</a></li>
                     </ul>
                 </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['catalogue'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'catalogue') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['catalogue'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'catalogue') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">Catalogue</span></a>
                     <ul>
                         <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit' || $this->request->controller == 'catalogue' && $this->request->action == 'produitadd') { ?>active <?php } ?>">
@@ -117,7 +117,7 @@
                         </li>
                     </ul>
                 </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['geonetliste'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'geonetliste') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['geonetliste'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'geonetliste') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">geonetliste</span></a>
                     <ul>
                         <li class="xn-openable <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'rayon' || $this->request->controller == 'geonetliste' && $this->request->action == 'rayonadd') { ?>active <?php } ?>">
@@ -164,7 +164,7 @@
                         </li>
                     </ul>
                 </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['comptabilite'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'comptabilite') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['comptabilite'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'comptabilite') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">comptabilite</span></a>
                     <ul>
                         <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'budget') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/budget'); ?>"><span class="fa lettre">B</span>budget</a></li>
@@ -175,7 +175,7 @@
                     </ul>
                 </li>
 
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['pharmanet'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'pharmanet') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['pharmanet'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'pharmanet') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">pharmanet</span></a>
                     <ul>
                         <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'user') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/user'); ?>"><span class="fa lettre">C</span>User</a></li>
@@ -196,7 +196,7 @@
                     </ul>
                 </li>
                 <li class="xn-title">Autres</li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['medias'])) { ?>style="display: none" <?php } ?> class=" <?php if ($this->request->controller == 'medias') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['medias'])) { ?>style="display: none" <?php } ?> class=" <?php if ($this->request->controller == 'medias') { ?>active<?php } ?>">
                     <a href="<?php echo Router::url('bouwou/medias'); ?>"><span class="fa fa-image"></span> <span class="xn-text">Medias</span></a>
                 </li>
                 <li class="xn-openable">
@@ -206,7 +206,7 @@
                         <li><a href="commentaire_article"> Article</a></li>
                     </ul>
                 </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['users'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'users') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['users'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'users') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-users"></span> <span class="xn-text">Utilisateurs</span></a>
                     <ul>
                         <li <?php if ($this->request->controller == 'users' && $this->request->action == 'index') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/users'); ?>"><span class="fa lettre">U</span> Tous les utilisateurs</a></li>

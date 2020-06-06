@@ -119,11 +119,11 @@ $script_for_layout = '
             <div class="panel-body">
                 <div class="row" >
                     <div class="col-md-6">
-                        <a href="<?php echo Router::url('bouwou/universites'); ?>" class="col-md-12" style="margin-bottom: 5px;"><span class="fa fa-home fa-2x" style="color: #22262e;margin: 0 5px 10px 0;"></span> <span class="" style="font-size: 14px;text-decoration: none;"> <?php echo $total_univ; ?> Universités</span></a>
-                        <a href="<?php echo Router::url('bouwou/formations'); ?>" class="col-md-12" style="margin-bottom: 5px;"><span class="glyphicon glyphicon-book fa-2x" style="color: #22262e;margin: 0 5px 10px 0;"></span> <span class="" style="font-size: 14px;text-decoration: none;"><?php echo $total_formations; ?> Formations</span></a>
+                        <a href="<?php echo Router::url('bouwou/universites'); ?>" class="col-md-12" style="margin-bottom: 5px;"><span class="fa fa-home fa-2x" style="color: #22262e;margin: 0 5px 10px 0;"></span> <span class="" style="font-size: 14px;text-decoration: none;"> <?php //echo $total_univ; ?> Universités</span></a>
+                        <a href="<?php echo Router::url('bouwou/formations'); ?>" class="col-md-12" style="margin-bottom: 5px;"><span class="glyphicon glyphicon-book fa-2x" style="color: #22262e;margin: 0 5px 10px 0;"></span> <span class="" style="font-size: 14px;text-decoration: none;"><?php //echo $total_formations; ?> Formations</span></a>
                     </div>
                     <div class="col-md-6">
-                        <a href="<?php echo Router::url('bouwou/concours'); ?>" class="col-md-12" style="margin-bottom: 5px;"><span class="glyphicon glyphicon-edit fa-2x" style="color: #22262e;margin: 0 5px 10px 0;"></span> <span class="" style="font-size: 14px;text-decoration: none;"><?php echo $total_concours; ?> Concours</span></a>
+                        <a href="<?php echo Router::url('bouwou/concours'); ?>" class="col-md-12" style="margin-bottom: 5px;"><span class="glyphicon glyphicon-edit fa-2x" style="color: #22262e;margin: 0 5px 10px 0;"></span> <span class="" style="font-size: 14px;text-decoration: none;"><?php //echo $total_concours; ?> Concours</span></a>
                     </div>
                 </div>
             </div>

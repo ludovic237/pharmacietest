@@ -12,24 +12,26 @@ class UsersController extends Controller
             $data->password = sha1($data->password);
             $this->loadModel('Users');
             $user = $this->Users->findFirst(array(
-                'conditions' => array('IDENTIFIANT' => '"'.$data->username.'"', 'PASSWORD' => '"'.$data->password.'"'),
-                'table' => 'personne'
+                'conditions' => array('name' => '"'.$data->username.'"', 'password' => '"'.$data->password.'"'),
+                'table' => 'user'
             ));
             if(!empty($user)){
+                //die('pass');
                 $this->Session->write('Users',$user);
             }
                 $data->password = '';
 
             if($this->Session->isLogged()){
-                if($this->Session->user('STATUT') == 'Administrateur'||$this->Session->user('STATUT') == 'Superviseur'||$this->Session->user('STATUT') == 'Universitaire'||$this->Session->user('STATUT') == 'Informateur'){
+                if($this->Session->user('type') == 'Administrateur'||$this->Session->user('type') == 'Vendeur'||$this->Session->user('type') == 'Gestionnaire'||$this->Session->user('type') == 'Caissier'){
                     $this->redirect('bouwou/home');}
                 else{
                     $this->redirect('users/login');
+                    //die('pass');
                 }
             }
         }
         elseif($this->Session->isLogged()){
-            if($this->Session->user('STATUT') == 'Administrateur'||$this->Session->user('STATUT') == 'Superviseur'||$this->Session->user('STATUT') == 'Universitaire'||$this->Session->user('STATUT') == 'Informateur'){
+            if($this->Session->user('type') == 'Administrateur'||$this->Session->user('type') == 'Vendeur'||$this->Session->user('type') == 'Gestionnaire'||$this->Session->user('type') == 'Caissier'){
                 $this->redirect('bouwou/home');}
             else{
                 $this->redirect('users/login');
@@ -44,7 +46,7 @@ class UsersController extends Controller
     function logout(){
         unset($_SESSION['Users']);
         session_destroy();
-        $this->redirect('');
+        $this->redirect('users/login');
 
     }
 

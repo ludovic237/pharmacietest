@@ -3,6 +3,118 @@ $(document).ready(function(){ 	// le document est charg鍊   $("a").click(functi
 
 });
   // Ajax
+// Fonctions PHARMACIE
+
+function enregistrer_produit(option,id){
+    // Informations université
+    var nom = $('#nom').val();
+    var ean13 = $('#ean13').val();
+    var reference = $('#reference').val();
+    var laborex = $('#laborex').val();
+    var ubipharm = $('#ubipharm').val();
+    //alert(type);
+    var stock = $('#stock').val();
+    var stockmin = $('#stockmin').val();
+    var stockmax = $('#stockmax').val();
+    var reduction = $('#reduction').val();
+    var cat = $('#catproduit option:selected').val();
+    var ray = $('#rayonproduit option:selected').val();
+    var fab = $('#fabproduit option:selected').val();
+    var mag = $('#magproduit option:selected').val();
+    var forme = $('#formeproduit option:selected').val();
+    /*$("#magproduit").change(function () {
+        v = $('#magproduit option:selected').val();
+        alert(v);
+    })*/
+        //.trigger('change');
+    //alert(mag);
+
+    if(option == 'Ajouter'){
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_produit.php',
+            data: {
+                nom: nom,
+                ean13: ean13,
+                reference: reference,
+                laborex: laborex,
+                ubipharm: ubipharm,
+                stock: stock,
+                stockmin: stockmin,
+                stockmax: stockmax,
+                reduction: reduction,
+                cat: cat,
+                forme: forme,
+                ray: ray,
+                fab: fab,
+                mag: mag
+            },
+            success: function (data) {
+
+                if(data == 'ok'){
+                    var link = '/pharmacietest/bouwou/catalogue/produit/';
+                    window.location.href=link;
+                }
+                else{
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function(){
+                        $("#message-box-danger").modal("hide");
+                    },93000);
+                }
+            }
+        });
+    }
+    else{
+        //alert('test');
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_produit.php',
+            data: {
+                nom: nom,
+                ean13: ean13,
+                reference: reference,
+                laborex: laborex,
+                ubipharm: ubipharm,
+                stock: stock,
+                stockmin: stockmin,
+                stockmax: stockmax,
+                reduction: reduction,
+                cat: cat,
+                forme: forme,
+                ray: ray,
+                fab: fab,
+                mag: mag,
+                id: id
+            },
+            success: function (data) {
+                //alert(data.erreur);
+                if(data == 'ok'){
+                    var link = '/pharmacietest/bouwou/catalogue/produitadd/'+id;
+                    window.location.href=link;
+                }
+                else{
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function(){
+                        $("#message-box-danger").modal("hide");
+                    },93000);
+
+                }
+            }
+        });
+    }
+
+}
+
+
+
+// FIN
+
+
+
+
+
   
   function enregistrer_universite(option,id){
       // Informations université
@@ -307,7 +419,7 @@ function enregistrer_concours(option,id){
             composition = composition+';'+$('#input_compo-'+i).val();
         }
     }
-    alert('passe');
+    //alert('passe');
 
     if(option == 'Ajouter'){
         $.ajax({

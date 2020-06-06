@@ -1,44 +1,20 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Universités';
-$page_for_layout = ($position == 'Ajouter') ? 'Ajouter une produit' : 'Modifier une produit';
-$action_for_layout = 'Ajouter';
+$title_for_layout = ' Admin -' . 'Catalogue';
+$page_for_layout = ($position == 'Ajouter') ? 'Ajouter une produit' : 'Modifier un produit';
+
 
 if ($this->request->action == "index") {
     $position = "Toutes les universités";
 } else {
     //$position = $this->request->action;
 }
-$position_for_layout = '<li><a href="#">Universites</a></li><li class="active">' . $position . '</li>';
+$position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-file-input.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/fileinput/fileinput.min.js"></script>
+<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/jquery.noty.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/themes/default.js"></script>
-<script type="text/javascript">
-                function notyConfirm(){
-                    noty({
-                        text: \'Do you want to continue?\',
-                        layout: \'topRight\',
-                        buttons: [
-                                {addClass: \'btn btn-success btn-clean\', text: \'Ok\', onClick: function($noty) {
-                                    $noty.close();
-                                    noty({text: \'You clicked "Ok" button\', layout: \'topRight\', type: \'success\'});
-                                }
-                                },
-                                {addClass: \'btn btn-danger btn-clean\', text: \'Cancel\', onClick: function($noty) {
-                                    $noty.close();
-                                    noty({text: \'You clicked "Cancel" button\', layout: \'topRight\', type: \'error\'});
-                                    }
-                                }
-                            ]
-                    })
-                }
-            </script>
 <script type="text/javascript">
             var jvalidate = $("#jvalidate").validate({
                 ignore: [],
@@ -48,27 +24,24 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         minlength: 2,
                         maxlength: 50
                     },
-                    region: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 20
+                    reference: {
+                        required: false,
                     },
-                    telephone_1: {
+                    stockmin: {
                         required: true
                     },
-                    ville: {
+                    stockmax: {
                         required: true,
-                        minlength: 3,
-                        maxlength: 100
                     },
-                    email: {
+                    stock: {
                         required: true,
-                        email: true
                     },
-                    statut: {
+                    reduction: {
                         required: true
                     },
-                    "type[]": "required"
+                    ean13: {
+                        required: true
+                    }
 
                 }
             });
@@ -82,54 +55,43 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
 
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;
+            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_produit('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $produit->id;
                                                                                                                                             else echo ""; ?>');">
                 <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Informations générales</h4>
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">ean13:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
-                            <span class="help-block">exemple: ean13</span>
+                            <input type="text" class="form-control" name="ean13" id="ean13" value="<?php if ($position == 'Modifier') echo $produit->ean13; ?>" placeholder="" />
+                            <span class="help-block">exemple: ean13 - Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Référence:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
-                            <span class="help-block">exemple: AXA</span>
+                            <input type="text" class="form-control" name="reference" id="reference" value="<?php if ($position == 'Modifier') echo $produit->reference; ?>" placeholder="" />
+                            <span class="help-block">exemple: AXA - Champ requis</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Code Laborex:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="laborex" id="laborex" value="<?php if ($position == 'Modifier') echo $produit->codeLaborex; ?>" placeholder="" />
+                            <span class="help-block">exemple: LAB 001</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Code Ubiform:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="ubipharm" id="ubipharm" value="<?php if ($position == 'Modifier') echo $produit->codeUbipharm; ?>" placeholder="" />
+                            <span class="help-block">exemple: UBI 001</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Nom:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="" />
+                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->nom; ?>" name="nom" id="nom" placeholder="" />
                             <span class="help-block">Champ requis</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Contenance:</label>
-                        <div class="col-md-9">
-                            <input type="text" value="<?php if ($position == 'Modifier') echo $universites->REGION; ?>" name="region" id="region" class="form-control" placeholder="" />
-                            <span class="help-block">Champ requis</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Unité:</label>
-                        <div class="col-md-9">
-                            <select class="form-control input-xlarge select2me" name="unite" required="">
-                                <option value="1">Kg</option>
-                                <option value="2">G</option>
-                                <option value="3">DG</option>
-                                <option value="6">MG</option>
-                                <option value="7">L</option>
-                                <option value="8">DL</option>
-                                <option value="9">CL</option>
-                                <option value="10">ML</option>
-                                <option value="11"></option>
-                                <option value="12">CL</option>
-                            </select>
-                            <span class="help-block">Requis</span>
                         </div>
                     </div>
                 </div>
@@ -138,153 +100,116 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Quantité en stock:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
-                            <span class="help-block">exemple: 23</span>
+                            <input type="number" class="form-control" name="stock" id="stock" value="<?php if ($position == 'Modifier') echo $produit->stock; ?>" placeholder="" />
+                            <span class="help-block">exemple: 23 - Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Quantité max en stock:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
-                            <span class="help-block">exemple: 40</span>
+                            <input type="number" class="form-control" name="stockmax" id="stockmax" value="<?php if ($position == 'Modifier') echo $produit->stockMax; ?>" placeholder="" />
+                            <span class="help-block">exemple: 40 - Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Quantité min en stock:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $universites->VILLE; ?>" name="ville" id="ville" placeholder="" />
-                            <span class="help-block">Champ requis</span>
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->stockMin; ?>" name="stockmin" id="stockmin" placeholder="" />
+                            <span class="help-block">Champ requis - Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Date de péremption:</label>
+                        <label class="col-md-3 control-label">Réduction Max Appliquable:</label>
                         <div class="col-md-9">
-                            <div class="input-group">
-                                <input class="form-control" id="dateDebut" name="datPeremp" placeholder="Date de péremption" type="date" required="">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->reductionMax; else echo 0; ?>" name="reduction" id="reduction" placeholder="" />
+                            <span class="help-block">Champ requis</span>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                        <label class="col-md-3 control-label">Date de péremption:</label>
+                        <div class="col-md-9 col-xs-12">
+                            <div class="input-group ">
+                                <input type="text" id="dp-3" class="form-control" value="<?php /* if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->datePeremption != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->datePeremption);echo $date->format('d-m-Y');}} */?>" data-date="<?php /*if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->datePeremption != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->datePeremption);echo $date->format('d-m-Y');}} */?>" data-date-format="dd-mm-yyyy" data-date-viewmode="years"/>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Date de commande:</label>
                         <div class="col-md-9">
-                            <div class="input-group">
-                                <input class="form-control" id="dateDebut" name="datPeremp" placeholder="Date de péremption" type="date" required="">
-                                <span class="input-group-addon">
+                            <div class="input-group ">
+                                <input type="text" id="dp-3" class="form-control" value="<?php /* if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->dateCmd != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->dateCmd);echo $date->format('d-m-Y');}} */?>" data-date="<?php /*if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->dateCmd != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->dateCmd);echo $date->format('d-m-Y');}} */?>" data-date-format="dd-mm-yyyy" data-date-viewmode="years"/>
+                                 <span class="input-group-addon datepicker">
                                     <i class="fa fa-calendar"></i>
                                 </span>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Prix</h4>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Prix public:</label>
-                        <div class="col-md-9">
-                            <input type="number" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
-                            <span class="help-block">exemple: 2000 FCFA</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Prix achat:</label>
-                        <div class="col-md-9">
-                            <input type="number" class="form-control" name="nom_complet" id="nom_complet" value="<?php if ($position == 'Modifier') echo $universites->NOM_COMPLET; ?>" placeholder="" />
-                            <span class="help-block">exemple: 2000 FCFA</span>
-                        </div>
-                    </div>
+                    </div>-->
                 </div>
                 <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Géo</h4>
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">Catégorie:</label>
                         <div class="col-md-9">
-                            <select class="form-control input-xlarge select2me" name="cat">
-                                <option value="1">INDEXCAT</option>
-                                <option value="3">CAT</option>
-                                <option value="4">INDEXCAT</option>
-                                <option value="5">SODIUM</option>
-                                <option value="7">INDEXCAT</option>
-                                <option value="9">PARACETAMOL</option>
-                                <option value="10">PARFUMERIE</option>
-                                <option value="11">REHYDRATANT</option>
+                            <select class="form-control input-xlarge " name="catproduit" id="catproduit">
+                                <?php
+                                foreach ($categorie as $k => $v): ?>
+                                    <option <?php if($position == 'Modifier')if($v->id == $produit->categorie_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" ><?php echo $v->nom; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Rayon:</label>
                         <div class="col-md-9">
-                            <select class="form-control input-xlarge select2me" name="cat">
-                                <option value="1">INDEXCAT</option>
-                                <option value="3">CAT</option>
-                                <option value="4">INDEXCAT</option>
-                                <option value="5">SODIUM</option>
-                                <option value="7">INDEXCAT</option>
-                                <option value="9">PARACETAMOL</option>
-                                <option value="10">PARFUMERIE</option>
-                                <option value="11">REHYDRATANT</option>
+                            <select class="form-control input-xlarge " name="rayonproduit" id="rayonproduit">
+                                <?php
+                                foreach ($rayon as $k => $v): ?>
+                                    <option <?php if($position == 'Modifier')if($v->id == $produit->rayon_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" ><?php echo $v->nom; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Magasin:</label>
                         <div class="col-md-9">
-                            <select class="form-control input-xlarge select2me" name="cat">
-                                <option value="1">INDEXCAT</option>
-                                <option value="3">CAT</option>
-                                <option value="4">INDEXCAT</option>
-                                <option value="5">SODIUM</option>
-                                <option value="7">INDEXCAT</option>
-                                <option value="9">PARACETAMOL</option>
-                                <option value="10">PARFUMERIE</option>
-                                <option value="11">REHYDRATANT</option>
+                            <select class="form-control input-xlarge " name="magproduit" id="magproduit">
+                                <?php
+                                foreach ($magasin as $k => $v): ?>
+                                    <option <?php if($position == 'Modifier')if($v->id == $produit->magasin_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" ><?php echo $v->nom; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Form:</label>
+                        <label class="col-md-3 control-label">Forme:</label>
                         <div class="col-md-9">
-                            <select class="form-control input-xlarge select2me" name="cat">
-                                <option value="1">INDEXCAT</option>
-                                <option value="3">CAT</option>
-                                <option value="4">INDEXCAT</option>
-                                <option value="5">SODIUM</option>
-                                <option value="7">INDEXCAT</option>
-                                <option value="9">PARACETAMOL</option>
-                                <option value="10">PARFUMERIE</option>
-                                <option value="11">REHYDRATANT</option>
+                            <select class="form-control input-xlarge " name="formeproduit" id="formeproduit">
+                                <?php
+                                foreach ($forme as $k => $v): ?>
+                                    <option <?php if($position == 'Modifier')if($v->id == $produit->forme_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" ><?php echo $v->nom; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Fabriquant:</label>
                         <div class="col-md-9">
-                            <select class="form-control input-xlarge select2me" name="cat">
-                                <option value="1">INDEXCAT</option>
-                                <option value="3">CAT</option>
-                                <option value="4">INDEXCAT</option>
-                                <option value="5">SODIUM</option>
-                                <option value="7">INDEXCAT</option>
-                                <option value="9">PARACETAMOL</option>
-                                <option value="10">PARFUMERIE</option>
-                                <option value="11">REHYDRATANT</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Fournisseur:</label>
-                        <div class="col-md-9">
-                            <select class="form-control input-xlarge select2me" name="cat">
-                                <option value="1">INDEXCAT</option>
-                                <option value="3">CAT</option>
-                                <option value="4">INDEXCAT</option>
-                                <option value="5">SODIUM</option>
-                                <option value="7">INDEXCAT</option>
-                                <option value="9">PARACETAMOL</option>
-                                <option value="10">PARFUMERIE</option>
-                                <option value="11">REHYDRATANT</option>
+                            <select class="form-control input-xlarge " name="fabproduit" id="fabproduit">
+                                <?php
+                                foreach ($fabriquant as $k => $v): ?>
+                                    <option <?php if($position == 'Modifier')if($v->id == $produit->fabriquant_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" ><?php echo $v->nom; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
                             </select>
                         </div>
                     </div>
