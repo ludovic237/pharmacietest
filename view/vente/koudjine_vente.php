@@ -1,7 +1,7 @@
 <!-- <?php
 
 $title_for_layout = ' Admin -'.'Universités';
-$page_for_layout = 'Liste vente';
+$page_for_layout = 'Vente';
 $action_for_layout = 'Ajouter';
 
 if($this->request->action == "index"){
@@ -9,7 +9,7 @@ if($this->request->action == "index"){
 }else{
     $position = $this->request->action;
 }
-$position_for_layout = '<li><a href="#">Concours</a></li><li class="active">'.$position.'</li>';
+$position_for_layout = '<li><a href="#">Vente</a></li><li class="active">'.$position.'</li>';
 $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="'.BASE_URL.'/koudjine/js/demo_tables.js"></script>';
 ?> -->
@@ -27,30 +27,29 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
                     <table class="table datatable table-bordered table-striped table-actions">
                         <thead>
                         <tr>
-                            <th>Nom</th>
-                            <th width="100">Date & heure</th>
-                            <th width="200">Ref</th>
-                            <th width="200">Vendeur</th>
-                            <th width="200">Client / prescripteur</th>
-                            <th width="100">Montant TTC</th>
-                            <th width="100">Montant reçu</th>
+                            <th width="100">Montant</th>
+                            <th width="200">Montant percu</th>
+                            <th width="200">Commentaire</th>
+                            <th width="200">Date de vente</th>
+                            <th width="100">Etat</th>
+                            <th width="100">Ref</th>
                             <th width="100">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($concours as $k => $v): ?>
-                            <tr id="<?php echo $v->CONCOURS_ID; ?>">
-                                <td><strong><?php echo $v->NOM; ?></strong></td>
-                                <td><?php echo $v->DATE_DEBUT_CONCOURS; ?></td>
-                                <td><?php echo $v->DATE_FIN_CONCOURS; ?></td>
+                        <?php foreach ($vente as $k => $v): ?>
+                            <tr id="<?php echo $v->id; ?>">
+                                <td><strong><?php echo $v->montantRegle; ?></strong></td>
+                                <td><?php echo $v->reelPercu; ?></td>
+                                <td><?php echo $v->commentaire; ?></td>
                                 <td>
-                                    <?php echo $v->DESCRIPTION; ?>
+                                    <?php echo $v->dateVente; ?>
                                 </td>
                                 <td>
-                                    <?php echo $v->MODALITE_ADMISSION; ?>
+                                    <?php echo $v->etat; ?>
                                 </td>
                                 <td>
-                                    <?php echo $v->DATE_DOSSIER; ?>
+                                    <?php echo $v->ref; ?>
                                 </td>
                                 <td>
                                     <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>

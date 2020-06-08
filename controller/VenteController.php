@@ -26,11 +26,11 @@ class VenteController extends Controller
         $this->loadModel('Vente');
 
 
-        $d['Vente'] = $this->Vente->find(array(
-            'fields' => 'DATE_DEBUT_CONCOURS,MODALITE_ADMISSION,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
-            'table' => 'acces_concours,universite',
-            'order' => 'DATE_DEBUT_CONCOURS-DESC',
-            'conditions' => array('acces_concours.UNIVERSITE_ID' => 'universite.UNIVERSITE_ID', 'acces_concours.SUPPRIMER' => 0, 'universite.SUPPRIMER' => 0)
+        $d['vente'] = $this->Vente->find(array(
+            'fields' => 'vente.id as id,vente.montantRegle as montantRegle,reelPercu',
+            'table' => 'vente,categorie,montantRegle',
+            'order' => 'nomp-ASC',
+            'conditions' => array('vente.categorie_id' => 'categorie.id','vente.rayon_id' => 'rayon.id')
         ));
         $this->set($d);
     }
@@ -62,6 +62,16 @@ class VenteController extends Controller
     function koudjine_vente()
     {
         $this->loadModel('Vente');
+
+        $d['vente'] = $this->Vente->find(array(
+            'fields' => 'vente.id as id,montantRegle,reelPercu,commentaire,dateVente,etat,ref',
+            'table' => 'vente',
+        ));
+
+        if(empty($d['vente'])){
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_reglement()
