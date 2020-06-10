@@ -64,9 +64,207 @@ class ComptabiliteController extends Controller
         $this->loadModel('Comptabilite');
     }
 
-    function koudjine_entre()
+    function koudjine_entre($id_prod=null,$stock=null,$perime=null)
     {
         $this->loadModel('Comptabilite');
+        if($id_prod == 0){
+            $id_prod = null;
+        }
+        else{
+            $d['produit'] = $this->Comptabilite->findFirst(array(
+                //'fields' => 'produit.nom as nom',
+                'table' => 'produit',
+                'conditions' => "id=".$id_prod." AND supprimer = 0"
+            ));
+        }
+        if($stock == 0){
+            $stock = null;
+        }
+        $d['id_prod'] = $id_prod;
+        $d['stock'] = $stock;
+        $d['perime'] = $perime;
+        
+        if($id_prod != null){
+
+            if($stock != null){
+                if($perime == null) {
+                    if($stock == 1){
+                        $d['catalogue'] = $this->Comptabilite->find(array(
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'table' => 'en_rayon,produit,fournisseur',
+                            'order' => 'dateLivraison-ASC',
+                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
+                        ));
+                    }
+                    else{
+                        $d['catalogue'] = $this->Comptabilite->find(array(
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'table' => 'en_rayon,produit,fournisseur',
+                            'order' => 'dateLivraison-ASC',
+                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
+                        ));
+                    }
+                }
+                else{
+                    if($perime == 1){
+                        if($stock == 1){
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
+                            ));
+                        }
+                        else{
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
+                            ));
+                        }
+                    }
+                    else{
+                        if($stock == 1){
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
+                            ));
+                        }
+                        else{
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
+                            ));
+                        }
+                    }
+
+                }
+            }else{
+                if($perime == null) {
+                    $d['catalogue'] = $this->Comptabilite->find(array(
+                        'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                        'table' => 'en_rayon,produit,fournisseur',
+                        'order' => 'dateLivraison-ASC',
+                        'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
+                    ));
+                }else{
+                    if($perime == 1){
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
+                            ));
+                    }
+                    else{
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
+                            ));
+                    }
+                }
+
+            }
+        }
+        else {
+
+            if($stock != null){
+                if($perime == null) {
+                    if($stock == 1){
+                        $d['catalogue'] = $this->Comptabilite->find(array(
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'table' => 'en_rayon,produit,fournisseur',
+                            'order' => 'dateLivraison-ASC',
+                            'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
+                        ));
+                    }
+                    else{
+                        $d['catalogue'] = $this->Comptabilite->find(array(
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'table' => 'en_rayon,produit,fournisseur',
+                            'order' => 'dateLivraison-ASC',
+                            'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
+                        ));
+                    }
+                }
+                else{
+                    if($perime == 1){
+                        if($stock == 1){
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
+                            ));
+                        }
+                        else{
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
+                            ));
+                        }
+                    }
+                    else{
+                        if($stock == 1){
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
+                            ));
+                        }
+                        else{
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
+                            ));
+                        }
+                    }
+
+                }
+            }else{
+                if($perime == null) {
+                    $d['catalogue'] = $this->Comptabilite->find(array(
+                        'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                        'table' => 'en_rayon,produit,fournisseur',
+                        'order' => 'dateLivraison-ASC',
+                        'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
+                    ));
+                }else{
+                    if($perime == 1){
+                        $d['catalogue'] = $this->Comptabilite->find(array(
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'table' => 'en_rayon,produit,fournisseur',
+                            'order' => 'dateLivraison-ASC',
+                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
+                        ));
+                    }
+                    else{
+                        $d['catalogue'] = $this->Comptabilite->find(array(
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'table' => 'en_rayon,produit,fournisseur',
+                            'order' => 'dateLivraison-ASC',
+                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
+                        ));
+                    }
+                }
+
+            }
+        }
+
+
+        $this->set($d);
     }
 
     function koudjine_sortie()

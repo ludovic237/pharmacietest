@@ -22,6 +22,23 @@ $(document).ready(function(){
 
 
     });
+    if($('#srch_perime option:selected').text() == 'bientôt Périmés'){
+        $('#jours').show();
+    }
+    else{
+        $('#jours').hide();
+    }
+
+    $('#srch_perime').change(function(){
+        var text = $('#srch_perime option:selected').text();
+        if(text == 'bientôt Périmés'){
+            $('#jours').show();
+        }
+        else{
+            $('#jours').hide();
+        }
+
+    });
     /**
      * Admin Formation
      */
@@ -775,6 +792,106 @@ function lister_formations(){
 
 
 }
+
+function charger_stock(){
+
+    var id1 =  $('#srch_produit').val();
+    var id2 =  $('#srch_stock option:selected').text();
+    var id3 =  $('#srch_perime option:selected').text();
+    if(id1 != ''){
+        var id = $('#srch_produit').attr("name");
+        alert(id);
+        if(id2 == 'Tout...'){
+            if(id3 == 'Tout...'){
+                var link = '/pharmacietest/bouwou/comptabilite/entre/'+id;
+                window.location.href=link;
+            }else{
+                if($("#srch_perime").val()=='2'){
+                    if($('#jours').val()!= ''){
+                        var link = '/pharmacietest/bouwou/comptabilite/entre/'+id+'/0/'+$('#jours').val();
+                        window.location.href=link;
+                    }
+                    else{
+                        alert("Entrer le nombre de jours !");
+                    }
+                }
+                else{
+                    var link = '/pharmacietest/bouwou/comptabilite/entre/'+id+'/0/'+$('#srch_perime').val();
+                    window.location.href=link;
+                }
+
+
+            }
+        }
+        else{
+            if(id3 == 'Tout...'){
+                var link = '/pharmacietest/bouwou/comptabilite/entre/'+id+'/'+$('#srch_stock').val();
+                window.location.href=link;
+            }else{
+                if($("#srch_perime").val()=='2'){
+                    if($('#jours').val()!= ''){
+                        var link = '/pharmacietest/bouwou/comptabilite/entre/'+id+'/'+$('#srch_stock').val()+'/'+$('#jours').val();
+                        window.location.href=link;
+                    }
+                    else{
+                        alert("Entrer le nombre de jours !");
+                    }
+                }
+                else{
+                    var link = '/pharmacietest/bouwou/comptabilite/entre/'+id+'/'+$('#srch_stock').val()+'/'+$('#srch_perime').val();
+                    window.location.href=link;
+                }
+
+            }
+        }
+
+    }else{
+        if(id2 == 'Tout...'){
+            if(id3 == 'Tout...'){
+                var link = '/pharmacietest/bouwou/comptabilite/entre';
+                window.location.href=link;
+            }else{
+                if($("#srch_perime").val()=='2'){
+                    if($('#jours').val()!= ''){
+                        var link = '/pharmacietest/bouwou/comptabilite/entre/0/0/'+$('#jours').val();
+                        window.location.href=link;
+                    }
+                    else{
+                        alert("Entrer le nombre de jours !");
+                    }
+                }
+                else{
+                    var link = '/pharmacietest/bouwou/comptabilite/entre/0/0/'+$('#srch_perime').val();
+                    window.location.href=link;
+                }
+            }
+        }else{
+            if(id3 == 'Tout...'){
+                var link = '/pharmacietest/bouwou/comptabilite/entre/0/'+$('#srch_stock').val();
+                window.location.href=link;
+            }else{
+                if($("#srch_perime").val()=='2'){
+                    if($('#jours').val()!= ''){
+                        var link = '/pharmacietest/bouwou/comptabilite/entre/0/'+$('#srch_stock').val()+'/'+$('#jours').val();
+                        window.location.href=link;
+                    }
+                    else{
+                        alert("Entrer le nombre de jours !");
+                    }
+                }
+                else{
+                    var link = '/pharmacietest/bouwou/comptabilite/entre/0/'+$('#srch_stock').val()+'/'+$('#srch_perime').val();
+                    window.location.href=link;
+                }
+
+            }
+        }
+    }
+
+
+
+}
+
 /* END BouWou Personnalisation */
 /* NEW OBJECT(GET SIZE OF ARRAY) */
 Object.size = function(obj) {

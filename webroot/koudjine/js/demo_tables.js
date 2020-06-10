@@ -267,14 +267,15 @@ function info_row(row) {
 
 // Fonctions Pharmacie
 
-function info_row(row) {
+function info_row_entree(row) {
 
     //var lien = $(this).attr('id');
     //alert('test');
+    var code ;
 
-    $.ajax({
+        $.ajax({
         type: "POST",
-        url: '/pharmacietest/koudjine/inc/info_universite.php',
+        url: '/pharmacietest/koudjine/inc/info_entree.php',
         data: {
             id: row
         },
@@ -283,23 +284,70 @@ function info_row(row) {
             //alert(data);
             //$("#iconPreview .icon-preview").html(icon_preview);
 
-            $('#iconPreview .nom').html(data.nom);
-            $("#iconPreview .ville").html(data.ville);
-            $("#iconPreview .region").html(data.region);
-            $("#iconPreview .statut").html(data.statut);
-            $("#iconPreview .type").html(data.type);
-            $("#iconPreview .responsable").html(data.responsable);
-            $("#iconPreview .bp").html(data.bp);
-            $("#iconPreview .email").html(data.email);
-            $("#iconPreview .phone").html(data.phone);
-            $("#iconPreview .site").html(data.site);
-            $("#iconPreview .certif").html(data.certif);
+            $('#iconPreviewEntree .nomp').html(data.nomP);
+            $("#iconPreviewEntree .nomf").html(data.nomF);
+            $("#iconPreviewEntree .code").html(data.code);
+            $("#iconPreviewEntree .datel").html(data.datel);
+            $("#iconPreviewEntree .datep").html(data.datep);
+            $("#iconPreviewEntree .prixv").html(data.prixv);
+            $("#iconPreviewEntree .quantite").html(data.quantite);
+            $("#iconPreviewEntree .quantiter").html(data.quantiter);
+            $("#iconPreviewEntree .reduction").html(data.reduction);
+            $("#iconPreviewEntree .prixa").html(data.prixa);
+            //$("#code").barcode(data.codebarre);
+            code = data.codebarre;
+            $("#demo").barcode(
+                "12345678", // Value barcode (dependent on the type of barcode)
+                "code128" // type (string)
+
+            );
+
+
         }
 
+
     })
+    //alert(code);
+    $(".fittext1").fitText();
+    $("#demo").fitText();
+
 
     // var icon_preview = $("<i></i>").addClass(iClass);
-    $("#iconPreview").modal("show");
+    $("#iconPreviewEntree").modal("show");
 
 }
+
+function imprimer(divName) {
+    //$("#iconPreviewEntree").modal("hide");
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+    return true;
+}
+function imprimer_bloc(titre, objet) {
+// Définition de la zone à imprimer
+    var zone = document.getElementById(objet).innerHTML;
+
+// Ouverture du popup
+    var fen = window.open("", "", "height=60, width=140,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=10, top=10");
+
+// style du popup
+    fen.document.body.style.color = '#000000';
+    fen.document.body.style.backgroundColor = '#FFFFFF';
+    fen.document.body.style.padding = "5px";
+
+// Ajout des données a imprimer
+    fen.document.title = titre;
+    fen.document.body.innerHTML += " " + zone + " ";
+
+// Impression du popup
+    fen.window.print();
+
+//Fermeture du popup
+    fen.window.close();
+    return true;
+}
+
 // Fin
