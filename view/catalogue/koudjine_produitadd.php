@@ -7,7 +7,7 @@ $page_for_layout = ($position == 'Ajouter') ? 'Ajouter une produit' : 'Modifier 
 if ($this->request->action == "index") {
     $position = "Toutes les universités";
 } else {
-    //$position = $this->request->action;
+    //$position = $this->request->action; 
 }
 $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
