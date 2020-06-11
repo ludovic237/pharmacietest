@@ -41,7 +41,7 @@ class VenteController extends Controller
         $this->loadModel('Vente');
         if ($id != null) {
             $d['position'] = 'Modifier';
-
+ 
             $d['concours'] = $this->Concours->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'acces_concours',

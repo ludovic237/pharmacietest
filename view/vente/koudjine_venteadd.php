@@ -74,7 +74,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             });
 
         </script>';
-?>
+?> 
 
 <div class="row">
     <div class="col-md-8">

@@ -1,63 +1,63 @@
 <?php
 
-$title_for_layout = ' Admin -'.'Comptabilité';
+$title_for_layout = ' Admin -' . 'Comptabilité';
 $page_for_layout = 'Entrées Stock';
 $action_for_layout = 'Ajouter';
 
-if($this->request->action == "entre"){
+if ($this->request->action == "entre") {
     $position = "Entrées Stock";
 }
-$position_for_layout = '<li><a href="#">Comptabilité</a></li><li class="active">'.$position.'</li>';
-$script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/demo_tables.js"></script>
-<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
-<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/jquery-barcode.js"></script>
-<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/jquery.fittext.js"></script>
-<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/jquery-barcode.min.js"></script>
+$position_for_layout = '<li><a href="#">Comptabilité</a></li><li class="active">' . $position . '</li>';
+$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 ';
 ?>
 
 
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="form-group" id="">
-                    <label class="col-md-2 col-xs-12 control-label">Sélectionner un produit</label>
-                    <div class="col-md-3 col-xs-12">
-                        <input type="text" class="form-control" value="<?php if ($id_prod != null) echo $produit->nom; ?>" name="<?php if ($id_prod != null) echo $produit->id; ?>" id="srch_produit" placeholder="" />
-                    </div>
-
-                    <label class="col-md-2 col-xs-12 control-label">Afficher</label>
-                    <div class="col-md-3 col-xs-12">
-                        <select class="form-control selectpicker stock col-md-6" title='Tout...' name="srch_faculte" id="srch_stock">
-                            <option <?php if($stock == null || $stock == 0) echo "selected=\"selected\""; ?> value="0" >Tout...</option>
-                            <option <?php if( $stock == 1) echo "selected=\"selected\""; ?>  value="1">En stock</option>
-                            <option <?php if( $stock == 2) echo "selected=\"selected\""; ?> value="2">En rupture</option>
-                        </select>
-                    </div>
-
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group" id="">
+                <label class="col-md-2 col-xs-12 control-label">Sélectionner un produit</label>
+                <div class="col-md-3 col-xs-12">
+                    <input type="text" class="form-control" value="<?php if ($id_prod != null) echo $produit->nom; ?>" name="<?php if ($id_prod != null) echo $produit->id; ?>" id="srch_produit" placeholder="" />
                 </div>
-                <div style="padding-top: 40px;"></div>
-                <div class="form-group">
-                    <label class="col-md-2 col-xs-12 control-label">Sélection des produits</label>
-                    <div class="col-md-4 col-xs-12">
-                        <select class="form-control perime selectpicker" title='Tout...' name="categorie" id="srch_perime">
-                            <option <?php if($perime == null ) echo "selected=\"selected\""; ?> value="defaut" >Tout...</option>
-                            <option <?php if( $perime == 1) echo "selected=\"selected\""; ?> value="1">Périmés</option>
-                            <option <?php if( $perime > 1) echo "selected=\"selected\""; ?> value="2">bientôt Périmés</option>
-                        </select>
-                        </div>
-                    <div class="col-md-3 col-xs-12">
-                        <input type="number" class="form-control" value="<?php if( $perime > 1) echo $perime; ?>" name="jours" id="jours" placeholder="Nombre de jours avant la peremption" />
-<!--                        <span class="help-block">Jours</span>-->
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                        <button id="charger" class="btn btn-primary pull-right" onclick="charger_stock();">Charger</button>
-                    </div>
+
+                <label class="col-md-2 col-xs-12 control-label">Afficher</label>
+                <div class="col-md-3 col-xs-12">
+                    <select class="form-control selectpicker stock col-md-6" title='Tout...' name="srch_faculte" id="srch_stock">
+                        <option <?php if ($stock == null || $stock == 0) echo "selected=\"selected\""; ?> value="0">Tout...</option>
+                        <option <?php if ($stock == 1) echo "selected=\"selected\""; ?> value="1">En stock</option>
+                        <option <?php if ($stock == 2) echo "selected=\"selected\""; ?> value="2">En rupture</option>
+                    </select>
+                </div>
+
+            </div>
+            <div style="padding-top: 40px;"></div>
+            <div class="form-group">
+                <label class="col-md-2 col-xs-12 control-label">Sélection des produits</label>
+                <div class="col-md-4 col-xs-12">
+                    <select class="form-control perime selectpicker" title='Tout...' name="categorie" id="srch_perime">
+                        <option <?php if ($perime == null) echo "selected=\"selected\""; ?> value="defaut">Tout...</option>
+                        <option <?php if ($perime == 1) echo "selected=\"selected\""; ?> value="1">Périmés</option>
+                        <option <?php if ($perime > 1) echo "selected=\"selected\""; ?> value="2">bientôt Périmés</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <input type="number" class="form-control" value="<?php if ($perime > 1) echo $perime; ?>" name="jours" id="jours" placeholder="Nombre de jours avant la peremption" />
+                    <!--                        <span class="help-block">Jours</span>-->
+                </div>
+                <div class="col-md-2 col-xs-12">
+                    <button id="charger" class="btn btn-primary pull-right" onclick="charger_stock();">Charger</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -71,38 +71,38 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
                 <div class="panel-body">
                     <table class="table datatable table-bordered table-striped table-actions">
                         <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th width="200">Fournisseur</th>
-                            <th width="200">Date de Livraison</th>
-                            <th width="200">Date de Peremtion</th>
-                            <th width="100">Prix d'achat</th>
-                            <th width="100">Prix de vente</th>
-                            <th width="100">Quantité</th>
-                            <th width="100">Quantité restante</th>
-                            <th width="100">Reduction</th>
-                            <th width="100">Actions</th>
-                        </tr>
+                            <tr>
+                                <th>Nom</th>
+                                <th width="200">Fournisseur</th>
+                                <th width="200">Date de Livraison</th>
+                                <th width="200">Date de Peremtion</th>
+                                <th width="100">Prix d'achat</th>
+                                <th width="100">Prix de vente</th>
+                                <th width="100">Quantité</th>
+                                <th width="100">Quantité restante</th>
+                                <th width="100">Reduction</th>
+                                <th width="100">Actions</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($catalogue as $k => $v): ?>
-                            <tr id="<?php echo $v->idp; ?>">
-                                <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/').$v->idp; ?>"><?php echo $v->nomp; ?></a></strong></td>
-                                <td><?php echo $v->nomf; ?></td>
-                                <td><?php echo $v->dateLivraison; ?></td>
-                                <td><?php echo $v->datePeremption; ?></td>
-                                <td><?php echo $v->prixAchat; ?></td>
-                                <td><?php echo $v->prixVente; ?></td>
-                                <td><?php echo $v->quantite; ?></td>
-                                <td><?php echo $v->quantiteRestante; ?></td>
-                                <td><?php echo $v->reduction; ?></td>
-                                <td>
-                                    <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row_entree(<?php echo $v->idp; ?>)"><span class="fa fa-info"></span></button>
-                                    <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->idp; ?>)"><span class="fa fa-pencil"></span></button>
-                                    <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                            <?php foreach ($catalogue as $k => $v) : ?>
+                                <tr id="<?php echo $v->idp; ?>">
+                                    <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $v->idp; ?>"><?php echo $v->nomp; ?></a></strong></td>
+                                    <td><?php echo $v->nomf; ?></td>
+                                    <td><?php echo $v->dateLivraison; ?></td>
+                                    <td><?php echo $v->datePeremption; ?></td>
+                                    <td><?php echo $v->prixAchat; ?></td>
+                                    <td><?php echo $v->prixVente; ?></td>
+                                    <td><?php echo $v->quantite; ?></td>
+                                    <td><?php echo $v->quantiteRestante; ?></td>
+                                    <td><?php echo $v->reduction; ?></td>
+                                    <td>
+                                        <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row_entree(<?php echo $v->idp; ?>)"><span class="fa fa-info"></span></button>
+                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->idp; ?>)"><span class="fa fa-pencil"></span></button>
+                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -125,22 +125,30 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
                 <div class="row">
                     <div class="col-md-4">
                         <div class="icon-preview">
-                            <div class="" style="border: 1px solid black; max-width: 30mm;display: block; max-height: 15mm;" id="ticket" >
-                                <div class="col-md-6 "  style="border: 1px solid black; display: block" >
-                                    <h6 class="nomp fittext1" style="width: 15mm;  float: left; font-weight: bold;"></h6>
+                            <div style="border: 1px solid black;width: 30mm;display:block;height: 15mm;flex-direction: column;" id="ticket">
+
+                                <div style="display: flex; ">
+                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
+                                        <p class="nomp fittext1" style="width: 15mm; font-weight: bold;text-align:center; margin-bottom:0px"></p>
+                                    </div>
+                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
+                                        <p class="prixv " style="width: 15mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
+                                    </div>
                                 </div>
-                                <div class="col-md-6" style="border: 1px solid black; height: 5mm;" >
-                                    <h6 class="prixv " style="width: 15mm;  float: left;font-weight: bold;display: block""></h6>
+                                <div style="display: flex;">
+                                    <div style="border: 1px solid black;height: 6mm;justify-content: center;align-items: center;display: flex;width: 30mm;padding-right: 2px;">
+                                        <div class="fittext1" style="display: contents;" id="demo"></div>
+                                    </div>
                                 </div>
-                                <div class="col-md-12" style="border: 1px solid black; height: 6mm;" >
-                                    <div class="fittext1" id="demo"></div>
+                                <div style="display: flex;">
+                                    <div style="border: 1px solid black; height: 4mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
+                                        <p class="datel fittext1" style="width: 15mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
+                                    </div>
+                                    <div style="border: 1px solid black; height: 4mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
+                                        <p class="datep fittext1" style="width: 15mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
+                                    </div>
                                 </div>
-                                <div class="col-md-6" style="border: 1px solid black; height: 4mm;" >
-                                    <h6 class="datel fittext1"  style="width: 15mm; float: left;"></h6>
-                                </div>
-                                <div class="col-md-6" style="border: 1px solid black; height: 4mm;" >
-                                    <h6 class="datep fittext1"  style="width: 15mm;  float: left; "></h6>
-                                </div>
+
                             </div>
                             <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
                         </div>
@@ -151,52 +159,52 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
                             <table class="table table-bordered">
 
                                 <tbody>
-                                <tr>
-                                    <td width="100">Nom Produit:</td>
-                                    <td class="nomp"></td>
-                                </tr>
-                                <tr>
-                                    <td width="100">Nom Fournisseur:</td>
-                                    <td class="nomf"></td>
-                                </tr>
-                                <tr>
-                                    <td width="100">Code Fournisseur:</td>
-                                    <td class="code"></td>
-                                </tr>
-                                <tr>
-                                    <td width="100">Date Livraison:</td>
-                                    <td class="datel"></td>
-                                </tr>
-                                <tr>
-                                    <td width="100">Date Peremption:</td>
-                                    <td class="datep"></td>
-                                </tr>
-                                <tr>
-                                    <td width="100">Prix vente:</td>
-                                    <td class="prixv"></td>
-                                </tr>
+                                    <tr>
+                                        <td width="100">Nom Produit:</td>
+                                        <td class="nomp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Nom Fournisseur:</td>
+                                        <td class="nomf"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Code Fournisseur:</td>
+                                        <td class="code"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Date Livraison:</td>
+                                        <td class="datel"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Date Peremption:</td>
+                                        <td class="datep"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Prix vente:</td>
+                                        <td class="prixv"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <h4>Autres Informations</h4>
                             <table class="table table-bordered">
 
                                 <tbody>
-                                <tr>
-                                    <td width="100">Quantite:</td>
-                                    <td class="quantite"></td>
-                                </tr>
-                                <tr>
-                                    <td width="100">Quantité restante:</td>
-                                    <td class="quantiter"></td>
-                                </tr>
-                                <tr>
-                                    <td width="100">Prix Achat:</td>
-                                    <td class="prixa"></td>
-                                </tr>
-                                <tr>
-                                    <td width="100">Réduction:</td>
-                                    <td class="reduction"></td>
-                                </tr>
+                                    <tr>
+                                        <td width="100">Quantite:</td>
+                                        <td class="quantite"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Quantité restante:</td>
+                                        <td class="quantiter"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Prix Achat:</td>
+                                        <td class="prixa"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Réduction:</td>
+                                        <td class="reduction"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </ul>

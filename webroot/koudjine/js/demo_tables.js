@@ -271,9 +271,9 @@ function info_row_entree(row) {
 
     //var lien = $(this).attr('id');
     //alert('test');
-    var code ;
+    var code;
 
-        $.ajax({
+    $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/info_entree.php',
         data: {
@@ -327,25 +327,25 @@ function imprimer(divName) {
     return true;
 }
 function imprimer_bloc(titre, objet) {
-// Définition de la zone à imprimer
+    // Définition de la zone à imprimer
     var zone = document.getElementById(objet).innerHTML;
 
-// Ouverture du popup
-    var fen = window.open("", "", "height=60, width=140,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=10, top=10");
+    // Ouverture du popup
+    var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=10, top=10");
 
-// style du popup
+    // style du popup
     fen.document.body.style.color = '#000000';
     fen.document.body.style.backgroundColor = '#FFFFFF';
     fen.document.body.style.padding = "5px";
 
-// Ajout des données a imprimer
+    // Ajout des données a imprimer
     fen.document.title = titre;
     fen.document.body.innerHTML += " " + zone + " ";
 
-// Impression du popup
+    // Impression du popup
     fen.window.print();
 
-//Fermeture du popup
+    //Fermeture du popup
     fen.window.close();
     return true;
 }
