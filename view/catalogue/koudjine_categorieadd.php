@@ -82,13 +82,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
             <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouvelle catégorie</h4>
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;
+            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_categorie('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $categorie->id;
                                                                                                                                             else echo ""; ?>');">
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">Nom:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $categorie->nom; ?>" placeholder="" />
                             <span class="help-block">Boris Daudga</span>
                         </div>
                     </div>

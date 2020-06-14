@@ -6,7 +6,7 @@ class Conf
     static $database = array(
         'default' => array(
             'host'      => 'localhost',
-            'database'  => 'pharmanet',
+            'database'  => 'pharmanet1',
             'login'     => 'root',
             'password'  => ''
         ),

@@ -61,7 +61,17 @@ class VenteController extends Controller
 
     function koudjine_vente()
     {
-        $this->loadModel('Vente');
+        $this->loadModel('Catalogue');
+        
+        $d['vente'] = $this->Catalogue->find(array(
+            'fields' => 'vente.id as idv,vente.montantRegle as montantReglev,vente.reelPercu as reelPercuv,vente.dateVente as dateVentev,vente.commentaire as commentairev,vente.etat as etatv,vente.caisse_id as caisse_idv,vente.ref as refv',
+            'table' => 'vente',
+        ));
+        //die($d);
+        if(empty($d['vente'])){
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_reglement()

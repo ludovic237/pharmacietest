@@ -35,13 +35,13 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($catalogue as $k => $v): ?>
-                            <tr id="<?php echo $v->id; ?>">
-                                <td><strong><?php echo $v->nom; ?></strong></td>
-                                <td><?php echo $v->structure; ?></td>
-                                <td><?php echo $v->adresse; ?></td>
+                        <?php foreach ($catalogue as $k => $v): ?> 
+                            <tr id="<?php echo $v->idpresc; ?>">
+                                <td><strong><?php echo $v->nompresc; ?></strong></td>
+                                <td><?php echo $v->structpresc; ?></td>
+                                <td><?php echo $v->adressepresc; ?></td>
                                 <td>
-                                    <?php echo $v->telephone; ?>
+                                    <?php echo $v->telepresc; ?>
                                 </td>
                                 <td>
                                     <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>
