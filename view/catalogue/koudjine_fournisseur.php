@@ -28,35 +28,33 @@
 
                         <thead>
                             <tr>
-                                <th width="100">Code </th>
                                 <th width="100">Nom </th>
                                 <th width="100">Code postal</th>
                                 <th width="200">Téléphpone</th>
                                 <th width="100">Adresse </th>
                                 <th width="100">Email </th>
-                                <th width="100">Type </th>
+                                <th width="100">statut </th>
                                 <th width="100">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($catalogue as $k => $v) : ?>
-                                <tr id="<?php echo $v->id; ?>">
-                                    <td><strong><?php echo $v->code; ?></strong></td>
-                                    <td><?php echo $v->nom; ?></td>
+                                <tr id="<?php echo $v->idf; ?>">
+                                    <td><?php echo $v->nomf; ?></td>
                                     <td>
-                                        <!-- <?php echo $v->codePostalid; ?> -->
+                                        <!-- <?php echo $v->codef; ?> -->
                                     </td>
                                     <td>
-                                        <?php echo $v->telephone; ?>
+                                        <?php echo $v->telephonef; ?>
                                     </td>
                                     <td>
-                                        <?php echo $v->adresse; ?>
+                                        <?php echo $v->adressef; ?>
                                     </td>
                                     <td>
-                                        <?php echo $v->email; ?>
+                                        <?php echo $v->emailf; ?>
                                     </td>
                                     <td>
-                                        <?php echo $v->type; ?>
+                                        <?php echo $v->statutf; ?>
                                     </td>
                                     <td>
                                         <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>

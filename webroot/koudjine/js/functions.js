@@ -108,6 +108,61 @@ function enregistrer_produit(option,id){
 }
 
 
+function enregistrer_categorie(option,id){
+
+    var nom = $('#nom').val();
+
+    if(option == 'Ajouter'){
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_categorie.php',
+            data: {
+                nom: nom,
+            },
+            success: function (data) {
+
+                if(data == 'ok'){
+                    var link = '/pharmacietest/bouwou/catalogue/produit/';
+                    window.location.href=link;
+                }
+                else{
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function(){
+                        $("#message-box-danger").modal("hide");
+                    },93000);
+                }
+            }
+        });
+    }
+    else{
+        //alert('test');
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_produit.php',
+            data: {
+                nom: nom,
+                id: id
+            },
+            success: function (data) {
+                //alert(data.erreur);
+                if(data == 'ok'){
+                    var link = '/pharmacietest/bouwou/catalogue/produitadd/'+id;
+                    window.location.href=link;
+                }
+                else{
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function(){
+                        $("#message-box-danger").modal("hide");
+                    },93000);
+
+                }
+            }
+        });
+    }
+
+}
 
 // FIN
 

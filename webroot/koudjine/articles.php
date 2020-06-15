@@ -146,7 +146,7 @@
                                 </div>
                             </div>
                             <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                                <a href="#" class="list-group-item">
+                                <!-- <a href="#" class="list-group-item">
                                     <div class="list-group-status status-online"></div>
                                     <img src="assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
                                     <span class="contacts-title">John Doe</span>
@@ -169,7 +169,7 @@
                                     <img src="assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
                                     <span class="contacts-title">Darth Vader</span>
                                     <p>I want my money back!</p>
-                                </a>
+                                </a> -->
                             </div>     
                             <div class="panel-footer text-center">
                                 <a href="pages-messages.html">Show all messages</a>

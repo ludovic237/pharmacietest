@@ -12,8 +12,8 @@ if ($this->request->action == "index") {
 $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
-<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript">
             var jvalidate = $("#jvalidate").validate({
@@ -55,8 +55,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
 
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_produit('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $produit->id;
-                                                                                                                                            else echo ""; ?>');">
+            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_produit('<?php echo $position; ?>',
+             '<?php if ($position == 'Modifier')  echo $produit->id;
+                else echo ""; ?>');">
                 <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Informations générales</h4>
                 <div class="panel-body">
                     <div class="form-group">
@@ -121,7 +122,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Réduction Max Appliquable:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->reductionMax; else echo 0; ?>" name="reduction" id="reduction" placeholder="" />
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->reductionMax;
+                                                                                else echo 0; ?>" name="reduction" id="reduction" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
@@ -129,7 +131,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <label class="col-md-3 control-label">Date de péremption:</label>
                         <div class="col-md-9 col-xs-12">
                             <div class="input-group ">
-                                <input type="text" id="dp-3" class="form-control" value="<?php /* if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->datePeremption != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->datePeremption);echo $date->format('d-m-Y');}} */?>" data-date="<?php /*if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->datePeremption != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->datePeremption);echo $date->format('d-m-Y');}} */?>" data-date-format="dd-mm-yyyy" data-date-viewmode="years"/>
+                                <input type="text" id="dp-3" class="form-control" value="<?php /* if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->datePeremption != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->datePeremption);echo $date->format('d-m-Y');}} */ ?>" data-date="<?php /*if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->datePeremption != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->datePeremption);echo $date->format('d-m-Y');}} */ ?>" data-date-format="dd-mm-yyyy" data-date-viewmode="years"/>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                         </div>
@@ -138,7 +140,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <label class="col-md-3 control-label">Date de commande:</label>
                         <div class="col-md-9">
                             <div class="input-group ">
-                                <input type="text" id="dp-3" class="form-control" value="<?php /* if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->dateCmd != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->dateCmd);echo $date->format('d-m-Y');}} */?>" data-date="<?php /*if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->dateCmd != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->dateCmd);echo $date->format('d-m-Y');}} */?>" data-date-format="dd-mm-yyyy" data-date-viewmode="years"/>
+                                <input type="text" id="dp-3" class="form-control" value="<?php /* if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->dateCmd != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->dateCmd);echo $date->format('d-m-Y');}} */ ?>" data-date="<?php /*if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->dateCmd != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->dateCmd);echo $date->format('d-m-Y');}} */ ?>" data-date-format="dd-mm-yyyy" data-date-viewmode="years"/>
                                  <span class="input-group-addon datepicker">
                                     <i class="fa fa-calendar"></i>
                                 </span>
@@ -153,8 +155,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="col-md-9">
                             <select class="form-control input-xlarge " name="catproduit" id="catproduit">
                                 <?php
-                                foreach ($categorie as $k => $v): ?>
-                                    <option <?php if($position == 'Modifier')if($v->id == $produit->categorie_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" ><?php echo $v->nom; ?></option>
+                                foreach ($categorie as $k => $v) : ?>
+                                    <option <?php if ($position == 'Modifier') if ($v->id == $produit->categorie_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
                                 <?php
                                 endforeach;
                                 ?>
@@ -166,8 +168,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="col-md-9">
                             <select class="form-control input-xlarge " name="rayonproduit" id="rayonproduit">
                                 <?php
-                                foreach ($rayon as $k => $v): ?>
-                                    <option <?php if($position == 'Modifier')if($v->id == $produit->rayon_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" ><?php echo $v->nom; ?></option>
+                                foreach ($rayon as $k => $v) : ?>
+                                    <option <?php if ($position == 'Modifier') if ($v->id == $produit->rayon_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
                                 <?php
                                 endforeach;
                                 ?>
@@ -179,8 +181,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="col-md-9">
                             <select class="form-control input-xlarge " name="magproduit" id="magproduit">
                                 <?php
-                                foreach ($magasin as $k => $v): ?>
-                                    <option <?php if($position == 'Modifier')if($v->id == $produit->magasin_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" ><?php echo $v->nom; ?></option>
+                                foreach ($magasin as $k => $v) : ?>
+                                    <option <?php if ($position == 'Modifier') if ($v->id == $produit->magasin_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
                                 <?php
                                 endforeach;
                                 ?>
@@ -192,8 +194,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="col-md-9">
                             <select class="form-control input-xlarge " name="formeproduit" id="formeproduit">
                                 <?php
-                                foreach ($forme as $k => $v): ?>
-                                    <option <?php if($position == 'Modifier')if($v->id == $produit->forme_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" ><?php echo $v->nom; ?></option>
+                                foreach ($forme as $k => $v) : ?>
+                                    <option <?php if ($position == 'Modifier') if ($v->id == $produit->forme_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
                                 <?php
                                 endforeach;
                                 ?>
@@ -205,8 +207,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="col-md-9">
                             <select class="form-control input-xlarge " name="fabproduit" id="fabproduit">
                                 <?php
-                                foreach ($fabriquant as $k => $v): ?>
-                                    <option <?php if($position == 'Modifier')if($v->id == $produit->fabriquant_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" ><?php echo $v->nom; ?></option>
+                                foreach ($fabriquant as $k => $v) : ?>
+                                    <option <?php if ($position == 'Modifier') if ($v->id == $produit->fabriquant_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
                                 <?php
                                 endforeach;
                                 ?>

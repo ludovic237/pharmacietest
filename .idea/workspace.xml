@@ -2,49 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
-      <change afterPath="$PROJECT_DIR$/controller/CommandeController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/StatistiqueController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/StockController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Commande.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Statistique.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Stock.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/commande/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/commande/koudjine_cmdparticuliere.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/commande/koudjine_cmdprogramme.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/commande/koudjine_list.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/commande/koudjine_simplereappro.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/statistique/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/statistique/koudjine_chiffre.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/statistique/koudjine_produitplusvendu.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/stock/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/stock/koudjine_inventaire.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/Class/assureur.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/Class/categorie.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/Class/client.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/Class/fabriquant.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/Class/prescripteur.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/Class/vente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_assureur.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_categorie.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_client.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_fabriquant.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_fournisseur.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_prescripteur.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/conf.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/conf.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/CatalogueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CatalogueController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/VenteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/VenteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Comptabilite.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/Comptabilite.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_assureur.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_assureur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_assureuradd.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_assureuradd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_categorieadd.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_categorieadd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_clientadd.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_clientadd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_fabriquantadd.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_fabriquantadd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_fournisseuradd.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_fournisseuradd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_prescripteuradd.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_prescripteuradd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_produit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_categorie.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_categorie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_fabriquant.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_fabriquant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_fournisseur.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_fournisseur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_prescripteur.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_prescripteur.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_produitadd.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_produitadd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/layout/koudjine.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/layout/koudjine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/pharmanet/koudjine_aboutus.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/pharmanet/koudjine_aboutus.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/pharmanet/koudjine_offiline.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/pharmanet/koudjine_offiline.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/vente/koudjine_venteadd.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/vente/koudjine_venteadd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/fournisseur.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/demo_tables.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/demo_tables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/vente/koudjine_vente.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/vente/koudjine_vente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/articles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/commentaire_article.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/commentaire_article.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/commentaire_universite.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/commentaire_universite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/concours.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/concours.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/debouches.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/debouches.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/edit_universite.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/edit_universite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/faculte_universite.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/faculte_universite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/formations.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/formations.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/universites.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/universites.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/utilisateurs.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/utilisateurs.php" afterDir="false" />
     </list>
     <ignored path="Site.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,15 +72,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../FitText.js-master/example.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="952">
-              <caret line="56" column="13" selection-start-line="52" selection-start-column="4" selection-end-line="56" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/demo_tables.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="37">
@@ -122,21 +96,28 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/CatalogueController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2923">
-              <caret line="204" column="21" selection-start-line="204" selection-start-column="21" selection-end-line="204" selection-end-column="21" />
+            <state relative-caret-position="3243">
+              <caret line="227" column="35" selection-start-line="227" selection-start-column="35" selection-end-line="227" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/jquery-barcode.min.js">
+        <entry file="file://$PROJECT_DIR$/controller/VenteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="15" column="140" selection-start-line="15" selection-start-column="140" selection-end-line="15" selection-end-column="140" />
+            <state relative-caret-position="-527">
+              <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/view/vente/koudjine_vente.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-565" />
           </provider>
         </entry>
       </file>
@@ -245,6 +226,7 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -289,7 +271,6 @@
         <option value="$PROJECT_DIR$/view/layout/koudjine.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/inc/database.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_produit.php" />
-        <option value="$PROJECT_DIR$/controller/CatalogueController.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/js/functions.js" />
         <option value="$PROJECT_DIR$/view/catalogue/koudjine_produit.php" />
         <option value="$PROJECT_DIR$/model/Comptabilite.php" />
@@ -307,6 +288,7 @@
         <option value="$PROJECT_DIR$/webroot/koudjine/Class/fournisseur.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/js/demo_tables.js" />
         <option value="$PROJECT_DIR$/config/conf.php" />
+        <option value="$PROJECT_DIR$/controller/CatalogueController.php" />
       </list>
     </option>
   </component>
@@ -355,7 +337,7 @@
               <item name="pharmacietest" type="b2602c69:ProjectViewProjectNode" />
               <item name="pharmacietest" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="catalogue" type="462c0819:PsiDirectoryNode" />
+              <item name="vente" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pharmacietest" type="b2602c69:ProjectViewProjectNode" />
@@ -460,7 +442,7 @@
       <workItem from="1591877007995" duration="720000" />
       <workItem from="1591959261517" duration="607000" />
       <workItem from="1591976764360" duration="403000" />
-      <workItem from="1592131699012" duration="1387000" />
+      <workItem from="1592131699012" duration="2768000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1591453086266</created>
@@ -483,11 +465,18 @@
       <option name="project" value="LOCAL" />
       <updated>1591814286216</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="merge">
+      <created>1592250575920</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1592250575921</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100014000" />
+    <option name="totallyTimeSpent" value="101395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -643,20 +632,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_PLUGINS_DIR$/php/lib/php.jar!/stubs/date/date.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="291" column="9" selection-start-line="291" selection-start-column="9" selection-end-line="291" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/catalogue/koudjine_categorie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="46" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller/ConcoursController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -977,9 +952,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/CatalogueController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2923">
-          <caret line="204" column="21" selection-start-line="204" selection-start-column="21" selection-end-line="204" selection-end-column="21" />
+        <state relative-caret-position="3243">
+          <caret line="227" column="35" selection-start-line="227" selection-start-column="35" selection-end-line="227" selection-end-column="35" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/VenteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-527">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/vente/koudjine_vente.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-565" />
       </provider>
     </entry>
   </component>

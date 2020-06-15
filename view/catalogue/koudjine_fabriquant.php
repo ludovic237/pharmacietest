@@ -1,18 +1,18 @@
 <!-- <?php
 
-$title_for_layout = ' Admin -'.'Universités';
-$page_for_layout = 'Fabriquant';
-$action_for_layout = 'Ajouter';
+        $title_for_layout = ' Admin -' . 'Universités';
+        $page_for_layout = 'Fabriquant';
+        $action_for_layout = 'Ajouter';
 
-if($this->request->action == "index"){
-    $position = "Tout";
-}else{
-    $position = $this->request->action;
-}
-$position_for_layout = '<li><a href="#">Concours</a></li><li class="active">'.$position.'</li>';
-$script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/demo_tables.js"></script>';
-?> -->
+        if ($this->request->action == "index") {
+            $position = "Tout";
+        } else {
+            $position = $this->request->action;
+        }
+        $position_for_layout = '<li><a href="#">Concours</a></li><li class="active">' . $position . '</li>';
+        $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
+        ?> -->
 
 
 
@@ -25,35 +25,38 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
 
                 <div class="panel-body">
                     <table class="table datatable table-bordered table-striped table-actions">
-                        <thead>
-                        <tr>
-                            <!-- <th>Nom</th> -->
-                            <th width="100">Code </th>
-                            <th width="100">Nom </th>
-                            <th width="200">Téléphpone</th>
-                            <th width="100">Adresse </th>
-                            <th width="100">Email </th>
-                            <th width="100">Actions</th>
-                        </tr>
+                    <thead>
+                            <tr>
+                                <th width="100">Nom </th>
+                                <th width="100">Code postal</th>
+                                <th width="200">Téléphpone</th>
+                                <th width="100">Adresse </th>
+                                <th width="100">Email </th>
+                                <th width="100">Actions</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($catalogue as $k => $v): ?>
-                            <tr id="<?php echo $v->id; ?>">
-                                <td><strong><?php echo $v->code; ?></strong></td>
-                                <td><?php echo $v->nom; ?></td>
-                                <td><?php echo $v->adresse; ?></td>
-                                <td>
-                                    <?php echo $v->telephone; ?>
-                                </td>
-                                <td>
-                                    <?php echo $v->email; ?>
-                                </td>
-                                <td>
-                                    <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>
-                                    <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                            <?php foreach ($catalogue as $k => $v) : ?>
+                                <tr id="<?php echo $v->idfa; ?>">
+                                    <td><?php echo $v->nomfa; ?></td>
+                                    <td>
+                                        <!-- <?php echo $v->codefa; ?> -->
+                                    </td>
+                                    <td>
+                                        <?php echo $v->telephonefa; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $v->adressefa; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $v->emailfa; ?>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>
+                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
