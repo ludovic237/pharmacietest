@@ -2,7 +2,7 @@
 
 $title_for_layout = ' Admin -' . 'Universités';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter en Vente' : 'Modifier un assureur';
-$action_for_layout = 'Ajouter';
+// $action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
     $position = "Toutes les universités";
@@ -75,6 +75,22 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
         </script>';
 ?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-body" style="margin-bottom: 20px;background-color: #fff;
+        border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 0 1px 1px rgba(0,0,0,.05);">
+            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                <label class="control-label" style="margin-right: 30px;">Ajouter un médicament:</label>
+                <div style="display: flex;flex:1;margin-right: 30px;">
+                    <input type="text" class="form-control" name="nom" id="nom" value="" placeholder="Médicaments">
+                </div>
+                <div>
+                    <a name="" id="" class="btn btn-primary" href="#" role="button">Ajouter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-12">
@@ -223,13 +239,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <span class="help-block">exemple: Boris Daudga</span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Téléphone:</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Téléphone" />
-                                    <span class="help-block">exemple: 89489233</span>
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -283,21 +292,19 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
-                    <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Réduction</h4>
+                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                        <h4 style="background-color: #2d3945;color: white;">Réduction </h4>
+                        <span>
+                            <input type="checkbox" id="check_compo-1">
+                        </span>
+                    </div>
                     <form id="jvalidate" role="form" class="form-horizontal">
                         <div class="panel-body">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Nom:</label>
+                                <label class="col-md-3 control-label">Taux:</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom" />
                                     <span class="help-block">exemple: Boris Daudga</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Téléphone:</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Téléphone" />
-                                    <span class="help-block">exemple: 89489233</span>
                                 </div>
                             </div>
                         </div>
@@ -308,15 +315,48 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         </div>
 
     </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
 
-</div>
-<div style="display: flex;padding: 20px;justify-content: space-between;background-color: white;position: fixed;bottom: 40px;right: 10px;opacity: 1;cursor: pointer;align-items: baseline;">
-    <div style="display: flex;flex: 1;margin-right: 20px;align-items: baseline;">
-        <h2 style="font-weight: 200;">Total : </h2>
-        <h4 style="font-weight: bold;font-size: x-large;">10000</h4>
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                        <h4 style="background-color: #2d3945;color: white;">Commentaire </h4>
+                        <span>
+                            <input type="checkbox" id="check_compo-1">
+                        </span>
+                    </div>
+                    <form id="jvalidate" role="form" class="form-horizontal">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Commentaaire:</label>
+                                <div class="col-md-9">
+                                    <textarea name="" id="" cols="30" class="form-control" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-    <div>
-        <a name="" id="" class="btn btn-primary" href="#" role="button">Paiement par cash</a>
-        <a name="" id="" class="btn btn-primary" href="#" role="button">Paiement par carte</a>
+</div>
+<div style="display: flex;justify-content: space-between;background-color: white;position: fixed;bottom: 40px;right: 10px;align-items: baseline;">
+    <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;">
+        <p style="font-weight: 200;">Total sans réduction : </p>
+        <h4 style="font-weight: bold;font-size: x-large;">10000 FCFA</h4>
+        <a name="" id="" class="btn btn-primary" href="#" role="button" style="
+    width: 100%;
+">Paiement avec réduction </a>
+    </div>
+    <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;border-left-width: 1px;border-left-style: double;">
+        <p style="font-weight: 200;">Total avec réduction : </p>
+        <h4 style="font-weight: bold;font-size: x-large;">9100 FCFA</h4>
+        <a name="" id="" class="btn btn-primary" href="#" role="button" style="
+    width: 100%;
+">Paiement sans réduction </a>
     </div>
 </div>
