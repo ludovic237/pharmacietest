@@ -25,7 +25,7 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
 
                 <div class="panel-body">
                     <table class="table datatable table-bordered table-striped table-actions">
-                        <thead>
+                        <thead> 
                         <tr>
                             <th width="100">Nom</th>
                             <th width="200">Taux</th>

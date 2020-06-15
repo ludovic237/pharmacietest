@@ -81,7 +81,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
-            <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau assureur</h4>
+            <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouvelle vente</h4>
             <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;
                                                                                                                                             else echo ""; ?>');">
                 <div class="panel-body">

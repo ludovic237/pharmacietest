@@ -331,12 +331,12 @@ function imprimer_bloc(titre, objet) {
     var zone = document.getElementById(objet).innerHTML;
 
     // Ouverture du popup
-    var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=10, top=10");
+    var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
 
     // style du popup
     fen.document.body.style.color = '#000000';
     fen.document.body.style.backgroundColor = '#FFFFFF';
-    fen.document.body.style.padding = "5px";
+    fen.document.body.style.padding = "0px";
 
     // Ajout des données a imprimer
     fen.document.title = titre;
