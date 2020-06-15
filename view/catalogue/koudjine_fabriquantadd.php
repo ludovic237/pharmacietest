@@ -9,7 +9,7 @@ if ($this->request->action == "index") {
 } else {
     //$position = $this->request->action;
 }
-$position_for_layout = '<li><a href="#">Universites</a></li><li class="active">' . $position . '</li>';
+$position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-file-input.js"></script>
@@ -82,48 +82,48 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
             <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau fabriquant</h4>
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;
+            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $fabriquant->id;
                                                                                                                                             else echo ""; ?>');">
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">Code:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $fabriquant->code; ?>" placeholder="" />
                             <span class="help-block">exemple: SXSQ8090</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Nom:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $fabriquant->nom; ?>" placeholder="" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Téléphone:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $fabriquant->telephone; ?>" placeholder="" />
                             <span class="help-block">exemple: 89489233</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Adresse:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $fabriquant->adresse; ?>" placeholder="" />
                             <span class="help-block">exemple: Yaounde</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Email:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $fabriquant->email; ?>" placeholder="" />
                             <span class="help-block">exemple: toto@gmail.com</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Code postal:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $fabriquant->NOM; ?>" placeholder="" />
                             <span class="help-block">exemple: 4444</span>
                         </div>
                     </div>

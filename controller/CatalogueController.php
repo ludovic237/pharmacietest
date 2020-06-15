@@ -35,28 +35,45 @@ class CatalogueController extends Controller
         $this->set($d);
     }
 
-    function koudjine_assureuradd($id = null)
+
+    function koudjine_prescripteur($id)
     {
         $this->loadModel('Catalogue');
-
-        if ($id != null) {
-            //die('pass');
-            $d['position'] = 'Modifier';
-
-            $d['assureur'] = $this->Catalogue->findFirst(array(
-                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
-                'table' => 'assureur',
-                'conditions' => array('id' => $id)
-            ));
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'id,nom,structure,adresse,telephone',
+            'table' => 'prescripteur',
 
 
-            if (empty($d['assureur'])) {
-                $this->e404('Page introuvable');
+        ));
+        //die($d);
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
+
+            if ($id != null) {
+                //die('pass');
+                $d['position'] = 'Modifier';
+
+                $d['assureur'] = $this->Catalogue->findFirst(array(
+                    //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+                    'table' => 'assureur',
+                    'conditions' => array('id' => $id)
+                ));
+
+
+                if (empty($d['assureur'])) {
+                    $this->e404('Page introuvable');
+                }
+            } else {
+                $d['position'] = 'Ajouter';
+
             }
-        } else {
-            $d['position'] = 'Ajouter';
+            $this->set($d);
         }
-        $this->set($d);
+    }
+
+    function koudjine_assureuradd()
+    {
+        $this->loadModel('Catalogue');
     }
 
     function koudjine_assureur()
@@ -207,7 +224,8 @@ class CatalogueController extends Controller
         $this->set($d);
     }
 
-    function koudjine_prescripteur()
+
+    function koudjine_prescripteur1()
     {
         $this->loadModel('Catalogue');
 
