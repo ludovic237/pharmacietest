@@ -148,7 +148,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
             <div class="panel-body panel-body-table">
 
-                <div class="panel-body">
+                <div class="panel-body" style="padding: 0px;">
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                         <h4 style="background-color: #2d3945;color: white;">Nouveau client </h4>
                         <span>
@@ -185,7 +185,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
             <div class="panel-body panel-body-table">
 
-                <div class="panel-body">
+                <div class="panel-body" style="padding: 0px;">
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                         <h4 style="background-color: #2d3945;color: white;">Client existant </h4>
                         <span>
@@ -223,7 +223,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
             <div class="panel-body panel-body-table">
 
-                <div class="panel-body">
+                <div class="panel-body" style="padding: 0px;">
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                         <h4 style="background-color: #2d3945;color: white;">Nouveau prescripteur </h4>
                         <span>
@@ -252,7 +252,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
             <div class="panel-body panel-body-table">
 
-                <div class="panel-body">
+                <div class="panel-body" style="padding: 0px;">
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                         <h4 style="background-color: #2d3945;color: white;">Prescripteur existant</h4>
                         <span>
@@ -285,13 +285,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     </div>
 </div>
 
-<div class="row">
+<div class="row" style="margin-bottom: 180px;">
     <div class="col-md-6">
         <div class="panel panel-default">
 
             <div class="panel-body panel-body-table">
 
-                <div class="panel-body">
+                <div class="panel-body" style="padding: 0px;">
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                         <h4 style="background-color: #2d3945;color: white;">Réduction </h4>
                         <span>
@@ -320,12 +320,12 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
             <div class="panel-body panel-body-table">
 
-                <div class="panel-body">
+                <div class="panel-body" style="padding: 0px;">
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                         <h4 style="background-color: #2d3945;color: white;">Commentaire </h4>
-                        <span>
+                        <!-- <span>
                             <input type="checkbox" id="check_compo-1">
-                        </span>
+                        </span> -->
                     </div>
                     <form id="jvalidate" role="form" class="form-horizontal">
                         <div class="panel-body">
@@ -344,7 +344,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
     </div>
 </div>
-<div style="display: flex;justify-content: space-between;background-color: white;position: fixed;bottom: 40px;right: 10px;align-items: baseline;">
+<div style="display: flex;justify-content: space-between;background-color: white;position: fixed;bottom: 40px;right: 10px;align-items: baseline;background-color: #fff;
+border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 1px 1px 1px rgba(10,0,0,.05);">
     <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;">
         <p style="font-weight: 200;">Total sans réduction : </p>
         <h4 style="font-weight: bold;font-size: x-large;">10000 FCFA</h4>
@@ -352,7 +353,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     width: 100%;
 ">Paiement avec réduction </a>
     </div>
-    <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;border-left-width: 1px;border-left-style: double;">
+    <div style="flex-direction: column;display: flex;padding: 10px 20px;justify-content: center;align-items: center;border-left-width: 1px;border-left-style: double;">
         <p style="font-weight: 200;">Total avec réduction : </p>
         <h4 style="font-weight: bold;font-size: x-large;">9100 FCFA</h4>
         <a name="" id="" class="btn btn-primary" href="#" role="button" style="
