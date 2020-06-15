@@ -1,7 +1,7 @@
 <?php
 
 $title_for_layout = ' Admin -' . 'Universités';
-$page_for_layout = ($position == 'Ajouter') ? 'Ajouter un assureur' : 'Modifier un assureur';
+$page_for_layout = ($position == 'Ajouter') ? 'Ajouter en Vente' : 'Modifier un assureur';
 $action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
@@ -74,54 +74,249 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             });
 
         </script>';
-?> 
+?>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
+        <div class="panel panel-default">
 
-        <!-- START JQUERY VALIDATION PLUGIN -->
-        <div class="block">
-            <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau assureur</h4>
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;
-                                                                                                                                            else echo ""; ?>');">
+            <div class="panel-body panel-body-table">
+
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Nom:</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom" />
-                            <span class="help-block">exemple: Boris Daudga</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Téléphone:</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Téléphone" />
-                            <span class="help-block">exemple: 89489233</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Taux:</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Taux" />
-                            <span class="help-block">exemple: 10</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Code postal:</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Code postal" />
-                            <span class="help-block">exemple: 44444</span>
-                        </div>
-                    </div>
-                    <div class="btn-group pull-right">
-                        <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
-                        <button class="btn btn-success" type="submit">Enregistrer</button>
-                    </div>
+                    <table class="table datatable table-bordered table-striped table-actions">
+                        <thead>
+                            <tr>
+                                <th width="100">Montant</th>
+                                <th width="200">Montant percu</th>
+                                <th width="200">Commentaire</th>
+                                <th width="200">Date de vente</th>
+                                <th width="100">Etat</th>
+                                <th width="100">Ref</th>
+                                <th width="100">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($vente as $k => $v) : ?>
+                                <tr id="<?php echo $v->idv; ?>">
+                                    <td><strong><?php echo $v->montantReglev; ?></strong></td>
+                                    <td><?php echo $v->reelPercuv; ?></td>
+                                    <td><?php echo $v->commentairev; ?></td>
+                                    <td>
+                                        <?php echo $v->dateVentev; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $v->etatv; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $v->refv; ?>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>
+                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
-            <!-- END JQUERY VALIDATION PLUGIN -->
+
+            </div>
         </div>
 
     </div>
 
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                        <h4 style="background-color: #2d3945;color: white;">Nouveau client </h4>
+                        <span>
+                            <input type="checkbox" id="check_compo-1">
+                        </span>
+                    </div>
+
+                    <form id="jvalidate" role="form" class="form-horizontal">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Nom:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom" />
+                                    <span class="help-block">exemple: Boris Daudga</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Téléphone:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Téléphone" />
+                                    <span class="help-block">exemple: 89489233</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                        <h4 style="background-color: #2d3945;color: white;">Client existant </h4>
+                        <span>
+                            <input type="checkbox" id="check_compo-1">
+                        </span>
+                    </div>
+                    <form id="jvalidate" role="form" class="form-horizontal">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Nom:</label>
+                                <div class="col-md-9">
+                                    <select class="form-control input-xlarge " name="catproduit" id="catproduit">
+                                        <?php
+                                        foreach ($categorie as $k => $v) : ?>
+                                            <option <?php if ($position == 'Modifier') if ($v->id == $produit->categorie_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                                        <?php
+                                        endforeach;
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                        <h4 style="background-color: #2d3945;color: white;">Nouveau prescripteur </h4>
+                        <span>
+                            <input type="checkbox" id="check_compo-1">
+                        </span>
+                    </div>
+                    <form id="jvalidate" role="form" class="form-horizontal">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Nom:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom" />
+                                    <span class="help-block">exemple: Boris Daudga</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Téléphone:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Téléphone" />
+                                    <span class="help-block">exemple: 89489233</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                        <h4 style="background-color: #2d3945;color: white;">Prescripteur existant</h4>
+                        <span>
+                            <input type="checkbox" id="check_compo-1">
+                        </span>
+                    </div>
+                    <form id="jvalidate" role="form" class="form-horizontal">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Nom:</label>
+                                <div class="col-md-9">
+                                    <select class="form-control input-xlarge " name="catproduit" id="catproduit">
+                                        <?php
+                                        foreach ($categorie as $k => $v) : ?>
+                                            <option <?php if ($position == 'Modifier') if ($v->id == $produit->categorie_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                                        <?php
+                                        endforeach;
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Réduction</h4>
+                    <form id="jvalidate" role="form" class="form-horizontal">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Nom:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom" />
+                                    <span class="help-block">exemple: Boris Daudga</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Téléphone:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Téléphone" />
+                                    <span class="help-block">exemple: 89489233</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div style="display: flex;padding: 20px;justify-content: space-between;background-color: white;position: fixed;bottom: 40px;right: 10px;opacity: 1;cursor: pointer;align-items: baseline;">
+    <div style="display: flex;flex: 1;margin-right: 20px;align-items: baseline;">
+        <h2 style="font-weight: 200;">Total : </h2>
+        <h4 style="font-weight: bold;font-size: x-large;">10000</h4>
+    </div>
+    <div>
+        <a name="" id="" class="btn btn-primary" href="#" role="button">Paiement par cash</a>
+        <a name="" id="" class="btn btn-primary" href="#" role="button">Paiement par carte</a>
+    </div>
 </div>
