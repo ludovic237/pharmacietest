@@ -31,6 +31,31 @@ $(document).ready(function(){ 	// le document est charg鍊   $("a").click(functi
 
 	});
 
+	// Pharmacie
+	$("#recherche").keyup(function (event) {
+		var recherche = $(this).val();
+		recherche = $.trim(recherche);
+		var data = 'motclef=' + recherche;
+		if (recherche.length > 1) {
+			alert('yes');
+			$.ajax({
+				type: "GET",
+				url: "/pharmacietest/koudjine/inc/result.php",
+				data: data,
+				success: function (server_responce) {
+					$("#resultat ul").html(server_responce).show();
+					alert('yes');
+				}
+			})
+		} else {
+			$("#resultat ul").empty();
+		}
+	});
+
+	//$("#recherche").focus();
+
+
+
 	
 });
 function afficher(donnees){ // pour remplacer le contenu du div content

@@ -9,7 +9,7 @@ if ($this->request->action == "index") {
 } else {
     //$position = $this->request->action;
 }
-$position_for_layout = '<li><a href="#">Universites</a></li><li class="active">' . $position . '</li>';
+$position_for_layout = '<li><a href="#">Vente</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-file-input.js"></script>
@@ -73,7 +73,12 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 }
             });
 
-        </script>';
+        </script>
+        <script>
+                                        window.onload = function () {
+                                            document.getElementById("recherche").focus();
+                                        };
+                                    </script>';
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -82,11 +87,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
                 <label class="control-label" style="margin-right: 30px;">Ajouter un médicament:</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <input type="text" class="form-control" name="nom" id="nom" value="" placeholder="Médicaments">
+                    <input type="text" class="form-control col-md-4" name="nom" id="recherche" value="" placeholder="Médicaments">
                 </div>
                 <div>
                     <a name="" id="" class="btn btn-primary" href="#" role="button">Ajouter</a>
                 </div>
+            </div>
+            <div class="resultat scroll" id="resultat" style="display: flex; z-index: 1; background-color: #fff">
+                <ul class="scroll" style=""></ul>
             </div>
         </div>
     </div>
@@ -99,39 +107,20 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
-                    <table class="table datatable table-bordered table-striped table-actions">
+                    <table class="table datatable table-bordered table-striped table-actions" >
                         <thead>
                             <tr>
-                                <th width="100">Montant</th>
-                                <th width="200">Montant percu</th>
-                                <th width="200">Commentaire</th>
-                                <th width="200">Date de vente</th>
-                                <th width="100">Etat</th>
-                                <th width="100">Ref</th>
-                                <th width="100">Actions</th>
+                                <th width="200">Nom</th>
+                                <th width="100">Prix Unitaire</th>
+                                <th width="100">Quantité</th>
+                                <th width="100">Prix Total</th>
+                                <th width="100">Reduction</th>
+                                <th width="200">Date de Livraison</th>
+                                <th width="100">Stock après vente</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php foreach ($vente as $k => $v) : ?>
-                                <tr id="<?php echo $v->idv; ?>">
-                                    <td><strong><?php echo $v->montantReglev; ?></strong></td>
-                                    <td><?php echo $v->reelPercuv; ?></td>
-                                    <td><?php echo $v->commentairev; ?></td>
-                                    <td>
-                                        <?php echo $v->dateVentev; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $v->etatv; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $v->refv; ?>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>
-                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
+                        <tbody id="tab_vente">
+
                         </tbody>
                     </table>
                 </div>
@@ -348,14 +337,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 1px 1px 1px rgba(10,0,0,.05);">
     <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;">
         <p style="font-weight: 200;">Total sans réduction : </p>
-        <h4 style="font-weight: bold;font-size: x-large;">10000 FCFA</h4>
+        <h4 style="font-weight: bold;font-size: x-large;"><span id="prixTotal">0</span> FCFA</h4>
         <a name="" id="" class="btn btn-primary" href="#" role="button" style="
     width: 100%;
 ">Paiement avec réduction </a>
     </div>
     <div style="flex-direction: column;display: flex;padding: 10px 20px;justify-content: center;align-items: center;border-left-width: 1px;border-left-style: double;">
         <p style="font-weight: 200;">Total avec réduction : </p>
-        <h4 style="font-weight: bold;font-size: x-large;">9100 FCFA</h4>
+        <h4 style="font-weight: bold;font-size: x-large;"><span id="prixReduit">0</span> FCFA</h4>
         <a name="" id="" class="btn btn-primary" href="#" role="button" style="
     width: 100%;
 ">Paiement sans réduction </a>

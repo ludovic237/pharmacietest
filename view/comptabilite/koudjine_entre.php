@@ -131,8 +131,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
                                         <p class="nomp fittext1" style="width: 15mm; font-weight: bold;text-align:center; margin-bottom:0px"></p>
                                     </div>
-                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
-                                        <p class="prixv " style="width: 15mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
+                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 10mm;">
+                                        <p class="prixv " style="width: 10mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
+                                    </div>
+                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 5mm;">
+                                        <p class="code " style="width: 5mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
                                     </div>
                                 </div>
                                 <div style="display: flex;">
