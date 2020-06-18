@@ -1,5 +1,81 @@
 $(document).ready(function(){ 	// le document est charg鍊   $("a").click(function(){ 	// on selectionne tous les liens et on d?nit une action quand on clique dessus
 
+    // Pharmacie
+    $("#recherche").keyup(function (event) {
+        var prixTotal = 0;
+        var reduction = 0;
+        if(event.keyCode == 13){
+            var recherche = $(this).val();
+            $("#resultat ul").empty();
+            recherche = $.trim(recherche);
+            if (recherche.length > 1) {
+                //alert('yes');
+                $.ajax({
+                    type: "GET",
+                    url: "/pharmacietest/koudjine/inc/result1.php",
+                    data: {
+                        motclef: $(this).val()
+                    },
+                    dataType:'json',
+                    success: function (data) {
+                        //alert(data);
+                        if (data.erreur == 'non') {
+                            //alert('yes');
+                            var cat = '<tr id="' + data.motclef + '">'
+                                + ' <td><strong>' + data.nom + '</strong></td>'
+                                + '<td>' + data.prix + '</td>'
+                                + '<td>' + 1 + '</td>'
+                                + '<td>' + data.prix + '</td>'
+                                + '<td>' + data.reduction + '</td>'
+                                + '<td>' + data.datel + '</td>'
+                                + '<td>' + data.stock + '</td>'
+                                + '</tr>';
+                            prixTotal = data.prix;
+                            reduction = data.reduction;
+
+
+                            $('#tab_vente').prepend(cat);
+
+                        }
+                        else{
+                            $('#message-box-danger p').html(data.erreur);
+                            $("#message-box-danger").modal("show");
+                            setTimeout(function(){
+                                $("#message-box-danger").modal("hide");
+                            },3000);
+                        }
+                        $('#recherche').val("");
+                        var prixTotal1 = parseInt($('#prixTotal').html()) + parseInt(prixTotal);
+                        $('#prixTotal').html(prixTotal1);
+                        var prixReduit = parseInt($('#prixReduit').html()) + (parseInt(prixTotal) - (parseInt(prixTotal)*reduction/100));
+                        $('#prixReduit').html(prixReduit);
+                    }
+                })
+            } else {
+                $("#resultat ul").empty();
+            }
+        }
+        else{
+            var recherche = $(this).val();
+            recherche = $.trim(recherche);
+            var data = 'motclef=' + recherche;
+            if (recherche.length > 1) {
+                //alert('yes');
+                $.ajax({
+                    type: "GET",
+                    url: "/pharmacietest/koudjine/inc/result.php",
+                    data: data,
+                    success: function (server_responce) {
+                        $("#resultat ul").html(server_responce).show();
+                        //alert(server_responce);
+                    }
+                })
+            } else {
+                $("#resultat ul").empty();
+            }
+        }
+
+    });
 
 });
   // Ajax

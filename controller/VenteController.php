@@ -41,18 +41,12 @@ class VenteController extends Controller
         $this->loadModel('Vente');
         if ($id != null) {
             $d['position'] = 'Modifier';
- 
-            $d['concours'] = $this->Concours->findFirst(array(
-                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
-                'table' => 'acces_concours',
-                'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
-            ));
 
 
 
-            if (empty($d['concours'])) {
-                $this->e404('Page introuvable');
-            }
+
+
+
         } else {
             $d['position'] = 'Ajouter';
         }

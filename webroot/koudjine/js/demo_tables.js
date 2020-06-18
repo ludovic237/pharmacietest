@@ -295,9 +295,9 @@ function info_row_entree(row) {
             $("#iconPreviewEntree .reduction").html(data.reduction);
             $("#iconPreviewEntree .prixa").html(data.prixa);
             //$("#code").barcode(data.codebarre);
-            code = data.codebarre;
+            code1 = data.codebarre;
             $("#demo").barcode(
-                "12345678", // Value barcode (dependent on the type of barcode)
+                code1, // Value barcode (dependent on the type of barcode)
                 "code128" // type (string)
 
             );
