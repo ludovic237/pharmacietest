@@ -48,27 +48,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         minlength: 2,
                         maxlength: 50
                     },
-                    region: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 20
-                    },
-                    telephone_1: {
-                        required: true
-                    },
-                    ville: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 100
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    statut: {
-                        required: true
-                    },
-                    "type[]": "required"
 
                 }
             });
@@ -82,7 +61,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
             <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouvelle catégorie</h4>
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $categorie->id;
+            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_categorie('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $categorie->id;
                                                                                                                                             else echo ""; ?>');">
                 <div class="panel-body">
                     <div class="form-group">

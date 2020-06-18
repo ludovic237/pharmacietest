@@ -62,6 +62,15 @@ class GeonetlisteController extends Controller
     function koudjine_rayon()
     {
         $this->loadModel('Geonetliste');
+        
+        $d['geonetliste'] = $this->Geonetliste->find(array(
+            'fields' => 'rayon.id as idrayon,rayon.nom as nomrayon,rayon.code as coderayon',
+            'table' => 'rayon',
+        ));
+        if(empty($d['geonetliste'])){
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_magasinadd()
@@ -72,6 +81,15 @@ class GeonetlisteController extends Controller
     function koudjine_magasin()
     {
         $this->loadModel('Geonetliste');
+
+        $d['geonetliste'] = $this->Geonetliste->find(array(
+            'fields' => 'magasin.id as idmag,magasin.nom as nommag,magasin.code as codemag',
+            'table' => 'magasin',
+        ));
+        if(empty($d['geonetliste'])){
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_villeadd()
@@ -82,6 +100,15 @@ class GeonetlisteController extends Controller
     function koudjine_ville()
     {
         $this->loadModel('Geonetliste');
+
+        $d['geonetliste'] = $this->Geonetliste->find(array(
+            'fields' => 'ville.id as idville,ville.nom as nomville,ville.code as codeville',
+            'table' => 'ville',
+        ));
+        if(empty($d['geonetliste'])){
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_uniteadd($id = null)
@@ -111,6 +138,15 @@ class GeonetlisteController extends Controller
     function koudjine_unite()
     {
         $this->loadModel('Geonetliste');
+
+        $d['geonetliste'] = $this->Geonetliste->find(array(
+            'fields' => 'unite.id as idunite,unite.nom as nomunite,unite.libelle as libelleunite',
+            'table' => 'unite',
+        ));
+        if(empty($d['geonetliste'])){
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_formeadd($id = null)
@@ -140,6 +176,15 @@ class GeonetlisteController extends Controller
     function koudjine_forme()
     {
         $this->loadModel('Geonetliste');
+
+        $d['geonetliste'] = $this->Geonetliste->find(array(
+            'fields' => 'forme.id as idforme,forme.nom as nomforme,forme.code as codeforme',
+            'table' => 'forme',
+        ));
+        if(empty($d['geonetliste'])){
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_produitadd($id = null)
@@ -162,24 +207,6 @@ class GeonetlisteController extends Controller
             }
         } else {
             $d['position'] = 'Ajouter';
-        }
-        $this->set($d);
-    }
-
-    function koudjine_produit()
-    {
-        $this->loadModel('Geonetliste');
-
-
-        $d['Geonetliste'] = $this->Geonetliste->find(array(
-            'fields' => 'produit.id as idp,produit.nom as nomp,ean13,datePeremption,stock,prixPublic,categorie.nom as nomc,rayon.nom as nomr',
-            'table' => 'produit,categorie,rayon',
-            'order' => 'nomp-ASC',
-            'conditions' => array('produit.categorie_id' => 'categorie.id','produit.rayon_id' => 'rayon.id')
-        ));
-        //die($d);
-        if(empty($d['Geonetliste'])){
-            $this->e404('Page introuvable');
         }
         $this->set($d);
     }
@@ -211,6 +238,18 @@ class GeonetlisteController extends Controller
     function koudjine_codepostal()
     {
         $this->loadModel('Geonetliste');
+
+        $d['geonetliste'] = $this->Geonetliste->find(array(
+            'fields' => 'code_postal.id as idcode,code_postal.nom as nomcode,code_postal.code as codecode',
+            'table' => 'code_postal',
+            // 'order' => 'nomp-ASC',
+            // 'conditions' => array('produit.categorie_id' => 'categorie.id','produit.rayon_id' => 'rayon.id')
+        ));
+        //die($d);
+        if(empty($d['geonetliste'])){
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
 }

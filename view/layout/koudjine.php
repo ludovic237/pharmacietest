@@ -174,7 +174,7 @@
                         <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortie') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">S</span> Sortie</a></li>
                     </ul>
                 </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['commande'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'commande') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['commande'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'commande') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">commande</span></a>
                     <ul>
                     <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'simplereappro') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/commande/simplereappro'); ?>"><span class="fa lettre">I</span>simplereappro</a></li>
@@ -183,20 +183,20 @@
                         <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'cmdparticuliere') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/commande/cmdparticuliere'); ?>"><span class="fa lettre">I</span>Commande particulière</a></li>
                     </ul>
                 </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['stock'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'stock') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['stock'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'stock') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">stock</span></a>
                     <ul>
                         <li <?php if ($this->request->controller == 'stock' && $this->request->action == 'inventaire') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/stock/inventaire'); ?>"><span class="fa lettre">I</span>Inventaire</a></li>
                     </ul>
                 </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['statistique'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'statistique') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['statistique'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'statistique') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">statistique</span></a>
                     <ul>
                         <li <?php if ($this->request->controller == 'statistique' && $this->request->action == 'produitplusvendu') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/statistique/produitplusvendu'); ?>"><span class="fa lettre">I</span>produitplusvendu</a></li>
                         <li <?php if ($this->request->controller == 'statistique' && $this->request->action == 'chiffre') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/statistique/chiffre'); ?>"><span class="fa lettre">I</span>chiffre</a></li>
                     </ul>
                 </li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['pharmanet'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'pharmanet') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['pharmanet'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'pharmanet') { ?>active<?php } ?>">
 
 
                 <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['pharmanet'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'pharmanet') { ?>active<?php } ?>">

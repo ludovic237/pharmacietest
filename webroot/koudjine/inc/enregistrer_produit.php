@@ -57,7 +57,7 @@ if (isset($_POST['id'])){
     }
     else{
         $prod = $manager->get($id);
-        $prod->setcategorie_id($cat);
+        $prod->setcategorie_id($cat); 
         $prod->setforme_id($forme);
         $prod->setrayon_id($ray);
         $prod->setfabriquant_id($fab);
