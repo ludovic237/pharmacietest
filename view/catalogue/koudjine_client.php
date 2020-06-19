@@ -38,18 +38,18 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
                         </thead>
                         <tbody>
                         <?php foreach ($catalogue as $k => $v): ?>
-                            <tr id="<?php echo $v->id; ?>">
-                                <td><strong><?php echo $v->nom; ?></strong></td>
-                                <td><?php echo $v->telephone; ?></td>
-                                <td><?php echo $v->modeReglement; ?></td>
+                            <tr id="<?php echo $v->idcl; ?>">
+                                <td><strong><?php echo $v->nomcl; ?></strong></td>
+                                <td><?php echo $v->telephonecl; ?></td>
+                                <td><?php echo $v->modeReglementcl; ?></td>
                                 <td>
-                                    <?php echo $v->poid; ?>
+                                    <?php echo $v->poidcl; ?>
                                 </td>
                                 <td>
-                                    <?php echo $v->taille; ?>
+                                    <?php echo $v->taillecl; ?>
                                 </td>
                                 <td>
-                                    <?php echo $v->reduction; ?>
+                                    <?php echo $v->reductioncl; ?>
                                 </td>
                                 <td>
                                     <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>

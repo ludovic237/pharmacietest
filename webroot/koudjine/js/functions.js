@@ -4,7 +4,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     $("#recherche").keyup(function (event) {
         var prixTotal = 0;
         var reduction = 0;
-        if(event.keyCode == 13){
+        if (event.keyCode == 13) {
             var recherche = $(this).val();
             $("#resultat ul").empty();
             recherche = $.trim(recherche);
@@ -16,7 +16,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                     data: {
                         motclef: $(this).val()
                     },
-                    dataType:'json',
+                    dataType: 'json',
                     success: function (data) {
                         //alert(data);
                         if (data.erreur == 'non') {
@@ -37,17 +37,17 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                             $('#tab_vente').prepend(cat);
 
                         }
-                        else{
+                        else {
                             $('#message-box-danger p').html(data.erreur);
                             $("#message-box-danger").modal("show");
-                            setTimeout(function(){
+                            setTimeout(function () {
                                 $("#message-box-danger").modal("hide");
-                            },3000);
+                            }, 3000);
                         }
                         $('#recherche').val("");
                         var prixTotal1 = parseInt($('#prixTotal').html()) + parseInt(prixTotal);
                         $('#prixTotal').html(prixTotal1);
-                        var prixReduit = parseInt($('#prixReduit').html()) + (parseInt(prixTotal) - (parseInt(prixTotal)*reduction/100));
+                        var prixReduit = parseInt($('#prixReduit').html()) + (parseInt(prixTotal) - (parseInt(prixTotal) * reduction / 100));
                         $('#prixReduit').html(prixReduit);
                     }
                 })
@@ -55,7 +55,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                 $("#resultat ul").empty();
             }
         }
-        else{
+        else {
             var recherche = $(this).val();
             recherche = $.trim(recherche);
             var data = 'motclef=' + recherche;
@@ -108,7 +108,7 @@ function enregistrer_produit(option, id) {
     if (option == 'Ajouter') {
         $.ajax({
             type: "POST",
-            url: '/pharmacietest/koudjine/inc/enregistrer_produit.php',
+            url: '/pharmacietest/koudjine/inc/enregistrer_produit.php', 
             data: {
                 nom: nom,
                 ean13: ean13,
@@ -483,7 +483,7 @@ function enregistrer_codepostal(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/codepostal/';
+                    var link = '/pharmacietest/bouwou/geonetliste/codepostal/';
                     window.location.href = link;
                 }
                 else {
@@ -509,7 +509,7 @@ function enregistrer_codepostal(option, id) {
             success: function (data) {
                 //alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/codepostaladd/' + id;
+                    var link = '/pharmacietest/bouwou/geonetliste/codepostaladd/' + id;
                     window.location.href = link;
                 }
                 else {
@@ -612,7 +612,7 @@ function enregistrer_forme(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/forme/';
+                    var link = '/pharmacietest/bouwou/geonetliste/forme/';
                     window.location.href = link;
                 }
                 else {
@@ -638,7 +638,7 @@ function enregistrer_forme(option, id) {
             success: function (data) {
                 //alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/formeadd/' + id;
+                    var link = '/pharmacietest/bouwou/geonetliste/formeadd/' + id;
                     window.location.href = link;
                 }
                 else {
@@ -656,7 +656,7 @@ function enregistrer_forme(option, id) {
 }
 
 
-function enregistrer_fournisseur(option,id){
+function enregistrer_fournisseur(option, id) {
     // Informations université
     var nom = $('#nom').val();
     var code = $('#code').val();
@@ -665,7 +665,7 @@ function enregistrer_fournisseur(option,id){
     var telephone = $('#telephone').val();
     var email = $('#email').val();
 
-    if(option == 'Ajouter'){
+    if (option == 'Ajouter') {
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_fournisseur.php',
@@ -679,21 +679,21 @@ function enregistrer_fournisseur(option,id){
             },
             success: function (data) {
 
-                if(data == 'ok'){
+                if (data == 'ok') {
                     var link = '/pharmacietest/bouwou/catalogue/fournisseur/';
-                    window.location.href=link;
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
                 }
             }
         });
     }
-    else{
+    else {
         //alert('test');
         $.ajax({
             type: "POST",
@@ -709,16 +709,16 @@ function enregistrer_fournisseur(option,id){
             },
             success: function (data) {
                 //alert(data.erreur);
-                if(data == 'ok'){
-                    var link = '/pharmacietest/bouwou/catalogue/fournisseuradd/'+id;
-                    window.location.href=link;
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/catalogue/fournisseuradd/' + id;
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
 
                 }
             }
@@ -728,12 +728,12 @@ function enregistrer_fournisseur(option,id){
 }
 
 
-function enregistrer_magasin(option,id){
+function enregistrer_magasin(option, id) {
     // Informations université
     var nom = $('#nom').val();
     var code = $('#code').val();
 
-    if(option == 'Ajouter'){
+    if (option == 'Ajouter') {
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_magasin.php',
@@ -743,21 +743,21 @@ function enregistrer_magasin(option,id){
             },
             success: function (data) {
 
-                if(data == 'ok'){
-                    var link = '/pharmacietest/bouwou/catalogue/magasin/';
-                    window.location.href=link;
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/geonetliste/magasin/';
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
                 }
             }
         });
     }
-    else{
+    else {
         //alert('test');
         $.ajax({
             type: "POST",
@@ -768,16 +768,16 @@ function enregistrer_magasin(option,id){
             },
             success: function (data) {
                 //alert(data.erreur);
-                if(data == 'ok'){
-                    var link = '/pharmacietest/bouwou/catalogue/magasinadd/'+id;
-                    window.location.href=link;
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/geonetliste/magasinadd/' + id;
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
 
                 }
             }
@@ -787,63 +787,63 @@ function enregistrer_magasin(option,id){
 }
 
 
-function enregistrer_prescripteur(option,id){
+function enregistrer_prescripteur(option, id) {
     // Informations université
-    var Nom = $('#Nom').val();
-    var Structure = $('#Structure').val();
-    var Adresse = $('#Adresse').val();
-    var Telephone = $('#Telephone').val();
+    var nom = $('#nom').val();
+    var structure = $('#structure').val();
+    var adresse = $('#adresse').val();
+    var telephone = $('#telephone').val();
 
-    if(option == 'Ajouter'){
+    if (option == 'Ajouter') {
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_prescripteur.php',
             data: {
-                Nom: Nom,
-                Structure: Structure,
-                Adresse: Adresse,
-                Telephone: Telephone
+                Nom: nom,
+                Structure: structure,
+                Adresse: adresse,
+                Telephone: telephone
             },
             success: function (data) {
 
-                if(data == 'ok'){
+                if (data == 'ok') {
                     var link = '/pharmacietest/bouwou/catalogue/prescripteur/';
-                    window.location.href=link;
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
                 }
             }
         });
     }
-    else{
+    else {
         //alert('test');
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_prescripteur.php',
             data: {
-                Nom: Nom,
-                Structure: Structure,
-                Adresse: Adresse,
-                Telephone: Telephone,
+                Nom: nom,
+                Structure: structure,
+                Adresse: adresse,
+                Telephone: telephone,
                 id: id
             },
             success: function (data) {
                 //alert(data.erreur);
-                if(data == 'ok'){
-                    var link = '/pharmacietest/bouwou/catalogue/prescripteuradd/'+id;
-                    window.location.href=link;
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/catalogue/prescripteuradd/' + id;
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
 
                 }
             }
@@ -853,12 +853,12 @@ function enregistrer_prescripteur(option,id){
 }
 
 
-function enregistrer_ville(option,id){
+function enregistrer_ville(option, id) {
     // Informations université
     var nom = $('#nom').val();
     var code = $('#code').val();
 
-    if(option == 'Ajouter'){
+    if (option == 'Ajouter') {
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_ville.php',
@@ -868,21 +868,21 @@ function enregistrer_ville(option,id){
             },
             success: function (data) {
 
-                if(data == 'ok'){
-                    var link = '/pharmacietest/bouwou/catalogue/ville/';
-                    window.location.href=link;
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/geonetliste/ville/';
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
                 }
             }
         });
     }
-    else{
+    else {
         //alert('test');
         $.ajax({
             type: "POST",
@@ -893,16 +893,16 @@ function enregistrer_ville(option,id){
             },
             success: function (data) {
                 //alert(data.erreur);
-                if(data == 'ok'){
-                    var link = '/pharmacietest/bouwou/catalogue/villeadd/'+id;
-                    window.location.href=link;
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/geonetliste/villeadd/' + id;
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
 
                 }
             }
@@ -911,12 +911,12 @@ function enregistrer_ville(option,id){
 
 }
 
-function enregistrer_unite(option,id){
+function enregistrer_unite(option, id) {
     // Informations université
     var nom = $('#nom').val();
     var libelle = $('#libelle').val();
 
-    if(option == 'Ajouter'){
+    if (option == 'Ajouter') {
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_unite.php',
@@ -926,21 +926,21 @@ function enregistrer_unite(option,id){
             },
             success: function (data) {
 
-                if(data == 'ok'){
-                    var link = '/pharmacietest/bouwou/catalogue/unite/';
-                    window.location.href=link;
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/geonetliste/unite/';
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
                 }
             }
         });
     }
-    else{
+    else {
         //alert('test');
         $.ajax({
             type: "POST",
@@ -948,20 +948,20 @@ function enregistrer_unite(option,id){
             data: {
                 nom: nom,
                 libelle: libelle,
-                id:id
+                id: id
             },
             success: function (data) {
                 //alert(data.erreur);
-                if(data == 'ok'){
-                    var link = '/pharmacietest/bouwou/catalogue/uniteadd/'+id;
-                    window.location.href=link;
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/geonetliste/uniteadd/' + id;
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
 
                 }
             }
@@ -970,60 +970,60 @@ function enregistrer_unite(option,id){
 
 }
 
-function enregistrer_rayon(option,id){
+function enregistrer_rayon(option, id) {
     // Informations université
     var nom = $('#nom').val();
     var code = $('#code').val();
-    
 
-    if(option == 'Ajouter'){
-       // alert('success')
+
+    if (option == 'Ajouter') {
+        
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_rayon.php',
             data: {
                 nom: nom,
-                code: code
+                code: code 
             },
             success: function (data) {
-                alert('success2')
-                if(data == 'ok'){
-                    var link = '/pharmacietest/bouwou/catalogue/rayon/';
-                    window.location.href=link;
+                
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/geonetliste/rayon/';
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
                 }
             }
         });
     }
-    else{
-        alert('erre')
+    else {
+        
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_rayon.php',
             data: {
                 nom: nom,
                 code: code,
-                id:id
+                id: id
             },
             success: function (data) {
-                
+
                 //alert(data.erreur);
-                if(data == 'ok'){
-                    var link = '/pharmacietest/bouwou/catalogue/rayonadd/'+id;
-                    window.location.href=link;
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/geonetliste/rayonadd/' + id;
+                    window.location.href = link;
                 }
-                else{
+                else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    },93000);
+                    }, 93000);
 
                 }
             }

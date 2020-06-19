@@ -36,44 +36,63 @@ class CatalogueController extends Controller
     }
 
 
-    function koudjine_prescripteur($id)
+    // function koudjine_prescripteur($id)
+    // {
+    //     $this->loadModel('Catalogue');
+    //     $d['catalogue'] = $this->Catalogue->find(array(
+    //         'fields' => 'id,nom,structure,adresse,telephone',
+    //         'table' => 'prescripteur',
+
+
+    //     ));
+    //     //die($d);
+    //     if (empty($d['catalogue'])) {
+    //         $this->e404('Page introuvable');
+
+    //         if ($id != null) {
+    //             //die('pass');
+    //             $d['position'] = 'Modifier';
+
+    //             $d['assureur'] = $this->Catalogue->findFirst(array(
+    //                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+    //                 'table' => 'assureur',
+    //                 'conditions' => array('id' => $id)
+    //             ));
+
+
+    //             if (empty($d['assureur'])) {
+    //                 $this->e404('Page introuvable');
+    //             }
+    //         } else {
+    //             $d['position'] = 'Ajouter';
+
+    //         }
+    //         $this->set($d);
+    //     }
+    // }
+
+    function koudjine_assureuradd($id = null)
     {
         $this->loadModel('Catalogue');
-        $d['catalogue'] = $this->Catalogue->find(array(
-            'fields' => 'id,nom,structure,adresse,telephone',
-            'table' => 'prescripteur',
+
+        if ($id != null) {
+            //die('pass');
+            $d['position'] = 'Modifier';
+
+            $d['assureur'] = $this->Catalogue->findFirst(array(
+                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+                'table' => 'assureur',
+                'conditions' => array('id' => $id)
+            ));
 
 
-        ));
-        //die($d);
-        if (empty($d['catalogue'])) {
-            $this->e404('Page introuvable');
-
-            if ($id != null) {
-                //die('pass');
-                $d['position'] = 'Modifier';
-
-                $d['assureur'] = $this->Catalogue->findFirst(array(
-                    //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
-                    'table' => 'assureur',
-                    'conditions' => array('id' => $id)
-                ));
-
-
-                if (empty($d['assureur'])) {
-                    $this->e404('Page introuvable');
-                }
-            } else {
-                $d['position'] = 'Ajouter';
-
+            if (empty($d['assureur'])) {
+                $this->e404('Page introuvable');
             }
-            $this->set($d);
+        } else {
+            $d['position'] = 'Ajouter';
         }
-    }
-
-    function koudjine_assureuradd()
-    {
-        $this->loadModel('Catalogue');
+        $this->set($d);
     }
 
     function koudjine_assureur()
@@ -85,7 +104,7 @@ class CatalogueController extends Controller
             'table' => 'assureur',
         ));
         //die($d);
-        if(empty($d['catalogue'])){
+        if (empty($d['catalogue'])) {
             $this->e404('Page introuvable');
         }
         $this->set($d);
@@ -118,6 +137,18 @@ class CatalogueController extends Controller
     function koudjine_client()
     {
         $this->loadModel('Catalogue');
+
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'malade.id as idcl,malade.nom as nomcl,malade.poid as poidcl,malade.reduction as reductioncl,malade.telephone as telephonecl,malade.taille as taillecl,malade.modeReglement as modeReglementcl',
+            'table' => 'malade',
+            // 'order' => 'nomp-ASC',
+            // 'conditions' => array('produit.categorie_id' => 'categorie.id','produit.rayon_id' => 'rayon.id')
+        ));
+
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
     }
 
     function koudjine_fabriquantadd($id = null)
@@ -155,7 +186,7 @@ class CatalogueController extends Controller
             // 'conditions' => array('produit.categorie_id' => 'categorie.id','produit.rayon_id' => 'rayon.id')
         ));
 
-        if(empty($d['catalogue'])){
+        if (empty($d['catalogue'])) {
             $this->e404('Page introuvable');
         }
         $this->set($d);
@@ -193,8 +224,8 @@ class CatalogueController extends Controller
             'table' => 'fournisseur',
         ));
 
-         //die($d);
-         if(empty($d['catalogue'])){
+        //die($d);
+        if (empty($d['catalogue'])) {
             $this->e404('Page introuvable');
         }
         $this->set($d);
@@ -225,7 +256,7 @@ class CatalogueController extends Controller
     }
 
 
-    function koudjine_prescripteur1()
+    function koudjine_prescripteur()
     {
         $this->loadModel('Catalogue');
 
@@ -234,7 +265,7 @@ class CatalogueController extends Controller
             'table' => 'prescripteur',
         ));
         //die($d);
-        if(empty($d['catalogue'])){
+        if (empty($d['catalogue'])) {
             $this->e404('Page introuvable');
         }
         $this->set($d);
@@ -304,10 +335,10 @@ class CatalogueController extends Controller
             'fields' => 'produit.id as idp,produit.nom as nomp,ean13,stock,categorie.nom as nomc,rayon.nom as nomr',
             'table' => 'produit,categorie,rayon',
             'order' => 'nomp-ASC',
-            'conditions' => array('produit.categorie_id' => 'categorie.id','produit.rayon_id' => 'rayon.id')
+            'conditions' => array('produit.categorie_id' => 'categorie.id', 'produit.rayon_id' => 'rayon.id')
         ));
         //die($d);
-        if(empty($d['catalogue'])){
+        if (empty($d['catalogue'])) {
             $this->e404('Page introuvable');
         }
         $this->set($d);
@@ -353,7 +384,7 @@ class CatalogueController extends Controller
             // 'conditions' => array('produit.categorie_id' => 'categorie.id','produit.rayon_id' => 'rayon.id')
         ));
         //die($d);
-        if(empty($d['catalogue'])){
+        if (empty($d['catalogue'])) {
             $this->e404('Page introuvable');
         }
         $this->set($d);

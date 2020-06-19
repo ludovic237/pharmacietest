@@ -84,17 +84,67 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     <div class="col-md-12">
         <div class="panel-body" style="margin-bottom: 20px;background-color: #fff;
         border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 0 1px 1px rgba(0,0,0,.05);">
-            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-                <label class="control-label" style="margin-right: 30px;">Ajouter un médicament:</label>
+            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
+                <label class="control-label" style="margin-right: 30px;width: 150px;">Ajouter un médicament:</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
                     <input type="text" class="form-control col-md-4" name="nom" id="recherche" value="" placeholder="Médicaments">
                 </div>
-                <div>
+                <div style="width: 150px;">
                     <a name="" id="" class="btn btn-primary" href="#" role="button">Ajouter</a>
+                </div>
+            </div>
+            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                <label class="control-label" style="margin-right: 30px;width: 150px;"></label>
+                <div style="display: flex;flex:1;margin-right: 30px;">
+                    <div class="panel panel-default">
+
+                        <div class="panel-body panel-body-table">
+
+                            <div class="">
+                                <table class=" table-bordered table-actions">
+                                    <thead>
+                                        <tr>
+                                            <th width="200">Nom</th>
+                                            <th width="100">Prix Unitaire</th>
+                                            <th width="100">Quantité</th>
+                                            <th width="100">Reduction</th>
+                                            <th width="200">Date de Livraison</th>
+                                            <th width="100">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tab_recherche">
+                                        <tr id="1">
+                                            <td>Lion</td>
+                                            <td>
+                                                2000
+                                            </td>
+                                            <td>
+                                                <input id="qte_vente" type="number">
+                                            </td>
+                                            <td>
+                                                200
+                                            </td>
+                                            <td>
+                                                sss
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>
+                                                <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                            </td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div style="width: 150px;">
+
                 </div>
             </div>
             <div class="resultat scroll" id="resultat" style="display: flex; z-index: 1; background-color: #fff">
                 <ul class="scroll" style=""></ul>
+
             </div>
         </div>
     </div>
@@ -107,7 +157,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
-                    <table class="table datatable table-bordered table-striped table-actions" >
+                    <table class="table datatable table-bordered table-striped table-actions">
                         <thead>
                             <tr>
                                 <th width="200">Nom</th>

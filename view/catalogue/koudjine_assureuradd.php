@@ -82,7 +82,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
             <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau assureur</h4>
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $assureur->id;
+            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_assureur('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $assureur->id;
                                                                                                                                             else echo ""; ?>');">
                 <div class="panel-body">
                     <div class="form-group">
@@ -95,21 +95,21 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Téléphone:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $assureur->telephone; ?>" placeholder="Téléphone" />
+                            <input type="text" class="form-control" name="telephone" id="telephone" value="<?php if ($position == 'Modifier') echo $assureur->telephone; ?>" placeholder="Téléphone" />
                             <span class="help-block">exemple: 89489233</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Taux:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $assureur->taux; ?>" placeholder="Taux" />
+                            <input type="text" class="form-control" name="taux" id="taux" value="<?php if ($position == 'Modifier') echo $assureur->taux; ?>" placeholder="Taux" />
                             <span class="help-block">exemple: 10</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Code postal:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $assureur->codepostal; ?>" placeholder="Code postal" />
+                            <input type="text" class="form-control" name="CodePostal_id" id="CodePostal_id" value="<?php if ($position == 'Modifier') echo $assureur->codepostal; ?>" placeholder="Code postal" />
                             <span class="help-block">exemple: 44444</span>
                         </div>
                     </div>

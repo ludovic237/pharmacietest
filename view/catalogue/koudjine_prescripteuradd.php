@@ -48,28 +48,19 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         minlength: 2,
                         maxlength: 50
                     },
-                    region: {
+                    adresse: {
                         required: true,
                         minlength: 3,
                         maxlength: 20
                     },
-                    telephone_1: {
+                    telephone: {
                         required: true
                     },
-                    ville: {
+                    structure: {
                         required: true,
                         minlength: 3,
                         maxlength: 100
                     },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    statut: {
-                        required: true
-                    },
-                    "type[]": "required"
-
                 }
             });
 
@@ -82,7 +73,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
             <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau prescripteur</h4>
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $prescripteur->id;
+            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_prescripteur('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $prescripteur->id;
                                                                                                                                             else echo ""; ?>');">
                 <div class="panel-body">
                     <div class="form-group">
@@ -95,21 +86,21 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Téléphone:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $prescripteur->telephone; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="telephone" id="telephone" value="<?php if ($position == 'Modifier') echo $prescripteur->telephone; ?>" placeholder="" />
                             <span class="help-block">exemple: 89489233</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Adresse:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $prescripteur->adresse; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="adresse" id="adresse" value="<?php if ($position == 'Modifier') echo $prescripteur->adresse; ?>" placeholder="" />
                             <span class="help-block">exemple: Yaounde</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Structure:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $prescripteur->structure; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="structure" id="structure" value="<?php if ($position == 'Modifier') echo $prescripteur->structure; ?>" placeholder="" />
                             <span class="help-block">exemple: RAS</span>
                         </div>
                     </div>

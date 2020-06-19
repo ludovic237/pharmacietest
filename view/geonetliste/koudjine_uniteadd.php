@@ -1,15 +1,15 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Universités';
-$page_for_layout = ($position == 'Ajouter') ? 'Ajouter un assureur' : 'Modifier un assureur';
+$title_for_layout = ' Admin -' . 'Geoneliste';
+$page_for_layout = ($position == 'Ajouter') ? 'Ajouter un unité' : 'Modifier un unité';
 $action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
-    $position = "Toutes les universités";
+    $position = "Toutes les Geoneliste";
 } else {
     //$position = $this->request->action;
 }
-$position_for_layout = '<li><a href="#">Universites</a></li><li class="active">' . $position . '</li>';
+$position_for_layout = '<li><a href="#">Geoneliste</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-file-input.js"></script>
@@ -48,27 +48,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         minlength: 2,
                         maxlength: 50
                     },
-                    region: {
+                    libelle: {
                         required: true,
                         minlength: 3,
                         maxlength: 20
-                    },
-                    telephone_1: {
-                        required: true
-                    },
-                    ville: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 100
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    statut: {
-                        required: true
-                    },
-                    "type[]": "required"
+                    }
 
                 }
             });
@@ -81,38 +65,25 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
-            <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau assureur</h4>
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;
+            <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouvelle unitée</h4>
+            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_unite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $unite->id;
                                                                                                                                             else echo ""; ?>');">
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">Nom:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom" />
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $unite->nom; ?>" placeholder="Nom" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Téléphone:</label>
+                        <label class="col-md-3 control-label">Libellé:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Téléphone" />
+                            <input type="text" class="form-control" name="libelle" id="libelle" value="<?php if ($position == 'Modifier') echo $unite->libelle; ?>" placeholder="Libellé" />
                             <span class="help-block">exemple: 89489233</span>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Taux:</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Taux" />
-                            <span class="help-block">exemple: 10</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Code postal:</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Code postal" />
-                            <span class="help-block">exemple: 44444</span>
-                        </div>
-                    </div>
+                   
                     <div class="btn-group pull-right">
                         <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
                         <button class="btn btn-success" type="submit">Enregistrer</button>

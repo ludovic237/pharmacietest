@@ -48,27 +48,41 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         minlength: 2,
                         maxlength: 50
                     },
-                    region: {
+                    telephone: {
                         required: true,
-                        minlength: 3,
-                        maxlength: 20
+                        minlength: 2,
+                        maxlength: 50
                     },
-                    telephone_1: {
-                        required: true
-                    },
-                    ville: {
+                    modeReglement: {
                         required: true,
-                        minlength: 3,
-                        maxlength: 100
+                        minlength: 2,
+                        maxlength: 50
                     },
-                    email: {
+                    poid: {
                         required: true,
-                        email: true
+                        minlength: 2,
+                        maxlength: 50
                     },
-                    statut: {
-                        required: true
+                    taille: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 50
                     },
-                    "type[]": "required"
+                    reduction: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 50
+                    },
+                    assureur_id: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 50
+                    },
+                    CodePostal_id: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 50
+                    },
 
                 }
             });
@@ -82,62 +96,66 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
             <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">>Nouveau client</h4>
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;
+            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_client('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $malade->id;
                                                                                                                                             else echo ""; ?>');">
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">Nom:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $malade->nom; ?>" placeholder="" />
                             <span class="help-block">Boris Daudga</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Téléphone:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="telephone" id="telephone" value="<?php if ($position == 'Modifier') echo $malade->telephone; ?>" placeholder="" />
                             <span class="help-block">89489233</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Mode de règlement:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <select class="form-control selectpicker stock col-md-6" title='Tout...' name="srch_faculte" id="srch_stock">
+                                <option <?php if ($stock == null || $stock == 0) echo "selected=\"selected\""; ?> value="0">Tout...</option>
+                                <option <?php if ($stock == 1) echo "selected=\"selected\""; ?> value="1">Recu</option>
+                                <option <?php if ($stock == 2) echo "selected=\"selected\""; ?> value="2">Cheque</option>
+                            </select>
                             <span class="help-block">Chèque</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Pourcentage de rédiction:</label>
+                        <label class="col-md-3 control-label">Pourcentage de réduction:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="reduction" id="reduction" value="<?php if ($position == 'Modifier') echo $malade->reduction; ?>" placeholder="" />
                             <span class="help-block">Pourcent</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Poid:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="poid" id="poid" value="<?php if ($position == 'Modifier') echo $malade->poid; ?>" placeholder="" />
                             <span class="help-block">10Kg</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Taille:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="taille" id="taille" value="<?php if ($position == 'Modifier') echo $malade->taille; ?>" placeholder="" />
                             <span class="help-block">189m</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Code postal:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="CodePostal_id" id="CodePostal_id" value="<?php if ($position == 'Modifier') echo $malade->CodePostal_id; ?>" placeholder="" />
                             <span class="help-block">4444</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Assureur:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="assureur_id" id="assureur_id" value="<?php if ($position == 'Modifier') echo $malade->assureur_id; ?>" placeholder="" />
                             <span class="help-block">GMC</span>
                         </div>
                     </div>

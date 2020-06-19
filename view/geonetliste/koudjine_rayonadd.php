@@ -1,7 +1,7 @@
 <?php
 
 $title_for_layout = ' Admin -' . 'Geoneliste';
-$page_for_layout = ($position == 'Ajouter') ? 'Ajouter un assureur' : 'Modifier un assureur';
+$page_for_layout = ($position == 'Ajouter') ? 'Ajouter un rayon' : 'Modifier un rayon';
 $action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {

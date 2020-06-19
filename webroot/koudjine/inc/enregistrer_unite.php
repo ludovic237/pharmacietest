@@ -1,45 +1,40 @@
 <?php
 require_once('database.php');
-require_once('../Class/prescripteur.php');
+require_once('../Class/unite.php');
 
 global $pdo;
 
 
-$manager = new PrescripteurManager($pdo);
+$manager = new UniteManager($pdo);
 
 
 
 if (isset($_POST['id'])){
 
     $id=$_POST['id'];
-    $structure=$_POST['Structure'];
-    $nom=$_POST['Nom'];
-    $adresse=$_POST['Adresse'];
-    $telephone=$_POST['Telephone'];
-
+    $libelle=$_POST['libelle'];
+    $nom=$_POST['nom'];
+    //echo $id;
+    //$prod = new Departement();
     if ($manager->existsNom($nom)) {
         $prod = $manager->get($id);
         //echo "Ce departement existe";
         if($prod->id() == $id){
             $prod->setnom($nom);
-            $prod->setstructure($structure);
-            $prod->setadresse($adresse);
-            $prod->settelephone($telephone);
+            $prod->setlibelle($libelle);
             $manager->update($prod);
             echo 'ok';
         }
         else{
 
-            echo 'Ce nom de produit existe déjà';
+            echo 'Ce nom de rayon existe déjà';
 
         }
     }
     else{
         $prod = $manager->get($id);
         $prod->setnom($nom);
-        $prod->setstructure($structure);
-        $prod->setadresse($adresse);
-        $prod->settelephone($telephone);
+        $prod->setlibelle($libelle);
         $manager->update($prod);
         echo 'ok';
     }
@@ -71,26 +66,22 @@ else{
         //echo $datec;
     }*/
 
-    $structure=$_POST['Structure'];
-    $nom=$_POST['Nom'];
-    $adresse=$_POST['Adresse'];
-    $telephone=$_POST['Telephone'];
+    $libelle=$_POST['libelle'];
+    $nom=$_POST['nom'];
 
 
 
     if(!$manager->existsNom($nom)){
         //$date = genererID();
         //echo $datec;
-        $prescripteur = new Prescripteur(array(
-            'Nom' => $nom,
-            'Structure' => $structure,
-            'Adresse' => $adresse,
-            'Telephone' => $telephone,
+        $unite = new Unite(array(
+            'nom' => $nom,
+            'libelle' => $libelle,
         ));
-        $manager->add($prescripteur);
+        $manager->add($unite);
         echo 'ok';
     }
-    else echo 'Ce nom de produit existe déjà';
+    else echo 'Ce nom de rayon existe déjà';
 
 
 
