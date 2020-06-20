@@ -1,4 +1,74 @@
 
+
+function update_row_produit(id) {
+    alert("link");
+    var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
+    alert(link);
+    window.location.href = link;
+}
+function update_row_assureur(id) {
+    var link = '/pharmacietest/bouwou/catalogue/assureuradd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_categorie(id) {
+    var link = '/pharmacietest/bouwou/catalogue/categorieadd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_client(id) {
+    var link = '/pharmacietest/bouwou/catalogue/clientadd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_fabriquant(id) {
+    var link = '/pharmacietest/bouwou/catalogue/fabriquantadd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_fournisseur(id) {
+    var link = '/pharmacietest/bouwou/catalogue/fournisseuradd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_prescripteur(id) {
+    alert("link");
+    var link = '/pharmacietest/bouwou/catalogue/prescripteuradd/' + id;
+    alert(link);
+    window.location.href = link;
+}
+function update_row_codepostal(id) {
+    var link = '/pharmacietest/bouwou/geonetliste/codepostaladd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_forme(id) {
+    var link = '/pharmacietest/bouwou/geonetliste/formeadd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_magasin(id) {
+    var link = '/pharmacietest/bouwou/geonetliste/magasinadd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_rayon(id) {
+    var link = '/pharmacietest/bouwou/geonetliste/rayonadd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_unite(id) {
+    var link = '/pharmacietest/bouwou/geonetliste/uniteadd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_ville(id) {
+    var link = '/pharmacietest/bouwou/geonetliste/villeadd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+
+
 function delete_row(row, controller, confirmation) {
 
     if (confirmation) {
@@ -97,27 +167,27 @@ function update_row(row) {
 
 
 }
-function update_row_categorie(row) {
+// function update_row_categorie(row) {
 
-    var nom;
-    var description;
-    $("#" + row + " td").each(function (i) {
-        //alert(i);
-        if (i == 0) { nom = $(this).children().html(); }
-        if (i == 2) description = $(this).html();
-    });
-    $("#form3").scroll('slow');
-    //alert(nom);
-    $('.titre').html('Modifier une categorie');
-    $('.button').html('Modifier');
-    $('.button').attr('href', row);
-    $('.name').children().val(nom);
-    $('.description').children().val(description);
-
-
+//     var nom;
+//     var description;
+//     $("#" + row + " td").each(function (i) {
+//         //alert(i);
+//         if (i == 0) { nom = $(this).children().html(); }
+//         if (i == 2) description = $(this).html();
+//     });
+//     $("#form3").scroll('slow');
+//     //alert(nom);
+//     $('.titre').html('Modifier une categorie');
+//     $('.button').html('Modifier');
+//     $('.button').attr('href', row);
+//     $('.name').children().val(nom);
+//     $('.description').children().val(description);
 
 
-}
+
+
+// }
 function update_row_type(row) {
 
     var nom;
@@ -193,11 +263,9 @@ function update_row_concours(id) {
     //alert(link);
     window.location.href = link;
 }
-function update_row_produit(id) {
-    var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
-    //alert(link);
-    window.location.href = link;
-}
+
+
+
 function update_row_user(id) {
     var link = '/Site/bouwou/users/edit/' + id;
     //alert(link);

@@ -1,6 +1,6 @@
 <!-- <?php
 
-        $title_for_layout = ' Admin -' . 'Universités';
+        $title_for_layout = ' Admin -' . 'Catalogue';
         $page_for_layout = 'Catalogue';
         $action_for_layout = 'Ajouter';
 
@@ -48,9 +48,15 @@
                                         <?php echo $v->nomr; ?>
                                     </td>
                                     <td>
-                                        <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row(<?php echo $v->idp; ?>)"><span class="fa fa-info"></span></button>
-                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->idp; ?>)"><span class="fa fa-pencil"></span></button>
-                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                        <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row(<?php echo $v->idp; ?>)">
+                                            <span class="fa fa-info"></span>
+                                        </button>
+                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->idp; ?>)">
+                                            <span class="fa fa-pencil"></span>
+                                        </button>
+                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>');">
+                                            <span class="fa fa-times"></span>
+                                        </button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -68,7 +74,7 @@
 
 <!-- END RESPONSIVE TABLES -->
 <!-- START MODAL ICON PREVIEW -->
-<div class="modal fade" id="iconPreview" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- <div class="modal fade" id="iconPreview" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -294,5 +300,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- END MODAL ICON PREVIEW -->

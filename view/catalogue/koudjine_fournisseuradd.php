@@ -1,6 +1,6 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Universités';
+$title_for_layout = ' Admin -' . 'Catalogue';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter un fournisseur' : 'Modifier un fournisseur';
 $action_for_layout = 'Ajouter';
 
@@ -12,33 +12,9 @@ if ($this->request->action == "index") {
 $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-file-input.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/fileinput/fileinput.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/jquery.noty.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/themes/default.js"></script>
-<script type="text/javascript">
-                function notyConfirm(){
-                    noty({
-                        text: \'Do you want to continue?\',
-                        layout: \'topRight\',
-                        buttons: [
-                                {addClass: \'btn btn-success btn-clean\', text: \'Ok\', onClick: function($noty) {
-                                    $noty.close();
-                                    noty({text: \'You clicked "Ok" button\', layout: \'topRight\', type: \'success\'});
-                                }
-                                },
-                                {addClass: \'btn btn-danger btn-clean\', text: \'Cancel\', onClick: function($noty) {
-                                    $noty.close();
-                                    noty({text: \'You clicked "Cancel" button\', layout: \'topRight\', type: \'error\'});
-                                    }
-                                }
-                            ]
-                    })
-                }
-            </script>
 <script type="text/javascript">
             var jvalidate = $("#jvalidate").validate({
                 ignore: [],
