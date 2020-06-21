@@ -11,7 +11,16 @@
      }
      $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
      $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
+                <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
+                <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
+                <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/formsCategorie.js"></script>
+                <script>
+                                $(window).load(function(){
+                                    $(\'#form2\').forms({
+                                        ownerEmail:\'#\'
+                                    })
+                                })
+                            </script>';
      ?> -->
 
 
@@ -31,7 +40,7 @@
                                         <th width="100">Actions</th>
                                    </tr>
                               </thead>
-                              <tbody>
+                              <tbody id="tableau_categorie">
                                    <?php foreach ($catalogue as $k => $v) : ?>
                                         <tr id="<?php echo $v->idcat; ?>">
                                              <td><strong><?php echo $v->nomcat; ?></strong></td>
@@ -53,20 +62,19 @@
           <div class="panel panel-default">
                <!-- START JQUERY VALIDATION PLUGIN -->
                <div class="block">
-                    <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouvelle catégorie</h4>
-                    <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;
-                                                                                                                                                      else echo ""; ?>');">
+                    <h4 class="titre" style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau categorie</h4>
+                    <form id="form2" class="form-horizontal" method="post">
                          <div class="panel-body">
                               <div class="form-group">
-                                   <label class="col-md-3 control-label">Nom:</label>
-                                   <div class="col-md-9">
-                                        <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
-                                        <span class="help-block">Boris Daudga</span>
-                                   </div>
+                                   <label style="width: 100%;display: flex;" class="name col-md-3 ">Nom:
+                                        <div class="col-md-9">
+                                             <input type="text" class="form-control" name="nom" id="nom" value="" placeholder="" />
+                                             <span class="help-block">exemple: Boris Daudga</span>
+                                        </div>
+                                   </label>
                               </div>
-                              <div class="btn-group pull-right">
-                                   <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
-                                   <button class="btn btn-success" type="submit">Enregistrer</button>
+                              <div class="btn-group pull-left">
+                                   <div class="btns"><a href="#" class="button btn btn-primary pull-left" data-type="submit">Ajouter</a></div>
                               </div>
                          </div>
                     </form>

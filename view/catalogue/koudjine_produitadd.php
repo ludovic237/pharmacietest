@@ -153,7 +153,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Catégorie:</label>
                         <div class="col-md-9">
-                            <select class="form-control input-xlarge " name="catproduit" id="catproduit">
+                            <select class="selectpicker form-control input-xlarge " name="catproduit" id="catproduit">
                                 <?php
                                 foreach ($categorie as $k => $v) : ?>
                                     <option <?php if ($position == 'Modifier') if ($v->id == $produit->categorie_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
@@ -166,7 +166,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Rayon:</label>
                         <div class="col-md-9">
-                            <select class="form-control input-xlarge " name="rayonproduit" id="rayonproduit">
+                            <select class="selectpicker form-control input-xlarge " name="rayonproduit" id="rayonproduit">
                                 <?php
                                 foreach ($rayon as $k => $v) : ?>
                                     <option <?php if ($position == 'Modifier') if ($v->id == $produit->rayon_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
@@ -179,7 +179,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Magasin:</label>
                         <div class="col-md-9">
-                            <select class="form-control input-xlarge " name="magproduit" id="magproduit">
+                            <select class="selectpicker form-control input-xlarge " name="magproduit" id="magproduit">
                                 <?php
                                 foreach ($magasin as $k => $v) : ?>
                                     <option <?php if ($position == 'Modifier') if ($v->id == $produit->magasin_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
@@ -192,7 +192,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Forme:</label>
                         <div class="col-md-9">
-                            <select class="form-control input-xlarge " name="formeproduit" id="formeproduit">
+                            <select class="selectpicker form-control input-xlarge " name="formeproduit" id="formeproduit">
                                 <?php
                                 foreach ($forme as $k => $v) : ?>
                                     <option <?php if ($position == 'Modifier') if ($v->id == $produit->forme_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
@@ -205,7 +205,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Fabriquant:</label>
                         <div class="col-md-9">
-                            <select class="form-control input-xlarge " name="fabproduit" id="fabproduit">
+                            <select class="selectpicker form-control input-xlarge " name="fabproduit" id="fabproduit">
                                 <?php
                                 foreach ($fabriquant as $k => $v) : ?>
                                     <option <?php if ($position == 'Modifier') if ($v->id == $produit->fabriquant_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
@@ -215,6 +215,45 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             </select>
                         </div>
                     </div>
+                    
+                </div>
+                <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                    <h4 style="background-color: #2d3945;color: white;">Détail produit </h4>
+                    <span>
+                        <input type="checkbox" id="check_compo-1">
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Produit:</label>
+                        <div class="col-md-9">
+                            <select class="selectpicker form-control input-xlarge " name="formeproduit" id="formeproduit">
+                                <?php
+                                foreach ($forme as $k => $v) : ?>
+                                    <option <?php if ($position == 'Modifier') if ($v->id == $produit->forme_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Prix detail:</label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->reductionMax;
+                                                                                else echo 0; ?>" name="reduction" id="reduction" placeholder="" />
+                            <span class="help-block">Champ requis</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Contenu detail:</label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->reductionMax;
+                                                                                else echo 0; ?>" name="reduction" id="reduction" placeholder="" />
+                            <span class="help-block">Champ requis</span>
+                        </div>
+                    </div>
+
                     <div class="btn-group pull-right">
                         <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
                         <button class="btn btn-success" type="submit">Enregistrer</button>

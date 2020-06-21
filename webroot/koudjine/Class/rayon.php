@@ -81,11 +81,24 @@ class RayonManager
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM rayon WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM rayon WHERE supprimer = 0 ')->fetchColumn();
     }
     public function delete(Rayon $rayon)
     {
         $this->_db->exec('DELETE FROM rayon WHERE id = '.$rayon->id());
+    }
+    public function exists($info)
+    {
+            return (bool) $this->_db->query('SELECT COUNT(*) FROM rayon WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
+
+    }
+    public function getNom($info)
+    {
+        $q = $this->_db->prepare('SELECT * FROM rayon WHERE supprimer = 0 AND nom = :nom');
+        $q->execute(array(':nom' => $info));
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Rayon($donnees);
+
     }
     public function existsId($info)
     {
@@ -125,7 +138,7 @@ class RayonManager
 
         $q = $this->_db->query('SELECT * FROM rayon WHERE supprimer = 0 AND id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new rayon($donnees);
+        return new Rayon($donnees);
 
     }
     public function getList()

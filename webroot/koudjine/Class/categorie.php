@@ -85,6 +85,19 @@ class CategorieManager
     {
         $this->_db->exec('DELETE FROM categorie WHERE id = '.$categorie->id());
     }
+    public function exists($info)
+    {
+            return (bool) $this->_db->query('SELECT COUNT(*) FROM categorie WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
+
+    }
+    public function getNom($info)
+    {
+        $q = $this->_db->prepare('SELECT * FROM categorie WHERE supprimer = 0 AND nom = :nom');
+        $q->execute(array(':nom' => $info));
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Categorie($donnees);
+
+    }
     public function existsId($info)
     {
 
@@ -140,7 +153,7 @@ class CategorieManager
     public function update(Categorie $categorie)
     {
 
-        $q = $this->_db->prepare('UPDATE categorie SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, nom = :nom, reference = :reference, ean13 = :ean13, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE categorie SET nom = :nom WHERE id = :id');
         $q->bindValue(':id', $categorie->id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $categorie->nom());
         $q->execute();

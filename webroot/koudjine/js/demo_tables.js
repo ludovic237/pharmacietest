@@ -11,10 +11,29 @@ function update_row_assureur(id) {
     //alert(link);
     window.location.href = link;
 }
-function update_row_categorie(id) {
-    var link = '/pharmacietest/bouwou/catalogue/categorieadd/' + id;
-    //alert(link);
-    window.location.href = link;
+function update_row_categorie(row) {
+
+    var nom;
+    // var code;
+    $("#" + row + " td").each(function (i) {
+        //alert(i);
+        if (i == 0) {
+            nom = $(this).children().html();
+        }
+        // if (i == 1) {  
+        //     code = $(this).html();
+        // }
+       
+    });
+    
+    $('.titre').html('Modifier forme');
+    $('.button').html('Modifier');
+    $('.button').attr('href', row);
+    $('#nom').val(nom);
+    // $('#code').val(code);
+    // var link = '/pharmacietest/bouwou/catalogue/categorieadd/' + id;
+    // //alert(link);
+    // window.location.href = link;
 }
 function update_row_client(id) {
     var link = '/pharmacietest/bouwou/catalogue/clientadd/' + id;
@@ -42,30 +61,131 @@ function update_row_codepostal(id) {
     //alert(link);
     window.location.href = link;
 }
-function update_row_forme(id) {
-    var link = '/pharmacietest/bouwou/geonetliste/formeadd/' + id;
-    //alert(link);
-    window.location.href = link;
+function update_row_forme(row) {
+
+    var nom;
+    var code;
+    $("#" + row + " td").each(function (i) {
+        //alert(i);
+        if (i == 0) {
+            nom = $(this).children().html();
+        }
+        if (i == 1) {  
+            code = $(this).html();
+        }
+       
+    });
+    
+    $('.titre').html('Modifier forme');
+    $('.button').html('Modifier');
+    $('.button').attr('href', row);
+    $('#nom').val(nom);
+    $('#code').val(code);
+    // var link = '/pharmacietest/bouwou/geonetliste/formeadd/' + id;
+    // //alert(link);
+    // window.location.href = link;
 }
-function update_row_magasin(id) {
-    var link = '/pharmacietest/bouwou/geonetliste/magasinadd/' + id;
-    //alert(link);
-    window.location.href = link;
+function update_row_magasin(row) {
+
+    var nom;
+    var code;
+    $("#" + row + " td").each(function (i) {
+        //alert(i);
+        if (i == 0) {
+            nom = $(this).children().html();
+        }
+        if (i == 1) {
+            code = $(this).html();
+        }
+       
+    });
+    
+    $('.titre').html('Modifier magasin');
+    $('.button').html('Modifier');
+    $('.button').attr('href', row);
+    $('#nom').val(nom);
+    $('#code').val(code);
+    // var link = '/pharmacietest/bouwou/geonetliste/magasinadd/' + id;
+    // //alert(link);
+    // window.location.href = link;
 }
-function update_row_rayon(id) {
-    var link = '/pharmacietest/bouwou/geonetliste/rayonadd/' + id;
-    //alert(link);
-    window.location.href = link;
+function update_row_rayon(row) {
+
+    var nom;
+    var code;
+    $("#" + row + " td").each(function (i) {
+        //alert(i);
+        if (i == 0) {
+            nom = $(this).children().html();
+            alert(nom);
+        }
+        if (i == 1) {
+            code = $(this).html();
+            alert(code);
+        }
+       
+    });
+    
+    $('.titre').html('Modifier rayon');
+    $('.button').html('Modifier');
+    $('.button').attr('href', row);
+    $('#nom').val(nom);
+    $('#code').val(code);
+    // var link = '/pharmacietest/bouwou/geonetliste/rayonadd/' + id;
+    // //alert(link);
+    // window.location.href = link;
 }
-function update_row_unite(id) {
-    var link = '/pharmacietest/bouwou/geonetliste/uniteadd/' + id;
-    //alert(link);
-    window.location.href = link;
+function update_row_unite(row) {
+
+    var nom;
+    var libelle;
+    $("#" + row + " td").each(function (i) {
+       
+        if (i == 0) {
+            nom = $(this).children().html();
+            alert(nom);
+        }
+        if (i == 1) {  
+            libelle = $(this).html();
+            alert(libelle);
+        }
+       
+    });
+    alert(row);
+    $('.titre').html('Modifier forme');
+    $('.button').html('Modifier');
+    $('.button').attr('href', row);
+    $('#nom').val(nom);
+    $('#libelle').val(libelle);
+    // var link = '/pharmacietest/bouwou/geonetliste/uniteadd/' + id;
+    // //alert(link);
+    // window.location.href = link;
 }
-function update_row_ville(id) {
-    var link = '/pharmacietest/bouwou/geonetliste/villeadd/' + id;
-    //alert(link);
-    window.location.href = link;
+function update_row_ville(row) {
+
+    var nom;
+    var code;
+    $("#" + row + " td").each(function (i) {   
+       
+        if (i == 0) {
+            nom = $(this).children().html();
+            alert(nom);
+        }
+        if (i == 1) {  
+            code = $(this).html();
+            alert(code);
+        }
+       
+    });
+    alert(row);
+    $('.titre').html('Modifier ville');
+    $('.button').html('Modifier');
+    $('.button').attr('href', row);
+    $('#nom').val(nom);
+    $('#code').val(code);
+    // var link = '/pharmacietest/bouwou/geonetliste/villeadd/' + id;
+    // //alert(link);
+    // window.location.href = link;
 }
 
 

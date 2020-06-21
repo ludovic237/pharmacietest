@@ -102,6 +102,19 @@ class FormeManager
 
 
     }
+    public function exists($info)
+    {
+            return (bool) $this->_db->query('SELECT COUNT(*) FROM forme WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
+
+    }
+    public function getNom($info)
+    {
+        $q = $this->_db->prepare('SELECT * FROM forme WHERE supprimer = 0 AND nom = :nom');
+        $q->execute(array(':nom' => $info));
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Forme($donnees);
+
+    }
     public function existsEan($info)
     {
 

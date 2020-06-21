@@ -10,16 +10,16 @@
                         notRequiredCl:'notRequired',
                         successCl:'success',
                         successShow:'4000',
-                        mailHandlerURL:'/Site/koudjine/inc/type.php',
+                        mailHandlerURL:'/pharmacietest/koudjine/inc/forme.php',
                         ownerEmail:'support@template-help.com',
                         stripHTML:true,
                         smtpMailServer:'localhost',
-                        targets:'input,textarea,select',
+                        targets:'input,textarea',
                         controls:'a[data-type=reset],a[data-type=submit]',
                         validate:true,
                         rx:{
-                            ".name":{rx:/^[a-zA-Zéèçàêù'][a-zA-Z-éèçàêù' ]+[a-zA-Zéèçàêù']?$/,target:'input'},
-                            ".sigle":{rx:/^[a-zA-Z'][a-zA-Z-' ]+[a-zA-Z']?$/,target:'input'}
+                            //".name":{rx:/^[a-zA-Zéèçàêâôù()'][a-zA-Z-éèçàâôêù()' ]+[a-zA-Zéèçàâôêù']?$/,target:'input'}
+                            //".sigle":{rx:/^[a-zA-Z'][a-zA-Z-' ]+[a-zA-Z']?$/,target:'input'}
                             //".email":{rx:/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i,target:'input'},
                             //".phone":{rx:/^\+?(\d[\d\-\+\(\) ]{5,}\d$)/,target:'input'},
                             //".fax":{rx:/^\+?(\d[\d\-\+\(\) ]{5,}\d$)/,target:'input'},
@@ -29,8 +29,10 @@
                             _.labels.each(function(){
                                 var label=$(this),
                                     inp=$(_.targets,this),
+                                    
                                     defVal=inp.val(),
                                     trueVal=(function(){
+                                        
                                         var tmp=inp.is('input')?(tmp=label.html().match(/value=['"](.+?)['"].+/),!!tmp&&!!tmp[1]&&tmp[1]):inp.html()
                                         return defVal==''?defVal:tmp
                                     })()
@@ -96,99 +98,70 @@
                             return label.length?val==defVal?'':val:''
                         }
                         ,submitFu:function() {
-
+                            
                             _.validateFu(_.labels)
                             if (!_.form.has('.' + _.invalidCl).length) {
 
-                                var description = _.getValFromLabel($('.description', _.form));
-                                var nom_type = _.getValFromLabel($('.name', _.form));
-                                var certif = $('#certif option:selected').text();
-
+                                var code = _.getValFromLabel($('.code', _.form));
+                                var nom = _.getValFromLabel($('.name', _.form));
                                 if($('.button').html() == "Ajouter"){
-
+                                    //alert('passB')
                                     //alert(certif);
                                     //var lien = $('#srch_universite').val();
 
-                                        $.ajax({
-                                            type: "POST",
-                                            url:_.mailHandlerURL,
-                                            data:{
-                                                nom:nom_type, 
-                                                description:description,
-                                                certif:certif
-                                                //dept_id:iddef
-                                            },
-                                            dataType:'json',
-                                            success: function(data) {
-                                                if(certif == 'En attente'){
-                                                    if (data.erreur == 'non') {
-                                                        var type = '<tr id="' + data.id + '">'
-                                                            + ' <td><strong>' + nom_type + '</strong></td>'
-                                                            + '<td>' + description + '</td>'
-                                                            + '<td>' + data.slug + '</td>'
-                                                            + '<td><span class="label label-warning"> ' + data.certif + '</td>'
-                                                            + '<td>'
-                                                            + '<button class="btn btn-default btn-rounded btn-sm" onClick="update_row_type(' + data.id + ');"><span class="fa fa-pencil"></span></button>'
-                                                            + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row(' + data.id + ');"><span class="fa fa-times"></span></button>'
-                                                            + '</td>'
-                                                            + '</tr>';
+                                    $.ajax({
+                                        type: "POST",
+                                        url:_.mailHandlerURL,
+                                        data:{
+                                            nom:nom,
+                                            code:code
+                                            //dept_id:iddef
+                                        },
+                                        dataType:'json',
+                                        success: function(data) {
+                                            //alert('passC'+ JSON.stringify(data))
+                                                if (data.erreur == 'non') {
+                                                    var cat = '<tr id="' + data.id + '">'
+                                                        + ' <td><strong>' + nom + '</strong></td>'
+                                                        + '<td>' + code + '</td>'
+                                                        + '<td>'
+                                                        + '<button class="btn btn-default btn-rounded btn-sm" onClick="update_row_forme(' + data.id + ');"><span class="fa fa-pencil"></span></button>'
+                                                        + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row(' + data.id + ');"><span class="fa fa-times"></span></button>'
+                                                        + '</td>'
+                                                        + '</tr>';
 
 
-                                                        $('#tableau').prepend(type);
-                                                    }
-                                                    else{
-                                                        $('#message-box-danger p').html(data.erreur);
-                                                        $("#message-box-danger").modal("show");
-                                                        setTimeout(function(){
-                                                            $("#message-box-danger").modal("hide");
-                                                        },3000);
-                                                    }
+                                                    $('#tableau_forme').prepend(cat);
                                                 }
                                                 else{
-                                                    if (data.erreur == 'non') {
-                                                        var type = '<tr id="' + data.id + '">'
-                                                            + ' <td><strong>' + nom_type + '</strong></td>'
-                                                            + '<td>' + description + '</td>'
-                                                            + '<td>' + data.slug + '</td>'
-                                                            + '<td><span class="label label-success"> ' + data.certif + '</td>'
-                                                            + '<td>'
-                                                            + '<button class="btn btn-default btn-rounded btn-sm" onClick="update_row_type(' + data.id + ');"><span class="fa fa-pencil"></span></button>'
-                                                            + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row(' + data.id + ');"><span class="fa fa-times"></span></button>'
-                                                            + '</td>'
-                                                            + '</tr>';
-
-
-                                                        $('#tableau1').prepend(type);
-                                                    }
-                                                    else{
-                                                        $('#message-box-danger p').html(data.erreur);
-                                                        $("#message-box-danger").modal("show");
-                                                        setTimeout(function(){
-                                                            $("#message-box-danger").modal("hide");
-                                                        },3000);
-                                                    }
+                                                    $('#message-box-danger p').html(data.erreur);
+                                                    $("#message-box-danger").modal("show");
+                                                    setTimeout(function(){
+                                                        $("#message-box-danger").modal("hide");
+                                                    },3000);
                                                 }
-                                            }
-                                        })
+
+                                        }
+                                    })
 
                                     _.form.trigger('reset')
 
                                     /*$.ajax({
-                                     type: "POST",
+                                     cat: "POST",
                                      url:_.mailHandlerURL,
                                      data:{
-                                     nom:nom_type,
+                                     nom:nom,
                                      sigle: sigle,
-                                     description:description,
+                                     code:code,
                                      univ_id:lien
                                      },
                                      success: function(data){
                                      //alert(lien);
                                      //alert(data);
                                      var faculte = '<tr id="'+lien+'">'
-                                     + ' <td><strong>' + nom_type + '</strong></td>'
+                                     + ' <td><strong>' + nom + '</strong></td>'
                                      + '<td>' + sigle + '</td>'
-                                     + '<td>' + description + '</td>'
+                                     + '<td>' + code + '</td>'
                                      + '<td>'
                                      + '<button class="btn btn-default btn-rounded btn-sm" onClick="update_row('+lien+');"><span class="fa fa-pencil"></span></button>'
                                      + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('+lien+');"><span class="fa fa-times"></span></button>'
@@ -204,14 +177,14 @@
 
 
                                      /*$.ajax({
-                                     type: "POST",
+                                     cat: "POST",
                                      url:_.mailHandlerURL,
                                      data:{
                                      nom:_.getValFromLabel($('.name',_.form)),
                                      email:_.getValFromLabel($('.email',_.form)),
                                      responsable: _.getValFromLabel($('.responsable',_.form)),
                                      sigle: _.getValFromLabel($('.sigle',_.form)),
-                                     description: _.getValFromLabel($('.description',_.form))
+                                     code: _.getValFromLabel($('.code',_.form))
                                      },
                                      success: function(data){
                                      var faculte = JQuery('<tr id="trow_1">'
@@ -233,42 +206,32 @@
                                 }
                                 else{
                                     var lien = $('.button').attr('href');
-
+                                    //alert("id : "+lien);
                                     $.ajax({
                                         type: "POST",
                                         url:_.mailHandlerURL,
                                         data:{
                                             nom:_.getValFromLabel($('.name',_.form)),
-                                            description: _.getValFromLabel($('.description',_.form)),
-                                            certif:certif,
+                                            code: _.getValFromLabel($('.code',_.form)),
                                             id:lien
                                         },
                                         dataType:'json',
                                         success: function(data){
-                                            //alert('passe')
+                                            //alert(data.erreur);
                                             if(data.erreur == 'non' ){
-                                            $("#"+lien+" td").each(function(i){
-                                                //alert(i);
-                                                if(i==0) {$(this).children().html(nom_type);}
-                                                if(i==1)  $(this).html(description);
-                                                if(i==2)  $(this).html(data.slug);
-                                                if(i==3){
-                                                    if(data.certif == 'En attente'){
-                                                        $(this).children().removeClass("label-success").addClass("label-warning")
-                                                    }
-                                                    else{
-                                                        $(this).children().removeClass("label-warning").addClass("label-success")
-                                                    }
-                                                    $(this).children().html(data.certif);
-                                                }
-                                            });
-                                            $('.button').html('Ajouter');
-                                            $('.titre').html('Proposer une nouveau Type d\'université');
-                                            $("#"+lien+" td").addClass('alt');
-                                            _.form.trigger('reset')
-                                            setTimeout(function(){
-                                                $("#"+lien+" td").removeClass('alt');
-                                            },3000);
+                                                $("#"+lien+" td").each(function(i){
+                                                    //alert(i);
+                                                    if(i==0) {$(this).children().html(nom);}
+                                                    if(i==1)  $(this).html(code);
+
+                                                });
+                                                $('.button').html('Ajouter');
+                                                $('.titre').html('Ajouter un nouveau forme');
+                                                $("#"+lien+" td").addClass('alt');
+                                                _.form.trigger('reset')
+                                                setTimeout(function(){
+                                                    $("#"+lien+" td").removeClass('alt');
+                                                },3000);
                                             }
                                             else{
                                                 $('#message-box-danger p').html(data.erreur);
@@ -277,7 +240,7 @@
                                                     $("#message-box-danger").modal("hide");
                                                 },3000);
                                                 $('.button').html('Ajouter');
-                                                $('.titre').html('Proposer une nouveau Type d\'université');
+                                                $('.titre').html('Ajouter une nouvelle catégorie');
                                                 $("#"+lien+" td").addClass('alt');
                                                 _.form.trigger('reset')
                                                 setTimeout(function(){

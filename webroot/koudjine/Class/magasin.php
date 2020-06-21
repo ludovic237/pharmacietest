@@ -1,10 +1,10 @@
 <?php
 
-class Unite
+class Magasin
 {
     private $_id,
         $_nom,
-        $_libelle,
+        $_code,
         $_supprimer;
 
     // CONSRUCTEUR
@@ -34,9 +34,9 @@ class Unite
     {
         return $this->_nom;
     }
-    public function libelle()
+    public function code()
     {
-        return $this->_libelle;
+        return $this->_code;
     }
 
     // SETTERS
@@ -54,16 +54,16 @@ class Unite
         $this->_nom = $value;
 
     }
-    public function setlibelle($value)
+    public function setcode($value)
     {
 
-        $this->_libelle = $value;
+        $this->_code = $value;
 
     }
 
 }
 
-class UniteManager
+class MagasinManager
 {
     private $_db; // Instance de PDO
 
@@ -71,45 +71,45 @@ class UniteManager
     {
         $this->setDb($db);
     }
-    public function add(Unite $unite)
+    public function add(Magasin $magasin)
     {
-        $q = $this->_db->prepare('INSERT INTO unite SET id = :id, nom = :nom, libelle = :libelle');
-        $q->bindValue(':id', $unite->id(), PDO::PARAM_INT);
-        $q->bindValue(':nom', $unite->nom());
-        $q->bindValue(':libelle', $unite->libelle());
+        $q = $this->_db->prepare('INSERT INTO magasin SET id = :id, nom = :nom, code = :code');
+        $q->bindValue(':id', $magasin->id(), PDO::PARAM_INT);
+        $q->bindValue(':nom', $magasin->nom());
+        $q->bindValue(':code', $magasin->code());
         $q->execute();
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM unite WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM magasin WHERE supprimer = 0 ')->fetchColumn();
     }
-    public function delete(Unite $unite)
+    public function delete(Magasin $magasin)
     {
-        $this->_db->exec('DELETE FROM unite WHERE id = '.$unite->id());
+        $this->_db->exec('DELETE FROM magasin WHERE id = '.$magasin->id());
     }
     public function exists($info)
     {
-            return (bool) $this->_db->query('SELECT COUNT(*) FROM unite WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
+            return (bool) $this->_db->query('SELECT COUNT(*) FROM magasin WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
 
     }
     public function getNom($info)
     {
-        $q = $this->_db->prepare('SELECT * FROM unite WHERE supprimer = 0 AND nom = :nom');
+        $q = $this->_db->prepare('SELECT * FROM magasin WHERE supprimer = 0 AND nom = :nom');
         $q->execute(array(':nom' => $info));
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new Unite($donnees);
+        return new Magasin($donnees);
 
     }
     public function existsId($info)
     {
 
-        return (bool) $this->_db->query('SELECT COUNT(*) FROM unite WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
+        return (bool) $this->_db->query('SELECT COUNT(*) FROM magasin WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
 
     }
     public function existsNom($info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM unite WHERE supprimer = 0 AND nom = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM magasin WHERE supprimer = 0 AND nom = :info');
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
@@ -118,7 +118,7 @@ class UniteManager
     public function existsEan($info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM unite WHERE supprimer = 0 AND libelle = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM magasin WHERE supprimer = 0 AND code = :info');
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
@@ -127,7 +127,7 @@ class UniteManager
     public function existsReference($info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM unite WHERE supprimer = 0 AND reference = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM magasin WHERE supprimer = 0 AND reference = :info');
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
@@ -136,29 +136,29 @@ class UniteManager
     public function get($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM unite WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->query('SELECT * FROM magasin WHERE supprimer = 0 AND id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new unite($donnees);
+        return new Magasin($donnees);
 
     }
     public function getList()
     {
-        $unites = array();
-        $q = $this->_db->prepare('SELECT * FROM unite WHERE supprimer = 0 ORDER BY nom');
+        $magasins = array();
+        $q = $this->_db->prepare('SELECT * FROM magasin WHERE supprimer = 0 ORDER BY nom');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $unites[] = new Unite($donnees);
+            $magasins[] = new Magasin($donnees);
         }
-        return $unites;
+        return $magasins;
     }
-    public function update(Unite $unite)
+    public function update(Magasin $magasin)
     {
 
-        $q = $this->_db->prepare('UPDATE unite SET nom = :nom, libelle = :libelle WHERE id = :id');
-        $q->bindValue(':id', $unite->id(), PDO::PARAM_INT);
-        $q->bindValue(':nom', $unite->nom());
-        $q->bindValue(':libelle', $unite->libelle());
+        $q = $this->_db->prepare('UPDATE magasin SET nom = :nom, code = :code WHERE id = :id');
+        $q->bindValue(':id', $magasin->id(), PDO::PARAM_INT);
+        $q->bindValue(':nom', $magasin->nom());
+        $q->bindValue(':code', $magasin->code());
         $q->execute();
     }
     public function setDb(PDO $db)
@@ -166,3 +166,5 @@ class UniteManager
         $this->_db = $db;
     }
 }
+
+?>

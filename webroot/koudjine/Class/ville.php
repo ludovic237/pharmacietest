@@ -87,6 +87,19 @@ class VilleManager
     {
         $this->_db->exec('DELETE FROM ville WHERE id = '.$ville->id());
     }
+    public function exists($info)
+    {
+            return (bool) $this->_db->query('SELECT COUNT(*) FROM ville WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
+
+    }
+    public function getNom($info)
+    {
+        $q = $this->_db->prepare('SELECT * FROM ville WHERE supprimer = 0 AND nom = :nom');
+        $q->execute(array(':nom' => $info));
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new ville($donnees);
+
+    }
     public function existsId($info)
     {
 

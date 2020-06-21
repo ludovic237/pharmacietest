@@ -26,7 +26,7 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
 
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4"> 
 
             <!-- START JQUERY VALIDATION PLUGIN -->
             <div class="block">

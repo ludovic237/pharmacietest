@@ -344,6 +344,24 @@ class CatalogueController extends Controller
         $this->set($d);
     }
 
+    function koudjine_produitdetail()
+    {
+        $this->loadModel('Catalogue');
+
+
+        $d['catalogue'] = $this->Catalogue->find(array(
+            'fields' => 'produit.id as idp,produit.nom as nomp,ean13,stock,categorie.nom as nomc,rayon.nom as nomr',
+            'table' => 'produit,categorie,rayon',
+            'order' => 'nomp-ASC',
+            'conditions' => array('produit.categorie_id' => 'categorie.id', 'produit.rayon_id' => 'rayon.id')
+        ));
+        //die($d);
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
+    }
+
     function koudjine_produit_impression()
     {
         $this->loadModel('Catalogue');
