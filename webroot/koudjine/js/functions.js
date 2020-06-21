@@ -1,12 +1,43 @@
 $(document).ready(function () { 	// le document est charg鍊   $("a").click(function(){ 	// on selectionne tous les liens et on d?nit une action quand on clique dessus
 
     // Pharmacie
+    $("#tab_Grecherche").hide();
+    $(".clientExistant").hide();
+    $(".prescripteurExistant").hide();
+
+    $(".select_client").change(function () {
+
+        if($(".select_client").val() == 2){
+            //alert('coché');
+            $(".clientExistant").show();
+            $(".nouveauClient").hide();
+        }
+        else{
+            //alert('decoché');
+            $(".clientExistant").hide();
+            $(".nouveauClient").show();
+        }
+    });
+    $(".select_prescripteur").change(function () {
+
+        if($(".select_prescripteur").val() == 1){
+            //alert('coché');
+            $(".prescripteurExistant").hide();
+            $(".nouveauPrescripteur").show();
+        }
+        else{
+            //alert('decoché');
+            $(".prescripteurExistant").show();
+            $(".nouveauPrescripteur").hide();
+        }
+    })
+
     $("#recherche").keyup(function (event) {
         var prixTotal = 0;
         var reduction = 0;
         if (event.keyCode == 13) {
             var recherche = $(this).val();
-            $("#resultat ul").empty();
+            //$("#resultat ul").empty();
             recherche = $.trim(recherche);
             if (recherche.length > 1) {
                 //alert('yes');
@@ -49,16 +80,19 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                         $('#prixTotal').html(prixTotal1);
                         var prixReduit = parseInt($('#prixReduit').html()) + (parseInt(prixTotal) - (parseInt(prixTotal) * reduction / 100));
                         $('#prixReduit').html(prixReduit);
+                        $(".option_nouveauClient").val(prixReduit);
+                        alert($(".option_nouveauClient").val());
+
                     }
                 })
             } else {
-                $("#resultat ul").empty();
+                //$("#resultat ul").empty();
             }
         }
         else {
             var recherche = $(this).val();
             recherche = $.trim(recherche);
-            var data = 'motclef=' + recherche;
+            var data = 'motclef1=' + recherche;
             if (recherche.length > 1) {
                 //alert('yes');
                 $.ajax({
@@ -66,12 +100,13 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                     url: "/pharmacietest/koudjine/inc/result.php",
                     data: data,
                     success: function (server_responce) {
-                        $("#resultat ul").html(server_responce).show();
+                        $("#tab_Grecherche").show();
+                        $("#tab_Brecherche").html(server_responce).show();
                         //alert(server_responce);
                     }
                 })
             } else {
-                $("#resultat ul").empty();
+                $("#tab_Grecherche").hide();
             }
         }
 
@@ -80,6 +115,45 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 });
 // Ajax
 // Fonctions PHARMACIE
+
+function ajouter_produit(id) {
+    var nom = $("#"+id+" .nom").html();
+    //alert('-'+id+'-');
+    var $sid = $('#'+id );
+    //alert(id);
+    //alert($("#"+id+" .qte").val());
+    var qte = parseInt($("#"+id+" .qte").val());
+    var prix = parseInt($("#"+id+" .prix").html());
+    var stock = parseInt($("#"+id+" .stock").html());
+    var reduction = parseInt($("#"+id+" .reduction").html());
+    var datel = $("#"+id+" .datel").html();
+    if(qte > stock){
+        alert("Quantité en stock pas suffisante pour cette opération " + qte);
+    }
+    else {
+        var cat = '<tr id="' + id + '">'
+            + ' <td><strong>' + nom + '</strong></td>'
+            + '<td>' + prix + '</td>'
+            + '<td>' + qte + '</td>'
+            + '<td>' + (prix*qte) + '</td>'
+            + '<td>' + reduction + '</td>'
+            + '<td>' + datel + '</td>'
+            + '<td>' + (stock-qte) + '</td>'
+            + '</tr>';
+        prixTotal = (prix*qte);
+        $('#recherche').val("");
+        $('#recherche').focus();
+        $("#tab_Grecherche").hide();
+        var prixTotal1 = parseInt($('#prixTotal').html()) + parseInt(prixTotal);
+        $('#prixTotal').html(prixTotal1);
+        var prixReduit = parseInt($('#prixReduit').html()) + (parseInt(prixTotal) - (parseInt(prixTotal) * reduction / 100));
+        $('#prixReduit').html(prixReduit);
+        $(".option_nouveauClient").val(prixReduit);
+        alert($(".option_nouveauClient").val());
+        $('#tab_vente').prepend(cat);
+    }
+
+}
 
 function enregistrer_produit(option, id) {
     // Informations université

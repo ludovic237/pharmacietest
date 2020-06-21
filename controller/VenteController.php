@@ -39,6 +39,20 @@ class VenteController extends Controller
     function koudjine_venteadd($id = null)
     {
         $this->loadModel('Vente');
+
+        $d['client'] = $this->Vente->find(array(
+            //'fields' => 'vente.id as id,vente.montantRegle as montantRegle,reelPercu',
+            'table' => 'user',
+            'order' => 'name-ASC',
+            //'conditions' => array('vente.categorie_id' => 'categorie.id','vente.rayon_id' => 'rayon.id')
+        ));
+        $d['prescripteur'] = $this->Vente->find(array(
+            //'fields' => 'vente.id as id,vente.montantRegle as montantRegle,reelPercu',
+            'table' => 'prescripteur',
+            'order' => 'nom-ASC',
+            //'conditions' => array('vente.categorie_id' => 'categorie.id','vente.rayon_id' => 'rayon.id')
+        ));
+
         if ($id != null) {
             $d['position'] = 'Modifier';
 

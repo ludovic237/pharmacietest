@@ -11,8 +11,6 @@ if ($this->request->action == "index") {
 }
 $position_for_layout = '<li><a href="#">Vente</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-file-input.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/fileinput/fileinput.min.js"></script>
@@ -90,7 +88,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <input type="text" class="form-control col-md-4" name="nom" id="recherche" value="" placeholder="Médicaments">
                 </div>
                 <div style="width: 150px;">
-                    <a name="" id="" class="btn btn-primary" href="#" role="button">Ajouter</a>
                 </div>
             </div>
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
@@ -101,36 +98,19 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="panel-body panel-body-table">
 
                             <div class="">
-                                <table class=" table-bordered table-actions">
+                                <table id="tab_Grecherche" class=" table-bordered table-actions">
                                     <thead>
                                         <tr>
-                                            <th width="200">Nom</th>
+                                            <th width="300">Nom</th>
                                             <th width="100">Prix Unitaire</th>
-                                            <th width="100">Quantité</th>
+                                            <th width="40">Quantité voulue</th>
+                                            <th width="40">Quantité en stock</th>
                                             <th width="100">Reduction</th>
-                                            <th width="200">Date de Livraison</th>
+                                            <th width="100">Date de Livraison</th>
                                             <th width="100">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tab_recherche">
-                                        <tr id="1">
-                                            <td>Lion</td>
-                                            <td>
-                                                2000
-                                            </td>
-                                            <td>
-                                                <input id="qte_vente" type="number">
-                                            </td>
-                                            <td>
-                                                200
-                                            </td>
-                                            <td>
-                                                sss
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>
-                                                <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
-                                            </td>
+                                    <tbody id="tab_Brecherche" style="width: 100%;height: 200px;display: inline-block;overflow: auto;">
                                     </tbody>
                                 </table>
                             </div>
@@ -141,10 +121,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <div style="width: 150px;">
 
                 </div>
-            </div>
-            <div class="resultat scroll" id="resultat" style="display: flex; z-index: 1; background-color: #fff">
-                <ul class="scroll" style=""></ul>
-
             </div>
         </div>
     </div>
@@ -189,93 +165,42 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                 <div class="panel-body" style="padding: 0px;">
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
-                        <h4 style="background-color: #2d3945;color: white;">Nouveau client </h4>
-                        <span>
-                            <input type="checkbox" id="check_compo-1">
-                        </span>
+                        <select class="form-control selectpicker select_client" style="width: 150px;">
+                            <option class="option_nouveauClient" value="">Nouveau Client</option>
+                            <option value="2">Client Existant</option>
+                        </select>
                     </div>
 
-                    <form id="jvalidate" role="form" class="form-horizontal">
-                        <div class="panel-body">
+                    <form id="" role="form" class="form-horizontal">
+                        <div class="panel-body nouveauClient">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Nom:</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom" />
-                                    <span class="help-block">exemple: Boris Daudga</span>
+                                <label class="col-md-2 control-label">Nom:</label>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" name="nom" id="input_vente_nomClient" value="" placeholder="Nom" />
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Téléphone:</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Téléphone" />
-                                    <span class="help-block">exemple: 89489233</span>
+                                <label class="col-md-2 control-label">Téléphone:</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="nom" id="input_vente_phoneClient" value="" placeholder="Téléphone" />
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-
-            <div class="panel-body panel-body-table">
-
-                <div class="panel-body" style="padding: 0px;">
-                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
-                        <h4 style="background-color: #2d3945;color: white;">Client existant </h4>
-                        <span>
-                            <input type="checkbox" id="check_compo-1">
-                        </span>
-                    </div>
-                    <form id="jvalidate" role="form" class="form-horizontal">
-                        <div class="panel-body">
+                        <div class="panel-body clientExistant">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Nom:</label>
-                                <div class="col-md-9">
-                                    <select class="form-control input-xlarge " name="catproduit" id="catproduit">
+                                <label class="col-md-2 control-label">Client:</label>
+                                <div class="col-md-6">
+                                    <select class="form-control selectpicker"  id="select_vente_client">
+                                        <option value="0"></option>
                                         <?php
-                                        foreach ($categorie as $k => $v) : ?>
-                                            <option <?php if ($position == 'Modifier') if ($v->id == $produit->categorie_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                                        foreach ($client as $k => $v) : ?>
+                                            <option <?php if ($position == 'Modifier') if ($v->id == $vente->user_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->name; ?></option>
                                         <?php
                                         endforeach;
                                         ?>
                                     </select>
                                 </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-
-            <div class="panel-body panel-body-table">
-
-                <div class="panel-body" style="padding: 0px;">
-                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
-                        <h4 style="background-color: #2d3945;color: white;">Nouveau prescripteur </h4>
-                        <span>
-                            <input type="checkbox" id="check_compo-1">
-                        </span>
-                    </div>
-                    <form id="jvalidate" role="form" class="form-horizontal">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Nom:</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom" />
-                                    <span class="help-block">exemple: Boris Daudga</span>
+                                <label class="col-md-2 control-label">Réduction:</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="reduction" readonly id="reduction_vente_client" value="0"  />
                                 </div>
                             </div>
                         </div>
@@ -289,35 +214,40 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     <div class="col-md-6">
         <div class="panel panel-default">
 
-            <div class="panel-body panel-body-table">
-
-                <div class="panel-body" style="padding: 0px;">
-                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
-                        <h4 style="background-color: #2d3945;color: white;">Prescripteur existant</h4>
-                        <span>
-                            <input type="checkbox" id="check_compo-1">
-                        </span>
-                    </div>
-                    <form id="jvalidate" role="form" class="form-horizontal">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Nom:</label>
-                                <div class="col-md-9">
-                                    <select class="form-control input-xlarge " name="catproduit" id="catproduit">
-                                        <?php
-                                        foreach ($categorie as $k => $v) : ?>
-                                            <option <?php if ($position == 'Modifier') if ($v->id == $produit->categorie_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
-                                        <?php
-                                        endforeach;
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
+            <div class="panel-body" style="padding: 0px;">
+                <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                    <select class="form-control selectpicker select_prescripteur" style="width: 150px;">
+                        <option value="1">Nouveau Prescripteur</option>
+                        <option value="2">Prescripteur Existant</option>
+                    </select>
                 </div>
 
+                <form id="" role="form" class="form-horizontal">
+                    <div class="panel-body nouveauPrescripteur">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Nom:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="nom" id="input_vente_nomPrescripteur" value="" placeholder="Nom" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body prescripteurExistant">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Prescripteur:</label>
+                            <div class="col-md-6">
+                                <select class="form-control selectpicker"  id="select_vente_prescripteur">
+                                    <option value="0"></option>
+                                    <?php
+                                    foreach ($prescripteur as $k => $v) : ?>
+                                        <option <?php if ($position == 'Modifier') if ($v->id == $vente->user_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                                    <?php
+                                    endforeach;
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -334,16 +264,15 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                         <h4 style="background-color: #2d3945;color: white;">Réduction </h4>
                         <span>
-                            <input type="checkbox" id="check_compo-1">
+                            <input type="checkbox" id="check_reductionGenerale">
                         </span>
                     </div>
                     <form id="jvalidate" role="form" class="form-horizontal">
                         <div class="panel-body">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Taux:</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom" />
-                                    <span class="help-block">exemple: Boris Daudga</span>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" readonly name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>"  />
                                 </div>
                             </div>
                         </div>
@@ -369,7 +298,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <form id="jvalidate" role="form" class="form-horizontal">
                         <div class="panel-body">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Commentaaire:</label>
+                                <label class="col-md-3 control-label">Commentaire:</label>
                                 <div class="col-md-9">
                                     <textarea name="" id="" cols="30" class="form-control" rows="4"></textarea>
                                 </div>
