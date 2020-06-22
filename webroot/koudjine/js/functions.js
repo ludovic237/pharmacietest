@@ -53,13 +53,13 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                         if (data.erreur == 'non') {
                             //alert('yes');
                             var cat = '<tr id="' + data.motclef + '">'
-                                + ' <td><strong>' + data.nom + '</strong></td>'
-                                + '<td>' + data.prix + '</td>'
-                                + '<td>' + 1 + '</td>'
-                                + '<td>' + data.prix + '</td>'
-                                + '<td>' + data.reduction + '</td>'
-                                + '<td>' + data.datel + '</td>'
-                                + '<td>' + data.stock + '</td>'
+                                + ' <td width="100px"><strong>' + data.nom + '</strong></td>'
+                                + '<td width="100px">' + data.prix + '</td>'
+                                + '<td width="100px">' + 1 + '</td>'
+                                + '<td width="100px">' + data.prix + '</td>'
+                                + '<td width="100px">' + data.reduction + '</td>'
+                                + '<td width="100px">' + data.datel + '</td>'
+                                + '<td width="100px">' + data.stock + '</td>'
                                 + '</tr>';
                             prixTotal = data.prix;
                             reduction = data.reduction;
@@ -447,6 +447,77 @@ function enregistrer_commande(option, id) {
                 //alert(data.erreur);
                 if (data == 'ok') {
                     var link = '/pharmacietest/bouwou/catalogue/commandeadd/' + id;
+                    window.location.href = link;
+                }
+                else {
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 93000);
+
+                }
+            }
+        });
+    }
+
+}
+
+function enregistrer_employe(option, id) {
+
+    var identifiant = $('#identifiant').val();
+    var password = $('#password').val();
+    var type = $('#type').val();
+    var etat = $('#etat').val();
+    var reduction = $('#reduction').val();
+    var userid = $('#userid').val();
+
+    if (option == 'Ajouter') {
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_employe.php',
+            data: {
+                identifiant: identifiant,
+                password: password,
+                type: type,
+                etat: etat,
+                reduction: reduction,
+                user_id: userid,
+            },
+            success: function (data) {
+
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/pharmanet/employe/';
+                    window.location.href = link;
+                }
+                else {
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 93000);
+                }
+            }
+        });
+    }
+    else {
+        //alert('test');
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_employe.php',
+            data: {
+                identifiant: identifiant,
+                password: password,
+                type: type,
+                etat: etat,
+                reduction: reduction,
+                user_id: userid,
+                id: id
+            },
+            success: function (data) {
+                //alert(data.erreur);
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/pharmanet/employeadd/' + id;
                     window.location.href = link;
                 }
                 else {

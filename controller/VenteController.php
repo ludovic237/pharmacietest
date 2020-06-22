@@ -43,7 +43,7 @@ class VenteController extends Controller
         $d['client'] = $this->Vente->find(array(
             //'fields' => 'vente.id as id,vente.montantRegle as montantRegle,reelPercu',
             'table' => 'user',
-            'order' => 'name-ASC',
+            'order' => 'nom-ASC',
             //'conditions' => array('vente.categorie_id' => 'categorie.id','vente.rayon_id' => 'rayon.id')
         ));
         $d['prescripteur'] = $this->Vente->find(array(
