@@ -3,15 +3,17 @@
 class vente
 {
     private $_id,
+        $_employe_id,
+        $_caisse_id,
         $_malade_id,
         $_user_id,
         $_prescripteur_id,
-        $_reduction,
-        $_montantRegle,
-        $_reelPercu,
+        $_prixTotal,
+        $_prixPercu,
+        $_nouveau_info,
         $_dateVente,
         $_commentaire,
-        $_ref,
+        $_reduction,
         $_etat,
         $_supprimer;
 
@@ -38,9 +40,17 @@ class vente
     {
         return $this->_id;
     }
+    public function caisse_id()
+    {
+        return $this->_caisse_id;
+    }
     public function malade_id()
     {
         return $this->_malade_id;
+    }
+    public function employe_id()
+    {
+        return $this->_employe_id;
     }
     public function user_id()
     {
@@ -50,17 +60,17 @@ class vente
     {
         return $this->_prescripteur_id;
     }
-    public function montantRegle()
+    public function prixPercu()
     {
-        return $this->_montantRegle;
+        return $this->_prixPercu;
     }
-    public function reduction()
+    public function prixTotal()
     {
-        return $this->_reduction;
+        return $this->_prixTotal;
     }
-    public function reelPercu()
+    public function nouveau_info()
     {
-        return $this->_reelPercu;
+        return $this->_nouveau_info;
     }
     public function dateVente()
     {
@@ -70,9 +80,9 @@ class vente
     {
         return $this->_commentaire;
     }
-    public function ref()
+    public function reduction()
     {
-        return $this->_ref;
+        return $this->_reduction;
     }
     public function etat()
     {
@@ -90,6 +100,22 @@ class vente
         if ($id > 0)
         {
             $this->_id = $id;
+        }
+    }
+    public function setemploye_id($id)
+    {
+
+        if ($id > 0)
+        {
+            $this->_employe_id = $id;
+        }
+    }
+    public function setcaisse_id($id)
+    {
+
+        if ($id > 0)
+        {
+            $this->_caisse_id = $id;
         }
     }
     public function setmalade_id($id)
@@ -116,26 +142,26 @@ class vente
             $this->_prescripteur_id = $id;
         }
     }
-    public function setreduction($id)
+    public function setprixTotal($id)
     {
 
         if ($id > 0)
         {
-            $this->_reduction = $id;
+            $this->_prixTotal = $id;
         }
     }
-    public function setmontantRegle($id)
+    public function setprixPercu($id)
     {
 
         if ($id > 0)
         {
-            $this->_montantRegle = $id;
+            $this->_prixPercu = $id;
         }
     }
-    public function setreelPercu($value)
+    public function setnouveau_info($value)
     {
 
-        $this->_reelPercu = $value;
+        $this->_nouveau_info = $value;
 
     }
     public function setdateVente($value)
@@ -150,10 +176,10 @@ class vente
         $this->_commentaire = $value;
 
     }
-    public function setref($value)
+    public function setreduction($value)
     {
 
-        $this->_ref = $value;
+        $this->_reduction = $value;
 
     }
     public function setetat($value)
@@ -181,17 +207,19 @@ class VenteManager
     }
     public function add(Vente $vente)
     {
-        $q = $this->_db->prepare('INSERT INTO vente SET id = :id, malade_id = :malade, user_id = :user, prescripteur_id = :prescripteur, reduction = :reduction, montantRegle = :montant, reelPercu = :reelPercu, dateVente = :dateVente, commentaire = :commentaire, ref = :ref, etat = :etat, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO vente SET id = :id, employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, prixTotal = :prixTotal, prixPercu = :montant, nouveau_info = :nouveau_info, dateVente = :dateVente, commentaire = :commentaire, reduction = :reduction, etat = :etat, supprimer=0');
         $q->bindValue(':id', $vente->id(), PDO::PARAM_INT);
+        $q->bindValue(':employe', $vente->employe_id(), PDO::PARAM_INT);
+        $q->bindValue(':caisse', $vente->caisse_id(), PDO::PARAM_INT);
         $q->bindValue(':malade', $vente->malade_id(), PDO::PARAM_INT);
         $q->bindValue(':user', $vente->user_id(), PDO::PARAM_INT);
         $q->bindValue(':prescripteur', $vente->prescripteur_id(), PDO::PARAM_INT);
-        $q->bindValue(':reduction', $vente->reduction(), PDO::PARAM_INT);
-        $q->bindValue(':montant', $vente->montantRegle(), PDO::PARAM_INT);
-        $q->bindValue(':reelPercu', $vente->reelPercu());
+        $q->bindValue(':prixTotal', $vente->prixTotal(), PDO::PARAM_INT);
+        $q->bindValue(':montant', $vente->prixPercu(), PDO::PARAM_INT);
+        $q->bindValue(':nouveau_info', $vente->nouveau_info());
         $q->bindValue(':dateVente', $vente->dateVente());
         $q->bindValue(':commentaire', $vente->commentaire());
-        $q->bindValue(':ref', $vente->ref());
+        $q->bindValue(':reduction', $vente->reduction());
         $q->bindValue(':etat', $vente->etat());
         $q->execute();
     }
@@ -209,10 +237,10 @@ class VenteManager
         return (bool) $this->_db->query('SELECT COUNT(*) FROM vente WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
 
     }
-    public function existsreelPercu($info)
+    public function existsnouveau_info($info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM vente WHERE supprimer = 0 AND reelPercu = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM vente WHERE supprimer = 0 AND nouveau_info = :info');
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
@@ -247,7 +275,7 @@ class VenteManager
     public function getList()
     {
         $ventes = array();
-        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 ORDER BY reelPercu');
+        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 ORDER BY nouveau_info');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
@@ -258,17 +286,19 @@ class VenteManager
     public function update(Vente $vente)
     {
 
-        $q = $this->_db->prepare('UPDATE vente SET malade_id = :malade, user_id = :user, prescripteur_id = :prescripteur, reduction = :reduction, montantRegle = :montant, reelPercu = :reelPercu, dateVente = :dateVente, commentaire = :commentaire, ref = :ref, etat = :etat WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE vente SET employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, malade_id = :malade, caisse_id = :caisse, prixTotal = :prixTotal, prixPercu = :montant, nouveau_info = :nouveau_info, dateVente = :dateVente, commentaire = :commentaire, reduction = :reduction, etat = :etat WHERE id = :id');
         $q->bindValue(':id', $vente->id(), PDO::PARAM_INT);
+        $q->bindValue(':employe', $vente->employe_id(), PDO::PARAM_INT);
+        $q->bindValue(':caisse', $vente->caisse_id(), PDO::PARAM_INT);
         $q->bindValue(':malade', $vente->malade_id(), PDO::PARAM_INT);
         $q->bindValue(':user', $vente->user_id(), PDO::PARAM_INT);
         $q->bindValue(':prescripteur', $vente->prescripteur_id(), PDO::PARAM_INT);
-        $q->bindValue(':reduction', $vente->reduction(), PDO::PARAM_INT);
-        $q->bindValue(':montant', $vente->montantRegle(), PDO::PARAM_INT);
-        $q->bindValue(':reelPercu', $vente->reelPercu());
+        $q->bindValue(':prixTotal', $vente->prixTotal(), PDO::PARAM_INT);
+        $q->bindValue(':montant', $vente->prixPercu(), PDO::PARAM_INT);
+        $q->bindValue(':nouveau_info', $vente->nouveau_info());
         $q->bindValue(':dateVente', $vente->dateVente());
         $q->bindValue(':commentaire', $vente->commentaire());
-        $q->bindValue(':ref', $vente->ref());
+        $q->bindValue(':reduction', $vente->reduction());
         $q->bindValue(':etat', $vente->etat());
         $q->execute();
     }

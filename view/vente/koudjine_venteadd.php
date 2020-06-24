@@ -94,24 +94,25 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
                 <label class="control-label" style="margin-right: 30px;width: 150px;"></label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <div class="panel panel-default">
+                    <div>
 
                         <div class="panel-body panel-body-table">
 
                             <div class="">
-                                <table id="tab_Grecherche" class=" table-bordered table-actions">
+                            <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-striped table-actions">
                                     <thead>
                                         <tr>
-                                            <th width="300">Nom</th>
+                                            <th width="200">Nom</th>
                                             <th width="100">Prix Unitaire</th>
-                                            <th width="40">Quantité voulue</th>
-                                            <th width="40">Quantité en stock</th>
+                                            <th width="100">Quantité</th>
+                                            <th width="100">Prix Total</th>
                                             <th width="100">Reduction</th>
-                                            <th width="100">Date de Livraison</th>
+                                            <th width="200">Date de Livraison</th>
                                             <th width="100">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tab_Brecherche" style="width: 100%;height: 200px;display: inline-block;overflow: auto;">
+                                    <tbody id="tab_Brecherche" >
+
                                     </tbody>
                                 </table>
                             </div>

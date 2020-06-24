@@ -162,7 +162,15 @@
 
                 <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">pharmanet</span></a>
                 <ul>
+                    <li class="xn-openable <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'employe' || $this->request->controller == 'catalogue' && $this->request->action == 'employeadd') { ?>active <?php } ?>">
+                        <a href="#"><span class="fa lettre">E</span> Employé</a>
+                        <ul>
+                            <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'employe') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/employe'); ?>"> Lister</a></li>
+                            <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'employeadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/employeadd'); ?>"> Ajouter</a></li>
+                        </ul>
+                    </li>
                     <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'user') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/user'); ?>"><span class="fa lettre">C</span>User</a></li>
+
                     <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'aboutus') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/aboutus'); ?>"><span class="fa lettre">A</span>About us</a></li>
                     <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'offiline') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/offiline'); ?>"><span class="fa lettre">A</span> Offiline</a></li>
                 </ul>
