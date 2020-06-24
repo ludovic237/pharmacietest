@@ -12,8 +12,8 @@ class UsersController extends Controller
             $data->password = sha1($data->password);
             $this->loadModel('Users');
             $user = $this->Users->findFirst(array(
-                'conditions' => array('name' => '"'.$data->username.'"', 'password' => '"'.$data->password.'"'),
-                'table' => 'user'
+                'conditions' => array('identifiant' => '"'.$data->username.'"', 'password' => '"'.$data->password.'"'),
+                'table' => 'employe'
             ));
             if(!empty($user)){
                 //die('pass');
@@ -23,7 +23,9 @@ class UsersController extends Controller
 
             if($this->Session->isLogged()){
                 if($this->Session->user('type') == 'Administrateur'||$this->Session->user('type') == 'Vendeur'||$this->Session->user('type') == 'Gestionnaire'||$this->Session->user('type') == 'Caissier'){
-                    $this->redirect('bouwou/home');}
+                    $this->redirect('bouwou/home');
+                    //print_r($_SESSION['Users']);
+                }
                 else{
                     $this->redirect('users/login');
                     //die('pass');

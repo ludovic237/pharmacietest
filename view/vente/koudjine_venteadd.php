@@ -15,6 +15,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/fileinput/fileinput.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/jquery.noty.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/themes/default.js"></script>
 <script type="text/javascript">
@@ -143,6 +144,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <th width="100">Reduction</th>
                                 <th width="200">Date de Livraison</th>
                                 <th width="100">Stock après vente</th>
+                                <th width="100">Action</th>
                             </tr>
                         </thead>
                         <tbody id="tab_vente">
@@ -166,7 +168,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <div class="panel-body" style="padding: 0px;">
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                         <select class="form-control selectpicker select_client" style="width: 150px;">
-                            <option class="option_nouveauClient" value="">Nouveau Client</option>
+                            <option class="option_nouveauClient" value="0">Nouveau Client</option>
                             <option value="2">Client Existant</option>
                         </select>
                     </div>
@@ -189,10 +191,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <label class="col-md-2 control-label">Client:</label>
                                 <div class="col-md-6">
                                     <select class="form-control selectpicker"  id="select_vente_client">
-                                        <option value="0"></option>
+                                        <option value="0">Sélectionner Client</option>
                                         <?php
                                         foreach ($client as $k => $v) : ?>
-                                            <option <?php if ($position == 'Modifier') if ($v->id == $vente->user_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->name; ?></option>
+                                            <option <?php if ($position == 'Modifier') if ($v->id == $vente->user_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" name="<?php echo $v->reduction; ?>" data="<?php echo $v->reductionMax; ?>"><?php echo $v->nom; ?></option>
                                         <?php
                                         endforeach;
                                         ?>
@@ -236,7 +238,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <label class="col-md-2 control-label">Prescripteur:</label>
                             <div class="col-md-6">
                                 <select class="form-control selectpicker"  id="select_vente_prescripteur">
-                                    <option value="0"></option>
+                                    <option value="0">Sélectionner Prescripteur</option>
                                     <?php
                                     foreach ($prescripteur as $k => $v) : ?>
                                         <option <?php if ($position == 'Modifier') if ($v->id == $vente->user_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
@@ -272,7 +274,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Taux:</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" readonly name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>"  />
+                                    <input type="text" class="form-control" readonly name="<?php echo $_SESSION['Users']->faireReductionMax; ?>" id="taux" value="15"  />
                                 </div>
                             </div>
                         </div>
@@ -317,15 +319,15 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;">
         <p style="font-weight: 200;">Total sans réduction : </p>
         <h4 style="font-weight: bold;font-size: x-large;"><span id="prixTotal">0</span> FCFA</h4>
-        <a name="" id="" class="btn btn-primary" href="#" role="button" style="
+        <a onclick="valider_vente('')" id="" class="btn btn-primary"  role="button" style="
     width: 100%;
-">Paiement avec réduction </a>
+">Paiement sans réduction </a>
     </div>
     <div style="flex-direction: column;display: flex;padding: 10px 20px;justify-content: center;align-items: center;border-left-width: 1px;border-left-style: double;">
         <p style="font-weight: 200;">Total avec réduction : </p>
         <h4 style="font-weight: bold;font-size: x-large;"><span id="prixReduit">0</span> FCFA</h4>
-        <a name="" id="" class="btn btn-primary" href="#" role="button" style="
+        <a id="" onclick="valider_vente('')" class="btn btn-primary"  role="button" style="
     width: 100%;
-">Paiement sans réduction </a>
+">Paiement avec réduction </a>
     </div>
 </div>
