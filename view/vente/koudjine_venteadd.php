@@ -99,7 +99,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="panel-body panel-body-table">
 
                             <div class="">
-                            <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-striped table-actions">
+                                <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-striped table-actions">
                                     <thead>
                                         <tr>
                                             <th width="200">Nom</th>
@@ -111,7 +111,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                             <th width="100">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tab_Brecherche" >
+                                    <tbody id="tab_Brecherche">
 
                                     </tbody>
                                 </table>
@@ -191,7 +191,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Client:</label>
                                 <div class="col-md-6">
-                                    <select class="form-control selectpicker"  id="select_vente_client">
+                                    <select class="form-control selectpicker" id="select_vente_client">
                                         <option value="0">Sélectionner Client</option>
                                         <?php
                                         foreach ($client as $k => $v) : ?>
@@ -203,7 +203,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 </div>
                                 <label class="col-md-2 control-label">Réduction:</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="reduction" readonly id="reduction_vente_client" value="0"  />
+                                    <input type="text" class="form-control" name="reduction" readonly id="reduction_vente_client" value="0" />
                                 </div>
                             </div>
                         </div>
@@ -238,7 +238,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="form-group">
                             <label class="col-md-2 control-label">Prescripteur:</label>
                             <div class="col-md-6">
-                                <select class="form-control selectpicker"  id="select_vente_prescripteur">
+                                <select class="form-control selectpicker" id="select_vente_prescripteur">
                                     <option value="0">Sélectionner Prescripteur</option>
                                     <?php
                                     foreach ($prescripteur as $k => $v) : ?>
@@ -275,7 +275,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Taux:</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" readonly name="<?php echo $_SESSION['Users']->faireReductionMax; ?>" id="taux" value="15"  />
+                                    <input type="text" class="form-control" readonly name="<?php echo $_SESSION['Users']->faireReductionMax; ?>" id="taux" value="15" />
                                 </div>
                             </div>
                         </div>
@@ -317,18 +317,31 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 </div>
 <div style="display: flex;justify-content: space-between;background-color: white;position: fixed;bottom: 40px;right: 10px;align-items: baseline;background-color: #fff;
 border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 1px 1px 1px rgba(10,0,0,.05);">
-    <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;">
-        <p style="font-weight: 200;">Total sans réduction : </p>
-        <h4 style="font-weight: bold;font-size: x-large;"><span id="prixTotal">0</span> FCFA</h4>
-        <a onclick="valider_vente('')" id="" class="btn btn-primary"  role="button" style="
+    <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;width: 250px;">
+        <div style="display: flex;flex-direction: column;width: 100%;">
+            <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
+                <p>Total</p>
+                <p>1000 FCFA</p>
+            </div>
+            <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
+                <p>Réduction</p>
+                <p>10%</p>
+            </div>
+        </div>
+        <div style="display: flex;padding-top: 12px;flex-direction: row;width: 100%;justify-content: space-between;border-top-style: solid;border-top-width: 1px;">
+            <p style="font-weight: 200;">Total : </p>
+            <h6 style="font-weight: bold;font-size: large;"><span id="prixTotal">0</span> FCFA</h6>
+        </div>
+
+        <a onclick="valider_vente('')" id="" class="btn btn-primary" role="button" style="
     width: 100%;
-">Paiement sans réduction </a>
+">Paiement</a>
     </div>
-    <div style="flex-direction: column;display: flex;padding: 10px 20px;justify-content: center;align-items: center;border-left-width: 1px;border-left-style: double;">
+    <!-- <div style="flex-direction: column;display: flex;padding: 10px 20px;justify-content: center;align-items: center;border-left-width: 1px;border-left-style: double;">
         <p style="font-weight: 200;">Total avec réduction : </p>
         <h4 style="font-weight: bold;font-size: x-large;"><span id="prixReduit">0</span> FCFA</h4>
         <a id="" onclick="valider_vente('')" class="btn btn-primary"  role="button" style="
     width: 100%;
 ">Paiement avec réduction </a>
-    </div>
+    </div> -->
 </div>
