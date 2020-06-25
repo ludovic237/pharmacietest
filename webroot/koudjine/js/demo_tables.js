@@ -263,6 +263,34 @@ function delete_row_filiere(row, action) {
     });
 
 }
+function delete_row_vente(id) {
+    var total;
+    var total1 = null;
+    var reduction;
+    $("#"+id+" td").each(function(i){
+        //alert(i);
+        if(i==3) {total = parseInt($(this).html());}
+        if(i==4)  reduction = parseInt($(this).html());
+
+    });
+
+    $("#"+id ).remove();
+
+    $("#"+id+" td").each(function(i){
+        //alert(i);
+        if(i==3) {total1 = $(this).html();}
+        if(i==4)  reduction = $(this).html();
+
+    });
+    if(total1 == null){
+        var prixTotal1 = parseInt($('#prixTotal').html()) - parseInt(total);
+        $('#prixTotal').html(prixTotal1);
+        var prixReduit = parseInt($('#prixReduit').html()) - (parseInt(total) - (parseInt(total) * reduction / 100));
+        $('#prixReduit').html(prixReduit);
+    }
+
+
+}
 
 function update_row(row) {
 

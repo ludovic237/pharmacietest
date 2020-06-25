@@ -16,8 +16,34 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
             //alert('decoché');
             $(".clientExistant").hide();
             $(".nouveauClient").show();
+            $("#select_vente_client").val("0");
+            $('#prixReduit').html($(".option_nouveauClient").val());
         }
-    });
+    })
+    $("#check_reductionGenerale").change(function () {
+
+        if($("#check_reductionGenerale").is(":checked")){
+            //var reduction_a_faire = '<?php echo $mavariabledesession; ?>';
+            //alert($("#taux").attr("name"));
+            var prixReduit = parseInt($('#prixTotal').html())  - (parseInt($('#prixTotal').html())* (parseInt($("#taux").val()) / 100));
+            //var difference = parseInt($('#prixTotal').html()) - prixReduit;
+            if((parseInt($('#prixTotal').html()) - prixReduit) > parseInt($("#taux").attr("name"))){
+                $('#message-box-danger p').html('Taux supérieur à votre limite de réduction mensuelle');
+                $("#message-box-danger").modal("show");
+                setTimeout(function () {
+                    $("#message-box-danger").modal("hide");
+                }, 3000);
+                $("#check_reductionGenerale").prop("checked", false);
+            }
+            else{
+                $('#prixReduit').html(prixReduit);
+            }
+        }
+        else {
+
+            $('#prixReduit').html($(".option_nouveauClient").val());
+        }
+    })
     $(".select_prescripteur").change(function () {
 
         if($(".select_prescripteur").val() == 1){
@@ -30,6 +56,30 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
             $(".prescripteurExistant").show();
             $(".nouveauPrescripteur").hide();
         }
+    })
+
+    $("#select_vente_client").change(function () {
+
+        if($("#select_vente_client").val() != 0){
+            //alert('coché');
+            //alert($("#select_vente_client option:selected").attr("name"));
+            var prixReduit = parseInt($('#prixTotal').html())  - (parseInt($('#prixTotal').html())* (parseInt($("#select_vente_client option:selected").attr("name")) / 100));
+            if((parseInt($('#prixTotal').html()) - prixReduit) > parseInt($("#taux").attr("data"))){
+                $('#message-box-danger p').html('Taux supérieur à la limite de réduction mensuelle du client');
+                $("#message-box-danger").modal("show");
+                setTimeout(function () {
+                    $("#message-box-danger").modal("hide");
+                }, 3000);
+                $('#prixReduit').html($(".option_nouveauClient").val());
+            }
+            else{
+                $('#prixReduit').html(prixReduit);
+            }
+        }
+        else if($("#select_vente_client").val() == 0 || $(".select_client").val() != 2){
+            $('#prixReduit').html($(".option_nouveauClient").val());
+        }
+
     })
 
     $("#recherche").keyup(function (event) {
@@ -53,13 +103,16 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                         if (data.erreur == 'non') {
                             //alert('yes');
                             var cat = '<tr id="' + data.motclef + '">'
-                                + ' <td width="100px"><strong>' + data.nom + '</strong></td>'
-                                + '<td width="100px">' + data.prix + '</td>'
-                                + '<td width="100px">' + 1 + '</td>'
-                                + '<td width="100px">' + data.prix + '</td>'
-                                + '<td width="100px">' + data.reduction + '</td>'
-                                + '<td width="100px">' + data.datel + '</td>'
-                                + '<td width="100px">' + data.stock + '</td>'
+                                + ' <td><strong>' + data.nom + '</strong></td>'
+                                + '<td>' + data.prix + '</td>'
+                                + '<td>' + 1 + '</td>'
+                                + '<td>' + data.prix + '</td>'
+                                + '<td>' + data.reduction + '</td>'
+                                + '<td>' + data.datel + '</td>'
+                                + '<td>' + data.stock + '</td>'
+                                + '<td>'
+                                + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(' + data.motclef + ');"><span class="fa fa-times"></span></button>'
+                                + '</td>'
                                 + '</tr>';
                             prixTotal = data.prix;
                             reduction = data.reduction;
@@ -81,7 +134,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                         var prixReduit = parseInt($('#prixReduit').html()) + (parseInt(prixTotal) - (parseInt(prixTotal) * reduction / 100));
                         $('#prixReduit').html(prixReduit);
                         $(".option_nouveauClient").val(prixReduit);
-                        alert($(".option_nouveauClient").val());
+                        //alert($(".option_nouveauClient").val());
 
                     }
                 })
@@ -139,6 +192,9 @@ function ajouter_produit(id) {
             + '<td>' + reduction + '</td>'
             + '<td>' + datel + '</td>'
             + '<td>' + (stock-qte) + '</td>'
+            + '<td>'
+            + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + id + '\');"><span class="fa fa-times"></span></button>'
+            + '</td>'
             + '</tr>';
         prixTotal = (prix*qte);
         $('#recherche').val("");
@@ -149,11 +205,65 @@ function ajouter_produit(id) {
         var prixReduit = parseInt($('#prixReduit').html()) + (parseInt(prixTotal) - (parseInt(prixTotal) * reduction / 100));
         $('#prixReduit').html(prixReduit);
         $(".option_nouveauClient").val(prixReduit);
-        alert($(".option_nouveauClient").val());
+        //alert($(".option_nouveauClient").val());
         $('#tab_vente').prepend(cat);
     }
 
+}function valider_vente(type) {
+    var nouveau = "";
+    var idClient;
+    var idPrescripteur;
+    /*$.ajax({
+        type: "GET",
+        url: "/pharmacietest/koudjine/inc/result1.php",
+        data: {
+            motclef: $(this).val()
+        },
+        dataType: 'json',
+        success: function (data) {
+            //alert(data);
+
+        }
+    })*/
+    if($('.select_client option:selected').text() == "Nouveau Client"){
+        nouveau = nouveau + $("#input_vente_nomClient").val() + "|" + $("#input_vente_phoneClient").val() + "-";
+    }
+    else{
+        if($("#select_vente_client option:selected").val() != 0){
+            idClient = $("#select_vente_client option:selected").val();
+        }
+        else {
+            $('#message-box-danger p').html('Veuillez Sélectionner le client');
+            $("#message-box-danger").modal("show");
+            setTimeout(function () {
+                $("#message-box-danger").modal("hide");
+            }, 6000);
+        }
+
+    }
+
+    if($('.select_prescripteur option:selected').text() == "Nouveau Prescripteur"){
+        nouveau = nouveau + $("#input_vente_nomPrescripteur").val();
+    }
+    else{
+        if($("#select_vente_client option:selected").val() != 0){
+            idPrescripteur = $("#select_vente_prescripteur option:selected").val();
+        }
+        else {
+            $('#message-box-danger p').html('Veuillez Sélectionner le prescripteur');
+            $("#message-box-danger").modal("show");
+            setTimeout(function () {
+                $("#message-box-danger").modal("hide");
+            }, 6000);
+        }
+
+    }
+
+    alert(nouveau);
+
 }
+
+
 
 function enregistrer_produit(option, id) {
     // Informations université
@@ -210,7 +320,7 @@ function enregistrer_produit(option, id) {
                     $("#message-box-danger").modal("show");
                     setTimeout(function () {
                         $("#message-box-danger").modal("hide");
-                    }, 93000);
+                    }, 13000);
                 }
             }
         });
@@ -447,77 +557,6 @@ function enregistrer_commande(option, id) {
                 //alert(data.erreur);
                 if (data == 'ok') {
                     var link = '/pharmacietest/bouwou/catalogue/commandeadd/' + id;
-                    window.location.href = link;
-                }
-                else {
-                    $('#message-box-danger p').html(data);
-                    $("#message-box-danger").modal("show");
-                    setTimeout(function () {
-                        $("#message-box-danger").modal("hide");
-                    }, 93000);
-
-                }
-            }
-        });
-    }
-
-}
-
-function enregistrer_employe(option, id) {
-
-    var identifiant = $('#identifiant').val();
-    var password = $('#password').val();
-    var type = $('#type').val();
-    var etat = $('#etat').val();
-    var reduction = $('#reduction').val();
-    var userid = $('#userid').val();
-
-    if (option == 'Ajouter') {
-        $.ajax({
-            type: "POST",
-            url: '/pharmacietest/koudjine/inc/enregistrer_employe.php',
-            data: {
-                identifiant: identifiant,
-                password: password,
-                type: type,
-                etat: etat,
-                reduction: reduction,
-                user_id: userid,
-            },
-            success: function (data) {
-
-                if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/pharmanet/employe/';
-                    window.location.href = link;
-                }
-                else {
-                    $('#message-box-danger p').html(data);
-                    $("#message-box-danger").modal("show");
-                    setTimeout(function () {
-                        $("#message-box-danger").modal("hide");
-                    }, 93000);
-                }
-            }
-        });
-    }
-    else {
-        //alert('test');
-        $.ajax({
-            type: "POST",
-            url: '/pharmacietest/koudjine/inc/enregistrer_employe.php',
-            data: {
-                identifiant: identifiant,
-                password: password,
-                type: type,
-                etat: etat,
-                reduction: reduction,
-                user_id: userid,
-                id: id
-            },
-            success: function (data) {
-                //alert(data.erreur);
-                if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/pharmanet/employeadd/' + id;
                     window.location.href = link;
                 }
                 else {

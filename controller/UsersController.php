@@ -23,7 +23,9 @@ class UsersController extends Controller
 
             if($this->Session->isLogged()){
                 if($this->Session->user('type') == 'Administrateur'||$this->Session->user('type') == 'Vendeur'||$this->Session->user('type') == 'Gestionnaire'||$this->Session->user('type') == 'Caissier'){
-                    $this->redirect('bouwou/home');}
+                    $this->redirect('bouwou/home');
+                    //print_r($_SESSION['Users']);
+                }
                 else{
                     $this->redirect('users/login');
                     //die('pass');

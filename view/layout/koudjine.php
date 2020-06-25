@@ -189,7 +189,7 @@
 
                 </li> -->
             <!-- <li class="xn-title">Autres</li>
-                <li <?php if (!in_array($this->Session->user('STATUT'), Conf::$acces['medias'])) { ?>style="display: none" <?php } ?> class=" <?php if ($this->request->controller == 'medias') { ?>active<?php } ?>">
+                <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['medias'])) { ?>style="display: none" <?php } ?> class=" <?php if ($this->request->controller == 'medias') { ?>active<?php } ?>">
 
                 </li>
                 <li class="xn-title">Autres</li>
@@ -237,7 +237,7 @@
                 <!-- END SEARCH -->
                 <!-- SIGN OUT -->
                 <li class="xn-icon-button pull-right">
-                    <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out" data-toggle="tooltip" data-placement="bottom" title="Déconnexion"></span></a>
+                    <a href="<?php echo Router::url('users/logout'); ?>" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out" data-toggle="tooltip" data-placement="bottom" title="Déconnexion"></span></a>
                 </li>
                 <!-- END SIGN OUT -->
                 <!-- MESSAGES -->
