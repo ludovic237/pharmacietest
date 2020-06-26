@@ -326,7 +326,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
             <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
                 <p>Réduction</p>
                 <p>10%</p>
-            </div>
+            </div>  
         </div>
         <div style="display: flex;padding-top: 12px;flex-direction: row;width: 100%;justify-content: space-between;border-top-style: solid;border-top-width: 1px;">
             <p style="font-weight: 200;">Total : </p>
