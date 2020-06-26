@@ -105,7 +105,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                             <th width="200">Nom</th>
                                             <th width="100">Prix Unitaire</th>
                                             <th width="100">Quantité</th>
-                                            <th width="100">Prix Total</th>
+                                            <th width="100">Stock</th>
                                             <th width="100">Reduction</th>
                                             <th width="200">Date de Livraison</th>
                                             <th width="100">Action</th>
@@ -135,7 +135,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
-                    <table class="table datatable table-bordered table-striped table-actions">
+                    <table class="table datatable table-bordered table-striped table-actions" id="tab_generale_vente">
                         <thead>
                             <tr>
                                 <th width="200">Nom</th>
@@ -275,7 +275,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Taux:</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" readonly name="<?php echo $_SESSION['Users']->faireReductionMax; ?>" id="taux" value="15"  />
+                                    <input type="text" class="form-control" readonly name="<?php echo $_SESSION['Users']->faireReductionMax; ?>" id="taux" value="10"  />
                                 </div>
                             </div>
                         </div>
@@ -303,7 +303,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Commentaire:</label>
                                 <div class="col-md-9">
-                                    <textarea name="" id="" cols="30" class="form-control" rows="4"></textarea>
+                                    <textarea name="" id="commentaire_vente" cols="30" class="form-control" rows="4"></textarea>
                                 </div>
                             </div>
                         </div>

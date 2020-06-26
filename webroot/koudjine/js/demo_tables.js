@@ -267,6 +267,12 @@ function delete_row_vente(id) {
     var total;
     var total1 = null;
     var reduction;
+    // on verifie si le taux est coché, si oui on le décoche en chargeant le prix réduit des produits
+    if($("#check_reductionGenerale").is(":checked")){
+        $('#check_reductionGenerale').prop("checked", false);
+        $('#prixReduit').html($(".option_nouveauClient").val());
+    }
+
     $("#"+id+" td").each(function(i){
         //alert(i);
         if(i==3) {total = parseInt($(this).html());}
@@ -274,7 +280,7 @@ function delete_row_vente(id) {
 
     });
 
-    $("#"+id ).remove();
+    $("table #"+id ).remove();
 
     $("#"+id+" td").each(function(i){
         //alert(i);
@@ -282,11 +288,24 @@ function delete_row_vente(id) {
         if(i==4)  reduction = $(this).html();
 
     });
-    if(total1 == null){
-        var prixTotal1 = parseInt($('#prixTotal').html()) - parseInt(total);
-        $('#prixTotal').html(prixTotal1);
-        var prixReduit = parseInt($('#prixReduit').html()) - (parseInt(total) - (parseInt(total) * reduction / 100));
-        $('#prixReduit').html(prixReduit);
+    if($("#select_vente_client").val() != 0){
+        if(total1 == null){
+            var prixTotal1 = parseInt($('#prixTotal').html()) - parseInt(total);
+            $('#prixTotal').html(prixTotal1);
+            var prixReduit = parseInt($('#prixReduit').html()) - (parseInt(total) - (parseInt(total) * $("#select_vente_client option:selected").attr("name") / 100));
+            $('#prixReduit').html(prixReduit);
+            prixReduit = parseInt($(".option_nouveauClient").val()) - (parseInt(total) - (parseInt(total) * reduction / 100));
+            $(".option_nouveauClient").val(prixReduit);
+        }
+    }else{
+        if(total1 == null){
+            var prixTotal1 = parseInt($('#prixTotal').html()) - parseInt(total);
+            $('#prixTotal').html(prixTotal1);
+            var prixReduit = parseInt($('#prixReduit').html()) - (parseInt(total) - (parseInt(total) * reduction / 100));
+            $('#prixReduit').html(prixReduit);
+            prixReduit = parseInt($(".option_nouveauClient").val()) - (parseInt(total) - (parseInt(total) * reduction / 100));
+            $(".option_nouveauClient").val(prixReduit);
+        }
     }
 
 

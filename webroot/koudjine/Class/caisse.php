@@ -176,28 +176,26 @@ class CaisseManager
 
 
     }
-    public function existsEan($info)
+    public function existsetat()
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM caisse WHERE supprimer = 0 AND ean13 = :info');
-        $q->execute(array(':info' => $info));
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM caisse WHERE supprimer = 0 AND etat = "Ouvert"');
         return (bool) $q->fetchColumn();
 
 
     }
-    public function existsdateFerme($info)
+    public function exists()
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM caisse WHERE supprimer = 0 AND dateFerme = :info');
-        $q->execute(array(':info' => $info));
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM caisse WHERE supprimer = 0 AND etat = "Ouvert" AND CAST(dateOuvert AS DATE) = CURRENT_DATE');
         return (bool) $q->fetchColumn();
 
 
     }
-    public function get($info)
+    public function get()
     {
 
-        $q = $this->_db->query('SELECT * FROM caisse WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->query('SELECT * FROM caisse WHERE supprimer = 0 AND etat = "Ouvert" AND CAST(dateOuvert AS DATE) = CURRENT_DATE');
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Caisse($donnees);
 

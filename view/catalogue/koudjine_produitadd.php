@@ -227,7 +227,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Produit:</label>
                         <div class="col-md-9">
-                            <select class="selectpicker form-control input-xlarge " name="formeproduit" id="formeproduit">
+                            <select multiple class="selectpicker form-control input-xlarge " name="formeproduit" id="formeproduit">
                                 <?php
                                 foreach ($forme as $k => $v) : ?>
                                     <option <?php if ($position == 'Modifier') if ($v->id == $produit->forme_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
@@ -235,6 +235,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 endforeach;
                                 ?>
                             </select>
+                            <span class="help-block">Choix multiple</span>
                         </div>
                     </div>
                     <div class="form-group">
