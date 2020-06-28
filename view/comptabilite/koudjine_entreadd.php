@@ -20,7 +20,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             var jvalidate = $("#jvalidate").validate({
                 ignore: [],
                 rules: {
-                    note: {
+                    produit_id: {
                         required: true
                     },
                     fournisseur_id: {
@@ -29,25 +29,22 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     dateLivraison: {
                         required: true
                     },
-                    dateCreation: {
+                    datePeremption: {
                         required: true
                     },
-                    qtiteCmd: {
+                    prixAchat: {
                         required: true
                     },
-                    qtiteRecu: {
+                    prixVente: {
                         required: true
                     },
-                    montantCmd: {
+                    reduction: {
                         required: true
                     },
-                    montantRecu: {
+                    quantite: {
                         required: true
                     },
-                    etat: {
-                        required: true
-                    },
-                    ref: {
+                    quantiteRestante: {
                         required: true
                     },
                 }
@@ -68,7 +65,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">produit:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="note" id="note" value="<?php if ($position == 'Modifier') echo $en_rayon->note; ?>" placeholder="produit" />
+                            <input type="text" class="form-control" name="produit_id" id="produit_id" value="<?php if ($position == 'Modifier') echo $en_rayon->produit_id; ?>" placeholder="produit" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
@@ -87,51 +84,44 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">date Creation:</label>
+                        <label class="col-md-3 control-label">date peremption:</label>
                         <div class="col-md-9">
-                            <input type="date" class="form-control" name="dateCreation" id="dateCreation" value="<?php if ($position == 'Modifier') echo $en_rayon->dateCreation; ?>" placeholder="dateCreation" />
+                            <input type="date" class="form-control" name="datePeremption" id="datePeremption" value="<?php if ($position == 'Modifier') echo $en_rayon->datePeremption; ?>" placeholder="datePeremption" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Prix Achat:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" name="qtiteCmd" id="qtiteCmd" value="<?php if ($position == 'Modifier') echo $en_rayon->qtiteCmd; ?>" placeholder="qtiteCmd" />
+                            <input type="number" class="form-control" name="prixAchat" id="prixAchat" value="<?php if ($position == 'Modifier') echo $en_rayon->prixAchat; ?>" placeholder="prixAchat" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Prix Vente:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" name="qtiteRecu" id="qtiteRecu" value="<?php if ($position == 'Modifier') echo $en_rayon->qtiteRecu; ?>" placeholder="qtiteRecu" />
+                            <input type="number" class="form-control" name="prixVente" id="prixVente" value="<?php if ($position == 'Modifier') echo $en_rayon->prixVente; ?>" placeholder="prixVente" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">montantCmd:</label>
+                        <label class="col-md-3 control-label">reduction:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" name="montantCmd" id="montantCmd" value="<?php if ($position == 'Modifier') echo $en_rayon->montantCmd; ?>" placeholder="montantCmd" />
+                            <input type="number" class="form-control" name="reduction" id="reduction" value="<?php if ($position == 'Modifier') echo $en_rayon->reduction; ?>" placeholder="reduction" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">montantRecu:</label>
+                        <label class="col-md-3 control-label">quantite:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" name="montantRecu" id="montantRecu" value="<?php if ($position == 'Modifier') echo $en_rayon->montantRecu; ?>" placeholder="montantRecu" />
+                            <input type="number" class="form-control" name="quantite" id="quantite" value="<?php if ($position == 'Modifier') echo $en_rayon->quantite; ?>" placeholder="quantite" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Etat:</label>
+                        <label class="col-md-3 control-label">Quantite Restante:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" name="etat" id="etat" value="<?php if ($position == 'Modifier') echo $en_rayon->etat; ?>" placeholder="etat" />
-                            <span class="help-block">exemple: Boris Daudga</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Reference:</label>
-                        <div class="col-md-9">
-                            <input type="number" class="form-control" name="ref" id="ref" value="<?php if ($position == 'Modifier') echo $en_rayon->ref; ?>" placeholder="ref" />
+                            <input type="number" class="form-control" name="quantiteRestante" id="quantiteRestante" value="<?php if ($position == 'Modifier') echo $en_rayon->quantiteRestante; ?>" placeholder="quantiteRestante" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
