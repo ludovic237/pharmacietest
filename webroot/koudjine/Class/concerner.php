@@ -1,6 +1,6 @@
 <?php
 
-class concerner
+class Concerner
 {
     private $_id,
         $_vente_id,
@@ -115,7 +115,7 @@ class concerner
     public function setreduction($id)
     {
 
-        if ($id > 0)
+        if ($id >= 0)
         {
             $this->_reduction = $id;
         }
@@ -139,7 +139,7 @@ class ConcernerManager
     }
     public function add(Concerner $concerner)
     {
-        $q = $this->_db->prepare('INSERT INTO vente SET id = :id, vente_id = :vente_id,produit_id = :produit_id, en_rayon_id = :en_rayon_id,prixUnit = :prixUnit, quantite = :quantite, reduction = :reduction, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO concerner SET id = :id, vente_id = :vente_id, produit_id = :produit_id, en_rayon_id = :en_rayon_id, prixUnit = :prixUnit, quantite = :quantite, reduction = :reduction, supprimer=0');
         $q->bindValue(':id', $concerner->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $concerner->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $concerner->produit_id(), PDO::PARAM_INT);
@@ -163,13 +163,10 @@ class ConcernerManager
         return (bool) $this->_db->query('SELECT COUNT(*) FROM concerner WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
 
     }
-    public function existsnouveau_info($info)
+    public function existsEn_rayonId($idv, $ide)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM concerner WHERE supprimer = 0 AND nouveau_info = :info');
-        $q->execute(array(':info' => $info));
-        return (bool) $q->fetchColumn();
-
+        return (bool) $this->_db->query('SELECT COUNT(*) FROM concerner WHERE supprimer = 0 AND vente_id = '.$idv.' AND en_rayon_id = '.$ide)->fetchColumn();
 
     }
     public function existsEan($info)
@@ -187,7 +184,7 @@ class ConcernerManager
 
         $q = $this->_db->query('SELECT * FROM concerner WHERE supprimer = 0 AND id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new Vente($donnees);
+        return new Concerner($donnees);
 
     }
     public function getList()
@@ -197,7 +194,7 @@ class ConcernerManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $concerners[] = new Vente($donnees);
+            $concerners[] = new Concerner($donnees);
         }
         return $concerners;
     }

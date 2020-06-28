@@ -10,13 +10,66 @@ $pdo = new PDO('mysql:host=localhost;dbname=pharmanet1', 'root', '', array(
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 function genererID(){
-    $id = date('ymdHis');
+    $id = date('dHis');
     //echo gettype($id);
     //$idall = floatval($id);
     if($id[0] == 0){
         $id[0] = 4;
     }
     return $id;
+}
+function genererreference($num){
+    //DEBUT PROGRAMME - CREATION REFERENCE EN AUTOMATIQUE - DEBUT PROGRAMME
+
+// Ici je souhaite créer la référence
+// La première étape consiste à me donner accès à la base de données
+
+    //$Acces_Registre_RefPDP = $Bdd -> query('SELECT * FROM MaTable');
+
+// Je veux créer une référence
+// Cette dernière commence par la date
+// Je regarde dans un premier temps si aucune référence n'a été fait ce jour
+
+// Je récupère la date du jour et la découpe en AA MM et JJ
+
+    $Date_Du_Jour = date("Y-m-d");
+
+    $Annee = substr($Date_Du_Jour, 0, 4);
+    $Mois = substr($Date_Du_Jour, 5,2);
+    $Jour = substr($Date_Du_Jour, 8,2);
+
+    $Numero_Reg_Big = $num;
+
+// Je regarde désormais dans ma table dans l'ordre suivant Si AA => MM => JJ
+// Pour cela je parcours toute ma table avec un while
+
+
+    $Numero_Reg_Big = $Numero_Reg_Big + 1;
+
+    // NOus allons maintenant faire en sorte de toujours avoir 4 numéros pour notre
+    // Numero_Reg_Big
+
+    if ($Numero_Reg_Big < 10)
+    {
+        $Numero_Reg_Big = '000' . $Numero_Reg_Big;
+    }
+    elseif ($Numero_Reg_Big <100)
+    {
+        $Numero_Reg_Big = '00' . $Numero_Reg_Big;
+    }
+    elseif ($Numero_Reg_Big <1000)
+    {
+        $Numero_Reg_Big = '0' . $Numero_Reg_Big;
+    }
+    else
+    {
+        $Numero_Reg_Big = $Numero_Reg_Big;
+    }
+
+    return "ALS".$Annee.$Mois."-".$Numero_Reg_Big;
+
+    // FIN PROGRAMME - CREATION REFERENCE EN AUTOMATIQUE - FIN PROGRAMME
+
 }
 function wd_remove_accents($str, $charset='utf-8')
 {

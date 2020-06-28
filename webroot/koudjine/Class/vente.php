@@ -9,6 +9,7 @@ class vente
         $_user_id,
         $_prescripteur_id,
         $_prixTotal,
+        $_reference,
         $_prixPercu,
         $_nouveau_info,
         $_dateVente,
@@ -71,6 +72,10 @@ class vente
     public function nouveau_info()
     {
         return $this->_nouveau_info;
+    }
+    public function reference()
+    {
+        return $this->_reference;
     }
     public function dateVente()
     {
@@ -164,6 +169,12 @@ class vente
         $this->_nouveau_info = $value;
 
     }
+    public function setreference($value)
+    {
+
+        $this->_reference = $value;
+
+    }
     public function setdateVente($value)
     {
 
@@ -207,17 +218,17 @@ class VenteManager
     }
     public function add(Vente $vente)
     {
-        $q = $this->_db->prepare('INSERT INTO vente SET id = :id, employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, prixTotal = :prixTotal, prixPercu = :montant, nouveau_info = :nouveau_info, dateVente = :dateVente, commentaire = :commentaire, reduction = :reduction, etat = :etat, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO vente SET id = :id, employe_id = :employe, malade_id = :malade, user_id = :user1, prescripteur_id = :prescripteur, prixTotal = :prixTotal, prixPercu = :montant, nouveau_info = :nouveau_info, reference = :reference, dateVente = now(), commentaire = :commentaire, reduction = :reduction, etat = :etat, caisse_id = :caisse, supprimer=0');
         $q->bindValue(':id', $vente->id(), PDO::PARAM_INT);
         $q->bindValue(':employe', $vente->employe_id(), PDO::PARAM_INT);
         $q->bindValue(':caisse', $vente->caisse_id(), PDO::PARAM_INT);
         $q->bindValue(':malade', $vente->malade_id(), PDO::PARAM_INT);
-        $q->bindValue(':user', $vente->user_id(), PDO::PARAM_INT);
+        $q->bindValue(':user1', $vente->user_id(), PDO::PARAM_INT);
         $q->bindValue(':prescripteur', $vente->prescripteur_id(), PDO::PARAM_INT);
         $q->bindValue(':prixTotal', $vente->prixTotal(), PDO::PARAM_INT);
         $q->bindValue(':montant', $vente->prixPercu(), PDO::PARAM_INT);
         $q->bindValue(':nouveau_info', $vente->nouveau_info());
-        $q->bindValue(':dateVente', $vente->dateVente());
+        $q->bindValue(':reference', $vente->reference());
         $q->bindValue(':commentaire', $vente->commentaire());
         $q->bindValue(':reduction', $vente->reduction());
         $q->bindValue(':etat', $vente->etat());
@@ -226,6 +237,10 @@ class VenteManager
     public function count()
     {
         return $this->_db->query('SELECT COUNT(*) FROM vente WHERE SUPPRIMER = 0 ')->fetchColumn();
+    }
+    public function countMois()
+    {
+        return $this->_db->query('SELECT COUNT(*) FROM vente WHERE SUPPRIMER = 0 AND MONTH(dateVente) = MONTH(NOW()) AND YEAR(dateVente) = YEAR(NOW()) ')->fetchColumn();
     }
     public function delete(Vente $vente)
     {

@@ -257,6 +257,14 @@ class ProduitManager
         return (bool) $this->_db->query('SELECT COUNT(*) FROM produit WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
 
     }
+    public function existsStock($id, $info)
+    {
+
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM produit WHERE supprimer = 0 AND stock >= '.$info.' AND id = '.$id);
+        return (bool) $q->fetchColumn();
+
+
+    }
     public function existsNom($info)
     {
 
@@ -290,6 +298,15 @@ class ProduitManager
         $q = $this->_db->query('SELECT * FROM produit WHERE supprimer = 0 AND id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new produit($donnees);
+
+    }
+    public function getStock($id, $info)
+    {
+
+        $q = $this->_db->query('SELECT * FROM produit WHERE supprimer = 0 AND stock >= '.$info.' AND id = '.$id);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new produit($donnees);
+
 
     }
     public function getList()

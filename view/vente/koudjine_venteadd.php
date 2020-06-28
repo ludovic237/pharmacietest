@@ -39,7 +39,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 }
             </script>
 <script type="text/javascript">
-            var jvalidate = $("#jvalidate").validate({
+            var  = $("#").validate({
                 ignore: [],
                 rules: {
                     nom: {
@@ -105,7 +105,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                             <th width="200">Nom</th>
                                             <th width="100">Prix Unitaire</th>
                                             <th width="100">Quantité</th>
-                                            <th width="100">Prix Total</th>
+                                            <th width="100">Stock</th>
                                             <th width="100">Reduction</th>
                                             <th width="200">Date de Livraison</th>
                                             <th width="100">Action</th>
@@ -191,7 +191,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Client:</label>
                                 <div class="col-md-6">
-                                    <select class="form-control selectpicker"  id="select_vente_client">
+                                    <select class="form-control selectpicker" id="select_vente_client">
                                         <option value="0">Sélectionner Client</option>
                                         <?php
                                         foreach ($client as $k => $v) : ?>
@@ -270,7 +270,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <input type="checkbox" id="check_reductionGenerale">
                         </span>
                     </div>
-                    <form id="jvalidate" role="form" class="form-horizontal">
+                    <form id="" role="form" class="form-horizontal">
                         <div class="panel-body">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Taux:</label>
@@ -298,12 +298,12 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <input type="checkbox" id="check_compo-1">
                         </span> -->
                     </div>
-                    <form id="jvalidate" role="form" class="form-horizontal">
+                    <form id="" role="form" class="form-horizontal">
                         <div class="panel-body">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Commentaire:</label>
                                 <div class="col-md-9">
-                                    <textarea name="" id="" cols="30" class="form-control" rows="4"></textarea>
+                                    <textarea name="" id="commentaire_vente" cols="30" class="form-control" rows="4"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -317,18 +317,34 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 </div>
 <div style="display: flex;justify-content: space-between;background-color: white;position: fixed;bottom: 40px;right: 10px;align-items: baseline;background-color: #fff;
 border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 1px 1px 1px rgba(10,0,0,.05);">
-    <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;">
-        <p style="font-weight: 200;">Total sans réduction : </p>
-        <h4 style="font-weight: bold;font-size: x-large;"><span id="prixTotal">0</span> FCFA</h4>
-        <a onclick="valider_vente('')" id="" class="btn btn-primary"  role="button" style="
-    width: 100%;
-">Paiement sans réduction </a>
+    <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;width: 250px;">
+        <div style="display: flex;flex-direction: column;width: 100%;">
+            <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
+                <p>Total</p>
+                <p><span id="prixTotal">0</span> FCFA</p>
+            </div>
+            <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
+                <p>Réduction</p>
+                <p><span id="prixReduit">0</span> FCFA</p>
+            </div>  
+        </div>
+        <div style="display: flex;padding-top: 12px;flex-direction: row;width: 100%;justify-content: space-between;border-top-style: solid;border-top-width: 1px;">
+            <p style="font-weight: 200;">Net à payer : </p>
+            <h6 style="font-weight: bold;font-size: large;"><span id="netTotal">0</span> FCFA</h6>
+        </div>
+
+        <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
+            <a onclick="valider_vente('1', 'Confirm')" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant"  class="btn btn-primary" role="button" style="float: left; width: 40%;">Comptant</a>
+            <a onclick="valider_vente('2', 'Prep')"  id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 40%;">Crédit</a>
+
+        </div>
+
     </div>
-    <div style="flex-direction: column;display: flex;padding: 10px 20px;justify-content: center;align-items: center;border-left-width: 1px;border-left-style: double;">
+    <!-- <div style="flex-direction: column;display: flex;padding: 10px 20px;justify-content: center;align-items: center;border-left-width: 1px;border-left-style: double;">
         <p style="font-weight: 200;">Total avec réduction : </p>
         <h4 style="font-weight: bold;font-size: x-large;"><span id="prixReduit">0</span> FCFA</h4>
         <a id="" onclick="valider_vente('')" class="btn btn-primary"  role="button" style="
     width: 100%;
 ">Paiement avec réduction </a>
-    </div>
+    </div> -->
 </div>
