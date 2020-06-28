@@ -1216,6 +1216,88 @@ function enregistrer_rayon(option, id) {
 
 }
 
+function enregistrer_en_rayon(option, id) {
+    // Informations université
+    var produit_id = $('#produit_id').val();
+    var fournisseur_id = $('#fournisseur_id').val();
+    var dateLivraison = $('#dateLivraison').val();
+    var datePeremption = $('#datePeremption').val();
+    var prixAchat = $('#prixAchat').val();
+    var prixVente = $('#prixVente').val();
+    var reduction = $('#reduction').val();
+    var quantite = $('#quantite').val();
+    var quantiteRestante = $('#quantiteRestante').val();
+
+    if (option == 'Ajouter') {
+        
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_en_rayon.php',
+            data: {
+                produit_id: produit_id,
+                fournisseur_id: fournisseur_id,
+                dateLivraison: dateLivraison,
+                datePeremption: datePeremption,
+                prixAchat: prixAchat,
+                prixVente: prixVente,
+                reduction: reduction,
+                quantite: quantite,
+                quantiteRestante: quantiteRestante
+            },
+            success: function (data) {
+                
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/geonetliste/en_rayon/';
+                    window.location.href = link;
+                }
+                else {
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 93000);
+                }
+            }
+        });
+    }
+    else {
+        
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_en_rayon.php',
+            data: {
+                produit_id: produit_id,
+                fournisseur_id: fournisseur_id,
+                dateLivraison: dateLivraison,
+                datePeremption: datePeremption,
+                prixAchat: prixAchat,
+                prixVente: prixVente,
+                reduction: reduction,
+                quantite: quantite,
+                quantiteRestante: quantiteRestante,
+                id: id
+            },
+            success: function (data) {
+
+                //alert(data.erreur);
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/geonetliste/en_rayonadd/' + id;
+                    window.location.href = link;
+                }
+                else {
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 93000);
+
+                }
+            }
+        });
+    }
+
+}
+
 
 // FIN
 

@@ -277,4 +277,28 @@ class ComptabiliteController extends Controller
         $this->loadModel('Comptabilite');
     }
 
+    function koudjine_entreadd($id = null)
+    {
+        $this->loadModel('Comptabilite');
+
+        if ($id != null) {
+            //die('pass');
+            $d['position'] = 'Modifier';
+
+            $d['fabriquant'] = $this->Comptabilite->findFirst(array(
+                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+                'table' => 'en_rayon',
+                'conditions' => array('id' => $id)
+            ));
+
+
+            if (empty($d['fabriquant'])) {
+                $this->e404('Page introuvable');
+            }
+        } else {
+            $d['position'] = 'Ajouter';
+        }
+        $this->set($d);
+    }
+
 }

@@ -188,7 +188,7 @@ class CommandeManager
         $q = $this->_db->prepare('INSERT INTO commande SET id = :id, fournisseur_id = :fournisseur_id, note = :note, qtiteCmd = :qtitecmd, qtiteRecu = :qtiteRecu, montantCmd = :montant, montantRecu = :montantRecu, etat = :etat, ref = :ref, supprimer=0');
         $q->bindValue(':id', $commande->id(), PDO::PARAM_INT);
         $q->bindValue(':fournisseur_id', $commande->fournisseur_id(), PDO::PARAM_INT);
-        $q->bindValue(':caisse', $commande->dateCreation());
+        $q->bindValue(':dateCreation', $commande->dateCreation());
         $q->bindValue(':datelivraison', $commande->dateLivraison());
         $q->bindValue(':note', $commande->note());
         $q->bindValue(':qtitecmd', $commande->qtiteCmd());
@@ -201,22 +201,22 @@ class CommandeManager
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM vente WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM commande WHERE SUPPRIMER = 0 ')->fetchColumn();
     }
     public function delete(Commande $commande)
     {
-        $this->_db->exec('DELETE FROM vente WHERE id = '.$commande->id());
+        $this->_db->exec('DELETE FROM commande WHERE id = '.$commande->id());
     }
     public function existsId($info)
     {
 
-        return (bool) $this->_db->query('SELECT COUNT(*) FROM vente WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
+        return (bool) $this->_db->query('SELECT COUNT(*) FROM commande WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
 
     }
     public function existsmontantRecu($info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM vente WHERE supprimer = 0 AND montantRecu = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM commande WHERE supprimer = 0 AND montantRecu = :info');
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
@@ -225,7 +225,7 @@ class CommandeManager
     public function existsEan($info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM vente WHERE supprimer = 0 AND ean13 = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM commande WHERE supprimer = 0 AND ean13 = :info');
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
@@ -234,7 +234,7 @@ class CommandeManager
     public function existsetat($info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM vente WHERE supprimer = 0 AND etat = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM commande WHERE supprimer = 0 AND etat = :info');
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
@@ -243,29 +243,29 @@ class CommandeManager
     public function get($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM vente WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->query('SELECT * FROM commande WHERE supprimer = 0 AND id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new Vente($donnees);
+        return new Commande($donnees);
 
     }
     public function getList()
     {
         $commandes = array();
-        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 ORDER BY montantRecu');
+        $q = $this->_db->prepare('SELECT * FROM commande WHERE supprimer = 0 ORDER BY montantRecu');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $commandes[] = new Vente($donnees);
+            $commandes[] = new Commande($donnees);
         }
         return $commandes;
     }
     public function update(Commande $commande)
     {
 
-        $q = $this->_db->prepare('UPDATE commande SET fournisseur_id = :fournisseur_id, note = :note, qtiteCmd = :qtitecmd, dateLivraison = :datelivraison, dateCreation = :caisse, qtiteRecu = :qtiteRecu, montantCmd = :montant, montantRecu = :montantRecu, etat = :etat, ref = :ref WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE commande SET fournisseur_id = :fournisseur_id, note = :note, qtiteCmd = :qtitecmd, dateLivraison = :datelivraison, dateCreation = :dateCreation, qtiteRecu = :qtiteRecu, montantCmd = :montant, montantRecu = :montantRecu, etat = :etat, ref = :ref WHERE id = :id');
         $q->bindValue(':id', $commande->id(), PDO::PARAM_INT);
         $q->bindValue(':fournisseur_id', $commande->fournisseur_id(), PDO::PARAM_INT);
-        $q->bindValue(':caisse', $commande->dateCreation());
+        $q->bindValue(':dateCreation', $commande->dateCreation());
         $q->bindValue(':datelivraison', $commande->dateLivraison());
         $q->bindValue(':note', $commande->note());
         $q->bindValue(':qtitecmd', $commande->qtiteCmd());
