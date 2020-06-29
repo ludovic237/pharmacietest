@@ -267,6 +267,11 @@ function delete_row_vente(id) {
     var total;
     var total1 = null;
     var reduction;
+    // on verifie si le taux est coché, si oui on le décoche en chargeant le prix réduit des produits
+    if($("#check_reductionGenerale").is(":checked")){
+        $('#check_reductionGenerale').prop("checked", false);
+    }
+
     $("#"+id+" td").each(function(i){
         //alert(i);
         if(i==3) {total = parseInt($(this).html());}
@@ -282,12 +287,56 @@ function delete_row_vente(id) {
         if(i==4)  reduction = $(this).html();
 
     });
-    if(total1 == null){
-        var prixTotal1 = parseInt($('#prixTotal').html()) - parseInt(total);
-        $('#prixTotal').html(prixTotal1);
-        var prixReduit = parseInt($('#prixReduit').html()) - (parseInt(total) - (parseInt(total) * reduction / 100));
-        $('#prixReduit').html(prixReduit);
-    }
+        if(total1 == null){
+            var prixTotal = 0;
+            var prixReduit = 0;
+            $('#tab_vente  tr').each(function(i){
+                var id1 = $(this).attr("id");
+                var prix,qte;
+                //alert(id1);
+
+                $("#"+id1+" td").each(function(j){
+                    //alert($(this).html());
+                    if(j==1) { prix = parseInt($(this).html());}
+                    if(j==2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix*qte);}
+                    if(j==4) {
+                        var reduction = parseInt($(this).attr("data"));
+                        if($("#select_vente_client").val() == 0 || $(".select_client").val() !=2 ){
+                            reduction = 0;
+                        }else{
+                            if($("#select_vente_client option:selected").attr("name") >= reduction){
+                                //reduction = reduction;
+
+                            }
+                            else {
+                                reduction = parseInt($("#select_vente_client option:selected").attr("name"));
+                            }
+                        }
+
+                        prixReduit = prixReduit + ((prix*qte)*reduction /100);
+                    }
+
+                });
+
+            });
+            if($("#select_vente_client").val() != 0){
+                //var prixReduit = parseInt($('#prixTotal').html())  - (parseInt($('#prixTotal').html())* (parseInt($("#select_vente_client option:selected").attr("name")) / 100));
+                if(prixReduit > parseInt($("#select_vente_client option:selected").attr("data"))){
+                    $('#message-box-danger p').html('Taux supérieur à la limite de réduction mensuelle du client');
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 3000);
+                    prixReduit = 0;
+                }
+
+            }
+            $('#prixTotal').html(prixTotal);
+            $('#prixReduit').html(prixReduit);
+            $('#netTotal').html((prixTotal - prixReduit));
+
+        }
+
 
 
 }

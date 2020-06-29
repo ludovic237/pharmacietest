@@ -23,7 +23,7 @@ if (isset($_GET["motclef1"])) {
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
             $datel = $date->format('d-m-Y');
             if($result->reduction > $result->reductionMax) $reduction = $result->reduction; else $reduction = $result->reductionMax;
-            echo "<tr id=\"".$result->id."\">
+            echo "<tr id=\"R".$result->id."\">
                                             <td class='nom'><strong>".$result->nom."</strong></td>
                                             <td class='prix'>
                                                 ".$result->prixVente."

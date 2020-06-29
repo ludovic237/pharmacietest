@@ -184,6 +184,7 @@ class En_rayonManager
         return (bool) $this->_db->query('SELECT COUNT(*) FROM en_rayon WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
 
     }
+
     public function existsproduit_id($info)
     {
 
@@ -193,19 +194,19 @@ class En_rayonManager
 
 
     }
-    public function existsquantite($info)
+    public function existsQuantiteRestante($id, $info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM en_rayon WHERE supprimer = 0 AND quantite = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM en_rayon WHERE supprimer = 0 AND quantiteRestante >= :info AND id = '.$id);
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
 
     }
-    public function existsquantiteRestante($info)
+    public function existsQuantite($id, $info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM en_rayon WHERE supprimer = 0 AND quantiteRestante = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM en_rayon WHERE supprimer = 0 AND quantite = :info AND id = '.$id);
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
@@ -219,10 +220,10 @@ class En_rayonManager
         return new en_rayon($donnees);
 
     }
-    public function getList()
+    public function getList($info)
     {
         $produits = array();
-        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 ORDER BY dateLivraison');
+        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND produit_id = '.$info.' ORDER BY dateLivraison ASC');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
