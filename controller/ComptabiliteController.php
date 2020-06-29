@@ -301,4 +301,16 @@ class ComptabiliteController extends Controller
         $this->set($d);
     }
 
+    function koudjine_detail()
+    {
+        $this->loadModel('Comptabilite');
+
+    }
+
+    function koudjine_destock()
+    {
+        $this->loadModel('Comptabilite');
+
+    }
+
 }

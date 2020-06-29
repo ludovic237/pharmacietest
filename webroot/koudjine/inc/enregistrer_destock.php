@@ -9,7 +9,7 @@ $manager = new  En_rayonManager($pdo);
 
 
 
-if (isset($_POST['id'])){ 
+if (isset($_POST['id'])){
 
     $id=$_POST['id'];
     $produit_id=$_POST['produit_id'];
