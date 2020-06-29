@@ -1247,7 +1247,7 @@ function enregistrer_en_rayon(option, id) {
             success: function (data) {
                 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/en_rayon/';
+                    var link = '/pharmacietest/bouwou/geonetliste/entre/';
                     window.location.href = link;
                 }
                 else {
@@ -1281,7 +1281,7 @@ function enregistrer_en_rayon(option, id) {
 
                 //alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/en_rayonadd/' + id;
+                    var link = '/pharmacietest/bouwou/geonetliste/entreadd/' + id;
                     window.location.href = link;
                 }
                 else {

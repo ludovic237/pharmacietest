@@ -98,10 +98,10 @@ else{
     $quantiteRestante=$_POST['quantiteRestante'];
 
 
-    if(!$manager->existsId($id)){
+    if(!$manager-> existsproduit_id($produit_id)){
         //$date = genererID();
         //echo $datec;
-        $enrayon = new  En_rayon(array(
+        $en_rayon = new  En_rayon(array(
             'quantiteegorie_id' => $quantite,
             'quantiteRestante_id' => $quantiteRestante,
             'produit_id' => $produit_id,
@@ -113,7 +113,7 @@ else{
             'prixAchatMax' => $prixAchatmax,
             'reductionMax' => $reduction,
         ));
-        $manager->add($enrayon);
+        $manager->add($en_rayon);
         echo 'ok';
     }
     else echo 'Ce nom de produit existe déjà';

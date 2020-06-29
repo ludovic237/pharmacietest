@@ -138,7 +138,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Date de commande:</label>
-                        <div class="col-md-9">
+                        <div class="col-md-9"> 
                             <div class="input-group ">
                                 <input type="text" id="dp-3" class="form-control" value="<?php /* if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->dateCmd != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->dateCmd);echo $date->format('d-m-Y');}} */ ?>" data-date="<?php /*if($position != 'Modifier') echo date('d-m-Y'); else {if($produit->dateCmd != null) {$date = DateTime::createFromFormat('Y-m-d H:i:s', $produit->dateCmd);echo $date->format('d-m-Y');}} */ ?>" data-date-format="dd-mm-yyyy" data-date-viewmode="years"/>
                                  <span class="input-group-addon datepicker">

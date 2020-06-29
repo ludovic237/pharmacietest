@@ -159,8 +159,8 @@ class En_rayonManager
     {
         $q = $this->_db->prepare('INSERT INTO en_rayon SET id = :id, produit_id = :produit_id, fournisseur_id = :fournisseur_id, dateLivraison = :dateLivraison, datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prica, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = :reduction, supprimer=0');
         $q->bindValue(':id', $en_rayon->id(), PDO::PARAM_INT);
-        $q->bindValue(':produit_id', $en_rayon->produit_id());
-        $q->bindValue(':fournisseur_id', $en_rayon->fournisseur_id());
+        $q->bindValue(':produit_id', $en_rayon->produit_id(), PDO::PARAM_INT);
+        $q->bindValue(':fournisseur_id', $en_rayon->fournisseur_id(), PDO::PARAM_INT);
         $q->bindValue(':dateLivraison', $en_rayon->dateLivraison());
         $q->bindValue(':datePeremption', $en_rayon->datePeremption());
         $q->bindValue(':prixv', $en_rayon->prixVente());
@@ -182,6 +182,15 @@ class En_rayonManager
     {
 
         return (bool) $this->_db->query('SELECT COUNT(*) FROM en_rayon WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
+
+    }
+    public function existsproduit_id($info)
+    {
+
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM en_rayon WHERE supprimer = 0 AND produit_id = :info');
+        $q->execute(array(':info' => $info));
+        return (bool) $q->fetchColumn();
+
 
     }
     public function existsquantite($info)
@@ -226,8 +235,8 @@ class En_rayonManager
 
         $q = $this->_db->prepare('UPDATE en_rayon SET produit_id = :produit_id, fournisseur_id = :fournisseur_id, dateLivraison = :dateLivraison, datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prica, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = :reduction WHERE id = :id');
         $q->bindValue(':id', $en_rayon->id(), PDO::PARAM_INT);
-        $q->bindValue(':produit_id', $en_rayon->produit_id());
-        $q->bindValue(':fournisseur_id', $en_rayon->fournisseur_id());
+        $q->bindValue(':produit_id', $en_rayon->produit_id(), PDO::PARAM_INT);
+        $q->bindValue(':fournisseur_id', $en_rayon->fournisseur_id(), PDO::PARAM_INT);
         $q->bindValue(':dateLivraison', $en_rayon->dateLivraison());
         $q->bindValue(':datePeremption', $en_rayon->datePeremption());
         $q->bindValue(':prixv', $en_rayon->prixVente());
