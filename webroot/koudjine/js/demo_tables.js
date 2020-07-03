@@ -1,3 +1,11 @@
+$(document).ready(function () {
+    $("#iconPreviewCaisse").modal("show");
+
+    $(".argent").keyup(function (event){
+        alert($(this).val)
+    })
+});
+
 
 
 function update_row_produit(id) {
