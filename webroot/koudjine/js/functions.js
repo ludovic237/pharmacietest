@@ -1,11 +1,5 @@
 $(document).ready(function () { 	// le document est charg鍊   $("a").click(function(){ 	// on selectionne tous les liens et on d?nit une action quand on clique dessus
 
-    $("#iconPreviewCaisse").modal("show");
-
-    $(".argent").keyup(function (event) {
-        alert($(this).val)
-    })
-
     // Pharmacie
     var netpayer;
     var reduc;
@@ -14,8 +8,8 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     $(".prescripteurExistant").hide();
 
     $("#credit").hover(function () {
-        netpayer = $("#netTotal").html();
-        reduc = $("#prixReduit").html();
+         netpayer  = $("#netTotal").html();
+         reduc  = $("#prixReduit").html();
         $("#netTotal").html($("#prixTotal").html());
         $("#prixReduit").html(0);
     }, function () {
@@ -25,17 +19,17 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 
     $(".select_client").change(function () {
 
-        if ($(".select_client").val() == 2) {
+        if($(".select_client").val() == 2){
             //alert('coché');
             $(".clientExistant").show();
             $(".nouveauClient").hide();
         }
-        else {
+        else{
             //alert('decoché');
             $(".clientExistant").hide();
             $(".nouveauClient").show();
             $('#credit').attr("disabled", "disabled");
-            $("#select_vente_client option[value = '0']").prop("selected", true);
+            $("#select_vente_client option[value = '0']").prop("selected",true);
             $("#netTotal").html($("#prixTotal").html());
             $("#prixReduit").html(0);
         }
@@ -44,33 +38,33 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
         var prixTotal = 0;
         var prixReduit = 0;
 
-        if ($("#check_reductionGenerale").is(":checked")) {
+        if($("#check_reductionGenerale").is(":checked")){
 
-            if ($("#select_vente_client").val() != 0) {
+            if($("#select_vente_client").val() != 0){
 
-                $('#message-box-danger p').html("Impossible d'appliquer le taux quand un client est sélectionné !!!");
-                $("#message-box-danger").modal("show");
-                setTimeout(function () {
-                    $("#message-box-danger").modal("hide");
-                }, 3000);
-                if ($("#check_reductionGenerale").is(":checked")) {
+                    $('#message-box-danger p').html("Impossible d'appliquer le taux quand un client est sélectionné !!!");
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 3000);
+                if($("#check_reductionGenerale").is(":checked")){
                     $('#check_reductionGenerale').prop("checked", false);
                 }
 
-            } else {
-                $('#tab_vente  tr').each(function (i) {
+            }else{
+                $('#tab_vente  tr').each(function(i){
                     var id1 = $(this).attr("id");
-                    var prix, qte;
+                    var prix,qte;
                     //alert(id1);
 
-                    $("#" + id1 + " td").each(function (j) {
+                    $("#"+id1+" td").each(function(j){
                         //alert($(this).html());
-                        if (j == 1) { prix = parseInt($(this).html()); }
-                        if (j == 2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix * qte); }
-                        if (j == 4) {
+                        if(j==1) { prix = parseInt($(this).html());}
+                        if(j==2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix*qte);}
+                        if(j==4) {
                             var reduction = parseInt($(this).attr("data"));
 
-                            if (parseInt($('#taux').val()) >= reduction) {
+                            if(parseInt($('#taux').val()) >= reduction){
                                 //reduction = reduction;
 
                             }
@@ -78,20 +72,20 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                                 reduction = parseInt($('#taux').val());
                             }
 
-                            prixReduit = prixReduit + ((prix * qte) * reduction / 100);
+                            prixReduit = prixReduit + ((prix*qte)*reduction /100);
                         }
 
                     });
 
                 });
-                if (prixReduit > parseInt($("#taux").attr("name"))) {
+                if(prixReduit > parseInt($("#taux").attr("name"))){
                     $('#message-box-danger p').html('Taux supérieur à la limite de réduction mensuelle du client');
                     $("#message-box-danger").modal("show");
                     setTimeout(function () {
                         $("#message-box-danger").modal("hide");
                     }, 3000);
                     prixReduit = 0;
-                    if ($("#check_reductionGenerale").is(":checked")) {
+                    if($("#check_reductionGenerale").is(":checked")){
                         $('#check_reductionGenerale').prop("checked", false);
                     }
                 }
@@ -104,19 +98,19 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
         }
         else {
 
-            $('#tab_vente  tr').each(function (i) {
+            $('#tab_vente  tr').each(function(i){
                 var id1 = $(this).attr("id");
-                var prix, qte;
+                var prix,qte;
                 //alert(id1);
 
-                $("#" + id1 + " td").each(function (j) {
+                $("#"+id1+" td").each(function(j){
                     //alert($(this).html());
-                    if (j == 1) { prix = parseInt($(this).html()); }
-                    if (j == 2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix * qte); }
-                    if (j == 4) {
+                    if(j==1) { prix = parseInt($(this).html());}
+                    if(j==2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix*qte);}
+                    if(j==4) {
                         var reduction = parseInt($(this).attr("data"));
 
-                        prixReduit = prixReduit + ((prix * qte) * reduction / 100);
+                        prixReduit = prixReduit + ((prix*qte)*reduction /100);
                     }
 
                 });
@@ -130,12 +124,12 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     })
     $(".select_prescripteur").change(function () {
 
-        if ($(".select_prescripteur").val() == 1) {
+        if($(".select_prescripteur").val() == 1){
             //alert('coché');
             $(".prescripteurExistant").hide();
             $(".nouveauPrescripteur").show();
         }
-        else {
+        else{
             //alert('decoché');
             $(".prescripteurExistant").show();
             $(".nouveauPrescripteur").hide();
@@ -146,21 +140,21 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 
         var prixTotal = 0;
         var prixReduit = 0;
-        $('#tab_vente  tr').each(function (i) {
+        $('#tab_vente  tr').each(function(i){
             var id1 = $(this).attr("id");
-            var prix, qte;
+            var prix,qte;
             //alert(id1);
 
-            $("#" + id1 + " td").each(function (j) {
+            $("#"+id1+" td").each(function(j){
                 //alert($(this).html());
-                if (j == 1) { prix = parseInt($(this).html()); }
-                if (j == 2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix * qte); }
-                if (j == 4) {
+                if(j==1) { prix = parseInt($(this).html());}
+                if(j==2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix*qte);}
+                if(j==4) {
                     var reduction = parseInt($(this).attr("data"));
-                    if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
+                    if($("#select_vente_client").val() == 0 || $(".select_client").val() !=2 ){
                         reduction = 0;
-                    } else {
-                        if ($("#select_vente_client option:selected").attr("name") >= reduction) {
+                    }else{
+                        if($("#select_vente_client option:selected").attr("name") >= reduction){
                             //reduction = reduction;
 
                         }
@@ -169,15 +163,15 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                         }
                     }
 
-                    prixReduit = prixReduit + ((prix * qte) * reduction / 100);
+                    prixReduit = prixReduit + ((prix*qte)*reduction /100);
                 }
 
             });
 
         });
-        if ($("#select_vente_client").val() != 0) {
+        if($("#select_vente_client").val() != 0){
             //var prixReduit = parseInt($('#prixTotal').html())  - (parseInt($('#prixTotal').html())* (parseInt($("#select_vente_client option:selected").attr("name")) / 100));
-            if (prixReduit > parseInt($("#select_vente_client option:selected").attr("data"))) {
+            if(prixReduit > parseInt($("#select_vente_client option:selected").attr("data"))){
                 $('#message-box-danger p').html('Taux supérieur à la limite de réduction mensuelle du client');
                 $("#message-box-danger").modal("show");
                 setTimeout(function () {
@@ -189,14 +183,14 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
             $('#credit').removeAttr("disabled");
 
         }
-        else {
+        else{
             $('#credit').attr("disabled", "disabled");
         }
         $('#prixTotal').html(prixTotal);
         $('#prixReduit').html(prixReduit);
         $('#netTotal').html((prixTotal - prixReduit));
 
-        if ($("#check_reductionGenerale").is(":checked")) {
+        if($("#check_reductionGenerale").is(":checked")){
             $('#check_reductionGenerale').prop("checked", false);
         }
 
@@ -251,24 +245,24 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                         //alert(data);
                         if (data.erreur == 'non') {
                             var action = 0;
-                            $('#tab_vente  tr').each(function (i) {
+                            $('#tab_vente  tr').each(function(i){
                                 var id1 = $(this).attr("id");
-                                var prix, qte;
-                                if (id1 == recherche) {
+                                var prix,qte;
+                                if(id1 == recherche){
                                     action = 1;
-                                    $("#" + id1 + " td").each(function (j) {
+                                    $("#"+id1+" td").each(function(j){
                                         //alert($(this).html());
-                                        if (j == 2) { qte = parseInt($(this).html()) + 1; }
-                                        if (j == 6) {
+                                        if(j==2) { qte = parseInt($(this).html())+1;}
+                                        if(j==6) {
                                             var stock = parseInt($(this).html());
-                                            if (stock == 0) {
+                                            if(stock == 0){
                                                 alert("Quantité en stock pas suffisante pour cette opération ");
-                                            } else {
-                                                $("#" + id1 + " td").each(function (k) {
+                                            }else{
+                                                $("#"+id1+" td").each(function(k){
                                                     //alert($(this).html());
-                                                    if (k == 1) { prix = parseInt($(this).html()); }
-                                                    if (k == 2) { $(this).html(qte); }
-                                                    if (k == 3) { $(this).html((qte * prix)); }
+                                                    if(k==1) { prix = parseInt($(this).html());}
+                                                    if(k==2) { $(this).html(qte);}
+                                                    if(k==3) { $(this).html((qte*prix));}
 
                                                 });
                                                 $(this).html((stock - 1));
@@ -279,13 +273,13 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                                 }
 
                             });
-                            if (action == 0) {
+                            if(action == 0){
                                 var cat = '<tr id="' + recherche + '">'
                                     + ' <td><strong>' + data.nom + '</strong></td>'
                                     + '<td>' + data.prix + '</td>'
                                     + '<td>' + 1 + '</td>'
                                     + '<td>' + data.prix + '</td>'
-                                    + '<td data ="' + data.reduction + '">' + data.reduction + '</td>'
+                                    + '<td data ="'+ data.reduction +'">' + data.reduction + '</td>'
                                     + '<td>' + data.datel + '</td>'
                                     + '<td>' + data.stock + '</td>'
                                     + '<td>'
@@ -298,21 +292,21 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                             prixTotal = 0;
                             var prixReduit = 0;
 
-                            $('#tab_vente  tr').each(function (i) {
+                            $('#tab_vente  tr').each(function(i){
                                 var id1 = $(this).attr("id");
-                                var prix, qte;
+                                var prix,qte;
                                 //alert(id1);
 
-                                $("#" + id1 + " td").each(function (j) {
+                                $("#"+id1+" td").each(function(j){
                                     //alert($(this).html());
-                                    if (j == 1) { prix = parseInt($(this).html()); }
-                                    if (j == 2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix * qte); }
-                                    if (j == 4) {
+                                    if(j==1) { prix = parseInt($(this).html());}
+                                    if(j==2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix*qte);}
+                                    if(j==4) {
                                         var reduction = parseInt($(this).attr("data"));
-                                        if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
+                                        if($("#select_vente_client").val() == 0 || $(".select_client").val()!= 2){
                                             reduction = 0;
-                                        } else {
-                                            if ($("#select_vente_client option:selected").attr("name") >= reduction) {
+                                        }else{
+                                            if($("#select_vente_client option:selected").attr("name") >= reduction){
                                                 //reduction = reduction;
 
                                             }
@@ -321,7 +315,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                                             }
                                         }
 
-                                        prixReduit = prixReduit + ((prix * qte) * reduction / 100);
+                                        prixReduit = prixReduit + ((prix*qte)*reduction /100);
                                     }
 
                                 });
@@ -334,7 +328,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                             $('#netTotal').html((prixTotal - prixReduit));
 
                             // on verifie si le taux est coché, si oui on le décoche en chargeant le prix réduit des produits
-                            if ($("#check_reductionGenerale").is(":checked")) {
+                            if($("#check_reductionGenerale").is(":checked")){
                                 $('#check_reductionGenerale').prop("checked", false);
                             }
                             // on vérifie si un utilisateur est sélectionné
@@ -400,50 +394,50 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 // Fonctions PHARMACIE
 
 function ajouter_produit(id) {
-    var nom = $("#R" + id + " .nom").html();
+    var nom = $("#R"+id+" .nom").html();
     var reduction;
-    var $sid = $('#R' + id);
+    var $sid = $('#R'+id );
     //alert(id);
     //alert($("#"+id+" .qte").val());
-    var qte = parseInt($("#R" + id + " .qte").val());
-    var prix = parseInt($("#R" + id + " .prix").html());
-    var stock = parseInt($("#R" + id + " .stock").html());
+    var qte = parseInt($("#R"+id+" .qte").val());
+    var prix = parseInt($("#R"+id+" .prix").html());
+    var stock = parseInt($("#R"+id+" .stock").html());
 
-    var datel = $("#R" + id + " .datel").html();
-    if (qte > stock) {
+    var datel = $("#R"+id+" .datel").html();
+    if(qte > stock){
         alert("Quantité en stock pas suffisante pour cette opération ");
     }
     else {
         var action = 0;
-        $('#tab_vente  tr').each(function (i) {
+        $('#tab_vente  tr').each(function(i){
             var id1 = $(this).attr("id");
-            var prix1, qte1;
-            if (id1 == id) {
+            var prix1,qte1;
+            if(id1 == id){
                 action = 1;
-                $("#" + id1 + " td").each(function (j) {
+                $("#"+id1+" td").each(function(j){
                     //alert($(this).html());
-                    if (j == 1) { prix1 = parseInt($(this).html()); }
-                    if (j == 2) {
-                        qte1 = parseInt($(this).html()) + qte;
-                        if (qte1 > stock) {
+                    if(j==1) { prix1 = parseInt($(this).html());}
+                    if(j==2) {
+                        qte1 = parseInt($(this).html())+qte;
+                        if(qte1 > stock){
                             alert("Quantité en stock pas suffisante pour cette opération ");
-                        } else {
+                        }else{
                             $(this).html(qte1);
                         }
                     }
-                    if (j == 3) {
+                    if(j==3) {
 
-                        if (qte1 > stock) {
+                        if(qte1 > stock){
                             //alert("Quantité en stock pas suffisante pour cette opération " + qte1);
-                        } else {
-                            $(this).html((qte1 * prix1));
+                        }else{
+                            $(this).html((qte1*prix1));
                         }
                     }
-                    if (j == 6) {
+                    if(j==6) {
 
-                        if (qte1 > stock) {
+                        if(qte1 > stock){
                             //alert("Quantité en stock pas suffisante pour cette opération " + qte1);
-                        } else {
+                        }else{
                             $(this).html((stock - qte1));
                         }
                     }
@@ -452,15 +446,15 @@ function ajouter_produit(id) {
             }
 
         });
-        if (action == 0) {
+        if(action == 0){
             var cat = '<tr id="' + id + '">'
                 + ' <td><strong>' + nom + '</strong></td>'
                 + '<td>' + prix + '</td>'
                 + '<td>' + qte + '</td>'
-                + '<td>' + (prix * qte) + '</td>'
-                + '<td data ="' + $("#R" + id + " .reduction").html() + '">' + $("#R" + id + " .reduction").html() + '</td>'
+                + '<td>' + (prix*qte) + '</td>'
+                + '<td data ="'+ $("#R"+id+" .reduction").html() +'">' + $("#R"+id+" .reduction").html() + '</td>'
                 + '<td>' + datel + '</td>'
-                + '<td>' + (stock - qte) + '</td>'
+                + '<td>' + (stock-qte) + '</td>'
                 + '<td>'
                 + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + id + '\');"><span class="fa fa-times"></span></button>'
                 + '</td>'
@@ -476,24 +470,24 @@ function ajouter_produit(id) {
 
 
         // on verifie si le taux est coché, si oui on le décoche en chargeant le prix réduit des produits
-        if ($("#check_reductionGenerale").is(":checked")) {
+        if($("#check_reductionGenerale").is(":checked")){
             $('#check_reductionGenerale').prop("checked", false);
         }
-        $('#tab_vente  tr').each(function (i) {
+        $('#tab_vente  tr').each(function(i){
             var id1 = $(this).attr("id");
             //alert(id1);
 
 
-            $("#" + id1 + " td").each(function (j) {
+            $("#"+id1+" td").each(function(j){
                 //alert($(this).html());
-                if (j == 1) { prix = parseInt($(this).html()); }
-                if (j == 2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix * qte); }
-                if (j == 4) {
+                if(j==1) {prix = parseInt($(this).html());}
+                if(j==2) {qte = parseInt($(this).html()); prixTotal = prixTotal + (prix*qte);}
+                if(j==4) {
                     var reduction = parseInt($(this).attr("data"));
-                    if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
+                    if($("#select_vente_client").val() == 0 || $(".select_client").val()!= 2){
                         reduction = 0;
-                    } else {
-                        if ($("#select_vente_client option:selected").attr("name") >= reduction) {
+                    }else{
+                        if($("#select_vente_client option:selected").attr("name") >= reduction){
                             //reduction = reduction;
 
                         }
@@ -502,7 +496,7 @@ function ajouter_produit(id) {
                         }
                     }
 
-                    prixReduit = prixReduit + ((prix * qte) * reduction / 100);
+                    prixReduit = prixReduit + ((prix*qte)*reduction /100);
                 }
 
             });
@@ -534,21 +528,21 @@ function ajouter_produit(id) {
 
     }
 
-} function valider_vente(type, etat) {
+}function valider_vente(type,etat) {
     var nouveau = "";
     var idClient;
     var idPrescripteur;
     //alert($('#netTotal').html());
     /**/
     // vérifier si le prix est > à 0
-    if (parseInt($('#prixTotal').html()) == 0) {
+    if(parseInt($('#prixTotal').html()) == 0){
         $('#message-box-danger p').html('Le prix de la vente ne peut être nul');
         $("#message-box-danger").modal("show");
         setTimeout(function () {
             $("#message-box-danger").modal("hide");
         }, 3000);
     }
-    else if ($('.select_client option:selected').text() == "Client Existant" && $("#select_vente_client option:selected").val() == 0) {
+    else if($('.select_client option:selected').text() == "Client Existant" && $("#select_vente_client option:selected").val() == 0){
         // vérifier qu'on a sélectionné le client existant
         $('#message-box-danger p').html('Veuillez Sélectionner le client');
         $("#message-box-danger").modal("show");
@@ -557,7 +551,7 @@ function ajouter_produit(id) {
         }, 6000);
 
     }
-    else if ($('.select_prescripteur option:selected').text() == "Prescripteur Existant" && $("#select_vente_prescripteur option:selected").val() == 0) {
+    else if($('.select_prescripteur option:selected').text() == "Prescripteur Existant" && $("#select_vente_prescripteur option:selected").val() == 0){
         // vérifier qu'on a sélectionné le prescripteur existant
         $('#message-box-danger p').html('Veuillez Sélectionner le prescripteur');
         $("#message-box-danger").modal("show");
@@ -565,16 +559,16 @@ function ajouter_produit(id) {
             $("#message-box-danger").modal("hide");
         }, 6000);
     }
-    else {
+    else{
         nouveau = nouveau + $("#input_vente_nomClient").val() + "|" + $("#input_vente_phoneClient").val() + "-";
-        if ($('.select_client option:selected').text() == "Client Existant") {
+        if($('.select_client option:selected').text() == "Client Existant"){
             idClient = $("#select_vente_client option:selected").val();
-        } else {
+        }else{
             idClient = null;
         }
-        if ($('.select_prescripteur option:selected').text() == "Prescripteur Existant") {
+        if($('.select_prescripteur option:selected').text() == "Prescripteur Existant"){
             idPrescripteur = $("#select_vente_prescripteur option:selected").val();
-        } else {
+        }else{
             idPrescripteur = null;
         }
 
@@ -583,7 +577,7 @@ function ajouter_produit(id) {
         var commentaire = $("#commentaire_vente").val();
 
 
-        var prixr = parseInt($('#prixReduit').html())
+            var prixr = parseInt($('#prixReduit').html())
 
         $.ajax({
             type: "POST",
@@ -594,78 +588,78 @@ function ajouter_produit(id) {
                 idemp: parseInt($("#comptant").attr("data")),
                 nouveau: nouveau,
                 commentaire: commentaire,
-                prixt: parseInt($('#netTotal').html()),
+                prixt : parseInt($('#netTotal').html()),
                 prixr: prixr,
                 etat: etat
             },
             dataType: 'json',
             success: function (data) {
                 //alert(server_responce);
-                if (data.erreur == 'ok') {
+                if(data.erreur == 'ok'){
                     var idv = data.id;
                     alert(idv);
 
-                    $('#tab_vente  tr').each(function (i) {
-                        var id1 = $(this).attr("id");
-                        var prix, qte, prixReduit;
-                        alert(id1);
+                        $('#tab_vente  tr').each(function(i){
+                            var id1 = $(this).attr("id");
+                            var prix, qte, prixReduit;
+                            alert(id1);
 
 
-                        $("#" + id1 + " td").each(function (j) {
-                            //alert($(this).html());
-                            if (j == 1) { prix = parseInt($(this).html()); }
-                            if (j == 2) { qte = parseInt($(this).html()); }
-                            if (j == 4) {
-                                var reduction = parseInt($(this).attr("data"));
-                                if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
-                                    reduction = 0;
-                                } else {
-                                    if ($("#select_vente_client option:selected").attr("name") >= reduction) {
-                                        //reduction = 0;
+                            $("#"+id1+" td").each(function(j){
+                                //alert($(this).html());
+                                if(j==1) {prix = parseInt($(this).html());}
+                                if(j==2) {qte = parseInt($(this).html()); }
+                                if(j==4) {
+                                    var reduction = parseInt($(this).attr("data"));
+                                    if($("#select_vente_client").val() == 0 || $(".select_client").val()!= 2){
+                                        reduction = 0;
+                                    }else{
+                                        if($("#select_vente_client option:selected").attr("name") >= reduction){
+                                            //reduction = 0;
 
+                                        }
+                                        else {
+                                            reduction = parseInt($("#select_vente_client option:selected").attr("name"));
+                                        }
                                     }
-                                    else {
-                                        reduction = parseInt($("#select_vente_client option:selected").attr("name"));
+                                    if($("#check_reductionGenerale").is(":checked")){
+                                         reduction = parseInt($(this).attr("data"));
+                                        if(parseInt($('#taux').val()) >= reduction){
+                                            //reduction = 0;
+
+                                        }
+                                        else {
+                                            reduction = parseInt($('#taux').val());
+                                        }
                                     }
+                                    if(type != 2){
+                                        prixReduit = ((prix*qte)*reduction /100);
+                                    }else {
+                                        prixReduit = 0;
+                                    }
+
                                 }
-                                if ($("#check_reductionGenerale").is(":checked")) {
-                                    reduction = parseInt($(this).attr("data"));
-                                    if (parseInt($('#taux').val()) >= reduction) {
-                                        //reduction = 0;
 
-                                    }
-                                    else {
-                                        reduction = parseInt($('#taux').val());
-                                    }
+
+                            });
+                            alert(prix+'-'+qte+'-'+prixReduit);
+                            $.ajax({
+                                type: "POST",
+                                url: "/pharmacietest/koudjine/inc/concerner_vente.php",
+                                data: {
+                                    idv: idv,
+                                    ide: id1,
+                                    prixu : prix,
+                                    qte: qte,
+                                    reduction: prixReduit
+                                },
+                                success: function (server_responce) {
+
+                                    alert(server_responce);
                                 }
-                                if (type != 2) {
-                                    prixReduit = ((prix * qte) * reduction / 100);
-                                } else {
-                                    prixReduit = 0;
-                                }
-
-                            }
-
+                            })
 
                         });
-                        alert(prix + '-' + qte + '-' + prixReduit);
-                        $.ajax({
-                            type: "POST",
-                            url: "/pharmacietest/koudjine/inc/concerner_vente.php",
-                            data: {
-                                idv: idv,
-                                ide: id1,
-                                prixu: prix,
-                                qte: qte,
-                                reduction: prixReduit
-                            },
-                            success: function (server_responce) {
-
-                                alert(server_responce);
-                            }
-                        })
-
-                    });
                 }
 
             }
@@ -705,7 +699,7 @@ function enregistrer_produit(option, id) {
     if (option == 'Ajouter') {
         $.ajax({
             type: "POST",
-            url: '/pharmacietest/koudjine/inc/enregistrer_produit.php',
+            url: '/pharmacietest/koudjine/inc/enregistrer_produit.php', 
             data: {
                 nom: nom,
                 ean13: ean13,
@@ -1574,16 +1568,16 @@ function enregistrer_rayon(option, id) {
 
 
     if (option == 'Ajouter') {
-
+        
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_rayon.php',
             data: {
                 nom: nom,
-                code: code
+                code: code 
             },
             success: function (data) {
-
+                
                 if (data == 'ok') {
                     var link = '/pharmacietest/bouwou/geonetliste/rayon/';
                     window.location.href = link;
@@ -1599,7 +1593,7 @@ function enregistrer_rayon(option, id) {
         });
     }
     else {
-
+        
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_rayon.php',
@@ -1642,7 +1636,7 @@ function enregistrer_en_rayon(option, id) {
     var quantiteRestante = $('#quantiteRestante').val();
 
     if (option == 'Ajouter') {
-
+        
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_en_rayon.php',
@@ -1658,7 +1652,7 @@ function enregistrer_en_rayon(option, id) {
                 quantiteRestante: quantiteRestante
             },
             success: function (data) {
-
+                
                 if (data == 'ok') {
                     var link = '/pharmacietest/bouwou/geonetliste/entre/';
                     window.location.href = link;
@@ -1674,7 +1668,7 @@ function enregistrer_en_rayon(option, id) {
         });
     }
     else {
-
+        
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_en_rayon.php',
