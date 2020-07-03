@@ -125,6 +125,30 @@ class Model{
         $pre->execute();
     }
 
+    public function insert_batch($tbl,$insertFieldsArr,$arr){ $sql = array();
+        foreach( $arr as $row ) {
+            $strVals='';
+            $cnt=0;
+            foreach($insertFieldsArr as $key=>$val){
+                if(is_array($row)){
+                    $strVals.="'".addslashes($row[$cnt]).'\',';
+                }
+                else{
+                    $strVals.="'".addslashes($row).'\',';
+                }
+                $cnt++;
+            }
+            $strVals=rtrim($strVals,',');
+            $sql[] = '('.$strVals.')';
+        }
+
+        $fields=implode(',',$insertFieldsArr);
+        $sql1 = 'INSERT INTO `'.$tbl.'` ('.$fields.') VALUES '.implode(',', $sql);
+        $pre = $this->db->prepare($sql1);
+        $pre->execute();
+
+    }
+
 
 
 }

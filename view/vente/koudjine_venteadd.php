@@ -348,3 +348,44 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
 ">Paiement avec réduction </a>
     </div> -->
 </div>
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewVente" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="">
+                            <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-striped table-actions">
+                                <thead>
+                                <tr>
+                                    <th width="200">Nom</th>
+                                    <th width="100">Prix Unitaire</th>
+                                    <th width="100">Quantité</th>
+                                    <th width="100">Quantité en Stock</th>
+                                    <th width="100">Stock générale</th>
+                                    <th width="100">Reduction</th>
+                                    <th width="200">Date de Livraison</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tab_Bload_produit" >
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="ajouter_produit();" >Valider</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->

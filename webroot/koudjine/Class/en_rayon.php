@@ -219,7 +219,7 @@ class En_rayonManager
     public function getList($info)
     {
         $produits = array();
-        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND produit_id = '.$info.' ORDER BY dateLivraison ASC');
+        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND quantiteRestante > 0 AND produit_id = '.$info.' ORDER BY dateLivraison ASC');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {

@@ -1,16 +1,8 @@
 <form action="<?php echo Router::url('users/login'); ?>" class="form-horizontal" method="post">
     <div>
         <div style="padding-bottom: 10px;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #8c8c8c80;">
-            <div class="form-group">
-                <div class="col-md-12">
-                    <input type="text" id="inputbarecode" name="barecode" value="" class="form-control" placeholder="Code barre">
-                </div>
-            </div>
-            <select class="form-control question selectpicker" name="question" id="ort_question">
-                <option value="0">Caissier</option>
-                <option value="1">Administrateur</option>
-                <option value="2">Pharmacien</option>
-            </select>
+            <?php echo $this->Form->input('barecode', 'Code barre', 'text'); ?>
+            <?php echo $this->Form->select('statut', array('Vendeur'=>'1','Caissier'=>'2')); ?>
         </div>
         <div style="padding-top: 10px;padding-bottom: 20px;">
             <?php echo $this->Form->input('username', 'Identifiant', 'text'); ?>

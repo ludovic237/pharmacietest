@@ -86,7 +86,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </thead>
                         <tbody>
                             <?php foreach ($catalogue as $k => $v) : ?>
-                                <tr id="<?php echo $v->idp; ?>">
+                                <tr id="<?php echo $v->ide; ?>">
                                     <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $v->idp; ?>"><?php echo $v->nomp; ?></a></strong></td>
                                     <td><?php echo $v->nomf; ?></td>
                                     <td><?php echo $v->dateLivraison; ?></td>
@@ -97,9 +97,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <td><?php echo $v->quantiteRestante; ?></td>
                                     <td><?php echo $v->reduction; ?></td>
                                     <td>
-                                        <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row_entree(<?php echo $v->idp; ?>)"><span class="fa fa-info"></span></button>
-                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->idp; ?>)"><span class="fa fa-pencil"></span></button>
-                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                        <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row_entree(<?php echo $v->ide; ?>)"><span class="fa fa-info"></span></button>
+                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->ide; ?>)"><span class="fa fa-pencil"></span></button>
+                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->ide; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

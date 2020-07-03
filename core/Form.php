@@ -20,4 +20,32 @@ Class Form{
                     </div>
                 </div>';
     }
+
+    public function select($name,$opts,$j_s = '')
+    {
+        if ($j_s != '') $j_s = ' onchange="'.$j_s.'"';
+
+        if(!isset($this->controller->request->data->$name)){
+            $data = '';
+        }
+        else{
+            $data = $this->controller->request->data->$name;
+        }
+
+        $sel = '<select class="form-control selectpicker" name="'.$name.'"'.$j_s.'>';
+        foreach($opts as $key => $var)
+        {
+            $selected = ($var == $data) ? ' selected="selected"' : '';
+            if (is_numeric($key))
+            {
+                $key = $var; $var = '';
+            }
+            else $var = ' value="'.$var.'"';
+
+            $sel .= '<option'.$var.$selected.'>'.$key.'</option>';
+        }
+        $sel .= '</select>';
+
+        return $sel;
+    }
 }

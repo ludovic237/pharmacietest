@@ -9,12 +9,20 @@ class UsersController extends Controller
         //debug($this->request->data);
         if($this->request->data){
             $data = $this->request->data;
-            $data->password = sha1($data->password);
-            $this->loadModel('Users');
-            $user = $this->Users->findFirst(array(
-                'conditions' => array('identifiant' => '"'.$data->username.'"', 'password' => '"'.$data->password.'"'),
-                'table' => 'employe'
-            ));
+            if($data->barecode != ''){
+                $this->loadModel('Users');
+                $user = $this->Users->findFirst(array(
+                    'conditions' => array('codebarre_id' => '"'.$data->barecode.'"'),
+                    'table' => 'employe'
+                ));
+            }else{
+                $data->password = sha1($data->password);
+                $this->loadModel('Users');
+                $user = $this->Users->findFirst(array(
+                    'conditions' => array('identifiant' => '"'.$data->username.'"', 'password' => '"'.$data->password.'"'),
+                    'table' => 'employe'
+                ));
+            }
             if(!empty($user)){
                 //die('pass');
                 $this->Session->write('Users',$user);
@@ -22,11 +30,30 @@ class UsersController extends Controller
                 $data->password = '';
 
             if($this->Session->isLogged()){
-                if($this->Session->user('type') == 'Administrateur'||$this->Session->user('type') == 'Vendeur'||$this->Session->user('type') == 'Gestionnaire'||$this->Session->user('type') == 'Caissier'){
+                if($this->Session->user('type') == 'Administrateur'||$this->Session->user('type') == 'Gestionnaire'){
                     $this->redirect('bouwou/home');
                     //print_r($_SESSION['Users']);
                 }
-                else{
+                elseif($this->Session->user('type') == 'Vendeur'){
+                    $this->redirect('bouwou/vente/venteadd');
+                    //print_r($_SESSION['Users']);
+                }elseif($this->Session->user('type') == 'Caissier'){
+                    $this->redirect('bouwou/home');
+                    $data1 = array(
+                        array(
+                            'user_id' => $this->Session->user('id') ,
+                            'libelle' => $myarray[0]['sec'],
+                            'dateOuvert' => $myarray[0]['sec'],
+                            'dateFerme' => $myarray[0]['sec'],
+                            'session' => $myarray[0]['sec'],
+                            'fondCaisse' => $myarray[0]['sec'],
+                            'etat' => $myarray[0]['sec'],
+                            'supprimer' => $myarray[0]['sec'],
+                        ),
+                    );
+                    $this->Users->insert_batch('caisse',array('user_id','libelle','dateOuvert','dateFerme','session','fondCaisse','etat','supprimer'), array('user_id','libelle','dateOuvert','dateFerme','session','fondCaisse','etat','supprimer'));
+                    //print_r($_SESSION['Users']);
+                }else{
                     $this->redirect('users/login');
                     //die('pass');
                 }
