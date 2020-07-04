@@ -14,7 +14,9 @@
 @import "rickshaw/rickshaw.css";
 @import "dropzone/dropzone.css";
 @import "animate/animate.min.css";
-
+.nav-justified>li.active {
+  color: #3f6ad8;
+}
 /* Personnalisation*/
 .alt{
      background: #cccccc;

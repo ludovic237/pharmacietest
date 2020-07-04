@@ -10,7 +10,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=pharmanet1', 'root', '', array(
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 function genererID(){
-    $id = date('dHis');
+    $id = date('YmdHis');
     //echo gettype($id);
     //$idall = floatval($id);
     if($id[0] == 0){

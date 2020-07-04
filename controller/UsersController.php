@@ -31,27 +31,18 @@ class UsersController extends Controller
 
             if($this->Session->isLogged()){
                 if($this->Session->user('type') == 'Administrateur'||$this->Session->user('type') == 'Gestionnaire'){
+                    if($data->statut == '1'){
+                        $this->redirect('bouwou/vente/venteadd');
+                    }
+                    else
                     $this->redirect('bouwou/home');
                     //print_r($_SESSION['Users']);
                 }
-                elseif($this->Session->user('type') == 'Vendeur'){
+                elseif($this->Session->user('type') == 'Vendeur' || $data->statut == '1'){
                     $this->redirect('bouwou/vente/venteadd');
                     //print_r($_SESSION['Users']);
-                }elseif($this->Session->user('type') == 'Caissier'){
-                    $this->redirect('bouwou/home');
-                    $data1 = array(
-                        array(
-                            'user_id' => $this->Session->user('id') ,
-                            'libelle' => $myarray[0]['sec'],
-                            'dateOuvert' => $myarray[0]['sec'],
-                            'dateFerme' => $myarray[0]['sec'],
-                            'session' => $myarray[0]['sec'],
-                            'fondCaisse' => $myarray[0]['sec'],
-                            'etat' => $myarray[0]['sec'],
-                            'supprimer' => $myarray[0]['sec'],
-                        ),
-                    );
-                    $this->Users->insert_batch('caisse',array('user_id','libelle','dateOuvert','dateFerme','session','fondCaisse','etat','supprimer'), array('user_id','libelle','dateOuvert','dateFerme','session','fondCaisse','etat','supprimer'));
+                }elseif($this->Session->user('type') == 'Caissier' || $data->statut == '2'){
+                    $this->redirect('bouwou/comptabilite/caisse');
                     //print_r($_SESSION['Users']);
                 }else{
                     $this->redirect('users/login');

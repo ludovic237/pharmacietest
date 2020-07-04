@@ -9,7 +9,7 @@ $manager = new  En_rayonManager($pdo);
 
 
 
-if (isset($_POST['id'])){ 
+if (isset($_POST['id'])){
 
     $id=$_POST['id'];
     $produit_id=$_POST['produit_id'];
@@ -98,10 +98,10 @@ else{
     $quantiteRestante=$_POST['quantiteRestante'];
 
 
-    if(!$manager-> existsproduit_id($produit_id)){
+    if(!$manager->existsId($id)){
         //$date = genererID();
         //echo $datec;
-        $en_rayon = new  En_rayon(array(
+        $enrayon = new  En_rayon(array(
             'quantiteegorie_id' => $quantite,
             'quantiteRestante_id' => $quantiteRestante,
             'produit_id' => $produit_id,
@@ -113,7 +113,7 @@ else{
             'prixAchatMax' => $prixAchatmax,
             'reductionMax' => $reduction,
         ));
-        $manager->add($en_rayon);
+        $manager->add($enrayon);
         echo 'ok';
     }
     else echo 'Ce nom de produit existe déjà';

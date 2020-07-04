@@ -29,7 +29,7 @@ if (isset($_POST['id'])||isset($_GET['id'])){
         $datel = $date->format('d-m-Y');
         if($v->reduction() > $produit->reductionMax()) $reduction = $produit->reductionMax(); else $reduction = $v->reduction();
         echo "<tr id=\"R".$v->id()."\">
-                                            <td class='nom'><strong>".$produit->nom()."</strong></td>
+                                            <td ><strong class='nom'>".$produit->nom()."</strong></td>
                                             <td class='prix'>
                                                 ".$v->prixVente()."
                                             </td>

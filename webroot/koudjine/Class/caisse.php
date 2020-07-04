@@ -4,7 +4,8 @@ class Caisse
 {
     private $_id,
         $_user_id,
-        $_libelle,
+        $_ouvertureCaisse,
+        $_fermetureCaisse,
         $_dateOuvert,
         $_dateFerme,
         $_session,
@@ -39,9 +40,13 @@ class Caisse
     {
         return $this->_user_id;
     }
-    public function libelle()
+    public function ouvertureCaisse()
     {
-        return $this->_libelle;
+        return $this->_ouvertureCaisse;
+    }
+    public function fermetureCaisse()
+    {
+        return $this->_fermetureCaisse;
     }
     public function dateOuvert()
     {
@@ -85,13 +90,13 @@ class Caisse
             $this->_user_id = $id;
         }
     }
-    public function setlibelle($id)
+    public function setouvertureCaisse($id)
     {
-
-        if ($id > 0)
-        {
-            $this->_libelle = $id;
-        }
+            $this->_ouvertureCaisse = $id;
+    }
+    public function setfermetureCaisse($id)
+    {
+        $this->_fermetureCaisse = $id;
     }
     public function setdateOuvert($value)
     {
@@ -142,10 +147,11 @@ class CaisseManager
     }
     public function add(Caisse $caisse)
     {
-        $q = $this->_db->prepare('INSERT INTO caisse SET id = :id, employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, prixTotal = :prixTotal, libelle = :montant, dateOuvert = :dateOuvert, dateFerme = :dateFerme, session = :session, fondCaisse = :fondCaisse, etat = :etat, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO caisse SET id = :id, employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, prixTotal = :prixTotal, ouvertureCaisse = :ouverture, fermetureCaise = :fermeture, dateOuvert = :dateOuvert, dateFerme = :dateFerme, session = :session, fondCaisse = :fondCaisse, etat = :etat, supprimer=0');
         $q->bindValue(':id', $caisse->id(), PDO::PARAM_INT);
         $q->bindValue(':user', $caisse->user_id(), PDO::PARAM_INT);
-        $q->bindValue(':montant', $caisse->libelle(), PDO::PARAM_INT);
+        $q->bindValue(':ouverture', $caisse->ouvertureCaisse());
+        $q->bindValue(':fermeture', $caisse->fermetureCaisse());
         $q->bindValue(':dateOuvert', $caisse->dateOuvert());
         $q->bindValue(':dateFerme', $caisse->dateFerme());
         $q->bindValue(':session', $caisse->session());
@@ -214,10 +220,11 @@ class CaisseManager
     public function update(Caisse $caisse)
     {
 
-        $q = $this->_db->prepare('UPDATE caisse SET employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, malade_id = :malade, caisse_id = :caisse, prixTotal = :prixTotal, libelle = :montant, dateOuvert = :dateOuvert, dateFerme = :dateFerme, session = :session, fondCaisse = :fondCaisse, etat = :etat WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE caisse SET employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, malade_id = :malade, caisse_id = :caisse, prixTotal = :prixTotal, ouvertureCaisse = :ouverture, fermetureCaise = :fermeture, dateOuvert = :dateOuvert, dateFerme = :dateFerme, session = :session, fondCaisse = :fondCaisse, etat = :etat WHERE id = :id');
         $q->bindValue(':id', $caisse->id(), PDO::PARAM_INT);
         $q->bindValue(':user', $caisse->user_id(), PDO::PARAM_INT);
-        $q->bindValue(':montant', $caisse->libelle());
+        $q->bindValue(':ouverture', $caisse->ouvertureCaisse());
+        $q->bindValue(':fermeture', $caisse->fermetureCaisse());
         $q->bindValue(':dateOuvert', $caisse->dateOuvert());
         $q->bindValue(':dateFerme', $caisse->dateFerme());
         $q->bindValue(':session', $caisse->session());

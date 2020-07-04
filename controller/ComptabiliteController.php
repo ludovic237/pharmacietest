@@ -281,24 +281,50 @@ class ComptabiliteController extends Controller
     {
         $this->loadModel('Comptabilite');
 
+        $d['produit'] = $this->Comptabilite->find(array(
+            //'fields' => 'nom',
+            'table' => 'produit',
+            'order' => 'nom-ASC',
+            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+        ));
+
+        $d['fournisseur'] = $this->Comptabilite->find(array(
+            //'fields' => 'nom',
+            'table' => 'fournisseur',
+            'order' => 'nom-ASC',
+            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+        ));
+
         if ($id != null) {
             //die('pass');
             $d['position'] = 'Modifier';
 
-            $d['fabriquant'] = $this->Comptabilite->findFirst(array(
+            $d['en_rayon'] = $this->Comptabilite->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'en_rayon',
                 'conditions' => array('id' => $id)
             ));
 
 
-            if (empty($d['fabriquant'])) {
+            if (empty($d['en_rayon'])) {
                 $this->e404('Page introuvable');
             }
         } else {
             $d['position'] = 'Ajouter';
         }
         $this->set($d);
+    }
+
+    function koudjine_detail()
+    {
+        $this->loadModel('Comptabilite');
+
+    }
+
+    function koudjine_destock()
+    {
+        $this->loadModel('Comptabilite');
+
     }
 
 }

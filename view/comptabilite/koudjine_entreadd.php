@@ -65,15 +65,27 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">produit:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="produit_id" id="produit_id" value="<?php if ($position == 'Modifier') echo $en_rayon->produit_id; ?>" placeholder="produit" />
-                            <span class="help-block">exemple: Boris Daudga</span>
+                            <select class="selectpicker form-control input-xlarge " name="produit_id" id="produit_id">
+                                <?php
+                                foreach ($produit as $k => $v) : ?>
+                                    <option <?php if ($position == 'Modifier') if ($v->id == $en_rayon->produit_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">founisseur:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="founisseur_id" id="founisseur_id" value="<?php if ($position == 'Modifier') echo $en_rayon->founisseur_id; ?>" placeholder="founisseur" />
-                            <span class="help-block">exemple: Boris Daudga</span>
+                        <select class="selectpicker form-control input-xlarge " name="fournisseur_id" id="fournisseur_id">
+                                <?php
+                                foreach ($fournisseur as $k => $v) : ?>
+                                    <option <?php if ($position == 'Modifier') if ($v->id == $en_rayon->fournisseur_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

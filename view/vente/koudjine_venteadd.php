@@ -39,39 +39,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 }
             </script>
 <script type="text/javascript">
-            var  = $("#").validate({
-                ignore: [],
-                rules: {
-                    nom: {
-                        required: true,
-                        minlength: 2,
-                        maxlength: 50
-                    },
-                    region: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 20
-                    },
-                    telephone_1: {
-                        required: true
-                    },
-                    ville: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 100
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    statut: {
-                        required: true
-                    },
-                    "type[]": "required"
-
-                }
-            });
-
         </script>
         <script>
                                         window.onload = function () {
@@ -144,7 +111,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <th width="100">Prix Total</th>
                                 <th width="100">Reduction</th>
                                 <th width="200">Date de Livraison</th>
-                                <th width="100">Stock après vente</th>
+                                <th width="100">Stock total</th>
                                 <th width="100">Action</th>
                             </tr>
                         </thead>

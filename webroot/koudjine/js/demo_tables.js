@@ -1,3 +1,11 @@
+$(document).ready(function () {
+    $("#iconPreviewCaisse").modal("show");
+
+    $(".argent").keyup(function (event){
+        alert($(this).val)
+    })
+});
+
 
 
 function update_row_produit(id) {
@@ -281,12 +289,12 @@ function delete_row_vente(id) {
 
     $("#"+id ).remove();
 
-    $("#"+id+" td").each(function(i){
+    /*$("#"+id+" td").each(function(i){
         //alert(i);
         if(i==3) {total1 = $(this).html();}
         if(i==4)  reduction = $(this).html();
 
-    });
+    });*/
         if(total1 == null){
             var prixTotal = 0;
             var prixReduit = 0;
