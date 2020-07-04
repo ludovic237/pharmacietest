@@ -54,7 +54,7 @@
                 <li class="xn-title">Etudes</li>
 
                 <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['vente'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'vente') { ?>active<?php } ?>">
-                    <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">Vente</span></a>
+                    <a href="#"><span class="fa fa-shopping-cart "></span> <span class="xn-text">Vente</span></a>
                     <ul>
                         <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'vente') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/vente'); ?>"><span class="fa lettre">C</span>Vente</a></li>
                         <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'venteadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/venteadd'); ?>"><span class="fa lettre">A</span>Ajouter</a></li>
@@ -63,7 +63,7 @@
                     </ul>
                 </li>
                 <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['catalogue'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'catalogue') { ?>active<?php } ?>">
-                    <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">Catalogue</span></a>
+                    <a href="#"><span class="fa fa-book"></span> <span class="xn-text">Catalogue</span></a>
                     <ul>
                         <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit' || $this->request->controller == 'catalogue' && $this->request->action == 'produitadd') { ?>active <?php } ?>">
                             <a href="#"><span class="fa lettre">E</span> Produit</a>
@@ -113,7 +113,7 @@
                     </ul>
                 </li>
                 <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['geonetliste'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'geonetliste') { ?>active<?php } ?>">
-                    <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">geonetliste</span></a>
+                    <a href="#"><span class="fa fa-archive"></span> <span class="xn-text">geonetliste</span></a>
                     <ul>
                         <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'rayon') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/rayon'); ?>"> <span class="fa lettre">R</span>Rayon</a></li>
                         <li <?php if ($this->request->controller == 'geonetliste' && $this->request->action == 'magasin') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/geonetliste/magasin'); ?>"> <span class="fa lettre">M</span>Magasin</a></li>
@@ -124,7 +124,7 @@
             </ul>
             </li>
             <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['comptabilite'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'comptabilite') { ?>active<?php } ?>">
-                <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">comptabilite</span></a>
+                <a href="#"><span class="fa fa-credit-card"></span> <span class="xn-text">comptabilite</span></a>
                 <ul>
                     <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'budget') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/budget'); ?>"><span class="fa lettre">B</span>budget</a></li>
                     <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>"><span class="fa lettre">C</span>Caisse</a></li>
@@ -146,7 +146,7 @@
                 </ul>
             </li>
             <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['commande'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'commande') { ?>active<?php } ?>">
-                <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">commande</span></a>
+                <a href="#"><span class="fa fa-truck"></span> <span class="xn-text">commande</span></a>
                 <ul>
                     <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'simplereappro') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/commande/simplereappro'); ?>"><span class="fa lettre">I</span>simplereappro</a></li>
                     <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'cmdprogramme') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/commande/cmdprogramme'); ?>"><span class="fa lettre">I</span>Commande programmée</a></li>
@@ -155,13 +155,13 @@
                 </ul>
             </li>
             <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['stock'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'stock') { ?>active<?php } ?>">
-                <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">stock</span></a>
+                <a href="#"><span class="fa fa-bank"></span> <span class="xn-text">stock</span></a>
                 <ul>
                     <li <?php if ($this->request->controller == 'stock' && $this->request->action == 'inventaire') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/stock/inventaire'); ?>"><span class="fa lettre">I</span>Inventaire</a></li>
                 </ul>
             </li>
             <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['statistique'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'statistique') { ?>active<?php } ?>">
-                <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">statistique</span></a>
+                <a href="#"><span class="fa fa-bar-chart-o"></span> <span class="xn-text">statistique</span></a>
                 <ul>
                     <li <?php if ($this->request->controller == 'statistique' && $this->request->action == 'produitplusvendu') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/statistique/produitplusvendu'); ?>"><span class="fa lettre">I</span>produitplusvendu</a></li>
                     <li <?php if ($this->request->controller == 'statistique' && $this->request->action == 'chiffre') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/statistique/chiffre'); ?>"><span class="fa lettre">I</span>chiffre</a></li>
@@ -172,17 +172,22 @@
 
             <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['pharmanet'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'pharmanet') { ?>active<?php } ?>">
 
-                <a href="#"><span class="fa fa-edit"></span> <span class="xn-text">pharmanet</span></a>
+                <a href="#"><span class="fa fa-folder-open"></span> <span class="xn-text">pharmanet</span></a>
                 <ul>
-                    <li class="xn-openable <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'employe' || $this->request->controller == 'catalogue' && $this->request->action == 'employeadd') { ?>active <?php } ?>">
+                    <li class="xn-openable <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'employe' || $this->request->controller == 'pharmanet' && $this->request->action == 'employeadd') { ?>active <?php } ?>">
                         <a href="#"><span class="fa lettre">E</span> Employé</a>
                         <ul>
                             <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'employe') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/employe'); ?>"> Lister</a></li>
                             <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'employeadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/employeadd'); ?>"> Ajouter</a></li>
                         </ul>
                     </li>
-                    <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'user') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/user'); ?>"><span class="fa lettre">C</span>User</a></li>
-
+                    <li class="xn-openable <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'user' || $this->request->controller == 'pharmanet' && $this->request->action == 'useradd') { ?>active <?php } ?>">
+                        <a href="#"><span class="fa lettre">E</span> Utilisateur</a>
+                        <ul>
+                            <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'user') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/user'); ?>"> Lister</a></li>
+                            <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'useradd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/useradd'); ?>"> Ajouter</a></li>
+                        </ul>
+                    </li>
                     <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'aboutus') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/aboutus'); ?>"><span class="fa lettre">A</span>About us</a></li>
                     <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'offiline') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/offiline'); ?>"><span class="fa lettre">A</span> Offiline</a></li>
                 </ul>

@@ -35,23 +35,6 @@ class PharmanetController extends Controller
         $this->set($d);
     }
 
-
-    function koudjine_user()
-    {
-        $this->loadModel('Pharmanet');
-
-        $d['pharmanet'] = $this->Pharmanet->find(array(
-            'fields' => 'id,name,surname,email,code,password,etat,type,type2,telephone ',
-            'table' => 'user',
-
-        ));
-        //die($d);
-        if (empty($d['pharmanet'])) {
-            $this->e404('Page introuvable');
-        }
-        $this->set($d);
-    }
-
     function koudjine_offiline()
     {
         $this->loadModel('Pharmanet');
@@ -100,6 +83,46 @@ class PharmanetController extends Controller
 
 
             if (empty($d['employe'])) {
+                $this->e404('Page introuvable');
+            }
+        } else {
+            $d['position'] = 'Ajouter';
+        }
+        $this->set($d);
+    }
+
+    function koudjine_user()
+    {
+        $this->loadModel('Pharmanet');
+
+        $d['pharmanet'] = $this->Pharmanet->find(array(
+            'fields' => 'user.int as iduser,user.identifiant as identifiantuser,user.codebarre_id as codebarreiduser,user.user_id as useriduser,user.etat as etatuser,user.faireReductionMax as reductionuser,user.type as typeuser',
+            'table' => 'user',
+
+        ));
+        //die($d);
+        if (empty($d['pharmanet'])) {
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
+    }
+
+    function koudjine_useradd($id = null)
+    {
+        $this->loadModel('Pharmanet');
+
+        if ($id != null) {
+            //die('pass');
+            $d['position'] = 'Modifier';
+
+            $d['user'] = $this->Pharmanet->findFirst(array(
+                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+                'table' => 'user',
+                'conditions' => array('id' => $id)
+            ));
+
+
+            if (empty($d['user'])) {
                 $this->e404('Page introuvable');
             }
         } else {
