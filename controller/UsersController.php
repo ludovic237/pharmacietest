@@ -33,6 +33,8 @@ class UsersController extends Controller
                 if($this->Session->user('type') == 'Administrateur'||$this->Session->user('type') == 'Gestionnaire'){
                     if($data->statut == '1'){
                         $this->redirect('bouwou/vente/venteadd');
+                    }elseif($data->statut == '2'){
+                        $this->redirect('bouwou/comptabilite/caisse');
                     }
                     else
                     $this->redirect('bouwou/home');

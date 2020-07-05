@@ -12,34 +12,9 @@ if ($this->request->action == "index") {
 $position_for_layout = '<li><a href="#">Vente</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/fileinput/fileinput.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/jquery.noty.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/themes/default.js"></script>
-<script type="text/javascript">
-                function notyConfirm(){
-                    noty({
-                        text: \'Do you want to continue?\',
-                        layout: \'topRight\',
-                        buttons: [
-                                {addClass: \'btn btn-success btn-clean\', text: \'Ok\', onClick: function($noty) {
-                                    $noty.close();
-                                    noty({text: \'You clicked "Ok" button\', layout: \'topRight\', type: \'success\'});
-                                }
-                                },
-                                {addClass: \'btn btn-danger btn-clean\', text: \'Cancel\', onClick: function($noty) {
-                                    $noty.close();
-                                    noty({text: \'You clicked "Cancel" button\', layout: \'topRight\', type: \'error\'});
-                                    }
-                                }
-                            ]
-                    })
-                }
-            </script>
-<script type="text/javascript">
-        </script>
         <script>
                                         window.onload = function () {
                                             document.getElementById("recherche").focus();
@@ -349,7 +324,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="ajouter_produit();" >Valider</button>
+                <button type="button" class="btn btn-success" onclick="ajouter_produit();" >Valider</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>

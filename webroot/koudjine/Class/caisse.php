@@ -147,12 +147,11 @@ class CaisseManager
     }
     public function add(Caisse $caisse)
     {
-        $q = $this->_db->prepare('INSERT INTO caisse SET id = :id, employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, prixTotal = :prixTotal, ouvertureCaisse = :ouverture, fermetureCaise = :fermeture, dateOuvert = :dateOuvert, dateFerme = :dateFerme, session = :session, fondCaisse = :fondCaisse, etat = :etat, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO caisse SET id = :id, user_id = :user1, ouvertureCaisse = :ouverture, fermetureCaisse = :fermeture, dateOuvert = now(), dateFerme = :dateFerme, session = :session, fondCaisse = :fondCaisse, etat = :etat, supprimer=0');
         $q->bindValue(':id', $caisse->id(), PDO::PARAM_INT);
-        $q->bindValue(':user', $caisse->user_id(), PDO::PARAM_INT);
+        $q->bindValue(':user1', $caisse->user_id(), PDO::PARAM_INT);
         $q->bindValue(':ouverture', $caisse->ouvertureCaisse());
         $q->bindValue(':fermeture', $caisse->fermetureCaisse());
-        $q->bindValue(':dateOuvert', $caisse->dateOuvert());
         $q->bindValue(':dateFerme', $caisse->dateFerme());
         $q->bindValue(':session', $caisse->session());
         $q->bindValue(':fondCaisse', $caisse->fondCaisse());
@@ -161,7 +160,7 @@ class CaisseManager
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM caisse WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM caisse WHERE supprimer = 0 ')->fetchColumn();
     }
     public function delete(Caisse $caisse)
     {
@@ -193,7 +192,7 @@ class CaisseManager
     public function exists()
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM caisse WHERE supprimer = 0 AND etat = "Ouvert" AND CAST(dateOuvert AS DATE) = CURRENT_DATE');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM caisse WHERE supprimer = 0 AND etat = "Ouvert"');
         return (bool) $q->fetchColumn();
 
 
@@ -201,7 +200,15 @@ class CaisseManager
     public function get()
     {
 
-        $q = $this->_db->query('SELECT * FROM caisse WHERE supprimer = 0 AND etat = "Ouvert" AND CAST(dateOuvert AS DATE) = CURRENT_DATE');
+        $q = $this->_db->query('SELECT * FROM caisse WHERE supprimer = 0 AND etat = "Ouvert"');
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Caisse($donnees);
+
+    }
+    public function getId($id)
+    {
+
+        $q = $this->_db->query('SELECT * FROM caisse WHERE supprimer = 0 AND id = '.$id.' AND etat = "Ouvert"');
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Caisse($donnees);
 
@@ -230,6 +237,16 @@ class CaisseManager
         $q->bindValue(':session', $caisse->session());
         $q->bindValue(':fondCaisse', $caisse->fondCaisse());
         $q->bindValue(':etat', $caisse->etat());
+        $q->execute();
+    }
+
+    public function updateFermeCaisse(Caisse $caisse)
+    {
+
+        $q = $this->_db->prepare('UPDATE caisse SET fermetureCaisse = :fermeture, dateFerme = now(), fondCaisse = :fondCaisse, etat = "Clot" WHERE id = :id');
+        $q->bindValue(':id', $caisse->id(), PDO::PARAM_INT);
+        $q->bindValue(':fermeture', $caisse->fermetureCaisse());
+        $q->bindValue(':fondCaisse', $caisse->fondCaisse());
         $q->execute();
     }
     public function setDb(PDO $db)
