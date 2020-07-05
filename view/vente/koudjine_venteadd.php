@@ -41,7 +41,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="panel-body panel-body-table">
 
                             <div class="">
-                            <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-striped table-actions">
+                            <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
                                     <thead>
                                         <tr>
                                             <th width="200">Nom</th>
@@ -77,7 +77,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
-                    <table class="table datatable table-bordered table-striped table-actions">
+                    <table class="table table-bordered table-striped table-actions">
                         <thead>
                             <tr>
                                 <th width="200">Nom</th>
