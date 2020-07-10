@@ -276,8 +276,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
         </div>
 
         <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
-            <a onclick="valider_vente('1', 'Confirm')" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant"  class="btn btn-primary" role="button" style="float: left; width: 40%;">Comptant</a>
-            <a onclick="valider_vente('2', 'Prep')"  id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 40%;">Crédit</a>
+            <a onclick="valider_vente('1', 'Comptant')" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant"  class="btn btn-primary" role="button" style="float: left; width: 40%;">Comptant</a>
+            <a onclick="valider_vente('2', 'Crédit')"  id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 40%;">Crédit</a>
 
         </div>
 

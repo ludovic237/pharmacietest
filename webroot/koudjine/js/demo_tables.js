@@ -27,6 +27,10 @@ $(document).ready(function () {
         //alert('passe');
         $("#iconPreviewCaisse").modal("show");
     })
+    $('#iconPreviewCaisseFermer').on('hidden.bs.modal', function () {
+        //alert('passe');
+        $("#iconPreviewCaisseFermer").modal("show");
+    })
 });
 
 function close_caisse_row() {
@@ -80,7 +84,7 @@ function close_caisse_row_valide(user_id) {
 
 }
 
-function valider_fermeture(id) {
+function valider_fermeture(caisse_id) {
     var total = parseInt($('.ftotalaisse').html());
     var detail_piece_billet = ($("#fargent_1").val()) + "-" + ($("#fargent_2").val()) + "-" + ($("#fargent_3").val()) + "-" + ($("#fargent_4").val()) + "-" + ($("#fargent_5").val()) + "-" + ($("#fargent_6").val()) + "-" + ($("#fargent_7").val()) + "-" + ($("#fargent_8").val()) + "-" + ($("#fargent_9").val()) + "-" + ($("#fargent_10").val());
     //var session = $('.session option:selected').text();
@@ -92,19 +96,34 @@ function valider_fermeture(id) {
     //alert(session + "-" + detail_piece_billet + "-" + totals1 + "-" + totals2 + "-" +  total);
     //var dateOuvert    = now.getDate();
     if (total == 0) {
-        alert("Veuillez saisir votre fond de caisse")
-    } else {
+        alert("Veuillez saisir votre fond de caisse");
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_session_caisse.php',
             data: {
-                id: id,
+                id: caisse_id,
+            },
+            success: function (server_responce) {
+
+                alert(server_responce);
+                var link = '/pharmacietest/users/logout';
+                window.location.href = link;
+
+            }
+        });
+    } else {
+        alert('passe');
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_session_caisse.php',
+            data: {
+                id: caisse_id,
                 fermetureCaisse:detail_piece_billet,
                 fondCaisse:total,
             },
             success: function (server_responce) {
 
-                //alert(server_responce);
+                alert(server_responce);
                 var link = '/pharmacietest/users/logout';
                 window.location.href = link;
 
@@ -114,12 +133,6 @@ function valider_fermeture(id) {
 
 }
 function rafraichir_vente(id) {
-    var qte = parseInt($("#R"+id+" .qte").val());
-    var stock = parseInt($("#R"+id+" .stock").html());
-    if(qte > stock){
-        alert("Quantité en stock pas suffisante pour cette opération ");
-    }
-    else {
 
         $.ajax({
             type: "POST",
@@ -128,17 +141,45 @@ function rafraichir_vente(id) {
                 id: id
             },
             success: function (server_responce) {
-                //alert(data);
+                //alert(server_responce);
                 //$("#iconPreview .icon-preview").html(icon_preview);
 
-                $('#tab_Bload_produit').html(server_responce);
+                $('#tab_caisse').empty();
+                $('#tab_caisse').html(server_responce);
 
             }
 
 
         })
 
-    }
+
+}
+function charger_vente(id) {
+    $("#facture_caisse").html($("#"+id+" .prixtotal").html());
+    $('#fen_facture').attr("data", id);
+    //$("#"+id).addClass("alt");
+    $('#tab1 .montant').val('');
+    $('#tab1 .reste').val('');
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_vente.php',
+        data: {
+            id: id
+        },
+        success: function (server_responce) {
+            //alert(server_responce);
+            //$("#iconPreview .icon-preview").html(icon_preview);
+
+            $('#tab_vente_caisse').empty();
+            $('#tab_vente_caisse').html(server_responce);
+
+        }
+
+
+    })
+
+
 }
 
 function update_row_produit(id) {

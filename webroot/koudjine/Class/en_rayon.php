@@ -234,7 +234,7 @@ class En_rayonManager
     public function update(En_rayon $en_rayon)
     {
 
-        $q = $this->_db->prepare('UPDATE en_rayon SET produit_id = :produit_id, fournisseur_id = :fournisseur_id, dateLivraison = :dateLivraison, datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prica, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE en_rayon SET produit_id = :produit_id, fournisseur_id = :fournisseur_id, dateLivraison = :dateLivraison, datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prixa, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = :reduction WHERE id = :id');
         $q->bindValue(':id', $en_rayon->id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $en_rayon->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':fournisseur_id', $en_rayon->fournisseur_id(), PDO::PARAM_INT);

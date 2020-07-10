@@ -135,15 +135,14 @@ class FacturationManager
     }
     public function add(Facturation $facturation)
     {
-        $q = $this->_db->prepare('INSERT INTO en_rayon SET id = :id, vente_id = :vente_id, caisse_id = :caisse_id, typePaiement = :typePaiement, montantPercu = :montantPercu, montantTtc = :prixv, reste = :prica, quantite = :quantite, dateFacture = :dateFacture, reduction = :reduction, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO facturation SET id = :id, vente_id = :vente_id, caisse_id = :caisse_id, typePaiement = :typePaiement, montantPercu = :montantPercu, montantTtc = :montant, reste = :reste, dateFacture = now(), supprimer=0');
         $q->bindValue(':id', $facturation->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $facturation->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':caisse_id', $facturation->caisse_id(), PDO::PARAM_INT);
         $q->bindValue(':typePaiement', $facturation->typePaiement());
         $q->bindValue(':montantPercu', $facturation->montantPercu());
-        $q->bindValue(':prixv', $facturation->montantTtc());
-        $q->bindValue(':prixa', $facturation->reste());
-        $q->bindValue(':dateFacture', $facturation->dateFacture());
+        $q->bindValue(':montant', $facturation->montantTtc());
+        $q->bindValue(':reste', $facturation->reste());
         $q->execute();
     }
     public function count()
@@ -210,7 +209,7 @@ class FacturationManager
     public function update(Facturation $facturation)
     {
 
-        $q = $this->_db->prepare('UPDATE en_rayon SET vente_id = :vente_id, caisse_id = :caisse_id, typePaiement = :typePaiement, montantPercu = :montantPercu, montantTtc = :prixv, reste = :prica, quantite = :quantite, dateFacture = :dateFacture, reduction = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE facturation SET vente_id = :vente_id, caisse_id = :caisse_id, typePaiement = :typePaiement, montantPercu = :montantPercu, montantTtc = :prixv, reste = :prica, quantite = :quantite, dateFacture = :dateFacture, reduction = :reduction WHERE id = :id');
         $q->bindValue(':id', $facturation->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $facturation->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':caisse_id', $facturation->caisse_id(), PDO::PARAM_INT);

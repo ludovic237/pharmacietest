@@ -158,10 +158,8 @@ class vente
     public function setprixPercu($id)
     {
 
-        if ($id > 0)
-        {
             $this->_prixPercu = $id;
-        }
+
     }
     public function setnouveau_info($value)
     {
