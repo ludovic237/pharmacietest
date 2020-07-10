@@ -188,6 +188,22 @@ function update_row_produit(id) {
     alert(link);
     window.location.href = link;
 }
+
+
+function update_row_user(id) {
+    alert("link");
+    var link = '/pharmacietest/bouwou/pharmanet/useradd/' + id;
+    alert(link);
+    window.location.href = link;
+}
+
+
+function update_row_employe(int) {
+    alert("link");
+    var link = '/pharmacietest/bouwou/pharmanet/employeadd/' + int;
+    alert(link);
+    window.location.href = link;
+}
 function update_row_assureur(id) {
     var link = '/pharmacietest/bouwou/catalogue/assureuradd/' + id;
     //alert(link);
@@ -643,13 +659,6 @@ function update_row_concours(id) {
     window.location.href = link;
 }
 
-
-
-function update_row_user(id) {
-    var link = '/Site/bouwou/users/edit/' + id;
-    //alert(link);
-    window.location.href = link;
-}
 function filiere_row(iduniv, idfac) {
     var link = '/Site/bouwou/formations/index/' + iduniv + '/' + idfac;
     //alert(link);

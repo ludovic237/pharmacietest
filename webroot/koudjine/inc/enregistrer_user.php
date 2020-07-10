@@ -60,27 +60,6 @@ if (isset($_POST['id'])){
     //$req = $pdo->exec($sql);
 }
 else{
-    /*if(isset($_POST['prenom'])&&isset($_POST['reductionMax'])&&isset($_POST['reduction'])&&isset($_POST['reductionMaxmax'])&&isset($_POST['reduction'])){
-        $id_univ=$_POST['univid'];
-        if($_POST['dated'] != null){
-            $dated = DateTime::createFromFormat('d-m-Y', $_POST['dated']);
-            $dated = $dated->format('Y-m-d');}
-        else $dated = null;
-        if($_POST['datef'] != null){
-            $datef = DateTime::createFromFormat('d-m-Y', $_POST['datef']);
-            $datef = $datef->format('Y-m-d');}
-        else $datef = null;
-        if($_POST['datec'] != null){
-            $datec = DateTime::createFromFormat('d-m-Y', $_POST['datec']);
-            $datec = $datec->format('Y-m-d');}
-        else $datec = null;
-        $description=$_POST['description'];
-        $modalite=$_POST['modalite'];
-        $composition=$_POST['composition'];
-        $composition = trim($composition,';');
-        //echo $datec;
-    }*/
-
     $nom=$_POST['nom'];
     $prenom=$_POST['prenom'];
     $email=$_POST['email'];

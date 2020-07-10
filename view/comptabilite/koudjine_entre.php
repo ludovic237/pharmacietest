@@ -14,6 +14,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/fileinput/fileinput.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/jquery.noty.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/themes/default.js"></script>
+<script type="text/javascript">
 ';
 ?>
 
@@ -21,12 +29,36 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-body">
-            <div class="form-group" id="">
-                <label class="col-md-2 col-xs-12 control-label">Sélectionner un produit</label>
-                <div class="col-md-3 col-xs-12">
-                    <input type="text" class="form-control" value="<?php if ($id_prod != null) echo $produit->nom; ?>" name="<?php if ($id_prod != null) echo $produit->id; ?>" id="srch_produit" placeholder="" />
-                </div>
+            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;margin-bottom:0px">
+                <label class="col-md-2 col-xs-12 control-label" style="margin-right: 30px;width: 150px;">Selectionner un produit:</label>
+                <div class="col-md-8 col-xs-12 " style="display: flex;flex:1;margin-right: 30px;flex-direction:column">
+                    <input type="text" class="form-control col-md-4" name="nom" id="recherche" value="" placeholder="Médicaments">
+                    <div>
 
+                        <div class="panel-body panel-body-table">
+
+                            <div class="">
+                                <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                    <thead>
+                                        <tr>
+                                            <th width="200">Nom</th>
+                                            <th width="100">Prix Unitaire</th>
+                                            <th width="100">Quantité</th>
+                                            <th width="100">Stock</th>
+                                            <th width="100">Reduction</th>
+                                            <th width="200">Date de Livraison</th>
+                                            <th width="100">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tab_Brecherche">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <label class="col-md-2 col-xs-12 control-label">Afficher</label>
                 <div class="col-md-3 col-xs-12">
                     <select class="form-control selectpicker stock col-md-6" title='Tout...' name="srch_faculte" id="srch_stock">
@@ -35,7 +67,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <option <?php if ($stock == 2) echo "selected=\"selected\""; ?> value="2">En rupture</option>
                     </select>
                 </div>
-
             </div>
             <div style="padding-top: 40px;"></div>
             <div class="form-group">

@@ -1,7 +1,7 @@
 <!-- <?php
 
      $title_for_layout = ' Admin -' . 'Universités';
-     $page_for_layout = 'Concours';
+     $page_for_layout = 'Pharmanet';
      $action_for_layout = 'Ajouter';
 
      if ($this->request->action == "index") {
@@ -9,7 +9,7 @@
      } else {
           $position = $this->request->action;
      }
-     $position_for_layout = '<li><a href="#">Concours</a></li><li class="active">' . $position . '</li>';
+     $position_for_layout = '<li><a href="#">Pharmanet</a></li><li class="active">' . $position . '</li>';
      $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
      ?> -->
@@ -30,34 +30,30 @@
                                         <th width="100">Nom</th>
                                         <th width="100">Prenom</th>
                                         <th width="100">Email</th>
-                                        <th width="100">Code barre</th>
+                                        <th width="100">Fonction</th>
                                         <th width="100">Téléphone</th>
-                                        <th width="100">Type</th>
-                                        <th width="100">Etat</th>
+                                        <th width="100">reduction</th>
                                         <th width="100">Actions</th>
                                    </tr>
                               </thead>
                               <tbody>
                                    <?php foreach ($pharmanet as $k => $v) : ?>
-                                        <tr id="<?php echo $v->id; ?>">
-                                             <td><strong><?php echo $v->name; ?></strong></td>
-                                             <td><?php echo $v->surname; ?></td>
-                                             <td><?php echo $v->email; ?></td>
+                                        <tr id="<?php echo $v->iduser; ?>">
+                                             <td><strong><?php echo $v->nomuser; ?></strong></td>
+                                             <td><?php echo $v->prenomuser; ?></td>
+                                             <td><?php echo $v->emailuser; ?></td>
                                              <td>
-                                                  <?php echo $v->code; ?>
+                                                  <?php echo $v->fonctionuser; ?>
                                              </td>
                                              <td>
-                                                  <?php echo $v->telephone; ?>
+                                                  <?php echo $v->telephoneuser; ?>
                                              </td>
                                              <td>
-                                                  <?php echo $v->type; ?>
+                                                  <?php echo $v->reductionuser; ?>
                                              </td>
                                              <td>
-                                                  <?php echo $v->etat; ?>
-                                             </td>
-                                             <td>
-                                                  <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_concours(<?php echo $v->CONCOURS_ID; ?>)"><span class="fa fa-pencil"></span></button>
-                                                  <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                                  <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_user(<?php echo $v->iduser; ?>)"><span class="fa fa-pencil"></span></button>
+                                                  <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->iduser; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
                                              </td>
                                         </tr>
                                    <?php endforeach; ?>
