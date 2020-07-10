@@ -62,24 +62,34 @@ class ComptabiliteController extends Controller
     function koudjine_caisse()
     {
         $this->loadModel('Comptabilite');
-        $d['caisse'] = $this->Comptabilite->findFirst(array(
+        $d['caisseCheck'] = $this->Comptabilite->findFirst(array(
             //'fields' => 'produit.nom as nom',
             'table' => 'caisse',
-            'conditions' => "supprimer = 0 AND etat = \"Ouvert\""
+            'conditions' => "supprimer = 0 AND etat = \"En cours\" AND user_id =".$_SESSION["Users"]->id
         ));
-        if (!empty($d['caisse'])) {
-            $d['vente'] = $this->Comptabilite->find(array(
+        if (empty($d['caisseCheck'])) {
+            $d['caisse'] = $this->Comptabilite->findFirst(array(
                 //'fields' => 'produit.nom as nom',
-                'table' => 'vente',
-                'conditions' => array('caisse_id' => $d['caisse']->id, 'supprimer' => 0, 'prixPercu' => 0)
+                'table' => 'caisse',
+                'conditions' => "supprimer = 0 AND etat = \"Ouvert\""
             ));
-            $d['employe'] = $this->Comptabilite->findFirst(array(
-                'fields' => 'user.nom as nom',
-                'table' => 'employe, user',
-                'conditions' => array('employe.int' => $d['caisse']->user_id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
-            ));
+            if (!empty($d['caisse'])) {
+                $d['vente'] = $this->Comptabilite->find(array(
+                    //'fields' => 'produit.nom as nom',
+                    'table' => 'vente',
+                    'conditions' => array('caisse_id' => $d['caisse']->id, 'supprimer' => 0, 'prixPercu' => 0)
+                ));
+                //print_r($d['caisse']);
+                $d['employe'] = $this->Comptabilite->findFirst(array(
+                    'fields' => 'user.nom as nom',
+                    'table' => 'employe, user',
+                    'conditions' => array('employe.id' => $d['caisse']->user_id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+                ));
+
+            }
 
         }
+
         $this->set($d);
     }
 

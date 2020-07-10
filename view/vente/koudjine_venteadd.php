@@ -41,7 +41,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="panel-body panel-body-table">
 
                             <div class="">
-                                <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                            <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
                                     <thead>
                                         <tr>
                                             <th width="200">Nom</th>
@@ -53,7 +53,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                             <th width="100">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tab_Brecherche">
+                                    <tbody id="tab_Brecherche" >
 
                                     </tbody>
                                 </table>
@@ -145,7 +145,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 </div>
                                 <label class="col-md-2 control-label">Réduction:</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="reduction" readonly id="reduction_vente_client" value="0" />
+                                    <input type="text" class="form-control" name="reduction" readonly id="reduction_vente_client" value="0"  />
                                 </div>
                             </div>
                         </div>
@@ -180,7 +180,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="form-group">
                             <label class="col-md-2 control-label">Prescripteur:</label>
                             <div class="col-md-6">
-                                <select class="form-control selectpicker" id="select_vente_prescripteur">
+                                <select class="form-control selectpicker"  id="select_vente_prescripteur">
                                     <option value="0">Sélectionner Prescripteur</option>
                                     <?php
                                     foreach ($prescripteur as $k => $v) : ?>
@@ -217,7 +217,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Taux:</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" readonly name="<?php echo $_SESSION['Users']->faireReductionMax; ?>" id="taux" value="15" />
+                                    <input type="text" class="form-control" readonly name="<?php echo $_SESSION['Users']->faireReductionMax; ?>" id="taux" value="15"  />
                                 </div>
                             </div>
                         </div>
@@ -268,7 +268,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
             <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
                 <p>Réduction</p>
                 <p><span id="prixReduit">0</span> FCFA</p>
-            </div>
+            </div>  
         </div>
         <div style="display: flex;padding-top: 12px;flex-direction: row;width: 100%;justify-content: space-between;border-top-style: solid;border-top-width: 1px;">
             <p style="font-weight: 200;">Net à payer : </p>
@@ -276,8 +276,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
         </div>
 
         <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
-            <a onclick="valider_vente('1', 'Confirm')" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant" class="btn btn-primary" role="button" style="float: left; width: 40%;">Comptant</a>
-            <a onclick="valider_vente('2', 'Prep')" id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 40%;">Crédit</a>
+            <a onclick="valider_vente('1', 'Comptant')" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant"  class="btn btn-primary" role="button" style="float: left; width: 40%;">Comptant</a>
+            <a onclick="valider_vente('2', 'Crédit')"  id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 40%;">Crédit</a>
 
         </div>
 

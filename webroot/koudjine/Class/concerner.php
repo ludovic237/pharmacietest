@@ -187,10 +187,10 @@ class ConcernerManager
         return new Concerner($donnees);
 
     }
-    public function getList()
+    public function getList($id)
     {
         $concerners = array();
-        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 ORDER BY nouveau_info');
+        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND vente_id ='.$id);
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {

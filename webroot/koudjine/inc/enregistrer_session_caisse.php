@@ -9,24 +9,43 @@ $manager = new  CaisseManager($pdo);
 
 
 
-if (isset($_POST['id'])){ 
+if (isset($_POST['id'])){
 
-    $id=$_POST['id'];
-    $fermetureCaisse=$_POST['fermetureCaisse'];
-    $fondCaisse=$_POST['fondCaisse'];
-    //echo $id;
-    //$prod = new Departement();
-    if ($manager->existsId($id)) {
-        $caisse = $manager->getId($id);
+    if(isset($_POST['fondCaisse'])){
+        $id=$_POST['id'];
+        $fermetureCaisse=$_POST['fermetureCaisse'];
+        $fondCaisse=$_POST['fondCaisse'];
+        //echo $id;
+        //$prod = new Departement();
+        if ($manager->existsId($id)) {
+            $caisse = $manager->getId($id);
 
-        $caisse->setfermetureCaisse($fermetureCaisse);
-        $caisse->setfondCaisse($fondCaisse);
-        $manager->updateFermeCaisse($caisse);
+            $caisse->setfermetureCaisse($fermetureCaisse);
+            $caisse->setfondCaisseFerme($fondCaisse);
+            $caisse->setetat('Clot');
+            $manager->updateFermeCaisse($caisse);
+            echo 'ok passe';
+
+        }
+        else{
+            echo 'Pas de session ouverte';
+        }
+    }else{
+        $id=$_POST['id'];
+
+        //echo $id;
+        //$prod = new Departement();
+        if ($manager->existsId($id)) {
+            $caisse = $manager->getId($id);
+
+            $caisse->setetat('En cours');
+            $manager->updateFermeCaisse($caisse);
             echo 'ok';
 
-    }
-    else{
-        echo 'Pas de session ouverte';
+        }
+        else{
+            echo 'Pas de session ouverte';
+        }
     }
 
 }
@@ -47,7 +66,7 @@ else{
             'ouvertureCaisse' => $ouvertureCaisse,
             'session' => $session,
             'etat' => $etat,
-            'fondCaisse' => $fondCaisse,
+            'fondCaisseOuvert' => $fondCaisse,
         ));
         $manager->add($caisse);
         echo 'ok';

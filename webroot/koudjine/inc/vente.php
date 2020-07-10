@@ -35,6 +35,11 @@ if (isset($_POST['id'])){
 else{
         $idGen = genererID();
         $num = $manager->countMois();
+        if($etat == "Crédit"){
+            $caisse = null;
+        }else{
+            $caisse = $managerCa->get()->id();
+        }
         //echo $idGen;
     if($managerCa->get() != null){
 
@@ -51,7 +56,7 @@ else{
             'reference' => genererreference($num),
             'nouveau_info' => $nouveau,
             'reduction' => $prixr,
-            'caisse_id' => $managerCa->get()->id(),
+            'caisse_id' => $caisse,
             'supprimer' => 0
         ));
         $manager->add($vent);

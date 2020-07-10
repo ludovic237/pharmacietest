@@ -8,6 +8,10 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     $(".clientExistant").hide();
     $(".prescripteurExistant").hide();
 
+    $('#tab1 .montant').keyup(function (e) {
+        //alert('passe');
+        $('#tab1 .reste').val($('#tab1 .montant').val()-parseInt($('#facture_caisse').html()));
+    })
     $("#credit").hover(function () {
         netpayer = $("#netTotal").html();
         reduc = $("#prixReduit").html();
@@ -879,6 +883,88 @@ function valider_vente(type, etat) {
             }
         })
 
+    }
+
+
+}
+
+function valider_facture(typePaiement, onglet, caisse_id, imprimer){
+    var montantTtc = parseInt($('#facture_caisse').html());
+    var montantPercu = null;
+    if($('#'+onglet+' .montant').val() != ''){
+        //alert(caisse_id);
+        montantPercu = parseInt($('#'+onglet+' .montant').val());
+    }
+    var reste = parseInt($('#'+onglet+' .reste').val());
+    var vente_id = parseInt($('#fen_facture').attr("data"));
+    //alert(montantPercu);
+    //alert(reste);
+    if(montantPercu == null || montantPercu == 0 || reste < 0){
+        // vérifier qu'on a entré le montant perçu
+        $('#message-box-danger p').html('Veuillez Entrer un bon montant perçu !!!');
+        $("#message-box-danger").modal("show");
+        setTimeout(function () {
+            $("#message-box-danger").modal("hide");
+        }, 3000);
+    }
+    else{
+        //alert('valide');
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/valider_facture.php',
+            data: {
+                vente_id: vente_id,
+                montant: montantTtc,
+                montantPercu: montantPercu,
+                reste: reste,
+                typePaiement: typePaiement,
+                caisse_id: parseInt(caisse_id)
+            },
+            success: function (server_responce) {
+                alert(server_responce);
+                $('#tab_vente_caisse  tr').each(function(i){
+                    var id1 = $(this).attr("id");
+                    var qte;
+                    //alert(id1);
+
+
+                    $("#"+id1+" td").each(function(j){
+                        //alert($(this).html());
+                        if(j==2) {qte = parseInt($(this).html()); }
+
+
+                    });
+                    //alert('quantité : '+qte);
+                    $.ajax({
+                        type: "POST",
+                        url: "/pharmacietest/koudjine/inc/facture_modifier_quantite_vendu.php",
+                        data: {
+                            id: id1,
+                            qte: qte
+                        },
+                        success: function (server_responce) {
+                            alert(server_responce);
+                            rafraichir_vente(caisse_id);
+                            $('#'+onglet+' .montant').val('');
+                            $('#'+onglet+' .reste').val('');
+                            $('#tab_vente_caisse').empty();
+                            //var link = '/pharmacietest/users/logout';
+                            //window.location.href = link;
+                            /*if(data1.erreur == 'ok'){
+                                var link = '/pharmacietest/users/logout';
+                                //alert(link);
+                                window.location.href = link;
+                            }*/
+                        }
+                    })
+
+                });
+
+
+            }
+
+
+        })
     }
 
 
