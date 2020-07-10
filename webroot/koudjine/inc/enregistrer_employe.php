@@ -9,59 +9,59 @@ $manager = new EmployeManager($pdo);
 
 
 
-if (isset($_POST['int'])){
+if (isset($_POST['id'])){
 
-    $int=$_POST['int'];
+    $id=$_POST['id'];
     $identifiant=$_POST['identifiant'];
     $password=$_POST['password'];
-    $codebarreid=$_POST['codebarreid'];
+    $codebarre_id=$_POST['codebarre_id'];
     $type=$_POST['type'];
-    $userid=$_POST['userid'];
+    $user_id=$_POST['user_id'];
     $etat=$_POST['etat'];
-    $reduction=$_POST['reduction'];
-    //echo $int;
+    $faireReductionMax=$_POST['faireReductionMax'];
+    //echo $id;
     //$prod = new Departement();
     if ($manager->existsidentifiant($identifiant)) {
-        $prod = $manager->get($int);
+        $prod = $manager->get($id);
         //echo "Ce departement existe";
-        if($prod->int() == $int){
+        if($prod->id() == $id){
             $prod->setidentifiant($identifiant);
             $prod->setpassword($password);
             $prod->settype($type);
-            $prod->setfaireReductionMax($reduction);
+            $prod->setfaireReductionMax($faireReductionMax);
             $prod->setetat($etat);
-            $prod->setcodebarre_id($codebarreid);
-            $prod->setuser_id($userid);
+            $prod->setcodebarre_id($codebarre_id);
+            $prod->setuser_id($user_id);
             $manager->update($prod);
             echo 'ok';
         }
         else{
 
-            echo 'Ce password de produit existe déjà';
+            echo 'Ce password de produit existe déjà1';
 
         }
     }
     else{
-        $prod = $manager->get($int);
+        $prod = $manager->get($id);
         $prod->setidentifiant($identifiant);
             $prod->setpassword($password);
             $prod->settype($type);
-            $prod->setfaireReductionMax($reduction);
+            $prod->setfaireReductionMax($faireReductionMax);
             $prod->setetat($etat);
-            $prod->setcodebarre_id($codebarreid);
-            $prod->setuser_id($userid);
+            $prod->setcodebarre_id($codebarre_id);
+            $prod->setuser_id($user_id);
         $manager->update($prod);
         echo 'ok';
     }
 
 
 
-    //$sql = "UPDATE departement set password='".$password."',SIGLE='".$sigle."',DESCRIPTION='".$description."' WHERE DEPARTEMENT_int = '".$int."'";
+    //$sql = "UPDATE departement set password='".$password."',SIGLE='".$sigle."',DESCRIPTION='".$description."' WHERE DEPARTEMENT_id = '".$id."'";
     //$req = $pdo->exec($sql);
 }
 else{
-    /*if(isset($_POST['password'])&&isset($_POST['etat'])&&isset($_POST['reduction'])&&isset($_POST['etatmax'])&&isset($_POST['reduction'])){
-        $int_univ=$_POST['univint'];
+    /*if(isset($_POST['password'])&&isset($_POST['etat'])&&isset($_POST['faireReductionMax'])&&isset($_POST['etatmax'])&&isset($_POST['faireReductionMax'])){
+        $id_univ=$_POST['univid'];
         if($_POST['dated'] != null){
             $dated = DateTime::createFromFormat('d-m-Y', $_POST['dated']);
             $dated = $dated->format('Y-m-d');}
@@ -83,30 +83,30 @@ else{
 
     $identifiant=$_POST['identifiant'];
     $password=$_POST['password'];
-    $codebarreid=$_POST['codebarreid'];
+    $codebarre_id=$_POST['codebarre_id'];
     $type=$_POST['type'];
-    $userid=$_POST['userid'];
+    $user_id=$_POST['user_id'];
     $etat=$_POST['etat'];
-    $reduction=$_POST['reduction'];
+    $faireReductionMax=$_POST['faireReductionMax'];
 
 
 
     if(!$manager->existsidentifiant($identifiant)){
-        //$date = genererint();
+        //$date = genererid();
         //echo $datec;
         $employe = new Employe(array(
             'password' => $password,
             'identifiant' => $identifiant,
-            'codebarreid' => $codebarreid,
-            'codetype' => $type,
-            'codeuserid' => $userid,
+            'codebarre_id' => $codebarre_id,
+            'type' => $type,
+            'user_id' => $user_id,
             'etat' => $etat,
-            'reduction' => $reduction,
+            'faireReductionMax' => $faireReductionMax,
         ));
         $manager->add($employe);
         echo 'ok';
     }
-    else echo 'Ce password de produit existe déjà';
+    else echo 'Ce password de produit existe déjà2';
 
 
 

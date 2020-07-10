@@ -2,7 +2,7 @@
 
 class employe
 {
-    private $_int,
+    private $_id,
         $_identifiant,
         $_password,
         $_type,
@@ -29,9 +29,9 @@ class employe
     }
 
     // GETTERS
-    public function int()
+    public function id()
     {
-        return $this->_int;
+        return $this->_id;
     }
     public function identifiant()
     {
@@ -67,10 +67,10 @@ class employe
     }
 
     // SETTERS
-    public function setint($int)
+    public function setid($id)
     {
 
-        $this->_int = $int;
+        $this->_id = $id;
     }
     public function setidentifiant($id)
     {
@@ -130,24 +130,24 @@ class EmployeManager
     }
     public function add(Employe $employe)
     {
-        $q = $this->_db->prepare('INSERT INTO employe SET int = :int, identifiant = :identifiant, password = :password, type = :type, faireReductionMax = :faireReductionMax, taille = :taille, etat = :etat, codebarre_id = :codebarre_id, user_id = :user_id, supprimer=0');
-        $q->bindValue(':id', $employe->int(), PDO::PARAM_INT);
+        $q = $this->_db->prepare('INSERT INTO employe SET id = :id, identifiant = :identifiant, password = :password, type = :type, faireReductionMax = :faireReductionMax, etat = :etat, codebarre_id = :codebarre_id, user_id = :user_id, supprimer=0');
+        $q->bindValue(':id', $employe->id(), PDO::PARAM_INT);
         $q->bindValue(':identifiant', $employe->identifiant());
         $q->bindValue(':password', $employe->password());
         $q->bindValue(':type', $employe->type());
         $q->bindValue(':faireReductionMax', $employe->faireReductionMax());
         $q->bindValue(':etat', $employe->etat());
-        $q->bindValue(':codebarre_id', $employe->codebarre_id(), PDO::PARAM_INT);
+        $q->bindValue(':codebarre_id', $employe->codebarre_id());
         $q->bindValue(':user_id', $employe->user_id(), PDO::PARAM_INT);
         $q->execute();
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM employe WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM employe WHERE supprimer = 0 ')->fetchColumn();
     }
     public function delete(Employe $employe)
     {
-        $this->_db->exec('DELETE FROM employe WHERE id = ' . $employe->int());
+        $this->_db->exec('DELETE FROM employe WHERE id = ' . $employe->id());
     }
     public function existsidentifiant($info)
     {
@@ -204,8 +204,8 @@ class EmployeManager
     public function update(Employe $employe)
     {
 
-        $q = $this->_db->prepare('UPDATE employe SET identifiant = :identifiant, password = :password, type = :type, faireReductionMax = :faireReductionMax, taille = :taille, etat = :etat, codebarre_id = :codebarre_id, user_id = :user_id WHERE id = :id');
-        $q->bindValue(':int', $employe->int(), PDO::PARAM_INT);
+        $q = $this->_db->prepare('UPDATE employe SET identifiant = :identifiant, password = :password, type = :type, faireReductionMax = :faireReductionMax, etat = :etat, codebarre_id = :codebarre_id, user_id = :user_id WHERE id = :id');
+        $q->bindValue(':id', $employe->id(), PDO::PARAM_INT);
         $q->bindValue(':identifiant', $employe->identifiant());
         $q->bindValue(':password', $employe->password());
         $q->bindValue(':type', $employe->type());

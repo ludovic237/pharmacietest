@@ -161,7 +161,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 endforeach;
                                 ?>
                             </select>
-                        </div>
+                        </div>  
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Rayon:</label>

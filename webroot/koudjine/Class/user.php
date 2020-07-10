@@ -138,7 +138,7 @@ class UserManager
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM user WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM user WHERE supprimer = 0 ')->fetchColumn();
     }
     public function delete(User $user)
     {

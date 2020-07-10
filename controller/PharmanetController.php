@@ -56,7 +56,7 @@ class PharmanetController extends Controller
         $this->loadModel('Pharmanet');
 
         $d['pharmanet'] = $this->Pharmanet->find(array(
-            'fields' => 'employe.int as idemploye,employe.identifiant as identifiantemploye,employe.codebarre_id as codebarreidemploye,employe.user_id as useridemploye,employe.etat as etatemploye,employe.faireReductionMax as reductionemploye,employe.type as typeemploye',
+            'fields' => 'employe.id as idemploye,employe.identifiant as identifiantemploye,employe.codebarre_id as codebarreidemploye,employe.user_id as useridemploye,employe.etat as etatemploye,employe.faireReductionMax as reductionemploye,employe.type as typeemploye',
             'table' => 'employe',
 
         ));
@@ -70,6 +70,13 @@ class PharmanetController extends Controller
     function koudjine_employeadd($id = null)
     {
         $this->loadModel('Pharmanet');
+
+        $d['user'] = $this->Pharmanet->find(array(
+            //'fields' => 'nom',
+            'table' => 'user',
+            'order' => 'nom-ASC',
+            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+        ));
 
         if ($id != null) {
             //die('pass');
@@ -96,7 +103,7 @@ class PharmanetController extends Controller
         $this->loadModel('Pharmanet');
 
         $d['pharmanet'] = $this->Pharmanet->find(array(
-            'fields' => 'user.int as iduser,user.identifiant as identifiantuser,user.codebarre_id as codebarreiduser,user.user_id as useriduser,user.etat as etatuser,user.faireReductionMax as reductionuser,user.type as typeuser',
+            'fields' => 'user.id as iduser,user.nom as nomuser,user.prenom as prenomuser,user.telephone as telephoneuser,user.email as emailuser,user.fonction as fonctionuser,user.reduction as reductionuser',
             'table' => 'user',
 
         ));

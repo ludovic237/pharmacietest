@@ -58,7 +58,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_user('<?php echo $position; ?>',
              '<?php if ($position == 'Modifier')  echo $user->id;
                 else echo ""; ?>');">
-                <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouvelle employé</h4>
+                <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouvelle utilisateur</h4>
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">nom:</label>
@@ -110,8 +110,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </div>
                     </div>
                 </div>
-                
-
                     <div class="btn-group pull-right">
                         <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
                         <button class="btn btn-success" type="submit">Enregistrer</button>

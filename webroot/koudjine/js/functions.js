@@ -528,7 +528,9 @@ function ajouter_produit(id) {
 
     }
 
-}function valider_vente(type,etat) {
+}
+
+function valider_vente(type,etat) {
     var nouveau = "";
     var idClient;
     var idPrescripteur;
@@ -670,7 +672,167 @@ function ajouter_produit(id) {
 
 }
 
+function enregistrer_user(option, id) {
+    // Informations université
+    var nom = $('#nom').val();
+    var prenom = $('#prenom').val();
+    var email = $('#email').val();
+    var fonction = $('#fonction').val();
+    var telephone = $('#telephone').val();
+    //alert(type);
+    var reduction = $('#reduction').val();
+    var reductionMax = $('#reductionMax').val();
+    /*$("#magproduit").change(function () {
+        v = $('#magproduit option:selected').val();
+        alert(v);
+    })*/
+    //.trigger('change');
+    //alert(mag);
 
+    if (option == 'Ajouter') {
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_user.php', 
+            data: {
+                nom: nom,
+                prenom: prenom,
+                email: email,
+                fonction: fonction,
+                telephone: telephone,
+                reduction: reduction,
+                reductionMax: reductionMax
+            },
+            success: function (data) {
+
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/pharmanet/user/';
+                    window.location.href = link;
+                }
+                else {
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 13000);
+                }
+            }
+        });
+    }
+    else {
+        //alert('test');
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_user.php',
+            data: {
+                nom: nom,
+                prenom: prenom,
+                email: email,
+                fonction: fonction,
+                telephone: telephone,
+                reduction: reduction,
+                reductionMax: reductionMax,
+                id: id
+            },
+            success: function (data) {
+                //alert(data.erreur);
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/pharmanet/useradd/' + id;
+                    window.location.href = link;
+                }
+                else {
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 93000);
+
+                }
+            }
+        });
+    }
+
+}
+
+function enregistrer_employe(option, id) {
+    // Informations université
+    var identifiant = $('#identifiant').val();
+    var password = $('#password').val();
+    var type = $('#type').val();
+    var etat = $('#etat').val();
+    var user_id = $('#user_id').val();
+    var codebarre_id = $('#codebarre_id').val();
+    //alert(type);
+    var faireReductionMax = $('#faireReductionMax').val();
+    /*$("#magproduit").change(function () {
+        v = $('#magproduit option:selected').val();
+        alert(v);
+    })*/
+    //.trigger('change');
+    //alert(mag);
+
+    if (option == 'Ajouter') {
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_employe.php', 
+            data: {
+                identifiant: identifiant,
+                password: password,
+                type: type,
+                etat: etat,
+                user_id: user_id,
+                codebarre_id: codebarre_id,
+                faireReductionMax: faireReductionMax,
+            },
+            success: function (data) {
+
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/pharmanet/employe/';
+                    window.location.href = link;
+                }
+                else {
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 13000);
+                }
+            }
+        });
+    }
+    else {
+        //alert('test');
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_employe.php',
+            data: {
+                identifiant: identifiant,
+                password: password,
+                type: type,
+                etat: etat,
+                user_id: user_id,
+                codebarre_id: codebarre_id,
+                faireReductionMax: faireReductionMax,
+                id: id
+            },
+            success: function (data) {
+                //alert(data.erreur);
+                if (data == 'ok') {
+                    var link = '/pharmacietest/bouwou/pharmanet/employeadd/' + id;
+                    window.location.href = link;
+                }
+                else {
+                    $('#message-box-danger p').html(data);
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 93000);
+
+                }
+            }
+        });
+    }
+
+}
 
 function enregistrer_produit(option, id) {
     // Informations université
@@ -1057,7 +1219,6 @@ function enregistrer_client(option, id) {
 
 }
 
-
 function enregistrer_codepostal(option, id) {
     // Informations université
     var nom = $('#nom').val();
@@ -1116,7 +1277,6 @@ function enregistrer_codepostal(option, id) {
     }
 
 }
-
 
 function enregistrer_fabriquant(option, id) {
     // Informations université
@@ -1186,7 +1346,6 @@ function enregistrer_fabriquant(option, id) {
 
 }
 
-
 function enregistrer_forme(option, id) {
     // Informations université
     var nom = $('#nom').val();
@@ -1245,7 +1404,6 @@ function enregistrer_forme(option, id) {
     }
 
 }
-
 
 function enregistrer_fournisseur(option, id) {
     // Informations université
@@ -1318,7 +1476,6 @@ function enregistrer_fournisseur(option, id) {
 
 }
 
-
 function enregistrer_magasin(option, id) {
     // Informations université
     var nom = $('#nom').val();
@@ -1376,7 +1533,6 @@ function enregistrer_magasin(option, id) {
     }
 
 }
-
 
 function enregistrer_prescripteur(option, id) {
     // Informations université
@@ -1442,7 +1598,6 @@ function enregistrer_prescripteur(option, id) {
     }
 
 }
-
 
 function enregistrer_ville(option, id) {
     // Informations université

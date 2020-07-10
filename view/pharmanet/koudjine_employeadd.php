@@ -1,7 +1,7 @@
 <?php
 
 $title_for_layout = ' Admin -' . 'Pharmanet';
-$page_for_layout = ($position == 'Ajouter') ? 'Ajouter une produit' : 'Modifier un produit';
+$page_for_layout = ($position == 'Ajouter') ? 'Ajouter une employé' : 'Modifier un employé';
 
 
 if ($this->request->action == "index") {
@@ -91,14 +91,27 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">User id:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="userid" id="userid" value="<?php if ($position == 'Modifier') echo $employe->userid; ?>" placeholder="" />
+                            <select class="selectpicker form-control input-xlarge " name="user_id" id="user_id">
+                                <?php
+                                foreach ($user as $k => $v) : ?>
+                                    <option <?php if ($position == 'Modifier') if ($v->id == $employe->user_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Code barre id:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="codebarre_id" id="codebarre_id" value="<?php if ($position == 'Modifier') echo $employe->codebarre_id; ?>" placeholder="" />
                             <span class="help-block">exemple: UBI 001</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Réduction:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $employe->reduction; ?>" name="reduction" id="reduction" placeholder="" />
+                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $employe->faireReductionMax; ?>" name="faireReductionMax" id="faireReductionMax" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
