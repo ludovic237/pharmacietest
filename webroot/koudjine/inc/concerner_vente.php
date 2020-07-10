@@ -13,8 +13,8 @@ $managerEn = new En_rayonManager($pdo);
 $managerCo = new ConcernerManager($pdo);
 $managerPr = new ProduitManager($pdo);
 
+$ide = substr($_POST['ide'], 1);
 $idv=$_POST['idv'];
-$ide=$_POST['ide'];
 $qte=$_POST['qte'];
 $reduction=$_POST['reduction'];
 $prixu=$_POST['prixu'];
@@ -29,46 +29,22 @@ if (isset($_POST['id'])){
 else{
 
 
-    //echo $qte;
+    //on verifie qu'il existe deja la vente dans la BD et on verifie aussi si la ligne à enregistrer n'a pas deja été faite
     if($manager->existsId($idv) && !$managerCo->existsEn_rayonId($idv, $ide)){
         echo "passe \n";
         //echo $managerPr->getStock($managerEn->get($ide)->produit_id(),$qte)->stock();
 
-        if($managerPr->getStock($managerEn->get($ide)->produit_id(),$qte)->stock() >= $qte){
-            echo "repasse";
-            $produits = array();
-            $produits = $managerEn->getList($managerEn->get($ide)->produit_id());
-            foreach ($produits as $k => $v) :
-                if($qte > $v->quantiteRestante()){
-                    $conc = new Concerner(array(
-                        'vente_id' => $idv,
-                        'en_rayon_id' => $v->id(),
-                        'produit_id' => null,
-                        'prixUnit' => $prixu,
-                        'quantite' => $v->quantiteRestante(),
-                        'reduction' => $reduction,
-                        'supprimer' => 0
-                    ));
-                    $managerCo->add($conc);
-                    $qte = $qte - $v->quantiteRestante();
-                    echo $qte;
-                }
-                else{
-                    $conc = new Concerner(array(
-                        'vente_id' => $idv,
-                        'en_rayon_id' => $v->id(),
-                        'produit_id' => null,
-                        'prixUnit' => $prixu,
-                        'quantite' => $qte,
-                        'reduction' => $reduction,
-                        'supprimer' => 0
-                    ));
-                    $managerCo->add($conc);
-                    echo $qte;
-                    break;
-                }
-            endforeach;
-        }
+        $conc = new Concerner(array(
+            'vente_id' => $idv,
+            'en_rayon_id' => $ide,
+            'produit_id' => null,
+            'prixUnit' => $prixu,
+            'quantite' => $qte,
+            'reduction' => $reduction,
+            'supprimer' => 0
+        ));
+        $managerCo->add($conc);
+
 
         $donnees = array('erreur' =>'ok');
         echo json_encode($donnees);

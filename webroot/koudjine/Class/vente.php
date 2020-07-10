@@ -290,7 +290,18 @@ class VenteManager
     public function getList()
     {
         $ventes = array();
-        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 ORDER BY nouveau_info');
+        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 ORDER BY dateVente');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $ventes[] = new Vente($donnees);
+        }
+        return $ventes;
+    }
+    public function getListCaisse($id)
+    {
+        $ventes = array();
+        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 AND caisse_id = '.$id.' AND prixPercu = 0 ORDER BY dateVente');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {

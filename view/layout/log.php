@@ -14,6 +14,11 @@
     <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" id="theme" href="<?php echo BASE_URL.'/koudjine/css/theme-default.css'; ?>"/>
     <!-- EOF CSS INCLUDE -->
+    <script>
+        window.onload = function () {
+            document.getElementById("inputbarecode").focus();
+        };
+    </script>
 </head>
 <body>
 

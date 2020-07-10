@@ -12,67 +12,9 @@ if ($this->request->action == "index") {
 $position_for_layout = '<li><a href="#">Vente</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/fileinput/fileinput.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/jquery.noty.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/themes/default.js"></script>
-<script type="text/javascript">
-                function notyConfirm(){
-                    noty({
-                        text: \'Do you want to continue?\',
-                        layout: \'topRight\',
-                        buttons: [
-                                {addClass: \'btn btn-success btn-clean\', text: \'Ok\', onClick: function($noty) {
-                                    $noty.close();
-                                    noty({text: \'You clicked "Ok" button\', layout: \'topRight\', type: \'success\'});
-                                }
-                                },
-                                {addClass: \'btn btn-danger btn-clean\', text: \'Cancel\', onClick: function($noty) {
-                                    $noty.close();
-                                    noty({text: \'You clicked "Cancel" button\', layout: \'topRight\', type: \'error\'});
-                                    }
-                                }
-                            ]
-                    })
-                }
-            </script>
-<script type="text/javascript">
-            var  = $("#").validate({
-                ignore: [],
-                rules: {
-                    nom: {
-                        required: true,
-                        minlength: 2,
-                        maxlength: 50
-                    },
-                    region: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 20
-                    },
-                    telephone_1: {
-                        required: true
-                    },
-                    ville: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 100
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    statut: {
-                        required: true
-                    },
-                    "type[]": "required"
-
-                }
-            });
-
-        </script>
         <script>
                                         window.onload = function () {
                                             document.getElementById("recherche").focus();
@@ -144,7 +86,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <th width="100">Prix Total</th>
                                 <th width="100">Reduction</th>
                                 <th width="200">Date de Livraison</th>
-                                <th width="100">Stock après vente</th>
+                                <th width="100">Stock total</th>
                                 <th width="100">Action</th>
                             </tr>
                         </thead>
@@ -348,3 +290,44 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
 ">Paiement avec réduction </a>
     </div> -->
 </div>
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewVente" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="">
+                            <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-striped table-actions">
+                                <thead>
+                                <tr>
+                                    <th width="200">Nom</th>
+                                    <th width="100">Prix Unitaire</th>
+                                    <th width="100">Quantité</th>
+                                    <th width="100">Quantité en Stock</th>
+                                    <th width="100">Stock générale</th>
+                                    <th width="100">Reduction</th>
+                                    <th width="200">Date de Livraison</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tab_Bload_produit" >
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="ajouter_produit();" >Valider</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->

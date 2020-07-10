@@ -62,6 +62,25 @@ class ComptabiliteController extends Controller
     function koudjine_caisse()
     {
         $this->loadModel('Comptabilite');
+        $d['caisse'] = $this->Comptabilite->findFirst(array(
+            //'fields' => 'produit.nom as nom',
+            'table' => 'caisse',
+            'conditions' => "supprimer = 0 AND etat = \"Ouvert\""
+        ));
+        if (!empty($d['caisse'])) {
+            $d['vente'] = $this->Comptabilite->find(array(
+                //'fields' => 'produit.nom as nom',
+                'table' => 'vente',
+                'conditions' => array('caisse_id' => $d['caisse']->id, 'supprimer' => 0, 'prixPercu' => 0)
+            ));
+            $d['employe'] = $this->Comptabilite->findFirst(array(
+                'fields' => 'user.nom as nom',
+                'table' => 'employe, user',
+                'conditions' => array('employe.int' => $d['caisse']->user_id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+            ));
+
+        }
+        $this->set($d);
     }
 
     function koudjine_entre($id_prod=null,$stock=null,$perime=null)
@@ -90,7 +109,7 @@ class ComptabiliteController extends Controller
                 if($perime == null) {
                     if($stock == 1){
                         $d['catalogue'] = $this->Comptabilite->find(array(
-                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
                             'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
@@ -98,7 +117,7 @@ class ComptabiliteController extends Controller
                     }
                     else{
                         $d['catalogue'] = $this->Comptabilite->find(array(
-                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
                             'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
@@ -109,7 +128,7 @@ class ComptabiliteController extends Controller
                     if($perime == 1){
                         if($stock == 1){
                             $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
@@ -117,7 +136,7 @@ class ComptabiliteController extends Controller
                         }
                         else{
                             $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
@@ -127,7 +146,7 @@ class ComptabiliteController extends Controller
                     else{
                         if($stock == 1){
                             $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
@@ -135,7 +154,7 @@ class ComptabiliteController extends Controller
                         }
                         else{
                             $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
@@ -147,7 +166,7 @@ class ComptabiliteController extends Controller
             }else{
                 if($perime == null) {
                     $d['catalogue'] = $this->Comptabilite->find(array(
-                        'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                        'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                         'table' => 'en_rayon,produit,fournisseur',
                         'order' => 'dateLivraison-ASC',
                         'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
@@ -155,7 +174,7 @@ class ComptabiliteController extends Controller
                 }else{
                     if($perime == 1){
                             $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
@@ -163,7 +182,7 @@ class ComptabiliteController extends Controller
                     }
                     else{
                             $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
@@ -179,7 +198,7 @@ class ComptabiliteController extends Controller
                 if($perime == null) {
                     if($stock == 1){
                         $d['catalogue'] = $this->Comptabilite->find(array(
-                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
                             'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
@@ -187,7 +206,7 @@ class ComptabiliteController extends Controller
                     }
                     else{
                         $d['catalogue'] = $this->Comptabilite->find(array(
-                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
                             'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
@@ -198,7 +217,7 @@ class ComptabiliteController extends Controller
                     if($perime == 1){
                         if($stock == 1){
                             $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
@@ -206,7 +225,7 @@ class ComptabiliteController extends Controller
                         }
                         else{
                             $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
@@ -216,7 +235,7 @@ class ComptabiliteController extends Controller
                     else{
                         if($stock == 1){
                             $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
@@ -224,7 +243,7 @@ class ComptabiliteController extends Controller
                         }
                         else{
                             $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
@@ -236,7 +255,7 @@ class ComptabiliteController extends Controller
             }else{
                 if($perime == null) {
                     $d['catalogue'] = $this->Comptabilite->find(array(
-                        'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                        'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                         'table' => 'en_rayon,produit,fournisseur',
                         'order' => 'dateLivraison-ASC',
                         'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
@@ -244,7 +263,7 @@ class ComptabiliteController extends Controller
                 }else{
                     if($perime == 1){
                         $d['catalogue'] = $this->Comptabilite->find(array(
-                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
                             'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
@@ -252,7 +271,7 @@ class ComptabiliteController extends Controller
                     }
                     else{
                         $d['catalogue'] = $this->Comptabilite->find(array(
-                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction',
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
                             'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"

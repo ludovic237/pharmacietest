@@ -9,12 +9,20 @@ class UsersController extends Controller
         //debug($this->request->data);
         if($this->request->data){
             $data = $this->request->data;
-            $data->password = sha1($data->password);
-            $this->loadModel('Users');
-            $user = $this->Users->findFirst(array(
-                'conditions' => array('identifiant' => '"'.$data->username.'"', 'password' => '"'.$data->password.'"'),
-                'table' => 'employe'
-            ));
+            if($data->barecode != ''){
+                $this->loadModel('Users');
+                $user = $this->Users->findFirst(array(
+                    'conditions' => array('codebarre_id' => '"'.$data->barecode.'"'),
+                    'table' => 'employe'
+                ));
+            }else{
+                $data->password = sha1($data->password);
+                $this->loadModel('Users');
+                $user = $this->Users->findFirst(array(
+                    'conditions' => array('identifiant' => '"'.$data->username.'"', 'password' => '"'.$data->password.'"'),
+                    'table' => 'employe'
+                ));
+            }
             if(!empty($user)){
                 //die('pass');
                 $this->Session->write('Users',$user);
@@ -22,11 +30,23 @@ class UsersController extends Controller
                 $data->password = '';
 
             if($this->Session->isLogged()){
-                if($this->Session->user('type') == 'Administrateur'||$this->Session->user('type') == 'Vendeur'||$this->Session->user('type') == 'Gestionnaire'||$this->Session->user('type') == 'Caissier'){
+                if($this->Session->user('type') == 'Administrateur'||$this->Session->user('type') == 'Gestionnaire'){
+                    if($data->statut == '1'){
+                        $this->redirect('bouwou/vente/venteadd');
+                    }elseif($data->statut == '2'){
+                        $this->redirect('bouwou/comptabilite/caisse');
+                    }
+                    else
                     $this->redirect('bouwou/home');
                     //print_r($_SESSION['Users']);
                 }
-                else{
+                elseif($this->Session->user('type') == 'Vendeur' || $data->statut == '1'){
+                    $this->redirect('bouwou/vente/venteadd');
+                    //print_r($_SESSION['Users']);
+                }elseif($this->Session->user('type') == 'Caissier' || $data->statut == '2'){
+                    $this->redirect('bouwou/comptabilite/caisse');
+                    //print_r($_SESSION['Users']);
+                }else{
                     $this->redirect('users/login');
                     //die('pass');
                 }
