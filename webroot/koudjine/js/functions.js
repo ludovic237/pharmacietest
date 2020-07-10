@@ -390,6 +390,178 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 
     });
 
+     $("#recherches").keyup(function (event) {
+        var prixTotal = 0;
+        var reduction = 0;
+        /*var rowCount = $('#tab_generale_vente >tbody >tr').length;
+        if(rowCount == 0){
+            //alert("vide");
+            $('#prixTotal').html(0);
+            $('#prixReduit').html(0);
+        }
+        else{
+            //alert(" ne vide pas");
+        }*/
+        if (event.keyCode == 13) {
+            var recherche = $(this).val();
+            //$("#resultat ul").empty();
+            recherche = $.trim(recherche);
+            if (recherche.length > 1) {
+                //alert('yes');
+                $.ajax({
+                    type: "GET",
+                    url: "/pharmacietest/koudjine/inc/result1.php",
+                    data: {
+                        motclef: $(this).val()
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        //alert(data);
+                        if (data.erreur == 'non') {
+                            var action = 0;
+                            $('#tab_vente  tr').each(function (i) {
+                                var id1 = $(this).attr("id");
+                                var prix, qte;
+                                if (id1 == recherche) {
+                                    action = 1;
+                                    $("#" + id1 + " td").each(function (j) {
+                                        //alert($(this).html());
+                                        if (j == 2) { qte = parseInt($(this).html()) + 1; }
+                                        if (j == 6) {
+                                            var stock = parseInt($(this).html());
+                                            if (stock == 0) {
+                                                alert("Quantité en stock pas suffisante pour cette opération ");
+                                            } else {
+                                                $("#" + id1 + " td").each(function (k) {
+                                                    //alert($(this).html());
+                                                    if (k == 1) { prix = parseInt($(this).html()); }
+                                                    if (k == 2) { $(this).html(qte); }
+                                                    if (k == 3) { $(this).html((qte * prix)); }
+
+                                                });
+                                                $(this).html((stock - 1));
+                                            }
+                                        }
+
+                                    });
+                                }
+
+                            });
+                            if (action == 0) {
+                                var cat = '<tr id="' + recherche + '">'
+                                    + ' <td><strong>' + data.nom + '</strong></td>'
+                                    + '<td>' + data.prix + '</td>'
+                                    + '<td>' + 1 + '</td>'
+                                    + '<td>' + data.prix + '</td>'
+                                    + '<td data ="' + data.reduction + '">' + data.reduction + '</td>'
+                                    + '<td>' + data.datel + '</td>'
+                                    + '<td>' + data.stock + '</td>'
+                                    + '<td>'
+                                    + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + recherche + '\');"><span class="fa fa-times"></span></button>'
+                                    + '</td>'
+                                    + '</tr>';
+                                $('#tab_vente').prepend(cat);
+                            }
+
+                            prixTotal = 0;
+                            var prixReduit = 0;
+
+                            $('#tab_vente  tr').each(function (i) {
+                                var id1 = $(this).attr("id");
+                                var prix, qte;
+                                //alert(id1);
+
+                                $("#" + id1 + " td").each(function (j) {
+                                    //alert($(this).html());
+                                    if (j == 1) { prix = parseInt($(this).html()); }
+                                    if (j == 2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix * qte); }
+                                    if (j == 4) {
+                                        var reduction = parseInt($(this).attr("data"));
+                                        if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
+                                            reduction = 0;
+                                        } else {
+                                            if ($("#select_vente_client option:selected").attr("name") >= reduction) {
+                                                //reduction = reduction;
+
+                                            }
+                                            else {
+                                                reduction = parseInt($("#select_vente_client option:selected").attr("name"));
+                                            }
+                                        }
+
+                                        prixReduit = prixReduit + ((prix * qte) * reduction / 100);
+                                    }
+
+                                });
+
+                            });
+                            $('#recherche').val("");
+                            $("#tab_Grecherche").hide();
+                            $('#prixTotal').html(prixTotal);
+                            $('#prixReduit').html(prixReduit);
+                            $('#netTotal').html((prixTotal - prixReduit));
+
+                            // on verifie si le taux est coché, si oui on le décoche en chargeant le prix réduit des produits
+                            if ($("#check_reductionGenerale").is(":checked")) {
+                                $('#check_reductionGenerale').prop("checked", false);
+                            }
+                            // on vérifie si un utilisateur est sélectionné
+                            /*if($("#select_vente_client").val() != 0){
+                                $('#recherche').val("");
+                                var prixTotal1 = parseInt($('#prixTotal').html()) + parseInt(prixTotal);
+                                $('#prixTotal').html(prixTotal1);
+                                var prixReduit = parseInt($('#prixReduit').html()) + (parseInt(prixTotal) - (parseInt(prixTotal) * $("#select_vente_client option:selected").attr("name") / 100));
+                                $('#prixReduit').html(prixReduit);
+                                prixReduit = parseInt($('#prixReduit').html()) + (parseInt(prixTotal) - (parseInt(prixTotal) * reduction / 100));
+                                $(".option_nouveauClient").val(prixReduit);
+                            }
+                            else{
+                                $('#recherche').val("");
+                                var prixTotal1 = parseInt($('#prixTotal').html()) + parseInt(prixTotal);
+                                $('#prixTotal').html(prixTotal1);
+                                var prixReduit = parseInt($(".option_nouveauClient").val()) + (parseInt(prixTotal) - (parseInt(prixTotal) * reduction / 100));
+                                $('#prixReduit').html(prixReduit);
+                                $(".option_nouveauClient").val(prixReduit);
+                                //alert($(".option_nouveauClient").val());
+                            }*/
+                        }
+                        else {
+                            $('#message-box-danger p').html(data.erreur);
+                            $("#message-box-danger").modal("show");
+                            setTimeout(function () {
+                                $("#message-box-danger").modal("hide");
+                            }, 3000);
+                        }
+
+
+                    }
+                })
+            } else {
+                //$("#resultat ul").empty();
+            }
+        }
+        else {
+            var recherche = $(this).val();
+            recherche = $.trim(recherche);
+            var data = 'motclef1=' + recherche;
+            if (recherche.length > 1) {
+                //alert('yes');
+                $.ajax({
+                    type: "GET",
+                    url: "/pharmacietest/koudjine/inc/result.php",
+                    data: data,
+                    success: function (server_responce) {
+                        $("#tab_Grecherche").show();
+                        $("#tab_Brecherche").html(server_responce).show();
+                        //alert(server_responce);
+                    }
+                })
+            } else {
+                $("#tab_Grecherche").hide();
+            }
+        }
+
+    });
 });
 // Ajax
 // Fonctions PHARMACIE

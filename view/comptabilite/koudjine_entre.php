@@ -32,7 +32,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;margin-bottom:0px">
                 <label class="col-md-2 col-xs-12 control-label" style="margin-right: 30px;width: 150px;">Selectionner un produit:</label>
                 <div class="col-md-8 col-xs-12 " style="display: flex;flex:1;margin-right: 30px;flex-direction:column">
-                    <input type="text" class="form-control col-md-4" name="nom" id="recherche" value="" placeholder="Médicaments">
+                    <input type="text" class="form-control col-md-4" name="nom" id="recherches" value="" placeholder="Médicaments">
                     <div>
 
                         <div class="panel-body panel-body-table">

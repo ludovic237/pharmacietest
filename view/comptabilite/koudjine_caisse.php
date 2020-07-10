@@ -377,33 +377,33 @@
                                                        </thead>
                                                        <tbody>
                                                             <tr>
-                                                                 <td><input type="number" class="form-control argent x" value="0" id="argent_1" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_1" placeholder=""></td>
                                                                  <td>500</td>
-                                                                 <td><input type="number" class="form-control argent x" value="0" id="argent_2" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_2" placeholder=""></td>
                                                                  <td>10000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td><input type="number" class="form-control argent x" value="0" id="argent_3" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_3" placeholder=""></td>
                                                                  <td>100</td>
-                                                                 <td><input type="number" class="form-control argent x" value="0" id="argent_4" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_4" placeholder=""></td>
                                                                  <td>5000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td><input type="number" class="form-control argent x" value="0" id="argent_5" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_5" placeholder=""></td>
                                                                  <td>50</td>
-                                                                 <td><input type="number" class="form-control argent x" value="0" id="argent_6" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_6" placeholder=""></td>
                                                                  <td>2000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td><input type="number" class="form-control argent x" value="0" id="argent_7" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_7" placeholder=""></td>
                                                                  <td>25</td>
-                                                                 <td><input type="number" class="form-control argent x" value="0" id="argent_8" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_8" placeholder=""></td>
                                                                  <td>1000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td><input type="number" class="form-control argent x" value="0" id="argent_9" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_9" placeholder=""></td>
                                                                  <td>10</td>
-                                                                 <td><input type="number" class="form-control argent x" value="0" id="argent_10" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_10" placeholder=""></td>
                                                                  <td>500</td>
                                                             </tr>
                                                             <tr>
@@ -486,33 +486,33 @@
                                                        </thead>
                                                        <tbody>
                                                             <tr>
-                                                                 <td><input type="number" class="form-control fargent x" value="0" id="fargent_1" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_1" placeholder=""></td>
                                                                  <td>500</td>
-                                                                 <td><input type="number" class="form-control fargent x" value="0" id="fargent_2" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_2" placeholder=""></td>
                                                                  <td>10000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td><input type="number" class="form-control fargent x" value="0" id="fargent_3" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_3" placeholder=""></td>
                                                                  <td>100</td>
-                                                                 <td><input type="number" class="form-control fargent x" value="0" id="fargent_4" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_4" placeholder=""></td>
                                                                  <td>5000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td><input type="number" class="form-control fargent x" value="0" id="fargent_5" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_5" placeholder=""></td>
                                                                  <td>50</td>
-                                                                 <td><input type="number" class="form-control fargent x" value="0" id="fargent_6" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_6" placeholder=""></td>
                                                                  <td>2000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td><input type="number" class="form-control fargent x" value="0" id="fargent_7" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_7" placeholder=""></td>
                                                                  <td>25</td>
-                                                                 <td><input type="number" class="form-control fargent x" value="0" id="fargent_8" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_8" placeholder=""></td>
                                                                  <td>1000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td><input type="number" class="form-control fargent x" value="0" id="fargent_9" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_9" placeholder=""></td>
                                                                  <td>10</td>
-                                                                 <td><input type="number" class="form-control fargent x" value="0" id="fargent_10" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_10" placeholder=""></td>
                                                                  <td>500</td>
                                                             </tr>
                                                             <tr>
