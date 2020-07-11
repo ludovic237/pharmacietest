@@ -1,7 +1,7 @@
 <!-- <?php
 
      $title_for_layout = ' Admin -' . 'Comptabilite';
-     $page_for_layout = 'Caisse ouverte par : '.$employe->nom;
+     $page_for_layout = 'Caisse ouverte par : ' . $employe->nom;
      $action_fermeture = (isset($caisse)) ? $caisse : $caisseCheck;
      //if(isset($employe)) echo 'passe';
 
@@ -14,12 +14,12 @@
      $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>';
-     if(isset($caisse) && $caisse == null){
-         $script_for_layout = $script_for_layout.'<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisse").modal("show"); });</script>';
+     if (isset($caisse) && $caisse == null) {
+          $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisse").modal("show"); });</script>';
      }
-if(isset($caisseCheck) && $caisseCheck != null){
-    $script_for_layout = $script_for_layout.'<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisseFermer").modal("show"); });</script>';
-}
+     if (isset($caisseCheck) && $caisseCheck != null) {
+          $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisseFermer").modal("show"); });</script>';
+     }
      ?> -->
 
 
@@ -35,7 +35,7 @@ if(isset($caisseCheck) && $caisseCheck != null){
                          <div style="justify-content:space-evenly;display:flex; margin-bottom: 10px;">
                               <button class="btn btn-primary  pull-right" data="" id="" onclick="close_caisse_row()">Fermer caisse</button>
 
-                              <button class="btn btn-primary  pull-right"  data="" id="" onclick="rafraichir_vente('<?php echo $caisse->id; ?>')">Rafraichir</button>
+                              <button class="btn btn-primary  pull-right" data="" id="" onclick="rafraichir_vente('<?php echo $caisse->id; ?>')">Rafraichir</button>
                          </div>
                          <table class="table   table-bordered table-striped table-actions" id="">
                               <thead>
@@ -51,26 +51,29 @@ if(isset($caisseCheck) && $caisseCheck != null){
                                    </tr>
                               </thead>
                               <tbody id="tab_caisse">
-                              <?php if(isset($vente)){ foreach ($vente as $k => $v) : ?>
-                                  <tr id="<?php echo $v->id; ?>">
-                                      <td><strong class='prixtotal'><?php echo $v->prixTotal; ?></strong></td>
-                                      <td><?php echo $v->reduction; ?></td>
-                                      <td><?php echo $v->reference; ?></td>
-                                      <td><?php echo $v->nouveau_info; ?></td>
-                                      <td><?php //echo $v->nouveau_info; ?></td>
-                                      <td>
-                                          <?php echo $v->commentaire; ?>
-                                      </td>
-                                      <td>
-                                          <?php echo $v->dateVente; ?>
-                                      </td>
-                                      <td>
-                                          <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
-                                              Charger
-                                          </button>
-                                      </td>
-                                  </tr>
-                              <?php endforeach; } ?>
+                                   <?php if (isset($vente)) {
+                                        foreach ($vente as $k => $v) : ?>
+                                             <tr id="<?php echo $v->id; ?>">
+                                                  <td><strong class='prixtotal'><?php echo $v->prixTotal; ?></strong></td>
+                                                  <td><?php echo $v->reduction; ?></td>
+                                                  <td><?php echo $v->reference; ?></td>
+                                                  <td><?php echo $v->nouveau_info; ?></td>
+                                                  <td><?php //echo $v->nouveau_info; 
+                                                       ?></td>
+                                                  <td>
+                                                       <?php echo $v->commentaire; ?>
+                                                  </td>
+                                                  <td>
+                                                       <?php echo $v->dateVente; ?>
+                                                  </td>
+                                                  <td>
+                                                       <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                                                            Charger
+                                                       </button>
+                                                  </td>
+                                             </tr>
+                                   <?php endforeach;
+                                   } ?>
                               </tbody>
                          </table>
                     </div>
@@ -124,28 +127,28 @@ if(isset($caisseCheck) && $caisseCheck != null){
                                    <div class="tab-pane panel-body active" id="tab1">
                                         <div class="block">
                                              <!-- <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau entrée</h4> -->
-                                                  <div class="panel-body">
+                                             <div class="panel-body">
 
-                                                       <div class="form-group row">
-                                                            <label class="col-md-3 control-label">Montant en caisse:</label>
-                                                            <div class="col-md-9">
-                                                                 <input type="number" class="form-control montant" value=""  placeholder="" />
-                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
-                                                            </div>
-                                                       </div>
-                                                       <div class="form-group row">
-                                                            <label class="col-md-3 control-label">Rendu</label>
-                                                            <div class="col-md-9">
-                                                                 <input type="number" disabled class="form-control reste" value="" placeholder="" />
-                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
-                                                            </div>
-                                                       </div>
-                                                       <div class="btn-group pull-right">
-                                                            <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
-                                                            <button class="btn btn-success"  style="margin-right: 20px" onclick="valider_facture('Espèce','tab1', '<?php echo $action_fermeture->id; ?>', false)">Valider</button>
-                                                            <button class="btn btn-success" onclick="valider_facture('Espèce','tab1', ,'<?php echo $action_fermeture->id; ?>', true)">Imprimer</button>
+                                                  <div class="form-group row">
+                                                       <label class="col-md-3 control-label">Montant en caisse:</label>
+                                                       <div class="col-md-9">
+                                                            <input type="number" class="form-control montant" value="" placeholder="" />
+                                                            <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                        </div>
                                                   </div>
+                                                  <div class="form-group row">
+                                                       <label class="col-md-3 control-label">Rendu</label>
+                                                       <div class="col-md-9">
+                                                            <input type="number" disabled class="form-control reste" value="" placeholder="" />
+                                                            <!-- <span class="help-block">exemple: Boris Daudga</span> -->
+                                                       </div>
+                                                  </div>
+                                                  <div class="btn-group pull-right">
+                                                       <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
+                                                       <button class="btn btn-success" style="margin-right: 20px" onclick="valider_facture('Espèce','tab1', '<?php echo $action_fermeture->id; ?>', false)">Valider</button>
+                                                       <button class="btn btn-success" onclick="valider_facture('Espèce','tab1','<?php echo $action_fermeture->id; ?>', true)">Imprimer</button>
+                                                  </div>
+                                             </div>
                                              <!-- END JQUERY VALIDATION PLUGIN -->
                                         </div>
                                    </div>
@@ -185,8 +188,8 @@ if(isset($caisseCheck) && $caisseCheck != null){
                                                        </div>
                                                        <div class="btn-group pull-right">
                                                             <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
-                                                            <button class="btn btn-success"  style="margin-right: 20px">Valider</button>
-                                                            <button class="btn btn-success" >Imprimer</button>
+                                                            <button class="btn btn-success" style="margin-right: 20px">Valider</button>
+                                                            <button class="btn btn-success">Imprimer</button>
                                                        </div>
                                                   </div>
                                              </form>
@@ -559,6 +562,88 @@ if(isset($caisseCheck) && $caisseCheck != null){
                </div>
                <div class="modal-footer">
                     <button type="button" class="btn btn-success" style="margin-right: 20px; " onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Valider</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewEntree" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Produit</h4>
+               </div>
+               <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-4">
+                              <div class="icon-preview">
+                                   <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticket">
+
+                                        <div style="display: flex;flex-direction:column;border-bottom-style: solid;border-bottom-width: 1px;">
+                                             <p style="margin: 0px;">Pharmacie ALSAS</p>
+                                             <p style="margin: 0px;">N Contrib: P0278933 9333</p>
+                                             <p style="margin: 0px;">BP 38 FOUMBOT</p>
+                                             <p style="margin: 0px;">(+237) 233 288 787</p>
+                                        </div>
+                                        <div>
+                                             <p>FACTURE/RECU</p>
+                                        </div>
+                                        <div style="display: flex;flex-direction: column;align-items: flex-start;">
+                                             <p style="margin: 0px;">Date:2020/07/08 12:23</p>
+                                             <div style="display: flex;width: 100%;justify-content: space-between;">
+                                                  <p style="margin: 0px;">Facture N : FA200709222</p>
+                                                  <p style="margin: 0px;">Dr GAMWO Sandrine</p>
+                                             </div>
+                                             <p style="margin: 0px;">Servi par : Pharma Admini</p>
+                                        </div>
+                                        <div>
+                                             <table class="table table-striped table-inverse table-responsive">
+                                                  <thead class="thead-inverse">
+                                                       <tr>
+                                                            <th>Designation</th>
+                                                            <th>Qte</th>
+                                                            <th>P.U</th>
+                                                            <th>P.T</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                       <tr>
+                                                            <td scope="row" style="text-align: start;">SOYA LIFE</td>
+                                                            <td style="text-align: end;">1</td>
+                                                            <td style="text-align: end;">82000</td>
+                                                            <td style="text-align: end;">82000</td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td style="text-align: start;" scope="row">SOYA LIFE</td>
+                                                            <td style="text-align: end;">1</td>
+                                                            <td style="text-align: end;">82000</td>
+                                                            <td style="text-align: end;">82000</td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td style="text-align: start;" scope="row">Total</td>
+                                                            <td style="text-align: end;" colspan="3">3039030 FCFA</td>
+                                                       </tr>
+                                                  </tbody>
+                                             </table>
+                                        </div>
+                                        <div style="display: flex;width: 100%;padding: 2px;border-style: solid;border-width: 1px;justify-content: center;">
+                                             <p style="margin: 0px;">Mille deux cent</p>
+                                        </div>
+                                        <div style="display: flex;width: 100%;padding: 2px;border-style: solid;border-width: 1px;justify-content: center;">
+                                             <p style="margin: 0px;">Bonne guérison</p>
+                                        </div>
+                                   </div>
+                                   <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
+                              </div>
+                         </div>
+
+                    </div>
+               </div>
+               <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                </div>
           </div>
