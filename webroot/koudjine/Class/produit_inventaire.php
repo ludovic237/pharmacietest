@@ -184,7 +184,7 @@ class Produit_inventaireManager
     public function getList($info)
     {
         $produit_inventaires = array();
-        $q = $this->_db->prepare('SELECT * FROM produit_inventaire WHERE supprimer = 0 AND quantiteRestante > 0 AND inventaire_id = '.$info.' ORDER BY stockAvant ASC');
+        $q = $this->_db->prepare('SELECT * FROM produit_inventaire WHERE supprimer = 0 AND inventaire_id = '.$info);
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {

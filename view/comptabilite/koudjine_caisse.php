@@ -614,7 +614,7 @@
 <!-- END MODAL ICON PREVIEW -->
 
 <!-- START MODAL ICON PREVIEW -->
-<div class="modal fade" id="iconPreviewEntree" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="iconPreviewFacture" tabindex="-1" role="dialog" aria-hidden="true">
      <div class="modal-dialog">
           <div class="modal-content">
                <div class="modal-header">
@@ -629,58 +629,47 @@
 
                                         <div style="display: flex;flex-direction:column;text-align: left;">
                                              <p style="margin: 0px; color: black;font-weight: 400;">Pharmacie ALSAS</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Dr Jual Bach</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Dr GAMWO Sandrine</p>
                                              <p style="margin: 0px; color: black;font-weight: 400;">BP 38 FOUMBOT</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 288 787</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 288 787</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 267 487</p>
                                              <div style="display: flex;justify-content:space-between">
-                                                  <p style="margin: 0px; color: black;font-weight: 400;">Ticket N1: P0278933 9333</p>
-                                                  <p style="margin: 0px; color: black;font-weight: 400;">11/09/200 à 12h20</p>
+                                                  <p style="margin: 0px; color: black;font-weight: 400;">Ticket N°: <span class="reference"></span></p>
+                                                  <p style="margin: 0px; color: black;font-weight: 400;"><span class="datevente"></span> à <span class="heurevente"></span> </p>
                                              </div>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Vendeur: Stephane</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: Stephane</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Vendeur: <span class="vendeur"></span> </p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p>
                                         </div>
                                         <div>
-                                             <table class="table table-striped table-inverse table-responsive">
+                                             <table class="table table-inverse table-responsive">
                                                   <thead class="thead-inverse">
                                                        <tr>
                                                             <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>
                                                             <th style="background-color: white;color: black;font-weight: 400;">Prix U.</th>
                                                             <th style="background-color: white;color: black;font-weight: 400;">Qte</th>
                                                             <th style="background-color: white;color: black;font-weight: 400;">TOTAL</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400;">Reduction</th>
                                                        </tr>
                                                   </thead>
-                                                  <tbody>
+                                                  <tbody id="tab_BfactureImprimer">
+
                                                        <tr>
-                                                            <td scope="row" style="background-color: white;color: black;font-weight: 400;text-align: start;">SOYA LIFE</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">82000</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">1</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">82000</td>
+                                                            <td colspan="4" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="montanttotal"></span> FCFA</td>
                                                        </tr>
                                                        <tr>
-                                                            <td scope="row" style="background-color: white;color: black;font-weight: 400;text-align: start;">SOYA LIFE</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">82000</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">1</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">82000</td>
+                                                            <td colspan="4" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="remise"></span> FCFA</td>
                                                        </tr>
                                                        <tr>
-                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">3039030 FCFA</td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">3039030 FCFA</td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">3039030 FCFA</td>
+                                                            <td colspan="4" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="netapayer"></span> FCFA</td>
                                                        </tr>
                                                   </tbody>
                                              </table>
                                         </div>
                                         <div style="display: flex;flex-direction:column;text-align: left;">
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Payer en espece : <span>1000</span> </p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Montant rendu : <span>1000</span> </p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Payer en espece : <span class="montantpercu"></span> </p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Montant rendu : <span class="montantrendu"></span> </p>
                                              <p style="margin: 0px; color: black;font-weight: 400;">Ce ticket vaut facture</p>
                                              <p style="margin: 0px; color: black;font-weight: 400;">Merci et bonne santé</p>
                                              <p style="margin: 0px; color: black;font-weight: 400;">NoCT /rtdrstrdsy</p>

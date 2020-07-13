@@ -933,8 +933,13 @@ function valider_vente(type, etat) {
 function valider_facture(typePaiement, onglet, caisse_id, imprimer){
     var montantTtc = parseInt($('#facture_caisse').html());
     var reduction = parseInt($('#facture_caisse').attr('data'));
-    alert(reduction);
-    var montantPercu = null;
+    $('#ticket .montantpercu').html($('#'+onglet+' .montant').val());
+    $('#ticket .montantrendu').html($('#'+onglet+' .reste').val());
+    if(imprimer){
+        $('#iconPreviewFacture').modal("show");
+    }
+    //alert(reduction);
+    /*var montantPercu = null;
     if($('#'+onglet+' .montant').val() != ''){
         ////alert(caisse_id);
         montantPercu = parseInt($('#'+onglet+' .montant').val());
@@ -995,11 +1000,11 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer){
                             $('#tab_vente_caisse').empty();
                             //var link = '/pharmacietest/users/logout';
                             //window.location.href = link;
-                            /*if(data1.erreur == 'ok'){
+                            /!*if(data1.erreur == 'ok'){
                                 var link = '/pharmacietest/users/logout';
                                 ////alert(link);
                                 window.location.href = link;
-                            }*/
+                            }*!/
                         }
                     })
 
@@ -1010,7 +1015,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer){
 
 
         })
-    }
+    }*/
 
 
 }

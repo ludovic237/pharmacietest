@@ -17,6 +17,7 @@ class Produit
         $_stockMin,
         $_stockMax,
         $_reductionMax,
+        $_etat,
         $_supprimer;
 
     // CONSRUCTEUR
@@ -93,6 +94,10 @@ class Produit
     public function stockMax()
     {
         return $this->_stockMax;
+    }
+    public function etat()
+    {
+        return $this->_etat;
     }
     public function reductionMax()
     {
@@ -206,6 +211,12 @@ class Produit
         $this->_reductionMax = $value;
 
     }
+    public function setetat($value)
+    {
+
+        $this->_etat = $value;
+
+    }
     public function setsupprimer($value)
     {
 
@@ -225,7 +236,7 @@ class ProduitManager
     }
     public function add(Produit $produit)
     {
-        $q = $this->_db->prepare('INSERT INTO produit SET id = :id, categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, nom = :nom, reference = :reference, ean13 = :ean13, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO produit SET id = :id, categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, nom = :nom, reference = :reference, ean13 = :ean13, codeLaborex = :laborex, codeUbipharm = :ubipharm, etat = :etat, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction, supprimer=0');
         $q->bindValue(':id', $produit->id(), PDO::PARAM_INT);
         $q->bindValue(':cat', $produit->categorie_id(), PDO::PARAM_INT);
         $q->bindValue(':forme', $produit->forme_id(), PDO::PARAM_INT);
@@ -241,6 +252,7 @@ class ProduitManager
         $q->bindValue(':stockmin', $produit->stockMin());
         $q->bindValue(':stockmax', $produit->stockMax(), PDO::PARAM_INT);
         $q->bindValue(':reduction', $produit->reductionMax());
+        $q->bindValue(':etat', $produit->etat());
         $q->execute();
     }
     public function count()
@@ -320,10 +332,21 @@ class ProduitManager
         }
         return $produits;
     }
+    public function getListEtat()
+    {
+        $produits = array();
+        $q = $this->_db->prepare('SELECT * FROM produit WHERE supprimer = 0 AND etat = "Utile" ORDER BY nom');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $produits[] = new Produit($donnees);
+        }
+        return $produits;
+    }
     public function update(Produit $produit)
     {
 
-        $q = $this->_db->prepare('UPDATE produit SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, nom = :nom, reference = :reference, ean13 = :ean13, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, nom = :nom, reference = :reference, ean13 = :ean13, etat = :etat, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
         $q->bindValue(':id', $produit->id(), PDO::PARAM_INT);
         $q->bindValue(':cat', $produit->categorie_id(), PDO::PARAM_INT);
         $q->bindValue(':forme', $produit->forme_id(), PDO::PARAM_INT);
@@ -339,6 +362,7 @@ class ProduitManager
         $q->bindValue(':stockmin', $produit->stockMin());
         $q->bindValue(':stockmax', $produit->stockMax(), PDO::PARAM_INT);
         $q->bindValue(':reduction', $produit->reductionMax());
+        $q->bindValue(':etat', $produit->etat());
         $q->execute();
     }
     public function setDb(PDO $db)

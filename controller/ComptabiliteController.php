@@ -79,7 +79,7 @@ class ComptabiliteController extends Controller
                 'conditions' => "supprimer = 0 AND etat = \"Ouvert\""
             ));
             if (!empty($d['caisse'])) {
-                $d['vente'] = $this->Comptabilite->find(array(
+                $d['ventes'] = $this->Comptabilite->find(array(
                     //'fields' => 'produit.nom as nom',
                     'table' => 'vente',
                     'conditions' => array('caisse_id' => $d['caisse']->id, 'supprimer' => 0, 'prixPercu' => 0)

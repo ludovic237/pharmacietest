@@ -42,6 +42,7 @@ if (isset($_POST['id'])||isset($_GET['id'])){
         }
         $date = DateTime::createFromFormat('Y-m-d H:i:s', $datevente);
         $datev = $date->format('d-m-Y');
+        $heurev = $date->format('H:i');
         echo "<tr id=\"".$v->id()."\">
                                             <td ><strong class='prixtotal'>".$v->prixTotal()."</strong></td>
                                             <td class='reduction'>".$v->reduction()."</td>
@@ -57,8 +58,8 @@ if (isset($_POST['id'])||isset($_GET['id'])){
                                             <td class='commentaire'>
                                                 ".$v->commentaire()."
                                             </td>
-                                            <td class='date'>
-                                                ".$datev."
+                                            <td><span class='date'>
+                                                ".$datev."</span> à <span class='heure'>".$heurev."</span>
                                             </td>
                                             <td>
                                                 <button class=\"btn btn-default btn-rounded btn-sm \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"charger_vente('".$v->id()."')\"><span class=\"\">Charger</span></button>

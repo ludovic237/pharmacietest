@@ -147,9 +147,11 @@ $(document).ready(function(){
             //alert('pass');
             if($('.ajouter').html() == 'Ajouter') {
                  link = '/pharmacietest' + $(this).attr('id') + 'add';
+                window.location.href=link;
             }
             else{
                  link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
+                window.location.href=link;
             }
         }else if(controller == 'stock'){
 
@@ -162,12 +164,14 @@ $(document).ready(function(){
                         action: 'lancer'
                     },
                     success: function (server_responce) {
-                        alert(server_responce);
+                        //alert(server_responce);
                          link = '/pharmacietest/bouwou/stock/inventaire';
+                        window.location.href=link;
 
                     }
                 })
             }else{
+                alert('passe');
                 $.ajax({
                     type: "POST",
                     url: '/pharmacietest/koudjine/inc/gerer_inventaire.php',
@@ -175,9 +179,10 @@ $(document).ready(function(){
                         action: 'arreter'
                     },
                     success: function (server_responce) {
-                        alert(server_responce);
+                        //alert(server_responce);
+                        //alert('repasse');
                          link = '/pharmacietest/bouwou/stock/inventaire';
-
+                        window.location.href=link;
                     }
                 })
             }
@@ -187,13 +192,16 @@ $(document).ready(function(){
             //alert($(this).attr('data'));
             if($('.ajouter').html() == 'Ajouter') {
                 link = '/pharmacietest' + $(this).attr('id') + '/edit';
+                window.location.href=link;
             }
             else{
                 link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
+                window.location.href=link;
             }
             //alert(link);
         }
-        window.location.href=link;
+        //alert(link);
+
     });
     /* END BouWou Personnalisation */
     

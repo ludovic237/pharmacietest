@@ -106,6 +106,11 @@ function ajouter_row_inventaire(id) {
         }
     })
 }
+function charger_inventaire() {
+    id= $('#select_inventaire').val();
+    var link = '/pharmacietest/bouwou/stock/inventaire/'+id;
+    window.location.href=link;
+}
 
 
 

@@ -161,6 +161,16 @@ function charger_vente(id) {
     //$("#"+id).addClass("alt");
     $('#tab1 .montant').val('');
     $('#tab1 .reste').val('');
+    $('#ticket .reference').html($("#"+id+" .reference").html());
+    $('#ticket .datevente').html($("#"+id+" .date").html());
+    $('#ticket .heurevente').html($("#"+id+" .heure").html());
+    $('#ticket .vendeur').html($("#"+id+" .vendeur").html());
+    $('#ticket .acheteur').html($("#"+id+" .client").html());
+    $('#ticket .netapayer').html($("#"+id+" .prixtotal").html());
+    $('#ticket .remise').html($("#"+id+" .reduction").html());
+    $('#ticket .montanttotal').html(parseInt($("#"+id+" .reduction").html()) + parseInt($("#"+id+" .prixtotal").html()));
+
+
 
     $.ajax({
         type: "POST",
@@ -174,6 +184,7 @@ function charger_vente(id) {
 
             $('#tab_vente_caisse').empty();
             $('#tab_vente_caisse').html(server_responce);
+            $('#tab_BfactureImprimer').prepend(server_responce);
 
         }
 

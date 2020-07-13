@@ -35,7 +35,7 @@ class StockController extends Controller
     }
 
 
-    function koudjine_inventaire()
+    function koudjine_inventaire($id=null)
     {
         $this->loadModel('Stock');
         $d['inventaire'] = $this->Stock->findFirst(array(
@@ -43,6 +43,12 @@ class StockController extends Controller
             'table' => 'inventaire',
             //'order' => 'DATE_DEBUT_CONCOURS-DESC',
             'conditions' => array('etat' => "'En cours'", 'supprimer' => 0)
+        ));
+        $d['inventaires'] = $this->Stock->find(array(
+            //'fields' => 'DATE_DEBUT_CONCOURS,MODALITE_ADMISSION,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
+            'table' => 'inventaire',
+            //'order' => 'DATE_DEBUT_CONCOURS-DESC',
+            'conditions' => array('etat' => "'Clot'", 'supprimer' => 0)
         ));
         if(!empty($d['inventaire'])){
             $d['produits'] = $this->Stock->find(array(
@@ -53,6 +59,16 @@ class StockController extends Controller
             ));
             //print_r($d['produits']);
            // die();
+        }else{
+            if(isset($id)){
+                $d['produits'] = $this->Stock->find(array(
+                    //'fields' => 'DATE_DEBUT_CONCOURS,MODALITE_ADMISSION,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
+                    'table' => 'produit_inventaire, en_rayon, produit, employe',
+                    //'order' => 'DATE_DEBUT_CONCOURS-DESC',
+                    'conditions' => array('inventaire_id' => $id, 'en_rayon.id' => 'produit_inventaire.en_rayon_id', 'produit.id' => 'en_rayon.produit_id', 'employe.id' => 'produit_inventaire.employe_id', 'en_rayon.supprimer' => 0, 'employe.supprimer' => 0, 'produit_inventaire.supprimer' => 0)
+                ));
+                $d['id'] = $id;
+            }
         }
 
         $this->set($d);
