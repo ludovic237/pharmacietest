@@ -189,7 +189,6 @@
                         </ul>
                     </li>
                     <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'aboutus') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/aboutus'); ?>"><span class="fa lettre">A</span>About us</a></li>
-                    <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'offiline') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/offiline'); ?>"><span class="fa lettre">O</span> Offiline</a></li>
                 </ul>
             </li>
 
@@ -258,7 +257,7 @@
                 </li>
                 <!-- END SIGN OUT -->
                 <!-- MESSAGES -->
-                <li class="xn-icon-button pull-right">
+                <!-- <li class="xn-icon-button pull-right">
                     <a href="#"><span class="fa fa-comments"></span></a>
                     <div class="informer informer-danger">4</div>
                     <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
@@ -298,10 +297,10 @@
                             <a href="pages-messages.html">Show all messages</a>
                         </div>
                     </div>
-                </li>
+                </li> -->
                 <!-- END MESSAGES -->
                 <!-- TASKS -->
-                <li class="xn-icon-button pull-right">
+                <!-- <li class="xn-icon-button pull-right">
                     <a href="#"><span class="fa fa-tasks"></span></a>
                     <div class="informer informer-warning">3</div>
                     <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
@@ -345,7 +344,7 @@
                             <a href="pages-tasks.html">Show all tasks</a>
                         </div>
                     </div>
-                </li>
+                </li> -->
                 <!-- END TASKS -->
             </ul>
             <!-- END X-NAVIGATION VERTICAL -->
