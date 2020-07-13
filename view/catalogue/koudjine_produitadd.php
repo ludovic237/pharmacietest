@@ -161,7 +161,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 endforeach;
                                 ?>
                             </select>
-                        </div>  
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Rayon:</label>
@@ -215,7 +215,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             </select>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                     <h4 style="background-color: #2d3945;color: white;">Détail produit </h4>
@@ -230,7 +230,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <select multiple class="selectpicker form-control input-xlarge " name="formeproduit" id="formeproduit">
                                 <?php
                                 foreach ($forme as $k => $v) : ?>
-                                    <option <?php if ($position == 'Modifier') if ($v->id == $produit->forme_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                                    <option <?php if ($position == 'Modifier')
+                                                if ($v->id == $produit->forme_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?>
+                                    </option>
                                 <?php
                                 endforeach;
                                 ?>
@@ -252,6 +254,19 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->reductionMax;
                                                                                 else echo 0; ?>" name="reduction" id="reduction" placeholder="" />
                             <span class="help-block">Champ requis</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Etat:</label>
+                        <div class="col-md-9">
+                            <select class="form-control input-xlarge select2me" name="etat" id="pdt_etat">
+                                <option <?php if ($position == 'Modifier')
+                                            if ($v->id == $produit->etat) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $produit->etat; ?>
+                                </option>
+                                <option value="Utile">Utile</option>
+                                <option value="Non utile">Non utile</option>
+                            </select>
                         </div>
                     </div>
 

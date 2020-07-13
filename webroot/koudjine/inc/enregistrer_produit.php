@@ -21,6 +21,7 @@ if (isset($_POST['id'])){
     $stockmin=$_POST['stockmin'];
     $stockmax=$_POST['stockmax'];
     $reduction=$_POST['reduction'];
+    $etat=$_POST['etat'];
     $cat=$_POST['cat'];
     $forme=$_POST['forme'];
     $ray=$_POST['ray'];
@@ -46,6 +47,7 @@ if (isset($_POST['id'])){
             $prod->setstockMin($stockmin);
             $prod->setstockMax($stockmax);
             $prod->setreductionMax($reduction);
+            $prod->setetat($etat);
             $manager->update($prod);
             echo 'ok';
         }
@@ -71,6 +73,7 @@ if (isset($_POST['id'])){
         $prod->setstockMin($stockmin);
         $prod->setstockMax($stockmax);
         $prod->setreductionMax($reduction);
+        $prod->setetat($etat);
         $manager->update($prod);
         echo 'ok';
     }
@@ -116,8 +119,7 @@ else{
     $ray=$_POST['ray'];
     $fab=$_POST['fab'];
     $mag=$_POST['mag'];
-
-
+    $etat=$_POST['etat'];
 
     if(!$manager->existsNom($nom)){
         //$date = genererID();
@@ -134,6 +136,7 @@ else{
             'codeLaborex' => $laborex,
             'codeUbipharm' => $ubipharm,
             'stock' => $stock,
+            'etat' => $etat,
             'stockMin' => $stockmin,
             'stockMax' => $stockmax,
             'reductionMax' => $reduction,

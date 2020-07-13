@@ -1186,6 +1186,7 @@ function enregistrer_produit(option, id) {
     var ubipharm = $('#ubipharm').val();
     ////alert(type);
     var stock = $('#stock').val();
+    var etat = $('#pdt_etat').val();
     var stockmin = $('#stockmin').val();
     var stockmax = $('#stockmax').val();
     var reduction = $('#reduction').val();
@@ -1207,6 +1208,7 @@ function enregistrer_produit(option, id) {
             url: '/pharmacietest/koudjine/inc/enregistrer_produit.php',
             data: {
                 nom: nom,
+                etat: etat,
                 ean13: ean13,
                 reference: reference,
                 laborex: laborex,
@@ -1244,6 +1246,7 @@ function enregistrer_produit(option, id) {
             url: '/pharmacietest/koudjine/inc/enregistrer_produit.php',
             data: {
                 nom: nom,
+                etat: etat,
                 ean13: ean13,
                 reference: reference,
                 laborex: laborex,

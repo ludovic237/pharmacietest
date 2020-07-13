@@ -14,6 +14,7 @@ class Produit
         $_codeLaborex,
         $_codeUbipharm,
         $_stock,
+        $_etat,
         $_stockMin,
         $_stockMax,
         $_reductionMax,
@@ -65,6 +66,10 @@ class Produit
     public function nom()
     {
         return $this->_nom;
+    }
+    public function etat()
+    {
+        return $this->_etat;
     }
     public function reference()
     {
@@ -158,6 +163,12 @@ class Produit
         $this->_nom = $value;
 
     }
+    public function setetat($value)
+    {
+
+        $this->_etat = $value;
+
+    }
     public function setreference($value)
     {
 
@@ -225,7 +236,7 @@ class ProduitManager
     }
     public function add(Produit $produit)
     {
-        $q = $this->_db->prepare('INSERT INTO produit SET id = :id, categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, nom = :nom, reference = :reference, ean13 = :ean13, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO produit SET id = :id, categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, nom = :nom, etat = :etat, reference = :reference, ean13 = :ean13, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction, supprimer=0');
         $q->bindValue(':id', $produit->id(), PDO::PARAM_INT);
         $q->bindValue(':cat', $produit->categorie_id(), PDO::PARAM_INT);
         $q->bindValue(':forme', $produit->forme_id(), PDO::PARAM_INT);
@@ -233,6 +244,7 @@ class ProduitManager
         $q->bindValue(':fab', $produit->fabriquant_id(), PDO::PARAM_INT);
         $q->bindValue(':mag', $produit->magasin_id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $produit->nom());
+        $q->bindValue(':etat', $produit->etat());
         $q->bindValue(':reference', $produit->reference());
         $q->bindValue(':ean13', $produit->ean13());
         $q->bindValue(':laborex', $produit->codeLaborex());
@@ -323,7 +335,7 @@ class ProduitManager
     public function update(Produit $produit)
     {
 
-        $q = $this->_db->prepare('UPDATE produit SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, nom = :nom, reference = :reference, ean13 = :ean13, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, nom = :nom, etat = :etat, reference = :reference, ean13 = :ean13, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
         $q->bindValue(':id', $produit->id(), PDO::PARAM_INT);
         $q->bindValue(':cat', $produit->categorie_id(), PDO::PARAM_INT);
         $q->bindValue(':forme', $produit->forme_id(), PDO::PARAM_INT);
@@ -331,6 +343,7 @@ class ProduitManager
         $q->bindValue(':fab', $produit->fabriquant_id(), PDO::PARAM_INT);
         $q->bindValue(':mag', $produit->magasin_id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $produit->nom());
+        $q->bindValue(':etat', $produit->etat());
         $q->bindValue(':reference', $produit->reference());
         $q->bindValue(':ean13', $produit->ean13());
         $q->bindValue(':laborex', $produit->codeLaborex());
