@@ -81,8 +81,8 @@ class Conf
         ),
         'stock' => array(
             '0'      => 'Administrateur',
-            '1'  => 'Superviseur',
-            '2'  => 'Universitaire',
+            '1'  => 'Caissier',
+            '2'  => 'Gestionnaire',
             '3'  => 'Informateur'
         ),
         'comptabilite' => array(

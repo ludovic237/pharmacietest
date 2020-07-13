@@ -13,49 +13,90 @@ else{
 
 $position_for_layout = '<li><a href="#">Stock</a></li><li><a href="#">Inventaire</a></li>';
 $script_for_layout = '
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/inventaire.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
+<script>
+                                        window.onload = function () {
+                                            document.getElementById("recherche_inventaire").focus();
+                                        };
+                                    </script>
 ';
+if(isset($inventaire) && !empty($inventaire) ){
+
+
 ?>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
+        <div class="panel-body" style="margin-bottom: 20px;background-color: #fff;
+        border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 0 1px 1px rgba(0,0,0,.05);">
+            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
+                <label class="control-label" style="margin-right: 30px;width: 150px;">Scanner un médicament:</label>
+                <div style="display: flex;flex:1;margin-right: 30px;">
+                    <input type="text" class="form-control col-md-4" name="<?php echo $_SESSION['Users']->type; ?>" data="<?php echo $_SESSION['Users']->id; ?>" data1="<?php echo $_SESSION['Users']->identifiant; ?>" id="recherche_inventaire" value="" placeholder="Médicaments">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="div_inventaire">
+    <div class="col-md-12">
+        <div class="panel panel-default">
 
-        <!-- START JQUERY VALIDATION PLUGIN -->
-        <div class="block">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">A propos de Pharma'Net</h4>
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <table class="table datatable table-bordered table-striped table-actions">
+                        <thead>
+                        <tr>
+                            <th width="200">Nom</th>
+                            <th width="100">Prix Unitaire</th>
+                            <th width="100">Quantité avant inventaire</th>
+                            <th width="100">Quantité en cours</th>
+                            <th width="100">Date de Livraison</th>
+                            <th width="100">Inventorié par</th>
+                            <th width="100">Quantité inventaire</th>
+                            <th width="100">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tab_Binventaire">
+                        <?php if(isset($produits)) foreach ($produits as $k => $v) :
+                            $datelivraison = $v->dateLivraison;
+                            $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
+                            $datel = $date->format('d-m-Y');
+                            ?>
+                            <tr id="<?php echo $v->en_rayon_id; ?>">
+                                <td><strong><?php echo $v->nom; ?></strong></td>
+                                <td><?php echo $v->prixVente; ?></td>
+                                <td><?php echo $v->stockAvant; ?></td>
+                                <td>
+                                    <?php echo $v->quantiteRestante; ?>
+                                </td>
+                                <td>
+                                    <?php echo $datel; ?>
+                                </td>
+                                <td><?php echo $v->identifiant; ?></td>
+                                <td><?php echo $v->stockValide; ?></td>
+                                <td>
+                                    <button class="btn btn-success btn-rounded btn-sm valider_inventaire" disabled data-toggle="tooltip" data-placement="top"  onclick="valider_row_inventaire(<?php echo $v->en_rayon_id; ?>)">
+                                        Valider
+                                    </button>
+                                    <button class="btn btn-primary btn-rounded btn-sm ajouter_inventaire" <?php if($_SESSION['Users']->type != 'Administrateur') echo 'disabled';  ?> data-toggle="tooltip" data-placement="top" onclick="ajouter_row_inventaire(<?php echo $v->en_rayon_id; ?>)">
+                                        Ajouter
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="alert alert-info">
-                    Pharma'Net version 1.0, tout droit réservé.<br>
-                    <h3> Nos modules </h3>
-                    <ul>
-                        <li>Stock</li>
-                        <li>Inventaire</li>
-                        <li>Vente</li>
-                        <li>Statistique</li>
-                        <li>Consultation en ligne</li>
-                        <li>Geo Net</li>
-                    </ul>
-                </div>
-                <div class="alert alert-danger">
-                    Ce logiciel est protégé par la loi du copyright et par des conventions internationales.
-                    Toute Reproduction ou distribution partielle ou totale du logiciel est strictement interdite.
-                </div>
-                <div class="alert alert-info">
-                    Contact : andersonazotsie@gmail.com +237 693 406 034
-                </div>
-                <div class="form-actions modal-footer">
-                    <div class="row">
-                        <div class="col-md-offset-3 col-md-9">
-                            <button type="button" class="btn default" data-dismiss="modal">O.K</button>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
 
     </div>
 
 </div>
+<?php } ?>
+

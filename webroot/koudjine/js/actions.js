@@ -139,19 +139,22 @@ $(document).ready(function(){
         //$('#srch_categorie').selectpicker('refresh');
     });
     $('.ajouter').on('click', function(){
+        var link;
 
         var controller = $(this).attr('controller');
         //alert(controller);
         if(controller == 'catalogue'){
             //alert('pass');
             if($('.ajouter').html() == 'Ajouter') {
-                var link = '/pharmacietest' + $(this).attr('id') + 'add';
+                 link = '/pharmacietest' + $(this).attr('id') + 'add';
             }
             else{
-                var link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
+                 link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
             }
         }else if(controller == 'stock'){
+
             if($('.ajouter').html() == 'Démarrer inventaire') {
+                //alert($('.ajouter').html());
                 $.ajax({
                     type: "POST",
                     url: '/pharmacietest/koudjine/inc/gerer_inventaire.php',
@@ -160,8 +163,7 @@ $(document).ready(function(){
                     },
                     success: function (server_responce) {
                         alert(server_responce);
-                        var link = '/pharmacietest/bouwou/stock/inventaire';
-                        window.location.href = link;
+                         link = '/pharmacietest/bouwou/stock/inventaire';
 
                     }
                 })
@@ -174,8 +176,7 @@ $(document).ready(function(){
                     },
                     success: function (server_responce) {
                         alert(server_responce);
-                        var link = '/pharmacietest/bouwou/stock/inventaire';
-                        window.location.href = link;
+                         link = '/pharmacietest/bouwou/stock/inventaire';
 
                     }
                 })
@@ -185,10 +186,10 @@ $(document).ready(function(){
         else{
             //alert($(this).attr('data'));
             if($('.ajouter').html() == 'Ajouter') {
-                var link = '/pharmacietest' + $(this).attr('id') + '/edit';
+                link = '/pharmacietest' + $(this).attr('id') + '/edit';
             }
             else{
-                var link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
+                link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
             }
             //alert(link);
         }

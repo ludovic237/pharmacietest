@@ -59,19 +59,11 @@ class Inventaire
     }
     public function setdateDebut($id)
     {
-
-        if ($id > 0)
-        {
             $this->_dateDebut = $id;
-        }
     }
     public function setdateFin($id)
     {
-
-        if ($id > 0)
-        {
             $this->_dateFin = $id;
-        }
     }
     public function setetat($id)
     {
@@ -96,9 +88,8 @@ class InventaireManager
     }
     public function add(Inventaire $inventaire)
     {
-        $q = $this->_db->prepare('INSERT INTO inventaire SET id = :id, dateDebut = :dateDebut, dateFin = :dateFin, etat = :etat, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO inventaire SET id = :id, dateDebut = now(), dateFin = :dateFin, etat = :etat, supprimer=0');
         $q->bindValue(':id', $inventaire->id(), PDO::PARAM_INT);
-        $q->bindValue(':dateDebut', $inventaire->dateDebut());
         $q->bindValue(':dateFin', $inventaire->dateFin());
         $q->bindValue(':etat', $inventaire->etat());
         $q->execute();
@@ -127,15 +118,6 @@ class InventaireManager
 
 
     }
-    public function existsQuantiteRestante($id, $info)
-    {
-
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM inventaire WHERE supprimer = 0 AND quantiteRestante >= :info AND id = '.$id);
-        $q->execute(array(':info' => $info));
-        return (bool) $q->fetchColumn();
-
-
-    }
     public function existsQuantite($id, $info)
     {
 
@@ -145,10 +127,10 @@ class InventaireManager
 
 
     }
-    public function get($info)
+    public function get()
     {
 
-        $q = $this->_db->query('SELECT * FROM inventaire WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->query('SELECT * FROM inventaire WHERE supprimer = 0 AND etat = "En cours" ');
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Inventaire($donnees);
 
@@ -167,10 +149,8 @@ class InventaireManager
     public function update(Inventaire $inventaire)
     {
 
-        $q = $this->_db->prepare('UPDATE inventaire SET dateDebut = :dateDebut, dateFin = :dateFin, etat = :etat WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE inventaire SET dateFin = now(), etat = :etat WHERE id = :id');
         $q->bindValue(':id', $inventaire->id(), PDO::PARAM_INT);
-        $q->bindValue(':dateDebut', $inventaire->dateDebut());
-        $q->bindValue(':dateFin', $inventaire->dateFin());
         $q->bindValue(':etat', $inventaire->etat());
         $q->execute();
     }

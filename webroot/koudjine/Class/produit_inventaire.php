@@ -4,6 +4,7 @@ class Produit_inventaire
 {
     private $_id,
         $_inventaire_id,
+        $_employe_id,
         $_en_rayon_id,
         $_stockAvant,
         $_stockValide,
@@ -35,6 +36,10 @@ class Produit_inventaire
     public function inventaire_id()
     {
         return $this->_inventaire_id;
+    }
+    public function employe_id()
+    {
+        return $this->_employe_id;
     }
     public function en_rayon_id()
     {
@@ -70,13 +75,17 @@ class Produit_inventaire
             $this->_inventaire_id = $id;
         }
     }
-    public function seten_rayon_id($id)
+    public function setemploye_id($id)
     {
 
         if ($id > 0)
         {
-            $this->_en_rayon_id = $id;
+            $this->_employe_id = $id;
         }
+    }
+    public function seten_rayon_id($id)
+    {
+            $this->_en_rayon_id = $id;
     }
     public function setstockAvant($id)
     {
@@ -105,10 +114,11 @@ class Produit_inventaireManager
     }
     public function add(Produit_inventaire $produit_inventaire)
     {
-        $q = $this->_db->prepare('INSERT INTO produit_inventaire SET id = :id, inventaire_id = :inventaire_id, en_rayon_id = :en_rayon_id, stockAvant = :stockAvant, stockValide = :stockValide, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO produit_inventaire SET id = :id, inventaire_id = :inventaire_id, employe_id = :employe_id, en_rayon_id = :en_rayon_id, stockAvant = :stockAvant, stockValide = :stockValide, supprimer=0');
         $q->bindValue(':id', $produit_inventaire->id(), PDO::PARAM_INT);
         $q->bindValue(':inventaire_id', $produit_inventaire->inventaire_id(), PDO::PARAM_INT);
-        $q->bindValue(':en_rayon_id', $produit_inventaire->en_rayon_id(), PDO::PARAM_INT);
+        $q->bindValue(':employe_id', $produit_inventaire->employe_id(), PDO::PARAM_INT);
+        $q->bindValue(':en_rayon_id', $produit_inventaire->en_rayon_id());
         $q->bindValue(':stockAvant', $produit_inventaire->stockAvant());
         $q->bindValue(':stockValide', $produit_inventaire->stockValide());
         $q->execute();
@@ -137,11 +147,11 @@ class Produit_inventaireManager
 
 
     }
-    public function existsQuantiteRestante($id, $info)
+    public function existsEn_rayon($id, $info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM produit_inventaire WHERE supprimer = 0 AND quantiteRestante >= :info AND id = '.$id);
-        $q->execute(array(':info' => $info));
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM produit_inventaire WHERE supprimer = 0 AND en_rayon_id = '.$info.' AND inventaire_id = '.$id);
+        $q->execute();
         return (bool) $q->fetchColumn();
 
 
@@ -163,6 +173,14 @@ class Produit_inventaireManager
         return new Produit_inventaire($donnees);
 
     }
+    public function getEn_rayon($id, $info)
+    {
+
+        $q = $this->_db->query('SELECT * FROM produit_inventaire WHERE supprimer = 0 AND en_rayon_id = '.$info.' AND inventaire_id = '.$id);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Produit_inventaire($donnees);
+
+    }
     public function getList($info)
     {
         $produit_inventaires = array();
@@ -177,10 +195,11 @@ class Produit_inventaireManager
     public function update(Produit_inventaire $produit_inventaire)
     {
 
-        $q = $this->_db->prepare('UPDATE produit_inventaire SET inventaire_id = :inventaire_id, en_rayon_id = :en_rayon_id, stockAvant = :stockAvant, stockValide = :stockValide WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit_inventaire SET inventaire_id = :inventaire_id, employe_id = :employe_id, en_rayon_id = :en_rayon_id, stockAvant = :stockAvant, stockValide = :stockValide WHERE id = :id');
         $q->bindValue(':id', $produit_inventaire->id(), PDO::PARAM_INT);
         $q->bindValue(':inventaire_id', $produit_inventaire->inventaire_id(), PDO::PARAM_INT);
-        $q->bindValue(':en_rayon_id', $produit_inventaire->en_rayon_id(), PDO::PARAM_INT);
+        $q->bindValue(':employe_id', $produit_inventaire->employe_id(), PDO::PARAM_INT);
+        $q->bindValue(':en_rayon_id', $produit_inventaire->en_rayon_id());
         $q->bindValue(':stockAvant', $produit_inventaire->stockAvant());
         $q->bindValue(':stockValide', $produit_inventaire->stockValide());
         $q->execute();

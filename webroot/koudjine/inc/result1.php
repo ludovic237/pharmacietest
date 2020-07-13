@@ -24,7 +24,7 @@ global $conndb;
                 $datelivraison = $result->dateLivraison;
                 $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
                 $datel = $date->format('d-m-Y');
-                $donnees = array('erreur' =>'non', 'nom' => $result->nom, 'prix' => $result->prixVente, 'reduction' => $result->reduction, 'datel' => $datel, 'stock' => $result->stock-1);
+                $donnees = array('erreur' =>'non', 'nom' => $result->nom, 'prix' => $result->prixVente, 'reduction' => $result->reduction, 'datel' => $datel, 'stock' => $result->stock-1, 'quantiteRestante' => $result->quantiteRestante);
                     echo json_encode($donnees);
             }
         }
