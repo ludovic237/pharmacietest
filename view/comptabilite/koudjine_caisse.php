@@ -25,6 +25,7 @@
 
 
 <!-- START RESPONSIVE TABLES -->
+
 <div class="row">
      <div class="col-md-12">
           <div class="panel panel-default">
@@ -567,6 +568,7 @@
           </div>
      </div>
 </div>
+
 <!-- END MODAL ICON PREVIEW -->
 
 <!-- START MODAL ICON PREVIEW -->
@@ -583,58 +585,63 @@
                               <div class="icon-preview">
                                    <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticket">
 
-                                        <div style="display: flex;flex-direction:column;border-bottom-style: solid;border-bottom-width: 1px;">
-                                             <p style="margin: 0px;">Pharmacie ALSAS</p>
-                                             <p style="margin: 0px;">N Contrib: P0278933 9333</p>
-                                             <p style="margin: 0px;">BP 38 FOUMBOT</p>
-                                             <p style="margin: 0px;">(+237) 233 288 787</p>
-                                        </div>
-                                        <div>
-                                             <p>FACTURE/RECU</p>
-                                        </div>
-                                        <div style="display: flex;flex-direction: column;align-items: flex-start;">
-                                             <p style="margin: 0px;">Date:2020/07/08 12:23</p>
-                                             <div style="display: flex;width: 100%;justify-content: space-between;">
-                                                  <p style="margin: 0px;">Facture N : FA200709222</p>
-                                                  <p style="margin: 0px;">Dr GAMWO Sandrine</p>
+                                        <div style="display: flex;flex-direction:column;text-align: left;">
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Pharmacie ALSAS</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Dr Jual Bach</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">BP 38 FOUMBOT</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 288 787</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 288 787</p>
+                                             <div style="display: flex;justify-content:space-between">
+                                                  <p style="margin: 0px; color: black;font-weight: 400;">Ticket N1: P0278933 9333</p>
+                                                  <p style="margin: 0px; color: black;font-weight: 400;">11/09/200 à 12h20</p>
                                              </div>
-                                             <p style="margin: 0px;">Servi par : Pharma Admini</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Vendeur: Stephane</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: Stephane</p>
                                         </div>
                                         <div>
                                              <table class="table table-striped table-inverse table-responsive">
                                                   <thead class="thead-inverse">
                                                        <tr>
-                                                            <th>Designation</th>
-                                                            <th>Qte</th>
-                                                            <th>P.U</th>
-                                                            <th>P.T</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400;">Prix U.</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400;">Qte</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400;">TOTAL</th>
                                                        </tr>
                                                   </thead>
                                                   <tbody>
                                                        <tr>
-                                                            <td scope="row" style="text-align: start;">SOYA LIFE</td>
-                                                            <td style="text-align: end;">1</td>
-                                                            <td style="text-align: end;">82000</td>
-                                                            <td style="text-align: end;">82000</td>
+                                                            <td scope="row" style="background-color: white;color: black;font-weight: 400;text-align: start;">SOYA LIFE</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">82000</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">1</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">82000</td>
                                                        </tr>
                                                        <tr>
-                                                            <td style="text-align: start;" scope="row">SOYA LIFE</td>
-                                                            <td style="text-align: end;">1</td>
-                                                            <td style="text-align: end;">82000</td>
-                                                            <td style="text-align: end;">82000</td>
+                                                            <td scope="row" style="background-color: white;color: black;font-weight: 400;text-align: start;">SOYA LIFE</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">82000</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">1</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">82000</td>
                                                        </tr>
                                                        <tr>
-                                                            <td style="text-align: start;" scope="row">Total</td>
-                                                            <td style="text-align: end;" colspan="3">3039030 FCFA</td>
+                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">3039030 FCFA</td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">3039030 FCFA</td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
+                                                            <td style=" background-color: white;color: black;font-weight: 400;text-align: end;">3039030 FCFA</td>
                                                        </tr>
                                                   </tbody>
                                              </table>
                                         </div>
-                                        <div style="display: flex;width: 100%;padding: 2px;border-style: solid;border-width: 1px;justify-content: center;">
-                                             <p style="margin: 0px;">Mille deux cent</p>
-                                        </div>
-                                        <div style="display: flex;width: 100%;padding: 2px;border-style: solid;border-width: 1px;justify-content: center;">
-                                             <p style="margin: 0px;">Bonne guérison</p>
+                                        <div style="display: flex;flex-direction:column;text-align: left;">
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Payer en espece : <span>1000</span> </p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Montant rendu : <span>1000</span> </p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Ce ticket vaut facture</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Merci et bonne santé</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">NoCT /rtdrstrdsy</p>
                                         </div>
                                    </div>
                                    <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
