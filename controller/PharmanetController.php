@@ -138,6 +138,34 @@ class PharmanetController extends Controller
         $this->set($d);
     }
 
+    function koudjine_userprofile($id = null)
+    {
+        $this->loadModel('Pharmanet');
+
+        if ($id != null) {
+            //die('pass');
+            $d['position'] = 'Modifier';
+
+            $d['employe'] = $this->Pharmanet->findFirst(array(
+                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+                'table' => 'employe',
+                'conditions' => array('id' => $id)
+            ));
+            $d['user'] = $this->Pharmanet->findFirst(array(
+                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+                'table' => 'user',
+                'conditions' => array('id' => $d['employe']->user_id)
+            ));
+
+            if (empty($d['user'])) {
+                $this->e404('Page introuvable');
+            }
+        } else {
+            $d['position'] = 'Ajouter';
+        }
+        $this->set($d);
+    }
+
     function koudjine_aboutus()
     {
         $this->loadModel('Pharmanet');

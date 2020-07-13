@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 
     $(".argent").keyup(function (event) {
-        //alert($(this).val())
+        ////alert($(this).val())
         var total = ($("#argent_1").val() * 500) + ($("#argent_2").val() * 10000) + ($("#argent_3").val() * 100) + ($("#argent_4").val() * 5000) + ($("#argent_5").val() * 50) + ($("#argent_6").val() * 2000) + ($("#argent_7").val() * 25) + ($("#argent_8").val() * 1000) + ($("#argent_9").val() * 10) + ($("#argent_10").val() * 500)
         var soustotal1 = ($("#argent_1").val() * 500) + ($("#argent_3").val() * 100) + ($("#argent_5").val() * 50) + ($("#argent_7").val() * 25) + ($("#argent_9").val() * 10)
         var soustotal2 = ($("#argent_2").val() * 10000) + ($("#argent_4").val() * 5000) + ($("#argent_6").val() * 2000) + ($("#argent_8").val() * 1000) + ($("#argent_10").val() * 500)
@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     })
     $(".fargent").keyup(function (event) {
-        //alert($(this).val())
+        ////alert($(this).val())
         var total = ($("#fargent_1").val() * 500) + ($("#fargent_2").val() * 10000) + ($("#fargent_3").val() * 100) + ($("#fargent_4").val() * 5000) + ($("#fargent_5").val() * 50) + ($("#fargent_6").val() * 2000) + ($("#fargent_7").val() * 25) + ($("#fargent_8").val() * 1000) + ($("#fargent_9").val() * 10) + ($("#fargent_10").val() * 500)
         var soustotal1 = ($("#fargent_1").val() * 500) + ($("#fargent_3").val() * 100) + ($("#fargent_5").val() * 50) + ($("#fargent_7").val() * 25) + ($("#fargent_9").val() * 10)
         var soustotal2 = ($("#fargent_2").val() * 10000) + ($("#fargent_4").val() * 5000) + ($("#fargent_6").val() * 2000) + ($("#fargent_8").val() * 1000) + ($("#fargent_10").val() * 500)
@@ -24,42 +24,42 @@ $(document).ready(function () {
 
     })
     $('#iconPreviewCaisse').on('hidden.bs.modal', function () {
-        //alert('passe');
+        ////alert('passe');
         $("#iconPreviewCaisse").modal("show");
     })
     $('#iconPreviewCaisseFermer').on('hidden.bs.modal', function () {
-        //alert('passe');
+        ////alert('passe');
         $("#iconPreviewCaisseFermer").modal("show");
     })
 });
 
 function close_caisse_row() {
     $("#iconPreviewCaisseFermer").modal("show");
-    //alert("session");
+    ////alert("session");
     /*$(".argent").keyup(function (event) {
         var detail_piece_billet = '($("#argent_1").val()*500)' + '($("#argent_2").val()*10000)' + '($("#argent_3").val()*100)' + '($("#argent_4").val()*5000)' + '($("#argent_5").val()*50)' + '($("#argent_6").val()*2000)' + '($("#argent_7").val()*25)' + '($("#argent_8").val()*1000)' + '($("#argent_9").val()*10)' + '($("#argent_10").val()*500)';
 
         var session = $('.session').html();
-        alert(detail_piece_billet)
+        //alert(detail_piece_billet)
 
     })*/
 
 }
 
 function close_caisse_row_valide(user_id) {
-    //alert("session");
+    ////alert("session");
     var total = parseInt($('.totalaisse').html());
     var detail_piece_billet = ($("#argent_1").val()) + "-" + ($("#argent_2").val()) + "-" + ($("#argent_3").val()) + "-" + ($("#argent_4").val()) + "-" + ($("#argent_5").val()) + "-" + ($("#argent_6").val()) + "-" + ($("#argent_7").val()) + "-" + ($("#argent_8").val()) + "-" + ($("#argent_9").val()) + "-" + ($("#argent_10").val());
     var session = $('.session option:selected').text();
     //var totals1 = $('.soustotalaisse1').val();
     //var totals2 = $('.soustotalaisse2').val();
-    //alert(session);
-    //alert(detail_piece_billet);
-    //alert( totals1);
-    //alert(session + "-" + detail_piece_billet + "-" + totals1 + "-" + totals2 + "-" +  total);
+    ////alert(session);
+    ////alert(detail_piece_billet);
+    ////alert( totals1);
+    ////alert(session + "-" + detail_piece_billet + "-" + totals1 + "-" + totals2 + "-" +  total);
     //var dateOuvert    = now.getDate();
     if (total == 0) {
-        alert("Veuillez saisir votre fond de caisse")
+        //alert("Veuillez saisir votre fond de caisse")
     } else {
         $.ajax({
             type: "POST",
@@ -73,7 +73,7 @@ function close_caisse_row_valide(user_id) {
             },
             success: function (server_responce) {
 
-                //alert(server_responce);
+                ////alert(server_responce);
                 var link = '/pharmacietest/bouwou/comptabilite/caisse';
                 window.location.href = link;
 
@@ -90,10 +90,10 @@ function valider_fermeture(caisse_id) {
     //var session = $('.session option:selected').text();
     //var totals1 = $('.soustotalaisse1').val();
     //var totals2 = $('.soustotalaisse2').val();
-    //alert(session);
-    //alert(detail_piece_billet);
-    //alert( totals1);
-    //alert(session + "-" + detail_piece_billet + "-" + totals1 + "-" + totals2 + "-" +  total);
+    ////alert(session);
+    ////alert(detail_piece_billet);
+    ////alert( totals1);
+    ////alert(session + "-" + detail_piece_billet + "-" + totals1 + "-" + totals2 + "-" +  total);
     //var dateOuvert    = now.getDate();
     if (total == 0) {
         //alert("Veuillez saisir votre fond de caisse");
@@ -105,14 +105,14 @@ function valider_fermeture(caisse_id) {
             },
             success: function (server_responce) {
 
-                alert(server_responce);
+                //alert(server_responce);
                 var link = '/pharmacietest/users/logout';
                 window.location.href = link;
 
             }
         });
     } else {
-        alert('passe');
+        //alert('passe');
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_session_caisse.php',
@@ -123,7 +123,7 @@ function valider_fermeture(caisse_id) {
             },
             success: function (server_responce) {
 
-                alert(server_responce);
+                //alert(server_responce);
                 var link = '/pharmacietest/users/logout';
                 window.location.href = link;
 
@@ -141,7 +141,7 @@ function rafraichir_vente(id) {
                 id: id
             },
             success: function (server_responce) {
-                //alert(server_responce);
+                ////alert(server_responce);
                 //$("#iconPreview .icon-preview").html(icon_preview);
 
                 $('#tab_caisse').empty();
@@ -169,7 +169,7 @@ function charger_vente(id) {
             id: id
         },
         success: function (server_responce) {
-            //alert(server_responce);
+            ////alert(server_responce);
             //$("#iconPreview .icon-preview").html(icon_preview);
 
             $('#tab_vente_caisse').empty();
@@ -184,30 +184,30 @@ function charger_vente(id) {
 }
 
 function update_row_produit(id) {
-    alert("link");
+    //alert("link");
     var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
-    alert(link);
+    //alert(link);
     window.location.href = link;
 }
 
 
 function update_row_user(id) {
-    alert("link");
+    //alert("link");
     var link = '/pharmacietest/bouwou/pharmanet/useradd/' + id;
-    alert(link);
+    //alert(link);
     window.location.href = link;
 }
 
 
 function update_row_employe(int) {
-    alert("link");
+    //alert("link");
     var link = '/pharmacietest/bouwou/pharmanet/employeadd/' + int;
-    alert(link);
+    //alert(link);
     window.location.href = link;
 }
 function update_row_assureur(id) {
     var link = '/pharmacietest/bouwou/catalogue/assureuradd/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 function update_row_categorie(row) {
@@ -215,7 +215,7 @@ function update_row_categorie(row) {
     var nom;
     // var code;
     $("#" + row + " td").each(function (i) {
-        //alert(i);
+        ////alert(i);
         if (i == 0) {
             nom = $(this).children().html();
         }
@@ -231,33 +231,33 @@ function update_row_categorie(row) {
     $('#nom').val(nom);
     // $('#code').val(code);
     // var link = '/pharmacietest/bouwou/catalogue/categorieadd/' + id;
-    // //alert(link);
+    // ////alert(link);
     // window.location.href = link;
 }
 function update_row_client(id) {
     var link = '/pharmacietest/bouwou/catalogue/clientadd/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 function update_row_fabriquant(id) {
     var link = '/pharmacietest/bouwou/catalogue/fabriquantadd/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 function update_row_fournisseur(id) {
     var link = '/pharmacietest/bouwou/catalogue/fournisseuradd/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 function update_row_prescripteur(id) {
-    alert("link");
+    //alert("link");
     var link = '/pharmacietest/bouwou/catalogue/prescripteuradd/' + id;
-    alert(link);
+    //alert(link);
     window.location.href = link;
 }
 function update_row_codepostal(id) {
     var link = '/pharmacietest/bouwou/geonetliste/codepostaladd/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 function update_row_forme(row) {
@@ -265,7 +265,7 @@ function update_row_forme(row) {
     var nom;
     var code;
     $("#" + row + " td").each(function (i) {
-        //alert(i);
+        ////alert(i);
         if (i == 0) {
             nom = $(this).children().html();
         }
@@ -281,7 +281,7 @@ function update_row_forme(row) {
     $('#nom').val(nom);
     $('#code').val(code);
     // var link = '/pharmacietest/bouwou/geonetliste/formeadd/' + id;
-    // //alert(link);
+    // ////alert(link);
     // window.location.href = link;
 }
 function update_row_magasin(row) {
@@ -289,7 +289,7 @@ function update_row_magasin(row) {
     var nom;
     var code;
     $("#" + row + " td").each(function (i) {
-        //alert(i);
+        ////alert(i);
         if (i == 0) {
             nom = $(this).children().html();
         }
@@ -305,7 +305,7 @@ function update_row_magasin(row) {
     $('#nom').val(nom);
     $('#code').val(code);
     // var link = '/pharmacietest/bouwou/geonetliste/magasinadd/' + id;
-    // //alert(link);
+    // ////alert(link);
     // window.location.href = link;
 }
 function update_row_rayon(row) {
@@ -313,14 +313,14 @@ function update_row_rayon(row) {
     var nom;
     var code;
     $("#" + row + " td").each(function (i) {
-        //alert(i);
+        ////alert(i);
         if (i == 0) {
             nom = $(this).children().html();
-            alert(nom);
+            //alert(nom);
         }
         if (i == 1) {
             code = $(this).html();
-            alert(code);
+            //alert(code);
         }
        
     });
@@ -331,7 +331,7 @@ function update_row_rayon(row) {
     $('#nom').val(nom);
     $('#code').val(code);
     // var link = '/pharmacietest/bouwou/geonetliste/rayonadd/' + id;
-    // //alert(link);
+    // ////alert(link);
     // window.location.href = link;
 }
 function update_row_unite(row) {
@@ -342,22 +342,22 @@ function update_row_unite(row) {
        
         if (i == 0) {
             nom = $(this).children().html();
-            alert(nom);
+            //alert(nom);
         }
         if (i == 1) {  
             libelle = $(this).html();
-            alert(libelle);
+            //alert(libelle);
         }
        
     });
-    alert(row);
+    //alert(row);
     $('.titre').html('Modifier forme');
     $('.button').html('Modifier');
     $('.button').attr('href', row);
     $('#nom').val(nom);
     $('#libelle').val(libelle);
     // var link = '/pharmacietest/bouwou/geonetliste/uniteadd/' + id;
-    // //alert(link);
+    // ////alert(link);
     // window.location.href = link;
 }
 function update_row_ville(row) {
@@ -368,22 +368,22 @@ function update_row_ville(row) {
        
         if (i == 0) {
             nom = $(this).children().html();
-            alert(nom);
+            //alert(nom);
         }
         if (i == 1) {  
             code = $(this).html();
-            alert(code);
+            //alert(code);
         }
        
     });
-    alert(row);
+    //alert(row);
     $('.titre').html('Modifier ville');
     $('.button').html('Modifier');
     $('.button').attr('href', row);
     $('#nom').val(nom);
     $('#code').val(code);
     // var link = '/pharmacietest/bouwou/geonetliste/villeadd/' + id;
-    // //alert(link);
+    // ////alert(link);
     // window.location.href = link;
 }
 
@@ -393,13 +393,13 @@ function delete_row(row, controller, confirmation) {
     if (confirmation) {
         $("#" + row).hide("slow", function () {
             var link = '/Site/bouwou/' + controller + '/delete/' + row;
-            //alert(link);
+            ////alert(link);
             /*$.ajax({
 
                 url: link,
 
                 success: function (data) {
-                    //alert(data);
+                    ////alert(data);
                     //$("#iconPreview .icon-preview").html(icon_preview);
                     $(this).remove();
                 }
@@ -416,13 +416,13 @@ function delete_row(row, controller, confirmation) {
             box.removeClass("open");
             $("#" + row).hide("slow", function () {
                 var link = '/Site/bouwou/' + controller + '/delete/' + row;
-                //alert(link);
+                ////alert(link);
                 $.ajax({
 
                     url: link,
 
                     success: function (data) {
-                        //alert(data);
+                        ////alert(data);
                         //$("#iconPreview .icon-preview").html(icon_preview);
                         $(this).remove();
                     }
@@ -445,13 +445,13 @@ function delete_row_filiere(row, action) {
         box.removeClass("open");
         $("#" + row).hide("slow", function () {
             var link = '/Site/bouwou/formations/delete/' + row + '/' + action;
-            //alert(link);
+            ////alert(link);
             $.ajax({
 
                 url: link,
 
                 success: function (data) {
-                    //alert(data);
+                    ////alert(data);
                     //$("#iconPreview .icon-preview").html(icon_preview);
                     $(this).remove();
                 }
@@ -472,7 +472,7 @@ function delete_row_vente(id) {
     }
 
     $("#"+id+" td").each(function(i){
-        //alert(i);
+        ////alert(i);
         if(i==3) {total = parseInt($(this).html());}
         if(i==4)  reduction = parseInt($(this).html());
 
@@ -481,7 +481,7 @@ function delete_row_vente(id) {
     $("#"+id ).remove();
 
     /*$("#"+id+" td").each(function(i){
-        //alert(i);
+        ////alert(i);
         if(i==3) {total1 = $(this).html();}
         if(i==4)  reduction = $(this).html();
 
@@ -492,10 +492,10 @@ function delete_row_vente(id) {
             $('#tab_vente  tr').each(function(i){
                 var id1 = $(this).attr("id");
                 var prix,qte;
-                //alert(id1);
+                ////alert(id1);
 
                 $("#"+id1+" td").each(function(j){
-                    //alert($(this).html());
+                    ////alert($(this).html());
                     if(j==1) { prix = parseInt($(this).html());}
                     if(j==2) { qte = parseInt($(this).html()); prixTotal = prixTotal + (prix*qte);}
                     if(j==4) {
@@ -546,12 +546,12 @@ function update_row(row) {
     var sigle;
     var description;
     $("#" + row + " td").each(function (i) {
-        //alert(i);
+        ////alert(i);
         if (i == 0) { nom = $(this).children().html(); }
         if (i == 1) sigle = $(this).html();
         if (i == 2) description = $(this).html();
     });
-    //alert(nom);
+    ////alert(nom);
     $('.titre').html('Modifier une faculté');
     $('.button').html('Modifier');
     $('.button').attr('href', row);
@@ -568,12 +568,12 @@ function update_row(row) {
 //     var nom;
 //     var description;
 //     $("#" + row + " td").each(function (i) {
-//         //alert(i);
+//         ////alert(i);
 //         if (i == 0) { nom = $(this).children().html(); }
 //         if (i == 2) description = $(this).html();
 //     });
 //     $("#form3").scroll('slow');
-//     //alert(nom);
+//     ////alert(nom);
 //     $('.titre').html('Modifier une categorie');
 //     $('.button').html('Modifier');
 //     $('.button').attr('href', row);
@@ -589,7 +589,7 @@ function update_row_type(row) {
     var nom;
     var description;
     $("#" + row + " td").each(function (i) {
-        //alert(i);
+        ////alert(i);
         if (i == 0) {
             nom = $(this).children().html();
         }
@@ -598,7 +598,7 @@ function update_row_type(row) {
             certif = $(this).children().html();
         }
     });
-    //alert(nom);
+    ////alert(nom);
     $('.titre').html('Modifier un type d\'université');
     $('.button').html('Modifier');
     $('.button').attr('href', row);
@@ -621,7 +621,7 @@ function update_row_question(row) {
     var question;
     var type;
     $("#" + row + " td").each(function (i) {
-        //alert(i);
+        ////alert(i);
         if (i == 1) {
             question = $(this).children().html();
         }
@@ -629,7 +629,7 @@ function update_row_question(row) {
             type = $(this).html();
         }
     });
-    //alert(nom);
+    ////alert(nom);
     $('.titre').html('Modifier une question');
     $('.button').html('Modifier');
     $('.button').attr('href', row);
@@ -651,45 +651,45 @@ function update_row_question(row) {
 
 function update_row_univ(id) {
     var link = '/Site/bouwou/universites/edit/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 function update_row_concours(id) {
     var link = '/Site/bouwou/concours/edit/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 
 function filiere_row(iduniv, idfac) {
     var link = '/Site/bouwou/formations/index/' + iduniv + '/' + idfac;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 function filiere_categorie_row(id) {
     var link = '/Site/bouwou/formations/index/0/0/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 function update_row_filiere(id) {
     var link = '/Site/bouwou/formations/edit/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 function conf_row_question(id) {
     var link = '/Site/bouwou/orientation/configuration/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 function categorie_row_question(id) {
     var link = '/Site/bouwou/orientation/recapitulatif/categorie/' + id;
-    //alert(link);
+    ////alert(link);
     window.location.href = link;
 }
 
 function info_row(row) {
 
     //var lien = $(this).attr('id');
-    //alert('test');
+    ////alert('test');
 
     $.ajax({
         type: "POST",
@@ -699,7 +699,7 @@ function info_row(row) {
         },
         dataType: 'json',
         success: function (data) {
-            //alert(data);
+            ////alert(data);
             //$("#iconPreview .icon-preview").html(icon_preview);
 
             $('#iconPreview .nom').html(data.nom);
@@ -727,7 +727,7 @@ function info_row(row) {
 function info_row_entree(row) {
 
     //var lien = $(this).attr('id');
-    //alert('test');
+    ////alert('test');
     var code;
 
     $.ajax({
@@ -738,7 +738,7 @@ function info_row_entree(row) {
         },
         dataType: 'json',
         success: function (data) {
-            //alert(data);
+            ////alert(data);
             //$("#iconPreview .icon-preview").html(icon_preview);
 
             $('#iconPreviewEntree .nomp').html(data.nomP);
@@ -764,7 +764,7 @@ function info_row_entree(row) {
 
 
     })
-    //alert(code);
+    ////alert(code);
     $(".fittext1").fitText();
     $("#demo").fitText();
 

@@ -43,7 +43,7 @@
                             <div class="profile-data-title"><?php echo $this->Session->user('type') . ' ' ?><?php if ($this->Session->user('FONCTION') != null) echo ' / ' . $this->Session->user('FONCTION') ?></div>
                         </div>
                         <div class="profile-controls">
-                            <a href="<?php echo BASE_URL . '/bouwou/users/profile/' . $this->Session->user('PERSONNE_ID'); ?>" class="profile-control-left"><span class="fa fa-info"></span></a>
+                            <a href="<?php echo Router::url('bouwou/pharmanet/userprofile/'.$_SESSION["Users"]->id); ?>" class="profile-control-left"><span class="fa fa-info"></span></a>
                             <a href="pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
                         </div>
                     </div>
