@@ -72,7 +72,7 @@ class VenteController extends Controller
         $this->loadModel('Vente');
 
         $d['vente'] = $this->Vente->find(array(
-            'fields' => 'vente.id as id,montantRegle,reelPercu,commentaire,dateVente,etat,ref',
+            'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
             'table' => 'vente',
         ));
 

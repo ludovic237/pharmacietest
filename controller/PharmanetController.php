@@ -39,16 +39,6 @@ class PharmanetController extends Controller
     {
         $this->loadModel('Pharmanet');
 
-        $d['pharmanet'] = $this->Pharmanet->find(array(
-            'fields' => 'id,name,surname,email,code,password,etat,type,type2,telephone ',
-            'table' => 'user',
-
-        ));
-        //die($d);
-        if (empty($d['pharmanet'])) {
-            $this->e404('Page introuvable');
-        }
-        $this->set($d);
     }
 
     function koudjine_employe()
@@ -170,16 +160,6 @@ class PharmanetController extends Controller
     {
         $this->loadModel('Pharmanet');
 
-        $d['pharmanet'] = $this->Pharmanet->find(array(
-            'fields' => 'id,name,surname,email,code,password,etat,type,type2,telephone ',
-            'table' => 'user',
-
-        ));
-        //die($d);
-        if (empty($d['pharmanet'])) {
-            $this->e404('Page introuvable');
-        }
-        $this->set($d);
     }
 
 }

@@ -16,7 +16,6 @@ $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/inventaire.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
 <script>
                                         window.onload = function () {
                                             document.getElementById("recherche_inventaire").focus();
@@ -176,3 +175,44 @@ else{ ?>
 
 <?php }?>
 
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewEntree" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form >
+                            <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Inventaire</h4>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Quantite ajouté:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="identifiant" id="identifiant" value="" placeholder="" />
+                                        <span class="help-block">exemple: identifiant - Champ requis</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="btn-group pull-right">
+                                <button class="btn btn-primary" style="margin-right: 20px">Fermer</button>
+                                <button class="btn btn-success" type="submit">valider</button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->

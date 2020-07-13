@@ -32,6 +32,7 @@
                                 <th width="200">Quantité en stock</th>
                                 <th width="200">Catégorie</th>
                                 <th width="100">Rayon</th>
+                                <th width="100">Etat</th>
                                 <th width="100">Actions</th>
                             </tr>
                         </thead>
@@ -46,6 +47,9 @@
                                     </td>
                                     <td>
                                         <?php echo $v->nomr; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $v->etatp; ?>
                                     </td>
                                     <td>
                                         <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row(<?php echo $v->idp; ?>)">
