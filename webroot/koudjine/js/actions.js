@@ -150,6 +150,37 @@ $(document).ready(function(){
             else{
                 var link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
             }
+        }else if(controller == 'stock'){
+            if($('.ajouter').html() == 'Démarrer inventaire') {
+                $.ajax({
+                    type: "POST",
+                    url: '/pharmacietest/koudjine/inc/gerer_inventaire.php',
+                    data: {
+                        action: 'lancer'
+                    },
+                    success: function (server_responce) {
+                        alert(server_responce);
+                        var link = '/pharmacietest/bouwou/stock/inventaire';
+                        window.location.href = link;
+
+                    }
+                })
+            }else{
+                $.ajax({
+                    type: "POST",
+                    url: '/pharmacietest/koudjine/inc/gerer_inventaire.php',
+                    data: {
+                        action: 'arreter'
+                    },
+                    success: function (server_responce) {
+                        alert(server_responce);
+                        var link = '/pharmacietest/bouwou/stock/inventaire';
+                        window.location.href = link;
+
+                    }
+                })
+            }
+
         }
         else{
             //alert($(this).attr('data'));
@@ -795,11 +826,11 @@ function lister_formations(){
 
 function charger_stock(){
 
-    var id1 =  $('#srch_produit').val();
+    var id1 =  $('#rechercheEntre').attr("data");
     var id2 =  $('#srch_stock option:selected').text();
     var id3 =  $('#srch_perime option:selected').text();
     if(id1 != ''){
-        var id = $('#srch_produit').attr("name");
+        var id = $('#rechercheEntre').attr("data");
         alert(id);
         if(id2 == 'Tout...'){
             if(id3 == 'Tout...'){

@@ -24,14 +24,13 @@ class StockController extends Controller
     function koudjine_index()
     {
         $this->loadModel('Stock');
-
-
-        $d['Stock'] = $this->Stock->find(array(
-            'fields' => 'DATE_DEBUT_CONCOURS,MODALITE_ADMISSION,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
-            'table' => 'acces_concours,universite',
-            'order' => 'DATE_DEBUT_CONCOURS-DESC',
-            'conditions' => array('acces_concours.UNIVERSITE_ID' => 'universite.UNIVERSITE_ID', 'acces_concours.SUPPRIMER' => 0, 'universite.SUPPRIMER' => 0)
+        $d['inventaire'] = $this->Stock->find(array(
+            //'fields' => 'DATE_DEBUT_CONCOURS,MODALITE_ADMISSION,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
+            'table' => 'inventaire',
+            //'order' => 'DATE_DEBUT_CONCOURS-DESC',
+            'conditions' => array('etat' => "'En cours'", 'supprimer' => 0)
         ));
+
         $this->set($d);
     }
 
@@ -39,6 +38,14 @@ class StockController extends Controller
     function koudjine_inventaire()
     {
         $this->loadModel('Stock');
+        $d['inventaire'] = $this->Stock->find(array(
+            //'fields' => 'DATE_DEBUT_CONCOURS,MODALITE_ADMISSION,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
+            'table' => 'inventaire',
+            //'order' => 'DATE_DEBUT_CONCOURS-DESC',
+            'conditions' => array('etat' => "'En cours'", 'supprimer' => 0)
+        ));
+
+        $this->set($d);
     }
 
 }

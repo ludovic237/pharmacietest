@@ -263,6 +263,16 @@ class CaisseManager
         $q->bindValue(':etat', $caisse->etat());
         $q->execute();
     }
+    public function updateFermeCaisse1(Caisse $caisse)
+    {
+
+        $q = $this->_db->prepare('UPDATE caisse SET fermetureCaisse = :fermeture, fondCaisseFerme = :fondCaisseFerme, etat = :etat WHERE id = :id');
+        $q->bindValue(':id', $caisse->id(), PDO::PARAM_INT);
+        $q->bindValue(':fermeture', $caisse->fermetureCaisse());
+        $q->bindValue(':fondCaisseFerme', $caisse->fondCaisseFerme());
+        $q->bindValue(':etat', $caisse->etat());
+        $q->execute();
+    }
     public function setDb(PDO $db)
     {
         $this->_db = $db;

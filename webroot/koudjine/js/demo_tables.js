@@ -156,6 +156,7 @@ function rafraichir_vente(id) {
 }
 function charger_vente(id) {
     $("#facture_caisse").html($("#"+id+" .prixtotal").html());
+    $("#facture_caisse").attr("data", $("#"+id+" .reduction").html());
     $('#fen_facture').attr("data", id);
     //$("#"+id).addClass("alt");
     $('#tab1 .montant').val('');

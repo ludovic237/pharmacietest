@@ -52,29 +52,26 @@
                                    </tr>
                               </thead>
                               <tbody id="tab_caisse">
-                                   <?php if (isset($vente)) {
-                                        foreach ($vente as $k => $v) : ?>
-                                             <tr id="<?php echo $v->id; ?>">
-                                                  <td><strong class='prixtotal'><?php echo $v->prixTotal; ?></strong></td>
-                                                  <td><?php echo $v->reduction; ?></td>
-                                                  <td><?php echo $v->reference; ?></td>
-                                                  <td><?php echo $v->nouveau_info; ?></td>
-                                                  <td><?php //echo $v->nouveau_info; 
-                                                       ?></td>
-                                                  <td>
-                                                       <?php echo $v->commentaire; ?>
-                                                  </td>
-                                                  <td>
-                                                       <?php echo $v->dateVente; ?>
-                                                  </td>
-                                                  <td>
-                                                       <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
-                                                            Charger
-                                                       </button>
-                                                  </td>
-                                             </tr>
-                                   <?php endforeach;
-                                   } ?>
+                              <?php if(isset($vente)){ foreach ($vente as $k => $v) : ?>
+                                  <tr id="<?php echo $v->id; ?>">
+                                      <td><strong class='prixtotal'><?php echo $v->prixTotal; ?></strong></td>
+                                      <td class="reduction"><?php echo $v->reduction; ?></td>
+                                      <td><?php echo $v->reference; ?></td>
+                                      <td><?php echo $v->nouveau_info; ?></td>
+                                      <td><?php //echo $v->nouveau_info; ?></td>
+                                      <td>
+                                          <?php echo $v->commentaire; ?>
+                                      </td>
+                                      <td>
+                                          <?php echo $v->dateVente; ?>
+                                      </td>
+                                      <td>
+                                          <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                                              Charger
+                                          </button>
+                                      </td>
+                                  </tr>
+                              <?php endforeach; } ?>
                               </tbody>
                          </table>
                     </div>
@@ -114,7 +111,7 @@
                          <div style="display: flex;align-items: center;justify-content: space-evenly;">
                               <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;" id="fen_facture" data="">Montant facture</h4>
                               <div>
-                                   <h2><span id="facture_caisse">0</span>F CFA</h2>
+                                   <h2><span id="facture_caisse" data="">0</span>F CFA</h2>
                               </div>
                          </div>
                          <div class="panel panel-default tabs">
@@ -339,7 +336,52 @@
           </div>
      </div>
 </div>
+<?php if($_SESSION['Users']->type == 'Administrateur' || $_SESSION['Users']->type == 'Gestionnaire'){ ?>
 
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <table class="table   table-bordered table-striped table-actions" id="">
+                        <thead>
+                        <tr>
+                            <th>Prix Total</th>
+                            <th>Etat</th>
+                            <th>Réference</th>
+                            <th>Date vente</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tab_caisse">
+                        <?php if(isset($vente_credit)){ foreach ($vente_credit as $k => $v) : ?>
+                            <tr id="<?php echo $v->id; ?>">
+                                <td><strong class='prixtotal'><?php echo $v->prixTotal; ?></strong></td>
+                                <td class="etat"><?php echo $v->etat; ?></td>
+                                <td><?php echo $v->reference; ?></td>
+                                <td>
+                                    <?php echo $v->dateVente; ?>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
+                                        Envoyer en caisse
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; } ?>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<?php } ?>
 
 <!-- END RESPONSIVE TABLES -->
 
@@ -349,7 +391,7 @@
           <div class="modal-content">
                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="">Caisse</h4>
+                    <h4 class="modal-title" id="">Ouvrir Caisse</h4>
                </div>
                <div class="modal-body" style="padding: 0px;">
                     <div class="row">
@@ -468,7 +510,7 @@
           <div class="modal-content">
                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Caisse</h4>
+                    <h4 class="modal-title">Fermer Caisse</h4>
                </div>
                <div class="modal-body" style="padding: 0px;">
                     <div class="row">
