@@ -32,25 +32,15 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;margin-bottom:0px">
                 <label class="col-md-2 col-xs-12 control-label" style="margin-right: 30px;width: 150px;">Selectionner un produit:</label>
                 <div class="col-md-8 col-xs-12 " style="display: flex;flex:1;margin-right: 30px;flex-direction:column">
-                    <input type="text" class="form-control col-md-4" name="nom" id="recherche" value="" placeholder="Médicaments">
+                    <input type="text" class="form-control col-md-4" data="<?php if(isset($produit)) echo $produit->id; ?>" name="nom" id="rechercheEntre" value="" placeholder="Médicaments">
                     <div>
 
                         <div class="panel-body panel-body-table">
 
                             <div class="">
-                                <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
-                                    <thead>
-                                        <tr>
-                                            <th width="200">Nom</th>
-                                            <th width="100">Prix Unitaire</th>
-                                            <th width="100">Quantité</th>
-                                            <th width="100">Stock</th>
-                                            <th width="100">Reduction</th>
-                                            <th width="200">Date de Livraison</th>
-                                            <th width="100">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tab_Brecherche">
+                                <table id="tab_GrechercheEntre" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+
+                                    <tbody id="tab_BRechercheEntre">
 
                                     </tbody>
                                 </table>

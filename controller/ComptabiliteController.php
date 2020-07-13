@@ -62,6 +62,11 @@ class ComptabiliteController extends Controller
     function koudjine_caisse()
     {
         $this->loadModel('Comptabilite');
+        $d['vente_credit'] = $this->Comptabilite->find(array(
+            //'fields' => 'produit.nom as nom',
+            'table' => 'vente',
+            'conditions' => "supprimer = 0 AND prixPercu = 0 AND etat = \"Crédit\" AND ISNULL(caisse_id) = 1"
+        ));
         $d['caisseCheck'] = $this->Comptabilite->findFirst(array(
             //'fields' => 'produit.nom as nom',
             'table' => 'caisse',

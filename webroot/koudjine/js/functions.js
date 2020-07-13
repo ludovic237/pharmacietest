@@ -4,6 +4,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     var netpayer;
     var reduc;
     var stock;
+    $("#tab_GrechercheEntre").hide();
     $("#tab_Grecherche").hide();
     $(".clientExistant").hide();
     $(".prescripteurExistant").hide();
@@ -394,6 +395,27 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 
     });
 
+    $("#rechercheEntre").keyup(function (event) {
+        $("#tab_GrechercheEntre").hide();
+            var recherche = $(this).val();
+            recherche = $.trim(recherche);
+            var data = 'motclef1=' + recherche;
+            if (recherche.length > 1) {
+                //alert('yes');
+                $.ajax({
+                    type: "GET",
+                    url: "/pharmacietest/koudjine/inc/result_entre.php",
+                    data: data,
+                    success: function (server_responce) {
+                        $("#tab_GrechercheEntre").show();
+                        $("#tab_BRechercheEntre").html(server_responce).show();
+                        //alert(server_responce);
+                    }
+                })
+            } else {
+                $("#tab_Grecherche").hide();
+            }
+    });
 });
 // Ajax
 // Fonctions PHARMACIE
@@ -566,6 +588,25 @@ function ajouter_produit() {
     $('#netTotal').html((prixTotal - prixReduit));
 }
 
+function envoyer_en_caisse(vente_id,caisse_id) {
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/envoyer_en_caisse.php',
+        data: {
+            caisse_id: caisse_id,
+            vente_id: vente_id
+        },
+        success: function (server_responce) {
+            //alert(server_responce);
+            var link = '/pharmacietest/bouwou/comptabilite/caisse';
+            window.location.href = link;
+
+        }
+
+
+    })
+}
+
 function valider_vente(type, etat) {
     var nouveau = "";
     var idClient;
@@ -718,6 +759,8 @@ function valider_vente(type, etat) {
 
 function valider_facture(typePaiement, onglet, caisse_id, imprimer){
     var montantTtc = parseInt($('#facture_caisse').html());
+    var reduction = parseInt($('#facture_caisse').attr('data'));
+    alert(reduction);
     var montantPercu = null;
     if($('#'+onglet+' .montant').val() != ''){
         //alert(caisse_id);
@@ -745,6 +788,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer){
                 montant: montantTtc,
                 montantPercu: montantPercu,
                 reste: reste,
+                reduction: reduction,
                 typePaiement: typePaiement,
                 caisse_id: parseInt(caisse_id)
             },

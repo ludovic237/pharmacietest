@@ -4,6 +4,8 @@ require_once('../Class/vente.php');
 require_once('../Class/caisse.php');
 require_once('../Class/facturation.php');
 require_once('../Class/facture_espece.php');
+require_once('../Class/user.php');
+require_once('../Class/employe.php');
 
 global $pdo;
 
@@ -12,6 +14,8 @@ $manager = new VenteManager($pdo);
 $managerCa = new CaisseManager($pdo);
 $managerFa = new FacturationManager($pdo);
 $managerFe = new FactureEspeceManager($pdo);
+$managerEm = new EmployeManager($pdo);
+$managerUs = new UserManager($pdo);
 
 $caisse_id = $_POST['caisse_id'];
 $vente_id=$_POST['vente_id'];
@@ -19,6 +23,7 @@ $montant=$_POST['montant'];
 $montantPercu=$_POST['montantPercu'];
 $reste=$_POST['reste'];
 $typePaiement=$_POST['typePaiement'];
+$reduction=$_POST['reduction'];
 
 $idGen = genererID();
 $facture = new Facturation(array(
@@ -43,6 +48,17 @@ if ($typePaiement == "Espèce"){
     $vente = $manager->get($vente_id);
     $vente->setprixPercu($montant);
     $manager->update($vente);
+    if($reduction != 0){
+        if($vente->user_id() == null){
+            $employe = $managerEm->get($vente->employe_id());
+            $employe->setfaireReductionMax($employe->faireReductionMax()-$reduction);
+            $managerEm->update($employe);
+        }else{
+            $user = $managerUs->get($vente->user_id());
+            $user->setreductionMax($user->reductionMax()-$reduction);
+            $managerUs->update($user);
+        }
+    }
     echo "ok";
 
 }

@@ -44,9 +44,7 @@ if (isset($_POST['id'])||isset($_GET['id'])){
         $datev = $date->format('d-m-Y');
         echo "<tr id=\"".$v->id()."\">
                                             <td ><strong class='prixtotal'>".$v->prixTotal()."</strong></td>
-                                            <td class='reduction'>
-                                                ".$v->reduction()."
-                                            </td>
+                                            <td class='reduction'>".$v->reduction()."</td>
                                             <td class='reference'>
                                                 ".$v->reference()."
                                             </td>

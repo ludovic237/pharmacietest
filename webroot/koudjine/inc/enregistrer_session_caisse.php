@@ -23,8 +23,12 @@ if (isset($_POST['id'])){
             $caisse->setfermetureCaisse($fermetureCaisse);
             $caisse->setfondCaisseFerme($fondCaisse);
             $caisse->setetat('Clot');
-            $manager->updateFermeCaisse($caisse);
-            echo 'ok passe';
+            if($caisse->dateFerme() == null){
+                $manager->updateFermeCaisse($caisse);
+            }else{
+                $manager->updateFermeCaisse1($caisse);
+            }
+
 
         }
         else{
@@ -39,8 +43,11 @@ if (isset($_POST['id'])){
             $caisse = $manager->getId($id);
 
             $caisse->setetat('En cours');
-            $manager->updateFermeCaisse($caisse);
-            echo 'ok';
+            if($caisse->dateFerme() == null){
+                $manager->updateFermeCaisse($caisse);
+            }else{
+                $manager->updateFermeCaisse1($caisse);
+            }
 
         }
         else{

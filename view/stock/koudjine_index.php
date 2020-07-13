@@ -1,17 +1,14 @@
 <?php
 
 $title_for_layout = ' Admin -' . 'Stock';
-$page_for_layout =  'Inventaire';
+$page_for_layout =  'Inverntaire';
 if(isset($inventaire) && empty($inventaire) ){
     $action_for_layout = 'Démarrer inventaire';
 }
-else{
-    $action_for_layout = 'Terminer inventaire';
-}
 
 
 
-$position_for_layout = '<li><a href="#">Stock</a></li><li><a href="#">Inventaire</a></li>';
+$position_for_layout = '<li><a href="#">Inventaire</a></li>';
 $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 ';

@@ -96,7 +96,7 @@ function valider_fermeture(caisse_id) {
     //alert(session + "-" + detail_piece_billet + "-" + totals1 + "-" + totals2 + "-" +  total);
     //var dateOuvert    = now.getDate();
     if (total == 0) {
-        alert("Veuillez saisir votre fond de caisse");
+        //alert("Veuillez saisir votre fond de caisse");
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_session_caisse.php',
@@ -156,6 +156,7 @@ function rafraichir_vente(id) {
 }
 function charger_vente(id) {
     $("#facture_caisse").html($("#"+id+" .prixtotal").html());
+    $("#facture_caisse").attr("data", $("#"+id+" .reduction").html());
     $('#fen_facture').attr("data", id);
     //$("#"+id).addClass("alt");
     $('#tab1 .montant').val('');
