@@ -41,7 +41,7 @@ else{
     $inventaire = $manager->get();
     if($managerPI->existsEn_rayon($inventaire->id(), $id)){
         $produit = $managerPI->getEn_rayon($inventaire->id(), $id);
-        $produit->setstockValide($qte);
+        $produit->setstockValide($produit->stockValide()+$qte);
         $managerPI->update($produit);
     }
 

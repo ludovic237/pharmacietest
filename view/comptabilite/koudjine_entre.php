@@ -8,19 +8,14 @@ if ($this->request->action == "entre") {
     $position = "Entrées Stock";
 }
 $position_for_layout = '<li><a href="#">Comptabilité</a></li><li class="active">' . $position . '</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
+$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/fileinput/fileinput.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/jquery.noty.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/themes/default.js"></script>
 <script type="text/javascript">
 ';
 ?>
@@ -90,7 +85,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
-                    <table class="table datatable table-bordered table-striped table-actions">
+                    <table class="table table-bordered table-striped table-actions">
                         <thead>
                             <tr>
                                 <th>Nom</th>
@@ -188,6 +183,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <td class="nomp"></td>
                                     </tr>
                                     <tr>
+                                        <td width="100">Code barre:</td>
+                                        <td class="codebarre"></td>
+                                    </tr>
+                                    <tr>
                                         <td width="100">Nom Fournisseur:</td>
                                         <td class="nomf"></td>
                                     </tr>
@@ -226,7 +225,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <td class="prixa"></td>
                                     </tr>
                                     <tr>
-                                        <td width="100">Réduction:</td>
+                                        <td width="100">Réduction(%):</td>
                                         <td class="reduction"></td>
                                     </tr>
                                 </tbody>

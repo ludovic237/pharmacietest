@@ -91,18 +91,30 @@ function valider_row_inventaire(id) {
         }
     })
 }
-function ajouter_row_inventaire(id) {
+function ajouter_inventaire(id) {
+    $("#quantiteajoute").attr("data", id);
+    $("#iconPreviewInventaire").modal("show");
+}
+function ajouter_row_inventaire() {
+    var id = $("#quantiteajoute").attr("data");
+    var qte = parseInt($("#quantiteajoute").val());
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/gerer_produit_inventaire.php',
         data: {
             action: 'ajouter',
             id: id,
-            qte: $("#" + id + " .qte_inventaire").val()
+            qte: qte
         },
         success: function (server_responce) {
-            alert(server_responce);
+            //alert(id);
+            var val = ''+id;
+            //alert($('#'+ id + ' .qteinventaire').html());
             //$('#' + id + ' .valider_inventaire').attr("disabled", "disabled");
+            $("#iconPreviewInventaire").modal("hide");
+            var link = '/pharmacietest/bouwou/stock/inventaire';
+            window.location.href=link;
+            //$("#"+id+" .qtevalide").html(parseInt($("#"+id+" .qtevalide").html())+ qte);
         }
     })
 }

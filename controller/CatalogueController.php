@@ -316,6 +316,13 @@ class CatalogueController extends Controller
                 'conditions' => array('id' => $id)
             ));
 
+            list($part1,$part2)= explode(' ', trim($d['produit']->nom));
+            $d['produits'] = $this->Catalogue->find(array(
+                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+                'table' => 'produit',
+                'conditions' => 'nom like "%'.$part1.'%" AND supprimer = 0'
+            ));
+            //print_r($d['produits']);
 
             if (empty($d['produit'])) {
                 $this->e404('Page introuvable');

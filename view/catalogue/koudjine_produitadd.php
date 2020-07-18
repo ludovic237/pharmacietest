@@ -227,11 +227,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Produit:</label>
                         <div class="col-md-9">
-                            <select multiple class="selectpicker form-control input-xlarge " name="formeproduit" id="formeproduit">
-                                <?php
-                                foreach ($forme as $k => $v) : ?>
+                            <select multiple class="selectpicker form-control input-xlarge " name="produits" id="produits">
+                                <?php if(isset($produits))
+                                foreach ($produits as $k => $v) : ?>
                                     <option <?php if ($position == 'Modifier')
-                                                if ($v->id == $produit->forme_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?>
+                                                if ($v->id == $produit->grossiste_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?>
                                     </option>
                                 <?php
                                 endforeach;
@@ -261,13 +261,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <label class="col-md-3 control-label">Etat:</label>
                         <div class="col-md-9">
                             <select class="selectpicker form-control input-xlarge " name="etat" id="pdt_etat">
-                                <option <?php if ($position == 'Modifier')
-                                            if ($v->id == $produit->etat) echo "selected=\"selected\""; ?> 
-                                            value="<?php echo $v->id; ?>">
-                                            <?php echo $produit->etat; ?>
-                                </option>
-                                <option value="Utile">Utile</option>
-                                <option value="Non utile">Non utile</option>
+                                <option <?php if ($position == 'Modifier') if ($produit->etat == 'Utile') echo "selected=\"selected\""; ?> value="Utile">Utile</option>
+                                <option <?php if ($position == 'Modifier') if ($produit->etat == 'Non utile') echo "selected=\"selected\""; ?> value="Non utile">Non utile</option>
                             </select>
                         </div>
                     </div>

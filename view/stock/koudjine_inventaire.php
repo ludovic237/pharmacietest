@@ -77,12 +77,12 @@ if(isset($inventaire) && !empty($inventaire) ){
                                     <?php echo $datel; ?>
                                 </td>
                                 <td><?php echo $v->identifiant; ?></td>
-                                <td><?php echo $v->stockValide; ?></td>
+                                <td class="qteinventaire"><?php echo $v->stockValide; ?></td>
                                 <td>
                                     <button class="btn btn-success btn-rounded btn-sm valider_inventaire" disabled data-toggle="tooltip" data-placement="top"  onclick="valider_row_inventaire(<?php echo $v->en_rayon_id; ?>)">
                                         Valider
                                     </button>
-                                    <button class="btn btn-primary btn-rounded btn-sm ajouter_inventaire" <?php if($_SESSION['Users']->type != 'Administrateur') echo 'disabled';  ?> data-toggle="tooltip" data-placement="top" onclick="ajouter_row_inventaire(<?php echo $v->en_rayon_id; ?>)">
+                                    <button class="btn btn-primary btn-rounded btn-sm ajouter_inventaire" <?php if($_SESSION['Users']->type != 'Administrateur') echo 'disabled';  ?> data-toggle="tooltip" data-placement="top" onclick="ajouter_inventaire(<?php echo $v->en_rayon_id; ?>)">
                                         Ajouter
                                     </button>
                                 </td>
@@ -158,7 +158,7 @@ else{ ?>
                                         <?php echo $datel; ?>
                                     </td>
                                     <td><?php echo $v->identifiant; ?></td>
-                                    <td><?php echo $v->stockValide; ?></td>
+                                    <td class="qtevalide"><?php echo $v->stockValide; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>
@@ -176,7 +176,7 @@ else{ ?>
 <?php }?>
 
 <!-- START MODAL ICON PREVIEW -->
-<div class="modal fade" id="iconPreviewEntree" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="iconPreviewInventaire" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -186,30 +186,22 @@ else{ ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form >
                             <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Inventaire</h4>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quantite ajouté:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="identifiant" id="identifiant" value="" placeholder="" />
+                                        <input type="text" class="form-control" data="" name="quantiteajoute" id="quantiteajoute" value="" placeholder="" />
                                         <span class="help-block">exemple: identifiant - Champ requis</span>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="btn-group pull-right">
-                                <button class="btn btn-primary" style="margin-right: 20px">Fermer</button>
-                                <button class="btn btn-success" type="submit">valider</button>
-                            </div>
-
-                        </form>
                     </div>
 
                 </div>
             </div>
             <div class="modal-footer">
+                <button class="btn btn-success" onclick="ajouter_row_inventaire()">valider</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>

@@ -26,7 +26,9 @@ if (isset($_POST['id'])){
     $forme=$_POST['forme'];
     $ray=$_POST['ray'];
     $fab=$_POST['fab'];
+    $parrain=$_POST['parrain'];
     $mag=$_POST['mag'];
+    print_r($parrain);
     //echo $id;
     //$prod = new Departement();
     if ($manager->existsNom($nom)) {
@@ -48,6 +50,7 @@ if (isset($_POST['id'])){
             $prod->setstockMax($stockmax);
             $prod->setreductionMax($reduction);
             $prod->setetat($etat);
+            $prod->setgrossiste_id($parrain);
             $manager->update($prod);
             echo 'ok';
         }
@@ -74,6 +77,7 @@ if (isset($_POST['id'])){
         $prod->setstockMax($stockmax);
         $prod->setreductionMax($reduction);
         $prod->setetat($etat);
+        $prod->setgrossiste_id($parrain);
         $manager->update($prod);
         echo 'ok';
     }
@@ -120,6 +124,7 @@ else{
     $fab=$_POST['fab'];
     $mag=$_POST['mag'];
     $etat=$_POST['etat'];
+    $parrain=$_POST['parrain'];
 
     if(!$manager->existsNom($nom)){
         //$date = genererID();
@@ -130,6 +135,7 @@ else{
             'rayon_id' => $ray,
             'fabriquant_id' => $fab,
             'magasin_id' => $mag,
+            'grossiste_id' => $parrain,
             'nom' => $nom,
             'ean13' => $ean13,
             'reference' => $reference,

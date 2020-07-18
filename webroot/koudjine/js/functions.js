@@ -1200,6 +1200,8 @@ function enregistrer_produit(option, id) {
     var fab = $('#fabproduit option:selected').val();
     var mag = $('#magproduit option:selected').val();
     var forme = $('#formeproduit option:selected').val();
+    var prod = $('#produits').val();
+    alert(prod)
     /*$("#magproduit").change(function () {
         v = $('#magproduit option:selected').val();
       //  alert(v);
@@ -1226,6 +1228,7 @@ function enregistrer_produit(option, id) {
                 forme: forme,
                 ray: ray,
                 fab: fab,
+                parrain: prod,
                 mag: mag
             },
             success: function (data) {
@@ -1265,6 +1268,7 @@ function enregistrer_produit(option, id) {
                 ray: ray,
                 fab: fab,
                 mag: mag,
+                parrain: prod,
                 id: id
             },
             success: function (data) {

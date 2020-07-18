@@ -755,6 +755,7 @@ function info_row_entree(row) {
             $('#iconPreviewEntree .nomp').html(data.nomP);
             $("#iconPreviewEntree .nomf").html(data.nomF);
             $("#iconPreviewEntree .code").html(data.code);
+            $("#iconPreviewEntree .codebarre").html(row);
             $("#iconPreviewEntree .datel").html(data.datel);
             $("#iconPreviewEntree .datep").html(data.datep);
             $("#iconPreviewEntree .prixv").html(data.prixv);
