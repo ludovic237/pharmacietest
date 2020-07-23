@@ -9,7 +9,7 @@ if (isset($_GET["motclef1"])) {
     $motclef = '%' . $_GET["motclef1"] . '%';
     $q = array('motclef' => $motclef . '%');
     $sth = $pdo->prepare("
-              SELECT p.nom, r.quantite, r.reduction, p.reductionMax, r.prixVente, r.id as id, r.dateLivraison, p.id as idp 
+              SELECT p.nom, r.quantite, r.reduction, p.reductionMax, r.prixAchat, r.id as id, r.dateLivraison, p.id as idp 
               FROM produit p, en_rayon r
               WHERE p.nom like :motclef AND p.id = r.produit_id AND r.dateLivraison IN (select min(dateLivraison) from en_rayon e where r.produit_id = e.produit_id )
               
@@ -27,7 +27,7 @@ if (isset($_GET["motclef1"])) {
             echo "<tr id=\"R" . $result->idp . "\">
                                             <td class='nom'><strong>" . $result->nom . "</strong></td>
                                             <td class='prix'>
-                                                " . $result->prixVente . "
+                                                " .$result->prixAchat. "
                                             </td>
                                             <td class=''>
                                             <p>
