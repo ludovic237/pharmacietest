@@ -29,7 +29,7 @@ if (isset($_GET["motclef1"])) {
                                                 ".$result->prixVente."
                                             </td>
                                             <td class=''>
-                                                <input class='qte' style=\"width: 50px;\" id=\"qte_vente\" type=\"number\" value='1'>
+                                                // <input class='qte' style=\"width: 50px;\" id=\"qte_vente\" type=\"number\" value='1'>
                                             </td>
                                             <td class='stock'>
                                                 ".$result->quantite."
