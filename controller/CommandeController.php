@@ -39,6 +39,12 @@ class CommandeController extends Controller
     {
         $this->loadModel('Commande');
 
+        $d['fournisseur'] = $this->Commande->find(array(
+            //'fields' => 'nom',
+            'table' => 'fournisseur',
+            'order' => 'nom-ASC',
+            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+        ));
         
         $d['client'] = $this->Commande->find(array(
             //'fields' => 'Commande.id as id,Commande.montantRegle as montantRegle,reelPercu',
