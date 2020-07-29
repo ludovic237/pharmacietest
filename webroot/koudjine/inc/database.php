@@ -32,11 +32,11 @@ function genererreference($num){
 
 // Je récupère la date du jour et la découpe en AA MM et JJ
 
-    $Date_Du_Jour = date("Y-m-d");
+    $Date_Du_Jour = date("y-m-d");
 
-    $Annee = substr($Date_Du_Jour, 0, 4);
-    $Mois = substr($Date_Du_Jour, 5,2);
-    $Jour = substr($Date_Du_Jour, 8,2);
+    $Annee = substr($Date_Du_Jour, 0, 2);
+    $Mois = substr($Date_Du_Jour, 3,2);
+    $Jour = substr($Date_Du_Jour, 6,2);
 
     $Numero_Reg_Big = $num;
 
@@ -51,13 +51,9 @@ function genererreference($num){
 
     if ($Numero_Reg_Big < 10)
     {
-        $Numero_Reg_Big = '000' . $Numero_Reg_Big;
-    }
-    elseif ($Numero_Reg_Big <100)
-    {
         $Numero_Reg_Big = '00' . $Numero_Reg_Big;
     }
-    elseif ($Numero_Reg_Big <1000)
+    elseif ($Numero_Reg_Big <100)
     {
         $Numero_Reg_Big = '0' . $Numero_Reg_Big;
     }
@@ -66,7 +62,7 @@ function genererreference($num){
         $Numero_Reg_Big = $Numero_Reg_Big;
     }
 
-    return "ALS".$Annee.$Mois."-".$Numero_Reg_Big;
+    return "ALS".$Annee.$Mois.$Jour."-".$Numero_Reg_Big;
 
     // FIN PROGRAMME - CREATION REFERENCE EN AUTOMATIQUE - FIN PROGRAMME
 

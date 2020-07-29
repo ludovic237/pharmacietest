@@ -14,6 +14,7 @@ $managerCo = new ConcernerManager($pdo);
 $managerPr = new ProduitManager($pdo);
 
 $id=$_POST['id'];
+//echo $id;
 
 
 
@@ -21,7 +22,9 @@ if (isset($_POST['id'])){
     $produits = $managerCo->getList($id);
 
     foreach ($produits as $k => $v) :
+        //echo $v->en_rayon_id();
         $nom = $managerPr->get($managerEn->get($v->en_rayon_id())->produit_id())->nom();
+
         echo "<tr id=\"".$v->en_rayon_id()."\">
                                             <td ><strong class='nom'>".$nom."</strong></td>
                                             <td class='prix'>

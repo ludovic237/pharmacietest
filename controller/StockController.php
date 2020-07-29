@@ -51,12 +51,28 @@ class StockController extends Controller
             'conditions' => array('etat' => "'Clot'", 'supprimer' => 0)
         ));
         if(!empty($d['inventaire'])){
+            if($_SESSION['Users']->type == 'Administrateur'){
             $d['produits'] = $this->Stock->find(array(
                 //'fields' => 'DATE_DEBUT_CONCOURS,MODALITE_ADMISSION,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
                 'table' => 'produit_inventaire, en_rayon, produit, employe',
                 //'order' => 'DATE_DEBUT_CONCOURS-DESC',
                 'conditions' => array('inventaire_id' => $d['inventaire']->id, 'en_rayon.id' => 'produit_inventaire.en_rayon_id', 'produit.id' => 'en_rayon.produit_id', 'employe.id' => 'produit_inventaire.employe_id', 'en_rayon.supprimer' => 0, 'employe.supprimer' => 0, 'produit_inventaire.supprimer' => 0)
             ));
+                $d['produits_nonI'] = $this->Stock->find(array(
+                    'fields' => 'en_rayon.id as id, dateLivraison, prixVente, quantiteRestante, nom',
+                    'table' => 'en_rayon, produit',
+                    //'order' => 'DATE_DEBUT_CONCOURS-DESC',
+                    'conditions' => ('produit.id = en_rayon.produit_id  AND etat = "Utile" AND en_rayon.supprimer = 0 AND produit.supprimer = 0 AND en_rayon.id NOT IN (select en_rayon_id from produit_inventaire where inventaire_id = '.$d['inventaire']->id.' AND produit_inventaire.supprimer = 0  )')
+                ));
+            }
+            else{
+                $d['produits'] = $this->Stock->find(array(
+                    //'fields' => 'DATE_DEBUT_CONCOURS,MODALITE_ADMISSION,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
+                    'table' => 'produit_inventaire, en_rayon, produit, employe',
+                    //'order' => 'DATE_DEBUT_CONCOURS-DESC',
+                    'conditions' => array('inventaire_id' => $d['inventaire']->id, 'produit_inventaire.employe_id' => $_SESSION["Users"]->id, 'en_rayon.id' => 'produit_inventaire.en_rayon_id', 'produit.id' => 'en_rayon.produit_id', 'employe.id' => 'produit_inventaire.employe_id', 'en_rayon.supprimer' => 0, 'employe.supprimer' => 0, 'produit_inventaire.supprimer' => 0)
+                ));
+            }
             //print_r($d['produits']);
            // die();
         }else{

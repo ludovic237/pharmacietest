@@ -363,6 +363,8 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                             setTimeout(function () {
                                 $("#message-box-danger").modal("hide");
                             }, 3000);
+                            $('#recherche').val("");
+                            $("#tab_Grecherche").hide();
                         }
 
 
@@ -536,6 +538,8 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                             setTimeout(function () {
                                 $("#message-box-danger").modal("hide");
                             }, 3000);
+                            $('#recherche').val("");
+                            $("#tab_Grecherche").hide();
                         }
 
 

@@ -2,10 +2,12 @@
 
 $title_for_layout = ' Admin -' . 'Stock';
 $page_for_layout =  'Inventaire';
-if (isset($inventaire) && empty($inventaire)) {
-    $action_for_layout = 'Démarrer inventaire';
-} else {
-    $action_for_layout = 'Terminer inventaire';
+if($_SESSION['Users']->type == "Administrateur"){
+    if (isset($inventaire) && empty($inventaire)) {
+        $action_for_layout = 'Démarrer inventaire';
+    } else {
+        $action_for_layout = 'Terminer inventaire';
+    }
 }
 
 
@@ -32,9 +34,8 @@ if (isset($inventaire) && !empty($inventaire)) {
                 <div class="panel panel-default tabs">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Inventaire</a></li>
-                        <li class=""><a href="#tab2" data-toggle="tab" aria-expanded="false">Autre</a></li>
-                        <li class=""><a href="#tab3" data-toggle="tab" aria-expanded="false">Autre</a></li>
-                        <li class=""><a href="#tab4" data-toggle="tab" aria-expanded="false">Autre</a></li>
+                        <li class=""><a href="#tab2" data-toggle="tab" aria-expanded="false">Produits inventoriés</a></li>
+                        <?php if($_SESSION['Users']->type == "Administrateur"){ ?><li class=""><a href="#tab3" data-toggle="tab" aria-expanded="false">Produits non inventoriés</a></li><?php } ?>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane panel-body active" id="tab1">
@@ -73,33 +74,69 @@ if (isset($inventaire) && !empty($inventaire)) {
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tab_Binventaire">
-                                                            <?php if (isset($produits)) foreach ($produits as $k => $v) :
-                                                                $datelivraison = $v->dateLivraison;
-                                                                $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
-                                                                $datel = $date->format('d-m-Y');
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-success" onclick="validers_row_inventaire()" >Valider</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane panel-body" id="tab2">
+                            <div class="block">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
+
+                                            <div class="panel-body panel-body-table">
+
+                                                <div class="panel-body">
+                                                    <table class="table datatable table-bordered table-striped table-actions">
+                                                        <thead>
+                                                        <tr>
+                                                            <th width="200">Nom</th>
+                                                            <th width="100">Prix Unitaire</th>
+                                                            <th width="100">Quantité avant inventaire</th>
+                                                            <th width="100">Quantité en cours</th>
+                                                            <th width="100">Date de Livraison</th>
+                                                            <th width="100">Inventorié par</th>
+                                                            <th width="100">Quantité inventaire</th>
+                                                            <th width="100">Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tab_BIinventaire">
+                                                        <?php if (isset($produits)) foreach ($produits as $k => $v) :
+                                                            $datelivraison = $v->dateLivraison;
+                                                            $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
+                                                            $datel = $date->format('Y-m-d');
                                                             ?>
-                                                                <tr id="<?php echo $v->en_rayon_id; ?>">
-                                                                    <td><strong><?php echo $v->nom; ?></strong></td>
-                                                                    <td><?php echo $v->prixVente; ?></td>
-                                                                    <td><?php echo $v->stockAvant; ?></td>
-                                                                    <td>
-                                                                        <?php echo $v->quantiteRestante; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $datel; ?>
-                                                                    </td>
-                                                                    <td><?php echo $v->identifiant; ?></td>
-                                                                    <td class="qteinventaire"><?php echo $v->stockValide; ?></td>
-                                                                    <td>
-                                                                        <button class="btn btn-success btn-rounded btn-sm valider_inventaire" disabled data-toggle="tooltip" data-placement="top" onclick="valider_row_inventaire(<?php echo $v->en_rayon_id; ?>)">
-                                                                            Valider
-                                                                        </button>
-                                                                        <button class="btn btn-primary btn-rounded btn-sm ajouter_inventaire" <?php if ($_SESSION['Users']->type != 'Administrateur') echo 'disabled';  ?> data-toggle="tooltip" data-placement="top" onclick="ajouter_inventaire(<?php echo $v->en_rayon_id; ?>)">
-                                                                            Ajouter
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            <?php endforeach; ?>
+                                                            <tr id="<?php echo $v->en_rayon_id; ?>">
+                                                                <td><strong><?php echo $v->nom; ?></strong></td>
+                                                                <td><?php echo $v->prixVente; ?></td>
+                                                                <td><?php echo $v->stockAvant; ?></td>
+                                                                <td>
+                                                                    <?php echo $v->quantiteRestante; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $datel; ?>
+                                                                </td>
+                                                                <td><?php echo $v->identifiant; ?></td>
+                                                                <td class="qteinventaire"><?php echo $v->stockValide; ?></td>
+                                                                <td>
+                                                                    <button class="btn btn-primary btn-rounded btn-sm ajouter_inventaire" <?php if ($_SESSION['Users']->type != 'Administrateur') echo 'disabled';  ?> data-toggle="tooltip" data-placement="top" onclick="ajouter_inventaire(<?php echo $v->en_rayon_id; ?>)">
+                                                                        Ajouter
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -112,22 +149,66 @@ if (isset($inventaire) && !empty($inventaire)) {
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane panel-body" id="tab2">
-                            <div class="block">
-                               
-                            </div>
-                        </div>
                         <div class="tab-pane panel-body" id="tab3">
                             <div class="block">
-                               
-                            </div>
-                        </div>
-                        <div class="tab-pane panel-body" id="tab4">
-                            <div class="block">
-                                
-                            </div>
-                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
 
+                                            <div class="panel-body panel-body-table">
+
+                                                <div class="panel-body">
+                                                    <table class="table datatable table-bordered table-striped table-actions">
+                                                        <thead>
+                                                        <tr>
+                                                            <th width="200">Nom</th>
+                                                            <th width="100">Prix Unitaire</th>
+                                                            <th width="100">Quantité en cours</th>
+                                                            <th width="100">Date de Livraison</th>
+                                                            <th width="100">Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tab_BNIinventaire">
+                                                        <?php if (isset($produits_nonI)) foreach ($produits_nonI as $k => $v) :
+                                                            $datelivraison = $v->dateLivraison;
+                                                            $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
+                                                            $datel = $date->format('Y-m-d');
+                                                            ?>
+                                                            <tr id="<?php echo $v->id; ?>">
+                                                                <td><strong><?php echo $v->nom; ?></strong></td>
+                                                                <td><?php echo $v->prixVente; ?></td>
+                                                                <td>
+                                                                    <?php echo $v->quantiteRestante; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $datel; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-success btn-rounded btn-sm inventorier_inventaire" data-toggle="tooltip" data-placement="top" onclick="inventorier_row_inventaire('<?php echo $v->id; ?>')">
+                                                                        Inventorier
+                                                                    </button>
+                                                                    <button class="btn btn-primary btn-rounded btn-sm exclure_inventaire" data-toggle="tooltip" data-placement="top" onclick="exclure_row_inventaire('<?php echo $v->id; ?>')">
+                                                                        Exclure des recherches
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-success" style="margin-right: 20px" onclick="inventoriers_row_inventaire()">Inventorier</button>
+                                            <button class="btn btn-primary"  onclick="exclures_row_inventaire()">Exclure des recherches</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -149,7 +230,7 @@ if (isset($inventaire) && !empty($inventaire)) {
                     <div class="tab-content">
                         <div class="tab-pane panel-body active" id="tab1">
                             <div class="block">
-                                <div class="row">
+                                <?php if($_SESSION['Users']->type == "Administrateur"){ ?><div class="row">
                                     <div class="col-md-12">
                                         <div class="panel-body" style="margin-bottom: 20px;background-color: #fff;
         border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 0 1px 1px rgba(0,0,0,.05);">
@@ -169,7 +250,7 @@ if (isset($inventaire) && !empty($inventaire)) {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div><?php }?>
                                 <?php if (isset($produits)) { ?>
                                     <div class="row" id="">
                                         <div class="col-md-12">
@@ -194,7 +275,7 @@ if (isset($inventaire) && !empty($inventaire)) {
                                                                 <?php if (isset($produits)) foreach ($produits as $k => $v) :
                                                                     $datelivraison = $v->dateLivraison;
                                                                     $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
-                                                                    $datel = $date->format('d-m-Y');
+                                                                    $datel = $date->format('Y-m-d');
                                                                 ?>
                                                                     <tr id="<?php echo $v->en_rayon_id; ?>">
                                                                         <td><strong><?php echo $v->nom; ?></strong></td>
@@ -228,17 +309,13 @@ if (isset($inventaire) && !empty($inventaire)) {
 
                             </div>
                         </div>
+                        <?php if($_SESSION['Users']->type == "Administrateur"){ ?>
                         <div class="tab-pane panel-body" id="tab3">
                             <div class="block">
 
                             </div>
                         </div>
-                        <div class="tab-pane panel-body" id="tab4">
-                            <div class="block">
-
-                            </div>
-                        </div>
-
+                        <?php } ?>
                     </div>
 
                 </div>

@@ -13,10 +13,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
-<script type="text/javascript">
 ';
 ?>
 
@@ -85,7 +84,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
-                    <table class="table table-bordered table-striped table-actions">
+                    <table class="table datatable table-bordered table-striped table-actions">
                         <thead>
                             <tr>
                                 <th>Nom</th>
