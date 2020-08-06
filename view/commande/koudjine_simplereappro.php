@@ -3,7 +3,7 @@
 $title_for_layout = ' Admin -' . 'Commande';
 // $action_for_layout = 'Ajouter';
 
- //$position = $this->request->action;
+//$position = $this->request->action;
 
 $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Simple réapprovisionnement</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
@@ -25,6 +25,12 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         endforeach;
                         ?>
                     </select>
+                    
+                </div>
+                <label class="control-label" style="margin-right: 30px;width: 150px;">Nombre de jours de vente:</label>
+                <div style="display: flex;flex:1;margin-right: 30px;">
+                <input type="text" class="form-control col-md-4" name="nom" id="recherche_commande" value="" placeholder="Médicaments">
+                    
                 </div>
                 <div>
                     <button class="btn btn-primary ajouter pull-right" onclick="charger_commande()">Charger</button>
@@ -40,7 +46,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             </div>
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px;padding-top: 20px;border-top-style: solid;margin-top: 20px;border-top-width: inherit;">
                 <div>
-                    <button class="btn btn-primary ajouter pull-right" <?php if(!isset($fournisseur_id)) echo "disabled"; ?> controller="vente" data="">Autre fournisseur</button>
+                    <button class="btn btn-primary ajouter pull-right" <?php if (!isset($fournisseur_id)) echo "disabled"; ?> controller="vente" data="">Autre fournisseur</button>
                 </div>
 
             </div>
@@ -101,19 +107,33 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($ventes as $k => $v) : ?>
-                            <tr id="<?php echo $v->idp; ?>">
-                                <td><strong><?php echo $v->nom; ?></strong></td>
-                                <td><?php echo $v->nomf; ?></td>
-                                <td><?php echo $v->dateLivraison; ?></td>
-                                <td><?php echo $v->stock; ?></td>
-                                <td><?php echo $v->prixAchat; ?></td>
-                                <td><input class='qte' style="width: 50px;" id="qte_commande" type="number" value='1'></td>
-                                <td>
-                                    <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="ajouter_commande(<?php echo $v->idp; ?>)">Ajouter à la commande</button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                            <?php foreach ($ventes as $k => $v) : ?>
+                                <tr id="<?php echo $v->idp; ?>">
+                                    <td><strong><?php echo $v->nom; ?></strong></td>
+                                    <td><?php echo $v->nomf; ?></td>
+                                    <td><?php echo $v->dateLivraison; ?></td>
+                                    <td><?php echo $v->stock; ?></td>
+                                    <td><?php echo $v->prixAchat; ?></td>
+                                    <td>
+                                        <div class='input-group' style='display: -webkit-inline-box;'>
+                                            <span class='input-group-btn'>
+                                                <button type='button' class='btn btn-default btn-number' disabled='disabled' data-type='minus' data-field='quant[1]' style='padding: 4px;'>
+                                                    <span class='glyphicon glyphicon-minus'></span>
+                                                </button>
+                                            </span>
+                                            <input type='text' name='quant[1]' class='form-control input-number' value='1' min='1' max='10' style='width: 40px;'>
+                                            <span class='input-group-btn'>
+                                                <button type='button' class='btn btn-default btn-number' data-type='plus' data-field='quant[1]' style='padding: 4px;'>
+                                                    <span class='glyphicon glyphicon-plus'></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="ajouter_commande(<?php echo $v->idp; ?>)">Ajouter à la commande</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -126,14 +146,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-9">
         <div class="panel panel-default">
 
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
-                        <h6>Tableau de commande</h6>
+                        <h6 style="color: #fff;">Tableau de commande</h6>
                     </div>
                     <table class="table table-bordered table-striped table-actions">
                         <thead>
@@ -160,7 +180,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     </div>
 
 </div>
-<div style="display: flex;justify-content: space-between;background-color: white;position: fixed;bottom: 40px;right: 10px;align-items: baseline;background-color: #fff;
+<div style="display: flex;justify-content: space-between;background-color: white;position: fixed;bottom: 10px;right: 10px;align-items: baseline;background-color: #fff;
 border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 1px 1px 1px rgba(10,0,0,.05);">
     <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;width: 250px;">
         <div style="display: flex;flex-direction: column;width: 100%;">

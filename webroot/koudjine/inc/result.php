@@ -31,7 +31,7 @@ if (isset($_GET["motclef1"])) {
                                             </td>
                                             <td class=''>
                                             <p>
-      </p><div class='input-group'>
+      </p><div class='input-group' style='display: -webkit-inline-box;'>
           <span class='input-group-btn'>
               <button type='button' class='btn btn-default btn-number' disabled='disabled' data-type='minus' data-field='quant[1]' style='padding: 4px;'>
                   <span class='glyphicon glyphicon-minus'></span>
