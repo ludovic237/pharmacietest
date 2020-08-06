@@ -5,7 +5,7 @@ $(document).ready(function(){
 });
 
 function ajouter_commande() {
-
+   
 }
 function change_input(option, id) {
     if(option == 'plus'){
@@ -27,6 +27,11 @@ function charger_commande() {
         alert('Vérifier vos informations');
     }
 }
+
+function showProvider() {
+    $("#iconPreviewProvider").modal("show");
+}
+
 function inventorier_row_inventaire(id) {
     $.ajax({
         type: "POST",
