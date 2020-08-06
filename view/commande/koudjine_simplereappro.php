@@ -1,25 +1,14 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Universités';
-$page_for_layout = ($position == 'Ajouter') ? 'Réapprovisionnement' : 'Modifier un assureur';
+$title_for_layout = ' Admin -' . 'Commande';
 // $action_for_layout = 'Ajouter';
 
-if ($this->request->action == "index") {
-    $position = "Toutes les universités";
-} else {
-    //$position = $this->request->action;
-}
+ //$position = $this->request->action;
+
 $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Simple réapprovisionnement</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
-        <script>
-                                        window.onload = function () {
-                                            document.getElementById("recherche").focus();
-                                        };
-                                    </script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/simplereappro.js"></script>';
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -28,30 +17,30 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un fournisseur :</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <select class="selectpicker form-control input-xlarge " name="fabproduit" id="fabproduit">
+                    <select class="selectpicker form-control input-xlarge" name="fabproduit" id="fabproduit">
                         <?php
                         foreach ($fournisseur as $k => $v) : ?>
-                            <option <?php if ($position == 'Modifier') if ($v->id == $produit->fournisseur_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                            <option <?php if (isset($fournisseur_id)) if ($v->id == $fournisseur_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
                         <?php
                         endforeach;
                         ?>
                     </select>
                 </div>
                 <div>
-                    <button class="btn btn-primary ajouter pull-right" controller="vente" data="">Charger</button>
+                    <button class="btn btn-primary ajouter pull-right" onclick="charger_commande()">Charger</button>
                 </div>
             </div>
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Ajouter un médicament:</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <input type="text" class="form-control col-md-4" name="nom" id="recherche" value="" placeholder="Médicaments">
+                    <input type="text" class="form-control col-md-4" name="nom" id="recherche_commande" value="" placeholder="Médicaments">
                 </div>
                 <div style="width: 150px;">
                 </div>
             </div>
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px;padding-top: 20px;border-top-style: solid;margin-top: 20px;border-top-width: inherit;">
                 <div>
-                    <button class="btn btn-primary ajouter pull-right" controller="vente" data="">Autre fournisseur</button>
+                    <button class="btn btn-primary ajouter pull-right" <?php if(!isset($fournisseur_id)) echo "disabled"; ?> controller="vente" data="">Autre fournisseur</button>
                 </div>
 
             </div>
@@ -63,7 +52,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="panel-body panel-body-table">
 
                             <div class="">
-                                <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                <table id="tab_Crecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
                                     <thead>
                                         <tr>
                                             <th width="200">Nom</th>
@@ -103,17 +92,28 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <thead>
                             <tr>
                                 <th width="200">Nom</th>
-                                <th width="100">Prix Unitaire</th>
-                                <th width="100">Quantité</th>
-                                <th width="100">Prix Total</th>
-                                <th width="100">Reduction</th>
+                                <th width="100">Fournisseur</th>
                                 <th width="200">Date de Livraison</th>
                                 <th width="100">Stock total</th>
+                                <th width="100">Prix Achat</th>
+                                <th width="100">Quantité</th>
                                 <th width="100">Action</th>
                             </tr>
                         </thead>
-                        <tbody id="tab_vente">
-
+                        <tbody>
+                        <?php foreach ($ventes as $k => $v) : ?>
+                            <tr id="<?php echo $v->idp; ?>">
+                                <td><strong><?php echo $v->nom; ?></strong></td>
+                                <td><?php echo $v->nomf; ?></td>
+                                <td><?php echo $v->dateLivraison; ?></td>
+                                <td><?php echo $v->stock; ?></td>
+                                <td><?php echo $v->prixAchat; ?></td>
+                                <td><input class='qte' style="width: 50px;" id="qte_commande" type="number" value='1'></td>
+                                <td>
+                                    <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="ajouter_commande(<?php echo $v->idp; ?>)">Ajouter à la commande</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
