@@ -35,9 +35,16 @@ class CommandeController extends Controller
         $this->set($d);
     }
 
-    function koudjine_simplereappro($id = null)
+    function koudjine_simplereappro($id = null, $jour = null)
     {
         $this->loadModel('Commande');
+        if($jour == null){
+            $jour = 14;
+        }
+        $d['jour'] = $jour;
+        if($id == 0){
+            $id = null;
+        }
 
         $d['fournisseur'] = $this->Commande->find(array(
             //'fields' => 'nom',
@@ -52,7 +59,7 @@ class CommandeController extends Controller
                 'table' => ' produit p, en_rayon e, concerner c, vente v, fournisseur f',
                 //'order' => 'nom-ASC',
                 'conditions' => 'v.id = c.vente_id and c.en_rayon_id = e.id and e.fournisseur_id = f.id and e.fournisseur_id = '.$id.' and p.id = e.produit_id and 
-dateVente between DATE_ADD(now(), INTERVAL -40 day) and now()  AND e.dateLivraison IN 
+dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.dateLivraison IN 
 (select max(dateLivraison) from en_rayon r where r.produit_id = e.produit_id )'
             ));
             $d['fournisseur_id'] = $id;
@@ -63,7 +70,7 @@ dateVente between DATE_ADD(now(), INTERVAL -40 day) and now()  AND e.dateLivrais
                 'table' => ' produit p, en_rayon e, concerner c, vente v, fournisseur f',
                 //'order' => 'nom-ASC',
                 'conditions' => 'v.id = c.vente_id and c.en_rayon_id = e.id and e.fournisseur_id = f.id and p.id = e.produit_id and 
-dateVente between DATE_ADD(now(), INTERVAL -40 day) and now()  AND e.dateLivraison IN 
+dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.dateLivraison IN 
 (select max(dateLivraison) from en_rayon r where r.produit_id = e.produit_id )'
             ));
         }

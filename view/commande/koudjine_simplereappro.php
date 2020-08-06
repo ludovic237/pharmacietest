@@ -17,7 +17,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un fournisseur :</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <select class="selectpicker form-control input-xlarge" name="fabproduit" id="fabproduit">
+                    <select class="selectpicker form-control input-xlarge" name="fabproduit" id="fournisseur_commande">
+                        <option value="0">Sélectionner Fournisseur</option>
                         <?php
                         foreach ($fournisseur as $k => $v) : ?>
                             <option <?php if (isset($fournisseur_id)) if ($v->id == $fournisseur_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
@@ -29,11 +30,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 </div>
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Nombre de jours de vente:</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                <input type="text" class="form-control col-md-4" name="nom" id="recherche_commande" value="" placeholder="Médicaments">
+                <input type="text" class="form-control col-md-4" name="nom" id="jour_vente" value="<?php if (isset($jour)) echo $jour; ?>" >
                     
                 </div>
                 <div>
-                    <button class="btn btn-primary ajouter pull-right" onclick="charger_commande()">Charger</button>
+                    <button class="btn btn-primary pull-right" onclick="charger_commande()">Charger</button>
                 </div>
             </div>
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
@@ -115,15 +116,15 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <td><?php echo $v->stock; ?></td>
                                     <td><?php echo $v->prixAchat; ?></td>
                                     <td>
-                                        <div class='input-group' style='display: -webkit-inline-box;'>
+                                        <div class='input-group' style='display:-webkit-inline-box;'>
                                             <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number' disabled='disabled' data-type='minus' data-field='quant[1]' style='padding: 4px;'>
+                                                <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-minus'></span>
                                                 </button>
                                             </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' value='1' min='1' max='10' style='width: 40px;'>
+                                            <input type='text' name='quant[1]' class='form-control input-number' id="input<?php echo $v->idp; ?>" value='1' style='width: 40px;'>
                                             <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number' data-type='plus' data-field='quant[1]' style='padding: 4px;'>
+                                                <button type='button' class='btn btn-default btn-number plus' onclick="change_input('plus','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-plus'></span>
                                                 </button>
                                             </span>

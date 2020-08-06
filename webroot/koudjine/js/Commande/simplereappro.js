@@ -7,9 +7,25 @@ $(document).ready(function(){
 function ajouter_commande() {
 
 }
+function change_input(option, id) {
+    if(option == 'plus'){
+        $("#"+id).val(parseInt($("#"+id).val())+1);
+    }
+    else {
+        if(parseInt($("#"+id).val()) != 0)
+        $("#"+id).val(parseInt($("#"+id).val())-1);
+    }
+}
 function charger_commande() {
-    var link = '/pharmacietest/bouwou/stock/inventaire';
-    window.location.href=link;
+    var idf = $("#fournisseur_commande").val();
+    var jour_vente = $("#jour_vente").val();
+    if(jour_vente != "" && $.isNumeric(jour_vente)){
+        var link = '/pharmacietest/bouwou/commande/simplereappro/'+idf+'/'+jour_vente;
+        window.location.href=link;
+    }
+    else {
+        alert('Vérifier vos informations');
+    }
 }
 function inventorier_row_inventaire(id) {
     $.ajax({
