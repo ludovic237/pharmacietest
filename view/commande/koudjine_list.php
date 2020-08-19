@@ -124,19 +124,19 @@
 <!-- END RESPONSIVE TABLES -->
 
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-body panel-body-table">
                 <div class="panel-body">
                     <table class="table  table-bordered table-striped table-actions">
                         <thead>
                             <tr>
-                                <th width="100">Désignation</th>
-                                <th width="100">Quantite commandé</th>
-                                <th width="100">Quantite livré</th>
-                                <th width="100">Prix Achat</th>
-                                <th width="100">Prix Vente</th>
-                                <th width="100">Date de péremption </th>
+                                <th >Désignation</th>
+                                <th >Quantite commandé</th>
+                                <th >Quantite livré</th>
+                                <th >Prix Achat</th>
+                                <th >Prix Vente</th>
+                                <th >Date de péremption </th>
                             </tr>
                         </thead>
                         <tbody id="tab_vente_caisse">
@@ -150,7 +150,7 @@
                                                     <span class='glyphicon glyphicon-minus'></span>
                                                 </button>
                                             </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 20px;'>
+                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 40px;'>
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-plus'></span>
@@ -165,23 +165,7 @@
                                                     <span class='glyphicon glyphicon-minus'></span>
                                                 </button>
                                             </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 20px;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-plus'></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div class='input-group' style='display:-webkit-inline-box;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number moins' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-minus'></span>
-                                                </button>
-                                            </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 20px;'>
+                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 40px;'>
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-plus'></span>
@@ -197,7 +181,23 @@
                                                     <span class='glyphicon glyphicon-minus'></span>
                                                 </button>
                                             </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 20px;'>
+                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 80px;'>
+                                            <span class='input-group-btn'>
+                                                <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
+                                                    <span class='glyphicon glyphicon-plus'></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class='input-group' style='display:-webkit-inline-box;'>
+                                            <span class='input-group-btn'>
+                                                <button type='button' class='btn btn-default btn-number moins' style='padding: 4px;'>
+                                                    <span class='glyphicon glyphicon-minus'></span>
+                                                </button>
+                                            </span>
+                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 80px;'>
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-plus'></span>
@@ -217,7 +217,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-3">
         <div class="panel panel-default">
         <div class="panel-body panel-body-table" style="
     padding-bottom: 40px;
