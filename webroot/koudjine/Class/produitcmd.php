@@ -185,13 +185,13 @@ class Produit_cmdManager
     }
     public function add(Produit_cmd $Produit_cmd)
     {
-        $q = $this->_db->prepare('INSERT INTO produit_cmd SET id = :id, produit_id = :produit, puCmd = :user, ptCmd = :prescripteur, qtiteCmd = :qtiteCmd, puRecept = :montant, ptRecept = :ptRecept, qtiteRecu = :qtiteRecu, etat = :etat, reduction = :reduction, etat = :etat, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO produit_cmd SET id = :id, produit_id = :produit, commande_id = :commande, prixPublic = :prixpublic, puCmd = :pucmd, ptCmd = :ptcmd, qtiteCmd = :qtiteCmd, puRecept = :montant, ptRecept = :ptRecept, qtiteRecu = :qtiteRecu, etat = :etat, supprimer=0');
         $q->bindValue(':id', $Produit_cmd->id(), PDO::PARAM_INT);
         $q->bindValue(':produit', $Produit_cmd->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':commande', $Produit_cmd->commande_id(), PDO::PARAM_INT);
-        $q->bindValue(':malade', $Produit_cmd->prixPublic());
-        $q->bindValue(':user', $Produit_cmd->puCmd());
-        $q->bindValue(':prescripteur', $Produit_cmd->ptCmd());
+        $q->bindValue(':prixpublic', $Produit_cmd->prixPublic());
+        $q->bindValue(':pucmd', $Produit_cmd->puCmd());
+        $q->bindValue(':ptcmd', $Produit_cmd->ptCmd());
         $q->bindValue(':qtiteCmd', $Produit_cmd->qtiteCmd());
         $q->bindValue(':montant', $Produit_cmd->puRecept());
         $q->bindValue(':ptRecept', $Produit_cmd->ptRecept());
@@ -201,7 +201,7 @@ class Produit_cmdManager
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM Produit_cmd WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM produit_cmd WHERE SUPPRIMER = 0 ')->fetchColumn();
     }
     public function delete(Produit_cmd $Produit_cmd)
     {
@@ -210,22 +210,19 @@ class Produit_cmdManager
     public function existsId($info)
     {
 
-        return (bool) $this->_db->query('SELECT COUNT(*) FROM Produit_cmd WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
+        return (bool) $this->_db->query('SELECT COUNT(*) FROM produit_cmd WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
 
     }
-    public function existsptRecept($info)
+    public function existsProduit_id($idc, $idp)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM Produit_cmd WHERE supprimer = 0 AND ptRecept = :info');
-        $q->execute(array(':info' => $info));
-        return (bool) $q->fetchColumn();
-
+        return (bool) $this->_db->query('SELECT COUNT(*) FROM produit_cmd WHERE supprimer = 0 AND commande_id = '.$idc.' AND produit_id = '.$idp)->fetchColumn();
 
     }
     public function existsEan($info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM Produit_cmd WHERE supprimer = 0 AND ean13 = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM produit_cmd WHERE supprimer = 0 AND ean13 = :info');
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
@@ -234,7 +231,7 @@ class Produit_cmdManager
     public function existsqtiteRecu($info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM Produit_cmd WHERE supprimer = 0 AND qtiteRecu = :info');
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM produit_cmd WHERE supprimer = 0 AND qtiteRecu = :info');
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
 
@@ -243,7 +240,7 @@ class Produit_cmdManager
     public function get($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM Produit_cmd WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Produit_cmd($donnees);
 
@@ -251,7 +248,7 @@ class Produit_cmdManager
     public function getList()
     {
         $Produit_cmds = array();
-        $q = $this->_db->prepare('SELECT * FROM Produit_cmd WHERE supprimer = 0 ORDER BY ptRecept');
+        $q = $this->_db->prepare('SELECT * FROM produit_cmd WHERE supprimer = 0 ORDER BY ptRecept');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
@@ -262,13 +259,13 @@ class Produit_cmdManager
     public function update(Produit_cmd $Produit_cmd)
     {
 
-        $q = $this->_db->prepare('UPDATE Produit_cmd SET produit_id = :produit, puCmd = :user, ptCmd = :prescripteur, prixPublic = :malade, commande_id = :commande, qtiteCmd = :qtiteCmd, puRecept = :montant, ptRecept = :ptRecept, qtiteRecu = :qtiteRecu, etat = :etat, reduction = :reduction, etat = :etat WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit_cmd SET produit_id = :produit, puCmd = :pucmd, ptCmd = :ptcmd, prixPublic = :prixpublic, commande_id = :commande, qtiteCmd = :qtiteCmd, puRecept = :montant, ptRecept = :ptRecept, qtiteRecu = :qtiteRecu, etat = :etat, reduction = :reduction, etat = :etat WHERE id = :id');
         $q->bindValue(':id', $Produit_cmd->id(), PDO::PARAM_INT);
         $q->bindValue(':produit', $Produit_cmd->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':commande', $Produit_cmd->commande_id(), PDO::PARAM_INT);
-        $q->bindValue(':malade', $Produit_cmd->prixPublic());
-        $q->bindValue(':user', $Produit_cmd->puCmd());
-        $q->bindValue(':prescripteur', $Produit_cmd->ptCmd());
+        $q->bindValue(':prixpublic', $Produit_cmd->prixPublic());
+        $q->bindValue(':pucmd', $Produit_cmd->puCmd());
+        $q->bindValue(':ptcmd', $Produit_cmd->ptCmd());
         $q->bindValue(':qtiteCmd', $Produit_cmd->qtiteCmd());
         $q->bindValue(':montant', $Produit_cmd->puRecept());
         $q->bindValue(':ptRecept', $Produit_cmd->ptRecept());

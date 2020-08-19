@@ -55,10 +55,18 @@ class CommandeController extends Controller
 
         if ($id != null) {
             $d['ventes'] = $this->Commande->find(array(
-                'fields' => 'distinct(p.id), prixAchat, stock, reductionMax, p.nom as nom, f.nom as nomf, CAST(dateLivraison AS DATE) as dateLivraison',
+                'fields' => 'distinct(p.id) as idp, prixAchat, stock, reductionMax, p.nom as nom, f.nom as nomf, CAST(dateLivraison AS DATE) as dateLivraison',
                 'table' => ' produit p, en_rayon e, concerner c, vente v, fournisseur f',
                 //'order' => 'nom-ASC',
                 'conditions' => 'v.id = c.vente_id and c.en_rayon_id = e.id and e.fournisseur_id = f.id and e.fournisseur_id = '.$id.' and p.id = e.produit_id and 
+dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.dateLivraison IN 
+(select max(dateLivraison) from en_rayon r where r.produit_id = e.produit_id )'
+            ));
+            $d['fournisseurs'] = $this->Commande->find(array(
+                'fields' => 'distinct(p.id) as idp, prixAchat, stock, reductionMax, p.nom as nom, f.nom as nomf, CAST(dateLivraison AS DATE) as dateLivraison',
+                'table' => ' produit p, en_rayon e, concerner c, vente v, fournisseur f',
+                //'order' => 'nom-ASC',
+                'conditions' => 'v.id = c.vente_id and c.en_rayon_id = e.id and e.fournisseur_id = f.id and e.fournisseur_id <> '.$id.' and p.id = e.produit_id and 
 dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.dateLivraison IN 
 (select max(dateLivraison) from en_rayon r where r.produit_id = e.produit_id )'
             ));

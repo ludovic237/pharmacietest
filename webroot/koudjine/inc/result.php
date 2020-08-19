@@ -27,23 +27,28 @@ if (isset($_GET["motclef1"])) {
             echo "<tr id=\"R" . $result->idp . "\">
                                             <td class='nom'><strong>" . $result->nom . "</strong></td>
                                             <td class='prix'>
-                                                " .$result->prixAchat. "
+                                                " . $result->prixAchat . "
                                             </td>
                                             <td class=''>
                                             <p>
       </p><div class='input-group' style='display:-webkit-inline-box;'>
-          <span class='input-group-btn'>
-              <button type='button' class='btn btn-default btn-number' disabled='disabled' data-type='minus' data-field='quant[1]' style='padding: 4px;'>
-                  <span class='glyphicon glyphicon-minus'></span>
-              </button>
-          </span>
-          <input type='text' name='quant[1]' class='form-control input-number' value='1' min='1' max='10' style='width: 40px;'>
-          <span class='input-group-btn'>
-              <button type='button' class='btn btn-default btn-number' data-type='plus' data-field='quant[1]' style='padding: 4px;'>
-                  <span class='glyphicon glyphicon-plus'></span>
-              </button>
-          </span>
-      </div>
+                                            <span class='input-group-btn'>
+                                                <button type='button' class='btn btn-default btn-number moins'
+                                                        onclick=\"change_input('moins','input<?php echo $result->idp; ?>')\"
+                                                        style='padding: 4px;'>
+                                                    <span class='glyphicon glyphicon-minus'></span>
+                                                </button>
+                                            </span>
+                                                <input type='text' name='quant[1]' class='form-control input-number'
+                                                       id=\"input<?php echo $result->idp; ?>\" value='1' style='width: 40px;'>
+                                                <span class='input-group-btn'>
+                                                <button type='button' class='btn btn-default btn-number plus'
+                                                        onclick=\"change_input('plus','input<?php echo $result->idp; ?>')\"
+                                                        style='padding: 4px;'>
+                                                    <span class='glyphicon glyphicon-plus'></span>
+                                                </button>
+                                            </span>
+                                            </div>
     <p></p>
                                                 
                                             </td>

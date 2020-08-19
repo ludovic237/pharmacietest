@@ -1,6 +1,6 @@
 <?php
 
-class commande
+class Commande
 {
     private $_id,
         $_fournisseur_id,
@@ -103,26 +103,18 @@ class commande
     public function setdateCreation($id)
     {
 
-        if ($id > 0)
-        {
             $this->_dateCreation = $id;
-        }
+
     }
     public function setdateLivraison($id)
     {
-
-        if ($id > 0)
-        {
             $this->_dateLivraison = $id;
-        }
     }
     public function setnote($id)
     {
 
-        if ($id > 0)
-        {
             $this->_note = $id;
-        }
+
     }
     public function setqtiteCmd($id)
     {
@@ -185,23 +177,25 @@ class CommandeManager
     }
     public function add(Commande $commande)
     {
-        $q = $this->_db->prepare('INSERT INTO commande SET id = :id, fournisseur_id = :fournisseur_id, note = :note, qtiteCmd = :qtitecmd, qtiteRecu = :qtiteRecu, montantCmd = :montant, montantRecu = :montantRecu, etat = :etat, ref = :ref, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO commande SET id = :id, dateLivraison = :datelivraison, dateCreation = now(), fournisseur_id = :fournisseur_id, note = :note, qtiteCmd = :qtitecmd, qtiteRecu = :qtiteRecu, montantCmd = :montant, montantRecu = :montantRecu, etat = "Commandé", ref = :ref, supprimer=0');
         $q->bindValue(':id', $commande->id(), PDO::PARAM_INT);
         $q->bindValue(':fournisseur_id', $commande->fournisseur_id(), PDO::PARAM_INT);
-        $q->bindValue(':dateCreation', $commande->dateCreation());
         $q->bindValue(':datelivraison', $commande->dateLivraison());
         $q->bindValue(':note', $commande->note());
         $q->bindValue(':qtitecmd', $commande->qtiteCmd());
         $q->bindValue(':qtiteRecu', $commande->qtiteRecu());
         $q->bindValue(':montant', $commande->montantCmd());
         $q->bindValue(':montantRecu', $commande->montantRecu());
-        $q->bindValue(':etat', $commande->etat());
         $q->bindValue(':ref', $commande->ref());
         $q->execute();
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM commande WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM commande WHERE supprimer = 0 ')->fetchColumn();
+    }
+    public function countMois()
+    {
+        return $this->_db->query('SELECT COUNT(*) FROM commande WHERE supprimer = 0 AND MONTH(dateCreation) = MONTH(NOW()) AND YEAR(dateCreation) = YEAR(NOW()) ')->fetchColumn();
     }
     public function delete(Commande $commande)
     {

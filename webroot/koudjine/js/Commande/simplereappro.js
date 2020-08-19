@@ -1,11 +1,166 @@
 $(document).ready(function(){
     //$("#div_inventaire").hide();
-    $("#tab_Crecherche").hide();
+    $("#tab_BCrecherche").hide();
+    $("#tab_GCrecherche").hide();
+    $(".btn-modifier").hide();
+
+    //Recherche rapide
+    $("#recherche_commande").keyup(function (event) {
+        var recherche = $(this).val();
+        recherche = $.trim(recherche);
+        var data = 'motclef1=' + recherche;
+        if (recherche.length > 1) {
+            ////alert('yes');
+            $.ajax({
+                type: "GET",
+                url: "/pharmacietest/koudjine/inc/result_commande.php",
+                data: data,
+                success: function (server_responce) {
+                    $("#tab_GCrecherche").show();
+                    $("#tab_BCrecherche").html(server_responce).show();
+                    ////alert(server_responce);
+                }
+            })
+        } else {
+            $("#tab_BCrecherche").empty();
+            $("#tab_GCrecherche").hide();
+        }
+    })
 
 });
 
-function ajouter_commande() {
-   
+function ajouter_commande(id) {
+    var nom, prix, qte;
+    $("#" + id + " td").each(function (j) {
+        ////alert($(this).html());
+        if (j == 0) { nom = $(this).html(); }
+        if (j == 4) { prix = parseInt($("#inputPrix"+id).val()); }
+        if (j == 5) { qte = parseInt($("#input"+id).val()); }
+
+    });
+    $('#tab_commande  tr').each(function(i){
+        var id1 = $(this).attr("id");
+        var id2 = 'C'+id;
+        if(id2 == id1){
+            delete_row_commande(id);
+        }
+
+    });
+    // ajout de la ligne
+    var cat = '<tr id="C' + id + '">'
+        + ' <td><strong>' +nom + '</strong></td>'
+        + '<td>' + prix + '</td>'
+        + '<td>' + qte + '</td>'
+        + '<td>' + (prix * qte) + '</td>'
+        + '<td>'
+        + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_commande(\'' + id + '\');"><span class="fa fa-times"></span></button>'
+        + '</td>'
+        + '</tr>';
+    $('#tab_commande').prepend(cat);
+    var total, prixTotal = 0, qteTotal = 0;
+    qte = 0;
+    $('#tab_commande  tr').each(function(i){
+        var id1 = $(this).attr("id");
+
+        $("#"+id1+" td").each(function(j){
+            ////alert($(this).html());
+            if(j==2) {qte = parseInt($(this).html());  qteTotal = qteTotal + qte;}
+            if(j==3) {total = parseInt($(this).html());  prixTotal = prixTotal + total;}
+
+        });
+
+    });
+    $('#prixTotal').html(prixTotal);
+    $('#prixTotal').attr("data",qteTotal);
+    $('#btn-modifier' + id ).show();
+    $('#btn-ajouter' + id ).attr("disabled", "disabled");
+}
+function modifier_commande(id) {
+    $('#btn-modifier' + id ).hide();
+    $('#btn-ajouter' + id ).removeAttr("disabled");
+    delete_row_commande(id);
+}
+function valider_commande() {
+    var prixTotal;
+    prixTotal = parseInt($('#prixTotal').html());
+    if(prixTotal == 0){
+        alert('Veuillez sélectionner des produits !!!');
+    } else if($("#fournisseur_commande").val() == 0){
+        alert('Veuillez sélectionner un fournisseur!!!');
+    }else{
+        $.ajax({
+            type: "POST",
+            url: "/pharmacietest/koudjine/inc/enregistrer_commande.php",
+            data: {
+                idf: parseInt($("#fournisseur_commande").val()),
+                montant: prixTotal,
+                qte: parseInt($("#prixTotal").attr("data"))
+            },
+            dataType: 'json',
+            success: function (data) {
+                //alert(server_responce);
+                ////alert('tpasse');
+                if (data.erreur == 'ok') {
+                    var idc = data.id;
+                    alert(idc);
+
+                    $('#tab_commande  tr').each(function (i) {
+                        var id1 = $(this).attr("id");
+                        var prix, qte;
+                        ////alert(id1);
+
+
+                        $("#" + id1 + " td").each(function (j) {
+                            ////alert($(this).html());
+                            if (j == 1) { prix = parseInt($(this).html()); }
+                            if (j == 2) { qte = parseInt($(this).html()); }
+
+
+                        });
+                        ////alert(prix+'-'+qte+'-'+prixReduit);
+                        $.ajax({
+                            type: "POST",
+                            url: "/pharmacietest/koudjine/inc/produit_commande.php",
+                            data: {
+                                idc: idc,
+                                idp: id1,
+                                prixu: prix,
+                                qte: qte
+                            },
+                            success: function (server_responce) {
+                                alert(server_responce);
+                                /*if(data1.erreur == 'ok'){
+                                    var link = '/pharmacietest/users/logout';
+                                    ////alert(link);
+                                    window.location.href = link;
+                                }*/
+                            }
+                        })
+
+                    });
+                }
+
+            }
+        })
+    }
+}
+
+function delete_row_commande(id) {
+    var total;
+    $("#C"+id ).remove();
+
+        var prixTotal = 0;
+        $('#tab_commande  tr').each(function(i){
+            var id1 = $(this).attr("id");
+
+            $("#"+id1+" td").each(function(j){
+                ////alert($(this).html());
+                if(j==3) {total = parseInt($(this).html());  prixTotal = prixTotal + total;}
+
+            });
+
+        });
+        $('#prixTotal').html(prixTotal);
 }
 
 function change_input(option, id) {
@@ -30,6 +185,7 @@ function charger_commande() {
 }
 
 function showProvider() {
+
     $("#iconPreviewProvider").modal("show");
 }
 

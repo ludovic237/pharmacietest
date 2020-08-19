@@ -234,11 +234,11 @@ class VenteManager
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM vente WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM vente WHERE supprimer = 0 ')->fetchColumn();
     }
     public function countMois()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM vente WHERE SUPPRIMER = 0 AND MONTH(dateVente) = MONTH(NOW()) AND YEAR(dateVente) = YEAR(NOW()) ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM vente WHERE supprimer = 0 AND MONTH(dateVente) = MONTH(NOW()) AND YEAR(dateVente) = YEAR(NOW()) ')->fetchColumn();
     }
     public function delete(Vente $vente)
     {
