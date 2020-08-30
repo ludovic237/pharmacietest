@@ -711,7 +711,7 @@
                                 <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p> -->
                                         </div>
                                         <div>
-                                             <table class="table table-inverse table-responsive" style="margin-bottom: 10px;">
+                                             <table class="table table-inverse table-responsive" style="margin-bottom: 10px;border-collapse: collapse;border-spacing: 0px;border: 0;">
                                                   <!-- <thead class="thead-inverse">
                                         <tr>
                                             <th style="background-color: white;color: black;font-weight: 800;">LIBELLE PRODUIT</th>
@@ -723,21 +723,21 @@
                                                   <tbody>
 
                                                        <tr>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;border-color: white;text-align: start;padding: 1px;" scope="row">Montant Total</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;border-color: white;text-align: end;padding: 1px" scope="row">1</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;border-color: white;text-align: end;padding: 1px" scope="row">2000</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;border-color: white;text-align: end;padding: 1px">3000</td>
+                                                            <td style="background-color: white;color: black;font-weight: 400;border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">Montant Total</td>
+                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">1</td>
+                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">2000</td>
+                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">3000</td>
                                                        </tr>
                                                        <tr>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;border-color: white;text-align: start;padding: 1px;" scope="row">ssssssssssssssssssssssssssssssssl</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;border-color: white;text-align: end;padding: 1px" scope="row">1</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;border-color: white;text-align: end;padding: 1px" scope="row">2000</td>
-                                                            <td style=" background-color: white;color: black;font-weight: 400;border-color: white;text-align: end;padding: 1px">3000</td>
+                                                            <td style="background-color: white;color: black;font-weight: 400;border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">ssssssssssssssssssssssssssssssssl</td>
+                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">1</td>
+                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">2000</td>
+                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">3000</td>
                                                        </tr>
 
                                                        <tr>
-                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;border-color: white;text-align: start;padding: 1px;" scope="row">Sous total en FCFA</td>
-                                                            <td colspan="1" style=" background-color: white;color: black;font-weight: 400;border-color: white;text-align: end;padding: 1px">3000</td>
+                                                            <td colspan="3" style="background-color: white;color: black;font-weight: 400;border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">Sous total en FCFA</td>
+                                                            <td colspan="1" style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">3000</td>
                                                        </tr>
                                                   </tbody>
                                              </table>

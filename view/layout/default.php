@@ -12,7 +12,49 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL . '/css/styles.css'; ?>" media="screen" />
     <link rel="stylesheet" type="text/css" id="theme" href="<?php echo BASE_URL . '/css/theme-default.css'; ?>" />
+    <style type="text/css" media="screen">
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        font-family: arial, helvetica, sans-serif;
+      }
+      table {
+        border-collapse: collapse;
+        margin: 10px;
+      }
+      table td, table th {
+        border: 1px solid black;
+      }
+      @media print {
+        table td, table th {
+          border: 10px;
+        }
+        body {
+          font-family: serif;
+        }
+      }
+    </style>
+    '<style type="text/css">
+    table th, table td {
+    border:1px solid #000;
+    padding:0.5em;border-left: 1px solid #dfdfdf;
+    display: table-cell;
+    max-width: 100%;
+    white-space: nowrap;    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;}
+    table {
+    border:solid #000 !important;
+    border-width:1px 0 0 1px !important;
+}
+th, td {
+    border:solid #000 !important;
+    border-width:0 1px 1px 0 !important;
+}
 
+    </style>;
 </head>
 
 <body class="">
