@@ -518,7 +518,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                             <th width="100">Quantite</th>
                                             <th width="100">Prix Achat</th>
                                             <th width="100">Prix Vente</th>
-                                            <th width="100">Prix Total Achat</th>
+                                            <th width="100">P T Achat</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -568,7 +568,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                         style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
                                         onclick="imprimer_bon('commande','commande')"><i class="fa fa-print"
                                                                                          style="font-size:10px"></i>&nbsp;Imprimer
-                                </button>
+                                </button> 
                             </div>
                         </div>
                     </div>

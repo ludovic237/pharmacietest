@@ -124,19 +124,19 @@
 <!-- END RESPONSIVE TABLES -->
 
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-body panel-body-table">
                 <div class="panel-body">
                     <table class="table  table-bordered table-striped table-actions">
                         <thead>
                             <tr>
-                                <th >Désignation</th>
-                                <th >Quantite commandé</th>
-                                <th >Quantite livré</th>
-                                <th >Prix Achat</th>
-                                <th >Prix Vente</th>
-                                <th >Date de péremption </th>
+                                <th width="200">Désignation</th>
+                                <th width="200">Quantite commandé</th>
+                                <th width="200">Quantite livré</th>
+                                <th width="100">Prix Achat</th>
+                                <th width="100">Prix Vente</th>
+                                <th width="100">Date de péremption </th>
                             </tr>
                         </thead>
                         <tbody id="tab_vente_caisse">
@@ -175,39 +175,15 @@
                                     </td>
 
                                     <td>
-                                        <div class='input-group' style='display:-webkit-inline-box;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number moins' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-minus'></span>
-                                                </button>
-                                            </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 80px;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-plus'></span>
-                                                </button>
-                                            </span>
-                                        </div>
+                                    <input type='text' name='quant[1]' class='form-control input-number' style='width: 80px;'>
                                     </td>
 
                                     <td>
-                                        <div class='input-group' style='display:-webkit-inline-box;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number moins' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-minus'></span>
-                                                </button>
-                                            </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 80px;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-plus'></span>
-                                                </button>
-                                            </span>
-                                        </div>
+                                    <input type='text' name='quant[1]' class='form-control input-number' style='width: 80px;'>
                                     </td>
 
 
-                                    <td><input id="cellpadding" name="cellpadding" type="date" value="" size="3" maxlength="3" class="number" /></td>
+                                    <td><input id="cellpadding" style="width: 120px" name="cellpadding" type="date" value="" size="3" maxlength="3" class="number" /></td>
 
                                 </tr>
                             <?php endforeach; ?>
@@ -219,16 +195,12 @@
     </div>
     <div class="col-md-3">
         <div class="panel panel-default">
-        <div class="panel-body panel-body-table" style="
-    padding-bottom: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-">
-                <div class="panel-body">
-                    <div style="display: flex;align-items: center;justify-content: space-evenly;">
-                        <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;" id="fen_facture" data="">Montant commande</h4>
+            <div class="panel-body panel-body-table" style="padding-bottom: 40px;padding-left: 20px;padding-right: 20px;">
+                <div>
+                    <div style="display: flex;align-items: center;justify-content: space-between;padding-top: 20px;">
+                    <h4 style="padding:10px; color: white;background-color: #2d3945;" id="fen_facture" data="">Montant : </h4>
                         <div>
-                            <h2><span id="facture_caisse" data="">0</span>F CFA</h2>
+                            <h4><span id="facture_caisse" data="">0</span>FCFA</h4>
                         </div>
                     </div>
                 </div>
@@ -236,7 +208,7 @@
                     <label class="col-md-3 control-label">Commentaire:</label>
                     <div class="col-md-9">
                         <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
-                       
+
                     </div>
                 </div>
                 <div class="form-group row">
@@ -254,7 +226,7 @@
                 </div>
                 <div class="btn-group pull-right">
                     <button class="btn btn-primary" style="margin-right: 20px">Terminer</button>
-                    <button class="btn btn-success" >Imprimer</button>
+                    <button class="btn btn-success">Imprimer</button>
                 </div>
             </div>
         </div>
