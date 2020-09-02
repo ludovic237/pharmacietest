@@ -11,7 +11,9 @@
         }
         $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Liste</li>';
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/simplereappro.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
+
         ?> -->
 
 
@@ -100,7 +102,7 @@
                                         <?php echo $v->ref; ?>
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
+                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="showBonCommande()">
                                             Imprimer
                                         </button>
                                         <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
@@ -228,6 +230,303 @@
                     <button class="btn btn-primary" style="margin-right: 20px">Terminer</button>
                     <button class="btn btn-success">Imprimer</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="iconPreviewBonCommande" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="row">
+                         <div class="col-md-4">
+                              <div class="icon-preview">
+                                   <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticket">
+
+                                        <div style="display: flex;flex-direction:column;text-align: left;">
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Pharmacie ALSAS</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Dr GAMWO Sandrine</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">BP 38 FOUMBOT</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 267 487</p>
+                                             <div style="display: flex;justify-content:space-between">
+                                                  <p style="margin: 0px; color: black;font-weight: 400;">Ticket N°: <span class="reference"></span></p>
+                                                  <p style="margin: 0px; color: black;font-weight: 400;"><span class="datevente"></span> à <span class="heurevente"></span> </p>
+                                             </div>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Vendeur: <span class="vendeur"></span> </p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p>
+                                        </div>
+                                        <div>
+                                             <table class="table table-inverse table-responsive">
+                                                  <thead class="thead-inverse">
+                                                       <tr>
+                                                            <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400;">Prix U.</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400;">Qte</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400;">TOTAL</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400;">Rd</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody id="tab_BfactureImprimer">
+
+                                                       <tr>
+                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
+                                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="montanttotal"></span> FCFA</td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
+                                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="remise"></span> FCFA</td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
+                                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="netapayer"></span> FCFA</td>
+                                                       </tr>
+                                                  </tbody>
+                                             </table>
+                                        </div>
+                                        <div style="display: flex;flex-direction:column;text-align: left;">
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Payer en espece : <span class="montantpercu"></span> </p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Montant rendu : <span class="montantrendu"></span> </p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Ce ticket vaut facture</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Merci et bonne santé</p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">NoCT /rtdrstrdsy</p>
+                                        </div>
+                                   </div>
+                                   <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
+                              </div>
+                         </div>
+
+                    </div> -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="icon-preview">
+                            <div style="display:block;font-size: 10px;flex-direction: column;background-color: white;"
+                                 class="ticketfacture" id="commande">
+
+                                <div style="flex-direction: row;display: flex;justify-content: space-between;">
+                                    <div>
+                                        logo
+                                    </div>
+                                    <div>
+                                        date
+                                    </div>
+                                </div>
+                                <div style="display: flex;margin-top: 40px;">
+                                    bon de commande
+                                </div>
+                                <div style="display: flex;margin-top: 20px;margin-bottom: 20px;">
+                                    n bon
+                                </div>
+                                <div style="display: flex;justify-content: space-between;">
+                                    <div>
+                                        selection fournisseur
+                                    </div>
+                                    <div>
+                                        recherche produit
+                                    </div>
+                                </div>
+                                <div>
+                                    <table style="display: block;overflow: auto;"
+                                           class="table table-bordered table-striped table-actions">
+                                        <thead>
+                                        <tr>
+                                            <th width="50">N</th>
+                                            <th width="200">Date de delivrance</th>
+                                            <th width="200">Designation</th>
+                                            <th width="100">Quantite</th>
+                                            <th width="100">Prix Achat</th>
+                                            <th width="100">Prix Vente</th>
+                                            <th width="100">P T Achat</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">total</td>
+                                            <td>
+                                                20000
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div style="display: flex;">
+                                    <h5>Nombre d'article commandé</h5>
+                                </div>
+                                <div style="display: flex;">
+                                    <h5>Nombre de produit commandé</h5>
+                                </div>
+
+
+                            </div>
+                            <div style="display: flex;justify-content: space-around;">
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i
+                                            class="fa fa-print" style="font-size:10px"></i>&nbsp;Annuler
+                                </button>
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i
+                                            class="fa fa-print" style="font-size:10px"></i>&nbsp;Créer commande
+                                </button>
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
+                                        onclick="imprimer_bon('commande','commande')"><i class="fa fa-print"
+                                                                                         style="font-size:10px"></i>&nbsp;Imprimer
+                                </button> 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="iconPreviewRecu" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="icon-preview">
+                            <div style="display:block;font-size: 10px;flex-direction: column;background-color: white;"
+                                 class="ticketfacture" id="recu">
+
+                                <div style="flex-direction: row;display: flex;justify-content: space-between;">
+                                    <div>
+                                        logo
+                                    </div>
+                                    <div>
+                                        date
+                                    </div>
+                                </div>
+                                <div style="display: flex;margin-top: 40px;">
+                                    Bordereau de réception
+                                </div>
+                                <div style="display: flex;margin-top: 20px;margin-bottom: 20px;">
+                                    n bon
+                                </div>
+                                <div style="display: flex;justify-content: space-between;">
+                                    <div>
+                                        N° de bordereau de réception
+                                    </div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;justify-content: space-between;">
+                                    <div>
+                                        N° bon de commande
+                                    </div>
+                                    <div>
+                                        Date de commande
+                                    </div>
+                                </div>
+                                <div style="display: flex;justify-content: space-between;">
+                                    <div>
+                                        Nom fournisseur
+                                    </div>
+                                    <div>
+                                        N° de bordereau de livraison
+                                    </div>
+                                </div>
+                                <div>
+                                    <table style="display: block;overflow: auto;"
+                                           class="table table-bordered table-striped table-actions">
+                                        <thead>
+                                        <tr>
+                                            <th width="50">N</th>
+                                            <th width="200">Designation</th>
+                                            <th width="100">Quantite commandé</th>
+                                            <th width="100">Quantite livré</th>
+                                            <th width="100">Prix Achat</th>
+                                            <th width="100">Prix Vente</th>
+                                            <th width="100">P T Achat</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">total</td>
+                                            <td>
+                                                20000
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div style="display: flex;">
+                                    <h5>Nombre d'article commandé</h5>
+                                </div>
+                                <div style="display: flex;">
+                                    <h5>Nombre de produit commandé</h5>
+                                </div>
+
+
+                            </div>
+                            <div style="display: flex;justify-content: space-around;">
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i
+                                            class="fa fa-print" style="font-size:10px"></i>&nbsp;Annuler
+                                </button>
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i
+                                            class="fa fa-print" style="font-size:10px"></i>&nbsp;Receptionner
+                                </button>
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
+                                        onclick="imprimer_recu('recu','recu')"><i class="fa fa-print"
+                                                                                  style="font-size:10px"></i>&nbsp;Imprimer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

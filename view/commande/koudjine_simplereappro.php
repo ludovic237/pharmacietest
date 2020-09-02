@@ -646,7 +646,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                             <th width="100">Quantite livré</th>
                                             <th width="100">Prix Achat</th>
                                             <th width="100">Prix Vente</th>
-                                            <th width="100">Prix Total Achat</th>
+                                            <th width="100">P T Achat</th>
                                         </tr>
                                         </thead>
                                         <tbody>
