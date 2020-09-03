@@ -11,7 +11,9 @@
         }
         $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Liste</li>';
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
+<script type="text/javascript" src="' . BASE_URL .'/koudjine/js/Commande/list.js"></script>';
+
         ?> -->
 
 
@@ -103,7 +105,7 @@
                                         <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
                                             Imprimer
                                         </button>
-                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
+                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_produit_commande(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
                                             Charger
                                         </button>
                                         <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
@@ -139,78 +141,8 @@
                                 <th >Date de péremption </th>
                             </tr>
                         </thead>
-                        <tbody id="tab_vente_caisse">
-                            <?php foreach ($commande as $k => $v) : ?>
-                                <tr id="<?php echo $v->id; ?>">
-                                    <td></td>
-                                    <td>
-                                        <div class='input-group' style='display:-webkit-inline-box;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number moins' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-minus'></span>
-                                                </button>
-                                            </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 40px;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-plus'></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class='input-group' style='display:-webkit-inline-box;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number moins' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-minus'></span>
-                                                </button>
-                                            </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 40px;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-plus'></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
+                        <tbody id="tab_produit_commande">
 
-                                    <td>
-                                        <div class='input-group' style='display:-webkit-inline-box;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number moins' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-minus'></span>
-                                                </button>
-                                            </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 80px;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-plus'></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div class='input-group' style='display:-webkit-inline-box;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number moins' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-minus'></span>
-                                                </button>
-                                            </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' style='width: 80px;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number plus' style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-plus'></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
-
-
-                                    <td><input id="cellpadding" name="cellpadding" type="date" value="" size="3" maxlength="3" class="number" /></td>
-
-                                </tr>
-                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

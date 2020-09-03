@@ -245,10 +245,10 @@ class Produit_cmdManager
         return new Produit_cmd($donnees);
 
     }
-    public function getList()
+    public function getList($id)
     {
         $Produit_cmds = array();
-        $q = $this->_db->prepare('SELECT * FROM produit_cmd WHERE supprimer = 0 ORDER BY ptRecept');
+        $q = $this->_db->prepare('SELECT * FROM produit_cmd WHERE supprimer = 0 AND commande_id = '.$id);
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
