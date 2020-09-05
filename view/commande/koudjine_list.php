@@ -195,7 +195,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-body panel-body-table" style="padding-bottom: 40px;padding-left: 20px;padding-right: 20px;">
                 <div>
