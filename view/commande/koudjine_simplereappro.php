@@ -508,37 +508,37 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                     </div>
                                 </div>
                                 <div>
-                                    <table style="display: block;overflow: auto;"
+                                    <table style="display: block;overflow: auto;margin-bottom: 20px;margin-top: 20px;border-collapse: collapse;border-spacing: 0px;border: 0;"
                                            class="table table-bordered table-striped table-actions">
                                         <thead>
                                         <tr>
-                                            <th width="50">N</th>
-                                            <th width="200">Date de delivrance</th>
-                                            <th width="200">Designation</th>
-                                            <th width="100">Quantite</th>
-                                            <th width="100">Prix Achat</th>
-                                            <th width="100">Prix Vente</th>
-                                            <th width="100">P T Achat</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="50">N</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="200">Date de delivrance</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="200">Designation</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Quantite</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Prix Achat</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Prix Vente</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">P T Achat</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" ></td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" ></td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" ></td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" ></td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" ></td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" >
 
                                             </td>
-                                            <td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" >
 
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="6">total</td>
-                                            <td>
+                                            <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="6">total</td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" >
                                                 20000
                                             </td>
                                         </tr>
@@ -636,37 +636,37 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                     </div>
                                 </div>
                                 <div>
-                                    <table style="display: block;overflow: auto;"
+                                    <table style="display: block;overflow: auto;margin-bottom: 20px;margin-top: 20px;border-collapse: collapse;border-spacing: 0px;border: 0;"
                                            class="table table-bordered table-striped table-actions">
                                         <thead>
                                         <tr>
-                                            <th width="50">N</th>
-                                            <th width="200">Designation</th>
-                                            <th width="100">Quantite commandé</th>
-                                            <th width="100">Quantite livré</th>
-                                            <th width="100">Prix Achat</th>
-                                            <th width="100">Prix Vente</th>
-                                            <th width="100">P T Achat</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="50">N</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="200">Designation</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Quantite commandé</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Quantite livré</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Prix Achat</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Prix Vente</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">P T Achat</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
+                                            <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"></td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"></td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"></td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"></td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"></td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
 
                                             </td>
-                                            <td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
 
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="6">total</td>
-                                            <td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="6">total</td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
                                                 20000
                                             </td>
                                         </tr>

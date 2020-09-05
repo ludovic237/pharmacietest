@@ -1205,6 +1205,17 @@ function enregistrer_produit(option, id) {
     var mag = $('#magproduit option:selected').val();
     var forme = $('#formeproduit option:selected').val();
     var prod = $('#produits').val();
+    var newprod = ""
+    for (let index = 0; index < prod.length; index++) {
+        
+        if ( index == prod.length-1 ) {
+            newprod=newprod+""+prod[index];
+        } else {
+            newprod=newprod+""+prod[index]+"-";
+        }
+    }
+    console.log(newprod);
+    prod = newprod
     alert(prod)
     /*$("#magproduit").change(function () {
         v = $('#magproduit option:selected').val();
@@ -1215,7 +1226,7 @@ function enregistrer_produit(option, id) {
 
     if (option == 'Ajouter') {
         $.ajax({
-            type: "POST",
+            type: "POST", 
             url: '/pharmacietest/koudjine/inc/enregistrer_produit.php',
             data: {
                 nom: nom,
