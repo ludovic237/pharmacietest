@@ -149,6 +149,7 @@ function valider_commande() {
         })
     }
 
+
 }
 
 function valider_reception_commande() {
