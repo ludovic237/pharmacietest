@@ -141,19 +141,7 @@
                                 <th >Date de péremption </th>
                             </tr>
                         </thead>
-                        <tbody id="tab_produit_commande">
-                        <script type="application/javascript">
-                            $(document).ready(function(){
-                                //$("#div_inventaire").hide();
-                                charger_produit_commande(20200818035543,'Commandé');
-
-
-                            });
-
-                        </script>
-                        <?php if(isset($com)){ ?>
-                            <script type="application/javascript">charger_produit_commande(20200818035543,'Commandé')</script>
-                        <?php } ?>
+                        <tbody id="tab_produit_commande" <?php if(isset($com)){ echo 'data="'.$com->id.'" '; echo 'etat="'.$com->etat.'" '; echo 'prix="'.$com->montantCmd.'" ';} ?>>
 
                         </tbody>
                     </table>

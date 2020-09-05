@@ -1206,7 +1206,7 @@ function enregistrer_produit(option, id) {
     var forme = $('#formeproduit option:selected').val();
     var prod = $('#produits').val();
     var newprod = ""
-    for (let index = 0; index < prod.length; index++) {
+    for ( index = 0; index < prod.length; index++) {
         
         if ( index == prod.length-1 ) {
             newprod=newprod+""+prod[index];

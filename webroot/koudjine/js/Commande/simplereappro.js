@@ -143,6 +143,7 @@ function valider_commande() {
             }
         })
     }
+
 }
 
 function delete_row_commande(id) {
