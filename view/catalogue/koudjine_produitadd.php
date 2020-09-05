@@ -226,15 +226,27 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">Produit:</label>
+<!-- 
+                        <?php
+                        $text = $produit->grossiste_id;
+                        echo $text;
+                        $texto  = explode('-', $text);
+                        print_r($texto);
+                        if (in_array("Python", $langages)) {
+                            echo "Python a été trouvé dans les langages.";
+                        }
+                        ?> -->
+
                         <div class="col-md-9">
                             <select multiple class="selectpicker form-control input-xlarge " name="produits" id="produits">
-                                <?php if(isset($produits))
-                                foreach ($produits as $k => $v) : ?>
+                                <?php if (isset($produits))
+                                    foreach ($produits as $k => $v) : ?>
                                     <option <?php if ($position == 'Modifier')
-                                                if ($v->id == $produit->grossiste_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?>
+
+                                                if (in_array($v->id, $texto)) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?>
                                     </option>
                                 <?php
-                                endforeach;
+                                    endforeach;
                                 ?>
                             </select>
                             <span class="help-block">Choix multiple</span>
