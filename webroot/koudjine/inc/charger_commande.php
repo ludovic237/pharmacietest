@@ -1,8 +1,7 @@
 <?php
 require_once('database.php');
-require_once('../Class/vente.php');
-require_once('../Class/concerner.php');
-require_once('../Class/en_rayon.php');
+require_once('../Class/commande.php');
+require_once('../Class/produitcmd.php');
 require_once('../Class/produit.php');
 
 global $pdo;
@@ -23,6 +22,7 @@ if (isset($_POST['id'])){
     foreach ($Produit_cmds as $k => $v) :
         //echo $v->en_rayon_id();
         $nom = $managerPr->get($v->produit_id())->nom();
+    //echo $nom;
 
         echo "<tr id=\"".$v->produit_id()."\">
                                             <td ><strong class='nom'>".$nom."</strong></td>
@@ -30,17 +30,17 @@ if (isset($_POST['id'])){
                                                 <div class='input-group' style='display:-webkit-inline-box;'>
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins'
-                                                        onclick=\"change_input('moins','inputQte".$v->id()."')\"
+                                                        onclick=\"change_input('moins','inputQte".$v->produit_id()."')\"
                                                         style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-minus'></span>
                                                 </button>
                                             </span>
                                         <input type='text' name='quant[1]' class='form-control input-number'
-                                               id=\"inputQte".$v->id()."\"
+                                               id=\"inputQte".$v->produit_id()."\"
                                                value='".$v->qtiteCmd()."' style='width: 40px;'>
                                         <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number plus'
-                                                        onclick=\"change_input('plus','inputQte".$v->id()."')\"
+                                                        onclick=\"change_input('plus','inputQte".$v->produit_id()."')\"
                                                         style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-plus'></span>
                                                 </button>
@@ -51,16 +51,16 @@ if (isset($_POST['id'])){
                                                 <div class='input-group' style='display:-webkit-inline-box;'>
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins'
-                                                        onclick=\"change_input('moins','inputQteRecu".$v->id()."')\"
+                                                        onclick=\"change_input('moins','inputQteRecu".$v->produit_id()."')\"
                                                         style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-minus'></span>
                                                 </button>
                                             </span>
                                         <input type='text' name='quant[1]' class='form-control input-number'
-                                               id=\"inputQteRecu".$v->id()."\" value='' style='width: 40px;'>
+                                               id=\"inputQteRecu".$v->produit_id()."\" value='".$v->qtiteCmd()."' style='width: 40px;'>
                                         <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number plus'
-                                                        onclick=\"change_input('plus','inputQteRecu".$v->id()."')\"
+                                                        onclick=\"change_input('plus','inputQteRecu".$v->produit_id()."')\"
                                                         style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-plus'></span>
                                                 </button>
@@ -69,14 +69,14 @@ if (isset($_POST['id'])){
                                             </td>
                                             <td>
                                             <input type='text' name='' class='form-control input-number'
-                                               id=\"prixCmd\" value='".$v->puCmd()."' style='width: 80px;'>
+                                               id=\"prixCmd".$v->produit_id()."\" value='".$v->puCmd()."' style='width: 80px;'>
                                             </td>
                                             <td>
                                                 <input type='text' name='' class='form-control input-number'
-                                               id=\"prixVente\" value='' style='width: 80px;'>
+                                               id=\"prixVente".$v->produit_id()."\" value='' style='width: 80px;'>
                                             </td>
                                             <td>
-                                                <input id=\"datePeremption\" name=\"\" type=\"date\" value=\"\" size=\"3\" maxlength=\"3\" class=\"number\" />
+                                                <input id=\"datePeremption".$v->produit_id()."\" name=\"\" type=\"date\" value=\"\" size=\"3\" maxlength=\"3\" class=\"number\" />
                                             </td>
                                         </tr>";
     endforeach;

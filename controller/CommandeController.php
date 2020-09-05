@@ -95,13 +95,21 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
         $this->loadModel('Commande');
     }
 
-    function koudjine_list()
+    function koudjine_list($id = null)
     {
         $this->loadModel('Commande');
         $d['commande'] = $this->Commande->find(array(
-            'fields' => 'commande.id as id,dateCreation,dateLivraison,note,fournisseur_id,qtiteCmd,qtiteRecu,montantCmd,montantRecu,etat,ref',
-            'table' => 'commande',
+            'fields' => 'c.id as id,dateCreation,dateLivraison,nom,fournisseur_id,qtiteCmd,qtiteRecu,montantCmd,montantRecu,etat,ref',
+            'table' => 'commande c, fournisseur f',
+            'conditions' => array('c.fournisseur_id' => 'f.id', 'c.supprimer' => 0, 'f.supprimer' => 0)
         ));
+        if($id != null){
+            $d['com'] = $this->Commande->findFirst(array(
+                //'fields' => 'c.id as id,dateCreation,dateLivraison,nom,fournisseur_id,qtiteCmd,qtiteRecu,montantCmd,montantRecu,etat,ref',
+                'table' => 'commande c',
+                'conditions' => array( 'c.id' => $id , 'c.supprimer' => 0)
+            ));
+        }
 
         if(empty($d['commande'])){
             $this->e404('Page introuvable');
