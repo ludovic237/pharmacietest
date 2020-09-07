@@ -2,65 +2,72 @@
 require_once('database.php');
 require_once('../Class/commande.php');
 require_once('../Class/en_rayon.php');
+require_once('../Class/fournisseur.php');
+require_once('../Class/produitcmd.php');
 
 global $pdo;
 
 
 $manager = new CommandeManager($pdo);
 $managerEn = new En_rayonManager($pdo);
+$managerFo = new FournisseurManager($pdo);
+$managerPo = new Produit_cmdManager($pdo);
 
-$action = $_POST['action'];
-$id = $_POST['id'];
+$idc = $_POST['idc'];
+$idp = $_POST['idp'];
+$qte = $_POST['qte'];
+$prixa = $_POST['prixa'];
+$prixv = $_POST['prixv'];
+$datep = $_POST['datep'];
 
 
 
-if ($action == "creer"){
+    $fournisseur = $managerFo->get($manager->get($idc)->fournisseur_id());
+    $Date_Du_Jour = date("Ymd");
+    $Date_Du_Jour1 = date("Y-m-d");
+    $id = ''.$idp.$fournisseur->code().$Date_Du_Jour;
+    //echo $fournisseur->code();
 
-    $qte = $_POST['qte'];
-    $employe_id = $_POST['employe_id'];
-    $qteRestante = $_POST['qteRestante'];
-    $inventaire = $manager->get();
-
-    $produit = new Produit_inventaire(array(
-        'inventaire_id' => $inventaire->id(),
-        'employe_id' => $employe_id,
-        'en_rayon_id' => $id,
-        'stockAvant' => $qteRestante,
-        'stockValide' => $qte
+  // Créer une entrée en stock
+    $en_rayon = new En_rayon(array(
+        'id' => $id,
+        'produit_id' => $idp,
+        'fournisseur_id' => $fournisseur->id(),
+        'commande_id' => $idc,
+        'prixAchat' => $prixa,
+        'prixVente' => $prixv,
+        'quantite' => $qte,
+        'quantiteRestante' => $qte,
+        'datePeremption' => $datep,
     ));
-    $managerPI->add($produit);
-    $en_rayon = $managerEn->get($id);
-    $en_rayon->setquantiteRestante($qte);
-    $managerEn->update($en_rayon);
+    //$managerEn->add($en_rayon);
 
-}
-else{
-    $qte = $_POST['qte'];
-    $inventaire = $manager->get();
-    if($managerPI->existsEn_rayon($inventaire->id(), $id)){
-        $produit = $managerPI->getEn_rayon($inventaire->id(), $id);
-        $produit->setstockValide($produit->stockValide()+$qte);
-        $managerPI->update($produit);
-        $en_rayon = $managerEn->get($id);
-        $en_rayon->setquantiteRestante($en_rayon->quantiteRestante() + $qte);
-        $managerEn->update($en_rayon);
-    }
+    // mettre à jour le produit commandé
 
-    if(true){
-        $donnees = array('erreur' =>'ok');
-        echo json_encode($donnees);
-    }
-    else{
-        $donnees = array('erreur' =>'Veuillez vérifier vos quantités et d\'autres paramètres liés à la vente !!!');
-        echo json_encode($donnees);
-    }
+    $produit_cmd = $managerPo->get($idp,$idc);
+    $produit_cmd->setqtiteRecu($qte);
+    $produit_cmd->setpuRecept($prixa);
+    $produit_cmd->setprixPublic($prixv);
+    $produit_cmd->setetat('Livré');
+    $managerPo->update($produit_cmd);
 
+    // mettre à jour la commande
 
+    $etat = $_POST['etat'];
+    $commentaire = $_POST['commentaire'];
+    $total = $_POST['total'];
+    $nbreProduit = $_POST['nbreProduit'];
+    //echo $nbreProduit;
 
-}
+    $commande = $manager->get($idc);
+    $commande->setqtiteRecu($nbreProduit);
+    $commande->setnote($commentaire);
+    $commande->setetat($etat);
+    $commande->setmontantRecu($total);
+    $commande->setdateLivraison($Date_Du_Jour1);
+    $manager->update($commande);
 
 
-// D'abord, on se connecte ?ySQL
 
 
 

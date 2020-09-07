@@ -5,6 +5,7 @@ class En_rayon
     private $_id,
         $_produit_id,
         $_fournisseur_id,
+        $_commande_id,
         $_dateLivraison,
         $_datePeremption,
         $_prixAchat,
@@ -44,6 +45,10 @@ class En_rayon
     public function fournisseur_id()
     {
         return $this->_fournisseur_id;
+    }
+    public function commande_id()
+    {
+        return $this->_commande_id;
     }
     public function dateLivraison()
     {
@@ -103,6 +108,14 @@ class En_rayon
             $this->_fournisseur_id = $id;
         }
     }
+    public function setcommaande_id($id)
+    {
+
+        if ($id > 0)
+        {
+            $this->_commande_id = $id;
+        }
+    }
     public function setdateLivraison($id)
     {
             $this->_dateLivraison = $id;
@@ -157,11 +170,11 @@ class En_rayonManager
     }
     public function add(En_rayon $en_rayon)
     {
-        $q = $this->_db->prepare('INSERT INTO en_rayon SET id = :id, produit_id = :produit_id, fournisseur_id = :fournisseur_id, dateLivraison = :dateLivraison, datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prica, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = :reduction, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO en_rayon SET id = :id, produit_id = :produit_id, fournisseur_id = :fournisseur_id, commande_id = :commande_id, dateLivraison = now(), datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prixa, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = :reduction, supprimer=0');
         $q->bindValue(':id', $en_rayon->id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $en_rayon->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':fournisseur_id', $en_rayon->fournisseur_id(), PDO::PARAM_INT);
-        $q->bindValue(':dateLivraison', $en_rayon->dateLivraison());
+        $q->bindValue(':commande_id', $en_rayon->commande_id(), PDO::PARAM_INT);
         $q->bindValue(':datePeremption', $en_rayon->datePeremption());
         $q->bindValue(':prixv', $en_rayon->prixVente());
         $q->bindValue(':prixa', $en_rayon->prixAchat());

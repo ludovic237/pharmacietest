@@ -57,7 +57,7 @@ if (isset($_POST['id'])){
                                                 </button>
                                             </span>
                                         <input type='text' name='quant[1]' class='form-control input-number'
-                                               id=\"inputQteRecu".$v->produit_id()."\" value='".$v->qtiteCmd()."' style='width: 40px;'>
+                                               id=\"inputQteRecu".$v->produit_id()."\" value='".$v->qtiteRecu()."' style='width: 40px;'>
                                         <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number plus'
                                                         onclick=\"change_input('plus','inputQteRecu".$v->produit_id()."')\"
@@ -73,7 +73,7 @@ if (isset($_POST['id'])){
                                             </td>
                                             <td>
                                                 <input type='text' name='' class='form-control input-number'
-                                               id=\"prixVente".$v->produit_id()."\" value='' style='width: 80px;'>
+                                               id=\"prixVente".$v->produit_id()."\" value='".$v->prixPublic()."' style='width: 80px;'>
                                             </td>
                                             <td>
                                                 <input id=\"datePeremption".$v->produit_id()."\" name=\"\" type=\"date\" value=\"\" size=\"3\" maxlength=\"3\" class=\"number\" />

@@ -9,8 +9,8 @@ $(document).ready(function(){
 
 
 });
-function receptionner_commande() {
-    var qte, prix, action = 0;
+function receptionner_commande(nbre) {
+    var  action = 0;
     $("#tab_produit_commande tr").each(function (j) {
 
         var id = $(this).attr("id");
@@ -19,6 +19,8 @@ function receptionner_commande() {
                 alert("Veuillez renseigner les champs Prix vente et Date péremption !!!\n Quand les quantités livrés sont supérieurs à 0");
                 action = 1;
             }
+            nbre = nbre + parseInt($("#inputQteRecu"+id).val());
+            alert(nbre);
 
         }
     })
@@ -37,14 +39,18 @@ function receptionner_commande() {
             if(parseInt($("#inputQteRecu"+id).val()) != 0){
                 $.ajax({
                     type: "POST",
-                    url: "/pharmacietest/koudjine/inc/produit_commande.php",
+                    url: "/pharmacietest/koudjine/inc/reception_commande.php",
                     data: {
-                        idc: idc,
-                        idp: idp,
+                        idc: $('#facture_commande').attr("data"),
+                        idp: id,
                         prixa: parseInt($("#prixCmd"+id).val()),
                         prixv: parseInt($("#prixVente"+id).val()),
                         datep: $("#datePeremption"+id).val(),
-                        qte: parseInt($("#inputQteRecu"+id).val())
+                        qte: parseInt($("#inputQteRecu"+id).val()),
+                        etat: $('#etat_commande option:selected').val(),
+                        total: parseInt($("#facture_commande").html()),
+                        commentaire: $("#commentaire_commande").val(),
+                        nbreProduit: nbre
                     },
                     success: function (server_responce) {
                         alert(server_responce);
@@ -86,7 +92,7 @@ function charger_produit_commande(id, etat, prix) {
 }
 function change_input(option, id) {
     if(option == 'plus'){
-        if($("#"+id).val() == '')
+        if($("#"+id).val() == '' || $("#"+id).val() == null)
             $("#"+id).val(1);
             else
         $("#"+id).val(parseInt($("#"+id).val())+1);
