@@ -237,10 +237,10 @@ class Produit_cmdManager
 
 
     }
-    public function get($info)
+    public function get($idp, $idc)
     {
 
-        $q = $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND produit_id = '.$idp.' AND commande_id ='.$idc);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Produit_cmd($donnees);
 
@@ -259,7 +259,7 @@ class Produit_cmdManager
     public function update(Produit_cmd $Produit_cmd)
     {
 
-        $q = $this->_db->prepare('UPDATE produit_cmd SET produit_id = :produit, puCmd = :pucmd, ptCmd = :ptcmd, prixPublic = :prixpublic, commande_id = :commande, qtiteCmd = :qtiteCmd, puRecept = :montant, ptRecept = :ptRecept, qtiteRecu = :qtiteRecu, etat = :etat, reduction = :reduction, etat = :etat WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit_cmd SET produit_id = :produit, commande_id = :commande, prixPublic = :prixpublic, puCmd = :pucmd, ptCmd = :ptcmd, qtiteCmd = :qtiteCmd, puRecept = :montant, ptRecept = :ptRecept, qtiteRecu = :qtiteRecu, etat = :etat WHERE id = :id');
         $q->bindValue(':id', $Produit_cmd->id(), PDO::PARAM_INT);
         $q->bindValue(':produit', $Produit_cmd->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':commande', $Produit_cmd->commande_id(), PDO::PARAM_INT);

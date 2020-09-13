@@ -105,7 +105,7 @@
                                         <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
                                             Imprimer
                                         </button>
-                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_produit_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantCmd; ?>')">
+                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_produit_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>')">
                                             Charger
                                         </button>
                                         <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
@@ -163,7 +163,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 control-label">Commentaire:</label>
                     <div class="col-md-9">
-                        <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                        <textarea class="form-control" name="" id="commentaire_commande" cols="30" rows="10"></textarea>
 
                     </div>
                 </div>
@@ -181,7 +181,7 @@
                     </div>
                 </div>
                 <div class="btn-group pull-right">
-                    <button class="btn btn-primary" style="margin-right: 10px" onclick="receptionner_commande()">Réceptionner</button>
+                    <button class="btn btn-primary" style="margin-right: 10px" onclick="receptionner_commande(0)">Réceptionner</button>
                     <button class="btn btn-success">Imprimer</button>
                 </div>
             </div>
