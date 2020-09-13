@@ -9,18 +9,55 @@ $(document).ready(function(){
 
 
 });
+function imprimer_commande() {
+    var i = 1, total = 0, nbre = 0;
+    $('#tab_Bcommande_Recu').empty();
+    $("#tab_produit_commande tr").each(function (j) {
+
+        var id = $(this).attr("id");
+        if(parseInt($("#inputQteRecu"+id).val()) != 0 && $("#inputQteRecu"+id).val() != '' && $("#inputQteRecu"+id).val() != null){
+            // ajout de la ligne
+            var cat = '<tr>'
+                + ' <td>'+i+'</td>'
+                + ' <td><strong>' +$("#nom"+id).html() + '</strong></td>'
+                + '<td>' + parseInt($("#inputQte"+id).val()) + '</td>'
+                + '<td>' + parseInt($("#inputQteRecu"+id).val()) + '</td>'
+                + '<td>' + parseInt($("#prixCmd"+id).val()) + '</td>'
+                + '<td>' + parseInt($("#prixVente"+id).val()) + '</td>'
+                + '<td>' + (parseInt($("#prixCmd"+id).val()) * parseInt($("#inputQteRecu"+id).val())) + '</td>'
+                + '</tr>';
+            $('#tab_Bcommande_Recu').append(cat);
+            i++;
+            total = total + (parseInt($("#prixCmd"+id).val()) * parseInt($("#inputQteRecu"+id).val()));
+            nbre = nbre +  parseInt($("#inputQteRecu"+id).val());
+
+        }
+    })
+    var cat = '<tr>'
+        + ' <td colspan="6">Total</td>'
+        + ' <td><strong>' +total+ '</strong></td>'
+        + '</tr>';
+    $('#tab_Bcommande_Recu').append(cat);
+    //$("#totalRecu").html(total);
+    $("#article_commande").html(i-1);
+    $("#produit_commande").html(nbre);
+    $("#ref_commande").html($('#facture_commande').attr("data1"));
+    $("#nomf_commande").html($('#facture_commande').attr("data2"));
+    $("#date_commande").html($('#facture_commande').attr("data3"));
+    $("#iconPreviewRecu").modal("show");
+}
 function receptionner_commande(nbre) {
     var  action = 0;
     $("#tab_produit_commande tr").each(function (j) {
 
         var id = $(this).attr("id");
-        if(parseInt($("#inputQteRecu"+id).val()) != 0){
+        if(parseInt($("#inputQteRecu"+id).val()) != 0 && $("#inputQteRecu"+id).val() != '' && $("#inputQteRecu"+id).val() != null){
             if($("#prixVente"+id).val() == '' || $("#datePeremption"+id).val() == ''){
                 alert("Veuillez renseigner les champs Prix vente et Date péremption !!!\n Quand les quantités livrés sont supérieurs à 0");
                 action = 1;
             }
             nbre = nbre + parseInt($("#inputQteRecu"+id).val());
-            alert(nbre);
+            //alert(nbre);
 
         }
     })
@@ -65,7 +102,7 @@ function receptionner_commande(nbre) {
         })
     }
 }
-function charger_produit_commande(id, etat, prix) {
+function charger_produit_commande(id, etat, prix, ref, nom, dateC) {
     //alert('passe');
     $.ajax({
         type: "POST",
@@ -80,6 +117,8 @@ function charger_produit_commande(id, etat, prix) {
             $('#tab_produit_commande').empty();
             $('#tab_produit_commande').html(server_responce);
             //$('#tab_BfactureImprimer').prepend(server_responce);
+            $('#btn_recept_commande').removeAttr("disabled");
+            $('#btn_print_commande').removeAttr("disabled");
 
         }
 
@@ -88,6 +127,9 @@ function charger_produit_commande(id, etat, prix) {
     //alert(prix);
     $("#etat_commande option[value = '"+etat+"']").prop("selected", true);
     $('#facture_commande').attr("data",id);
+    $('#facture_commande').attr("data1",ref);
+    $('#facture_commande').attr("data2",nom);
+    $('#facture_commande').attr("data3",dateC);
     $('#facture_commande').html(prix);
 }
 function change_input(option, id) {
@@ -110,6 +152,29 @@ function change_input(option, id) {
         }
         $('#facture_commande').html(prixTotal);
     })
+}
+function imprimer_recu(titre, objet) {
+    // Définition de la zone à imprimer
+    var zone = document.getElementById(objet).innerHTML;
+
+    // Ouverture du popup
+    var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
+
+    // style du popup
+    fen.document.body.style.color = '#000000';
+    fen.document.body.style.backgroundColor = '#FFFFFF';
+    fen.document.body.style.padding = "0px";
+
+    // Ajout des données a imprimer
+    fen.document.title = titre;
+    fen.document.body.innerHTML += " " + zone + " ";
+
+    // Impression du popup
+    fen.window.print();
+
+    //Fermeture du popup
+    fen.window.close();
+    return true;
 }
 
 

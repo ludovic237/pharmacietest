@@ -25,7 +25,7 @@ if (isset($_POST['id'])){
     //echo $nom;
 
         echo "<tr id=\"".$v->produit_id()."\">
-                                            <td ><strong class='nom'>".$nom."</strong></td>
+                                            <td ><strong class='nom' id='nom".$v->produit_id()."'>".$nom."</strong></td>
                                             <td class='qteCmd'>
                                                 <div class='input-group' style='display:-webkit-inline-box;'>
                                             <span class='input-group-btn'>

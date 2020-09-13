@@ -26,21 +26,35 @@ $datep = $_POST['datep'];
     $Date_Du_Jour = date("Ymd");
     $Date_Du_Jour1 = date("Y-m-d");
     $id = ''.$idp.$fournisseur->code().$Date_Du_Jour;
-    //echo $fournisseur->code();
+    echo $idc;
 
-  // Créer une entrée en stock
-    $en_rayon = new En_rayon(array(
-        'id' => $id,
-        'produit_id' => $idp,
-        'fournisseur_id' => $fournisseur->id(),
-        'commande_id' => $idc,
-        'prixAchat' => $prixa,
-        'prixVente' => $prixv,
-        'quantite' => $qte,
-        'quantiteRestante' => $qte,
-        'datePeremption' => $datep,
-    ));
-    //$managerEn->add($en_rayon);
+    // on vérifie s'il y'a deja une entrée crée avec l'id
+    if($managerEn->existsId($id)){
+        $ent = $managerEn->get($id);
+        $ent->setcommaande_id($idc);
+        $ent->setprixAchat($prixa);
+        $ent->setprixVente($prixv);
+        $ent->setquantite($qte);
+        $ent->setquantiteRestante($qte);
+        $ent->setdatePeremption($datep);
+        $managerEn->update($ent);
+    }else{
+        // Créer une entrée en stock
+        $en_rayon = new En_rayon(array(
+            'id' => $id,
+            'produit_id' => $idp,
+            'fournisseur_id' => $fournisseur->id(),
+            'commande_id' => $idc,
+            'prixAchat' => $prixa,
+            'prixVente' => $prixv,
+            'quantite' => $qte,
+            'quantiteRestante' => $qte,
+            'datePeremption' => $datep,
+        ));
+        $en_rayon->setcommaande_id($idc);
+        $managerEn->add($en_rayon);
+    }
+
 
     // mettre à jour le produit commandé
 

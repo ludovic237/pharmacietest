@@ -77,7 +77,10 @@
                         <tbody>
                             <?php foreach ($commande as $k => $v) : ?>
                                 <tr id="<?php echo $v->id; ?>">
-                                    <td><strong><?php echo $v->dateCreation; ?></strong></td>
+                                    <td><strong><?php
+                                            $date = DateTime::createFromFormat('Y-m-d H:i:s', $v->dateCreation);
+                                            $datel = $date->format('d-m-Y');
+                                            echo $v->dateCreation; ?></strong></td>
                                     <td><?php echo $v->dateLivraison; ?></td>
                                     <!-- <td><?php echo $v->note; ?></td> -->
                                     <td>
@@ -105,7 +108,7 @@
                                         <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
                                             Imprimer
                                         </button>
-                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_produit_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>')">
+                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_produit_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>','<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $datel; ?>')">
                                             Charger
                                         </button>
                                         <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
@@ -154,9 +157,9 @@
             <div class="panel-body panel-body-table" style="padding-bottom: 40px;padding-left: 20px;padding-right: 20px;">
                 <div>
                     <div style="display: flex;align-items: center;justify-content: space-between;padding-top: 20px;">
-                    <h4 style="padding:10px; color: white;background-color: #2d3945;" id="fen_facture" data="">Montant : </h4>
+                    <h4 style="padding:10px; color: white;background-color: #2d3945;" id="fen_facture" data="" data1="" data2="" data3="">Montant : </h4>
                         <div>
-                            <h4><span id="facture_commande" data="">0</span>FCFA</h4>
+                            <h4><span id="facture_commande" data="">0</span> FCFA</h4>
                         </div>
                     </div>
                 </div>
@@ -181,8 +184,8 @@
                     </div>
                 </div>
                 <div class="btn-group pull-right">
-                    <button class="btn btn-primary" style="margin-right: 10px" onclick="receptionner_commande(0)">Réceptionner</button>
-                    <button class="btn btn-success">Imprimer</button>
+                    <button class="btn btn-primary" disabled id="btn_recept_commande" style="margin-right: 10px" onclick="receptionner_commande(0)">Réceptionner</button>
+                    <button class="btn btn-success" disabled id="btn_print_commande" onclick="imprimer_commande()">Imprimer</button>
                 </div>
             </div>
         </div>
@@ -390,25 +393,29 @@
                                 </div>
                                 <div style="display: flex;justify-content: space-between;">
                                     <div>
-                                        N° de bordereau de réception
+                                        N° bordereau de réception
                                     </div>
                                     <div>
                                     </div>
                                 </div>
                                 <div style="display: flex;justify-content: space-between;">
                                     <div>
-                                        N° bon de commande
+                                        N° bon de commande :
+                                        <span id="ref_commande"></span>
                                     </div>
                                     <div>
-                                        Date de commande
+                                        Date de commande :
+                                        <span id="date_commande"></span>
                                     </div>
                                 </div>
                                 <div style="display: flex;justify-content: space-between;">
                                     <div>
-                                        Nom fournisseur
+                                        Fournisseur :
+                                        <span id="nomf_commande"></span>
                                     </div>
                                     <div>
-                                        N° de bordereau de livraison
+                                        N° bordereau de livraison :
+                                        <input type="text" name="bordereau" value="" id="bordereau_livraison">
                                     </div>
                                 </div>
                                 <div>
@@ -416,7 +423,7 @@
                                            class="table table-bordered table-striped table-actions">
                                         <thead>
                                         <tr>
-                                            <th width="50">N</th>
+                                            <th width="50">N°</th>
                                             <th width="200">Designation</th>
                                             <th width="100">Quantite commandé</th>
                                             <th width="100">Quantite livré</th>
@@ -425,36 +432,17 @@
                                             <th width="100">P T Achat</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="tab_Bcommande_Recu">
 
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-
-                                            </td>
-                                            <td>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="6">total</td>
-                                            <td>
-                                                20000
-                                            </td>
-                                        </tr>
                                         </tbody>
                                     </table>
 
                                 </div>
                                 <div style="display: flex;">
-                                    <h5>Nombre d'article commandé</h5>
+                                    <h5>Nombre d'article commandé : <span id="article_commande"></span></h5>
                                 </div>
                                 <div style="display: flex;">
-                                    <h5>Nombre de produit commandé</h5>
+                                    <h5>Nombre de produit commandé : <span id="produit_commande"></span></h5>
                                 </div>
 
 
@@ -462,11 +450,7 @@
                             <div style="display: flex;justify-content: space-around;">
                                 <button type="button" class="btn btn-circle blue"
                                         style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i
-                                            class="fa fa-print" style="font-size:10px"></i>&nbsp;Annuler
-                                </button>
-                                <button type="button" class="btn btn-circle blue"
-                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i
-                                            class="fa fa-print" style="font-size:10px"></i>&nbsp;Receptionner
+                                            class="fa fa-check-square" style="font-size:10px" onclick="receptionner_commande(0)"></i>&nbsp;Receptionner
                                 </button>
                                 <button type="button" class="btn btn-circle blue"
                                         style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
