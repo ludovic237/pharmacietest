@@ -12,6 +12,8 @@ $idf=$_POST['idf'];
 $qte=$_POST['qte'];
 $montant=$_POST['montant'];
 
+$ref = genererreferenceCommande($manager->countMois());
+
 
     $commande = new Commande(array(
         'id' => $idGen,
@@ -21,11 +23,11 @@ $montant=$_POST['montant'];
         'qtiteRecu' => null,
         'montantRecu' => null,
         'qtiteCmd' => $qte,
-        'ref' => genererreferenceCommande($manager->countMois()),
+        'ref' => $ref,
         'montantCmd' => $montant
     ));
     $manager->add($commande);
-    $donnees = array('erreur' =>'ok', 'id' => $idGen);
+    $donnees = array('erreur' =>'ok', 'id' => $idGen, 'ref' => $ref);
     echo json_encode($donnees);
 
 

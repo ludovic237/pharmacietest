@@ -80,8 +80,8 @@ function modifier_commande(id) {
     $('#btn-ajouter' + id ).removeAttr("disabled");
     delete_row_commande(id);
 }
-function valider_commande() {
-    var prixTotal;
+function valider_commande(imprimer) {
+    var prixTotal, idc, ref;
     prixTotal = parseInt($('#prixTotal').html());
     if(prixTotal == 0){
         alert('Veuillez sélectionner des produits !!!');
@@ -101,8 +101,9 @@ function valider_commande() {
                 //alert(server_responce);
                 ////alert('tpasse');
                 if (data.erreur == 'ok') {
-                    var idc = data.id;
-                    alert(idc);
+                    idc = data.id;
+                    ref = data.ref;
+                    //alert(idc);
 
                     $('#tab_commande  tr').each(function (i) {
                         var id1 = $(this).attr("id");
@@ -138,14 +139,41 @@ function valider_commande() {
                         })
 
                     });
+                    if(imprimer){
+                        //imprimer_com(idc, ref, $('#fournisseur_commande option:selected').text());
+                        $.ajax({
+                            type: "POST",
+                            url: '/pharmacietest/koudjine/inc/charger_list_commande.php',
+                            data: {
+                                id: idc
+                            },
+                            success: function (server_responce) {
+                                //alert(server_responce);
+                                //$("#iconPreview .icon-preview").html(icon_preview);
+
+                                $('#tab_Bcommande_com').empty();
+                                $('#tab_Bcommande_com').html(server_responce);
+                                //alert($('#total_com').attr("data"));
+                                $(".article_commande").html($('#total_com').attr("data1"));
+                                $(".produit_commande").html($('#total_com').attr("data"));
+
+                            }
+
+
+                        })
+
+                        $(".ref_commande").html(ref);
+                        $(".nomf_commande").html($('#fournisseur_commande option:selected').text());
+                        $("#iconPreviewBonCommande").modal("show");
+                    }
                 }
+
 
             }
         })
     }
 
 }
-
 function delete_row_commande(id) {
     var total;
     $("#C"+id ).remove();
