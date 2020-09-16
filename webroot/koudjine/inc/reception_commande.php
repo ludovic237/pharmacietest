@@ -4,6 +4,7 @@ require_once('../Class/commande.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/fournisseur.php');
 require_once('../Class/produitcmd.php');
+require_once('../Class/produit.php');
 
 global $pdo;
 
@@ -12,6 +13,7 @@ $manager = new CommandeManager($pdo);
 $managerEn = new En_rayonManager($pdo);
 $managerFo = new FournisseurManager($pdo);
 $managerPo = new Produit_cmdManager($pdo);
+$managerProd = new ProduitManager($pdo);
 
 $idc = $_POST['idc'];
 $idp = $_POST['idp'];
@@ -34,10 +36,14 @@ $datep = $_POST['datep'];
         $ent->setcommaande_id($idc);
         $ent->setprixAchat($prixa);
         $ent->setprixVente($prixv);
-        $ent->setquantite($qte);
-        $ent->setquantiteRestante($qte);
+        $ent->setquantite(($ent->quantite() + ($qte)));
+        $ent->setquantiteRestante(($ent->quantiteRestante() + ($qte)));
         $ent->setdatePeremption($datep);
         $managerEn->update($ent);
+        // on met à jour la quantité du stock produit
+        $prod = $managerProd->get($idp);
+        $prod->setstock(($prod->stock() + ($qte)));
+        $managerProd->update($prod);
     }else{
         // Créer une entrée en stock
         $en_rayon = new En_rayon(array(
@@ -53,6 +59,10 @@ $datep = $_POST['datep'];
         ));
         $en_rayon->setcommaande_id($idc);
         $managerEn->add($en_rayon);
+        // on met à jour la quantité du stock produit
+        $prod = $managerProd->get($idp);
+        $prod->setstock(($prod->stock() + ($qte)));
+        $managerProd->update($prod);
     }
 
 

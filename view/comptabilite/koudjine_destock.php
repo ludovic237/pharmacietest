@@ -1,79 +1,12 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Universités';
-$page_for_layout = ($position == 'Ajouter') ? 'Ajouter un destokage' : 'Modifier un destokage';
-$action_for_layout = 'Ajouter';
+$title_for_layout = ' Admin -' . 'Comptabilité';
+$position = "Sortie";
 
-if ($this->request->action == "index") {
-    $position = "Toutes les universités";
-} else {
-    //$position = $this->request->action;
-}
-$position_for_layout = '<li><a href="#">Universites</a></li><li class="active">' . $position . '</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-file-input.js"></script>
+$position_for_layout = '<li><a href="#">Comptabilité</a></li><li class="active">' . $position . '</li>';
+$script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/fileinput/fileinput.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/jquery.noty.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/themes/default.js"></script>
-<script type="text/javascript">
-                function notyConfirm(){
-                    noty({
-                        text: \'Do you want to continue?\',
-                        layout: \'topRight\',
-                        buttons: [
-                                {addClass: \'btn btn-success btn-clean\', text: \'Ok\', onClick: function($noty) {
-                                    $noty.close();
-                                    noty({text: \'You clicked "Ok" button\', layout: \'topRight\', type: \'success\'});
-                                }
-                                },
-                                {addClass: \'btn btn-danger btn-clean\', text: \'Cancel\', onClick: function($noty) {
-                                    $noty.close();
-                                    noty({text: \'You clicked "Cancel" button\', layout: \'topRight\', type: \'error\'});
-                                    }
-                                }
-                            ]
-                    })
-                }
-            </script>
-<script type="text/javascript">
-            var jvalidate = $("#jvalidate").validate({
-                ignore: [],
-                rules: {
-                    nom: {
-                        required: true,
-                        minlength: 2,
-                        maxlength: 50
-                    },
-                    region: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 20
-                    },
-                    telephone_1: {
-                        required: true
-                    },
-                    ville: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 100
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    statut: {
-                        required: true
-                    },
-                    "type[]": "required"
-
-                }
-            });
-
-        </script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/sortie.js"></script>';
 ?>
 
 <div class="row">
@@ -81,15 +14,41 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
         <!-- START JQUERY VALIDATION PLUGIN -->
         <div class="block">
-            <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau destokage</h4>
-            <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;
-                                                                                                                                            else echo ""; ?>');">
+            <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouvelle sortie</h4>
+            <form id="" role="form" class="form-horizontal">
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Produit:</label>
+                        <label class="col-md-3 control-label">Entrée Produit:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="Nom" />
-                            <span class="help-block">exemple: Boris Daudga</span>
+                            <input type="text" class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree; ?>" placeholder="Nom" />
+                        </div>
+                    </div>
+                    <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                        <label class="control-label" style="margin-right: 30px;width: 150px;"></label>
+                        <div style="display: flex;flex:1;margin-right: 30px;">
+                            <div>
+
+                                <div class="panel-body panel-body-table">
+
+                                    <div class="">
+                                        <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                            <thead>
+                                            <tr>
+                                                <th width="200">Nom</th>
+                                                <th width="100">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tab_Brecherche" >
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="width: 150px;">
+
                         </div>
                     </div>
                     <div  class="row">

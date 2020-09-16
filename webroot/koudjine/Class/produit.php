@@ -19,6 +19,9 @@ class Produit
         $_stockMax,
         $_reductionMax,
         $_etat,
+        $_etagere,
+        $_contenuDetail,
+        $_prixDetail,
         $_supprimer;
 
     // CONSRUCTEUR
@@ -103,6 +106,18 @@ class Produit
     public function etat()
     {
         return $this->_etat;
+    }
+    public function etagere()
+    {
+        return $this->_etagere;
+    }
+    public function contenuDetail()
+    {
+        return $this->_contenuDetail;
+    }
+    public function prixDetail()
+    {
+        return $this->_prixDetail;
     }
     public function reductionMax()
     {
@@ -228,6 +243,24 @@ class Produit
         $this->_etat = $value;
 
     }
+    public function setetagere($value)
+    {
+
+        $this->_etagere = $value;
+
+    }
+    public function setcontenuDetail($value)
+    {
+
+        $this->_contenuDetail = $value;
+
+    }
+    public function setprixDetail($value)
+    {
+
+        $this->_prixDetail = $value;
+
+    }
     public function setsupprimer($value)
     {
 
@@ -247,7 +280,7 @@ class ProduitManager
     }
     public function add(Produit $produit)
     {
-        $q = $this->_db->prepare('INSERT INTO produit SET id = :id, categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, grossiste_id = :grossiste, nom = :nom, reference = :reference, ean13 = :ean13, codeLaborex = :laborex, codeUbipharm = :ubipharm, etat = :etat, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO produit SET id = :id, categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, grossiste_id = :grossiste, nom = :nom, reference = :reference, ean13 = :ean13, codeLaborex = :laborex, codeUbipharm = :ubipharm, etat = :etat, etagere = :etagere, contenuDetail = :contenuDetail, prixDetail = :prixDetail, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction, supprimer=0');
         $q->bindValue(':id', $produit->id(), PDO::PARAM_INT);
         $q->bindValue(':cat', $produit->categorie_id(), PDO::PARAM_INT);
         $q->bindValue(':forme', $produit->forme_id(), PDO::PARAM_INT);
@@ -265,6 +298,9 @@ class ProduitManager
         $q->bindValue(':stockmax', $produit->stockMax(), PDO::PARAM_INT);
         $q->bindValue(':reduction', $produit->reductionMax());
         $q->bindValue(':etat', $produit->etat());
+        $q->bindValue(':etagere', $produit->etagere());
+        $q->bindValue(':contenuDetail', $produit->contenuDetail());
+        $q->bindValue(':prixDetail', $produit->prixDetail());
         $q->execute();
     }
     public function count()
@@ -358,7 +394,7 @@ class ProduitManager
     public function update(Produit $produit)
     {
 
-        $q = $this->_db->prepare('UPDATE produit SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, grossiste_id = :grossiste, nom = :nom, reference = :reference, ean13 = :ean13, etat = :etat, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, grossiste_id = :grossiste, nom = :nom, reference = :reference, ean13 = :ean13, etat = :etat, etagere = :etagere, contenuDetail = :contenuDetail, prixDetail = :prixDetail, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
         $q->bindValue(':id', $produit->id(), PDO::PARAM_INT);
         $q->bindValue(':cat', $produit->categorie_id(), PDO::PARAM_INT);
         $q->bindValue(':forme', $produit->forme_id(), PDO::PARAM_INT);
@@ -376,6 +412,9 @@ class ProduitManager
         $q->bindValue(':stockmax', $produit->stockMax(), PDO::PARAM_INT);
         $q->bindValue(':reduction', $produit->reductionMax());
         $q->bindValue(':etat', $produit->etat());
+        $q->bindValue(':etagere', $produit->etagere());
+        $q->bindValue(':contenuDetail', $produit->contenuDetail());
+        $q->bindValue(':prixDetail', $produit->prixDetail());
         $q->execute();
     }
     public function setDb(PDO $db)

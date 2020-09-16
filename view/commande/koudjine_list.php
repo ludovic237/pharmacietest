@@ -105,7 +105,7 @@
                                         <?php echo $v->ref; ?>
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
+                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="imprimer_com(<?php echo $v->id; ?>,'<?php echo $v->ref; ?>','<?php echo $v->nom; ?>')">
                                             Imprimer
                                         </button>
                                         <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_produit_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>','<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $datel; ?>')">
@@ -200,68 +200,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Produit</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                <h4 class="modal-title">Commande</h4>
             </div>
             <div class="modal-body">
-                <!-- <div class="row">
-                         <div class="col-md-4">
-                              <div class="icon-preview">
-                                   <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticket">
-
-                                        <div style="display: flex;flex-direction:column;text-align: left;">
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Pharmacie ALSAS</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Dr GAMWO Sandrine</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">BP 38 FOUMBOT</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 267 487</p>
-                                             <div style="display: flex;justify-content:space-between">
-                                                  <p style="margin: 0px; color: black;font-weight: 400;">Ticket N°: <span class="reference"></span></p>
-                                                  <p style="margin: 0px; color: black;font-weight: 400;"><span class="datevente"></span> à <span class="heurevente"></span> </p>
-                                             </div>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Vendeur: <span class="vendeur"></span> </p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p>
-                                        </div>
-                                        <div>
-                                             <table class="table table-inverse table-responsive">
-                                                  <thead class="thead-inverse">
-                                                       <tr>
-                                                            <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400;">Prix U.</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400;">Qte</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400;">TOTAL</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400;">Rd</th>
-                                                       </tr>
-                                                  </thead>
-                                                  <tbody id="tab_BfactureImprimer">
-
-                                                       <tr>
-                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
-                                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="montanttotal"></span> FCFA</td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
-                                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="remise"></span> FCFA</td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
-                                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="netapayer"></span> FCFA</td>
-                                                       </tr>
-                                                  </tbody>
-                                             </table>
-                                        </div>
-                                        <div style="display: flex;flex-direction:column;text-align: left;">
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Payer en espece : <span class="montantpercu"></span> </p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Montant rendu : <span class="montantrendu"></span> </p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Ce ticket vaut facture</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Merci et bonne santé</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">NoCT /rtdrstrdsy</p>
-                                        </div>
-                                   </div>
-                                   <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
-                              </div>
-                         </div>
-
-                    </div> -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="icon-preview">
@@ -278,12 +221,15 @@
                                 <div style="display: flex;margin-top: 40px;">
                                     <h2>bon de commande</h2>
                                 </div>
-                                <div style="display: flex;margin-top: 20px;">
-                                    Numéro de bon
+
+                                <div>
+                                    N° bon de commande :
+                                    <span class="ref_commande"></span>
                                 </div>
                                 <div style="display: flex;justify-content: space-between;margin-top: 20px;">
                                     <div>
-                                        selection fournisseur
+                                        Fournisseur :
+                                        <span class="nomf_commande"></span>
                                     </div>
                                     <div>
                                         recherche produit
@@ -292,56 +238,40 @@
                                 <div>
                                     <table style="display: block;overflow: auto;" class="table table-bordered table-striped table-actions">
                                         <thead>
-                                            <tr>
-                                                <th width="50">N</th>
-                                                <th width="200">Date de delivrance</th>
-                                                <th width="200">Designation</th>
-                                                <th width="100">Quantite</th>
-                                                <th width="100">Prix Achat</th>
-                                                <th width="100">Prix Vente</th>
-                                                <th width="100">P T Achat</th>
-                                            </tr>
+                                        <tr>
+                                            <th width="50">N</th>
+<!--                                            <th width="200">Date de delivrance</th>-->
+                                            <th width="200">Designation</th>
+                                            <th width="100">Quantite</th>
+                                            <th width="100">Prix Achat</th>
+                                            <th width="100">P T Achat</th>
+                                        </tr>
                                         </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-
-                                                </td>
-                                                <td>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="6">total</td>
-                                                <td>
-                                                    20000
-                                                </td>
-                                            </tr>
+                                        <tbody id="tab_Bcommande_com">
                                         </tbody>
                                     </table>
 
                                 </div>
                                 <div style="display: flex;">
-                                    <h5>Nombre d'article commandé</h5>
+                                    <h5>Nombre d'article commandé : <span class="article_commande"></span></h5>
                                 </div>
                                 <div style="display: flex;">
-                                    <h5>Nombre de produit commandé</h5>
+                                    <h5>Nombre de produit commandé : <span class="produit_commande"></span></h5>
                                 </div>
 
 
                             </div>
                             <div style="display: flex;justify-content: space-around;">
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Annuler
+
+                                <button type="button" class="btn btn-circle blue" data-dismiss="modal"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i
+                                            class="fa fa-print" style="font-size:10px"></i>&nbsp;Annuler
                                 </button>
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Créer commande
-                                </button>
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onclick="imprimer_bon('commande','commande')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
+                                        onclick="imprimer_recu('commande','commande')"><i class="fa fa-print"
+                                                                                         style="font-size:10px"></i>&nbsp;Imprimer
+
                                 </button>
                             </div>
                         </div>
@@ -360,8 +290,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Produit</h4>
+
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                <h4 class="modal-title">Commande</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
