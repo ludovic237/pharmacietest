@@ -148,4 +148,29 @@ function genererSlug($str){
     }
 
 }
+
+function generercodefournisseur($num){
+    //DEBUT PROGRAMME - CREATION REFERENCE EN AUTOMATIQUE - DEBUT PROGRAMME
+
+    $Numero_Reg_Big = $num;
+
+    $Numero_Reg_Big = $Numero_Reg_Big + 1;
+
+    // NOus allons maintenant faire en sorte de toujours avoir 4 numéros pour notre
+    // Numero_Reg_Big
+
+    if ($Numero_Reg_Big < 10)
+    {
+        $Numero_Reg_Big = '0' . $Numero_Reg_Big;
+    }
+    else
+    {
+        $Numero_Reg_Big = $Numero_Reg_Big;
+    }
+
+    return $Numero_Reg_Big;
+
+    // FIN PROGRAMME - CREATION REFERENCE EN AUTOMATIQUE - FIN PROGRAMME
+
+}
 ?>

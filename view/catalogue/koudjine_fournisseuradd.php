@@ -46,7 +46,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     },
                     CodePostal_id: {
                         required: true,
-                        minlength: 3,
+                        minlength: 1,
                         maxlength: 100
                     },
 
@@ -65,13 +65,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_fournisseur('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $fournisseur->id;
                                                                                                                                             else echo ""; ?>');">
                 <div class="panel-body">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="col-md-3 control-label">Code:</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="code" id="code" value="<?php if ($position == 'Modifier') echo $fournisseur->code; ?>" placeholder="" />
                             <span class="help-block">exemple: 20JDI022DJD</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label class="col-md-3 control-label">Nom:</label>
                         <div class="col-md-9">

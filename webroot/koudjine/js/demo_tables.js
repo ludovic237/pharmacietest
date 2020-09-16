@@ -163,7 +163,7 @@ function charger_vente(id) {
     $('#tab1 .reste').val('');
     $('#ticket .reference').html($("#"+id+" .reference").html());
     $('#ticket .datevente').html($("#"+id+" .date").html());
-    $('#ticket .heurevente').html($("#"+id+" .heure").html());
+    $('#ticket .heurevente').html($("#"+id+" .heure").html()); 
     $('#ticket .vendeur').html($("#"+id+" .vendeur").html());
     $('#ticket .acheteur').html($("#"+id+" .client").html());
     $('#ticket .netapayer').html($("#"+id+" .prixtotal").html());

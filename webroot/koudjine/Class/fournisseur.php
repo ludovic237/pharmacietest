@@ -132,7 +132,7 @@ class FournisseurManager
         $q->bindValue(':nom', $fournisseur->nom());
         $q->bindValue(':adresse', $fournisseur->adresse());
         $q->bindValue(':code', $fournisseur->code());
-        $q->bindValue(':code', $fournisseur->statut());
+        $q->bindValue(':statut', $fournisseur->statut());
         $q->bindValue(':telephone', $fournisseur->telephone());
         $q->bindValue(':email', $fournisseur->email());
         $q->execute();
@@ -200,7 +200,7 @@ class FournisseurManager
     public function update(Fournisseur $fournisseur)
     {
 
-        $q = $this->_db->prepare('UPDATE fournisseur SET nom = :nom, adresse = :adresse, code = :code, telephone = :telephone, email = :email WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE fournisseur SET nom = :nom, adresse = :adresse, code = :code, telephone = :telephone, email = :email,statut = :statut WHERE id = :id');
         $q->bindValue(':id', $fournisseur->id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $fournisseur->nom());
         $q->bindValue(':adresse', $fournisseur->adresse());

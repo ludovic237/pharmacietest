@@ -12,7 +12,7 @@ $manager = new FournisseurManager($pdo);
 if (isset($_POST['id'])){
 
     $id=$_POST['id'];
-    $code=$_POST['code'];
+    //$code=$_POST['code'];
     $nom=$_POST['nom'];
     $CodePostal_id=$_POST['CodePostal_id'];
     $statut=$_POST['statut'];
@@ -27,7 +27,7 @@ if (isset($_POST['id'])){
         //echo "Ce departement existe";
         if($prod->id() == $id){
             $prod->setnom($nom);
-            $prod->setcode($code);
+            //$prod->setcode($code);
             $prod->setCodePostal_id($CodePostal_id);
             $prod->setstatut($statut);
             $prod->setadresse($adresse);
@@ -46,7 +46,7 @@ if (isset($_POST['id'])){
     else{
         $prod = $manager->get($id);
         $prod->setnom($nom);
-        $prod->setcode($code);
+        //$prod->setcode($code);
         $prod->setCodePostal_id($CodePostal_id);
         $prod->setstatut($statut);
         $prod->setadresse($adresse);
@@ -59,7 +59,8 @@ if (isset($_POST['id'])){
 }
 else{
 
-    $code=$_POST['code'];
+
+    $code=generercodefournisseur($manager->count());
     $nom=$_POST['nom'];
     $CodePostal_id=$_POST['CodePostal_id'];
     $statut=$_POST['statut'];
