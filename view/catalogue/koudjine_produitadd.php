@@ -127,6 +127,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Contenu detail:</label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->reductionMax;
+                                                                                else echo 0; ?>" name="reduction" id="reduction" placeholder="" />
+                            <span class="help-block">Champ requis</span>
+                        </div>
+                    </div>
                     <!--<div class="form-group">
                         <label class="col-md-3 control-label">Date de péremption:</label>
                         <div class="col-md-9 col-xs-12">
@@ -174,6 +182,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 endforeach;
                                 ?>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Etagère:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="etagere" id="etagere" value="<?php if ($position == 'Modifier') echo $produit->etagere; ?>" placeholder="" />
+                            <span class="help-block">exemple: 23 - Champ requis</span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -260,14 +275,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Contenu detail:</label>
-                        <div class="col-md-9">
-                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->reductionMax;
-                                                                                else echo 0; ?>" name="reduction" id="reduction" placeholder="" />
-                            <span class="help-block">Champ requis</span>
-                        </div>
-                    </div>
+                    
 
                     <div class="form-group">
                         <label class="col-md-3 control-label">Etat:</label>

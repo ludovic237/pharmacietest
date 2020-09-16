@@ -700,7 +700,7 @@ function categorie_row_question(id) {
 function info_row(row) {
 
     //var lien = $(this).attr('id');
-    ////alert('test');
+    alert('test');
 
     $.ajax({
         type: "POST",
@@ -712,7 +712,7 @@ function info_row(row) {
         success: function (data) {
             ////alert(data);
             //$("#iconPreview .icon-preview").html(icon_preview);
-
+            alert(data);
             $('#iconPreview .nom').html(data.nom);
             $("#iconPreview .ville").html(data.ville);
             $("#iconPreview .region").html(data.region);

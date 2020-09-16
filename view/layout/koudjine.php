@@ -136,13 +136,7 @@
                             <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'entreadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/entreadd'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
                         </ul>
                     </li>
-                    <li class="xn-openable <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'detail' || $this->request->controller == 'comptabilite' && $this->request->action == 'destock') { ?>active <?php } ?>">
-                        <a href="#"><span class="fa lettre">S</span> Sortie</a>
-                        <ul>
-                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'detail') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/detail'); ?>"><span class="fa lettre">D</span> Detail</a></li>
-                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'destock') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/destock'); ?>"><span class="fa lettre">D</span> Destockage</a></li>
-                        </ul>
-                    </li>
+                    <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sotie' ) { ?>active <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">S</span> Sortie</a></li>
                 </ul>
             </li>
             <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['commande'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'commande') { ?>active<?php } ?>">

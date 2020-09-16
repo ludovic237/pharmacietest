@@ -78,7 +78,7 @@
 
 <!-- END RESPONSIVE TABLES -->
 <!-- START MODAL ICON PREVIEW -->
-<!-- <div class="modal fade" id="iconPreview" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="iconPreview" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -93,8 +93,8 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">ean13:</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" />
-                                <span class="help-block">exemple: ean13</span>
+                                <!-- <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" /> -->
+                                <span class="help-block" id="nom"></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -304,5 +304,5 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <!-- END MODAL ICON PREVIEW -->

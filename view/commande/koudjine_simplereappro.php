@@ -435,19 +435,19 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                         logo
                                     </div>
                                     <div>
-                                        date
+                                        <span id="date"></span>
                                     </div>
                                 </div>
                                 <div style="display: flex;margin-top: 40px;">
-                                    bon de commande
+                                    <h1>Bon de commande</h1>
                                 </div>
-                                <div>
-                                    N° bon de commande :
+                                <div style="display: flex;margin-top:20px;">
+                                    <strong>N° bon de commande :</strong>
                                     <span class="ref_commande"></span>
                                 </div>
-                                <div style="display: flex;justify-content: space-between;">
+                                <div style="display: flex;justify-content: space-between;margin-top: 10px;">
                                     <div>
-                                        Fournisseur :
+                                    <strong>Fournisseur :</strong> 
                                         <span class="nomf_commande"></span>
                                     </div>
                                     <div>
@@ -455,16 +455,15 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                     </div>
                                 </div>
                                 <div>
-                                    <table style="display: block;overflow: auto;"
-                                           class="table table-bordered table-striped table-actions">
+                                <table style="display: block;overflow: auto;margin-bottom: 20px;margin-top: 40px;border-collapse: collapse;border-spacing: 0px;border: 0;" class="table table-bordered table-striped table-actions">
                                         <thead>
                                         <tr>
-                                            <th width="50">N</th>
-                                            <!--                                            <th width="200">Date de delivrance</th>-->
-                                            <th width="200">Designation</th>
-                                            <th width="100">Quantite</th>
-                                            <th width="100">Prix Achat</th>
-                                            <th width="100">P T Achat</th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="50"><strong>N°</strong></th>
+                                            <!--                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="200">Date de delivrance</th>-->
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="200"><strong>Designation</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>Quantite</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>Prix Achat</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>P T Achat</strong></th>
                                         </tr>
                                         </thead>
                                         <tbody id="tab_Bcommande_com">

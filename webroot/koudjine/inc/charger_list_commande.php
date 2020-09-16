@@ -31,16 +31,16 @@ if (isset($_POST['id'])){
 
         echo "<tr id=\"".$v->produit_id()."\">
                                             <td>".$i."</td>
-                                            <td ><strong class='nom' id='nom".$v->produit_id()."'>".$nom."</strong></td>
-                                            <td class='qteCmd'>".$v->qtiteCmd()."</td>
-                                            <td class='prixCmd'>".$v->puCmd()."</td>
-                                            <td class='total'>".($v->qtiteCmd()*$v->puCmd())."</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' ><strong class='nom' id='nom".$v->produit_id()."'>".$nom."</strong></td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' class='qteCmd'>".$v->qtiteCmd()."</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' class='prixCmd'>".$v->puCmd()."</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' class='total'>".($v->qtiteCmd()*$v->puCmd())."</td>
                                         </tr>";
         $i++;
     endforeach;
     echo "<tr id=\"".$v->produit_id()."\">
-                                            <td colspan=\"4\" >Total</td>
-                                            <td ><strong class='total_com' id='total_com' data='".$nbre."' data1='".($i-1)."'>".$total."</strong></td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' colspan=\"4\" >Total</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' ><strong class='total_com' id='total_com' data='".$nbre."' data1='".($i-1)."'>".$total."</strong></td>
                                            
                                         </tr>";
 

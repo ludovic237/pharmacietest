@@ -82,7 +82,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Téléphone:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="telephone" id="telephone" value="<?php if ($position == 'Modifier') echo $fabriquant->telephone; ?>" placeholder="" />
+                            <input type='number' class="form-control" name="telephone" id="telephone" value="<?php if ($position == 'Modifier') echo $fabriquant->telephone; ?>" placeholder="" />
                             <span class="help-block">exemple: 89489233</span>
                         </div>
                     </div>
@@ -100,18 +100,26 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <span class="help-block">exemple: toto@gmail.com</span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="col-md-3 control-label">Statut:</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="statut" id="statut" value="<?php if ($position == 'Modifier') echo $fabriquant->statut; ?>" placeholder="" />
                             <span class="help-block">exemple: Gellule</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label class="col-md-3 control-label">Code postal:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="CodePostal_id" id="CodePostal_id" value="<?php if ($position == 'Modifier') echo $fabriquant->CodePostal_id; ?>" placeholder="" />
-                            <span class="help-block">exemple: 4444</span>
+                            <select class="selectpicker form-control input-xlarge " name="magproduit" id="magproduit">
+                                <?php
+                                foreach ($code_postal as $k => $v) : ?>
+                                    <option <?php if ($position == 'Modifier') if ($v->id == $fabriquant->CodePostal_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
+                            </select>
+                            <!-- <input type="text" class="form-control" name="CodePostal_id" id="CodePostal_id" value="<?php if ($position == 'Modifier') echo $fabriquant->CodePostal_id; ?>" placeholder="" />
+                            <span class="help-block">exemple: 4444</span> -->
                         </div>
                     </div>
                     <div class="btn-group pull-right">

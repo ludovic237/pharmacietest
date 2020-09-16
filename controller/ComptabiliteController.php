@@ -312,7 +312,10 @@ class ComptabiliteController extends Controller
                 'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.supprimer = 0 AND en_rayon.id = ".$id
             ));
         }
-        $this->set($d);
+        if(isset($id)){
+          $this->set($d);  
+        }
+        
     }
 
     function koudjine_consultation()

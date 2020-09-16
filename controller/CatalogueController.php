@@ -155,6 +155,13 @@ class CatalogueController extends Controller
     {
         $this->loadModel('Catalogue');
 
+        $d['code_postal'] = $this->Catalogue->find(array(
+            //'fields' => 'nom',
+            'table' => 'code_postal',
+            'order' => 'nom-ASC',
+            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+        ));
+
         if ($id != null) {
             //die('pass');
             $d['position'] = 'Modifier';

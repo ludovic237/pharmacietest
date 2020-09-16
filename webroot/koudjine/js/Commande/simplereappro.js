@@ -84,6 +84,13 @@ function modifier_commande(id) {
 function valider_commande(imprimer) {
     var prixTotal, idc, ref;
     prixTotal = parseInt($('#prixTotal').html());
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2,'0');
+    var mm = String(today.getMonth()+1).padStart(2,'0');
+    var yyyy = today.getFullYear();
+    var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+    today = dd+"-"+mm+"-"+yyyy+"  "+time
+    $("#date").html(today);
     if (prixTotal == 0) {
         alert('Veuillez sélectionner des produits !!!');
     } else if ($("#fournisseur_commande").val() == 0) {

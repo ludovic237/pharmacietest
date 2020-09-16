@@ -18,6 +18,7 @@ if (isset($_POST['id'])){
     $laborex=$_POST['laborex'];
     $ubipharm=$_POST['ubipharm'];
     $stock=$_POST['stock'];
+    $etagere=$_POST['etagere'];
     $stockmin=$_POST['stockmin'];
     $stockmax=$_POST['stockmax'];
     $reduction=$_POST['reduction'];
@@ -46,6 +47,7 @@ if (isset($_POST['id'])){
             $prod->setcodeLaborex($laborex);
             $prod->setcodeUbipharm($ubipharm);
             $prod->setstock($stock);
+            $prod->setetagere($etagere);
             $prod->setstockMin($stockmin);
             $prod->setstockMax($stockmax);
             $prod->setreductionMax($reduction);
@@ -73,6 +75,7 @@ if (isset($_POST['id'])){
         $prod->setcodeLaborex($laborex);
         $prod->setcodeUbipharm($ubipharm);
         $prod->setstock($stock);
+        $prod->setetagere($etagere);
         $prod->setstockMin($stockmin);
         $prod->setstockMax($stockmax);
         $prod->setreductionMax($reduction);
@@ -115,6 +118,7 @@ else{
     $laborex=$_POST['laborex'];
     $ubipharm=$_POST['ubipharm'];
     $stock=$_POST['stock'];
+    $etagere=$_POST['etagere'];
     $stockmin=$_POST['stockmin'];
     $stockmax=$_POST['stockmax'];
     $reduction=$_POST['reduction'];
@@ -142,6 +146,7 @@ else{
             'codeLaborex' => $laborex,
             'codeUbipharm' => $ubipharm,
             'stock' => $stock,
+            'etagere' => $etagere,
             'etat' => $etat,
             'stockMin' => $stockmin,
             'stockMax' => $stockmax,
