@@ -129,11 +129,13 @@ function valider_commande(imprimer) {
                                 qte: qte
                             },
                             success: function (server_responce) {
-                                alert(server_responce);
+                                //alert(server_responce);
                                 alert(idc);
                                 $("#mb-confirmation").attr("data", idc);
-                                alert($("#mb-confirmation").attr("data"));
-                                $("#mb-confirmation").modal("show");
+                                //alert($("#mb-confirmation").attr("data"));
+                                if(!imprimer){
+                                    $("#mb-confirmation").modal("show");
+                                }
                                 /*if(data1.erreur == 'ok'){
                                     var link = '/pharmacietest/users/logout';
                                     ////alert(link);
@@ -180,9 +182,15 @@ function valider_commande(imprimer) {
 
 }
 
-function valider_reception_commande() {
-    var link = '/pharmacietest/bouwou/commande/list/' + $("#mb-confirmation").attr("data");
-    window.location.href = link;
+function valider_reception_commande(condition) {
+    if (condition) {
+        var link = '/pharmacietest/bouwou/commande/list/' + $("#mb-confirmation").attr("data");
+        window.location.href = link;
+    } else {
+        var link = '/pharmacietest/bouwou/commande/simplereappro';
+        window.location.href = link;
+    }
+   
 }
 
 function delete_row_commande(id) {

@@ -407,7 +407,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                     <a class="mb-control" data-box="#mb-confirmation"><span class="fa fa-sign-out" data-toggle="tooltip" data-placement="bottom" title="Déconnexion"></span></a>
                 
                 <button type="button" class="btn btn-success" onclick="ajouter_produit();">Valider</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger"  href="koudjine_simplereappro.php">Close</button>
             </div>
         </div>
     </div>
@@ -644,8 +644,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 </div>
                 <div class="mb-footer">
                     <div class="pull-right">
-                        <a class="btn btn-success btn-lg" onclick="valider_reception_commande()" >Oui</a>
-                        <button class="btn btn-default btn-lg mb-control-close">Non</button>
+                        <a class="btn btn-success btn-lg" onclick="valider_reception_commande(true)" >Oui</a>
+                        <a class="btn btn-default btn-lg mb-control-close" onclick="valider_reception_commande(false)">Non</a>
                     </div>
                 </div>
             </div>
