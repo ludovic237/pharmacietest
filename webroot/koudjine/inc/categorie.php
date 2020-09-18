@@ -13,7 +13,6 @@ if (isset($_POST['id']) && isset($_POST['nom'])) {
 
     $id = $_POST['id'];
     $nom = $_POST['nom'];
-    $code = $_POST['code'];
     if ($manager->exists($id)) {
 
         if (!$manager->existsNom($nom)) {
@@ -43,7 +42,7 @@ if (isset($_POST['id']) && isset($_POST['nom'])) {
     if (isset($_POST['nom'])) {
 
         $nom = $_POST['nom'];
-        $code = $_POST['code'];
+        //$code = $_POST['code'];
         if (!$manager->existsNom($nom)) {
             $rayon = new Categorie(array(
                 'nom' => $nom,

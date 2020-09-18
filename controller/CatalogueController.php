@@ -270,6 +270,7 @@ class CatalogueController extends Controller
         $d['catalogue'] = $this->Catalogue->find(array(
             'fields' => 'prescripteur.id as idpresc,prescripteur.Nom as nompresc,prescripteur.Structure as structpresc,prescripteur.Adresse as adressepresc,prescripteur.Telephone as telepresc',
             'table' => 'prescripteur',
+            'conditions' => array('supprimer' => 0)
         ));
         //die($d);
         if (empty($d['catalogue'])) {
@@ -323,11 +324,11 @@ class CatalogueController extends Controller
                 'conditions' => array('id' => $id)
             ));
 
-            list($part1)= explode(' ', trim($d['produit']->nom));
+            $list = explode(' ', trim($d['produit']->nom));
             $d['produits'] = $this->Catalogue->find(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'produit',
-                'conditions' => 'nom like "%'.$part1.'%" AND supprimer = 0'
+                'conditions' => 'nom like "%'.$list[0].'%" AND supprimer = 0 AND id <> '.$id
             ));
             //print_r($d['produits']);
 
@@ -413,7 +414,7 @@ class CatalogueController extends Controller
             'fields' => 'categorie.id as idcat,categorie.nom as nomcat',
             'table' => 'categorie',
             // 'order' => 'nomp-ASC',
-            // 'conditions' => array('produit.categorie_id' => 'categorie.id','produit.rayon_id' => 'rayon.id')
+            'conditions' => array('supprimer' => '0')
         ));
         //die($d);
         if (empty($d['catalogue'])) {
@@ -458,10 +459,10 @@ class CatalogueController extends Controller
         $this->set($d);
     }
 
-    function koudjine_delete($id)
+    function koudjine_delete($id, $table)
     {
-        $this->loadModel('Concours');
-        $this->Concours->delete($id, 'acces_concours', 'CONCOURS_ID');
+        $this->loadModel('Catalogue');
+        $this->Catalogue->delete($id, $table, 'id');
         //$this->redirect('koudjine/universites/index');
     }
 }

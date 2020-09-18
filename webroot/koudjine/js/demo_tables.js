@@ -399,11 +399,11 @@ function update_row_ville(row) {
 }
 
 
-function delete_row(row, controller, confirmation) {
+function delete_row(row, controller, table, confirmation) {
 
     if (confirmation) {
         $("#" + row).hide("slow", function () {
-            var link = '/Site/bouwou/' + controller + '/delete/' + row;
+            var link = '/pharmacietest/bouwou/' + controller + '/delete/' + row + '/' + table;
             ////alert(link);
             /*$.ajax({
 
@@ -426,14 +426,14 @@ function delete_row(row, controller, confirmation) {
         box.find(".mb-control-yes").on("click", function () {
             box.removeClass("open");
             $("#" + row).hide("slow", function () {
-                var link = '/Site/bouwou/' + controller + '/delete/' + row;
-                ////alert(link);
+                var link = '/pharmacietest/bouwou/' + controller + '/delete/' + row + '/' + table;
+                //alert(link);
                 $.ajax({
 
                     url: link,
 
                     success: function (data) {
-                        ////alert(data);
+                        //alert(data);
                         //$("#iconPreview .icon-preview").html(icon_preview);
                         $(this).remove();
                     }
@@ -749,7 +749,7 @@ function info_row_entree(row) {
         },
         dataType: 'json',
         success: function (data) {
-            ////alert(data);
+            alert(data);
             //$("#iconPreview .icon-preview").html(icon_preview);
 
             $('#iconPreviewEntree .nomp').html(data.nomP);

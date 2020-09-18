@@ -91,7 +91,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Nom:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->nom; ?>" name="nom" id="nom" placeholder="" />
+                            <input type="text" onfocusout="charger_select_produit()" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->nom; ?>" name="nom" id="nom" placeholder="" />
                             <span class="help-block">Champ requis</span>
                         </div>
                     </div>
@@ -130,7 +130,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Contenu detail:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->contenuDetail; ?>" name="contenu" id="contenu" placeholder="" />
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->contenuDetail; ?>" name="contenu" id="contenu" placeholder="" />
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -253,6 +253,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                         <div class="col-md-9">
                             <select multiple class="selectpicker form-control input-xlarge " name="produits" id="produits">
+                                <option value="0">Choisir:</option>
                                 <?php if (isset($produits))
                                     foreach ($produits as $k => $v) : ?>
                                     <option <?php if ($position == 'Modifier')

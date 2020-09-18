@@ -34,7 +34,7 @@ if (isset($_POST['id'])||isset($_GET['id'])){
         $datel = $date->format('d-m-Y');
         $dateCl = $date->format('dmY');
         $dateperemption = $enrayon->datePeremption();
-        $date = DateTime::createFromFormat('Y-m-d H:i:s', $dateperemption);
+        $date = DateTime::createFromFormat('Y-m-d', $dateperemption);
         $datep = $date->format('d-m-Y');
         $dateCp = $date->format('mY');
         //$donnees = array('nomP' => $produit->nom(), 'nomF' => $fournisseur->nom(), 'code' => $fournisseur->code(), 'datel' => $datel, 'datep' => $datep, 'prixa' =>  $enrayon->prixAchat(), 'prixv' =>  $enrayon->prixVente(), 'quantite' =>  $enrayon->quantite(), 'quantiter' =>  $enrayon->quantiteRestante(), 'reduction' => $enrayon->reduction(),'codebarre' =>$id);

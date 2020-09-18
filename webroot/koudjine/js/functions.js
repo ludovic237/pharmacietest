@@ -1185,6 +1185,33 @@ function enregistrer_employe(option, id) {
     }
 
 }
+function charger_select_produit() {
+    var nom = $('#nom').val();
+    //alert('pass')
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_select_produit.php',
+        data: {
+            nom: nom
+        },
+        success: function (data) {
+            $('ul.dropdown-menu ').append(data);
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/charger_select_produit1.php',
+                data: {
+                    nom: nom
+                },
+                success: function (data) {
+                    $('#produits').append(data);
+                    //alert(data);
+
+                }
+            })
+
+        }
+    })
+}
 
 function enregistrer_produit(option, id) {
     // Informations produit
@@ -1198,7 +1225,7 @@ function enregistrer_produit(option, id) {
     var etat = $('#pdt_etat').val();
     var etagere = $('#etagere').val();
     var contenu = $('#contenu').val();
-    var prixDetail = $('#prixDetail').val();
+    var prixDetail = parseInt($('#prixDetail').val());
     var stockmin = $('#stockmin').val();
     var stockmax = $('#stockmax').val();
     var reduction = $('#reduction').val();

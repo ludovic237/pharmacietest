@@ -102,7 +102,7 @@
                             _.validateFu(_.labels)
                             if (!_.form.has('.' + _.invalidCl).length) {
 
-                                var code = _.getValFromLabel($('.code', _.form));
+                                //var code = _.getValFromLabel($('.code', _.form));
                                 var nom = _.getValFromLabel($('.name', _.form));
                                 if($('.button').html() == "Ajouter"){
                                     //alert('passB')
@@ -210,7 +210,6 @@
                                         url:_.mailHandlerURL,
                                         data:{
                                             nom:_.getValFromLabel($('.name',_.form)),
-                                            code: _.getValFromLabel($('.code',_.form)),
                                             id:lien
                                         },
                                         dataType:'json',
@@ -220,7 +219,6 @@
                                                 $("#"+lien+" td").each(function(i){
                                                     //alert(i);
                                                     if(i==0) {$(this).children().html(nom);}
-                                                    if(i==1)  $(this).html(code);
 
                                                 });
                                                 $('.button').html('Ajouter');
