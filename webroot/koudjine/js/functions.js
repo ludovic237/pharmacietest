@@ -788,10 +788,11 @@ function valider_vente(type, etat) {
     var nouveau = "";
     var idClient;
     var idPrescripteur;
-    ////alert($('#netTotal').html());
+    
     /**/
     // vérifier si le prix est > à 0
     if (parseInt($('#prixTotal').html()) == 0) {
+        alert("test1");
         $('#message-box-danger p').html('Le prix de la vente ne peut être nul');
         $("#message-box-danger").modal("show");
         setTimeout(function () {
@@ -799,6 +800,7 @@ function valider_vente(type, etat) {
         }, 3000);
     }
     else if ($('.select_client option:selected').text() == "Client Existant" && $("#select_vente_client option:selected").val() == 0) {
+        alert("test2");
         // vérifier qu'on a sélectionné le client existant
         $('#message-box-danger p').html('Veuillez Sélectionner le client');
         $("#message-box-danger").modal("show");
@@ -808,6 +810,7 @@ function valider_vente(type, etat) {
 
     }
     else if ($('.select_prescripteur option:selected').text() == "Prescripteur Existant" && $("#select_vente_prescripteur option:selected").val() == 0) {
+        alert("test3");
         // vérifier qu'on a sélectionné le prescripteur existant
         $('#message-box-danger p').html('Veuillez Sélectionner le prescripteur');
         $("#message-box-danger").modal("show");
@@ -816,6 +819,7 @@ function valider_vente(type, etat) {
         }, 6000);
     }
     else {
+        alert("test4");
         nouveau = nouveau + $("#input_vente_nomClient").val() + "|" + $("#input_vente_phoneClient").val() + "-";
         if ($('.select_client option:selected').text() == "Client Existant") {
             idClient = $("#select_vente_client option:selected").val();
@@ -827,7 +831,7 @@ function valider_vente(type, etat) {
         } else {
             idPrescripteur = null;
         }
-
+        
         nouveau = nouveau + $("#input_vente_nomPrescripteur").val();
 
         var commentaire = $("#commentaire_vente").val();
@@ -835,7 +839,7 @@ function valider_vente(type, etat) {
 
         var prixr = parseInt($('#prixReduit').html());
 
-
+        
         $.ajax({
             type: "POST",
             url: "/pharmacietest/koudjine/inc/vente.php",
@@ -849,10 +853,11 @@ function valider_vente(type, etat) {
                 prixr: prixr,
                 etat: etat
             },
-            dataType: 'json',
+            //dataType: 'json',
+            
             success: function (data) {
-                ////alert(server_responce);
-                ////alert('tpasse');
+                alert(server_responce);
+                alert(data);
                 if (data.erreur == 'ok') {
                     var idv = data.id;
                     ////alert(idv);

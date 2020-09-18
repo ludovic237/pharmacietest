@@ -1,6 +1,6 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Universités';
+$title_for_layout = ' ALSAS -' . 'Geonetliste';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter un assureur' : 'Modifier un assureur';
 $action_for_layout = 'Ajouter';
 

@@ -1,15 +1,15 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Geoneliste';
+$title_for_layout = ' Admin -' . 'Geonetliste';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter un unité' : 'Modifier un unité';
 $action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
-    $position = "Toutes les Geoneliste";
+    $position = "Toutes les Geonetliste";
 } else {
     //$position = $this->request->action;
 }
-$position_for_layout = '<li><a href="#">Geoneliste</a></li><li class="active">' . $position . '</li>';
+$position_for_layout = '<li><a href="#">Geonetliste</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-file-input.js"></script>

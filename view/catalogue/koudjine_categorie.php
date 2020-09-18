@@ -2,7 +2,7 @@
 
      $title_for_layout = ' Admin -' . 'Catalogue';
      $page_for_layout = 'Catalogue';
-     $action_for_layout = 'Ajouter';
+     // $action_for_layout = 'Ajouter';
 
      if ($this->request->action == "index") {
           $position = "Tout";

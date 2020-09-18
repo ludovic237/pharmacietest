@@ -3,7 +3,7 @@
 
 <head>
     <!-- META SECTION -->
-    <title><?php echo isset($title_for_layout) ? $title_for_layout : 'Atlant - Front'; ?></title>
+    <title><?php echo isset($title_for_layout) ? $title_for_layout : 'ALSAS - Front'; ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,8 +26,9 @@
         <div class="page-sidebar scroll">
             <!-- START X-NAVIGATION -->
             <ul class="x-navigation">
-                <li class="xn-logo">
-                    <a href="index.html">ATLANT</a>
+                <!-- <li class="xn-logo"> -->
+                <li >
+                    <a href="index.html"style="font-size: 20px;background-color: #b64645;text-align: center;align-content: center;align-items: center;justify-content: center;display: flex;">ALSAS</a>
                     <a href="#" class="x-navigation-control"></a>
                 </li>
                 <li class="xn-profile">
@@ -136,7 +137,7 @@
                             <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'entreadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/entreadd'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
                         </ul>
                     </li>
-                    <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sotie' ) { ?>active <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">S</span> Sortie</a></li>
+                    <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortie' ) { ?>active <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">S</span> Sortie</a></li>
                 </ul>
             </li>
             <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['commande'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'commande') { ?>active<?php } ?>">

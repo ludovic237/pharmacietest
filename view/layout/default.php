@@ -3,7 +3,7 @@
 
 <head>
     <!-- META SECTION -->
-    <title><?php echo isset($title_for_layout) ? $title_for_layout : 'Atlant - Front'; ?></title>
+    <title><?php echo isset($title_for_layout) ? $title_for_layout : 'ALSAS - Front'; ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -69,7 +69,7 @@ th, td {
 
                 <!-- page logo -->
                 <div class="logo">
-                    <a href="index.html">Atlant - Front-end Template</a>
+                    <a href="index.html" style="font-size: 20px;background-color: #b64645;text-align: center;align-content: center;align-items: center;justify-content: center;display: flex;">ALSAS</a>
                 </div>
                 <!-- ./page logo -->
 
@@ -224,7 +224,7 @@ th, td {
                                         <span class="fa fa-twitter"></span>
                                     </div>
                                     <div class="text">
-                                        <a href="#">@Aqvatarius</a> Release of new update for Atlant is done and ready to use
+                                        <a href="#">@Aqvatarius</a> Release of new update for ALSAS is done and ready to use
                                     </div>
                                 </div>
                                 <div class="item">
@@ -232,7 +232,7 @@ th, td {
                                         <span class="fa fa-twitter"></span>
                                     </div>
                                     <div class="text">
-                                        <a href="#">@Aqvatarius</a> Check out my new admin template Atlant, it's realy awesome template
+                                        <a href="#">@Aqvatarius</a> Check out my new admin template ALSAS, it's realy awesome template
                                     </div>
                                 </div>
                             </div>
@@ -286,7 +286,7 @@ th, td {
 
                     <!-- copyright -->
                     <div class="copyright">
-                        &copy; 2014 Atlant Theme by <a href="#">Aqvatarius</a> - All Rights Reserved
+                        &copy; 2014 ALSAS Theme by <a href="#">Aqvatarius</a> - All Rights Reserved
                     </div>
                     <!-- ./copyright -->
 
