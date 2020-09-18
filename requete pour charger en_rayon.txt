@@ -1,0 +1,22 @@
+INSERT INTO en_rayon(id, produit_id, fournisseur_id, dateLivraison, datePeremption, prixAchat, prixVente, reduction, quantite) 
+SELECT CONCAT(id, '_',fournisseur_id, '_',DATE(dateCmd), '_', DATE(datePeremption)) AS id, id, fournisseur_id, dateCmd, datePeremption, prixAchat, prixPublic, 0, stock FROM produit
+
+requete pour definir une nouvelle plage des id
+SET @newid=10000;
+UPDATE `produit1` SET id=(@newID:=@newid+1) ORDER BY id;
+SET @c = (SELECT COUNT(id) FROM `produit1`);
+SET @s = CONCAT("ALTER TABLE `produit1` AUTO_INCREMENT = ",@c);
+PREPARE stmt FROM @s;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt; 
+
+SET @newID=0;
+UPDATE `test` SET ID=(@newID:=@newID+1) ORDER BY ID;
+SET @c = (SELECT COUNT(ID) FROM `test`);
+SET @s = CONCAT("ALTER TABLE `test` AUTO_INCREMENT = ",@c);
+PREPARE stmt FROM @s;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt; 
+
+select * from en_rayon e, concerner c, vente v, fournisseur f where v.dateVente between NOW() AND ADDDATE(NOW(), INTERVAL -60 DAY) and 
+v.id = c.vente_id and c.en_rayon_id = e.id and e.fournisseur_id = f.id and e.fournisseur_id = 1
