@@ -704,7 +704,7 @@ function info_row(row) {
 
     $.ajax({
         type: "POST",
-        url: '/Site/koudjine/inc/info_universite.php',
+        url: '/pharmacietest/koudjine/inc/info_produit.php',
         data: {
             id: row
         },
@@ -713,17 +713,24 @@ function info_row(row) {
             ////alert(data);
             //$("#iconPreview .icon-preview").html(icon_preview);
             alert(data);
-            $('#iconPreview .nom').html(data.nom);
-            $("#iconPreview .ville").html(data.ville);
-            $("#iconPreview .region").html(data.region);
-            $("#iconPreview .statut").html(data.statut);
-            $("#iconPreview .type").html(data.type);
-            $("#iconPreview .responsable").html(data.responsable);
-            $("#iconPreview .bp").html(data.bp);
-            $("#iconPreview .email").html(data.email);
-            $("#iconPreview .phone").html(data.phone);
-            $("#iconPreview .site").html(data.site);
-            $("#iconPreview .certif").html(data.certif);
+            $('#iconPreview .ean13p').html(data.ean13p);
+            $('#iconPreview .referencep').html(data.referencep);
+            $('#iconPreview .nomp').html(data.nomp);
+            $('#iconPreview .contenancep').html(data.contenancep);
+            $('#iconPreview .unitep').html(data.unitep);
+            $('#iconPreview .qtestockp').html(data.qtestockp);
+            $('#iconPreview .qtemaxstockp').html(data.qtemaxstockp);
+            $('#iconPreview .qteminstockp').html(data.qteminstockp);
+            $('#iconPreview .datepremptionp').html(data.datepremptionp);
+            $('#iconPreview .datecmdp').html(data.datecmdp);
+            $('#iconPreview .prixpublicp').html(data.prixpublicp);
+            $('#iconPreview .prixachatp').html(data.prixachatp);
+            $("#iconPreview .categoriep").html(data.categoriep);
+            $("#iconPreview .rayonp").html(data.rayonp);
+            $("#iconPreview .magasinp").html(data.magasinp);
+            $("#iconPreview .formep").html(data.formep);
+            $("#iconPreview .fabriquantp").html(data.fabriquantp);
+            $("#iconPreview .fournisseurp").html(data.fournisseurp);
         }
 
     })
