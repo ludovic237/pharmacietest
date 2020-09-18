@@ -77,8 +77,115 @@
 
 
 <!-- END RESPONSIVE TABLES -->
+
+
 <!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreview" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8 scroll">
+                        <ul class="list-group border-bottom">
+                            <h4>Informations Codebarre</h4>
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                    <tr>
+                                        <td width="100">ean13:</td>
+                                        <td class="ean13p"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Référence:</td>
+                                        <td class="referencep"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Nom:</td>
+                                        <td class="nomp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Contenance:</td>
+                                        <td class="contenancep"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Unité:</td>
+                                        <td class="unitep"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Quantité en stock:</td>
+                                        <td class="qtestockp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Quantité max en stock:</td>
+                                        <td class="qtemaxstockp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Quantité min en stock:</td>
+                                        <td class="qteminstockp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Date de péremption:</td>
+                                        <td class="datepremptionp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Date de commande:</td>
+                                        <td class="datecmdp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Prix public:</td>
+                                        <td class="prixpublicp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Prix achat:</td>
+                                        <td class="prixachatp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Catégorie:</td>
+                                        <td class="categoriep"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Rayon:</td>
+                                        <td class="rayonp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Magasin:</td>
+                                        <td class="magasinp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Forme:</td>
+                                        <td class="formep"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Fabriquant:</td>
+                                        <td class="fabriquantp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Fournisseur:</td>
+                                        <td class="fournisseurp"></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                           
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+
+<!-- START MODAL ICON PREVIEW -->
+<!-- <div class="modal fade" id="iconPreview" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -93,7 +200,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">ean13:</label>
                             <div class="col-md-9">
-                                <!-- <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" /> -->
+                                <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $universites->NOM; ?>" placeholder="" /> 
                                 <span class="help-block" id="nom"></span>
                             </div>
                         </div>
@@ -304,5 +411,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- END MODAL ICON PREVIEW -->

@@ -1,15 +1,15 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Universités';
-$page_for_layout = 'Concours';
-$action_for_layout = 'Ajouter';
+$title_for_layout = ' ALSAS -' . 'Geonetliste';
+$page_for_layout = 'Geonetliste';
+// $action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
     $position = "Tout";
 } else {
     $position = $this->request->action;
 }
-$position_for_layout = '<li><a href="#">Concours</a></li><li class="active">' . $position . '</li>';
+$position_for_layout = '<li><a href="#">Geonetliste</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>

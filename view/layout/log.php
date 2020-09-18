@@ -2,7 +2,7 @@
 <html lang="en" class="body-full-height">
 <head>
     <!-- META SECTION -->
-    <title>Atlant - Responsive Bootstrap Admin Template</title>
+    <title>ALSAS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,19 +25,20 @@
 <div class="login-container lightmode">
 
     <div class="login-box animated fadeInDown">
-        <div class="login-logo"></div>
+        <!-- <div class="login-logo"> ALSAS</div> -->
+        <div style="padding: 20px;color: white;font-size: 20px;background-color: #b64645;text-align: center;align-content: center;align-items: center;justify-content: center;display: flex;"> ALSAS</div>
         <div class="login-body">
-            <div class="login-title"><strong>Log In</strong> to your account</div>
+            <div class="login-title"><strong>Connectez vous </strong>à votre compte account</div>
             <?php echo $content_for_layout; ?>
         </div>
         <div class="login-footer">
             <div class="pull-left">
-                &copy; 2014 AppName
+                &copy; 2020
             </div>
             <div class="pull-right">
-                <a href="#">About</a> |
+                <!-- <a href="#">About</a> |
                 <a href="#">Privacy</a> |
-                <a href="#">Contact Us</a>
+                <a href="#">Contact Us</a> -->
             </div>
         </div>
     </div>

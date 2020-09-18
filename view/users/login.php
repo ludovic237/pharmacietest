@@ -12,10 +12,10 @@
 
     <div class="form-group">
         <div class="col-md-6">
-            <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
+            <!-- <a href="#" class="btn btn-link btn-block">Forgot your password?</a> -->
         </div>
         <div class="col-md-6">
-            <button class="btn btn-info btn-block">Log In</button>
+            <button class="btn btn-info btn-block">Connexion</button>
         </div>
     </div>
 </form>

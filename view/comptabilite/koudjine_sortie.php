@@ -25,6 +25,22 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="col-md-12 control-label" >
+                                <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 100%;">Nom</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tab_Brecherche">
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <!-- <div class="form-group">
                             <label class="control-label" style="margin-right: 30px;width: 150px;"></label>
                             <div style="display: flex;flex:1;margin-right: 30px;">
                                 <div>
@@ -51,7 +67,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div style="width: 150px;">
 
                             </div>
-                        </div>
+                        </div> -->
                         <?php if (isset($entree)) { ?>
                             <div class="row" style="margin-top: 15px">
                                 <div class="col-md-6 control-label">
