@@ -323,7 +323,7 @@ class CatalogueController extends Controller
                 'conditions' => array('id' => $id)
             ));
 
-            list($part1,$part2)= explode(' ', trim($d['produit']->nom));
+            list($part1)= explode(' ', trim($d['produit']->nom));
             $d['produits'] = $this->Catalogue->find(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'produit',

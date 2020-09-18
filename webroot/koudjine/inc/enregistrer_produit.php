@@ -23,6 +23,9 @@ if (isset($_POST['id'])){
     $stockmax=$_POST['stockmax'];
     $reduction=$_POST['reduction'];
     $etat=$_POST['etat'];
+    $etagere=$_POST['etagere'];
+    $contenu=$_POST['contenu'];
+    $prix=$_POST['prix'];
     $cat=$_POST['cat'];
     $forme=$_POST['forme'];
     $ray=$_POST['ray'];
@@ -52,6 +55,9 @@ if (isset($_POST['id'])){
             $prod->setstockMax($stockmax);
             $prod->setreductionMax($reduction);
             $prod->setetat($etat);
+            $prod->setetagere($etagere);
+            $prod->setcontenuDetail($contenu);
+            $prod->setprixDetail($prix);
             $prod->setgrossiste_id($parrain);
             $manager->update($prod);
             echo 'ok';
@@ -80,6 +86,9 @@ if (isset($_POST['id'])){
         $prod->setstockMax($stockmax);
         $prod->setreductionMax($reduction);
         $prod->setetat($etat);
+        $prod->setetagere($etagere);
+        $prod->setcontenuDetail($contenu);
+        $prod->setprixDetail($prix);
         $prod->setgrossiste_id($parrain);
         $manager->update($prod);
         echo 'ok';
@@ -128,6 +137,9 @@ else{
     $fab=$_POST['fab'];
     $mag=$_POST['mag'];
     $etat=$_POST['etat'];
+    $etagere=$_POST['etagere'];
+    $contenu=$_POST['contenu'];
+    $prix=$_POST['prix'];
     $parrain=$_POST['parrain'];
 
     if(!$manager->existsNom($nom)){
@@ -147,6 +159,8 @@ else{
             'codeUbipharm' => $ubipharm,
             'stock' => $stock,
             'etagere' => $etagere,
+            'contenuDetail' => $contenu,
+            'prixDetail' => $prix,
             'etat' => $etat,
             'stockMin' => $stockmin,
             'stockMax' => $stockmax,

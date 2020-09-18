@@ -130,9 +130,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Contenu detail:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->reductionMax;
-                                                                                else echo 0; ?>" name="reduction" id="reduction" placeholder="" />
-                            <span class="help-block">Champ requis</span>
+                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->contenuDetail; ?>" name="contenu" id="contenu" placeholder="" />
+                            <span class="help-block"></span>
                         </div>
                     </div>
                     <!--<div class="form-group">
@@ -270,9 +269,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Prix detail:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->reductionMax;
-                                                                                else echo 0; ?>" name="reduction" id="reduction" placeholder="" />
-                            <span class="help-block">Champ requis</span>
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $produit->prixDetail;
+                                                                                else echo 0; ?>" name="prixDetail" id="prixDetail" placeholder="" />
+
                         </div>
                     </div>
                     

@@ -1187,7 +1187,7 @@ function enregistrer_employe(option, id) {
 }
 
 function enregistrer_produit(option, id) {
-    // Informations université
+    // Informations produit
     var nom = $('#nom').val();
     var ean13 = $('#ean13').val();
     var reference = $('#reference').val();
@@ -1196,6 +1196,9 @@ function enregistrer_produit(option, id) {
     ////alert(type);
     var stock = $('#stock').val();
     var etat = $('#pdt_etat').val();
+    var etagere = $('#etagere').val();
+    var contenu = $('#contenu').val();
+    var prixDetail = $('#prixDetail').val();
     var stockmin = $('#stockmin').val();
     var stockmax = $('#stockmax').val();
     var reduction = $('#reduction').val();
@@ -1206,7 +1209,8 @@ function enregistrer_produit(option, id) {
     var forme = $('#formeproduit option:selected').val();
     var prod = $('#produits').val();
     console.log(prod);
-    alert(prod);
+    alert(contenu);
+    if(contenu == '') contenu = null;
     var newprod = ""
     if (prod ==null || prod=="") {
 
@@ -1239,6 +1243,9 @@ function enregistrer_produit(option, id) {
             data: {
                 nom: nom,
                 etat: etat,
+                etagere: etagere,
+                contenu: contenu,
+                prix: prixDetail,
                 ean13: ean13,
                 reference: reference,
                 laborex: laborex,
@@ -1278,6 +1285,9 @@ function enregistrer_produit(option, id) {
             data: {
                 nom: nom,
                 etat: etat,
+                etagere: etagere,
+                contenu: contenu,
+                prix: prixDetail,
                 ean13: ean13,
                 reference: reference,
                 laborex: laborex,
