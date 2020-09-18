@@ -46,7 +46,7 @@
                                              <td><strong><?php echo $v->nomcat; ?></strong></td>
                                              <td>
                                                   <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_categorie(<?php echo $v->idcat; ?>)"><span class="fa fa-pencil"></span></button>
-                                                  <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idcat; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                                  <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idcat; ?>','<?php echo $this->request->controller; ?>', 'categorie');"><span class="fa fa-times"></span></button>
                                              </td>
                                         </tr>
                                    <?php endforeach; ?>

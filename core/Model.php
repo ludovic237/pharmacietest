@@ -119,7 +119,7 @@ class Model{
     }
 
     public function delete ($id,$table = null,$nom_id){
-        $sql = 'UPDATE '.$table.' SET SUPPRIMER = 1 WHERE '.$nom_id.' = '.$id;
+        $sql = 'UPDATE '.$table.' SET supprimer = 1 WHERE '.$nom_id.' = '.$id;
         //die($sql);
         $pre = $this->db->prepare($sql);
         $pre->execute();

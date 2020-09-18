@@ -6,7 +6,8 @@ class Prescripteur
         $_nom,
         $_structure,
         $_adresse,
-        $_telephone;
+        $_telephone,
+        $_supprimer;
 
     // CONSRUCTEUR
     public function __construct(array $donnees)
@@ -48,6 +49,10 @@ class Prescripteur
     {
         return $this->_telephone;
     }
+    public function supprimer()
+    {
+        return $this->_supprimer;
+    }
     
 
     // SETTERS
@@ -84,6 +89,12 @@ class Prescripteur
         $this->_telephone = $value;
 
     }
+    public function setsupprimer($value)
+    {
+
+        $this->_supprimer = $value;
+
+    }
     
 }
 
@@ -97,7 +108,7 @@ class PrescripteurManager
     }
     public function add(Prescripteur $prescripteur)
     {
-        $q = $this->_db->prepare('INSERT INTO prescripteur SET id = :id, nom = :nom, adresse = :adresse, structure = :structure, telephone = :telephone');
+        $q = $this->_db->prepare('INSERT INTO prescripteur SET id = :id, nom = :nom, adresse = :adresse, structure = :structure, telephone = :telephone, supprimer=0');
         $q->bindValue(':id', $prescripteur->id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $prescripteur->nom());
         $q->bindValue(':adresse', $prescripteur->adresse());
@@ -168,7 +179,7 @@ class PrescripteurManager
     public function update(Prescripteur $prescripteur)
     {
 
-        $q = $this->_db->prepare('UPDATE prescripteur SET nom = :nom, adresse = :adresse, structure = :structure, telephone = :telephone, WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE prescripteur SET nom = :nom, adresse = :adresse, structure = :structure, telephone = :telephone WHERE id = :id');
         $q->bindValue(':id', $prescripteur->id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $prescripteur->nom());
         $q->bindValue(':adresse', $prescripteur->adresse());
