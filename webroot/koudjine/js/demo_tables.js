@@ -700,7 +700,7 @@ function categorie_row_question(id) {
 function info_row(row) {
 
     //var lien = $(this).attr('id');
-    alert('test');
+    //alert('test');
 
     $.ajax({
         type: "POST",
@@ -710,27 +710,29 @@ function info_row(row) {
         },
         dataType: 'json',
         success: function (data) {
-            ////alert(data);
-            //$("#iconPreview .icon-preview").html(icon_preview);
             alert(data);
-            $('#iconPreview .ean13p').html(data.ean13p);
-            $('#iconPreview .referencep').html(data.referencep);
-            $('#iconPreview .nomp').html(data.nomp);
-            $('#iconPreview .contenancep').html(data.contenancep);
-            $('#iconPreview .unitep').html(data.unitep);
-            $('#iconPreview .qtestockp').html(data.qtestockp);
-            $('#iconPreview .qtemaxstockp').html(data.qtemaxstockp);
-            $('#iconPreview .qteminstockp').html(data.qteminstockp);
-            $('#iconPreview .datepremptionp').html(data.datepremptionp);
-            $('#iconPreview .datecmdp').html(data.datecmdp);
-            $('#iconPreview .prixpublicp').html(data.prixpublicp);
-            $('#iconPreview .prixachatp').html(data.prixachatp);
-            $("#iconPreview .categoriep").html(data.categoriep);
-            $("#iconPreview .rayonp").html(data.rayonp);
-            $("#iconPreview .magasinp").html(data.magasinp);
-            $("#iconPreview .formep").html(data.formep);
-            $("#iconPreview .fabriquantp").html(data.fabriquantp);
-            $("#iconPreview .fournisseurp").html(data.fournisseurp);
+            //$("#iconPreview .icon-preview").html(icon_preview);
+            //alert(data);
+            $('#iconPreview .ean13p').html(data.ean13A);
+            $('#iconPreview .referencep').html(data.referenceA);
+            $('#iconPreview .nomp').html(data.nomA);
+            $('#iconPreview .codelaborexp').html(data.codelaborexA);
+            $('#iconPreview .codeubiformp').html(data.codeubiformA);
+            $('#iconPreview .stockp').html(data.stockA);
+            $('#iconPreview .stockmaxp').html(data.stockmaxA);
+            $('#iconPreview .stockminp').html(data.stockminA);
+            $('#iconPreview .reductionmaxp').html(data.reductionmaxA);
+            $('#iconPreview .contenudetailp').html(data.contenudetailA);
+            $("#iconPreview .categoriep").html(data.categorieA);
+            $("#iconPreview .rayonp").html(data.rayonA);
+            $("#iconPreview .etagerep").html(data.etagereA);
+            $("#iconPreview .magasinp").html(data.magasinA);
+            $("#iconPreview .formep").html(data.formeA);
+            $("#iconPreview .fabriquantp").html(data.fabriquantA);
+            $("#iconPreview .fournisseurp").html(data.fournisseurA);
+            $("#iconPreview .produitp").html(data.produitA);
+            $("#iconPreview .prixdetailp").html(data.prixdetailA);
+            $("#iconPreview .etatp").html(data.etatA);
         }
 
     })

@@ -5,43 +5,40 @@ require_once('../Class/fournisseur1.php');
 require_once('../Class/en_rayon.php');
 
 $id;
-$fournisseur;
 $produit;
+$categorie;
+$forme;
+$magasin;
+$rayon;
+$fabriquant;
+
 global $pdo;
 global $conndb;
+
 $managerProduit = new ProduitManager($pdo);
-$managerFournisseur = new FournisseurManager($pdo);
-$managerEnRayon = new En_rayonManager($pdo);
- 
+$managerCategorie = new CategorieManager($pdo);
+$managerFabriquant = new FabriquantManager($pdo);
+$managerForme = new FormeManager($pdo);
+$managerMagasin = new MagasinManager($pdo);
+$managerRayon = new RayonManager($pdo);
+
+
 if (isset($_POST['id']))
     $id=$_POST['id'];
 
-$enrayon = $managerEnRayon->get($id);
-$fournisseur = $managerFournisseur->get($enrayon->fournisseur_id());
-$produit = $managerProduit->get($enrayon->produit_id());
 
+$produit = $managerProduit->get($id);
+$categorie = $managerCategorie->get($id);
+$forme = $managerForme->get($id);
+$magasin = $managerMagasin->get($id);
+$rayon = $managerRayon->get($id);
+$fabriquant = $managerFabriquant->get($id);
 
 //echo "passe";
 if (isset($_POST['id'])||isset($_GET['id'])){
 
 
 
-    if($managerEnRayon->existsId($id)){
-
-        //print_r($produit);
-        $datelivraison = $enrayon->dateLivraison();
-        $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
-        $datel = $date->format('d-m-Y');
-        $dateCl = $date->format('dmY');
-        $dateperemption = $enrayon->datePeremption();
-        $date = DateTime::createFromFormat('Y-m-d H:i:s', $dateperemption);
-        $datep = $date->format('d-m-Y');
-        $dateCp = $date->format('mY');
-        //$donnees = array('nomP' => $produit->nom(), 'nomF' => $fournisseur->nom(), 'code' => $fournisseur->code(), 'datel' => $datel, 'datep' => $datep, 'prixa' =>  $enrayon->prixAchat(), 'prixv' =>  $enrayon->prixVente(), 'quantite' =>  $enrayon->quantite(), 'quantiter' =>  $enrayon->quantiteRestante(), 'reduction' => $enrayon->reduction(),'codebarre' =>$id);
-        //if (isset($_POST['id']))
-        //echo json_encode($donnees);
-
-    }
 
     //echo "passe";
     $code_barre = $id;
@@ -50,8 +47,7 @@ if (isset($_POST['id'])||isset($_GET['id'])){
 
 
 
-    $donnees = array('ean13p' => $produit->ean13(), 'nomp' => $produit->nom(), 'referencep' => $produit->reference(), 'codelaborexp' => $produit->codeLaborex(), 'codeubipharmp' => $produit->codeubipharm(), 'stockp' => $produit->stock(), 'stockmaxp' => $produit->stockmax(), 'stockminp' => $produit->stockmin(), 'contenudetailp' => $produit->contenudetail(), 'etatp' => $produit->etat(), 'etagerep' => $produit->etagere(), 'reductionmaxp' => $produit->reductionmax(), 'prixdetailp' => $produit->prixdetail());
-    //'nomF' => $fournisseur->nom(), 'code' => $fournisseur->code(), 'datel' => $datel, 'datep' => $datep, 'prixa' =>  $enrayon->prixAchat(), 'prixv' =>  $enrayon->prixVente(), 'quantite' =>  $enrayon->quantite(), 'quantiter' =>  $enrayon->quantiteRestante(), 'reduction' => $enrayon->reduction(),'codebarre' =>$code_barre);
+    $donnees = array('ean13A' => $produit->ean13(), 'nomA' => $produit->nom(), 'referenceA' => $produit->reference(), 'codelaborexA' => $produit->codeLaborex(), 'codeubipharmA' => $produit->codeUbipharm(), 'stockA' => $produit->stock(), 'stockmaxA' => $produit->stockMax(), 'stockminA' => $produit->stockmin(), 'contenudetailA' => $produit->contenuDetail(), 'etatA' => $produit->etat(), 'etagereA' => $produit->etagere(), 'reductionmaxA' => $produit->reductionMax(), 'prixdetailA' => $produit->prixDetail(), 'rayonA' => $rayon->nom(), 'magasinA' => $magasin->nom(), 'fabriquantA' => $fabriquant->nom(), 'formeA' => $forme->nom(), 'categorieA' => $categorie->nom());
     if (isset($_POST['id']))
         echo json_encode($donnees);
 

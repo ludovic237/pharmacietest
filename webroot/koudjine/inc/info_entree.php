@@ -12,7 +12,7 @@ global $conndb;
 $managerProduit = new ProduitManager($pdo);
 $managerFournisseur = new FournisseurManager($pdo);
 $managerEnRayon = new En_rayonManager($pdo);
-
+ 
 if (isset($_POST['id']))
     $id=$_POST['id'];
 
@@ -46,8 +46,6 @@ if (isset($_POST['id'])||isset($_GET['id'])){
     //echo "passe";
     $code_barre = $id;
     //$code = cb($code_barre);
-
-
 
 
     $donnees = array('nomP' => $produit->nom(), 'nomF' => $fournisseur->nom(), 'code' => $fournisseur->code(), 'datel' => $datel, 'datep' => $datep, 'prixa' =>  $enrayon->prixAchat(), 'prixv' =>  $enrayon->prixVente(), 'quantite' =>  $enrayon->quantite(), 'quantiter' =>  $enrayon->quantiteRestante(), 'reduction' => $enrayon->reduction(),'codebarre' =>$code_barre);
