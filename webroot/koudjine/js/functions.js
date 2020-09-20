@@ -819,7 +819,7 @@ function valider_vente(type, etat) {
         }, 6000);
     }
     else {
-        alert("test4");
+        //alert("test4");
         nouveau = nouveau + $("#input_vente_nomClient").val() + "|" + $("#input_vente_phoneClient").val() + "-";
         if ($('.select_client option:selected').text() == "Client Existant") {
             idClient = $("#select_vente_client option:selected").val();
@@ -853,11 +853,11 @@ function valider_vente(type, etat) {
                 prixr: prixr,
                 etat: etat
             },
-            //dataType: 'json',
+            dataType: 'json',
             
             success: function (data) {
-                alert(server_responce);
-                alert(data);
+                //alert(server_responce);
+                //alert(data);
                 if (data.erreur == 'ok') {
                     var idv = data.id;
                     ////alert(idv);
@@ -929,6 +929,8 @@ function valider_vente(type, etat) {
                         })
 
                     });
+                }else{
+                    alert(data.erreur);
                 }
 
             }

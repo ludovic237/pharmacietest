@@ -38,10 +38,12 @@ else{
         if($etat == "Crédit"){
             $caisse = null;
         }else{
-            $caisse = $managerCa->get()->id();
+            if($managerCa->existsetat()){
+                $caisse = $managerCa->get()->id();
+            }
         }
         //echo $idGen;
-    if($managerCa->get() != null){
+    if($managerCa->existsetat()){
 
         $vent = new Vente(array(
             'id' => $idGen,
