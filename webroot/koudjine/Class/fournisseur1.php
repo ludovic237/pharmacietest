@@ -3,10 +3,10 @@
 class Fournisseur
 {
     private $_id,
-        $_CodePostal_id,
+        $_codepostal,
         $_code,
         $_nom,
-        $_type,
+        $_statut,
         $_adresse,
         $_telephone,
         $_email,
@@ -35,9 +35,9 @@ class Fournisseur
     {
         return $this->_id;
     }
-    public function CodePostal_id()
+    public function codepostal()
     {
-        return $this->_CodePostal_id;
+        return $this->_codepostal;
     }
     public function code()
     {
@@ -77,29 +77,23 @@ class Fournisseur
             $this->_id = $id;
         }
     }
-    public function setCodePostal_id($id)
+    public function setcodepostal($id)
     {
 
-        if ($id > 0)
-        {
-            $this->_CodePostal_id = $id;
-        }
+            $this->_codepostal = $id;
+
     }
     public function setcode($id)
     {
 
-        if ($id > 0)
-        {
             $this->_code = $id;
-        }
+
     }
     public function setstatut($id)
     {
 
-        if ($id > 0)
-        {
             $this->_statut = $id;
-        }
+
     }
     public function settelephone($id)
     {
@@ -112,10 +106,8 @@ class Fournisseur
     public function setadresse($id)
     {
 
-        if ($id > 0)
-        {
             $this->_adresse = $id;
-        }
+
     }
     public function setnom($value)
     {
@@ -148,13 +140,13 @@ class FournisseurManager
     }
     public function add(Fournisseur $fournisseur)
     {
-        $q = $this->_db->prepare('INSERT INTO fournisseur SET id = :id, CodePostal_id = :cp, code = :code, statut = :statut, telephone = :tel, adresse = :adr, nom = :nom, email = :email, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO fournisseur SET id = :id, code = :code, codepostal = :codepostal, statut = :statut, telephone = :tel, adresse = :adr, nom = :nom, email = :email, supprimer=0');
         $q->bindValue(':id', $fournisseur->id(), PDO::PARAM_INT);
-        $q->bindValue(':cp', $fournisseur->CodePostal_id(), PDO::PARAM_INT);
-        $q->bindValue(':code', $fournisseur->code(), PDO::PARAM_INT);
-        $q->bindValue(':statut', $fournisseur->statut(), PDO::PARAM_INT);
-        $q->bindValue(':tel', $fournisseur->telephone(), PDO::PARAM_INT);
-        $q->bindValue(':adr', $fournisseur->adresse(), PDO::PARAM_INT);
+        $q->bindValue(':code', $fournisseur->code());
+        $q->bindValue(':codepostal', $fournisseur->codepostal());
+        $q->bindValue(':statut', $fournisseur->statut());
+        $q->bindValue(':tel', $fournisseur->telephone());
+        $q->bindValue(':adr', $fournisseur->adresse());
         $q->bindValue(':nom', $fournisseur->nom());
         $q->bindValue(':email', $fournisseur->email());
         $q->execute();
@@ -212,10 +204,10 @@ class FournisseurManager
     }
     public function update(Fournisseur $fournisseur)
     {
-        $q = $this->_db->prepare('UPDATE fournisseur SET CodePostal_id = :cp, code = :code, statut = :statut, telephone = :tel, adresse = :adr, nom = :nom, email = :email WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE fournisseur SET code = :code, codepostal = :codepostal, statut = :statut, telephone = :tel, adresse = :adr, nom = :nom, email = :email WHERE id = :id');
         $q->bindValue(':id', $fournisseur->id(), PDO::PARAM_INT);
-        $q->bindValue(':cp', $fournisseur->CodePostal_id());
         $q->bindValue(':code', $fournisseur->code());
+        $q->bindValue(':codepostal', $fournisseur->codepostal());
         $q->bindValue(':statut', $fournisseur->statut());
         $q->bindValue(':tel', $fournisseur->telephone());
         $q->bindValue(':adr', $fournisseur->adresse());

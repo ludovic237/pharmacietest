@@ -102,6 +102,7 @@ class CatalogueController extends Controller
         $d['catalogue'] = $this->Catalogue->find(array(
             'fields' => 'assureur.id as idass,assureur.taux as tauxass,assureur.nom as nomass,assureur.CodePostal_id as codeass,assureur.telephone as telephoneass',
             'table' => 'assureur',
+            'conditions' => array('supprimer' => 0)
         ));
         //die($d);
         if (empty($d['catalogue'])) {
@@ -155,12 +156,12 @@ class CatalogueController extends Controller
     {
         $this->loadModel('Catalogue');
 
-        $d['code_postal'] = $this->Catalogue->find(array(
+        /*$d['code_postal'] = $this->Catalogue->find(array(
             //'fields' => 'nom',
             'table' => 'code_postal',
             'order' => 'nom-ASC',
             //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
-        ));
+        ));*/
 
         if ($id != null) {
             //die('pass');
@@ -187,8 +188,9 @@ class CatalogueController extends Controller
         $this->loadModel('Catalogue');
 
         $d['catalogue'] = $this->Catalogue->find(array(
-            'fields' => 'fabriquant.id as idfa,fabriquant.nom as nomfa,fabriquant.code as codefa,fabriquant.adresse as adressefa,fabriquant.telephone as telephonefa,fabriquant.CodePostal_id as codef,fabriquant.email as emailfa',
+            'fields' => 'fabriquant.id as idfa,fabriquant.nom as nomfa,fabriquant.code as codefa,fabriquant.adresse as adressefa,fabriquant.telephone as telephonefa,codepostal,fabriquant.email as emailfa',
             'table' => 'fabriquant',
+            'conditions' => array('supprimer' => 0)
             // 'order' => 'nomp-ASC',
             // 'conditions' => array('produit.categorie_id' => 'categorie.id','produit.rayon_id' => 'rayon.id')
         ));
@@ -227,8 +229,9 @@ class CatalogueController extends Controller
     {
         $this->loadModel('Catalogue');
         $d['catalogue'] = $this->Catalogue->find(array(
-            'fields' => 'fournisseur.id as idf,fournisseur.nom as nomf,fournisseur.code as codef,fournisseur.statut as statutf,fournisseur.adresse as adressef,fournisseur.telephone as telephonef,fournisseur.CodePostal_id as codef,fournisseur.email as emailf',
+            'fields' => 'fournisseur.id as idf,fournisseur.nom as nomf,fournisseur.code as codef,fournisseur.statut as statutf,fournisseur.adresse as adressef,fournisseur.telephone as telephonef,codepostal,fournisseur.email as emailf',
             'table' => 'fournisseur',
+            'conditions' => array('supprimer' => 0)
         ));
 
         //die($d);

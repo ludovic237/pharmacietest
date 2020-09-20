@@ -1401,6 +1401,7 @@ function enregistrer_assureur(option, id) {
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_assureur.php',
             data: {
+                id: id,
                 nom: nom,
                 taux: taux,
                 CodePostal_id: CodePostal_id,
@@ -1702,6 +1703,7 @@ function enregistrer_fabriquant(option, id) {
     // Informations université
     var nom = $('#nom').val();
     var code = $('#code').val();
+    var codepostal = $('#codepostal').val();
     var adresse = $('#adresse').val();
     var telephone = $('#telephone').val();
     var email = $('#email').val()
@@ -1713,6 +1715,7 @@ function enregistrer_fabriquant(option, id) {
             data: {
                 nom: nom,
                 code: code,
+                codepostal: codepostal,
                 adresse: adresse,
                 telephone: telephone,
                 email: email
@@ -1741,6 +1744,7 @@ function enregistrer_fabriquant(option, id) {
             data: {
                 nom: nom,
                 code: code,
+                codepostal: codepostal,
                 adresse: adresse,
                 telephone: telephone,
                 email: email,
@@ -1829,6 +1833,7 @@ function enregistrer_fournisseur(option, id) {
     // Informations université
     var nom = $('#nom').val();
     var code = $('#code').val();
+    var codepostal = $('#codepostal').val();
     var statut = $('#statut').val();
     var adresse = $('#adresse').val();
     var telephone = $('#telephone').val();
@@ -1841,6 +1846,7 @@ function enregistrer_fournisseur(option, id) {
             data: {
                 nom: nom,
                 code: code,
+                codepostal: codepostal,
                 statut: statut,
                 adresse: adresse,
                 telephone: telephone,
@@ -1870,6 +1876,7 @@ function enregistrer_fournisseur(option, id) {
             data: {
                 nom: nom,
                 code: code,
+                codepostal: codepostal,
                 statut: statut,
                 adresse: adresse,
                 telephone: telephone,

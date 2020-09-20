@@ -9,7 +9,7 @@
         } else {
             $position = $this->request->action;
         }
-        $position_for_layout = '<li><a href="#">Concours</a></li><li class="active">' . $position . '</li>';
+        $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
         ?> -->
@@ -58,7 +58,7 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_fournisseur(<?php echo $v->idf; ?>)"><span class="fa fa-pencil"></span></button>
-                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idf; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idf; ?>','<?php echo $this->request->controller; ?>','fournisseur');"><span class="fa fa-times"></span></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

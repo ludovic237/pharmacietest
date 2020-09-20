@@ -2,13 +2,8 @@
 
 $title_for_layout = ' Admin -' . 'Catalogue';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter un fabriquant' : 'Modifier un fabriquant';
-$action_for_layout = 'Ajouter';
+//$action_for_layout = 'Ajouter';
 
-if ($this->request->action == "index") {
-    $position = "Toutes les universités";
-} else {
-    //$position = $this->request->action;
-}
 $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
@@ -110,15 +105,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Code postal:</label>
                         <div class="col-md-9">
-                            <select class="selectpicker form-control input-xlarge " name="magproduit" id="magproduit">
-                                <?php
-                                foreach ($code_postal as $k => $v) : ?>
-                                    <option <?php if ($position == 'Modifier') if ($v->id == $fabriquant->CodePostal_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
-                                <?php
-                                endforeach;
-                                ?>
-                            </select>
-                            <!-- <input type="text" class="form-control" name="CodePostal_id" id="CodePostal_id" value="<?php if ($position == 'Modifier') echo $fabriquant->CodePostal_id; ?>" placeholder="" />
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="codepostal" id="codepostal" value="<?php if ($position == 'Modifier') echo $fabriquant->codepostal; ?>" placeholder="" />
+                                <span class="help-block">exemple: toto@gmail.com</span>
+                            </div>
+                            <!-- <input type="text" class="form-control" name="CodePostal_id" id="CodePostal_id" value="<?php if ($position == 'Modifier') echo $fabriquant->codepostal; ?>" placeholder="" />
                             <span class="help-block">exemple: 4444</span> -->
                         </div>
                     </div>

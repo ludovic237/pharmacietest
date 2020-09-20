@@ -17,7 +17,7 @@ if (isset($_POST['id'])){
     $adresse=$_POST['adresse'];
     $telephone=$_POST['telephone'];
     $email=$_POST['email'];
-    $CodePostal_id=$_POST['CodePostal_id'];
+    $codepostal=$_POST['codepostal'];
     //echo $id;
     //$prod = new Departement();
     if ($manager->existsNom($nom)) {
@@ -29,7 +29,7 @@ if (isset($_POST['id'])){
             $prod->setadresse($adresse);
             $prod->settelephone($telephone);
             $prod->setemail($email);
-            $prod->setcode($CodePostal_id);
+            $prod->setcodepostal($codepostal);
             $manager->update($prod);
             echo 'ok';
         }
@@ -46,7 +46,7 @@ if (isset($_POST['id'])){
             $prod->setadresse($adresse);
             $prod->settelephone($telephone);
             $prod->setemail($email);
-            $prod->setcode($CodePostal_id);
+            $prod->setcodepostal($codepostal);
         $manager->update($prod);
         echo 'ok';
     }
@@ -83,7 +83,7 @@ else{
     $adresse=$_POST['adresse'];
     $telephone=$_POST['telephone'];
     $email=$_POST['email'];
-    $CodePostal_id=$_POST['CodePostal_id'];
+    $codepostal=$_POST['codepostal'];
 
 
 
@@ -96,7 +96,7 @@ else{
             'adresse' => $adresse,
             'telephone' => $telephone,
             'email' => $email,
-            'CodePostal_id' => $CodePostal_id,
+            'CodePostal_id' => $codepostal,
         ));
         $manager->add($fabriquant);
         echo 'ok';

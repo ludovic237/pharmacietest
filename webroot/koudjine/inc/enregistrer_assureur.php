@@ -25,7 +25,7 @@ if (isset($_POST['id'])){
             
             $prod->setnom($nom);
             $prod->settaux($taux);
-            // $prod->setCodePostal_id($CodePostal_id);
+             $prod->setCodePostal_id($CodePostal_id);
             $prod->settelephone($telephone);
             $manager->update($prod);
             echo 'ok';
@@ -40,7 +40,7 @@ if (isset($_POST['id'])){
         $prod = $manager->get($id);
         $prod->setnom($nom);
         $prod->settaux($taux);
-        // $prod->setCodePostal_id($CodePostal_id);
+        $prod->setCodePostal_id($CodePostal_id);
         $prod->settelephone($telephone);
         $manager->update($prod);
         echo 'ok';
@@ -87,8 +87,8 @@ else{
           
             'nom' => $nom,
             'taux' => $taux,
-            'codeCodePostal_id' => $CodePostal_id,
-            'codetelephone' => $telephone,
+            'CodePostal_id' => $CodePostal_id,
+            'telephone' => $telephone,
         ));
         $manager->add($assureur);
         echo 'ok';
