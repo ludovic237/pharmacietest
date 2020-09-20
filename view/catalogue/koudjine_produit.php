@@ -184,7 +184,7 @@
                                     </tr>
                                     <tr>
                                         <td width="100">Produit:</td>
-                                        <td class="produitp"></td>
+                                        <td class="produitp"><+/td>
                                     </tr>
                                     <tr>
                                         <td width="100">Prix detail:</td>
