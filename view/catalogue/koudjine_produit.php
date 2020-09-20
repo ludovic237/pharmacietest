@@ -174,17 +174,13 @@
                                         <td class="fabriquantp"></td>
                                     </tr>
                                     <tr>
-                                        <td width="100">Fournisseur:</td>
-                                        <td class="fournisseurp"></td>
-                                    </tr>
-                                    <tr>
                                         <td style="padding: 0px;" colspan="2">
                                             <h4 style="padding: 20px;background-color: #2d3945;color: white;margin-bottom: 0px;">Détail produit</h4>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td width="100">Produit:</td>
-                                        <td class="produitp"><+/td>
+                                        <td class="produitp"></td>
                                     </tr>
                                     <tr>
                                         <td width="100">Prix detail:</td>

@@ -707,7 +707,7 @@ function info_row(row) {
         url: '/pharmacietest/koudjine/inc/info_produit.php',
         data: {
             id: row
-        },
+        },  
         dataType: 'json',
         success: function (data) {
             alert(data);

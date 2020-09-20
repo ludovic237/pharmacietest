@@ -11,6 +11,8 @@ global $conndb;
 $managerProduit = new ProduitManager($pdo);
 $managerEnRayon = new En_rayonManager($pdo);
 
+//On sélectionne tous les users dont le nom = Pierre
+
 if (isset($_POST['id']))
     $id=$_POST['id'];
 
@@ -34,8 +36,29 @@ if (isset($_POST['id'])||isset($_GET['id'])){
                                                 ".$v->prixVente()."
                                             </td>
                                             <td class=''>
-                                                <input class='qte' style=\"width: 50px;\" id=\"qte_vente\" type=\"number\" value='0'>
-                                            </td>
+                                                <p></p>
+                                                <div class='input-group'>
+                                                    <span class='input-group-btn'>
+                                                        <button type='button' class='btn btn-default btn-number moins'
+                                                                onclick=\"change_input('moins','inputPrix". $v->id()."')\"
+                                                                style='padding: 4px;'>
+                                                            <span class='glyphicon glyphicon-minus'></span>
+                                                        </button>
+                                                    </span>
+                                                    <input type='text' name='quant[1]' class='form-control input-number'
+                                                    id=\"inputPrix".$v->id()."\"
+                                                    value='1' style='width: 80px;'>
+                                                    <span class='input-group-btn'>
+                                                        <button type='button' class='btn btn-default btn-number plus'
+                                                                onclick=\"change_input('plus','inputPrix".$v->id()."')\"
+                                                                style='padding: 4px;'>
+                                                            <span class='glyphicon glyphicon-plus'></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                                <p></p>
+
+                                    </td>
                                             <td class='qterest'>
                                                 ".$v->quantiteRestante()."
                                             </td>

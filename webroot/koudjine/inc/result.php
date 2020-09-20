@@ -22,45 +22,12 @@ if (isset($_GET["motclef1"])) {
             $datelivraison = $result->dateLivraison;
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
             $datel = $date->format('d-m-Y');
+            //   </p><div class='input-group' style='display:-webkit-inline-box;'>
             if ($result->reduction > $result->reductionMax) $reduction = $result->reduction;
             else $reduction = $result->reductionMax;
             echo "<tr id=\"R" . $result->idp . "\">
                                             <td class='nom'><strong>" . $result->nom . "</strong></td>
-                                            <td class='prix'>
-                                                " . $result->prixAchat . "
-                                            </td>
-                                            <td class=''>
-                                            <p>
-      </p><div class='input-group' style='display:-webkit-inline-box;'>
-                                            <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number moins'
-                                                        onclick=\"change_input('moins','input<?php echo $result->idp; ?>')\"
-                                                        style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-minus'></span>
-                                                </button>
-                                            </span>
-                                                <input type='text' name='quant[1]' class='form-control input-number'
-                                                       id=\"input<?php echo $result->idp; ?>\" value='1' style='width: 40px;'>
-                                                <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number plus'
-                                                        onclick=\"change_input('plus','input<?php echo $result->idp; ?>')\"
-                                                        style='padding: 4px;'>
-                                                    <span class='glyphicon glyphicon-plus'></span>
-                                                </button>
-                                            </span>
-                                            </div>
-    <p></p>
-                                                
-                                            </td>
-                                            <td class='stock'>
-                                                " . $result->quantite . "
-                                            </td>
-                                            <td class='reduction'>
-                                                " . $reduction . "
-                                            </td>
-                                            <td class='datel'>
-                                                " . $datel . "
-                                            </td>
+
                                             <td>
                                                 <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit('" . $result->idp . "')\"><span class=\"\">Charger</span></button>
                                             </td>
