@@ -8,6 +8,7 @@ class Fabriquant
         $_adresse,
         $_telephone,
         $_email,
+        $_codepostal,
         $_supprimer;
 
     // CONSRUCTEUR
@@ -44,6 +45,10 @@ class Fabriquant
     public function code()
     {
         return $this->_code;
+    }
+    public function codepostal()
+    {
+        return $this->_codepostal;
     }
     public function telephone()
     {
@@ -85,6 +90,12 @@ class Fabriquant
         $this->_code = $value;
 
     }
+    public function setcodepostal($value)
+    {
+
+        $this->_codepostal = $value;
+
+    }
     public function settelephone($value)
     {
 
@@ -116,11 +127,12 @@ class FabriquantManager
     }
     public function add(Fabriquant $fabriquant)
     {
-        $q = $this->_db->prepare('INSERT INTO fabriquant SET id = :id, nom = :nom, adresse = :adresse, code = :code, telephone = :telephone, email = :email, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO fabriquant SET id = :id, nom = :nom, adresse = :adresse, code = :code, codepostal = :codepostal, telephone = :telephone, email = :email, supprimer=0');
         $q->bindValue(':id', $fabriquant->id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $fabriquant->nom());
         $q->bindValue(':adresse', $fabriquant->adresse());
         $q->bindValue(':code', $fabriquant->code());
+        $q->bindValue(':codepostal', $fabriquant->codepostal());
         $q->bindValue(':telephone', $fabriquant->telephone());
         $q->bindValue(':email', $fabriquant->email());
         $q->execute();
@@ -188,11 +200,12 @@ class FabriquantManager
     public function update(Fabriquant $fabriquant)
     {
 
-        $q = $this->_db->prepare('UPDATE fabriquant SET nom = :nom, adresse = :adresse, code = :code, telephone = :telephone, email = :email WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE fabriquant SET nom = :nom, adresse = :adresse, code = :code, codepostal = :codepostal, telephone = :telephone, email = :email WHERE id = :id');
         $q->bindValue(':id', $fabriquant->id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $fabriquant->nom());
         $q->bindValue(':adresse', $fabriquant->adresse());
         $q->bindValue(':code', $fabriquant->code());
+        $q->bindValue(':codepostal', $fabriquant->codepostal());
         $q->bindValue(':telephone', $fabriquant->telephone());
         $q->bindValue(':email', $fabriquant->email());
         $q->execute();

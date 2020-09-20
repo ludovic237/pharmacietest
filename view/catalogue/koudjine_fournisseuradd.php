@@ -2,13 +2,7 @@
 
 $title_for_layout = ' Admin -' . 'Catalogue';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter un fournisseur' : 'Modifier un fournisseur';
-$action_for_layout = 'Ajouter';
 
-if ($this->request->action == "index") {
-    $position = "Toutes les universités";
-} else {
-    //$position = $this->request->action;
-}
 $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
@@ -35,18 +29,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     adresse: {
                         required: true,
                         minlength: 3,
-                        maxlength: 100
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    statut: {
-                        required: true
-                    },
-                    CodePostal_id: {
-                        required: true,
-                        minlength: 1,
                         maxlength: 100
                     },
 
@@ -110,7 +92,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Code postal:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="CodePostal_id" id="CodePostal_id" value="<?php if ($position == 'Modifier') echo $fournisseur->CodePostal_id; ?>" placeholder="" />
+                            <input type="text" class="form-control" name="codepostal" id="codepostal" value="<?php if ($position == 'Modifier') echo $fournisseur->codepostal; ?>" placeholder="" />
                             <span class="help-block">exemple: 4444</span>
                         </div>
                     </div>

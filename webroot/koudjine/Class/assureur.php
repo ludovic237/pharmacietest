@@ -5,6 +5,7 @@ class Assureur
     private $_id,
         $_nom,
         $_telephone,
+        $_CodePostal_id,
         $_taux,
         $_supprimer;
 
@@ -39,6 +40,10 @@ class Assureur
     {
         return $this->_taux;
     }
+    public function CodePostal_id()
+{
+    return $this->_CodePostal_id;
+}
     public function telephone()
     {
         return $this->_telephone;
@@ -67,7 +72,18 @@ class Assureur
     public function settaux($value)
     {
 
-        $this->_taux = $value;
+        if ($value > 0)
+        {
+            $this->_taux = $value;
+        } elseif ($value == ''){
+            $this->_taux = null;
+        }
+
+    }
+    public function setCodePostal_id($value)
+    {
+
+        $this->_CodePostal_id = $value;
 
     }
     public function settelephone($value)
@@ -95,10 +111,11 @@ class AssureurManager
     }
     public function add(Assureur $assureur)
     {
-        $q = $this->_db->prepare('INSERT INTO assureur SET id = :id, nom = :nom, taux = :taux, telephone = :telephone, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO assureur SET id = :id, nom = :nom, taux = :taux, CodePostal_id = :CodePostal_id, telephone = :telephone, supprimer=0');
         $q->bindValue(':id', $assureur->id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $assureur->nom());
         $q->bindValue(':taux', $assureur->taux());
+        $q->bindValue(':CodePostal_id', $assureur->CodePostal_id());
         $q->bindValue(':telephone', $assureur->telephone());
         $q->execute();
     }
@@ -165,10 +182,11 @@ class AssureurManager
     public function update(Assureur $assureur)
     {
 
-        $q = $this->_db->prepare('UPDATE assureur SET nom = :nom, taux = :taux, telephone = :telephone WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE assureur SET nom = :nom, taux = :taux, CodePostal_id = :CodePostal_id, telephone = :telephone WHERE id = :id');
         $q->bindValue(':id', $assureur->id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $assureur->nom());
         $q->bindValue(':taux', $assureur->taux());
+        $q->bindValue(':CodePostal_id', $assureur->CodePostal_id());
         $q->bindValue(':telephone', $assureur->telephone());
         $q->execute();
     }

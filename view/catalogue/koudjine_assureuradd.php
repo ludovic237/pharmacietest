@@ -86,7 +86,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Code postal:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="CodePostal_id" id="CodePostal_id" value="<?php if ($position == 'Modifier') echo $assureur->codepostal; ?>" placeholder="Code postal" />
+                            <input type="text" class="form-control" name="CodePostal_id" id="CodePostal_id" value="<?php if ($position == 'Modifier') echo $assureur->CodePostal_id; ?>" placeholder="Code postal" />
                             <span class="help-block">exemple: 44444</span>
                         </div>
                     </div>
