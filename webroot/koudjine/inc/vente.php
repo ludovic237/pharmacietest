@@ -2,20 +2,12 @@
 require_once('database.php');
 require_once('../Class/vente.php');
 require_once('../Class/caisse.php');
-require_once('../Class/malade.php');
-require_once('../Class/user.php');
-require_once('../Class/employe.php');
-require_once('../Class/prescripteur.php');
 
 global $pdo;
 
 
 $manager = new VenteManager($pdo);
 $managerCa = new CaisseManager($pdo);
-$managerMa = new MaladeManager($pdo);
-$managerUs = new UserManager($pdo);
-$managerEm = new EmployeManager($pdo);
-$managerPr = new PrescripteurManager($pdo);
 
 $idc=$_POST['idc'];
 $idp=$_POST['idp'];
@@ -33,7 +25,9 @@ if (isset($_POST['id'])){
 
 }
 else{
-        $idGen = genererID();
+    //print_r($managerCa->existsetat());
+    //echo $managerCa->existsetat();
+    $idGen = genererID();
         $num = $manager->countMois();
         if($etat == "Crédit"){
             $caisse = null;
@@ -42,8 +36,10 @@ else{
                 $caisse = $managerCa->get()->id();
             }
         }
-        //echo $idGen;
-    if($managerCa->existsetat()){
+        //echo $managerCa->existsetat();
+    print_r($managerCa->get());
+
+    if($managerCa->exists()){
 
         $vent = new Vente(array(
             'id' => $idGen,
@@ -64,10 +60,12 @@ else{
         $manager->add($vent);
         $donnees = array('erreur' =>'ok', 'id' => $idGen);
         echo json_encode($donnees);
+        echo 'passe';
     }
     else{
         $donnees = array('erreur' =>'Pas de caisse ouverte !!!');
-        echo json_encode($donnees);
+        //echo json_encode($donnees);
+        echo 'depasse';
     }
 
 
