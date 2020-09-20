@@ -110,7 +110,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <td><?php echo $v->prixVente; ?></td>
                                     <td><?php echo $v->quantite; ?></td>
                                     <td><?php echo $v->quantiteRestante; ?></td>
-                                    <td><?php echo $v->reduction; ?></td>
+                                    <td><?php echo $v->reduction; ?></td> 
                                     <td>
                                         <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row_entree(<?php echo $v->ide; ?>)"><span class="fa fa-info"></span></button>
                                         <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->ide; ?>)"><span class="fa fa-pencil"></span></button>

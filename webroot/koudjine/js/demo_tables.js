@@ -700,30 +700,39 @@ function categorie_row_question(id) {
 function info_row(row) {
 
     //var lien = $(this).attr('id');
-    alert('test');
+    //alert('test');
 
     $.ajax({
         type: "POST",
-        url: '/Site/koudjine/inc/info_universite.php',
+        url: '/pharmacietest/koudjine/inc/info_produit.php',
         data: {
             id: row
         },
         dataType: 'json',
         success: function (data) {
-            ////alert(data);
-            //$("#iconPreview .icon-preview").html(icon_preview);
             alert(data);
-            $('#iconPreview .nom').html(data.nom);
-            $("#iconPreview .ville").html(data.ville);
-            $("#iconPreview .region").html(data.region);
-            $("#iconPreview .statut").html(data.statut);
-            $("#iconPreview .type").html(data.type);
-            $("#iconPreview .responsable").html(data.responsable);
-            $("#iconPreview .bp").html(data.bp);
-            $("#iconPreview .email").html(data.email);
-            $("#iconPreview .phone").html(data.phone);
-            $("#iconPreview .site").html(data.site);
-            $("#iconPreview .certif").html(data.certif);
+            //$("#iconPreview .icon-preview").html(icon_preview);
+            //alert(data);
+            $('#iconPreview .ean13p').html(data.ean13A);
+            $('#iconPreview .referencep').html(data.referenceA);
+            $('#iconPreview .nomp').html(data.nomA);
+            $('#iconPreview .codelaborexp').html(data.codelaborexA);
+            $('#iconPreview .codeubiformp').html(data.codeubiformA);
+            $('#iconPreview .stockp').html(data.stockA);
+            $('#iconPreview .stockmaxp').html(data.stockmaxA);
+            $('#iconPreview .stockminp').html(data.stockminA);
+            $('#iconPreview .reductionmaxp').html(data.reductionmaxA);
+            $('#iconPreview .contenudetailp').html(data.contenudetailA);
+            $("#iconPreview .categoriep").html(data.categorieA);
+            $("#iconPreview .rayonp").html(data.rayonA);
+            $("#iconPreview .etagerep").html(data.etagereA);
+            $("#iconPreview .magasinp").html(data.magasinA);
+            $("#iconPreview .formep").html(data.formeA);
+            $("#iconPreview .fabriquantp").html(data.fabriquantA);
+            $("#iconPreview .fournisseurp").html(data.fournisseurA);
+            $("#iconPreview .produitp").html(data.produitA);
+            $("#iconPreview .prixdetailp").html(data.prixdetailA);
+            $("#iconPreview .etatp").html(data.etatA);
         }
 
     })

@@ -89,12 +89,16 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-8 scroll">
+                    <div class="col-md-12 ">
                         <ul class="list-group border-bottom">
                             <h4>Informations Codebarre</h4>
                             <table class="table table-bordered">
-
                                 <tbody>
+                                    <tr>
+                                        <td style="padding: 0px;" colspan="2">
+                                            <h4 style="padding: 20px;background-color: #2d3945;color: white;margin-bottom: 0px;">Informations générales</h4>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td width="100">ean13:</td>
                                         <td class="ean13p"></td>
@@ -104,44 +108,46 @@
                                         <td class="referencep"></td>
                                     </tr>
                                     <tr>
+                                        <td width="100">Code Laborex:</td>
+                                        <td class="codelaborexp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Code Ubiform:</td>
+                                        <td class="codeubiformp"></td>
+                                    </tr>
+                                    <tr>
                                         <td width="100">Nom:</td>
                                         <td class="nomp"></td>
                                     </tr>
                                     <tr>
-                                        <td width="100">Contenance:</td>
-                                        <td class="contenancep"></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="100">Unité:</td>
-                                        <td class="unitep"></td>
+                                        <td style="padding: 0px;" colspan="2">
+                                            <h4 style="padding: 20px;background-color: #2d3945;color: white;margin-bottom: 0px;">Stock</h4>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td width="100">Quantité en stock:</td>
-                                        <td class="qtestockp"></td>
+                                        <td class="stockp"></td>
                                     </tr>
                                     <tr>
                                         <td width="100">Quantité max en stock:</td>
-                                        <td class="qtemaxstockp"></td>
+                                        <td class="stockmaxp"></td>
                                     </tr>
                                     <tr>
                                         <td width="100">Quantité min en stock:</td>
-                                        <td class="qteminstockp"></td>
+                                        <td class="stockminp"></td>
                                     </tr>
                                     <tr>
-                                        <td width="100">Date de péremption:</td>
-                                        <td class="datepremptionp"></td>
+                                        <td width="100">Réduction Max Appliquable:</td>
+                                        <td class="reductionmaxp"></td>
                                     </tr>
                                     <tr>
-                                        <td width="100">Date de commande:</td>
-                                        <td class="datecmdp"></td>
+                                        <td width="100">Contenu detail:</td>
+                                        <td class="contenudetailp"></td>
                                     </tr>
                                     <tr>
-                                        <td width="100">Prix public:</td>
-                                        <td class="prixpublicp"></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="100">Prix achat:</td>
-                                        <td class="prixachatp"></td>
+                                        <td style="padding: 0px;" colspan="2">
+                                            <h4 style="padding: 20px;background-color: #2d3945;color: white;margin-bottom: 0px;">Géo</h4>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td width="100">Catégorie:</td>
@@ -150,6 +156,10 @@
                                     <tr>
                                         <td width="100">Rayon:</td>
                                         <td class="rayonp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Etagère:</td>
+                                        <td class="etagerep"></td>
                                     </tr>
                                     <tr>
                                         <td width="100">Magasin:</td>
@@ -167,10 +177,26 @@
                                         <td width="100">Fournisseur:</td>
                                         <td class="fournisseurp"></td>
                                     </tr>
-                                    
+                                    <tr>
+                                        <td style="padding: 0px;" colspan="2">
+                                            <h4 style="padding: 20px;background-color: #2d3945;color: white;margin-bottom: 0px;">Détail produit</h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Produit:</td>
+                                        <td class="produitp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Prix detail:</td>
+                                        <td class="prixdetailp"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100">Etat:</td>
+                                        <td class="etatp"></td>
+                                    </tr>
                                 </tbody>
                             </table>
-                           
+
                         </ul>
 
                     </div>
