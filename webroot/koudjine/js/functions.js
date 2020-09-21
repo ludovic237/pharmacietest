@@ -357,6 +357,10 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                                 $(".option_nouveauClient").val(prixReduit);
                                 ////alert($(".option_nouveauClient").val());
                             }*/
+                        }else if(data.find == 'non'){
+                            load_produit(data.id);
+                            $('#recherche').val("");
+                            $("#tab_Grecherche").hide();
                         }
                         else {
                             $('#message-box-danger p').html(data.erreur);
@@ -854,10 +858,10 @@ function valider_vente(type, etat) {
                 prixr: prixr,
                 etat: etat
             },
-            //dataType: 'json',
+            dataType: 'json',
             success: function (data) {
                 //alert(server_responce);
-                alert(data);
+                //alert(data);
                 if (data.erreur == 'ok') {
                     var idv = data.id;
                     ////alert(idv);
@@ -950,7 +954,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
         $('#iconPreviewFacture').modal("show");
     }
     //alert(reduction);
-    /*var montantPercu = null;
+    var montantPercu = null;
     if($('#'+onglet+' .montant').val() != ''){
         ////alert(caisse_id);
         montantPercu = parseInt($('#'+onglet+' .montant').val());
@@ -1011,11 +1015,11 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                             $('#tab_vente_caisse').empty();
                             //var link = '/pharmacietest/users/logout';
                             //window.location.href = link;
-                            /!*if(data1.erreur == 'ok'){
+                            /*if(data1.erreur == 'ok'){
                                 var link = '/pharmacietest/users/logout';
                                 ////alert(link);
                                 window.location.href = link;
-                            }*!/
+                            }*/
                         }
                     })
 
@@ -1026,7 +1030,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
 
 
         })
-    }*/
+    }
 
 
 }
@@ -2541,5 +2545,26 @@ function fileBrowser(field_name, url, type, win) {
         input: field_name
     });
     return false;
+}
+function change_input(option, id) {
+    if(option == 'plus'){
+        if($("#"+id).val() == '' || $("#"+id).val() == null)
+            $("#"+id).val(1);
+        else
+            $("#"+id).val(parseInt($("#"+id).val())+1);
+    }
+    else {
+        if(parseInt($("#"+id).val()) != 0)
+            $("#"+id).val(parseInt($("#"+id).val())-1);
+    }
+    var prixTotal = 0, qte, prix;
+    $("#tab_produit_commande tr").each(function (j) {
+
+        var id = $(this).attr("id");
+        if(parseInt($("#inputQteRecu"+id).val()) != 0){
+            prixTotal = prixTotal + (parseInt($("#inputQteRecu"+id).val())*parseInt($("#prixCmd"+id).val()))
+        }
+        $('#facture_commande').html(prixTotal);
+    })
 }
 

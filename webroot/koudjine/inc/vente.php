@@ -25,9 +25,13 @@ if (isset($_POST['id'])){
 
 }
 else{
+<<<<<<< HEAD
     ///echo (''+$managerCa->get());
     //print_r($managerCa->existsetat());
     //echo $managerCa->existsetat();
+=======
+
+>>>>>>> 750c3bfcf42a35b9012340f832e6186a27f65563
     $idGen = genererID();
         $num = $manager->countMois();
         if($etat == "Crédit"){
@@ -37,8 +41,12 @@ else{
                 $caisse = $managerCa->get()->id();
             }
         }
+<<<<<<< HEAD
         //echo $managerCa->existsetat();
    // echo (''+$managerCa->get());
+=======
+
+>>>>>>> 750c3bfcf42a35b9012340f832e6186a27f65563
 
     if($managerCa->exists()){
         echo "yo";
@@ -60,13 +68,18 @@ else{
         ));
         $manager->add($vent);
         $donnees = array('erreur' =>'ok', 'id' => $idGen);
+<<<<<<< HEAD
         //echo json_encode($donnees);
        // echo 'passe';
+=======
+        echo json_encode($donnees);
+        //echo 'passe';
+>>>>>>> 750c3bfcf42a35b9012340f832e6186a27f65563
     }
     else{
         $donnees = array('erreur' =>'Pas de caisse ouverte !!!');
-        //echo json_encode($donnees);
-        echo 'depasse';
+        echo json_encode($donnees);
+        //echo 'depasse';
     }
 
 
