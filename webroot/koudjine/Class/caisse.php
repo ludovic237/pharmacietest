@@ -204,7 +204,7 @@ class CaisseManager
     public function exists()
     {
 
-        $q = $this->_db->prepare('SELECT * FROM caisse WHERE supprimer = 0 AND etat = "Ouvert"');
+        $q = $this->_db->query('SELECT * FROM caisse WHERE supprimer = 0 AND etat = "Ouvert"');
         return (bool) $q->fetchColumn();
 
 
