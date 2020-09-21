@@ -95,7 +95,7 @@ function enregistrer_commande_programme() {
                 + '<td class="date">' + date + '</td>'
                 + '<td>'
                 + '<button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row_commande(' + codebarre + ')" ><span class="fa fa-times"></span></button>'
-                + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + id + ');" >Imprimer Ticket</span></button>'
+                + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + codebarre + ');" >Imprimer Ticket</span></button>'
                 + '</td>'
                 + '</tr>';
             $('#tab_commande_programme').prepend(cat);

@@ -40,7 +40,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                         <div class="panel-body panel-body-table">
 
-                            <div class="">
+                            <div class="table-responsive">
                                 <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
                                     <thead>
                                         <tr>
@@ -291,7 +291,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
 </div>
 <!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreviewVente" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width: 85%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -305,23 +305,26 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                             <div class="panel-body panel-body-table">
 
                                 <div class="panel-body">
-                                    <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-actions">
-                                        <thead>
-                                            <tr>
-                                                <th width="200">Nom</th>
-                                                <th width="100">Prix Unitaire</th>
-                                                <th width="50px">Quantité</th>
-                                                <th width="100">Quantité en Stock</th>
-                                                <th width="100">Stock générale</th>
-                                                <th width="100">Reduction</th>
-                                                <th width="200">Date de Livraison</th>
-                                                <th width="100">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tab_Bload_produit">
+                                    <div class="table-responsive">
+                                        <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-actions">
+                                            <thead>
+                                                <tr>
+                                                    <th width="200">Nom</th>
+                                                    <th width="100">Prix Unitaire</th>
+                                                    <th width="50">Quantité</th>
+                                                    <th width="100">Quantité en Stock</th>
+                                                    <th width="100">Stock générale</th>
+                                                    <th width="100">Reduction</th>
+                                                    <th width="200">Date de Livraison</th>
+                                                    <th width="100">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tab_Bload_produit">
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -333,6 +336,62 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" onclick="ajouter_produit();">Valider</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewFormVenteDetail" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Nom</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Quantité:</label>
+                            <div class="col-md-9">
+                                <input type="text" disabled="true" class="form-control" value="" id="nom_cmdprogramme" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
+                            <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un fournisseur
+                                :</label>
+                            <div style="display: flex;flex:1;margin-right: 30px;">
+                                <select class="selectpicker form-control input-xlarge" name="fabproduit" id="fournisseur_commande">
+                                    <option value="0">Sélectionner Fournisseur</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <table id="" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-actions">
+                            <thead>
+                                <tr>
+                                    <th width="100">Nom</th>
+                                    <th width="100">Quantité</th>
+                                    <th width="100">Quantité en Stock</th>
+                                    <th width="100">Date de Livraison</th>
+                                </tr>
+                            </thead>
+                            <tbody id="">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="id_xr" class="btn btn-success" data="" type="submit" onclick="enregistrer_commande_programme()">Valider</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

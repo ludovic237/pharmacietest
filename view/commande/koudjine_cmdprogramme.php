@@ -5,7 +5,7 @@ $title_for_layout = ' Admin -' . 'Commande';
 
 //$position = $this->request->action;
 
-$position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Commande programmée</li>';
+$position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Commande express</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -18,7 +18,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     <div class="col-md-12">
         <div class="panel-body" style="margin-bottom: 20px;background-color: #fff;
         border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 0 1px 1px rgba(0,0,0,.05);">
-            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
+            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:10px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un fournisseur
                     :</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
@@ -34,6 +34,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                 </div>
 
+            </div>
+            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:10px">
+                <label class="control-label" style="margin-right: 30px;width: 150px;">Numéro bon de livraison:</label>
+                <div style="display: flex;flex:1;margin-right: 30px;">
+                    <input type="text" class="form-control col-md-4" name="numero_bon_livraison" id="numero_bon_livraison" value="" placeholder="">
+                </div>
+                <div style="width: 150px;">
+                </div>
             </div>
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Ajouter un médicament:</label>
@@ -215,8 +223,10 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                             <td><?php echo $v->nomf; ?></td>
                                             <td><?php echo $v->dateLivraison; ?></td>
                                             <td><?php echo $v->stock; ?></td>
-                                            <td>
-                                                <div class='input-group' style='display:-webkit-inline-box;'>
+                                            <td class=''>
+                                                <p>
+                                                </p>
+                                                <div class='input-group' style='width: 100px;'>
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','inputPrix<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
@@ -229,9 +239,13 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                                         </button>
                                                     </span>
                                                 </div>
+                                                <p></p>
+
                                             </td>
-                                            <td>
-                                                <div class='input-group' style='display:-webkit-inline-box;'>
+                                            <td class=''>
+                                                <p>
+                                                </p>
+                                                <div class='input-group' style='width: 100px;'>
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
@@ -244,6 +258,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                                         </button>
                                                     </span>
                                                 </div>
+                                                <p></p>
+
                                             </td>
                                             <td>
                                                 <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" id="btn-ajouter<?php echo $v->idp; ?>" onclick="ajouter_commande(<?php echo $v->idp; ?>)">Ajouter à la
@@ -637,7 +653,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                 </div>
                                 <div style="display: flex;">
                                     <div style="border: 1px solid black;height: 6mm;justify-content: center;align-items: center;display: flex;width: 30mm;padding-right: 2px;">
-                                    <div style="display: contents;" class="codebarre"></div>
+                                        <div style="display: contents;" class="codebarre"></div>
                                     </div>
                                 </div>
                                 <div style="display: flex;">
