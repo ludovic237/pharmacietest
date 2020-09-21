@@ -36,10 +36,6 @@ if (isset($_POST['id'])||isset($_GET['id'])){
                                                 ".$v->prixVente()."
                                             </td>
                                             <td class=''>
-<<<<<<< HEAD
-                                                <input class='qte' style=\"width: 50px;\" id=\"qte_vente\" type=\"number\" value='0'>
-                                            </td>
-=======
                                                 <p></p>
                                                 <div class='input-group'>
                                                     <span class='input-group-btn'>
@@ -63,7 +59,6 @@ if (isset($_POST['id'])||isset($_GET['id'])){
                                                 <p></p>
 
                                     </td>
->>>>>>> 750c3bfcf42a35b9012340f832e6186a27f65563
                                             <td class='qterest'>
                                                 ".$v->quantiteRestante()."
                                             </td>
