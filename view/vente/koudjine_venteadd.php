@@ -310,7 +310,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                             <tr>
                                                 <th width="200">Nom</th>
                                                 <th width="100">Prix Unitaire</th>
-                                                <th width="50">Quantité</th>
+                                                <th width="50px">Quantité</th>
                                                 <th width="100">Quantité en Stock</th>
                                                 <th width="100">Stock générale</th>
                                                 <th width="100">Reduction</th>

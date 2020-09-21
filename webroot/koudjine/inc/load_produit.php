@@ -58,7 +58,7 @@ if (isset($_POST['id'])||isset($_GET['id'])){
                                                 </div>
                                                 <p></p>
 
-                                    </td>
+                                            </td>
                                             <td class='qterest'>
                                                 ".$v->quantiteRestante()."
                                             </td>

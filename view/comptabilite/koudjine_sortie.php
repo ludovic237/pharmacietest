@@ -24,8 +24,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->contenuDetail . '"'; ?> class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-12 control-label" >
+                        <div class="row">
+                            <div class="col-md-12 control-label">
                                 <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
                                     <thead>
                                         <tr>
@@ -75,7 +75,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <div class="col-md-9">
                                             <select class="form-control question selectpicker" name="question" id="choix">
                                                 <option value="0">Perimée</option>
-                                                <?php if(isset($produits)) { ?><option value="1">Détail</option> <?php  } ?>
+                                                <?php if (isset($produits)) { ?><option value="1">Détail</option> <?php  } ?>
                                             </select>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="margin-top: 15px">
+                            <!-- <div class="row" style="margin-top: 15px">
                                 <div class="col-md-6 control-label">
 
                                 </div>
@@ -101,34 +101,56 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row" style="margin-top: 15px">
-                                <div class="col-md-6 control-label">
+                                <div class="col-md-6 control-label contenu">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label"> Parent :</label>
                                         <div class="col-md-9">
                                             <select class="form-control question selectpicker" name="question" id="parent">
                                                 <?php if (isset($produits))
                                                     foreach ($produits as $k => $v) : ?>
-                                                        <option
-                                                              value="<?php echo $v->id; ?>"><?php echo $v->nom; ?> &nbsp; <?php echo $v->contenuDetail; ?>
-                                                        </option>
-                                                    <?php
+                                                    <option value="<?php echo $v->id; ?>"><?php echo $v->nom; ?> &nbsp; <?php echo $v->contenuDetail; ?>
+                                                    </option>
+                                                <?php
                                                     endforeach;
                                                 ?>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 control-label">
+                                <div class="col-md-6 control-label contenu">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Autre:</label>
+                                        <label class="col-md-3 control-label">Contenu:</label>
                                         <div class="col-md-9">
-                                            <input class="form-control" type="text" value="" id="qte">
+                                            <input class="form-control" type="text" disabled value="<?php if (isset($entree)) echo $entree->contenuDetail; ?>" id="contenu">
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row" style="margin-top: 15px">
+                                <div class="col-md-12 control-label contenu">
+                                    <table class="table  table-bordered table-striped table-actions">
+                                        <thead>
+                                            <tr>
+                                                <th width="200">Nom</th>
+                                                <th width="100">Prix Unitaire</th>
+                                                <th width="100">Quantité</th>
+                                                <th width="100">Prix Total</th>
+                                                <th width="100">Reduction</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+
                             <!-- <div class="row" style="margin-top: 15px">
                                 <div class="col-md-12 control-label">
                                     <table class="table datatable table-bordered table-striped table-actions">

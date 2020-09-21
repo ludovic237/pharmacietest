@@ -33,7 +33,8 @@ if (isset($_GET["motclef1"])) {
                                                 " . $result->stock . "
                                             </td>
                                             <td class='prix'>
-                                                <div class='input-group' style='display:-webkit-inline-box;'>
+                                            <p></p>
+                                                <div class='input-group' >
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins'
                                                         onclick=\"change_input('moins','inputPrix". $result->idp."')\"
@@ -51,11 +52,13 @@ if (isset($_GET["motclef1"])) {
                                                     <span class='glyphicon glyphicon-plus'></span>
                                                 </button>
                                             </span>
+                                            
                                             </div>
+                                            <p></p>
                                             </td>
                                             <td>
-                                            <p>
-      </p><div class='input-group' style='display:-webkit-inline-box;'>
+                                            <p></p>
+                                            <div class='input-group' >
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins'
                                                         onclick=\"change_input('moins', 'input".$result->idp."')\"
