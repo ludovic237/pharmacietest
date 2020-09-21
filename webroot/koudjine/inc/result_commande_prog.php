@@ -18,7 +18,7 @@ if (isset($_GET["motclef1"])) {
     $count = $sth->rowCount();
 
     if ($count) {
-        while ($result = $sth->fetch(PDO::FETCH_OBJ)) {
+        while ($result = $sth->fetch(PDO::FETCH_OBJ)) {  
             echo "<tr id=\"R" . $result->idp . "\">
                                             <td class='nom'><strong>" . $result->nom . "</strong></td>
 

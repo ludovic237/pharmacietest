@@ -601,7 +601,6 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 });
 // Ajax
 // Fonctions PHARMACIE
-
 function load_produit(id) {
 
     var qte = parseInt($("#R" + id + " .qte").val());
@@ -786,7 +785,7 @@ function envoyer_en_caisse(vente_id, caisse_id) {
         }
 
 
-    })
+    }) 
 }
 
 function valider_vente(type, etat) {
@@ -843,7 +842,7 @@ function valider_vente(type, etat) {
 
 
         var prixr = parseInt($('#prixReduit').html());
-
+        alert("Tata");
         
         $.ajax({
             type: "POST",
@@ -861,7 +860,7 @@ function valider_vente(type, etat) {
             dataType: 'json',
             success: function (data) {
                 //alert(server_responce);
-                //alert(data);
+                alert(data);
                 if (data.erreur == 'ok') {
                     var idv = data.id;
                     ////alert(idv);

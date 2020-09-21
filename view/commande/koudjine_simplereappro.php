@@ -161,8 +161,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                     <span class='glyphicon glyphicon-plus'></span>
                                                 </button>
                                             </span>
-                                        </div> 
-                                        <p></p> 
+                                        </div>
+                                        <p></p>
                                     </td>
                                     <td>
                                         <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" id="btn-ajouter<?php echo $v->idp; ?>" onclick="ajouter_commande(<?php echo $v->idp; ?>)">Ajouter à la commande

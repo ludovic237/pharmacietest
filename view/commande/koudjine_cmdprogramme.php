@@ -8,6 +8,9 @@ $title_for_layout = ' Admin -' . 'Commande';
 $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Commande programmée</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/cmdprogramme.js"></script>';
 ?>
 <div class="row">
@@ -22,7 +25,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <option value="0">Sélectionner Fournisseur</option>
                         <?php
                         foreach ($fournisseur as $k => $v) : ?>
-                            <option <?php if (isset($fournisseur_id)) if ($v->id == $fournisseur_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>"><?php echo $v->nom; ?></option>
+                            <option <?php if (isset($fournisseur_id)) if ($v->id == $fournisseur_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" data="<?php echo $v->code; ?>"><?php echo $v->nom; ?></option>
                         <?php
                         endforeach;
                         ?>
@@ -49,10 +52,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="">
                                 <table id="tab_GCrecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
                                     <thead>
-                                    <tr>
-                                        <th width="200">Nom</th>
-                                        <th width="100">Action</th>
-                                    </tr>
+                                        <tr>
+                                            <th width="900">Nom</th>
+                                            <th width="100">Action</th>
+                                        </tr>
                                     </thead>
                                     <tbody id="tab_BCrecherche">
 
@@ -80,19 +83,20 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                 <div class="panel-body">
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
-                        <h6 style="color: #fff;">Tableau de commande</h6>
+                        <h6 style="color: #fff;margin-bottom: 0px;">Tableau de commande</h6>
                     </div>
                     <table class="table table-bordered table-striped table-actions">
                         <thead>
-                        <tr>
-                            <th width="200">Désignation</th>
-                            <th width="100">Prix Unitaire</th>
-                            <th width="100">Quantité</th>
-                            <th width="100">Prix Total</th>
-                            <th width="100">Action</th>
-                        </tr>
+                            <tr>
+                                <th width="200">Nom</th>
+                                <th width="100">Quantité</th>
+                                <th width="100">Prix Achat</th>
+                                <th width="100">Prix Public</th>
+                                <th width="100">Date de perremption</th>
+                                <th width="100">Action</th>
+                            </tr>
                         </thead>
-                        <tbody id="tab_commande">
+                        <tbody id="tab_commande_programme">
 
                         </tbody>
                     </table>
@@ -151,15 +155,15 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                         <div class="">
                             <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-striped table-actions">
                                 <thead>
-                                <tr>
-                                    <th width="200">Nom</th>
-                                    <th width="100">Fournisseur</th>
-                                    <th>Date de Livraison</th>
-                                    <th>Stock total</th>
-                                    <th width="100">Prix Achat</th>
-                                    <th width="100">Quantité</th>
-                                    <th width="100">Action</th>
-                                </tr>
+                                    <tr>
+                                        <th width="200">Nom</th>
+                                        <th width="100">Fournisseur</th>
+                                        <th>Date de Livraison</th>
+                                        <th>Stock total</th>
+                                        <th width="100">Prix Achat</th>
+                                        <th width="100">Quantité</th>
+                                        <th width="100">Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody id="tab_FCommande">
 
@@ -193,62 +197,62 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                         <div class="">
                             <table style="display: block;overflow: auto;" class="table table-bordered table-striped table-actions">
                                 <thead>
-                                <tr>
-                                    <th width="200">Nom</th>
-                                    <th width="100">Fournisseur</th>
-                                    <th>Date de Livraison</th>
-                                    <th>Stock total</th>
-                                    <th width="100">Prix Achat</th>
-                                    <th width="100">Quantité</th>
-                                    <th width="100">Action</th>
-                                </tr>
+                                    <tr>
+                                        <th width="200">Nom</th>
+                                        <th width="100">Fournisseur</th>
+                                        <th>Date de Livraison</th>
+                                        <th>Stock total</th>
+                                        <th width="100">Prix Achat</th>
+                                        <th width="100">Quantité</th>
+                                        <th width="100">Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody id="tab_FCommande">
-                                <?php if (isset($fournisseurs)) foreach ($fournisseurs as $k => $v) : ?>
-                                    <tr id="<?php echo $v->idp; ?>">
-                                        <td><strong><?php echo $v->nom; ?></strong></td>
-                                        <td><?php echo $v->nomf; ?></td>
-                                        <td><?php echo $v->dateLivraison; ?></td>
-                                        <td><?php echo $v->stock; ?></td>
-                                        <td>
-                                            <div class='input-group' style='display:-webkit-inline-box;'>
+                                    <?php if (isset($fournisseurs)) foreach ($fournisseurs as $k => $v) : ?>
+                                        <tr id="<?php echo $v->idp; ?>">
+                                            <td><strong><?php echo $v->nom; ?></strong></td>
+                                            <td><?php echo $v->nomf; ?></td>
+                                            <td><?php echo $v->dateLivraison; ?></td>
+                                            <td><?php echo $v->stock; ?></td>
+                                            <td>
+                                                <div class='input-group' style='display:-webkit-inline-box;'>
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','inputPrix<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
                                                         </button>
                                                     </span>
-                                                <input type='text' name='quant[1]' class='form-control input-number' id="inputPrix<?php echo $v->idp; ?>" value='<?php echo trim($v->prixAchat); ?>' style='width: 80px;'>
-                                                <span class='input-group-btn'>
+                                                    <input type='text' name='quant[1]' class='form-control input-number' id="inputPrix<?php echo $v->idp; ?>" value='<?php echo trim($v->prixAchat); ?>' style='width: 80px;'>
+                                                    <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number plus' onclick="change_input('plus','inputPrix<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-plus'></span>
                                                         </button>
                                                     </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class='input-group' style='display:-webkit-inline-box;'>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class='input-group' style='display:-webkit-inline-box;'>
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
                                                         </button>
                                                     </span>
-                                                <input type='text' name='quant[1]' class='form-control input-number' id="input<?php echo $v->idp; ?>" value='1' style='width: 40px;'>
-                                                <span class='input-group-btn'>
+                                                    <input type='text' name='quant[1]' class='form-control input-number' id="input<?php echo $v->idp; ?>" value='1' style='width: 40px;'>
+                                                    <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number plus' onclick="change_input('plus','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-plus'></span>
                                                         </button>
                                                     </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" id="btn-ajouter<?php echo $v->idp; ?>" onclick="ajouter_commande(<?php echo $v->idp; ?>)">Ajouter à la
-                                                commande
-                                            </button>
-                                            <button class="btn btn-info btn-rounded btn-sm btn-modifier" id="btn-modifier<?php echo $v->idp; ?>" data-placement="top" onclick="modifier_commande(<?php echo $v->idp; ?>)">Modifier
-                                            </button>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" id="btn-ajouter<?php echo $v->idp; ?>" onclick="ajouter_commande(<?php echo $v->idp; ?>)">Ajouter à la
+                                                    commande
+                                                </button>
+                                                <button class="btn btn-info btn-rounded btn-sm btn-modifier" id="btn-modifier<?php echo $v->idp; ?>" data-placement="top" onclick="modifier_commande(<?php echo $v->idp; ?>)">Modifier
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
 
@@ -364,37 +368,37 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                 <div>
                                     <table style="display: block;overflow: auto;" class="table table-bordered table-striped table-actions">
                                         <thead>
-                                        <tr>
-                                            <th width="50">N</th>
-                                            <th width="200">Date de delivrance</th>
-                                            <th width="200">Designation</th>
-                                            <th width="100">Quantite</th>
-                                            <th width="100">Prix Achat</th>
-                                            <th width="100">Prix Vente</th>
-                                            <th width="100">Prix Total Achat</th>
-                                        </tr>
+                                            <tr>
+                                                <th width="50">N</th>
+                                                <th width="200">Date de delivrance</th>
+                                                <th width="200">Designation</th>
+                                                <th width="100">Quantite</th>
+                                                <th width="100">Prix Achat</th>
+                                                <th width="100">Prix Vente</th>
+                                                <th width="100">Prix Total Achat</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
 
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
 
-                                            </td>
-                                            <td>
+                                                </td>
+                                                <td>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="6">total</td>
-                                            <td>
-                                                20000
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6">total</td>
+                                                <td>
+                                                    20000
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
 
@@ -482,37 +486,37 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                 <div>
                                     <table style="display: block;overflow: auto;" class="table table-bordered table-striped table-actions">
                                         <thead>
-                                        <tr>
-                                            <th width="50">N</th>
-                                            <th width="200">Designation</th>
-                                            <th width="100">Quantite commandé</th>
-                                            <th width="100">Quantite livré</th>
-                                            <th width="100">Prix Achat</th>
-                                            <th width="100">Prix Vente</th>
-                                            <th width="100">Prix Total Achat</th>
-                                        </tr>
+                                            <tr>
+                                                <th width="50">N</th>
+                                                <th width="200">Designation</th>
+                                                <th width="100">Quantite commandé</th>
+                                                <th width="100">Quantite livré</th>
+                                                <th width="100">Prix Achat</th>
+                                                <th width="100">Prix Vente</th>
+                                                <th width="100">Prix Total Achat</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
 
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
 
-                                            </td>
-                                            <td>
+                                                </td>
+                                                <td>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="6">total</td>
-                                            <td>
-                                                20000
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6">total</td>
+                                                <td>
+                                                    20000
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
 
@@ -537,6 +541,117 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                         </div>
                     </div>
 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+
+
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewForm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Nom:</label>
+                            <div class="col-md-9">
+                                <input type="text" disabled="true" class="form-control" value="" id="nom_cmdprogramme" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Quantité :</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" id="qte_cmdprogramme" value="" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Prix d'achat:</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" id="prixachat_cmdprogramme" value="" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Prix public:</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" value="" id="prixpublic_cmdprogramme" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Date de péremption:</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input style="padding-top: 0px;" class="form-control" id="date_cmdprogramme" placeholder="Date de péremption" type="date" required="">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="id_xr" class="btn btn-success" data="" type="submit" onclick="enregistrer_commande_programme()">Valider</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewPrintCmdProgramme" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="icon-preview">
+                            <div style="border: 1px solid black;width: 30mm;display:block;height: 15mm;flex-direction: column;" id="ticket">
+
+                                <div style="display: flex; ">
+                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
+                                        <p class="nom" style="width: 15mm; font-weight: bold; text-align: center; margin-bottom: 0px; font-size: 5.4px;"></p>
+                                    </div>
+                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
+                                        <p class="codefournisseur " style="width: 10mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 7px;"></p>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div style="border: 1px solid black;height: 6mm;justify-content: center;align-items: center;display: flex;width: 30mm;padding-right: 2px;">
+                                        <p class="codebarre " style="width: 10mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 4px;"></p>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div style="border: 1px solid black; height: 4mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
+                                        <p class="today" style="width: 15mm; font-weight: bold; text-align: center; margin-bottom: 0px; font-size: 5.4px;">07-01-2020</p>
+                                    </div>
+                                    <div style="border: 1px solid black; height: 4mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
+                                        <p class="datelivraisron" style="width: 15mm; font-weight: bold; text-align: center; margin-bottom: 0px; font-size: 5.4px;">01-04-2021</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onclick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
