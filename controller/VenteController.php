@@ -90,7 +90,7 @@ class VenteController extends Controller
                     $d['produits'][$i] = $this->Vente->find(array(
                         //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
                         'table' => 'concerner c, en_rayon e, produit p',
-                        'conditions' => array('c.vente_id' => $v->id, 'c.supprimer' => 0, 'C.en_rayon_id' => 'e.id', 'e.produit_id' => 'p.id')
+                        'conditions' => array('c.vente_id' => $v->id, 'c.supprimer' => 0, 'c.en_rayon_id' => 'e.id', 'e.produit_id' => 'p.id')
                     ));
                 if($v->user_id == null){
                     $d['user'][$i] = $v->nouveau_info;

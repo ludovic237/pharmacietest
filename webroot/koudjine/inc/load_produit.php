@@ -40,17 +40,17 @@ if (isset($_POST['id'])||isset($_GET['id'])){
                                                 <div class='input-group'>
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins'
-                                                                onclick=\"change_input('moins','inputPrix". $v->id()."')\"
+                                                                onclick=\"change_input('moins','inputQte". $v->id()."')\"
                                                                 style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
                                                         </button>
                                                     </span>
-                                                    <input type='text' name='quant[1]' class='form-control input-number'
-                                                    id=\"inputPrix".$v->id()."\"
-                                                    value='1' style='width: 80px;'>
+                                                    <input type='text' name='quant[1]' class='form-control input-number qte'
+                                                    id=\"inputQte".$v->id()."\"
+                                                    value='0' style='width: 80px;'>
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number plus'
-                                                                onclick=\"change_input('plus','inputPrix".$v->id()."')\"
+                                                                onclick=\"change_input('plus','inputQte".$v->id()."')\"
                                                                 style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-plus'></span>
                                                         </button>
