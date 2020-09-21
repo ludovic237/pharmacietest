@@ -30,7 +30,11 @@ if (isset($_POST['id'])||isset($_GET['id'])){
         $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
         $datel = $date->format('d-m-Y');
         if($v->reduction() > $produit->reductionMax()) $reduction = $produit->reductionMax(); else $reduction = $v->reduction();
-        echo "<tr id=\"R".$v->id()."\">
+        if($v->quantiteRestante() <= $produit->stockMin()) $action = 'style="background: #ff18008a;color: #fff"'; else $action = '';
+        if( $produit->grossiste_id() != '' ) $bouton = "<td>
+                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"gerer_detail('" . $v->id() . "')\"><span class=\"\">Augmenter quantité</span></button>
+                                            </td>" ; else $bouton = "<td></td>";
+        echo "<tr ".$action." id=\"R".$v->id()."\">
                                             <td ><strong class='nom'>".$produit->nom()."</strong></td>
                                             <td class='prix'>
                                                 ".$v->prixVente()."
@@ -71,6 +75,7 @@ if (isset($_POST['id'])||isset($_GET['id'])){
                                             <td class='datel'>
                                                 ".$datel."
                                             </td>
+                                            ".$bouton."
                                         </tr>";
     endforeach;
 

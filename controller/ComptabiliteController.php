@@ -304,6 +304,37 @@ class ComptabiliteController extends Controller
     function koudjine_sortie($id=null)
     {
         $this->loadModel('Comptabilite');
+        $d['sorties'] = $this->Comptabilite->find(array(
+            //'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
+            'table' => 'sortie_stock',
+            //'order' => 'dateLivraison-ASC',
+            'conditions' => "supprimer = 0 "
+        ));
+        if(!empty($d['sorties'])){
+            $i = 0;
+            foreach ($d['sorties'] as $k => $v):
+                $d['produit_rayon'][$i] = $this->Comptabilite->findFirst(array(
+                    //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                    'table' => 'produit p, en_rayon e',
+                    'conditions' => array('e.id' => $v->en_rayon_id, 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
+                ));
+                if($v->detail_id != '' && $v->detail_id != null){
+                    $d['produit_detail'][$i] = $this->Comptabilite->findFirst(array(
+                        //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                        'table' => 'produit p, en_rayon e',
+                        'conditions' => array('e.id' => $v->detail_id, 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
+                    ));
+                    $d['produit_detail'][$i] = $d['produit_detail'][$i]->nom;
+                    $d['operation'][$i] = 'Détail';
+                }else{
+                    $d['produit_detail'][$i] = $v->detail_id;
+                    $d['operation'][$i] = 'Périmé';
+                }
+
+                $i++;
+            endforeach;
+        }
+
         if(isset($id)){
             $d['entree'] = $this->Comptabilite->findFirst(array(
                 'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
@@ -326,9 +357,7 @@ class ComptabiliteController extends Controller
             }
 
         }
-        if(isset($id)){
-          $this->set($d);  
-        }
+          $this->set($d);
         
     }
 

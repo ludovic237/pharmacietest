@@ -864,7 +864,7 @@ function valider_vente(type, etat) {
                 //alert(data);
                 if (data.erreur == 'ok') {
                     var idv = data.id;
-                    ////alert(idv);
+                    //alert(idv);
 
                     $('#tab_vente  tr').each(function (i) {
                         var id1 = $(this).attr("id");
@@ -909,7 +909,7 @@ function valider_vente(type, etat) {
 
 
                         });
-                        ////alert(prix+'-'+qte+'-'+prixReduit);
+                        //alert(prix+'-'+qte+'-'+prixReduit);
                         $.ajax({
                             type: "POST",
                             url: "/pharmacietest/koudjine/inc/concerner_vente.php",

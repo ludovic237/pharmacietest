@@ -21,7 +21,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="form-group">
                             <label class="col-md-3 control-label">Entrée Produit:</label>
                             <div class="col-md-9">
-                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->contenuDetail . '"'; ?> class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
+                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->ide . '"'; ?>  class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
                             </div>
                         </div>
                         <div class="row">
@@ -84,7 +84,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Quantité:</label>
                                         <div class="col-md-9">
-                                            <input class="form-control" type="text" value="" id="qte">
+                                            <input class="form-control" type="text" value="" id="qte_sortie">
                                         </div>
                                     </div>
                                 </div>
@@ -108,9 +108,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <label class="col-md-3 control-label"> Parent :</label>
                                         <div class="col-md-9">
                                             <select class="form-control question selectpicker" name="question" id="parent">
+                                                <option value="0">Veuillez selectionner</option>
                                                 <?php if (isset($produits))
                                                     foreach ($produits as $k => $v) : ?>
-                                                    <option value="<?php echo $v->id; ?>"><?php echo $v->nom; ?> &nbsp; <?php echo $v->contenuDetail; ?>
+                                                    <option data="<?php echo $v->contenuDetail; ?>" value="<?php echo $v->id; ?>"><?php echo $v->nom; ?> &nbsp;&nbsp <?php echo '['.$v->contenuDetail.']'; ?>
                                                     </option>
                                                 <?php
                                                     endforeach;
@@ -123,7 +124,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Contenu:</label>
                                         <div class="col-md-9">
-                                            <input class="form-control" type="text" disabled value="<?php if (isset($entree)) echo $entree->contenuDetail; ?>" id="contenu">
+                                            <input class="form-control" type="text" disabled value="<?php if (isset($entree)) echo $produits[0]->contenuDetail; ?>" id="contenu">
                                         </div>
                                     </div>
                                 </div>
@@ -135,13 +136,12 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <thead>
                                             <tr>
                                                 <th width="200">Nom</th>
-                                                <th width="100">Prix Unitaire</th>
                                                 <th width="100">Quantité</th>
-                                                <th width="100">Prix Total</th>
-                                                <th width="100">Reduction</th>
+                                                <th width="100">Quantité en stock</th>
+                                                <th width="100">Date de Livraison</th>
                                             </tr>
                                         </thead>
-                                        <tbody >
+                                        <tbody id="tab_Bsortie" >
 
                                         </tbody>
                                     </table>
@@ -171,7 +171,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             </div> -->
                             <div class="btn-group pull-right" style="margin-top: 15px">
                                 <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
-                                <button class="btn btn-success" type="submit">Enregistrer</button>
+                                <button class="btn btn-success" onclick="valider_sortie()" type="submit">Enregistrer</button>
                             </div>
                         <?php } ?>
 
@@ -181,6 +181,37 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
             </div>
         </div>
+    </div>
+    <div class="row" style="margin-top: 15px">
+        <div class="col-md-12 control-label">
+            <table class="table  table-bordered table-striped table-actions">
+                <thead>
+                <tr>
+                    <th width="200">Nom</th>
+                    <th width="100">Quantité</th>
+                    <th width="100">Nom produit détail</th>
+                    <th width="100">Date Opération</th>
+                    <th width="100">Opération</th>
+                    <th width="100">Action</th>
+                </tr>
+                </thead>
+                <tbody id="tab_Lsortie" >
+                <?php $i = 0; if(isset($sorties) && !empty($sorties)) foreach ($sorties as $k => $v) : ?>
+                    <tr id="<?php echo $v->id; ?>">
+                        <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $v->idp; ?>"><?php echo $produit_rayon[$i]->nom.'['.$produit_rayon[$i]->dateLivraison.']'; ?></a></strong></td>
+                        <td><?php echo $v->quantite; ?></td>
+                        <td><strong><?php echo $produit_detail[$i]; ?></strong></td>
+                        <td><?php echo $v->dateSortie; ?></td>
+                        <td><?php echo $operation[$i]; ?></td>
+                        <td>
+                            <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->ide; ?>)"><span class="fa fa-pencil"></span></button>
+                        </td>
+                    </tr>
+                <?php $i++; endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
 </div>
