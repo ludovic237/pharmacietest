@@ -804,7 +804,7 @@ function imprimer(divName) {
     document.body.innerHTML = originalContents;
     return true;
 }
-function imprimer_bloc(titre, objet) {
+function imprimer_bloc(titre, objet) { 
     // Définition de la zone à imprimer
     var zone = document.getElementById(objet).innerHTML;
 

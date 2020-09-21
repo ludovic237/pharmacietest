@@ -15,7 +15,7 @@ $idemp=$_POST['idemp'];
 $nouveau=$_POST['nouveau'];
 $commentaire=$_POST['commentaire'];
 $prixt=$_POST['prixt'];
-$prixr=$_POST['prixr'];
+$prixr=$_POST['prixr']; 
 $etat=$_POST['etat'];
 
 
@@ -25,6 +25,12 @@ if (isset($_POST['id'])){
 
 }
 else{
+
+    ///echo (''+$managerCa->get());
+    //print_r($managerCa->existsetat());
+    //echo $managerCa->existsetat();
+
+
 
     $idGen = genererID();
         $num = $manager->countMois();
@@ -36,9 +42,8 @@ else{
             }
         }
 
-
     if($managerCa->exists()){
-
+        echo "yo";
         $vent = new Vente(array(
             'id' => $idGen,
             'user_id' => $idc,
@@ -57,6 +62,7 @@ else{
         ));
         $manager->add($vent);
         $donnees = array('erreur' =>'ok', 'id' => $idGen);
+
         echo json_encode($donnees);
         //echo 'passe';
     }

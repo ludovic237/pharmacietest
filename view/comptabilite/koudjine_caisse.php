@@ -760,7 +760,7 @@
                                         </div>
                                         <div style="display: flex;justify-content:space-between">
                                              <p style="margin: 0px; color: black;font-weight: 100;">23/02/2020 Caisse centrale en FCFA</p>
-                                             <p style="margin: 0px; color: black;font-weight: 100;"> 2000</p>
+                                             <p style="margin: 0px; color: black;font-weight: 100;"> 2000</p> 
                                         </div>
                                         <div style="display: flex;justify-content:space-between">
                                              <h4 style="margin: 0px; color: black;font-weight: bold;">Montant recu en FCFA</h4>

@@ -254,7 +254,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 </div>
 <div style="display: flex;justify-content: space-between;background-color: white;position: fixed;bottom: 40px;right: 10px;align-items: baseline;background-color: #fff;
 border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 1px 1px 1px rgba(10,0,0,.05);">
-    <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;width: 340px;">
+    <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;width: 250px;">
         <div style="display: flex;flex-direction: column;width: 100%;">
             <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
                 <p>Total</p>
@@ -310,7 +310,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                             <tr>
                                                 <th width="200">Nom</th>
                                                 <th width="100">Prix Unitaire</th>
-                                                <th width="50">Quantité</th>
+                                                <th width="50px">Quantité</th>
                                                 <th width="100">Quantité en Stock</th>
                                                 <th width="100">Stock générale</th>
                                                 <th width="100">Reduction</th>

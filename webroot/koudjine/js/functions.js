@@ -934,7 +934,7 @@ function valider_vente(type, etat) {
 
                     });
                 }else{
-                    alert(data.erreur);
+                    alert('3 - '+data.erreur);
                 }
 
             }
