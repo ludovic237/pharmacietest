@@ -88,11 +88,25 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
     function koudjine_cmdprogramme()
     {
         $this->loadModel('Commande');
+        $d['fournisseur'] = $this->Commande->find(array(
+            //'fields' => 'nom',
+            'table' => 'fournisseur',
+            'order' => 'nom-ASC',
+            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+        ));
+        $this->set($d);
     }
   
     function koudjine_cmdparticuliere()
     {
         $this->loadModel('Commande');
+        $d['fournisseur'] = $this->Commande->find(array(
+            //'fields' => 'nom',
+            'table' => 'fournisseur',
+            'order' => 'nom-ASC',
+            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+        ));
+        $this->set($d);
     }
 
     function koudjine_list($id = null)
