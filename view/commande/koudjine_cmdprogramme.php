@@ -128,9 +128,9 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
         </div>
 
         <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
-            <a onclick="valider_commande()" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant" class="btn btn-success" role="button" style="float: left; width: 40%;">Valider</a>
+            <a onclick="valider_commande(false)" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant" class="btn btn-success" role="button" style="float: left; width: 40%;">Valider</a>
             <!-- <a onclick="valider_vente('2', 'Crédit')" id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 40%;">Imprimer</a> -->
-            <a onclick="imprimer_commande()" class="btn btn-primary" role="button" style="float: left; width: 40%;">Imprimer</a>
+            <a onclick="valider_commande(true)" class="btn btn-primary" role="button" style="float: left; width: 40%;">Imprimer</a>
         </div>
 
     </div>

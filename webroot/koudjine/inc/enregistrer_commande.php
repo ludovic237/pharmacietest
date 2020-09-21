@@ -15,20 +15,38 @@ $montant=$_POST['montant'];
 $ref = genererreferenceCommande($manager->countMois());
 
 
-    $commande = new Commande(array(
-        'id' => $idGen,
-        'fournisseur_id' => $idf,
-        'dateLivraison' => null,
-        'note' => null,
-        'qtiteRecu' => null,
-        'montantRecu' => null,
-        'qtiteCmd' => $qte,
-        'ref' => $ref,
-        'montantCmd' => $montant
-    ));
-    $manager->add($commande);
-    $donnees = array('erreur' =>'ok', 'id' => $idGen, 'ref' => $ref);
-    echo json_encode($donnees);
+    if(!isset($_POST['datel'])){
+        $commande = new Commande(array(
+            'id' => $idGen,
+            'fournisseur_id' => $idf,
+            'dateLivraison' => null,
+            'note' => null,
+            'qtiteRecu' => null,
+            'montantRecu' => null,
+            'qtiteCmd' => $qte,
+            'ref' => $ref,
+            'montantCmd' => $montant
+        ));
+        $manager->add($commande);
+        $donnees = array('erreur' =>'ok', 'id' => $idGen, 'ref' => $ref);
+        echo json_encode($donnees);
+    }else{
+        $datel=$_POST['datel'];
+        $commande = new Commande(array(
+            'id' => $idGen,
+            'fournisseur_id' => $idf,
+            'dateLivraison' => $datel,
+            'note' => null,
+            'qtiteRecu' => $qte,
+            'montantRecu' => $montant,
+            'qtiteCmd' => $qte,
+            'ref' => $ref,
+            'montantCmd' => $montant
+        ));
+        $manager->add($commande);
+        $donnees = array('erreur' =>'ok', 'id' => $idGen, 'ref' => $ref);
+        echo json_encode($donnees);
+    }
 
 
 

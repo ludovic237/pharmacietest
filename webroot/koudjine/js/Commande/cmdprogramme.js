@@ -95,7 +95,7 @@ function enregistrer_commande_programme() {
                 + '<td class="date">' + date + '</td>'
                 + '<td>'
                 + '<button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row_commande(' + codebarre + ')" ><span class="fa fa-times"></span></button>'
-                + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + id + ');" >Imprimer Ticket</span></button>'
+                + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + codebarre + ');" >Imprimer Ticket</span></button>'
                 + '</td>'
                 + '</tr>';
             $('#tab_commande_programme').prepend(cat);
@@ -252,6 +252,125 @@ function delete_row_commande(id) {
 
     });
     $('#prixTotal').html(prixTotal);
+}
+function valider_commande(imprimer) {
+    var prixTotal, idc, ref;
+    var prix, qte, prixPublic, datep;
+    prixTotal = parseInt($('#prixTotal').html());
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2,'0');
+    var mm = String(today.getMonth()+1).padStart(2,'0');
+    var yyyy = today.getFullYear();
+    var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+    today = yyyy+"-"+mm+"-"+dd+"  "+time
+    $("#date").html(today);
+    if (prixTotal == 0) {
+        alert('Veuillez sélectionner des produits !!!');
+    } else if ($("#fournisseur_commande").val() == 0) {
+        alert('Veuillez sélectionner un fournisseur!!!');
+    } else {
+        $.ajax({
+            type: "POST",
+            url: "/pharmacietest/koudjine/inc/enregistrer_commande.php",
+            data: {
+                idf: parseInt($("#fournisseur_commande").val()),
+                montant: prixTotal,
+                datel: today,
+                qte: parseInt($("#prixTotal").attr("data"))
+            },
+            dataType: 'json',
+            success: function (data) {
+                //alert(data);
+                alert('tpasse');
+                alert(data.erreur);
+                if (data.erreur == 'ok') {
+                    idc = data.id;
+                    ref = data.ref;
+                    //alert(idc);
+                    $('#tab_commande_programme  tr').each(function (i) {
+                        var id1 = $(this).attr("id");
+                        var id2 = $("#" + id1 + " .nom").attr("data");
+                        alert(id2);
+
+                        ////alert(id1);
+
+
+                        $("#" + id1 + " td").each(function (j) {
+                            ////alert($(this).html());
+                            if (j == 1) { qte = parseInt($(this).html()); }
+                            if (j == 2) { prix = parseInt($(this).html()); }
+                            if (j == 3) { prixPublic = parseInt($(this).html()); }
+                            if (j == 4) { datep = $(this).html(); }
+
+
+                        });
+                        //alert(prix+'-'+qte+'-'+prixPublic);
+                        $.ajax({
+                            type: "POST",
+                            url: "/pharmacietest/koudjine/inc/produit_commande.php",
+                            data: {
+                                idc: idc,
+                                idp: id2,
+                                ide: id1,
+                                prixu: prix,
+                                prixp: prixPublic,
+                                datep: datep,
+                                qte: qte
+                            },
+                            success: function (server_responce) {
+                                alert(server_responce);
+                                alert(idc);
+                                $("#mb-confirmation").attr("data", idc);
+                                //alert($("#mb-confirmation").attr("data"));
+                                if(!imprimer){
+                                    $("#mb-confirmation").modal("show");
+                                }
+                                /*if(data1.erreur == 'ok'){
+                                    var link = '/pharmacietest/users/logout';
+                                    ////alert(link);
+                                    window.location.href = link;
+                                }*/
+                            }
+                        })
+
+                    });
+                    if(imprimer){
+                        //imprimer_com(idc, ref, $('#fournisseur_commande option:selected').text());
+                        $.ajax({
+                            type: "POST",
+                            url: '/pharmacietest/koudjine/inc/charger_list_commande.php',
+                            data: {
+                                id: idc
+                            },
+                            success: function (server_responce) {
+                                //alert(server_responce);
+                                //$("#iconPreview .icon-preview").html(icon_preview);
+
+                                $('#tab_Bcommande_com').empty();
+                                $('#tab_Bcommande_com').html(server_responce);
+                                //alert($('#total_com').attr("data"));
+                                $(".article_commande").html($('#total_com').attr("data1"));
+                                $(".produit_commande").html($('#total_com').attr("data"));
+
+                            }
+
+
+                        })
+
+                        $(".ref_commande").html(ref);
+                        $(".nomf_commande").html($('#fournisseur_commande option:selected').text());
+                        $("#iconPreviewBonCommande").modal("show");
+                    }else{
+
+                    }
+                }
+
+
+            }
+        })
+    }
+
+
 }
 
 
