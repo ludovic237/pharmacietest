@@ -1247,7 +1247,7 @@ function enregistrer_produit(option, id) {
     var forme = $('#formeproduit option:selected').val();
     var prod = $('#produits').val();
     console.log(prod);
-    alert(contenu);
+    //alert(contenu);
     if(contenu == '') contenu = null;
     var newprod = ""
     if (prod ==null || prod=="") {
@@ -1266,7 +1266,7 @@ function enregistrer_produit(option, id) {
 
     console.log(newprod);
     prod = newprod
-    alert(prod)
+    //alert(prod)
     /*$("#magproduit").change(function () {
         v = $('#magproduit option:selected').val();
       //  alert(v);

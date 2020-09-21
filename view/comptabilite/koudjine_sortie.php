@@ -30,7 +30,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <thead>
                                         <tr>
                                             <th style="width: 100%;">Nom</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tab_Brecherche">
@@ -76,7 +75,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <div class="col-md-9">
                                             <select class="form-control question selectpicker" name="question" id="choix">
                                                 <option value="0">Perimée</option>
-                                                <option value="1">Détail</option>
+                                                <?php if(isset($produits)) { ?><option value="1">Détail</option> <?php  } ?>
                                             </select>
                                         </div>
                                     </div>
@@ -109,8 +108,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <label class="col-md-3 control-label"> Parent :</label>
                                         <div class="col-md-9">
                                             <select class="form-control question selectpicker" name="question" id="parent">
-                                                <option value="0">P1</option>
-                                                <option value="1">P2</option>
+                                                <?php if (isset($produits))
+                                                    foreach ($produits as $k => $v) : ?>
+                                                        <option
+                                                              value="<?php echo $v->id; ?>"><?php echo $v->nom; ?> &nbsp; <?php echo $v->contenuDetail; ?>
+                                                        </option>
+                                                    <?php
+                                                    endforeach;
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
