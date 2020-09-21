@@ -35,8 +35,11 @@ $(document).ready(function () {
 
 function load_produit(id, nom, prixachat, prixvente) {
 
-    //$('#id_cmdprogramme').val(id);
+    $("#tab_BCrecherche").hide();
+    $("#tab_BCrecherche").empty();
+    $("#tab_GCrecherche").hide();
     $('#nom_cmdprogramme').val(nom);
+    $('#recherche_commande_prog').val('');
     $('#prixachat_cmdprogramme').val(prixachat);
     $('#prixpublic_cmdprogramme').val(prixvente);
     $('#id_xr').attr("data", id);
@@ -46,42 +49,86 @@ function load_produit(id, nom, prixachat, prixvente) {
 function enregistrer_commande_programme() {
 
 
-    var id = $('#id_xr').attr("data");
-    var nom = $('#nom_cmdprogramme').val();
-    var qte = $('#qte_cmdprogramme').val();
-    var prixachat = $('#prixachat_cmdprogramme').val();
-    var prixpublic = $('#prixpublic_cmdprogramme').val();
-    var date = $('#date_cmdprogramme').val();
-    //alert(id);
-    var data = {
-        nom: nom,
-        qte: qte,
-        prixachat: prixachat,
-        prixpublic: prixpublic,
-        date: date,
-    };
+    if($("#fournisseur_commande option:selected").val() == 0){
+        $('#message-box-danger p').html('Veuillez selectionner un fournisseur !!!');
+        $("#message-box-danger").modal("show");
+        setTimeout(function () {
+            $("#message-box-danger").modal("hide");
+        }, 6000);
+        $("#iconPreviewForm").modal("hide");
+    }else {
+        var id = $('#id_xr').attr("data");
+        var nom = $('#nom_cmdprogramme').val();
+        var qte = $('#qte_cmdprogramme').val();
+        var prixachat = $('#prixachat_cmdprogramme').val();
+        var prixpublic = $('#prixpublic_cmdprogramme').val();
+        var date = $('#date_cmdprogramme').val();
+        if(date == '' || qte == ''){
+            alert("Vérifier les champs Quantité et Date !!!");
+        }
+        else{
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
+            today = yyyy  + mm  + dd;
 
-    var cat = '<tr id=' + id + ' >'
-        + ' <td class="nom" ><strong>' + nom + '</strong></td>'
-        + '<td class="qte">' + qte + '</td>'
-        + '<td class="prixachat">' + prixachat + '</td>'
-        + '<td class="prixpublic">' + prixpublic + '</td>'
-        + '<td class="date">' + date + '</td>'
-        + '<td>'
-        + '<button class="btn btn-danger btn-rounded btn-sm" ><span class="fa fa-times"></span></button>'
-        + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + id + ');" ><span class="fa fa-times"></span></button>'
-        + '</td>'
-        + '</tr>';
+            var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
 
-    alert(JSON.stringify(data));
-    $('#tab_commande_programme').prepend(cat);
-    $("#iconPreviewForm").modal("hide");
+
+
+            var codebarre = id + "" + codefournisseur + "" + today;
+
+            var data = {
+                nom: nom,
+                qte: qte,
+                prixachat: prixachat,
+                prixpublic: prixpublic,
+                date: date,
+            };
+
+            var cat = '<tr id=' + codebarre + ' >'
+                + ' <td class="nom" data="' + id + '" ><strong>' + nom + '</strong></td>'
+                + '<td class="qte">' + qte + '</td>'
+                + '<td class="prixachat">' + prixachat + '</td>'
+                + '<td class="prixpublic">' + prixpublic + '</td>'
+                + '<td class="date">' + date + '</td>'
+                + '<td>'
+                + '<button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row_commande(' + codebarre + ')" ><span class="fa fa-times"></span></button>'
+                + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + id + ');" >Imprimer Ticket</span></button>'
+                + '</td>'
+                + '</tr>';
+            $('#tab_commande_programme').prepend(cat);
+            var total, prixTotal = 0, qteTotal = 0;
+            qte = 0;
+            $('#tab_commande_programme  tr').each(function (i) {
+                var id1 = $(this).attr("id");
+
+                $("#" + id1 + " td").each(function (j) {
+                    ////alert($(this).html());
+                    if (j == 1) { qte = parseInt($(this).html()); qteTotal = qteTotal + qte; }
+                    if (j == 2) { total = (qte * parseInt($(this).html())); prixTotal = prixTotal + total; }
+
+                });
+
+            });
+            $('#prixTotal').html(prixTotal);
+            $('#prixTotal').attr("data", qteTotal);
+
+            //alert(JSON.stringify(data));
+            $("#iconPreviewForm").modal("hide");
+            $('#qte_cmdprogramme').val('');
+            $('#date_cmdprogramme').val('');
+        }
+        //alert(id);
+
+
+    }
 
 }
 
 function showPrintCmdProgramme(id) {
 
-    prixTotal = parseInt($('#prixTotal').html());
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -186,6 +233,24 @@ function imprimer_recu(titre, objet) {
     //Fermeture du popup
     fen.window.close();
     return true;
+}
+function delete_row_commande(id) {
+    var total;
+    $("#" + id).remove();
+
+    var prixTotal = 0,qte;
+    $('#tab_commande_programme  tr').each(function (i) {
+        var id1 = $(this).attr("id");
+
+        $("#" + id1 + " td").each(function (j) {
+            ////alert($(this).html());
+            if (j == 1) { qte = parseInt($(this).html()); }
+            if (j == 2) { total = (qte * parseInt($(this).html())); prixTotal = prixTotal + total; }
+
+        });
+
+    });
+    $('#prixTotal').html(prixTotal);
 }
 
 
