@@ -87,15 +87,15 @@ function showPrintCmdProgramme(id) {
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
     today = dd + "-" + mm + "-" + yyyy;
-
+    var todayCode = dd + "" + mm + "" + yyyy;
     var nom = $("#" + id + " .nom").html();
     var datelivraisron = $("#" + id + " .date").html();
     var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
 
-    var date = $("#" + id + " .date").html();
-    date = date.replaceAll("-", "");
+    //var date = $("#" + id + " .date").html();
+    //date = date.replaceAll("-", "");
 
-    var codebarre = id + "" + codefournisseur + "" + date;
+    var codebarre = id + "" + codefournisseur + "" + todayCode;
 
     $('#iconPreviewPrintCmdProgramme .nom').html(nom);
     $("#iconPreviewPrintCmdProgramme .codefournisseur").html(codefournisseur);
@@ -104,6 +104,7 @@ function showPrintCmdProgramme(id) {
         "code128" // type (string)
 
     );
+    
     $("#iconPreviewPrintCmdProgramme .today").html(today);
     $("#iconPreviewPrintCmdProgramme .datelivraisron").html(datelivraisron);
 

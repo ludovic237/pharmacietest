@@ -7,6 +7,7 @@ $title_for_layout = ' Admin -' . 'Commande';
 
 $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Commande programmée</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
@@ -636,7 +637,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                 </div>
                                 <div style="display: flex;">
                                     <div style="border: 1px solid black;height: 6mm;justify-content: center;align-items: center;display: flex;width: 30mm;padding-right: 2px;">
-                                        <p class="codebarre " style="width: 10mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 4px;"></p>
+                                    <div style="display: contents;" class="codebarre"></div>
                                     </div>
                                 </div>
                                 <div style="display: flex;">
