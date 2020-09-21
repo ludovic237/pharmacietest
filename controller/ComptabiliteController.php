@@ -306,11 +306,25 @@ class ComptabiliteController extends Controller
         $this->loadModel('Comptabilite');
         if(isset($id)){
             $d['entree'] = $this->Comptabilite->findFirst(array(
-                'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
+                'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                 'table' => 'en_rayon,produit',
                 //'order' => 'dateLivraison-ASC',
                 'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.supprimer = 0 AND en_rayon.id = ".$id
             ));
+            if($d['entree']->grossiste_id != '' || $d['entree']->grossiste_id != null){
+                $grossistes = $d['entree']->grossiste_id;
+                $texto  = explode('-', $grossistes);
+                $i = 0;
+                foreach ($texto as $k => $v):
+                    $d['produits'][$i] = $this->Comptabilite->findFirst(array(
+                        //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                        'table' => 'produit',
+                        'conditions' => array('id' => $v, 'supprimer' => 0)
+                    ));
+                    $i++;
+                endforeach;
+            }
+
         }
         if(isset($id)){
           $this->set($d);  

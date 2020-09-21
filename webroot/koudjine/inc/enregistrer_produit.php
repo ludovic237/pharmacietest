@@ -32,7 +32,7 @@ if (isset($_POST['id'])){
     $fab=$_POST['fab'];
     $parrain=$_POST['parrain'];
     $mag=$_POST['mag'];
-    print_r($parrain);
+    //print_r($parrain);
     //echo $id;
     //$prod = new Departement();
     if ($manager->existsNom($nom)) {
