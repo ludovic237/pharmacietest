@@ -144,7 +144,7 @@
                 <a href="#"><span class="fa fa-truck"></span> <span class="xn-text">Commande</span></a>
                 <ul>
                     <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'simplereappro') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/commande/simplereappro'); ?>"><span class="fa lettre">S</span>Simple réappro</a></li>
-                    <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'cmdprogramme') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/commande/cmdprogramme'); ?>"><span class="fa lettre">C</span>Commande programmée</a></li>
+                    <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'cmdprogramme') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/commande/cmdprogramme'); ?>"><span class="fa lettre">C</span>Commande express</a></li>
                     <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'list') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/commande/list'); ?>"><span class="fa lettre">L</span>Liste de commande</a></li>
                     <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'cmdparticuliere') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/commande/cmdparticuliere'); ?>"><span class="fa lettre">C</span>Commande particulière</a></li>
                 </ul>

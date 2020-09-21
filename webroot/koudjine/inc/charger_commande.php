@@ -27,7 +27,8 @@ if (isset($_POST['id'])){
         echo "<tr id=\"".$v->produit_id()."\">
                                             <td ><strong class='nom' id='nom".$v->produit_id()."'>".$nom."</strong></td>
                                             <td class='qteCmd'>
-                                                <div class='input-group' style='display:-webkit-inline-box;'>
+                                            <p></p>
+                                                <div class='input-group' style='width: 100px;' >
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins'
                                                         onclick=\"change_input('moins','inputQte".$v->produit_id()."')\"
@@ -46,9 +47,11 @@ if (isset($_POST['id'])){
                                                 </button>
                                             </span>
                                     </div>
+                                    <p></p>
                                             </td>
                                             <td class='qteRecu'>
-                                                <div class='input-group' style='display:-webkit-inline-box;'>
+                                            <p></p>
+                                                <div class='input-group' style='width: 100px;' >
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins'
                                                         onclick=\"change_input('moins','inputQteRecu".$v->produit_id()."')\"
@@ -66,6 +69,7 @@ if (isset($_POST['id'])){
                                                 </button>
                                             </span>
                                     </div>
+                                    <p></p>
                                             </td>
                                             <td>
                                             <input type='text' name='' class='form-control input-number'

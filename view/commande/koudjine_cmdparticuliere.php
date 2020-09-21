@@ -29,7 +29,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     </select>
 
                 </div>
-               
+
             </div>
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Ajouter un médicament:</label>
@@ -71,7 +71,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>
@@ -214,8 +214,11 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                             <td><?php echo $v->nomf; ?></td>
                                             <td><?php echo $v->dateLivraison; ?></td>
                                             <td><?php echo $v->stock; ?></td>
-                                            <td>
-                                                <div class='input-group' style='display:-webkit-inline-box;'>
+                                            <td class=''>
+                                                <p>
+                                                </p>
+                                                <div class='input-group'>
+
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','inputPrix<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
@@ -228,9 +231,13 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                                         </button>
                                                     </span>
                                                 </div>
+                                                <p></p>
+
                                             </td>
-                                            <td>
-                                                <div class='input-group' style='display:-webkit-inline-box;'>
+                                            <td class=''>
+                                                <p>
+                                                </p>
+                                                <div class='input-group'>
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
@@ -243,6 +250,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                                         </button>
                                                     </span>
                                                 </div>
+                                                <p></p>
                                             </td>
                                             <td>
                                                 <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" id="btn-ajouter<?php echo $v->idp; ?>" onclick="ajouter_commande(<?php echo $v->idp; ?>)">Ajouter à la
