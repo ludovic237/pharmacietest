@@ -305,7 +305,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                             <div class="panel-body panel-body-table">
 
                                 <div class="panel-body">
-                                    <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-striped table-actions">
+                                    <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-actions">
                                         <thead>
                                             <tr>
                                                 <th width="200">Nom</th>
@@ -315,6 +315,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                                 <th width="100">Stock générale</th>
                                                 <th width="100">Reduction</th>
                                                 <th width="200">Date de Livraison</th>
+                                                <th width="100">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tab_Bload_produit">

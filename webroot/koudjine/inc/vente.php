@@ -43,7 +43,7 @@ else{
         }
 
     if($managerCa->exists()){
-        echo "yo";
+        //echo "yo";
         $vent = new Vente(array(
             'id' => $idGen,
             'user_id' => $idc,
