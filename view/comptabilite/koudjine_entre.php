@@ -144,7 +144,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                                 <table class="table" style="display: block;overflow: auto;border-collapse: collapse;border-spacing: 0px;border: 0;">
                                     <tbody>
-                                        <tr>
+                                        <tr> 
                                             <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
                                                 <p class="nomp fittext1" style="width: 30mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
