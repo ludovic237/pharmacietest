@@ -146,7 +146,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <tbody>
                                         <tr> 
                                             <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
-                                                <p class="nomp fittext1" style="width: 30mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                                <p class="nomp" style="width: 30mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
                                             <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
                                                 <p class="prixv " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
