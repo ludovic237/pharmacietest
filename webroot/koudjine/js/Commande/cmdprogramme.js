@@ -4,6 +4,12 @@ $(document).ready(function () {
     $("#tab_GCrecherche").hide();
     $(".btn-modifier").hide();
 
+    $('#iconPreviewForm').on('show.bs.modal', function () {
+        ////alert('passe');
+        $("#tab_BCrecherche").hide();
+        $("#tab_GCrecherche").hide();
+    })
+
     //Recherche rapide
     $("#recherche_commande_prog").keyup(function (event) {
         if (event.keyCode == 13) {
@@ -316,8 +322,8 @@ function valider_commande(imprimer) {
             dataType: 'json',
             success: function (data) {
                 //alert(data);
-                alert('tpasse');
-                alert(data.erreur);
+                //alert('tpasse');
+                //alert(data.erreur);
                 if (data.erreur == 'ok') {
                     idc = data.id;
                     ref = data.ref;
@@ -325,7 +331,7 @@ function valider_commande(imprimer) {
                     $('#tab_commande_programme  tr').each(function (i) {
                         var id1 = $(this).attr("id");
                         var id2 = $("#" + id1 + " .nom").attr("data");
-                        alert(id2);
+                        //alert(id2);
 
                         ////alert(id1);
 
@@ -353,7 +359,7 @@ function valider_commande(imprimer) {
                         h++;
                         total = total + (prix * qte);
                         nbre = nbre +  qte;
-                        alert(nbre);
+                        //alert(nbre);
                         //alert(prix+'-'+qte+'-'+prixPublic);
                         $.ajax({
                             type: "POST",
@@ -368,8 +374,8 @@ function valider_commande(imprimer) {
                                 qte: qte
                             },
                             success: function (server_responce) {
-                                alert(server_responce);
-                                alert(idc);
+                                //alert(server_responce);
+                                //alert(idc);
                                 $("#mb-confirmation").attr("data", idc);
                                 //alert($("#mb-confirmation").attr("data"));
                                 if(!imprimer){

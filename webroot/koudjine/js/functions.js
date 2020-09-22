@@ -9,6 +9,16 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     $(".clientExistant").hide();
     $(".prescripteurExistant").hide();
 
+    $('#tab_Bload_produit').on('show.bs.modal', function () {
+        ////alert('passe');
+        $("#tab_BCrecherche").hide();
+        $("#tab_GCrecherche").hide();
+    });
+    $('#tab_Bload_produit').on('hidden.bs.modal', function () {
+        //alert('passe');
+        $("#recherche").focus();
+    });
+
     $('#tab1 .montant').keyup(function (e) {
         ////alert('passe');
         $('#tab1 .reste').val($('#tab1 .montant').val() - parseInt($('#facture_caisse').html()));
