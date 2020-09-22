@@ -26,7 +26,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;margin-bottom:0px">
                 <label class="col-md-2 col-xs-12 control-label" style="margin-right: 30px;width: 150px;">Selectionner un produit:</label>
                 <div class="col-md-8 col-xs-12 " style="display: flex;flex:1;margin-right: 30px;flex-direction:column">
-                    <input type="text" class="form-control col-md-4" data="<?php if(isset($produit)) echo $produit->id; ?>" name="nom" id="rechercheEntre" value="" placeholder="Médicaments">
+                    <input type="text" class="form-control col-md-4" data="<?php if (isset($produit)) echo $produit->id; ?>" name="nom" id="rechercheEntre" value="" placeholder="Médicaments">
                     <div>
 
                         <div class="panel-body panel-body-table">
@@ -110,7 +110,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <td><?php echo $v->prixVente; ?></td>
                                     <td><?php echo $v->quantite; ?></td>
                                     <td><?php echo $v->quantiteRestante; ?></td>
-                                    <td><?php echo $v->reduction; ?></td> 
+                                    <td><?php echo $v->reduction; ?></td>
                                     <td>
                                         <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row_entree(<?php echo $v->ide; ?>)"><span class="fa fa-info"></span></button>
                                         <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->ide; ?>)"><span class="fa fa-pencil"></span></button>
@@ -140,32 +140,61 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <div class="row">
                     <div class="col-md-4">
                         <div class="icon-preview">
-                            <div style="border: 1px solid black;width: 30mm;display:block;height: 15mm;flex-direction: column;" id="ticket">
+                            <div style="border: 1px solid black;width: 60mm;display:block;height: 30mm;flex-direction: column;" id="ticket">
 
-                                <div style="display: flex; ">
-                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
-                                        <p class="nomp fittext1" style="width: 15mm; font-weight: bold;text-align:center; margin-bottom:0px"></p>
+                                <table class="table" style="display: block;overflow: auto;border-collapse: collapse;border-spacing: 0px;border: 0;">
+                                    <tbody>
+                                        <tr>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                                <p class="nomp fittext1" style="width: 30mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                                <p class="prixv " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                                <p class="code " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="3">
+                                                <p  style="width: 50mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;display: contents;" id="demo"></p>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+                                                <p class="datel " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
+                                                <p class="datep " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- <div style="display: flex; ">
+                                    <div style="border: 1px solid black;height: 10mm;justify-content: center;align-items: center;display: flex;width: 30mm;">
+                                        <p class="nomp fittext1" style="width: 30mm; font-weight: bold;text-align:center; margin-bottom:0px"></p>
                                     </div>
-                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 10mm;">
+                                    <div style="border: 1px solid black;height: 10mm;justify-content: center;align-items: center;display: flex;width: 10mm;">
                                         <p class="prixv " style="width: 10mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
                                     </div>
-                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 5mm;">
-                                        <p class="code " style="width: 5mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
+                                    <div style="border: 1px solid black;height: 10mm;justify-content: center;align-items: center;display: flex;width: 10mm;">
+                                        <p class="code " style="width: 10mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
                                     </div>
                                 </div>
                                 <div style="display: flex;">
-                                    <div style="border: 1px solid black;height: 6mm;justify-content: center;align-items: center;display: flex;width: 30mm;padding-right: 2px;">
-                                        <div class="fittext1" style="display: contents;" id="demo"></div>
+                                    <div style="border: 1px solid black;height: 12mm;justify-content: center;align-items: center;display: flex;width: 30mm;padding-right: 2px;">
+                                        <div style="display: contents;" id="demo"></div>
                                     </div>
                                 </div>
                                 <div style="display: flex;">
-                                    <div style="border: 1px solid black; height: 4mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
-                                        <p class="datel fittext1" style="width: 15mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
+                                    <div style="border: 1px solid black; height: 8mm;justify-content: center;align-items: center;display: flex;width: 30mm;">
+                                        <p class="datel fittext1" style="width: 30mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
                                     </div>
-                                    <div style="border: 1px solid black; height: 4mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
-                                        <p class="datep fittext1" style="width: 15mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
+                                    <div style="border: 1px solid black; height: 8mm;justify-content: center;align-items: center;display: flex;width: 30mm;">
+                                        <p class="datep fittext1" style="width: 30mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
                             <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>

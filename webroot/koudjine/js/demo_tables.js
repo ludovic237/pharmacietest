@@ -786,8 +786,8 @@ function info_row_entree(row) {
 
     })
     ////alert(code);
-    $(".fittext1").fitText();
-    $("#demo").fitText();
+    //$(".fittext1").fitText();
+    //$("#demo").fitText();
 
 
     // var icon_preview = $("<i></i>").addClass(iClass);
