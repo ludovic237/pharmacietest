@@ -7,7 +7,39 @@ $(document).ready(function () {
     //Recherche rapide
     $("#recherche_commande_prog").keyup(function (event) {
         if (event.keyCode == 13) {
-
+            var recherche = $(this).val();
+            recherche = $.trim(recherche);
+            var data = 'motclef=' + recherche;
+            if (recherche.length > 1) {
+                ////alert('yes');
+                $.ajax({
+                    type: "POST",
+                    url: "/pharmacietest/koudjine/inc/result_commande_prog2.php",
+                    data: data,
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data.erreur == "non"){
+                            load_produit(data.id, data.nom, data.prixA, data.prixV, data.reduction);
+                            $('#recherche').val("");
+                            $("#tab_BCrecherche").empty();
+                            $("#tab_GCrecherche").hide();
+                        }
+                        else {
+                            $('#message-box-danger p').html(data.erreur);
+                            $("#message-box-danger").modal("show");
+                            setTimeout(function () {
+                                $("#message-box-danger").modal("hide");
+                            }, 3000);
+                            $('#recherche').val("");
+                            $("#tab_Grecherche").hide();
+                        }
+                        ////alert(server_responce);
+                    }
+                })
+            } else {
+                $("#tab_BCrecherche").empty();
+                $("#tab_GCrecherche").hide();
+            }
         } else {
             var recherche = $(this).val();
             recherche = $.trim(recherche);
@@ -33,12 +65,13 @@ $(document).ready(function () {
 
 });
 
-function load_produit(id, nom, prixachat, prixvente) {
+function load_produit(id, nom, prixachat, prixvente, reduction) {
 
     $("#tab_BCrecherche").hide();
     $("#tab_BCrecherche").empty();
     $("#tab_GCrecherche").hide();
     $('#nom_cmdprogramme').val(nom);
+    $('#reduction_max').val(reduction);
     $('#recherche_commande_prog').val('');
     $('#prixachat_cmdprogramme').val(prixachat);
     $('#prixpublic_cmdprogramme').val(prixvente);
