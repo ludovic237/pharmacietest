@@ -32,11 +32,12 @@ $ref = genererreferenceCommande($manager->countMois());
         echo json_encode($donnees);
     }else{
         $datel=$_POST['datel'];
+        $numLivraison=$_POST['numLivraison'];
         $commande = new Commande(array(
             'id' => $idGen,
             'fournisseur_id' => $idf,
             'dateLivraison' => $datel,
-            'note' => null,
+            'note' => $numLivraison,
             'qtiteRecu' => $qte,
             'montantRecu' => $montant,
             'qtiteCmd' => $qte,

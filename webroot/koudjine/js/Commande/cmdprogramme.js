@@ -49,8 +49,8 @@ function load_produit(id, nom, prixachat, prixvente) {
 function enregistrer_commande_programme() {
 
 
-    if($("#fournisseur_commande option:selected").val() == 0){
-        $('#message-box-danger p').html('Veuillez selectionner un fournisseur !!!');
+    if($("#fournisseur_commande option:selected").val() == 0 || $("#numero_bon_livraison").val() == ''){
+        $('#message-box-danger p').html("Veuillez selectionner un fournisseur et entrer le numero de Livraison !!!");
         $("#message-box-danger").modal("show");
         setTimeout(function () {
             $("#message-box-danger").modal("hide");
@@ -255,7 +255,8 @@ function delete_row_commande(id) {
 }
 function valider_commande(imprimer) {
     var prixTotal, idc, ref;
-    var prix, qte, prixPublic, datep;
+    var prix, qte, prixPublic, datep,nomP;
+    var h = 1, total = 0, nbre = 0;
     prixTotal = parseInt($('#prixTotal').html());
     var today = new Date();
     var dd = String(today.getDate()).padStart(2,'0');
@@ -274,6 +275,7 @@ function valider_commande(imprimer) {
             url: "/pharmacietest/koudjine/inc/enregistrer_commande.php",
             data: {
                 idf: parseInt($("#fournisseur_commande").val()),
+                numLivraison: $("#numero_bon_livraison").val(),
                 montant: prixTotal,
                 datel: today,
                 qte: parseInt($("#prixTotal").attr("data"))
@@ -297,6 +299,7 @@ function valider_commande(imprimer) {
 
                         $("#" + id1 + " td").each(function (j) {
                             ////alert($(this).html());
+                            if (j == 0) { nomP = $(this).html(); }
                             if (j == 1) { qte = parseInt($(this).html()); }
                             if (j == 2) { prix = parseInt($(this).html()); }
                             if (j == 3) { prixPublic = parseInt($(this).html()); }
@@ -304,6 +307,20 @@ function valider_commande(imprimer) {
 
 
                         });
+                        var cat = '<tr>'
+                            + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">'+h+'</td>'
+                            + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;font-size: 10px;">' +nomP + '</td>'
+                            + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + qte + '</td>'
+                            + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + qte + '</td>'
+                            + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + prix + '</td>'
+                            + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + prixPublic + '</td>'
+                            + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + (prix * qte) + '</td>'
+                            + '</tr>';
+                        $('#tab_Bcommande_Recu').append(cat);
+                        h++;
+                        total = total + (prix * qte);
+                        nbre = nbre +  qte;
+                        alert(nbre);
                         //alert(prix+'-'+qte+'-'+prixPublic);
                         $.ajax({
                             type: "POST",
@@ -336,30 +353,33 @@ function valider_commande(imprimer) {
                     });
                     if(imprimer){
                         //imprimer_com(idc, ref, $('#fournisseur_commande option:selected').text());
-                        $.ajax({
-                            type: "POST",
-                            url: '/pharmacietest/koudjine/inc/charger_list_commande.php',
-                            data: {
-                                id: idc
-                            },
-                            success: function (server_responce) {
-                                //alert(server_responce);
-                                //$("#iconPreview .icon-preview").html(icon_preview);
+                        var cat = '<tr>'
+                            + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="6">Total</td>'
+                            + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"><strong>' +total+ '</strong></td>'
+                            + '</tr>';
+                        $('#tab_Bcommande_Recu').append(cat);
+                        //$("#totalRecu").html(total);
+                        $("#article_commande").html(h-1);
+                        $("#produit_commande").html(nbre);
+                        var yo = ref;
+                        var one = yo.substr( 0, 9);
+                        var three = yo.substr(12, 3);
 
-                                $('#tab_Bcommande_com').empty();
-                                $('#tab_Bcommande_com').html(server_responce);
-                                //alert($('#total_com').attr("data"));
-                                $(".article_commande").html($('#total_com').attr("data1"));
-                                $(".produit_commande").html($('#total_com').attr("data"));
+                        var chaine = one +"REC"+ three;
 
-                            }
-
-
-                        })
-
-                        $(".ref_commande").html(ref);
-                        $(".nomf_commande").html($('#fournisseur_commande option:selected').text());
-                        $("#iconPreviewBonCommande").modal("show");
+                        var today = new Date();
+                        var dd = String(today.getDate()).padStart(2,'0');
+                        var mm = String(today.getMonth()+1).padStart(2,'0');
+                        var yyyy = today.getFullYear();
+                        var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+                        today = dd+"-"+mm+"-"+yyyy+"  "+time
+                        $("#date").html(today);
+                        $("#bordereau_livraison").html($("#numero_bon_livraison").val());
+                        $("#rec_commande").html(chaine);
+                        $("#ref_commande").html(ref);
+                        $("#nomf_commande").html($('#fournisseur_commande option:selected').text());
+                        $("#date_commande").html(today);
+                        $("#iconPreviewRecu").modal("show");
                     }else{
 
                     }
@@ -371,6 +391,57 @@ function valider_commande(imprimer) {
     }
 
 
+}
+function imprimer_commande() {
+
+    var i = 1, total = 0, nbre = 0;
+    $('#tab_Bcommande_Recu').empty();
+    $("#tab_produit_commande tr").each(function (j) {
+
+        var id = $(this).attr("id");
+
+            var cat = '<tr>'
+                + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">'+i+'</td>'
+                + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;font-size: 10px;"><strong>' +$("#nom"+id).html() + '</strong></td>'
+                + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + parseInt($("#inputQte"+id).val()) + '</td>'
+                + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + parseInt($("#inputQteRecu"+id).val()) + '</td>'
+                + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + parseInt($("#prixCmd"+id).val()) + '</td>'
+                + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + parseInt($("#prixVente"+id).val()) + '</td>'
+                + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + (parseInt($("#prixCmd"+id).val()) * parseInt($("#inputQteRecu"+id).val())) + '</td>'
+                + '</tr>';
+            $('#tab_Bcommande_Recu').append(cat);
+            i++;
+            total = total + (parseInt($("#prixCmd"+id).val()) * parseInt($("#inputQteRecu"+id).val()));
+            nbre = nbre +  parseInt($("#inputQteRecu"+id).val());
+
+    })
+    var cat = '<tr>'
+        + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="6">Total</td>'
+        + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"><strong>' +total+ '</strong></td>'
+        + '</tr>';
+    $('#tab_Bcommande_Recu').append(cat);
+    //$("#totalRecu").html(total);
+    $("#article_commande").html(i-1);
+    $("#produit_commande").html(nbre);
+    var yo = $('#facture_commande').attr("data1");
+    var one = yo.substr( 0, 9);
+    var three = yo.substr(12, 3);
+
+    var chaine = one +"REC"+ three;
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2,'0');
+    var mm = String(today.getMonth()+1).padStart(2,'0');
+    var yyyy = today.getFullYear();
+    var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+    today = dd+"-"+mm+"-"+yyyy+"  "+time
+    $("#date").html(today);
+    $("#bordereau_livraison").html($("#bordereau").val());
+    $("#rec_commande").html(chaine);
+    $("#ref_commande").html($('#facture_commande').attr("data1"));
+    $("#nomf_commande").html($('#facture_commande').attr("data2"));
+    $("#date_commande").html($('#facture_commande').attr("data3"));
+    $("#iconPreviewRecu").modal("show");
 }
 
 
