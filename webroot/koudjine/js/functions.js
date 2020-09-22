@@ -942,7 +942,8 @@ function valider_vente(type, etat) {
 
                     });
                 }else{
-                    alert('3 - '+data.erreur);
+                    //alert('3 - '+data.erreur);
+                    $('#alertCaisse').modal("show");
                 }
 
             }

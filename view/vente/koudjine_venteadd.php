@@ -402,3 +402,20 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     </div>
 </div>
 <!-- END MODAL ICON PREVIEW -->
+
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="message-box message-box-danger animated fadeIn" id="alertCaisse" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-times"></span> Danger</div>
+            <div class="mb-content">
+                <h2>Pas de caisse ouverte !!!</h2>
+            </div>
+            <div class="mb-footer">
+                <button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->

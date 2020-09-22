@@ -186,15 +186,15 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                                                 <div style="display: flex;flex-direction: column;">
                                                     <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
-                                                        <p class="nomp" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
-                                                        <p class="prixv" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                                        <p class="nomp" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                        <p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
                                                     </div>
                                                     <div>
                                                         <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 8px;display: flex;margin: 0px;padding: 0px;overflow: auto;width: auto;" id="demo"></p>
                                                     </div>
                                                     <div style="display: flex;flex-direction: row;justify-content: space-around;">
-                                                        <p class="datel" style="font-weight: bold;text-align:center; margin-left:0px;font-size: 8px;"></p>
-                                                        <p class="datep" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                                        <p class="datel" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                        <p class="datep" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
                                                     </div>
                                                 </div>
                                             </td>

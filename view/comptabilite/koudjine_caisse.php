@@ -24,6 +24,7 @@
 
 
 
+
 <!-- START RESPONSIVE TABLES -->
 
 <div class="row">
@@ -654,14 +655,14 @@
                                              <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p>
                                         </div>
                                         <div>
-                                             <table class="table table-inverse table-responsive">
-                                                  <thead class="thead-inverse">
+                                             <table class="table table-bordered table-striped table-actions table-responsive">
+                                                  <thead>
                                                        <tr>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">IBELLE PRODUIT</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="200">Libelle</th>
                                                             <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Prix U.</th>
                                                             <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Qte</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">TOTAL</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Rd</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Total</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Rd(%)</th>
                                                        </tr>
                                                   </thead>
                                                   <tbody id="tab_BfactureImprimer">

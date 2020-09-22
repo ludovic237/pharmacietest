@@ -435,7 +435,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                                 <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>P T Achat</strong></th>
                                             </tr>
                                         </thead>
-                                        <tbody id="tab_Bcommande_com">
+                                        <tbody id="tab_Bcommande_com"> 
 
                                         </tbody>
                                     </table>
