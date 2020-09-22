@@ -1,7 +1,7 @@
 <!-- <?php
 
-     $title_for_layout = ' Admin -' . 'Pharma';
-     $page_for_layout = 'Pharmanet';
+     $title_for_layout = ' ALSAS -' . 'Employé';
+     $page_for_layout = 'Liste';
      $action_for_layout = 'Ajouter';
 
      $position_for_layout = '<li><a href="#">Pharmanet</a></li><li class="active">' . $position . '</li>';

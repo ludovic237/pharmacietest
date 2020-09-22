@@ -1,6 +1,6 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Pharmanet';
+$title_for_layout = ' ALSAS -' . 'Utilisateur';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter un utilisateur' : 'Modifier un utilisateur';
 
 
@@ -64,49 +64,49 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <label class="col-md-3 control-label">nom:</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="nom" id="nom" value="<?php if ($position == 'Modifier') echo $user->nom; ?>" placeholder="" />
-                            <span class="help-block">exemple: nom - Champ requis</span>
+                            <span class="help-block">Atangana</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">prenom:</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="prenom" id="prenom" value="<?php if ($position == 'Modifier') echo $user->prenom; ?>" placeholder="" />
-                            <span class="help-block">exemple: AXA - Champ requis</span>
+                            <span class="help-block">Stephane</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">email:</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="email" id="email" value="<?php if ($position == 'Modifier') echo $user->email; ?>" placeholder="" />
-                            <span class="help-block">exemple: LAB 001</span>
+                            <span class="help-block">exemple@gmail.com</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">fonction:</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="fonction" id="fonction" value="<?php if ($position == 'Modifier') echo $user->fonction; ?>" placeholder="" />
-                            <span class="help-block">exemple: UBI 001</span>
+                            
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">telephone:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="telephone" id="telephone" value="<?php if ($position == 'Modifier') echo $user->telephone; ?>" placeholder="" />
-                            <span class="help-block">exemple: UBI 001</span>
+                            <input type="number" class="form-control" name="telephone" id="telephone" value="<?php if ($position == 'Modifier') echo $user->telephone; ?>" placeholder="" />
+                            <span class="help-block">655232212</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Réduction:</label>
+                        <label class="col-md-3 control-label">Réduction(%):</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $user->reduction; ?>" name="reduction" id="reduction" placeholder="" />
-                            <span class="help-block">Champ requis</span>
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $user->reduction; ?>" name="reduction" id="reduction" placeholder="" />
+                            
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Réduction maximal:</label>
+                        <label class="col-md-3 control-label">Réduction maximal(%):</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?php if ($position == 'Modifier') echo $user->reductionMax; ?>" name="reductionMax" id="reductionMax" placeholder="" />
-                            <span class="help-block">Champ requis</span>
+                            <input type="number" class="form-control" value="<?php if ($position == 'Modifier') echo $user->reductionMax; ?>" name="reductionMax" id="reductionMax" placeholder="" />
+                           
                         </div>
                     </div>
                 </div>

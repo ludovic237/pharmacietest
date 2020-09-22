@@ -77,8 +77,8 @@ else{
             'prenom' => $prenom,
             'nom' => $nom,
             'email' => $email,
-            'codefonction' => $fonction,
-            'codetelephone' => $telephone,
+            'fonction' => $fonction,
+            'telephone' => $telephone,
             'reductionMax' => $reductionMax,
             'reduction' => $reduction,
         ));

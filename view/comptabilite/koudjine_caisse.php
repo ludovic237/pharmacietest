@@ -1,6 +1,6 @@
 <!-- <?php
 
-     $title_for_layout = ' Admin -' . 'Comptabilite';
+     $title_for_layout = ' ALSAS -' . 'Comptabilite';
      $page_for_layout = 'Caisse ouverte par : ' . $employe->nom;
      $action_fermeture = (isset($caisse)) ? $caisse : $caisseCheck;
      //if(isset($employe)) echo 'passe';
@@ -38,45 +38,48 @@
 
                               <button class="btn btn-primary  pull-right" data="" id="" onclick="rafraichir_vente('<?php echo $caisse->id; ?>')">Rafraichir</button>
                          </div>
-                         <table class="table   table-bordered table-striped table-actions" id="">
-                              <thead>
-                                   <tr>
-                                        <th width="100">Prix Total</th>
-                                        <th width="100">Reduction</th>
-                                        <th width="100">Réference</th>
-                                        <th>Info Clients</th>
-                                        <th>Vendeur</th>
-                                        <th>Commentaire</th>
-                                        <th>Date vente</th>
-                                        <th width="100">Actions</th>
-                                   </tr>
-                              </thead>
-                              <tbody id="tab_caisse">
-                                   <?php if (isset($vente)) {
-                                        foreach ($vente as $k => $v) : ?>
-                                             <tr id="<?php echo $v->id; ?>">
-                                                  <td><strong class='prixtotal'><?php echo $v->prixTotal; ?></strong></td>
-                                                  <td class="reduction"><?php echo $v->reduction; ?></td>
-                                                  <td><?php echo $v->reference; ?></td>
-                                                  <td><?php echo $v->nouveau_info; ?></td>
-                                                  <td><?php //echo $v->nouveau_info; 
-                                                       ?></td>
-                                                  <td>
-                                                       <?php echo $v->commentaire; ?>
-                                                  </td>
-                                                  <td>
-                                                       <?php echo $v->dateVente; ?>
-                                                  </td>
-                                                  <td>
-                                                       <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
-                                                            Charger
-                                                       </button>
-                                                  </td>
-                                             </tr>
-                                   <?php endforeach;
-                                   } ?>
-                              </tbody>
-                         </table>
+                         <div class="table-responsive">
+                              <table class="table   table-bordered table-striped table-actions" id="">
+                                   <thead>
+                                        <tr>
+                                             <th width="100">Prix Total</th>
+                                             <th width="100">Reduction</th>
+                                             <th width="100">Réference</th>
+                                             <th>Info Clients</th>
+                                             <th>Vendeur</th>
+                                             <th>Commentaire</th>
+                                             <th>Date vente</th>
+                                             <th width="100">Actions</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody id="tab_caisse">
+                                        <?php if (isset($vente)) {
+                                             foreach ($vente as $k => $v) : ?>
+                                                  <tr id="<?php echo $v->id; ?>">
+                                                       <td><strong class='prixtotal'><?php echo $v->prixTotal; ?></strong></td>
+                                                       <td class="reduction"><?php echo $v->reduction; ?></td>
+                                                       <td><?php echo $v->reference; ?></td>
+                                                       <td><?php echo $v->nouveau_info; ?></td>
+                                                       <td><?php //echo $v->nouveau_info; 
+                                                            ?></td>
+                                                       <td>
+                                                            <?php echo $v->commentaire; ?>
+                                                       </td>
+                                                       <td>
+                                                            <?php echo $v->dateVente; ?>
+                                                       </td>
+                                                       <td>
+                                                            <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                                                                 Charger
+                                                            </button>
+                                                       </td>
+                                                  </tr>
+                                        <?php endforeach;
+                                        } ?>
+                                   </tbody>
+                              </table>
+                         </div>
+
                     </div>
 
                </div>
@@ -89,20 +92,23 @@
           <div class="panel panel-default">
                <div class="panel-body panel-body-table">
                     <div class="panel-body">
-                         <table class="table  table-bordered table-striped table-actions">
-                              <thead>
-                                   <tr>
-                                        <th width="200">Nom</th>
-                                        <th width="100">Prix Unitaire</th>
-                                        <th width="100">Quantité</th>
-                                        <th width="100">Prix Total</th>
-                                        <th width="100">Reduction</th>
-                                   </tr>
-                              </thead>
-                              <tbody id="tab_vente_caisse">
+                         <div class="table-responsive">
+                              <table class="table  table-bordered table-striped table-actions">
+                                   <thead>
+                                        <tr>
+                                             <th width="200">Nom</th>
+                                             <th width="100">Prix Unitaire</th>
+                                             <th width="100">Quantité</th>
+                                             <th width="100">Prix Total</th>
+                                             <th width="100">Reduction</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody id="tab_vente_caisse">
 
-                              </tbody>
-                         </table>
+                                   </tbody>
+                              </table>
+                         </div>
+
                     </div>
                </div>
           </div>
@@ -131,7 +137,7 @@
                                              <div class="panel-body">
 
                                                   <div class="form-group row">
-                                                       <label class="col-md-3 control-label">Montant en caisse:</label>
+                                                       <label class="col-md-3 control-label">Montant en caissé:</label>
                                                        <div class="col-md-9">
                                                             <input type="number" class="form-control montant" value="" placeholder="" />
                                                             <!-- <span class="help-block">exemple: Boris Daudga</span> -->
@@ -140,7 +146,7 @@
                                                   <div class="form-group row">
                                                        <label class="col-md-3 control-label">Rendu</label>
                                                        <div class="col-md-9">
-                                                            <input type="number" disabled class="form-control reste" value="" placeholder="" />
+                                                            <input type="number" style="color: #383838;" disabled class="form-control reste" value="" placeholder="" />
                                                             <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                        </div>
                                                   </div>
@@ -349,36 +355,39 @@
                     <div class="panel-body panel-body-table">
 
                          <div class="panel-body">
-                              <table class="table   table-bordered table-striped table-actions" id="">
-                                   <thead>
-                                        <tr>
-                                             <th>Prix Total</th>
-                                             <th>Etat</th>
-                                             <th>Réference</th>
-                                             <th>Date vente</th>
-                                             <th>Actions</th>
-                                        </tr>
-                                   </thead>
-                                   <tbody id="tab_caisse">
-                                        <?php if (isset($vente_credit)) {
-                                             foreach ($vente_credit as $k => $v) : ?>
-                                                  <tr id="<?php echo $v->id; ?>">
-                                                       <td><strong class='prixtotal'><?php echo $v->prixTotal; ?></strong></td>
-                                                       <td class="etat"><?php echo $v->etat; ?></td>
-                                                       <td><?php echo $v->reference; ?></td>
-                                                       <td>
-                                                            <?php echo $v->dateVente; ?>
-                                                       </td>
-                                                       <td>
-                                                            <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
-                                                                 Envoyer en caisse
-                                                            </button>
-                                                       </td>
-                                                  </tr>
-                                        <?php endforeach;
-                                        } ?>
-                                   </tbody>
-                              </table>
+                              <div class="table-responsive">
+                                   <table class="table   table-bordered table-striped table-actions" id="">
+                                        <thead>
+                                             <tr>
+                                                  <th>Prix Total</th>
+                                                  <th>Etat</th>
+                                                  <th>Réference</th>
+                                                  <th>Date vente</th>
+                                                  <th>Actions</th>
+                                             </tr>
+                                        </thead>
+                                        <tbody id="tab_caisse">
+                                             <?php if (isset($vente_credit)) {
+                                                  foreach ($vente_credit as $k => $v) : ?>
+                                                       <tr id="<?php echo $v->id; ?>">
+                                                            <td><strong class='prixtotal'><?php echo $v->prixTotal; ?></strong></td>
+                                                            <td class="etat"><?php echo $v->etat; ?></td>
+                                                            <td><?php echo $v->reference; ?></td>
+                                                            <td>
+                                                                 <?php echo $v->dateVente; ?>
+                                                            </td>
+                                                            <td>
+                                                                 <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
+                                                                      Envoyer en caisse
+                                                                 </button>
+                                                            </td>
+                                                       </tr>
+                                             <?php endforeach;
+                                             } ?>
+                                        </tbody>
+                                   </table>
+                              </div>
+
                          </div>
 
                     </div>
@@ -627,7 +636,7 @@
                     <h4 class="modal-title">Produit</h4>
                </div>
                <div class="modal-body">
-                    <!-- <div class="row">
+                    <div class="row">
                          <div class="col-md-4">
                               <div class="icon-preview">
                                    <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticket">
@@ -684,98 +693,8 @@
                               </div>
                          </div>
 
-                    </div> -->
-                    <div class="row">
-                         <div class="col-md-4">
-                              <div class="icon-preview">
-                                   <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;background-color: white;" class="ticketfacture" id="ticket">
-
-                                        <div style="display: flex;flex-direction:column;text-align: left;">
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Pharmacie ALSAS</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Dr GAMWO Sandrine</p>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">BP 38</p>
-                                             <div style="display: flex;justify-content:space-between">
-                                                  <p style="margin: 0px; color: black;font-weight: 400;">Bafoussam</p>
-                                                  <p style="margin: 0px; color: black;font-weight: 400;">le : <span class="datevente"></span> </p>
-                                             </div>
-                                             <div style="display: flex;justify-content:space-between">
-                                                  <p style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 267 487</p>
-                                                  <p style="margin: 0px; color: black;font-weight: 400;"><span class="datevente"></span> OP : 11 <span class="heurevente"></span> </p>
-                                             </div>
-                                             <div style="display: flex;justify-content:space-between;margin-bottom: 10px;">
-                                                  <p style="margin: 0px; color: black;font-weight: 400;">Produit</p>
-                                                  <p style="margin: 0px; color: black;font-weight: 400;"> Qté à régler Total </p>
-                                             </div>
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Vente direct du 23/07/2020 </p>
-                                             <!-- <p style="margin: 0px; color: black;font-weight: 400;">Vendeur: <span class="vendeur"></span> </p>
-                                <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p> -->
-                                        </div>
-                                        <div>
-                                             <table class="table table-inverse table-responsive" style="margin-bottom: 10px;border-collapse: collapse;border-spacing: 0px;border: 0;">
-                                                  <!-- <thead class="thead-inverse">
-                                        <tr>
-                                            <th style="background-color: white;color: black;font-weight: 800;">LIBELLE PRODUIT</th>
-                                            <th style="background-color: white;color: black;font-weight: 100;">Qte</th>
-                                            <th style="background-color: white;color: black;font-weight: 800;">Prix</th>
-                                            <th style="background-color: white;color: black;font-weight: 800;">Prix r</th>
-                                        </tr>
-                                    </thead> -->
-                                                  <tbody>
-
-                                                       <tr>
-                                                            <td style="background-color: white;color: black;font-weight: 400;border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">Montant Total</td>
-                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">1</td>
-                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">2000</td>
-                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">3000</td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td style="background-color: white;color: black;font-weight: 400;border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">ssssssssssssssssssssssssssssssssl</td>
-                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">1</td>
-                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">2000</td>
-                                                            <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">3000</td>
-                                                       </tr>
-
-                                                       <tr>
-                                                            <td colspan="3" style="background-color: white;color: black;font-weight: 400;border-color: #333;border-width: 1px;border-style: solid;text-align: start;" scope="row">Sous total en FCFA</td>
-                                                            <td colspan="1" style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">3000</td>
-                                                       </tr>
-                                                  </tbody>
-                                             </table>
-                                        </div>
-                                        <div style="display: flex;justify-content:space-between">
-                                             <h4 style="margin: 0px; color: black;font-weight: bold;">Net à payer en FCFA</h4>
-                                             <h4 style="margin: 0px; color: black;font-weight: bold;"> 2000</h4>
-                                        </div>
-                                        <div style="display: flex;justify-content:space-between">
-                                             <p style="margin: 0px; color: black;font-weight: 100;">Dont TVA</p>
-                                             <p style="margin: 0px; color: black;font-weight: 100;"> 0</p>
-                                        </div>
-                                        <div style="display: flex;justify-content:space-between">
-                                             <p style="margin: 0px; color: black;font-weight: 100;">23/02/2020 Caisse centrale en FCFA</p>
-                                             <p style="margin: 0px; color: black;font-weight: 100;"> 2000</p>
-                                        </div>
-                                        <div style="display: flex;justify-content:space-between">
-                                             <p style="margin: 0px; color: black;font-weight: 100;">23/02/2020 Espèces en FCFA</p>
-                                             <p style="margin: 0px; color: black;font-weight: 100;"> 2000</p>
-                                        </div>
-                                        <div style="display: flex;justify-content:space-between">
-                                             <p style="margin: 0px; color: black;font-weight: 100;">23/02/2020 Caisse centrale en FCFA</p>
-                                             <p style="margin: 0px; color: black;font-weight: 100;"> 2000</p> 
-                                        </div>
-                                        <div style="display: flex;justify-content:space-between">
-                                             <h4 style="margin: 0px; color: black;font-weight: bold;">Montant recu en FCFA</h4>
-                                             <h4 style="margin: 0px; color: black;font-weight: bold;"> 2000</h4>
-                                        </div>
-                                        <div style="display: flex;justify-content:space-between">
-                                             <p style="margin: 0px; color: black;font-weight: 100;">Nombre d'articles</p>
-                                             <p style="margin: 0px; color: black;font-weight: 100;"> 4</p>
-                                        </div>
-                                   </div>
-                                   <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
-                              </div>
-                         </div>
-
                     </div>
+
                </div>
                <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

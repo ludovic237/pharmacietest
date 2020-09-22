@@ -1098,7 +1098,8 @@ function enregistrer_user(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/pharmanet/useradd/' + id;
+                    var link = '/pharmacietest/bouwou/pharmanet/user/';
+                    //var link = '/pharmacietest/bouwou/pharmanet/useradd/' + id;
                     window.location.href = link;
                 }
                 else {

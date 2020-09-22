@@ -70,7 +70,10 @@ class employe
     public function setid($id)
     {
 
-        $this->_id = $id;
+        if ($id > 0)
+        {
+            $this->_id = $id;
+        }
     }
     public function setidentifiant($id)
     {
@@ -108,10 +111,12 @@ class employe
 
         $this->_codebarre_id = $value;
     }
-    public function setuser_id($value)
+    public function setuser_id($id)
     {
-
-        $this->_user_id = $value;
+        if ($id > 0)
+        {
+            $this->_user_id = $id;
+        }
     }
     public function setsupprimer($value)
     {
