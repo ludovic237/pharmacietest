@@ -13,11 +13,9 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
         ////alert('passe');
         $("#tab_BCrecherche").hide();
         $("#tab_GCrecherche").hide();
-    });
-    $('#tab_Bload_produit').on('hidden.bs.modal', function () {
-        //alert('passe');
         $("#recherche").focus();
     });
+
 
     $('#tab1 .montant').keyup(function (e) {
         ////alert('passe');
