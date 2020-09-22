@@ -140,87 +140,63 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <div class="row">
                     <div class="col-md-4">
                         <div class="icon-preview">
-                            <div style="border: 1px solid black;width: 40mm;display:flex;height: 30mm;flex-direction: column;" id="ticket">
-
-                                <!-- <table class="table fixed" style="width:100%;display: flex;overflow: auto;border-collapse: collapse;border-spacing: 0px;border: 0;">
-                                    <tbody>
-                                        <tr style="display: flex;width: 40mm;flex: 1;">
-                                            <td style="flex: 1;width: 30mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
-                                                <p class="nomp" style="width: 30mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
-                                            </td>
-                                            <td style="flex: 1;width: 10mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
-                                                <p class="prixv " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
-                                            </td>
-                                        </tr>
-                                        <tr style="display: flex;width: 40mm;flex: 1;">
-                                            <td style="flex: 1;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
-                                                <p style="width: 45mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;display: flex;margin-top: 4px;" id="demo"></p>
-                                            </td>
-
-                                        </tr>
-                                        <tr style="display: flex;width: 40mm;flex: 1;">
-                                            <td style="flex: 1;width: 20mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
-                                                <p class="datel " style="width: 20mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
-                                            </td>
-                                            <td style="flex: 1;width: 20mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
-                                                <p class="datep " style="width: 20mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table> -->
-                                <table class="fixed" style="display: flex;overflow: auto;border-collapse: collapse;border-spacing: 0px;border: 0;">
+                            <!-- <div style="border: 1px solid black;width: 40mm;display:flex;height: 30mm;flex-direction: column;" id="ticket"> -->
+                            <div style="width: 35mm;display:flex;height: 30mm;flex-direction: column;" id="ticket">
+                                <!-- <table class="fixed" style="display: flex;overflow: auto;border-collapse: collapse;border-spacing: 0px;border: 0;">
                                     <tbody>
                                         <tr style="display: flex;">
                                             <td style="width: 30mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
                                                 <p class="nomp" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
-                                            <td style="width: 10mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                            <td style="width: 5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                                <p class="prixv " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                        </tr>
+                                        <tr style="display: flex;">
+                                            <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
+                                                <p style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;display: flex;" id="demo"></p>
+                                            </td>
+
+                                        </tr>
+                                        <tr style="display: flex;">
+                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+                                                <p class="datel " style="font-weight: bold;text-align:center; margin-left:0px;font-size: 8px;"></p>
+                                            </td>
+                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+                                                <p class="datep " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table> -->
+                                <table style="table-layout: fixed; width: 40mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
+                                    <tbody>
+                                        <tr style="display: flex;">
+                                            <td style="width: 30mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                                <p class="nomp" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                            <td style="width: 5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
                                                 <p class="prixv " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
                                             <!-- <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
                                                 <p class="code " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td> -->
                                         </tr>
-                                        <tr style="display: flex;">
-                                            <td style="width: 42.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
+                                        <tr style="display: flex;table-layout: fixed; width: 40mm">
+                                            <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
                                                 <p style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;display: flex;" id="demo"></p>
                                             </td>
 
                                         </tr>
                                         <tr style="display: flex;">
-                                            <td style="width: 20mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
-                                                <p class="datel " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+                                                <p class="datel " style="font-weight: bold;text-align:center; margin-left:0px;font-size: 8px;"></p>
                                             </td>
-                                            <td style="width: 20mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
                                                 <p class="datep " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <!-- <div style="display: flex; ">
-                                    <div style="border: 1px solid black;height: 10mm;justify-content: center;align-items: center;display: flex;width: 30mm;">
-                                        <p class="nomp fittext1" style="width: 30mm; font-weight: bold;text-align:center; margin-bottom:0px"></p>
-                                    </div>
-                                    <div style="border: 1px solid black;height: 10mm;justify-content: center;align-items: center;display: flex;width: 10mm;">
-                                        <p class="prixv " style="width: 10mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
-                                    </div>
-                                    <div style="border: 1px solid black;height: 10mm;justify-content: center;align-items: center;display: flex;width: 10mm;">
-                                        <p class="code " style="width: 10mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
-                                    </div>
-                                </div>
-                                <div style="display: flex;">
-                                    <div style="border: 1px solid black;height: 12mm;justify-content: center;align-items: center;display: flex;width: 30mm;padding-right: 2px;">
-                                        <div style="display: contents;" id="demo"></div>
-                                    </div>
-                                </div>
-                                <div style="display: flex;">
-                                    <div style="border: 1px solid black; height: 8mm;justify-content: center;align-items: center;display: flex;width: 30mm;">
-                                        <p class="datel fittext1" style="width: 30mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
-                                    </div>
-                                    <div style="border: 1px solid black; height: 8mm;justify-content: center;align-items: center;display: flex;width: 30mm;">
-                                        <p class="datep fittext1" style="width: 30mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 12px;"></p>
-                                    </div>
-                                </div> -->
 
                             </div>
                             <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
