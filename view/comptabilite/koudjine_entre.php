@@ -171,27 +171,27 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <table style="table-layout: fixed; width: 40mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
                                     <tbody>
                                         <tr style="display: flex;">
-                                            <td style="width: 30mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                            <td style="width: 25mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
                                                 <p class="nomp" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
-                                            <td style="width: 5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                            <td style="width: 10mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
                                                 <p class="prixv " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
                                             <!-- <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
                                                 <p class="code " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td> -->
                                         </tr>
-                                        <tr style="display: flex;table-layout: fixed; width: 40mm">
+                                        <tr style="display: flex;table-layout: fixed; width: 40mm ;height:10mm">
                                             <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
                                                 <p style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;display: flex;" id="demo"></p>
                                             </td>
 
                                         </tr>
-                                        <tr style="display: flex;">
-                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+                                        <tr style="display: flex">
+                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
                                                 <p class="datel " style="font-weight: bold;text-align:center; margin-left:0px;font-size: 8px;"></p>
                                             </td>
-                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
                                                 <p class="datep " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
                                         </tr>
