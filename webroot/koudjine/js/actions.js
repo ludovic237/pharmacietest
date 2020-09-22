@@ -153,7 +153,19 @@ $(document).ready(function(){
                  link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
                 window.location.href=link;
             }
-        }else if(controller == 'stock'){
+        }
+        else if(controller == 'pharmanet'){
+            //alert('pass');
+            if($('.ajouter').html() == 'Ajouter') {
+                link = '/pharmacietest' + $(this).attr('id') + 'add';
+                window.location.href=link;
+            }
+            else{
+                link = '/pharmacietest/bouwou/'+$(this).attr('controller')+'/presentation/' + $(this).attr('data');
+                window.location.href=link;
+            }
+        }
+        else if(controller == 'stock'){
 
             if($('.ajouter').html() == 'Démarrer inventaire') {
                 //alert($('.ajouter').html());
