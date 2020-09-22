@@ -392,57 +392,6 @@ function valider_commande(imprimer) {
 
 
 }
-function imprimer_commande() {
-
-    var i = 1, total = 0, nbre = 0;
-    $('#tab_Bcommande_Recu').empty();
-    $("#tab_produit_commande tr").each(function (j) {
-
-        var id = $(this).attr("id");
-
-            var cat = '<tr>'
-                + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">'+i+'</td>'
-                + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;font-size: 10px;"><strong>' +$("#nom"+id).html() + '</strong></td>'
-                + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + parseInt($("#inputQte"+id).val()) + '</td>'
-                + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + parseInt($("#inputQteRecu"+id).val()) + '</td>'
-                + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + parseInt($("#prixCmd"+id).val()) + '</td>'
-                + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + parseInt($("#prixVente"+id).val()) + '</td>'
-                + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + (parseInt($("#prixCmd"+id).val()) * parseInt($("#inputQteRecu"+id).val())) + '</td>'
-                + '</tr>';
-            $('#tab_Bcommande_Recu').append(cat);
-            i++;
-            total = total + (parseInt($("#prixCmd"+id).val()) * parseInt($("#inputQteRecu"+id).val()));
-            nbre = nbre +  parseInt($("#inputQteRecu"+id).val());
-
-    })
-    var cat = '<tr>'
-        + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="6">Total</td>'
-        + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"><strong>' +total+ '</strong></td>'
-        + '</tr>';
-    $('#tab_Bcommande_Recu').append(cat);
-    //$("#totalRecu").html(total);
-    $("#article_commande").html(i-1);
-    $("#produit_commande").html(nbre);
-    var yo = $('#facture_commande').attr("data1");
-    var one = yo.substr( 0, 9);
-    var three = yo.substr(12, 3);
-
-    var chaine = one +"REC"+ three;
-
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2,'0');
-    var mm = String(today.getMonth()+1).padStart(2,'0');
-    var yyyy = today.getFullYear();
-    var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-    today = dd+"-"+mm+"-"+yyyy+"  "+time
-    $("#date").html(today);
-    $("#bordereau_livraison").html($("#bordereau").val());
-    $("#rec_commande").html(chaine);
-    $("#ref_commande").html($('#facture_commande').attr("data1"));
-    $("#nomf_commande").html($('#facture_commande').attr("data2"));
-    $("#date_commande").html($('#facture_commande').attr("data3"));
-    $("#iconPreviewRecu").modal("show");
-}
 
 
 
