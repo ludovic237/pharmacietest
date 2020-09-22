@@ -330,6 +330,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                             });
                             $('#recherche').val("");
                             $("#tab_Grecherche").hide();
+                            $("#tab_Brecherche").empty();
                             $('#prixTotal').html(prixTotal);
                             $('#prixReduit').html(prixReduit);
                             $('#netTotal').html((prixTotal - prixReduit));
