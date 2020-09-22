@@ -752,7 +752,7 @@ function info_row_entree(row) {
 
     $.ajax({
         type: "POST",
-        url: '/pharmacietest/koudjine/inc/info_entree.php',
+        url: '/pharmacietest/koudjine/inc/info_entree.php', 
         data: {
             id: row
         },
