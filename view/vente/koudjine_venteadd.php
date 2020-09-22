@@ -419,3 +419,22 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     </div>
 </div>
 <!-- END MODAL ICON PREVIEW -->
+
+
+<div class="message-box animated fadeIn" data-sound="alert" id="mb-confirmation-impression" data="">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-sign-out"></span> Confirmation <strong>commande</strong> ?</div>
+            <div class="mb-content">
+                <p>Voulez vous imprimer une facture?</p>
+                <p>Cliquez sur oui si vous le voulez ou sur non si c'est pas le cas.</p>
+            </div>
+            <div class="mb-footer">
+                <div class="pull-right">
+                    <a class="btn btn-success btn-lg" >Oui</a>
+                    <a class="btn btn-default btn-lg mb-control-close" >Non</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
