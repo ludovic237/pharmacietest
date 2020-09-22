@@ -181,20 +181,20 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                 <p class="code " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
                                         </tr> -->
-                                        <tr style="display: flex;table-layout: fixed; width: 40mm ;height:30mm">
+                                        <tr style="display: flex;table-layout: fixed; width: 40mm ;">
                                             <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
 
-                                                <div>
-                                                    <div class="row" >
-                                                        <p class="nomp col-md-6" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
-                                                        <p class="prixv col-md-6" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                                <div style="display: flex;flex-direction: column;">
+                                                    <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
+                                                        <p class="nomp" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                                        <p class="prixv" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                                     </div>
-                                                    <div class="row" >
-                                                        <p class="prixv col-md-12" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;display: flex;" id="demo"></p>
+                                                    <div>
+                                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 8px;display: flex;margin: 0px;padding: 0px;overflow: auto;width: auto;" id="demo"></p>
                                                     </div>
-                                                    <div class="row" >
-                                                        <p class="datel col-md-6" style="font-weight: bold;text-align:center; margin-left:0px;font-size: 8px;"></p>
-                                                        <p class="datep col-md-6" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                                    <div style="display: flex;flex-direction: row;justify-content: space-around;">
+                                                        <p class="datel" style="font-weight: bold;text-align:center; margin-left:0px;font-size: 8px;"></p>
+                                                        <p class="datep" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                                     </div>
                                                 </div>
                                             </td>

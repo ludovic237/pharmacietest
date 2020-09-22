@@ -657,11 +657,11 @@
                                              <table class="table table-inverse table-responsive">
                                                   <thead class="thead-inverse">
                                                        <tr>
-                                                            <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400;">Prix U.</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400;">Qte</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400;">TOTAL</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400;">Rd</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">IBELLE PRODUIT</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Prix U.</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Qte</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">TOTAL</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Rd</th>
                                                        </tr>
                                                   </thead>
                                                   <tbody id="tab_BfactureImprimer">

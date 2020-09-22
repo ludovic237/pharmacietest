@@ -18,7 +18,7 @@
 
   var defaultSettings = {
       barWidth: 1,
-      barHeight: 20,
+      barHeight: 25,
       moduleSize: 5,
       showHRI: true,
       addQuietZone: true,
