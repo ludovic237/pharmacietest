@@ -41,7 +41,7 @@ if (isset($_POST['id'])||isset($_GET['id'])){
                                             </td>
                                             <td class=''>
                                                 <p></p>
-                                                <div class='input-group'>
+                                                <div class='input-group' style='width:100px;'>
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins'
                                                                 onclick=\"change_input('moins','inputQte". $v->id()."')\"

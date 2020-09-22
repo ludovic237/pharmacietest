@@ -240,7 +240,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">Produit:</label>
-<!-- 
+                        <!-- 
                         <?php
                         $text = $produit->grossiste_id;
                         echo $text;
@@ -275,7 +275,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                         </div>
                     </div>
-                    
+
 
                     <div class="form-group">
                         <label class="col-md-3 control-label">Etat:</label>
@@ -288,6 +288,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     </div>
 
                     <div class="btn-group pull-right">
+                        <button class="btn btn-primary" style="margin-right: 20px">Detail</button>
                         <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
                         <button class="btn btn-success" type="submit">Enregistrer</button>
                     </div>

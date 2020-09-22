@@ -322,7 +322,9 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                             <td><?php echo $v->dateLivraison; ?></td>
                                             <td><?php echo $v->stock; ?></td>
                                             <td>
-                                                <div class='input-group' style='display:-webkit-inline-box;'>
+                                                <p>
+                                                </p>
+                                                <div class='input-group' style="width: 100px;">
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','inputPrix<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
@@ -337,7 +339,9 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class='input-group' style='display:-webkit-inline-box;'>
+                                                <p>
+                                                </p>
+                                                <div class='input-group' style='width:100px;'>
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>

@@ -34,7 +34,7 @@ if (isset($_GET["motclef1"])) {
                                             </td>
                                             <td class='prix'>
                                             <p></p>
-                                                <div class='input-group' >
+                                                <div class='input-group'style='width:100px;' >
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins'
                                                         onclick=\"change_input('moins','inputPrix". $result->idp."')\"
@@ -58,7 +58,7 @@ if (isset($_GET["motclef1"])) {
                                             </td>
                                             <td>
                                             <p></p>
-                                            <div class='input-group' >
+                                            <div class='input-group' style='width:100px;' >
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins'
                                                         onclick=\"change_input('moins', 'input".$result->idp."')\"

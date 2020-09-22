@@ -156,7 +156,10 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-1">
+        
+    </div>
+    <div class="col-md-3">
         <div class="panel panel-default">
             <div class="panel-body panel-body-table" style="padding-bottom: 40px;padding-left: 20px;padding-right: 20px;">
                 <div>
@@ -168,15 +171,15 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 control-label">Commentaire:</label>
-                    <div class="col-md-9">
-                        <textarea class="form-control" name="" id="commentaire_commande" cols="30" rows="10"></textarea>
+                    <label class="control-label" style="width: 100px;">Commentaire:</label>
+                    <div class="col-md-12">
+                        <input class="form-control" name="" id="commentaire_commande" cols="30" rows="10"></textarea>
 
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 control-label">Etat</label>
-                    <div class="col-md-9">
+                    <label class="control-label" style="width: 100px;">Etat</label>
+                    <div class="col-md-12">
                         <div style="display: flex;flex:1;margin-right: 30px;">
                             <select class="selectpicker form-control input-xlarge" name="fabproduit" id="etat_commande">
                                 <option value="Commandé">Commandé</option>
@@ -194,6 +197,7 @@
             </div>
         </div>
     </div>
+    
 </div>
 
 <div class="modal fade" id="iconPreviewBonCommande" tabindex="-1" role="dialog" aria-hidden="true">

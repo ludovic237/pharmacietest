@@ -190,6 +190,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <th width="200">Nom</th>
                     <th width="100">Quantité</th>
                     <th width="100">Nom produit détail</th>
+                    <th width="100">Forme</th>
                     <th width="100">Date Opération</th>
                     <th width="100">Opération</th>
                     <th width="100">Action</th>
@@ -201,6 +202,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $v->idp; ?>"><?php echo $produit_rayon[$i]->nom.'['.$produit_rayon[$i]->dateLivraison.']'; ?></a></strong></td>
                         <td><?php echo $v->quantite; ?></td>
                         <td><strong><?php echo $produit_detail[$i]; ?></strong></td>
+                        <td><?php echo $operation[$i]; ?></td>
                         <td><?php echo $v->dateSortie; ?></td>
                         <td><?php echo $operation[$i]; ?></td>
                         <td>
@@ -234,7 +236,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <th width="100">Prix Unitaire</th>
                                         <th width="100">Quantité</th>
                                         <th width="100">Quantité en Stock</th>
-                                        <th width="100">Reduction</th>
+                                        <th width="100">Reduction(%)</th>
                                         <th width="200">Date de Livraison</th>
                                     </tr>
                                 </thead>

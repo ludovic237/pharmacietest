@@ -588,6 +588,12 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-md-3 control-label">Reduction max :</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" id="reduction_max" value="" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-md-3 control-label">Quantité :</label>
                             <div class="col-md-9">
                                 <input type="number" class="form-control" id="qte_cmdprogramme" value="" placeholder="" />

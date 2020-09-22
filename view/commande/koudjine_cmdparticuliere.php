@@ -217,7 +217,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                             <td class=''>
                                                 <p>
                                                 </p>
-                                                <div class='input-group'>
+                                                <div class='input-group' style="width: 100px;">
 
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','inputPrix<?php echo $v->idp; ?>')" style='padding: 4px;'>
@@ -237,7 +237,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                             <td class=''>
                                                 <p>
                                                 </p>
-                                                <div class='input-group'>
+                                                <div class='input-group' style="width: 100px;">
                                                     <span class='input-group-btn'>
                                                         <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
