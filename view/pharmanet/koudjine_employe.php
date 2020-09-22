@@ -1,7 +1,7 @@
 <!-- <?php
 
-     $title_for_layout = ' Admin -' . 'Universités';
-     $page_for_layout = 'Pharmanet';
+     $title_for_layout = ' ALSAS -' . 'Employé';
+     $page_for_layout = 'Liste';
      $action_for_layout = 'Ajouter';
 
      if ($this->request->action == "index") {

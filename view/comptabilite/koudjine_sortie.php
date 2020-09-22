@@ -21,7 +21,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="form-group">
                             <label class="col-md-3 control-label">Entrée Produit:</label>
                             <div class="col-md-9">
-                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->ide . '"'; ?>  class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
+                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->ide . '"'; ?> class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
                             </div>
                         </div>
                         <div class="row">
@@ -111,7 +111,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                 <option value="0">Veuillez selectionner</option>
                                                 <?php if (isset($produits))
                                                     foreach ($produits as $k => $v) : ?>
-                                                    <option data="<?php echo $v->contenuDetail; ?>" value="<?php echo $v->id; ?>"><?php echo $v->nom; ?> &nbsp;&nbsp <?php echo '['.$v->contenuDetail.']'; ?>
+                                                    <option data="<?php echo $v->contenuDetail; ?>" value="<?php echo $v->id; ?>"><?php echo $v->nom; ?> &nbsp;&nbsp <?php echo '[' . $v->contenuDetail . ']'; ?>
                                                     </option>
                                                 <?php
                                                     endforeach;
@@ -141,7 +141,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                 <th width="100">Date de Livraison</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="tab_Bsortie" >
+                                        <tbody id="tab_Bsortie">
 
                                         </tbody>
                                     </table>
@@ -184,34 +184,39 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     </div>
     <div class="row" style="margin-top: 15px">
         <div class="col-md-12 control-label">
-            <table class="table  table-bordered table-striped table-actions">
-                <thead>
-                <tr>
-                    <th width="200">Nom</th>
-                    <th width="100">Quantité</th>
-                    <th width="100">Nom produit détail</th>
-                    <th width="100">Forme</th>
-                    <th width="100">Date Opération</th>
-                    <th width="100">Opération</th>
-                    <th width="100">Action</th>
-                </tr>
-                </thead>
-                <tbody id="tab_Lsortie" >
-                <?php $i = 0; if(isset($sorties) && !empty($sorties)) foreach ($sorties as $k => $v) : ?>
-                    <tr id="<?php echo $v->id; ?>">
-                        <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $produit_rayon[$i]->idp; ?>"><?php echo $produit_rayon[$i]->nomp.'['.$produit_rayon[$i]->dateLivraison.']'; ?></a></strong></td>
-                        <td><?php echo $v->quantite; ?></td>
-                        <td><strong><?php echo $produit_detail[$i]; ?></strong></td>
-                        <td><strong><?php echo $produit_rayon[$i]->nomf; ?></strong></td>
-                        <td><?php echo $v->dateSortie; ?></td>
-                        <td><?php echo $operation[$i]; ?></td>
-                        <td>
-                            <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->ide; ?>)"><span class="fa fa-pencil"></span></button>
-                        </td>
-                    </tr>
-                <?php $i++; endforeach; ?>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table  table-bordered table-striped table-actions">
+                    <thead>
+                        <tr>
+                            <th width="200">Nom</th>
+                            <th width="100">Quantité</th>
+                            <th width="100">Nom produit détail</th>
+                            <th width="100">Forme</th>
+                            <th width="100">Date Opération</th>
+                            <th width="100">Opération</th>
+                            <th width="100">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tab_Lsortie">
+                        <?php $i = 0;
+                        if (isset($sorties) && !empty($sorties)) foreach ($sorties as $k => $v) : ?>
+                            <tr id="<?php echo $v->id; ?>">
+                                <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $produit_rayon[$i]->idp; ?>"><?php echo $produit_rayon[$i]->nomp . '[' . $produit_rayon[$i]->dateLivraison . ']'; ?></a></strong></td>
+                                <td><?php echo $v->quantite; ?></td>
+                                <td><strong><?php echo $produit_detail[$i]; ?></strong></td>
+                                <td><strong><?php echo $produit_rayon[$i]->nomf; ?></strong></td>
+                                <td><?php echo $v->dateSortie; ?></td>
+                                <td><?php echo $operation[$i]; ?></td>
+                                <td>
+                                    <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->ide; ?>)"><span class="fa fa-pencil"></span></button>
+                                </td>
+                            </tr>
+                        <?php $i++;
+                        endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
     </div>
@@ -219,7 +224,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 </div>
 <!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreviewVente" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width: 90%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -228,8 +233,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12 ">
-                        <div class="">
-                            <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-striped table-actions">
+                        <div class="table-responsive">
+                            <table id="tab_load_produit" class="table datatable table-bordered table-striped table-actions">
                                 <thead>
                                     <tr>
                                         <th width="200">Nom</th>

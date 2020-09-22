@@ -27,8 +27,8 @@
             <!-- START X-NAVIGATION -->
             <ul class="x-navigation">
                 <!-- <li class="xn-logo"> -->
-                <li >
-                    <a href="index.html"style="font-size: 20px;background-color: #b64645;text-align: center;align-content: center;align-items: center;justify-content: center;display: flex;">ALSAS</a>
+                <li>
+                    <a href="index.html" style="font-size: 20px;background-color: #b64645;text-align: center;align-content: center;align-items: center;justify-content: center;display: flex;">ALSAS</a>
                     <a href="#" class="x-navigation-control"></a>
                 </li>
                 <li class="xn-profile">
@@ -44,7 +44,7 @@
                             <div class="profile-data-title"><?php echo $this->Session->user('type') . ' ' ?><?php if ($this->Session->user('FONCTION') != null) echo ' / ' . $this->Session->user('FONCTION') ?></div>
                         </div>
                         <div class="profile-controls">
-                            <a href="<?php echo Router::url('bouwou/pharmanet/userprofile/'.$_SESSION["Users"]->id); ?>" class="profile-control-left"><span class="fa fa-info"></span></a>
+                            <a href="<?php echo Router::url('bouwou/pharmanet/userprofile/' . $_SESSION["Users"]->id); ?>" class="profile-control-left"><span class="fa fa-info"></span></a>
                             <a href="pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                             <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'entreadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/entreadd'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
                         </ul>
                     </li>
-                    <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortie' ) { ?>active <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">S</span> Sortie</a></li>
+                    <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortie') { ?>active <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">S</span> Sortie</a></li>
                 </ul>
             </li>
             <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['commande'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'commande') { ?>active<?php } ?>">
@@ -482,7 +482,16 @@
     <!-- START TEMPLATE -->
 
 
-    <script type="text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins.js'; ?>"></script>
+    <script type="text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js'; ?>""></script>
+    <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/tableexport/tableExport.js'; ?>""></script>
+    <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/tableexport/jquery.base64.js'; ?>""></script>
+    <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/tableexport/html2canvas.js'; ?>""></script>
+    <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/sprintf.js'; ?>""></script>
+    <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/jspdf.js'; ?>""></script>
+    <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/base64.js'; ?>""></script>
+
+
+    <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo BASE_URL . '/koudjine/js/actions.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo BASE_URL . '/koudjine/js/settings.js'; ?>"></script>
     <!-- END TEMPLATE -->

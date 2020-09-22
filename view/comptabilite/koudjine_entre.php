@@ -31,8 +31,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                         <div class="panel-body panel-body-table">
 
-                            <div class="">
-                                <table id="tab_GrechercheEntre" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                            <div class="table-responsive">
+                                <table id="tab_GrechercheEntre" style="height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
 
                                     <tbody id="tab_BRechercheEntre">
 
@@ -81,9 +81,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     <div class="col-md-12">
         <div class="panel panel-default">
 
-            <div class="panel-body panel-body-table">
+            <div class="panel-body">
 
-                <div class="panel-body">
+                <div class="table-responsive">
                     <table class="table datatable table-bordered table-striped table-actions">
                         <thead>
                             <tr>

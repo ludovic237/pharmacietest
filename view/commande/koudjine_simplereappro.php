@@ -103,10 +103,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     <div class="col-md-12">
         <div class="panel panel-default">
 
-            <div class="panel-body panel-body-table">
+            <div class="panel-body">
 
-                <div class="panel-body">
-                    <table style="display: block; overflow: auto;" class="table table-bordered table-striped table-actions">
+                <div class="table-responsive">
+                    <table style="overflow: auto;" class="table table-bordered table-striped table-actions">
                         <thead>
                             <tr>
                                 <th width="200">Nom</th>
@@ -128,7 +128,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <td class=''>
                                         <p>
                                         </p>
-                                        <div class='input-group'>
+                                        <div class='input-group' style="width: 95px;">
 
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $result->idp; ?>')" style='padding: 4px;'>
@@ -148,7 +148,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <td class=''>
                                         <p>
                                         </p>
-                                        <div class='input-group'>
+                                        <div class='input-group' style="width: 95px;">
 
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $v->idp; ?>')" style='padding: 4px;'>

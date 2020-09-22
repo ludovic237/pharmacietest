@@ -72,23 +72,26 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
-                    <table class="table table-bordered table-striped table-actions">
-                        <thead>
-                            <tr>
-                                <th width="200">Nom</th>
-                                <th width="100">Prix Unitaire</th>
-                                <th width="100">Quantité</th>
-                                <th width="100">Prix Total</th>
-                                <th width="100">Reduction</th>
-                                <th width="200">Date de Livraison</th>
-                                <th width="100">Stock total</th>
-                                <th width="100">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tab_vente">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-actions">
+                            <thead>
+                                <tr>
+                                    <th width="200">Nom</th>
+                                    <th width="100">Prix Unitaire</th>
+                                    <th width="100">Quantité</th>
+                                    <th width="100">Prix Total</th>
+                                    <th width="100">Reduction</th>
+                                    <th width="200">Date de Livraison</th>
+                                    <th width="100">Stock total</th>
+                                    <th width="100">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tab_vente">
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
 
             </div>
@@ -306,7 +309,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
 
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-actions">
+                                        <table id="tab_load_produit" style="height: 200px;overflow: auto;" class="table datatable table-bordered table-actions">
                                             <thead>
                                                 <tr>
                                                     <th width="200">Nom</th>
@@ -372,20 +375,22 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                             </div>
 
                         </div>
+                        <div class="table-responsive">
+                            <table id="" style="height: 200px;overflow: auto;" class="table datatable table-bordered table-actions">
+                                <thead>
+                                    <tr>
+                                        <th width="100">Nom</th>
+                                        <th width="100">Quantité</th>
+                                        <th width="100">Quantité en Stock</th>
+                                        <th width="100">Date de Livraison</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="">
 
-                        <table id="" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-actions">
-                            <thead>
-                                <tr>
-                                    <th width="100">Nom</th>
-                                    <th width="100">Quantité</th>
-                                    <th width="100">Quantité en Stock</th>
-                                    <th width="100">Date de Livraison</th>
-                                </tr>
-                            </thead>
-                            <tbody id="">
+                                </tbody>
+                            </table>
+                        </div>
 
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Pharmanet';
+$title_for_layout = ' ALSAS -' . 'Employé';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter une employé' : 'Modifier un employé';
 
 
@@ -77,8 +77,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Type:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="type" id="type" value="<?php if ($position == 'Modifier') echo $employe->type; ?>" placeholder="" />
-                            <span class="help-block">exemple: LAB 001</span>
+                        <select class="selectpicker form-control input-xlarge " name="type" id="type">
+                               
+                               <option value="Caissier">Caissier</option>
+                               <option value="Vendeur">Vendeur</option>
+                               <option value="Gestionnaire">Gestionnaire</option>
+                               <option value="Administrateur">Administrateur</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
