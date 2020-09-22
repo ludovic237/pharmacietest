@@ -58,7 +58,7 @@
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
-                    <table class="table datatable table-bordered table-striped table-actions">
+                    <table class="table datatable table-bordered table-striped table-actions ">
                         <thead>
                             <tr>
                                 <th width="200">Date de creation</th>

@@ -1,14 +1,9 @@
 <!-- <?php
 
-     $title_for_layout = ' Admin -' . 'Universités';
+     $title_for_layout = ' Admin -' . 'Pharma';
      $page_for_layout = 'Pharmanet';
      $action_for_layout = 'Ajouter';
 
-     if ($this->request->action == "index") {
-          $position = "Tout";
-     } else {
-          $position = $this->request->action;
-     }
      $position_for_layout = '<li><a href="#">Pharmanet</a></li><li class="active">' . $position . '</li>';
      $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
