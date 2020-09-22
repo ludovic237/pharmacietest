@@ -199,10 +199,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <tbody id="tab_Lsortie" >
                 <?php $i = 0; if(isset($sorties) && !empty($sorties)) foreach ($sorties as $k => $v) : ?>
                     <tr id="<?php echo $v->id; ?>">
-                        <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $v->idp; ?>"><?php echo $produit_rayon[$i]->nom.'['.$produit_rayon[$i]->dateLivraison.']'; ?></a></strong></td>
+                        <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $produit_rayon[$i]->idp; ?>"><?php echo $produit_rayon[$i]->nomp.'['.$produit_rayon[$i]->dateLivraison.']'; ?></a></strong></td>
                         <td><?php echo $v->quantite; ?></td>
                         <td><strong><?php echo $produit_detail[$i]; ?></strong></td>
-                        <td><?php echo $operation[$i]; ?></td>
+                        <td><strong><?php echo $produit_rayon[$i]->nomf; ?></strong></td>
                         <td><?php echo $v->dateSortie; ?></td>
                         <td><?php echo $operation[$i]; ?></td>
                         <td>

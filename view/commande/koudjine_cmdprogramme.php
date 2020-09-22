@@ -136,9 +136,9 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
         </div>
 
         <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
-            <a onclick="valider_commande()" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant" class="btn btn-success" role="button" style="float: left; width: 40%;">Valider</a>
+            <a onclick="valider_commande(false)" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant" class="btn btn-success" role="button" style="float: left; width: 40%;">Valider</a>
             <!-- <a onclick="valider_vente('2', 'Crédit')" id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 40%;">Imprimer</a> -->
-            <a onclick="imprimer_commande()" class="btn btn-primary" role="button" style="float: left; width: 40%;">Imprimer</a>
+            <a onclick="valider_commande(true)" class="btn btn-primary" role="button" style="float: left; width: 40%;">Imprimer</a>
         </div>
 
     </div>
@@ -449,125 +449,6 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     </div>
 </div>
 <!-- END MODAL ICON PREVIEW -->
-<!-- START MODAL ICON PREVIEW -->
-<div class="modal fade" id="iconPreviewRecu" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Produit</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="icon-preview">
-                            <div style="display:block;font-size: 10px;flex-direction: column;background-color: white;" class="ticketfacture" id="recu">
-
-                                <div style="flex-direction: row;display: flex;justify-content: space-between;">
-                                    <div>
-                                        logo
-                                    </div>
-                                    <div>
-                                        date
-                                    </div>
-                                </div>
-                                <div style="display: flex;margin-top: 40px;">
-                                    Bordereau de réception
-                                </div>
-                                <div style="display: flex;margin-top: 20px;margin-bottom: 20px;">
-                                    n bon
-                                </div>
-                                <div style="display: flex;justify-content: space-between;">
-                                    <div>
-                                        N° de bordereau de réception
-                                    </div>
-                                    <div>
-                                    </div>
-                                </div>
-                                <div style="display: flex;justify-content: space-between;">
-                                    <div>
-                                        N° bon de commande
-                                    </div>
-                                    <div>
-                                        Date de commande
-                                    </div>
-                                </div>
-                                <div style="display: flex;justify-content: space-between;">
-                                    <div>
-                                        Nom fournisseur
-                                    </div>
-                                    <div>
-                                        N° de bordereau de livraison
-                                    </div>
-                                </div>
-                                <div>
-                                    <table style="display: block;overflow: auto;" class="table table-bordered table-striped table-actions">
-                                        <thead>
-                                            <tr>
-                                                <th width="50">N</th>
-                                                <th width="200">Designation</th>
-                                                <th width="100">Quantite commandé</th>
-                                                <th width="100">Quantite livré</th>
-                                                <th width="100">Prix Achat</th>
-                                                <th width="100">Prix Vente</th>
-                                                <th width="100">Prix Total Achat</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-
-                                                </td>
-                                                <td>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="6">total</td>
-                                                <td>
-                                                    20000
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                                <div style="display: flex;">
-                                    <h5>Nombre d'article commandé</h5>
-                                </div>
-                                <div style="display: flex;">
-                                    <h5>Nombre de produit commandé</h5>
-                                </div>
-
-
-                            </div>
-                            <div style="display: flex;justify-content: space-around;">
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Annuler
-                                </button>
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Receptionner
-                                </button>
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onclick="imprimer_recu('recu','recu')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END MODAL ICON PREVIEW -->
-
 
 
 <!-- START MODAL ICON PREVIEW -->
@@ -636,6 +517,110 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
 <!-- END MODAL ICON PREVIEW -->
 
 <!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewRecu" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                <h4 class="modal-title">Commande</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="icon-preview">
+                            <div style="display:block;font-size: 10px;flex-direction: column;background-color: white;" class="ticketfacture" id="recu">
+
+                                <div style="flex-direction: row;display: flex;justify-content: space-between;">
+                                    <div>
+                                        logo
+                                    </div>
+                                    <div>
+                                        <span id="date"></span>
+                                    </div>
+                                </div>
+                                <div style="display: flex;margin-top: 40px;">
+                                    <h1>Bordereau de réception</h1>
+                                </div>
+                                <div style="display: flex;margin-top:20px;">
+                                    <strong>Numéro de bon</strong>
+                                </div>
+                                <div style="display: flex;justify-content: space-between;margin-top: 10px;">
+                                    <div>
+                                        <strong>N° bordereau de réception :</strong>
+                                        <span id="rec_commande"></span>
+                                    </div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;justify-content: space-between;margin-top:10px">
+                                    <div>
+                                        <strong> N° bon de commande :</strong>
+                                        <span id="ref_commande"></span>
+                                    </div>
+                                    <div>
+                                        <strong>Date de commande :</strong>
+                                        <span id="date_commande"></span>
+                                    </div>
+                                </div>
+                                <div style="display: flex;justify-content: space-between;margin-top:10px">
+                                    <div>
+                                        <strong>Fournisseur :</strong>
+                                        <span id="nomf_commande"></span>
+                                    </div>
+                                    <div>
+                                        <strong> N° bordereau de livraison :</strong>
+                                        <span id="bordereau_livraison"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <table style="display: block;overflow: auto;margin-bottom: 20px;margin-top: 40px;border-collapse: collapse;border-spacing: 0px;border: 0;" class="table table-bordered table-striped table-actions">
+                                        <thead>
+                                        <tr>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="50"><strong>N°</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="200"><strong>Designation</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>Qte commandé</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>Qte livré</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>Prix Achat</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>Prix Vente</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>P T Achat</strong></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tab_Bcommande_Recu">
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div style="display: flex;margin-top:10px">
+                                    Nombre d'article commandé : <span id="article_commande"></span>
+                                </div>
+                                <div style="display: flex;margin-top:10px">
+                                    Nombre de produit commandé : <span id="produit_commande"></span>
+                                </div>
+
+
+                            </div>
+                            <div style="display: flex;justify-content: space-around;">
+                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onclick="imprimer_recu('recu','recu')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+
+
+<!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreviewPrintCmdProgramme" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -664,10 +649,10 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                 </div>
                                 <div style="display: flex;">
                                     <div style="border: 1px solid black; height: 4mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
-                                        <p class="today" style="width: 15mm; font-weight: bold; text-align: center; margin-bottom: 0px; font-size: 5.4px;">07-01-2020</p>
+                                        <p class="today" style="width: 15mm; font-weight: bold; text-align: center; margin-bottom: 0px; font-size: 5.4px;"></p>
                                     </div>
                                     <div style="border: 1px solid black; height: 4mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
-                                        <p class="datelivraisron" style="width: 15mm; font-weight: bold; text-align: center; margin-bottom: 0px; font-size: 5.4px;">01-04-2021</p>
+                                        <p class="datelivraisron" style="width: 15mm; font-weight: bold; text-align: center; margin-bottom: 0px; font-size: 5.4px;"></p>
                                     </div>
                                 </div>
 
