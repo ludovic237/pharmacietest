@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
-      <change beforePath="$PROJECT_DIR$/controller/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/users/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/users/login.php" afterDir="false" />
     </list>
     <ignored path="Site.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,11 +62,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/UsersController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
               <caret line="56" column="54" selection-start-line="56" selection-start-column="54" selection-end-line="56" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webroot/koudjine/Class/employe.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="86" column="38" lean-forward="true" selection-start-line="86" selection-start-column="38" selection-end-line="86" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/view/users/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="77" selection-start-line="3" selection-start-column="77" selection-end-line="3" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -104,24 +123,6 @@
                 <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/vente/koudjine_vente.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1955">
-              <caret line="115" column="144" selection-start-line="115" selection-start-column="144" selection-end-line="115" selection-end-column="144" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/VenteController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -233,8 +234,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/view/catalogue/koudjine_assureur.php" />
-        <option value="$PROJECT_DIR$/view/catalogue/koudjine_assureuradd.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/Class/assureur.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/Class/fabriquant.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_fabriquant.php" />
@@ -284,6 +283,8 @@
         <option value="$PROJECT_DIR$/view/comptabilite/koudjine_caisse.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/js/demo_tables.js" />
         <option value="$PROJECT_DIR$/controller/UsersController.php" />
+        <option value="$PROJECT_DIR$/webroot/koudjine/Class/employe.php" />
+        <option value="$PROJECT_DIR$/view/users/login.php" />
       </list>
     </option>
   </component>
@@ -375,6 +376,12 @@
               <item name="pharmacietest" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="types" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pharmacietest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pharmacietest" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pharmacietest" type="b2602c69:ProjectViewProjectNode" />
@@ -535,21 +542,7 @@
       <workItem from="1599576318080" duration="63708000" />
       <workItem from="1600622252361" duration="6692000" />
       <workItem from="1600635199798" duration="107449000" />
-      <workItem from="1600848494697" duration="4670000" />
-    </task>
-    <task id="LOCAL-00014" summary="merge">
-      <created>1593848070726</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1593848070726</updated>
-    </task>
-    <task id="LOCAL-00015" summary="merge">
-      <created>1593929256053</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1593929256054</updated>
+      <workItem from="1600848494697" duration="4880000" />
     </task>
     <task id="LOCAL-00016" summary="merge">
       <created>1594385470756</created>
@@ -880,11 +873,25 @@
       <option name="project" value="LOCAL" />
       <updated>1600854606915</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="merge">
+      <created>1600854845724</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1600854845733</updated>
+    </task>
+    <task id="LOCAL-00064" summary="merge">
+      <created>1600855029174</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1600855029174</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="755067000" />
+    <option name="totallyTimeSpent" value="755277000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -1046,13 +1053,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/charger_sortie_produit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webroot/koudjine/Class/sortie_sortie.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -1144,13 +1144,6 @@
     <entry file="file://$PROJECT_DIR$/webroot/koudjine/Class/user.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2074" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/Class/employe.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="160" column="35" lean-forward="true" selection-start-line="157" selection-end-line="160" selection-end-column="35" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/view/pharmanet/koudjine_useradd.php">
@@ -1424,6 +1417,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="56" column="54" selection-start-line="56" selection-start-column="54" selection-end-line="56" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webroot/koudjine/Class/employe.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="86" column="38" lean-forward="true" selection-start-line="86" selection-start-column="38" selection-end-line="86" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/users/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="77" selection-start-line="3" selection-start-column="77" selection-end-line="3" selection-end-column="77" />
         </state>
       </provider>
     </entry>
