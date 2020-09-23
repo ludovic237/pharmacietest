@@ -1,6 +1,6 @@
 <?php
 
-$title_for_layout = ' ALSAS -' . 'Universités';
+$title_for_layout = ' ALSAS -' . 'Vente';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter en Vente' : 'Modifier un assureur';
 // $action_for_layout = 'Ajouter';
 
