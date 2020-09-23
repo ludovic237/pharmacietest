@@ -422,6 +422,24 @@
     </div>
     <!-- END MESSAGE BOX-->
 
+    <div class="message-box animated fadeIn" data-sound="alert" id="mb-confirmation-print" data="">
+        <div class="mb-container">
+            <div class="mb-middle">
+                <div class="mb-title"><span class="fa fa-sign-out"></span> Confirmation <strong>Vente</strong> ?</div>
+                <div class="mb-content">
+                    <p>Voulez vous imprimer un <strong><mark>Ticket de caisse</mark></strong>?</p>
+                    <p>Cliquez sur oui si vous le voulez ou sur non pour pas maintenant.</p>
+                </div>
+                <div class="mb-footer">
+                    <div class="pull-right">
+                        <button class="btn btn-success btn-lg mb-control-yes">Oui</button>
+                        <button class="btn btn-default btn-lg mb-control-close">Non</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- MESSAGE BOX-->
     <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
         <div class="mb-container">

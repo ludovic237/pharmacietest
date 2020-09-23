@@ -34,9 +34,10 @@
 
                     <div class="panel-body">
                          <div style="justify-content:space-evenly;display:flex; margin-bottom: 10px;">
-                              <button class="btn btn-primary  pull-right" data="" id="" onclick="close_caisse_row()">Fermer caisse</button>
+                              <button class="btn btn-primary  pull-left" data="" id="" onclick="close_caisse_row()">Fermer caisse</button>
 
                               <button class="btn btn-primary  pull-right" data="" id="" onclick="rafraichir_vente('<?php echo $caisse->id; ?>')">Rafraichir</button>
+                              <button class="btn btn-primary btn-rounded  pull-right" data="" id="" onclick="liste_caisse('<?php echo $caisse->id; ?>')">Afficher vente</button>
                          </div>
                          <div class="table-responsive">
                               <table class="table   table-bordered table-striped table-actions" id="">
@@ -120,7 +121,7 @@
                          <div style="display: flex;align-items: center;justify-content: space-evenly;">
                               <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;" id="fen_facture" data="">Montant facture</h4>
                               <div>
-                                   <h2><span id="facture_caisse" data="">0</span>F CFA</h2>
+                                   <h2><span id="facture_caisse" data="">0</span> F CFA</h2>
                               </div>
                          </div>
                          <div class="panel panel-default tabs">
@@ -551,33 +552,33 @@
                                                        </thead>
                                                        <tbody>
                                                             <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_1" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent1 x" data="1" value="0" id="fargent_1" placeholder=""></td>
                                                                  <td>500</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_2" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent6 x" data="6" value="0" id="fargent_2" placeholder=""></td>
                                                                  <td>10000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_3" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent2 x" data="2" value="0" id="fargent_3" placeholder=""></td>
                                                                  <td>100</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_4" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent7 x" data="7" value="0" id="fargent_4" placeholder=""></td>
                                                                  <td>5000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_5" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent3 x" data="3" value="0" id="fargent_5" placeholder=""></td>
                                                                  <td>50</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_6" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent8 x" data="8" value="0" id="fargent_6" placeholder=""></td>
                                                                  <td>2000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_7" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent4 x" data="4" value="0" id="fargent_7" placeholder=""></td>
                                                                  <td>25</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_8" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent9 x" data="9" value="0" id="fargent_8" placeholder=""></td>
                                                                  <td>1000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_9" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent5 x" data="5" value="0" id="fargent_9" placeholder=""></td>
                                                                  <td>10</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent x" value="0" id="fargent_10" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent10 x" data="10" value="0" id="fargent_10" placeholder=""></td>
                                                                  <td>500</td>
                                                             </tr>
                                                             <tr>
@@ -639,7 +640,7 @@
                     <div class="row">
                          <div class="col-md-4">
                               <div class="icon-preview">
-                                   <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticket">
+                                   <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticketCaisse">
 
                                         <div style="display: flex;flex-direction:column;text-align: left;">
                                              <p style="margin: 0px; color: black;font-weight: 400;">Pharmacie ALSAS</p>
@@ -701,5 +702,53 @@
                </div>
           </div>
      </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewListeCaisse" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width: 85%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Caisse</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="panel panel-default">
+
+                            <div class="panel-body panel-body-table">
+
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table id="tab_load_produit_caisse" style="height: 200px;overflow: auto;" class="table table-bordered table-actions">
+                                            <thead>
+                                            <tr>
+                                                <th width="100">Montant</th>
+                                                <th width="200">Montant percu</th>
+                                                <th width="200">Date de vente</th>
+                                                <th width="100">Etat</th>
+                                                <th width="100">Ref</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tab_Bload_produit_caisse">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- END MODAL ICON PREVIEW -->

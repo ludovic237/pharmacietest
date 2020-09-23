@@ -469,34 +469,34 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Reduction max :</label>
+                            <label class="col-md-3 control-label champ1">Reduction max :</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" id="reduction_max" value="" placeholder="" />
+                                <input type="number" class="form-control champ champ1" data="1" id="reduction_max" value="" placeholder="" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Quantité :</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" id="qte_cmdprogramme" value="" placeholder="" />
+                                <input type="number" class="form-control champ champ2" data="2" id="qte_cmdprogramme" value="" placeholder="" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Prix d'achat:</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" id="prixachat_cmdprogramme" value="" placeholder="" />
+                                <input type="number" class="form-control champ champ3" data="3" id="prixachat_cmdprogramme" value="" placeholder="" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Prix public:</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" value="" id="prixpublic_cmdprogramme" placeholder="" />
+                                <input type="number" class="form-control champ champ4" data="4" value="" id="prixpublic_cmdprogramme" placeholder="" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Date de péremption:</label>
                             <div class="col-md-9">
                                 <div class="input-group">
-                                    <input style="padding-top: 0px;" class="form-control" id="date_cmdprogramme" placeholder="Date de péremption" type="date" required="">
+                                    <input style="padding-top: 0px;" class="form-control champ champ5" data="5" id="date_cmdprogramme" placeholder="Date de péremption" type="date" required="">
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>

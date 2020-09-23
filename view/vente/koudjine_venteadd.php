@@ -4,11 +4,9 @@ $title_for_layout = ' Admin -' . 'Universités';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter en Vente' : 'Modifier un assureur';
 // $action_for_layout = 'Ajouter';
 
-if ($this->request->action == "index") {
-    $position = "Toutes les universités";
-} else {
-    //$position = $this->request->action;
-}
+//print_r($_SESSION['Users']);
+//echo $_SESSION['Users']->identifiant;
+
 $position_for_layout = '<li><a href="#">Vente</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
@@ -274,10 +272,10 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
         </div>
 
         <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
-            <a onclick="valider_vente('1', 'Comptant')" data="1" id="comptant" class="btn btn-success" role="button" style="float: left; font-weight: bold;background-color: #66e17f;border-color: #66e17f;width: 50%;display: flex;justify-content: center;align-items: center;font-size: 18px;">Comptant</a>
+            <a onclick="valider_vente('1', 'Comptant')" data="<?php echo $_SESSION['Users']->id; ?>" data1="<?php echo $_SESSION['Users']->identifiant; ?>"  id="comptant" class="btn btn-success" role="button" style="float: left; font-weight: bold;background-color: #66e17f;border-color: #66e17f;width: 50%;display: flex;justify-content: center;align-items: center;font-size: 18px;">Comptant</a>
             <div style="display: flex;flex-direction: column;width: 40%;">
-                <a data="1" id="comptant" class="btn btn-primary" role="button" style="float: left; width: 100%;padding: 4px;">Assurance</a>
-                <a onclick="valider_vente('2', 'Crédit')" id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 100%;padding: 4px;margin-top: 4px;">Crédit</a>
+                <a onclick="valider_vente('2', 'Assurance')"  data1="Assurance" id="assurance" class="btn btn-primary" role="button" style="float: left; width: 100%;padding: 4px;">Assurance</a>
+                <a onclick="valider_vente('2', 'Crédit')"  id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 100%;padding: 4px;margin-top: 4px;">Crédit</a>
             </div>
 
 
@@ -338,7 +336,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" onclick="ajouter_produit();">Valider</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" onclick="focus_recherche()">Close</button>
             </div>
         </div>
     </div>
@@ -396,6 +394,82 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
             </div>
             <div class="modal-footer">
                 <button id="id_xr" class="btn btn-success" data="" type="submit" onclick="enregistrer_commande_programme()">Valider</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewFacture" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="icon-preview">
+                            <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticketVente">
+
+                                <div style="display: flex;flex-direction:column;text-align: left;">
+                                    <p style="margin: 0px; color: black;font-weight: 400;">Pharmacie ALSAS</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;">Dr GAMWO Sandrine</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;">BP 38 FOUMBOT</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 267 487</p>
+                                    <div style="display: flex;justify-content:space-between">
+                                        <p style="margin: 0px; color: black;font-weight: 400;">Ticket N°: <span class="reference"></span></p>
+                                        <p style="margin: 0px; color: black;font-weight: 400;"><span class="datevente"></span> à <span class="heurevente"></span> </p>
+                                    </div>
+                                    <p style="margin: 0px; color: black;font-weight: 400;">Vendeur: <span class="vendeur"></span> </p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p>
+                                </div>
+                                <div>
+                                    <table class="table table-inverse table-responsive">
+                                        <thead class="thead-inverse">
+                                        <tr>
+                                            <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>
+                                            <th style="background-color: white;color: black;font-weight: 400;">Prix U.</th>
+                                            <th style="background-color: white;color: black;font-weight: 400;">Qte</th>
+                                            <th style="background-color: white;color: black;font-weight: 400;">TOTAL</th>
+                                            <th style="background-color: white;color: black;font-weight: 400;">Rd</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tab_BfactureImprimer">
+
+                                        <tr>
+                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
+                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="montanttotal"></span> FCFA</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
+                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="remise"></span> FCFA</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
+                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="netapayer"></span> FCFA</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="display: flex;flex-direction:column;text-align: left;">
+                                    <p style="margin: 0px; color: black;font-weight: 400;">Payer en espece : <span class="montantpercu"></span> </p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;">Montant rendu : <span class="montantrendu"></span> </p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;">Ce ticket vaut facture</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;">Merci et bonne santé</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;">NoCT /rtdrstrdsy</p>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>

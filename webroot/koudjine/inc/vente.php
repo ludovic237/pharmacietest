@@ -33,7 +33,9 @@ else{
 
 
     $idGen = genererID();
+
         $num = $manager->countMois();
+    $ref = genererreference($num);
         if($etat == "Crédit"){
             $caisse = null;
         }else{
@@ -54,14 +56,14 @@ else{
             'prixPercu' => 0,
             'commentaire' => $commentaire,
             'etat' => $etat,
-            'reference' => genererreference($num),
+            'reference' => $ref,
             'nouveau_info' => $nouveau,
             'reduction' => $prixr,
             'caisse_id' => $caisse,
             'supprimer' => 0
         ));
         $manager->add($vent);
-        $donnees = array('erreur' =>'ok', 'id' => $idGen);
+        $donnees = array('erreur' =>'ok', 'id' => $idGen, 'ref' => $ref);
 
         echo json_encode($donnees);
         //echo 'passe';

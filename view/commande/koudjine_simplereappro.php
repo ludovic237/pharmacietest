@@ -111,9 +111,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <tr>
                                 <th width="200">Nom</th>
                                 <th width="100">Fournisseur</th>
-                                <th width="200">Date de Livraison</th>
+                                <th width="100">Date de Livraison</th>
                                 <th width="100">Stock total</th>
-                                <th width="100">Prix Achat</th>
+                                <th width="200">Prix Achat</th>
                                 <th width="100">Quantité</th>
                                 <th width="100">Action</th>
                             </tr>
@@ -131,13 +131,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <div class='input-group' style="width: 95px;">
 
                                             <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $result->idp; ?>')" style='padding: 4px;'>
+                                                <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','inputPrix<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-minus'></span>
                                                 </button>
                                             </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' id="input<?php echo $result->idp; ?>" value='1' style='width: 40px;'>
+                                            <input type='text' name='quant[1]' class='form-control input-number' id="inputPrix<?php echo $v->idp; ?>" value='<?php echo $v->prixAchat; ?>' style='width: 90px;'>
                                             <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number plus' onclick="change_input('plus','input<?php echo $result->idp; ?>')" style='padding: 4px;'>
+                                                <button type='button' class='btn btn-default btn-number plus' onclick="change_input('plus','inputPrix<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-plus'></span>
                                                 </button>
                                             </span>
@@ -151,13 +151,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <div class='input-group' style="width: 95px;">
 
                                             <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
+                                                <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','inputQte<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-minus'></span>
                                                 </button>
                                             </span>
-                                            <input type='text' name='quant[1]' class='form-control input-number' id="input<?php echo $v->idp; ?>" value='1' style='width: 40px;'>
+                                            <input type='text' name='quant[1]' class='form-control input-number' id="inputQte<?php echo $v->idp; ?>" value='1' style='width: 40px;'>
                                             <span class='input-group-btn'>
-                                                <button type='button' class='btn btn-default btn-number plus' onclick="change_input('plus','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
+                                                <button type='button' class='btn btn-default btn-number plus' onclick="change_input('plus','inputQte<?php echo $v->idp; ?>')" style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-plus'></span>
                                                 </button>
                                             </span>

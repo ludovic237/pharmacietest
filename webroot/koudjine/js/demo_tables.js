@@ -9,6 +9,16 @@ $(document).ready(function () {
         $('.totalaisse').html(total);
         $('.soustotalaisse1').html(soustotal1);
         $('.soustotalaisse2').html(soustotal2);
+        if (event.keyCode == 13){
+            //alert('passe');
+            var id = $(this).attr("id");
+            var position = $("#"+id).attr("data");
+            position = parseInt(position);
+            position = position + 1;
+            $(".argent"+position).focus();
+            $(".argent"+position).select();
+            //$("#iconPreviewForm .champ"+position).val(position);
+        }
 
 
     })
@@ -20,7 +30,16 @@ $(document).ready(function () {
         $('.ftotalaisse').html(total);
         $('.fsoustotalaisse1').html(soustotal1);
         $('.fsoustotalaisse2').html(soustotal2);
-
+        if (event.keyCode == 13){
+            //alert('passe');
+            var id = $(this).attr("id");
+            var position = $("#"+id).attr("data");
+            position = parseInt(position);
+            position = position + 1;
+            //$(".fargent"+position).focus();
+            $(".fargent"+position).select();
+            //$("#iconPreviewForm .champ"+position).val(position);
+        }
 
     })
     $('#iconPreviewCaisse').on('hidden.bs.modal', function () {
@@ -161,14 +180,14 @@ function charger_vente(id) {
     //$("#"+id).addClass("alt");
     $('#tab1 .montant').val('');
     $('#tab1 .reste').val('');
-    $('#ticket .reference').html($("#"+id+" .reference").html());
-    $('#ticket .datevente').html($("#"+id+" .date").html());
-    $('#ticket .heurevente').html($("#"+id+" .heure").html()); 
-    $('#ticket .vendeur').html($("#"+id+" .vendeur").html());
-    $('#ticket .acheteur').html($("#"+id+" .client").html());
-    $('#ticket .netapayer').html($("#"+id+" .prixtotal").html());
-    $('#ticket .remise').html($("#"+id+" .reduction").html());
-    $('#ticket .montanttotal').html(parseInt($("#"+id+" .reduction").html()) + parseInt($("#"+id+" .prixtotal").html()));
+    $('#ticketCaisse .reference').html($("#"+id+" .reference").html());
+    $('#ticketCaisse .datevente').html($("#"+id+" .date").html());
+    $('#ticketCaisse .heurevente').html($("#"+id+" .heure").html()); 
+    $('#ticketCaisse .vendeur').html($("#"+id+" .vendeur").html());
+    $('#ticketCaisse .acheteur').html($("#"+id+" .client").html());
+    $('#ticketCaisse .netapayer').html($("#"+id+" .prixtotal").html());
+    $('#ticketCaisse .remise').html($("#"+id+" .reduction").html());
+    $('#ticketCaisse .montanttotal').html(parseInt($("#"+id+" .reduction").html()) + parseInt($("#"+id+" .prixtotal").html()));
 
 
 

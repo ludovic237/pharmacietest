@@ -307,6 +307,17 @@ class VenteManager
         }
         return $ventes;
     }
+    public function getListCaisseComplete($id)
+    {
+        $ventes = array();
+        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 AND caisse_id = '.$id.' AND prixPercu <> 0 ORDER BY dateVente DESC');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $ventes[] = new Vente($donnees);
+        }
+        return $ventes;
+    }
     public function update(Vente $vente)
     {
 

@@ -35,7 +35,7 @@ function ajouter_commande(id) {
         ////alert($(this).html());
         if (j == 0) { nom = $(this).html(); }
         if (j == 4) { prix = parseInt($("#inputPrix" + id).val()); }
-        if (j == 5) { qte = parseInt($("#input" + id).val()); }
+        if (j == 5) { qte = parseInt($("#inputQte" + id).val()); }
 
     });
     $('#tab_commande  tr').each(function (i) {

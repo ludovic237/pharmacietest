@@ -4,6 +4,18 @@ $(document).ready(function () {
     $("#tab_GCrecherche").hide();
     $(".btn-modifier").hide();
 
+    $("#iconPreviewForm .champ").keyup(function (event) {
+        if (event.keyCode == 13){
+            //alert('passe');
+            var id = $(this).attr("id");
+            var position = $("#"+id).attr("data");
+            position = parseInt(position);
+            position = position + 1;
+            $("#iconPreviewForm .champ"+position).focus();
+            //$("#iconPreviewForm .champ"+position).val(position);
+        }
+    })
+
     $('#iconPreviewForm').on('show.bs.modal', function () {
         ////alert('passe');
         $("#tab_BCrecherche").hide();
