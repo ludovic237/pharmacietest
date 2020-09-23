@@ -663,21 +663,21 @@
                                                             <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Prix U.</th>
                                                             <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Qte</th>
                                                             <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Total</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Rd(%)</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="50">Rd(%)</th>
                                                        </tr>
                                                   </thead>
                                                   <tbody id="tab_BfactureImprimer">
 
                                                        <tr>
-                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
+                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: start;" scope="row">Montant Total</td>
                                                             <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="montanttotal"></span> FCFA</td>
                                                        </tr>
                                                        <tr>
-                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
+                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: start;" scope="row">Remise</td>
                                                             <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="remise"></span> FCFA</td>
                                                        </tr>
                                                        <tr>
-                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
+                                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: start;" scope="row">Net à payer</td>
                                                             <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="netapayer"></span> FCFA</td>
                                                        </tr>
                                                   </tbody>

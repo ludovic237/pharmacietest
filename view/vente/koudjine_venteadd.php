@@ -430,11 +430,11 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                     <table class="table table-inverse table-responsive">
                                         <thead class="thead-inverse">
                                         <tr>
-                                            <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>
-                                            <th style="background-color: white;color: black;font-weight: 400;">Prix U.</th>
-                                            <th style="background-color: white;color: black;font-weight: 400;">Qte</th>
-                                            <th style="background-color: white;color: black;font-weight: 400;">TOTAL</th>
-                                            <th style="background-color: white;color: black;font-weight: 400;">Rd</th>
+                                        <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="200">Libelle</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Prix U.</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Qte</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Total</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="50">Rd(%)</th>
                                         </tr>
                                         </thead>
                                         <tbody id="tab_BfactureImprimer">

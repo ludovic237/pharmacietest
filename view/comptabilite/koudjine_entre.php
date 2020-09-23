@@ -190,7 +190,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                         <p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
                                                     </div>
                                                     <div>
-                                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 8px;display: flex;margin: 0px;padding: 0px;overflow: auto;width: auto;" id="demo"></p>
+                                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="demo"></p>
                                                     </div>
                                                     <div style="display: flex;flex-direction: row;justify-content: space-around;">
                                                         <p class="datel" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
