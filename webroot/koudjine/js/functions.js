@@ -821,7 +821,7 @@ function valider_vente(type, etat) {
     var idClient;
     var idPrescripteur;
     var idv, reference;
-    
+
     /**/
     // vérifier si le prix est > à 0
     if (parseInt($('#prixTotal').html()) == 0) {
@@ -1027,6 +1027,7 @@ function valider_vente(type, etat) {
 
                 }else{
                     //alert('3 - '+data.erreur);
+                    $('#alertCaisse').modal("show");
                 }
 
             }
