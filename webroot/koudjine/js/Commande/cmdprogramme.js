@@ -306,7 +306,7 @@ function delete_row_commande(id) {
 }
 function valider_commande(imprimer) {
     var prixTotal, idc, ref;
-    var prix, qte, prixPublic, datep,nomP;
+    var prix, qte, prixPublic, datep,nomP, count=0, rec=0;
     var h = 1, total = 0, nbre = 0;
     prixTotal = parseInt($('#prixTotal').html());
     var today = new Date();
@@ -340,6 +340,9 @@ function valider_commande(imprimer) {
                     idc = data.id;
                     ref = data.ref;
                     //alert(idc);
+                    $('#tab_commande_programme  tr').each(function (i) {
+                        count++;});
+                    console.log(count);
                     $('#tab_commande_programme  tr').each(function (i) {
                         var id1 = $(this).attr("id");
                         var id2 = $("#" + id1 + " .nom").attr("data");
@@ -388,10 +391,45 @@ function valider_commande(imprimer) {
                             success: function (server_responce) {
                                 //alert(server_responce);
                                 //alert(idc);
+                                rec++;
+
                                 $("#mb-confirmation").attr("data", idc);
                                 //alert($("#mb-confirmation").attr("data"));
-                                if(!imprimer){
-                                    $("#mb-confirmation").modal("show");
+                                if(imprimer && rec == count){
+                                    //imprimer_com(idc, ref, $('#fournisseur_commande option:selected').text());
+                                    var cat = '<tr>'
+                                        + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="6">Total</td>'
+                                        + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"><strong>' +total+ '</strong></td>'
+                                        + '</tr>';
+                                    $('#tab_Bcommande_Recu').append(cat);
+                                    //$("#totalRecu").html(total);
+                                    $("#article_commande").html(h-1);
+                                    $("#produit_commande").html(nbre);
+                                    var yo = ref;
+                                    var one = yo.substr( 0, 9);
+                                    var three = yo.substr(12, 3);
+
+                                    var chaine = one +"REC"+ three;
+
+                                    var today = new Date();
+                                    var dd = String(today.getDate()).padStart(2,'0');
+                                    var mm = String(today.getMonth()+1).padStart(2,'0');
+                                    var yyyy = today.getFullYear();
+                                    var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+                                    today = dd+"-"+mm+"-"+yyyy+"  "+time
+                                    $("#date").html(today);
+                                    $("#bordereau_livraison").html($("#numero_bon_livraison").val());
+                                    $("#rec_commande").html(chaine);
+                                    $("#ref_commande").html(ref);
+                                    $("#nomf_commande").html($('#fournisseur_commande option:selected').text());
+                                    $("#date_commande").html(today);
+                                    $("#iconPreviewRecu").modal("show");
+                                }else{
+                                    if(rec == count){
+                                        console.log('Redirige');
+                                        var link = '/pharmacietest/bouwou/commande/list';
+                                        window.location.href = link;
+                                    }
                                 }
                                 /*if(data1.erreur == 'ok'){
                                     var link = '/pharmacietest/users/logout';
@@ -402,38 +440,7 @@ function valider_commande(imprimer) {
                         })
 
                     });
-                    if(imprimer){
-                        //imprimer_com(idc, ref, $('#fournisseur_commande option:selected').text());
-                        var cat = '<tr>'
-                            + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="6">Total</td>'
-                            + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"><strong>' +total+ '</strong></td>'
-                            + '</tr>';
-                        $('#tab_Bcommande_Recu').append(cat);
-                        //$("#totalRecu").html(total);
-                        $("#article_commande").html(h-1);
-                        $("#produit_commande").html(nbre);
-                        var yo = ref;
-                        var one = yo.substr( 0, 9);
-                        var three = yo.substr(12, 3);
 
-                        var chaine = one +"REC"+ three;
-
-                        var today = new Date();
-                        var dd = String(today.getDate()).padStart(2,'0');
-                        var mm = String(today.getMonth()+1).padStart(2,'0');
-                        var yyyy = today.getFullYear();
-                        var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-                        today = dd+"-"+mm+"-"+yyyy+"  "+time
-                        $("#date").html(today);
-                        $("#bordereau_livraison").html($("#numero_bon_livraison").val());
-                        $("#rec_commande").html(chaine);
-                        $("#ref_commande").html(ref);
-                        $("#nomf_commande").html($('#fournisseur_commande option:selected').text());
-                        $("#date_commande").html(today);
-                        $("#iconPreviewRecu").modal("show");
-                    }else{
-
-                    }
                 }
 
 

@@ -821,7 +821,7 @@ function valider_vente(type, etat) {
     var idClient;
     var idPrescripteur;
     var idv, reference;
-    var prix, qte, prixReduit, id1, count=0, rec=0, verification=true;
+    var prix, qte, prixReduit, id1, count=0, rec=0;
 
     /**/
     // vérifier si le prix est > à 0
@@ -1051,7 +1051,7 @@ function valider_vente(type, etat) {
 }
 
 function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
-    var montantTtc = parseInt($('#facture_caisse').html());
+    var montantTtc = parseInt($('#facture_caisse').html()),  count=0, rec=0;
     var reduction = parseInt($('#facture_caisse').attr('data'));
     $('#ticketCaisse .montantpercu').html($('#' + onglet + ' .montant').val());
     $('#ticketCaisse .montantrendu').html($('#' + onglet + ' .reste').val());
@@ -1089,6 +1089,8 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
             },
             success: function (server_responce) {
               //  alert(server_responce);
+                $('#tab_vente_caisse  tr').each(function (i) {
+                    count++;});
                 $('#tab_vente_caisse  tr').each(function(i){
                     var id1 = $(this).attr("id");
                     var qte;
@@ -1111,13 +1113,15 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                         },
                         success: function (server_responce) {
                           //  alert(server_responce);
+                            rec++;
                             rafraichir_vente(caisse_id);
                             $('#'+onglet+' .montant').val('');
                             $('#'+onglet+' .reste').val('');
                             $('#facture_caisse').html('0');
-                            $('#tab_vente_caisse').empty();
-                            if (imprimer) {
+
+                            if (imprimer && rec == count) {
                                 imprimer_bloc('ticketCaisse','ticketCaisse');
+                                $('#tab_vente_caisse').empty();
                             }
                             //var link = '/pharmacietest/users/logout';
                             //window.location.href = link;

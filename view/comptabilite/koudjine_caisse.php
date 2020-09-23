@@ -656,7 +656,7 @@
                                              <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p>
                                         </div>
                                         <div>
-                                             <table class="table table-bordered table-striped table-actions table-responsive">
+                                             <table class="table table-bordered table-striped table-actions table-responsive" id="tab_GGBfactureImprimer">
                                                   <thead>
                                                        <tr>
                                                             <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="200">Libelle</th>

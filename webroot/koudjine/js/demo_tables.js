@@ -202,6 +202,12 @@ function charger_vente(id) {
             //$("#iconPreview .icon-preview").html(icon_preview);
 
             $('#tab_vente_caisse').empty();
+            $('#tab_GGBfactureImprimer  tr').each(function (i) {
+                if($(this).attr("class") == 'ligne_facture'){
+                    //alert("passe");
+                    $(this).remove();
+                }
+            });
             $('#tab_vente_caisse').html(server_responce);
             $('#tab_BfactureImprimer').prepend(server_responce);
 
