@@ -33,7 +33,7 @@ else{
     //echo $manager->existsId($idv);
     //echo $managerCo->existsEn_rayonId($idv, $ide);
     if($manager->existsId($idv) && !$managerCo->existsEn_rayonId($idv, $ide)){
-        //echo "passe \n";
+        echo "passe \n";
         //echo $managerPr->getStock($managerEn->get($ide)->produit_id(),$qte)->stock();
 
         $conc = new Concerner(array(

@@ -821,6 +821,7 @@ function valider_vente(type, etat) {
     var idClient;
     var idPrescripteur;
     var idv, reference;
+    var prix, qte, prixReduit, id1, count=0, rec=0, verification=true;
 
     /**/
     // vérifier si le prix est > à 0
@@ -894,11 +895,14 @@ function valider_vente(type, etat) {
                     idv = data.id;
                     reference = data.ref;
                     //alert(idv);
+                    $('#tab_vente  tr').each(function (i) {
+                        count++;});
+                    console.log(count);
 
                     $('#tab_vente  tr').each(function (i) {
-                        var id1 = $(this).attr("id");
-                        var prix, qte, prixReduit;
-                        ////alert(id1);
+                        id1 = $(this).attr("id");
+                        //count++;
+                        //alert(id1);
 
 
                         $("#" + id1 + " td").each(function (j) {
@@ -907,6 +911,7 @@ function valider_vente(type, etat) {
                             if (j == 2) { qte = parseInt($(this).html()); }
                             if (j == 4) {
                                 var reduction = parseInt($(this).attr("data"));
+                                //alert(reduction);
                                 if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
                                     reduction = 0;
                                 } else {
@@ -938,7 +943,7 @@ function valider_vente(type, etat) {
 
 
                         });
-                        //alert(prix+'-'+qte+'-'+prixReduit);
+                        console.log(prix+'-'+qte+'-'+prixReduit);
                         $.ajax({
                             type: "POST",
                             url: "/pharmacietest/koudjine/inc/concerner_vente.php",
@@ -950,7 +955,76 @@ function valider_vente(type, etat) {
                                 reduction: prixReduit
                             },
                             success: function (server_responce) {
-                                ////alert(server_responce);
+                                console.log(server_responce);
+                                rec++;
+                                console.log(rec);
+                                if(type == 2 && rec == count){
+                                    // Imprimer ticket
+                                    var box = $("#mb-confirmation-print");
+                                    box.addClass("open");
+
+                                    box.find(".mb-control-yes").on("click", function () {
+                                        box.removeClass("open");
+                                        var today = new Date();
+                                        var dd = String(today.getDate()).padStart(2,'0');
+                                        var mm = String(today.getMonth()+1).padStart(2,'0');
+                                        var yyyy = today.getFullYear();
+                                        var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+                                        today = dd+"-"+mm+"-"+yyyy;
+                                        $('#ticketVente .reference').html(reference);
+                                        $('#ticketVente .datevente').html(today);
+                                        $('#ticketVente .heurevente').html(time);
+                                        $('#ticketVente .vendeur').html($("#comptant").attr('data1'));
+                                        if(idClient == null){
+                                            $('#ticketVente .acheteur').html(nouveau);
+                                        }else{
+                                            $('#ticketVente .acheteur').html($("#select_vente_client option:selected").text());
+                                        }
+
+                                        $('#ticketVente .netapayer').html(parseInt($('#netTotal').html()));
+                                        $('#ticketVente .remise').html(0);
+                                        $('#ticketVente .montantrendu').html(0);
+                                        $('#ticketVente .montantpercu').html(0);
+                                        $('#ticketVente .montanttotal').html(parseInt($('#netTotal').html()));
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: '/pharmacietest/koudjine/inc/charger_vente.php',
+                                            data: {
+                                                id: idv
+                                            },
+                                            success: function (server_responce) {
+                                                ////alert(server_responce);
+                                                //$("#iconPreview .icon-preview").html(icon_preview);
+
+                                                $('#tab_BfactureImprimer').prepend(server_responce)
+                                                //$("#iconPreviewFacture").modal('show');
+                                                imprimer_bloc('ticketVente','ticketVente');
+
+                                                var link = '/pharmacietest/users/logout';
+                                                window.location.href = link;
+
+                                            }
+
+
+                                        })
+
+                                    });
+                                    box.find(".mb-control-close").on("click", function () {
+                                        box.removeClass("open");
+                                        var link = '/pharmacietest/users/logout';
+                                        window.location.href = link;
+
+                                    });
+
+                                }else{
+
+                                    if(rec == count){
+                                        console.log('Redirige');
+                                        var link = '/pharmacietest/users/logout';
+                                        window.location.href = link;
+                                    }
+                                }
 
                                 /*if(data1.erreur == 'ok'){
                                     var link = '/pharmacietest/users/logout';
@@ -961,69 +1035,7 @@ function valider_vente(type, etat) {
                         })
 
                     });
-                    if(type == 2){
-                        // Imprimer ticket
-                        var box = $("#mb-confirmation-print");
-                        box.addClass("open");
 
-                        box.find(".mb-control-yes").on("click", function () {
-                            box.removeClass("open");
-                            var today = new Date();
-                            var dd = String(today.getDate()).padStart(2,'0');
-                            var mm = String(today.getMonth()+1).padStart(2,'0');
-                            var yyyy = today.getFullYear();
-                            var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-                            today = dd+"-"+mm+"-"+yyyy;
-                            $('#ticketVente .reference').html(reference);
-                            $('#ticketVente .datevente').html(today);
-                            $('#ticketVente .heurevente').html(time);
-                            $('#ticketVente .vendeur').html($("#comptant").attr('data1'));
-                            if(idClient == null){
-                                $('#ticketVente .acheteur').html(nouveau);
-                            }else{
-                                $('#ticketVente .acheteur').html($("#select_vente_client option:selected").text());
-                            }
-
-                            $('#ticketVente .netapayer').html(parseInt($('#netTotal').html()));
-                            $('#ticketVente .remise').html(0);
-                            $('#ticketVente .montantrendu').html(0);
-                            $('#ticketVente .montantpercu').html(0);
-                            $('#ticketVente .montanttotal').html(parseInt($('#netTotal').html()));
-
-                            $.ajax({
-                                type: "POST",
-                                url: '/pharmacietest/koudjine/inc/charger_vente.php',
-                                data: {
-                                    id: idv
-                                },
-                                success: function (server_responce) {
-                                    ////alert(server_responce);
-                                    //$("#iconPreview .icon-preview").html(icon_preview);
-
-                                    $('#tab_BfactureImprimer').prepend(server_responce)
-                                    //$("#iconPreviewFacture").modal('show');
-                                    imprimer_bloc('ticketVente','ticketVente');
-
-                                    var link = '/pharmacietest/users/logout';
-                                    window.location.href = link;
-
-                                }
-
-
-                            })
-
-                        });
-                        box.find(".mb-control-close").on("click", function () {
-                            box.removeClass("open");
-                            var link = '/pharmacietest/users/logout';
-                            window.location.href = link;
-
-                        });
-
-                    }else{
-                        var link = '/pharmacietest/users/logout';
-                        window.location.href = link;
-                    }
 
                 }else{
                     //alert('3 - '+data.erreur);
