@@ -84,7 +84,7 @@ class employe
     {
 
 
-        $this->_password = $id;
+        $this->_password = sha1($id) ;
     }
     public function settype($id)
     {
