@@ -444,33 +444,33 @@
                                                        </thead>
                                                        <tbody>
                                                             <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_1" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent argent1 x" data="1" value="0" id="argent_1" placeholder=""></td>
                                                                  <td>500</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_2" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent argent6 x" data="6" value="0" id="argent_2" placeholder=""></td>
                                                                  <td>10000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_3" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent argent2 x" data="2" value="0" id="argent_3" placeholder=""></td>
                                                                  <td>100</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_4" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent argent7 x" data="7" value="0" id="argent_4" placeholder=""></td>
                                                                  <td>5000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_5" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent argent3 x" data="3" value="0" id="argent_5" placeholder=""></td>
                                                                  <td>50</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_6" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent argent8 x" data="8" value="0" id="argent_6" placeholder=""></td>
                                                                  <td>2000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_7" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent argent4 x" data="4" value="0" id="argent_7" placeholder=""></td>
                                                                  <td>25</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_8" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent argent9 x" data="9" value="0" id="argent_8" placeholder=""></td>
                                                                  <td>1000</td>
                                                             </tr>
                                                             <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_9" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent argent5 x" data="5" value="0" id="argent_9" placeholder=""></td>
                                                                  <td>10</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent x" value="0" id="argent_10" placeholder=""></td>
+                                                                 <td class="inputcountdisable"><input type="number" class="form-control argent argent10 x" data="10" value="0" id="argent_10" placeholder=""></td>
                                                                  <td>500</td>
                                                             </tr>
                                                             <tr>
@@ -659,11 +659,11 @@
                                              <table class="table table-bordered table-striped table-actions table-responsive">
                                                   <thead>
                                                        <tr>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="200">Libelle</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Prix U.</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Qte</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Total</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100">Rd(%)</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="200">Libelle</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Prix U.</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Qte</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Total</th>
+                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Rd(%)</th>
                                                        </tr>
                                                   </thead>
                                                   <tbody id="tab_BfactureImprimer">

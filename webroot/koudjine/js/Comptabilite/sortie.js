@@ -83,7 +83,12 @@ function valider_sortie() {
                 var qterest = parseInt($("#" + id1 + " .qterest").html());
                 if (qte > qterest) {
                     statut = 0;
-                    alert("Quantité en stock pas suffisante pour cette opération ");
+                    //alert("Quantité en stock pas suffisante pour cette opération ");
+                    $('#message-box-danger p').html('Quantité en stock pas suffisante pour cette opération');
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 6000);
                 }
                 qte_total = qte_total + qte;
             })
@@ -107,7 +112,7 @@ function valider_sortie() {
                                 detail_id:$("#recherche").attr('data')
                             },
                             success: function (server_responce) {
-                                alert(server_responce);
+                                //alert(server_responce);
                                 var link = '/pharmacietest/bouwou/comptabilite/sortie';
                                 window.location.href = link;
 
@@ -137,7 +142,7 @@ function valider_sortie() {
                     detail_id:null
                 },
                 success: function (server_responce) {
-                    alert(server_responce);
+                    //alert(server_responce);
                     var link = '/pharmacietest/bouwou/comptabilite/sortie';
                     window.location.href = link;
 

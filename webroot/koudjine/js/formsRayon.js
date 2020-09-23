@@ -218,7 +218,7 @@
                                         },
                                         dataType:'json',
                                         success: function(data){
-                                            alert(data.erreur);
+                                            //alert(data.erreur);
                                             if(data.erreur == 'non' ){
                                                 $("#"+lien+" td").each(function(i){
                                                     //alert(i);

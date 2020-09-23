@@ -729,7 +729,7 @@ function info_row(row) {
         },  
         dataType: 'json',
         success: function (data) {
-            alert(data);
+            //alert(data);
             //$("#iconPreview .icon-preview").html(icon_preview);
             //alert(data);
             $('#iconPreview .ean13p').html(data.ean13A);
@@ -777,7 +777,7 @@ function info_row_entree(row) {
         },
         dataType: 'json',
         success: function (data) {
-            alert(data);
+            //alert(data);
             //$("#iconPreview .icon-preview").html(icon_preview);
 
             $('#iconPreviewEntree .nomp').html(data.nomP);

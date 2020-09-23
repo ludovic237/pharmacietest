@@ -84,7 +84,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         fournisseur
                     </button>
                 </div>
-                <div>
+                <!-- <div>
                     <button class="btn btn-primary pull-right" onclick="showBonCommande()" controller="vente" data="">
                         bon
                     </button>
@@ -92,7 +92,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <div>
                     <button class="btn btn-primary pull-right" onclick="showRecu()" controller="vente" data="">recu
                     </button>
-                </div>
+                </div> -->
 
             </div>
         </div>
