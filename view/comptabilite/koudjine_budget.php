@@ -1,6 +1,6 @@
 <!-- <?php
 
-$title_for_layout = ' Admin -'.'Universités';
+$title_for_layout = ' ALSAS -' . 'Universités';
 $page_for_layout = 'Liste vente';
 $action_for_layout = 'Ajouter';
 
