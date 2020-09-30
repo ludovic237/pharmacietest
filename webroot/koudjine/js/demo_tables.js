@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $("#customers2").DataTable({
-        bJQueryUI : true,
+        bJQueryUI : false,
         bDestroy : true,
         aaSorting : [[0, 'desc']],
     });
