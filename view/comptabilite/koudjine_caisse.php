@@ -122,7 +122,8 @@
                          <div style="display: flex;align-items: center;justify-content: space-evenly;">
                               <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;" id="fen_facture" data="">Montant facture</h4>
                               <div>
-                                   <h2><span id="facture_caisse" data="" data1="<?php echo $action_fermeture->id; ?>">0</span> F CFA</h2>
+                                   <!-- <h2><span id="facture_caisse" data="" data1="<?php echo $action_fermeture->id; ?>">0</span> F CFA</h2> -->
+                                   <h2><span id="facture_caisse" data="">0</span> F CFA</h2>
                               </div>
                          </div>
                          <div class="panel panel-default tabs">
@@ -133,7 +134,8 @@
                                    <li class=""><a href="#tab4" data-toggle="tab" aria-expanded="false">Mixte</a></li>
                               </ul>
                               <div class="tab-content">
-                                   <div class="tab-pane panel-body active" id="tab1" ="">
+                                   <!-- <div class="tab-pane panel-body active" id="tab1"=""> -->
+                                   <div class="tab-pane panel-body active" id="tab1">
                                         <div class="block">
                                              <!-- <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau entrée</h4> -->
                                              <div class="panel-body">
@@ -141,7 +143,8 @@
                                                   <div class="form-group row">
                                                        <label class="col-md-3 control-label">Montant en caissé:</label>
                                                        <div class="col-md-9">
-                                                            <input type="number" id="espececaisse1" class="form-control montant caisse Espècecaisse1" data="1" data1="Espèce" data2="1" data3="tab1" value="" placeholder="" />
+                                                            <!-- <input type="number" id="espececaisse1" class="form-control montant caisse Espècecaisse1" data="1" data1="Espèce" data2="1" data3="tab1" value="" placeholder="" /> -->
+                                                            <input type="number" class="form-control montant" value="" placeholder="" />
                                                             <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                        </div>
                                                   </div>
@@ -707,66 +710,66 @@
 <!-- END MODAL ICON PREVIEW -->
 <!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreviewListeCaisse" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="width: 85%;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Caisse</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12 ">
-                        <div class="panel panel-default">
+     <div class="modal-dialog" style="width: 85%;">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Caisse</h4>
+               </div>
+               <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-12 ">
+                              <div class="panel panel-default">
 
-                            <div class="panel-body panel-body-table">
+                                   <div class="panel-body panel-body-table">
 
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table id="tab_load_produit_caisse" style="height: 200px;overflow: auto;" class="table table-bordered table-actions">
-                                            <thead>
-                                            <tr>
-                                                <th width="100">Montant</th>
-                                                <th width="200">Montant percu</th>
-                                                <th width="200">Date de vente</th>
-                                                <th width="100">Etat</th>
-                                                <th width="100">Ref</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="tab_Bload_produit_caisse">
+                                        <div class="panel-body">
+                                             <div class="table-responsive">
+                                                  <table id="tab_load_produit_caisse" style="height: 200px;overflow: auto;" class="table table-bordered table-actions">
+                                                       <thead>
+                                                            <tr>
+                                                                 <th width="100">Montant</th>
+                                                                 <th width="200">Montant percu</th>
+                                                                 <th width="200">Date de vente</th>
+                                                                 <th width="100">Etat</th>
+                                                                 <th width="100">Ref</th>
+                                                            </tr>
+                                                       </thead>
+                                                       <tbody id="tab_Bload_produit_caisse">
 
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                       </tbody>
+                                                  </table>
+                                             </div>
 
-                                </div>
+                                        </div>
 
-                            </div>
-                        </div>
+                                   </div>
+                              </div>
 
+                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-            </div>
-        </div>
-    </div>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+               </div>
+          </div>
+     </div>
 </div>
 <!-- END MODAL ICON PREVIEW -->
-<div class="message-box animated fadeIn" data-sound="alert" id="mb-confirmation-caisse" data="">
-    <div class="mb-container">
-        <div class="mb-middle">
-            <div class="mb-title"><span class="fa fa-sign-out"></span> Confirmation <strong>Paiement</strong> ?</div>
-            <div class="mb-content">
-                <p>Voulez-vous valider le paiement et l'impression d'un <strong><mark>Ticket de caisse</mark></strong>?</p>
-                <p>Cliquez sur oui si vous le voulez ou sur non pour pas maintenant.</p>
-            </div>
-            <div class="mb-footer">
-                <div class="pull-right">
-                    <button class="btn btn-success btn-lg mb-control-yes">Oui</button>
-                    <button class="btn btn-default btn-lg mb-control-close">Non</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- <div class="message-box animated fadeIn" data-sound="alert" id="mb-confirmation-caisse" data="">
+     <div class="mb-container">
+          <div class="mb-middle">
+               <div class="mb-title"><span class="fa fa-sign-out"></span> Confirmation <strong>Paiement</strong> ?</div>
+               <div class="mb-content">
+                    <p>Voulez-vous valider le paiement et l'impression d'un <strong><mark>Ticket de caisse</mark></strong>?</p>
+                    <p>Cliquez sur oui si vous le voulez ou sur non pour pas maintenant.</p>
+               </div>
+               <div class="mb-footer">
+                    <div class="pull-right">
+                         <button class="btn btn-success btn-lg mb-control-yes">Oui</button>
+                         <button class="btn btn-default btn-lg mb-control-close">Non</button>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div> -->
