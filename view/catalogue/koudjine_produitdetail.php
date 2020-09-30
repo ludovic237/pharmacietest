@@ -70,62 +70,159 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-
-            <div class="panel-body panel-body-table" id="produit_detail_a" >
-
+            <div class="panel-body panel-body-table">
                 <div class="panel-body">
-                    <table class="table datatable table-bordered table-striped table-actions">
-                        <thead>
-                            <tr>
-                                <th width="100">Nom</th>
-                                <th width="100">Nombre de vente du mois</th>
-                                <th width="100">Nombre de vente total</th>
-                                <th width="200">Quantité en stock</th>
-                                <th width="100">Reduction</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tab_produit_detail_a">
+                    <div class="panel panel-default tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Vente</a></li>
+                            <li class=""><a href="#tab2" data-toggle="tab" aria-expanded="false">Commande</a></li>
+                            <li class=""><a href="#tab3" data-toggle="tab" aria-expanded="false">Gestion de stock</a></li>
 
-                        </tbody>
-                    </table>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane panel-body active" id="tab1">
+                                <div class="block">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+
+                                                <div class="panel-body panel-body-table" id="produit_detail_a">
+
+                                                    <div class="panel-body">
+                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="100">Nom</th>
+                                                                    <th width="100">Nombre de vente du mois</th>
+                                                                    <th width="100">Nombre de vente total</th>
+                                                                    <th width="200">Quantité en stock</th>
+                                                                    <th width="100">Reduction</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tab_produit_detail_a">
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+
+                                                <div class="panel-body panel-body-table" id="produit_detail_b">
+
+                                                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                                                        <h1 style="color:#fff">
+                                                            Vente du Mois en cours
+                                                        </h1>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="100">Vente id</th>
+                                                                    <th width="100">En rayon</th>
+                                                                    <th width="200">Prix unitaire</th>
+                                                                    <th width="200">Quantité</th>
+                                                                    <th width="100">Reduction</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tab_produit_detail_b">
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane panel-body" id="tab2">
+                                <div class="block">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+
+                                                <div class="panel-body panel-body-table" id="produit_commande_detail_a">
+
+                                                    <div class="panel-body">
+                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="100">Nom</th>
+                                                                    <th width="100">Nombre de Commande du mois</th>
+                                                                    <th width="100">Nombre de Commande total</th>
+                                                                    <th width="200">Quantité en stock</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tab_produit_commande_detail_a">
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+
+                                                <div class="panel-body panel-body-table" id="produit_commande_detail_b">
+
+                                                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                                                        <h1 style="color:#fff">
+                                                            Commande du Mois en cours
+                                                        </h1>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="100">Produit id</th>
+                                                                    <th width="100">Commande id</th>
+                                                                    <th width="200">Prix public</th>
+                                                                    <th width="200">Quantite commande</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tab_produit_commande_detail_b">
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane panel-body" id="tab3">
+                                <div class="block">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
-
             </div>
         </div>
-
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-
-            <div class="panel-body panel-body-table" id="produit_detail_b">
-
-                <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
-                    <h1 style="color:#fff">
-                        Vente du Mois en cours
-                    </h1>
-                </div>
-                <div class="panel-body">
-                    <table class="table datatable table-bordered table-striped table-actions">
-                        <thead>
-                            <tr>
-                                <th width="100">Vente id</th>
-                                <th width="100">En rayon</th>
-                                <th width="200">Prix unitaire</th>
-                                <th width="200">Quantité</th>
-                                <th width="100">Reduction</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tab_produit_detail_b">
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-
     </div>
 </div>

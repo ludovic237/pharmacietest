@@ -242,6 +242,17 @@ class CommandeManager
         return new Commande($donnees);
 
     }
+    public function CommandeActuMois()
+    {
+        $commandes = array();
+        $q = $this->_db->prepare('SELECT * FROM commande WHERE supprimer = 0 AND DATE_FORMAT(CURDATE() ,"%Y-%m-01") AND CURDATE()');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $commandes[] = new Commande($donnees);
+        }
+        return $commandes;
+    } 
     public function getList()
     {
         $commandes = array();

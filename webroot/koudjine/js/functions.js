@@ -716,6 +716,33 @@ function load_produit_detail(id) {
 
         })
 
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/load_produit_commande_detail.php',
+            data: {
+                id: id
+            },
+            success: function (server_responce) {
+                $('#tab_produit_commande_detail_a').html(server_responce);
+                $("#produit_commande_detail_a").show();
+                $("#tab_produit_commande_detail_a").show();
+                $.ajax({
+                    type: "POST",
+                    url: '/pharmacietest/koudjine/inc/load_produit_commande_detail_table.php',
+                    data: {
+                        id: id
+                    },
+                    success: function (server_responce) {
+                        $('#tab_produit_commande_detail_b').html(server_responce);
+                        $("#produit_commande_detail_b").show();
+                        $("#tab_produit_commande_detail_b").show();
+                    }        
+                })
+            }
+
+
+        })
+
 
 
         // var icon_preview = $("<i></i>").addClass(iClass);
@@ -735,7 +762,8 @@ function ajouter_produit() {
         var nom = $("#" + id1 + " .nom").html();
         var qte = parseInt($("#" + id1 + " .qte").val());
         var qterest = parseInt($("#" + id1 + " .qterest").html());
-        var prix = parseInt($("#" + id1 + " .prix").html());
+        var prix = parseInt($("#" + id1 + " .prixv").val());
+        alert(prix);
         var stockg = parseInt($("#" + id1 + " .stock").html());
         var datel = $("#" + id1 + " .datel").html();
         ////alert(qte);
@@ -791,9 +819,9 @@ function ajouter_produit() {
                 ////alert(stock);
                 //stockg = stockg-qte;
                 var cat = '<tr id="' + id1 + '">'
-                    + ' <td><strong>' + nom + '</strong></td>'
+                    + ' <td><strong>' + nom + '</strong></td>' 
                     + '<td>' + prix + '</td>'
-                    + '<td><p></p><div class="input-group" style="width:100px;"><span class="input-group-btn"><button type="button" class="btn btn-default btn-number moins"onclick=\"change_input("moins","inputQte".' + qte + '"")\"style="padding: 4px;"><span class="glyphicon glyphicon-minus"></span></button></span><input type="text" name="quant[1]" class="form-control input-number qte"id=\"inputQte"' + qte + '"\"value="0" style="width: 80px;"><span class="input-group-btn">    <button type="button" class="btn btn-default btn-number plus"            onclick=\"change_input("plus","inputQte"' + qte + '"")\"            style="padding: 4px;">        <span class="glyphicon glyphicon-plus"></span>    </button></span></div><p></p></td>'
+                    + '<td>' + qte + '</td>'
                     + '<td>' + (prix * qte) + '</td>'
                     + '<td data ="' + $("#" + id1 + " .reduction").html() + '">' + $("#" + id1 + " .reduction").html() + '</td>'
                     + '<td>' + datel + '</td>'

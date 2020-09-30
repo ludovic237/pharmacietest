@@ -37,7 +37,28 @@ if (isset($_POST['id'])||isset($_GET['id'])){
         echo "<tr ".$action." id=\"R".$v->id()."\">
                                             <td ><strong class='nom'>".$produit->nom()."</strong></td>
                                             <td class='prix'>
-                                                ".$v->prixVente()."
+                                                
+                                                <p></p>
+                                                <div class='input-group' style='width:100px;'>
+                                                    <span class='input-group-btn'>
+                                                        <button type='button' class='btn btn-default btn-number moins'
+                                                                onclick=\"change_input('moins','inputPrixV".$v->id()."')\"
+                                                                style='padding: 4px;'>
+                                                            <span class='glyphicon glyphicon-minus'></span>
+                                                        </button>
+                                                    </span>
+                                                    <input type='text' name='quant[1]' class='form-control input-number prixv'
+                                                    id=\"inputPrixV".$v->id()."\"
+                                                    value='".$v->prixVente()."' style='width: 80px;'>
+                                                    <span class='input-group-btn'>
+                                                        <button type='button' class='btn btn-default btn-number plus'
+                                                                onclick=\"change_input('plus','inputPrixV".$v->id()."')\"
+                                                                style='padding: 4px;'>
+                                                            <span class='glyphicon glyphicon-plus'></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                                <p></p>
                                             </td>
                                             <td class=''>
                                                 <p></p>
