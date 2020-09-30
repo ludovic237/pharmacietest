@@ -79,11 +79,6 @@ if (isset($_POST['id'])||isset($_GET['id'])){
                                         </tr>";
     endforeach;
 
-
-
 }
 
-
-
 ?>
-

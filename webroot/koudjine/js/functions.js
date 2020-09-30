@@ -4,6 +4,11 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     var netpayer;
     var reduc;
     var stock;
+    
+    $("#tab_produit_detail").hide();
+    $("#produit_detail_a").hide();
+    $("#produit_detail_b").hide();
+
     $("#tab_GrechercheEntre").hide();
     $("#tab_Grecherche").hide();
     $(".clientExistant").hide();
@@ -418,6 +423,27 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 
     });
 
+    $("#detail_recherche").keyup(function (event) {
+        var recherche = $(this).val();
+        recherche = $.trim(recherche);
+        var data = 'motclef1=' + recherche;
+        if (recherche.length > 1) {
+            ////alert('yes');
+            $.ajax({
+                type: "GET",
+                url: "/pharmacietest/koudjine/inc/resultdetail.php",
+                data: data,
+                success: function (server_responce) {
+                    $("#tab_produit_detail").show();
+                    $("#tab_produit_detail_data").html(server_responce).show();
+                    ////alert(server_responce);
+                }
+            })
+        } else {
+            $("#tab_produit_detail").hide();
+        }
+
+    });
     $("#recherches").keyup(function (event) {
         var prixTotal = 0;
         var reduction = 0;
@@ -654,6 +680,51 @@ function load_produit(id) {
 
 }
 
+function load_produit_detail(id) {
+    $("#tab_produit_detail").hide();
+    var qte = parseInt($("#R" + id + " .qte").val());
+    var stock = parseInt($("#R" + id + " .stock").html());
+    if (qte > stock) {
+        //  alert("Quantité en stock pas suffisante pour cette opération ");
+    }
+    else {
+
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/load_produit_detail.php',
+            data: {
+                id: id
+            },
+            success: function (server_responce) {
+                $('#tab_produit_detail_a').html(server_responce);
+                $("#produit_detail_a").show();
+                $("#tab_produit_detail_a").show();
+                $.ajax({
+                    type: "POST",
+                    url: '/pharmacietest/koudjine/inc/load_produit_detail_table.php',
+                    data: {
+                        id: id
+                    },
+                    success: function (server_responce) {
+                        $('#tab_produit_detail_b').html(server_responce);
+                        $("#produit_detail_b").show();
+                        $("#tab_produit_detail_b").show();
+                    }        
+                })
+            }
+
+
+        })
+
+
+
+        // var icon_preview = $("<i></i>").addClass(iClass);
+        $("#iconPreviewVente").modal("show");
+
+    }
+
+}
+
 function ajouter_produit() {
 
     //var reduction;
@@ -722,7 +793,7 @@ function ajouter_produit() {
                 var cat = '<tr id="' + id1 + '">'
                     + ' <td><strong>' + nom + '</strong></td>'
                     + '<td>' + prix + '</td>'
-                    + '<td>' + qte + '</td>'
+                    + '<td><p></p><div class="input-group" style="width:100px;"><span class="input-group-btn"><button type="button" class="btn btn-default btn-number moins"onclick=\"change_input("moins","inputQte".' + qte + '"")\"style="padding: 4px;"><span class="glyphicon glyphicon-minus"></span></button></span><input type="text" name="quant[1]" class="form-control input-number qte"id=\"inputQte"' + qte + '"\"value="0" style="width: 80px;"><span class="input-group-btn">    <button type="button" class="btn btn-default btn-number plus"            onclick=\"change_input("plus","inputQte"' + qte + '"")\"            style="padding: 4px;">        <span class="glyphicon glyphicon-plus"></span>    </button></span></div><p></p></td>'
                     + '<td>' + (prix * qte) + '</td>'
                     + '<td data ="' + $("#" + id1 + " .reduction").html() + '">' + $("#" + id1 + " .reduction").html() + '</td>'
                     + '<td>' + datel + '</td>'

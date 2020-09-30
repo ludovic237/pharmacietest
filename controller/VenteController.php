@@ -30,7 +30,7 @@ class VenteController extends Controller
             'fields' => 'vente.id as id,vente.montantRegle as montantRegle,reelPercu',
             'table' => 'vente,categorie,montantRegle',
             'order' => 'nomp-ASC',
-            'conditions' => array('vente.categorie_id' => 'categorie.id','vente.rayon_id' => 'rayon.id')
+            'conditions' => array('vente.categorie_id' => 'categorie.id', 'vente.rayon_id' => 'rayon.id')
         ));
         $this->set($d);
     }
@@ -55,12 +55,6 @@ class VenteController extends Controller
 
         if ($id != null) {
             $d['position'] = 'Modifier';
-
-
-
-
-
-
         } else {
             $d['position'] = 'Ajouter';
         }
@@ -74,37 +68,70 @@ class VenteController extends Controller
         $d['caisse'] = $this->Vente->findFirst(array(
             //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
             'table' => 'caisse',
-            'conditions' => array('supprimer' => 0,'etat' => '"Ouvert"')
+            'conditions' => array('supprimer' => 0, 'etat' => '"Ouvert"')
         ));
 
-        if(!empty($d['caisse'])){
+        if (!empty($d['caisse'])) {
             $d['ventes'] = $this->Vente->find(array(
                 //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
                 'table' => 'vente',
                 'order' => 'dateVente-DESC',
-                'conditions' => array('supprimer' => 0,'caisse_id' => $d['caisse']->id)
+                'conditions' => array('supprimer' => 0, 'caisse_id' => $d['caisse']->id)
             ));
+            // $js_code = json_encode($d['ventes'],JSON_HEX_TAG);
+            // for ($i=0; $i < $js_code; $i++) { 
+            //     # code...
+            // }
+            //echo $js_code;
+
             $i = 0;
-            if(!empty($d['ventes'])){
-                foreach ($d['ventes'] as $k => $v):
+            $d['totalVente'] = 0;
+            if (!empty($d['ventes'])) {
+                $d['vente10Day'] = $this->Vente->find(array(
+                    'table' => 'vente',
+                    'conditions' => 'dateVente >= DATE_SUB(CURDATE(), INTERVAL 6 day)'
+                ));
+
+                $d['ventePresentWeek'] = $this->Vente->find(array(
+                    'table' => 'vente',
+                    'conditions' => 'WEEKOFYEAR(dateVente)=WEEKOFYEAR(CURDATE())'
+                ));
+
+                $d['ventePresentMonth'] = $this->Vente->find(array(
+                    'table' => 'vente',
+                    'conditions' => 'DATE_FORMAT(CURDATE() ,"%Y-%m-01") AND CURDATE()'
+                ));
+
+                $d['vente7Day'] = $this->Vente->find(array(
+                    'table' => 'vente',
+                    'conditions' => 'dateVente >= DATE_SUB(CURDATE(), INTERVAL 7 day)'
+                ));
+
+                //$js_code = json_encode($d['ventePresentMonth'],JSON_HEX_TAG);
+                //echo $js_code;
+
+                foreach ($d['ventes'] as $k => $v) :
                     $d['produits'][$i] = $this->Vente->find(array(
                         //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
                         'table' => 'concerner c, en_rayon e, produit p',
                         'conditions' => array('c.vente_id' => $v->id, 'c.supprimer' => 0, 'c.en_rayon_id' => 'e.id', 'e.produit_id' => 'p.id')
                     ));
-                if($v->user_id == null){
-                    $d['user'][$i] = $v->nouveau_info;
-                }
-                else{
-                    $d['user'][$i] = $this->Vente->findFirst(array(
-                        //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
-                        'table' => 'user',
-                        'conditions' => array('id' => $v->user_id, 'supprimer' => 0)
-                    ));
-                    $d['user'][$i] = $d['user'][$i]->nom;
-                }
-                $i++;
+                    $js_code = json_encode($d['produits'], JSON_HEX_TAG);
+                    //echo $js_code;
+                    $d['totalVente'] = $v->prixTotal + $d['totalVente'];
+                    if ($v->user_id == null) {
+                        $d['user'][$i] = $v->nouveau_info;
+                    } else {
+                        $d['user'][$i] = $this->Vente->findFirst(array(
+                            //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                            'table' => 'user',
+                            'conditions' => array('id' => $v->user_id, 'supprimer' => 0)
+                        ));
+                        $d['user'][$i] = $d['user'][$i]->nom;
+                    }
+                    $i++;
                 endforeach;
+                //echo $d['totalVente'];
             }
         }
         $this->set($d);
@@ -119,5 +146,4 @@ class VenteController extends Controller
     {
         $this->loadModel('Vente');
     }
-
 }
