@@ -214,7 +214,60 @@
                             </div>
                             <div class="tab-pane panel-body" id="tab3">
                                 <div class="block">
+                                <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
 
+                                                <div class="panel-body panel-body-table" id="produit_commande_detail_a">
+
+                                                    <div class="panel-body">
+                                                        <h1 >Stock total : 
+                                                            <span id="tab_produit_stock_detail_a">
+                                                            </span>
+                                                        </h1>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+
+                                                <div class="panel-body panel-body-table" id="produit_stock_detail_b">
+
+                                                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                                                        <h1 style="color:#fff">
+                                                            Commande du Mois en cours
+                                                        </h1>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="100">Nom</th>
+                                                                    <th width="100">Fournisseur id</th>
+                                                                    <th width="200">Date livraison</th>
+                                                                    <th width="200">Date peremption</th>
+                                                                    <th width="200">Prix achat</th>
+                                                                    <th width="200">Prix vente</th>
+                                                                    <th width="200">Quantité restante</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tab_produit_stock_detail_b">
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

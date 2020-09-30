@@ -6,13 +6,14 @@
 
         $position_for_layout = '<li><a href="#">Vente</a></li><li class="active">' . $position . '</li>';
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
         ?> -->
 
 
 <!-- START WIDGETS -->
 <div class="row">
-    
+
     <div class="col-md-3">
 
         <!-- START WIDGET MESSAGES -->
@@ -89,7 +90,7 @@
         <!-- END WIDGET MESSAGES -->
 
     </div>
-    
+
 </div>
 <!-- END WIDGETS -->
 
@@ -98,7 +99,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
 
-            <div class="panel-body panel-body-table">
+            <div class="panel-heading">
                 <div class="btn-group pull-right">
                     <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
                     <ul class="dropdown-menu">
@@ -121,20 +122,20 @@
                     </ul>
                 </div>
                 <div>
-                    
+
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table id="customers2" class="table datatable table-bordered table-striped table-actions export tableExport">
+                        <table id="customers2" class="table datatable">
                             <thead>
                                 <tr>
-                                    <th width="100">Montant</th>
+                                    <th width="100">Ref</th>
                                     <th width="200">Montant percu</th>
                                     <th width="200">Client</th>
                                     <th width="200">Commentaire</th>
                                     <th width="200">Date de vente</th>
                                     <th width="100">Etat</th>
-                                    <th width="100">Ref</th>
+                                    <th width="100">Montant</th>
                                     <th width="100">Actions</th>
                                 </tr>
                             </thead>
@@ -142,16 +143,6 @@
                                 <?php $i = 0;
                                 if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
                                     <tr id="<?php echo $v->idv; ?>">
-                                        <td><strong><?php echo $v->prixTotal; ?></strong></td>
-                                        <td><?php echo $v->prixPercu; ?></td>
-                                        <td><?php if (isset($user)) echo $user[$i]; ?></td>
-                                        <td><?php echo $v->commentaire; ?></td>
-                                        <td>
-                                            <?php echo $v->dateVente; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $v->etat; ?>
-                                        </td>
                                         <td>
                                             <?php
                                             echo '<p style="font-size: 14px;">' . $v->reference . '</p>';
@@ -167,6 +158,17 @@
                                             $i++;
                                             ?>
                                         </td>
+
+                                        <td><?php echo $v->prixPercu; ?></td>
+                                        <td><?php if (isset($user)) echo $user[$i]; ?></td>
+                                        <td><?php echo $v->commentaire; ?></td>
+                                        <td>
+                                            <?php echo $v->dateVente; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $v->etat; ?>
+                                        </td>
+                                        <td><strong><?php echo $v->prixTotal; ?></strong></td>
                                         <td>
                                             <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket()">Imprimer ticket</button>
                                             <!-- <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button> -->
