@@ -1112,7 +1112,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                             qte: qte
                         },
                         success: function (server_responce) {
-                          //  alert(server_responce);
+                            //alert(server_responce);
                             rec++;
                             rafraichir_vente(caisse_id);
                             $('#'+onglet+' .montant').val('');
@@ -1121,6 +1121,8 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
 
                             if (imprimer && rec == count) {
                                 imprimer_bloc('ticketCaisse','ticketCaisse');
+                                $('#tab_vente_caisse').empty();
+                            }else{
                                 $('#tab_vente_caisse').empty();
                             }
                             //var link = '/pharmacietest/users/logout';

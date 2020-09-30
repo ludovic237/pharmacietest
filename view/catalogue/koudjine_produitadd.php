@@ -101,7 +101,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">Quantité en stock:</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" name="stock" id="stock" value="<?php if ($position == 'Modifier') echo $produit->stock; ?>" placeholder="" />
+                            <input type="number" disabled class="form-control" name="stock" id="stock" value="<?php if ($position == 'Modifier') echo $produit->stock; else echo '0'; ?>" placeholder="" />
                             <span class="help-block">exemple: 23 - Champ requis</span>
                         </div>
                     </div>

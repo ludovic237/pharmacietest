@@ -1,11 +1,13 @@
 <?php
 require_once('database.php');
 require_once('../Class/produit.php');
+require_once('../Class/en_rayon.php');
 
 global $pdo;
 
 
 $manager = new ProduitManager($pdo);
+$managerEn = new En_rayonManager($pdo);
 
 
 
@@ -126,7 +128,7 @@ else{
     $reference=$_POST['reference'];
     $laborex=$_POST['laborex'];
     $ubipharm=$_POST['ubipharm'];
-    $stock=$_POST['stock'];
+    //$stock=$_POST['stock'];
     $etagere=$_POST['etagere'];
     $stockmin=$_POST['stockmin'];
     $stockmax=$_POST['stockmax'];
@@ -157,7 +159,7 @@ else{
             'reference' => $reference,
             'codeLaborex' => $laborex,
             'codeUbipharm' => $ubipharm,
-            'stock' => $stock,
+            'stock' => 0,
             'etagere' => $etagere,
             'contenuDetail' => $contenu,
             'prixDetail' => $prix,
@@ -167,6 +169,22 @@ else{
             'reductionMax' => $reduction,
         ));
         $manager->add($produit);
+        $prd = $manager->getLast();
+        $Date_Du_Jour = date("Ymd");
+        $ide = $prd->id().'00'.$Date_Du_Jour;
+        echo $ide;
+        $en_rayon = new En_rayon(array(
+            'id' => $ide,
+            'produit_id' => $prd->id(),
+            'fournisseur_id' => null,
+            'commande_id' => null,
+            'prixAchat' => 0,
+            'prixVente' => 0,
+            'quantite' => 0,
+            'quantiteRestante' => 0,
+            'datePeremption' => null,
+        ));
+        $managerEn->add($en_rayon);
         echo 'ok';
     }
     else echo 'Ce nom de produit existe déjà';

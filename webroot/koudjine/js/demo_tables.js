@@ -22,6 +22,43 @@ $(document).ready(function () {
 
 
     })
+    $(".caisse").keyup(function (event) {
+        ////alert($(this).val())
+        if (event.keyCode == 13){
+            //alert('passe');
+            var id = $(this).attr("id");
+            var position = $("#"+id).attr("data");
+            var type = $("#"+id).attr("data1");
+            var limite = $("#"+id).attr("data2");
+            console.log($("#"+id).attr("data3")+'-'+$("#facture_caisse").attr("data1"))
+            position = parseInt(position);
+            limite = parseInt(limite);
+            if(position == limite){
+                // Imprimer ticket
+                var box = $("#mb-confirmation-caisse");
+                box.addClass("open");
+                $("#mb-confirmation-caisse .mb-control-yes").focus();
+
+                box.find(".mb-control-yes").on("click", function () {
+                    box.removeClass("open");
+                    valider_facture(type,$("#"+id).attr("data3"),$("#facture_caisse").attr("data1"),true);
+                    console.log('passe1');
+                });
+                box.find(".mb-control-close").on("click", function () {
+                    box.removeClass("open");
+
+                });
+            }else {
+                position = position + 1;
+                $("."+type+"caisse"+position).focus();
+                $(".caisse"+position).select();
+            }
+
+            //$("#iconPreviewForm .champ"+position).val(position);
+        }
+
+
+    })
     $(".fargent").keyup(function (event) {
         ////alert($(this).val())
         var total = ($("#fargent_1").val() * 500) + ($("#fargent_2").val() * 10000) + ($("#fargent_3").val() * 100) + ($("#fargent_4").val() * 5000) + ($("#fargent_5").val() * 50) + ($("#fargent_6").val() * 2000) + ($("#fargent_7").val() * 25) + ($("#fargent_8").val() * 1000) + ($("#fargent_9").val() * 10) + ($("#fargent_10").val() * 500)
@@ -210,6 +247,8 @@ function charger_vente(id) {
             });
             $('#tab_vente_caisse').html(server_responce);
             $('#tab_BfactureImprimer').prepend(server_responce);
+            $('.Espècecaisse1').focus();
+
 
         }
 
