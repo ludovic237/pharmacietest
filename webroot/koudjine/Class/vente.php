@@ -307,6 +307,19 @@ class VenteManager
         }
         return $ventes;
     }
+
+    public function VenteActuMois()
+    {
+        $ventes = array();
+        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 AND DATE_FORMAT(CURDATE() ,"%Y-%m-01") AND CURDATE()');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $ventes[] = new Vente($donnees);
+        }
+        return $ventes;
+    } 
+
     public function getListCaisseComplete($id)
     {
         $ventes = array();
@@ -342,5 +355,3 @@ class VenteManager
         $this->_db = $db;
     }
 }
-
-?>

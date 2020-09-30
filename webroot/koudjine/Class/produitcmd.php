@@ -245,6 +245,31 @@ class Produit_cmdManager
         return new Produit_cmd($donnees);
 
     }
+
+    public function getExistsCmdIdAndProduitId($idc,$idp)
+    {
+        $produitcmd = array();
+        $q = $this->_db->prepare('SELECT * FROM produit_cmd WHERE supprimer = 0 AND produit_id = '.$idp.' AND commande_id = '.$idc);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $produitcmd[] = new Produit_cmd($donnees);
+        }
+        return $produitcmd;
+    }
+
+    public function getExistsProduitId($idp)
+    {
+        $produitcmd = array();
+        $q = $this->_db->prepare('SELECT * FROM produit_cmd WHERE supprimer = 0 AND produit_id = '.$idp);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $produitcmd[] = new Produit_cmd($donnees);
+        }
+        return $produitcmd;
+    }
+
     public function getList($id)
     {
         $Produit_cmds = array();

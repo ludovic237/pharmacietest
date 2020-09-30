@@ -1,6 +1,6 @@
 <?php
 
-$title_for_layout = ' Admin -'.'Universités';
+$title_for_layout = ' ALSAS -' . 'Universités';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter une université' : 'Modifier une université';
 $action_for_layout = 'Présentation';
 

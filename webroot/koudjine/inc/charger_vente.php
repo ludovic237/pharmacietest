@@ -26,17 +26,17 @@ if (isset($_POST['id'])){
         $nom = $managerPr->get($managerEn->get($v->en_rayon_id())->produit_id())->nom();
 
         echo "<tr class='ligne_facture' id=\"".$v->en_rayon_id()."\">
-                                            <td ><strong class='nom'>".$nom."</strong></td>
-                                            <td class='prix'>
+                                            <td style='background-color: white;font-family: monospace;font-size: 8px;text-align: start;'><strong class='nom'>".$nom."</strong></td>
+                                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'class='prix'>
                                                 ".$v->prixUnit()."
                                             </td>
-                                            <td class='qte'>
+                                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'class='qte'>
                                                 ".$v->quantite()."
                                             </td>
-                                            <td class='prixt'>
+                                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'class='prixt'>
                                                 ".($v->prixUnit()*$v->quantite())."
                                             </td>
-                                            <td class='reduction'>
+                                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'class='reduction'>
                                                 ".$v->reduction()."
                                             </td>
                                         </tr>";

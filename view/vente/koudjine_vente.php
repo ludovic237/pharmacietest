@@ -10,6 +10,88 @@
         ?> -->
 
 
+<!-- START WIDGETS -->
+<div class="row">
+    
+    <div class="col-md-3">
+
+        <!-- START WIDGET MESSAGES -->
+        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+            <div class="widget-item-left">
+                <span class="fa fa-money"></span>
+            </div>
+            <div class="widget-data">
+                <div class="widget-int num-count"><?php echo $totalVente; ?></div>
+                <div class="widget-title">Vente total</div>
+                <!-- <div class="widget-subtitle">In your mailbox</div> -->
+            </div>
+            <div class="widget-controls">
+                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+            </div>
+        </div>
+        <!-- END WIDGET MESSAGES -->
+
+    </div>
+    <div class="col-md-3">
+
+        <!-- START WIDGET MESSAGES -->
+        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+            <div class="widget-item-left">
+                <span class="fa fa-money"></span>
+            </div>
+            <div class="widget-data">
+                <div class="widget-int num-count"><?php echo $totalVente; ?></div>
+                <div class="widget-title">Vente d'aujourdhui</div>
+                <!-- <div class="widget-subtitle">In your mailbox</div> -->
+            </div>
+            <div class="widget-controls">
+                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+            </div>
+        </div>
+        <!-- END WIDGET MESSAGES -->
+
+    </div>
+    <div class="col-md-3">
+
+        <!-- START WIDGET MESSAGES -->
+        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+            <div class="widget-item-left">
+                <span class="fa fa-money"></span>
+            </div>
+            <div class="widget-data">
+                <div class="widget-int num-count"><?php echo $totalVente; ?></div>
+                <div class="widget-title">Vente sur une semaine</div>
+                <!-- <div class="widget-subtitle">In your mailbox</div> -->
+            </div>
+            <div class="widget-controls">
+                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+            </div>
+        </div>
+        <!-- END WIDGET MESSAGES -->
+
+    </div>
+    <div class="col-md-3">
+
+        <!-- START WIDGET MESSAGES -->
+        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+            <div class="widget-item-left">
+                <span class="fa fa-money"></span>
+            </div>
+            <div class="widget-data">
+                <div class="widget-int num-count"><?php echo $totalVente; ?></div>
+                <div class="widget-title">Vente total</div>
+                <!-- <div class="widget-subtitle">In your mailbox</div> -->
+            </div>
+            <div class="widget-controls">
+                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+            </div>
+        </div>
+        <!-- END WIDGET MESSAGES -->
+
+    </div>
+    
+</div>
+<!-- END WIDGETS -->
 
 <!-- START RESPONSIVE TABLES -->
 <div class="row">
@@ -37,6 +119,9 @@
                         <li><a href="#" onclick="$('#customers2').tableExport({type:'png',escape:'false'});"><img src="img/icons/png.png" width="24"> PNG</a></li>
                         <li><a href="#" onclick="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src="img/icons/pdf.png" width="24"> PDF</a></li>
                     </ul>
+                </div>
+                <div>
+                    
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -84,7 +169,7 @@
                                         </td>
                                         <td>
                                             <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket()">Imprimer ticket</button>
-                                    <!-- <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button> -->
+                                            <!-- <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button> -->
                                         </td>
                                         <p></p>
                                     </tr>
@@ -130,28 +215,28 @@
                                 <div>
                                     <table class="table table-inverse table-responsive">
                                         <thead class="thead-inverse">
-                                        <tr>
-                                            <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>
-                                            <th style="background-color: white;color: black;font-weight: 400;">Prix U.</th>
-                                            <th style="background-color: white;color: black;font-weight: 400;">Qte</th>
-                                            <th style="background-color: white;color: black;font-weight: 400;">TOTAL</th>
-                                            <th style="background-color: white;color: black;font-weight: 400;">Rd</th>
-                                        </tr>
+                                            <tr>
+                                                <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>
+                                                <th style="background-color: white;color: black;font-weight: 400;">Prix U.</th>
+                                                <th style="background-color: white;color: black;font-weight: 400;">Qte</th>
+                                                <th style="background-color: white;color: black;font-weight: 400;">TOTAL</th>
+                                                <th style="background-color: white;color: black;font-weight: 400;">Rd</th>
+                                            </tr>
                                         </thead>
                                         <tbody id="tab_BfactureImprimer">
 
-                                        <tr>
-                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
-                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="montanttotal"></span> FCFA</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
-                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="remise"></span> FCFA</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
-                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="netapayer"></span> FCFA</td>
-                                        </tr>
+                                            <tr>
+                                                <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
+                                                <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="montanttotal"></span> FCFA</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
+                                                <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="remise"></span> FCFA</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
+                                                <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="netapayer"></span> FCFA</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

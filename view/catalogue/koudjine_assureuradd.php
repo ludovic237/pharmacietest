@@ -1,6 +1,6 @@
 <?php
 
-$title_for_layout = ' Admin -' . 'Catalogue';
+$title_for_layout = ' ALSAS -' . 'Assureur';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter un assureur' : 'Modifier un assureur';
 
 
