@@ -360,6 +360,14 @@ class ProduitManager
         return new produit($donnees);
 
     }
+    public function getLast()
+    {
+
+        $q = $this->_db->query('SELECT * FROM produit WHERE supprimer = 0 order by id desc limit 1');
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new produit($donnees);
+
+    }
     public function getStock($id, $info)
     {
 

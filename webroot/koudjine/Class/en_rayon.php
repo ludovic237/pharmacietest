@@ -232,6 +232,14 @@ class En_rayonManager
         return new en_rayon($donnees);
 
     }
+    public function getLast()
+    {
+
+        $q = $this->_db->query('SELECT * FROM en_rayon WHERE supprimer = 0 AND id = max(id)');
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new en_rayon($donnees);
+
+    }
     public function getList($info)
     {
         $produits = array();
