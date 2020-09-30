@@ -128,7 +128,7 @@
                         <table id="customers2" class="table datatable table-bordered table-striped table-actions export tableExport">
                             <thead>
                                 <tr>
-                                    <th width="100">Montant</th>
+                                    <th width="100" class="sorting_desc" aria-label="Position: activate to sort column descending" aria-sort="descending">Montant</th>
                                     <th width="200">Montant percu</th>
                                     <th width="200">Client</th>
                                     <th width="200">Commentaire</th>
