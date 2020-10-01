@@ -801,7 +801,7 @@ function ajouter_produit() {
         var qte = parseInt($("#" + id1 + " .qte").val());
         var qterest = parseInt($("#" + id1 + " .qterest").html());
         var prix = parseInt($("#" + id1 + " .prixv").val());
-        alert(prix);
+        //alert(prix);
         var stockg = parseInt($("#" + id1 + " .stock").html());
         var datel = $("#" + id1 + " .datel").html();
         ////alert(qte);

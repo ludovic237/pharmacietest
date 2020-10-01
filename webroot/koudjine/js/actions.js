@@ -183,7 +183,7 @@ $(document).ready(function(){
                     }
                 })
             }else{
-                alert('passe');
+                //alert('passe');
                 $.ajax({
                     type: "POST",
                     url: '/pharmacietest/koudjine/inc/gerer_inventaire.php',
