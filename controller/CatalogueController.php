@@ -362,7 +362,7 @@ class CatalogueController extends Controller
         $this->set($d);
     }
 
-    function koudjine_produitdetail()
+    function koudjine_produitdetail($id = null)
     {
         $this->loadModel('Catalogue');
 
@@ -374,6 +374,9 @@ class CatalogueController extends Controller
             'conditions' => array('produit.categorie_id' => 'categorie.id', 'produit.rayon_id' => 'rayon.id')
         ));
         //die($d);
+        if(isset($id)){
+            $d['id'] = $id;
+        }
         if (empty($d['catalogue'])) {
             $this->e404('Page introuvable');
         }

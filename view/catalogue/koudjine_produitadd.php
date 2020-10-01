@@ -288,7 +288,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     </div>
 
                     <div class="btn-group pull-right">
-                        <button class="btn btn-primary" style="margin-right: 20px">Detail</button>
+                        <?php if ($position == 'Modifier') { ?> <a class="btn btn-primary" href="<?php echo Router::url('bouwou/catalogue/produitdetail/'.$produit->id); ?>" style="margin-right: 20px">Detail</a> <?php } ?>
                         <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
                         <button class="btn btn-success" type="submit">Enregistrer</button>
                     </div>

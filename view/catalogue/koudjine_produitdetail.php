@@ -3,6 +3,11 @@
         $title_for_layout = ' Admin -' . 'Catalogue';
         $page_for_layout = 'Catalogue';
         $action_for_layout = 'Ajouter';
+        if(isset($id)){
+            $add_script = '<script>load_produit_detail('.$id.')</script>';
+        }else {
+            $add_script = '';
+        }
 
         if ($this->request->action == "index") {
             $position = "Tout";
@@ -17,7 +22,8 @@
                                         window.onload = function () {
                                             document.getElementById("detail_recherche").focus();
                                         };
-                                    </script>';
+                                        
+                                    </script>'.$add_script;
         ?> -->
 
 
