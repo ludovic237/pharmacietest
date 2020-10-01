@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_produitdetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_produitdetail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/functions.js" afterDir="false" />
     </list>
     <ignored path="Site.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,8 +46,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+            <state relative-caret-position="89">
+              <caret line="693" column="37" lean-forward="true" selection-start-line="693" selection-start-column="37" selection-end-line="693" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -496,21 +494,7 @@
       <workItem from="1600622252361" duration="6692000" />
       <workItem from="1600635199798" duration="107449000" />
       <workItem from="1600848494697" duration="5909000" />
-      <workItem from="1601398850437" duration="33134000" />
-    </task>
-    <task id="LOCAL-00024" summary="merge">
-      <created>1595241291519</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1595241291520</updated>
-    </task>
-    <task id="LOCAL-00025" summary="merge">
-      <created>1596042246340</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1596042246340</updated>
+      <workItem from="1601398850437" duration="33734000" />
     </task>
     <task id="LOCAL-00026" summary="merge">
       <created>1596719297124</created>
@@ -841,15 +825,28 @@
       <option name="project" value="LOCAL" />
       <updated>1601548624694</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="merge">
+      <created>1601550793581</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1601550793583</updated>
+    </task>
+    <task id="LOCAL-00074" summary="merge">
+      <created>1601551078829</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1601551078829</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="789440000" />
+    <option name="totallyTimeSpent" value="790040000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29878542" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -1384,8 +1381,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+        <state relative-caret-position="89">
+          <caret line="693" column="37" lean-forward="true" selection-start-line="693" selection-start-column="37" selection-end-line="693" selection-end-column="37" />
         </state>
       </provider>
     </entry>
