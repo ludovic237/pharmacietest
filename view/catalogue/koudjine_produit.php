@@ -33,7 +33,7 @@
                                 <th width="200">Catégorie</th>
                                 <th width="100">Rayon</th>
                                 <th width="100">Etat</th>
-                                <th width="100">Actions</th>
+                                <th width="250">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,15 +52,21 @@
                                         <?php echo $v->etatp; ?>
                                     </td>
                                     <td>
-                                        <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row(<?php echo $v->idp; ?>)">
-                                            <span class="fa fa-info"></span>
-                                        </button>
-                                        <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->idp; ?>)">
-                                            <span class="fa fa-pencil"></span>
-                                        </button>
-                                        <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>');">
-                                            <span class="fa fa-times"></span>
-                                        </button>
+
+                                        <div>
+                                            <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row(<?php echo $v->idp; ?>)">
+                                                <span class="fa fa-info"></span>
+                                            </button>
+                                            <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->idp; ?>)">
+                                                <span class="fa fa-pencil"></span>
+                                            </button>
+                                            <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>');">
+                                                <span class="fa fa-times"></span>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <a class="btn btn-warning btn-rounded btn-sm" href="<?php echo Router::url('bouwou/catalogue/produitdetail/' .  $v->idp); ?>" style="margin-right: 20px">Detail</a>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
