@@ -1,189 +1,190 @@
 <?php
 
-$title_for_layout = ' Admin -'.'Accueil';
+$title_for_layout = ' Admin -' . 'Accueil';
 $page_for_layout = 'Tableau de bord';
 
 
 $position_for_layout = '';
 $script_for_layout = '
-<script>
-            $("#pc_refresh").click(function(){
-                function p_refresh_shown(){
-                    alert("shown");
-                    panel_refresh($("#pc_refresh").parents(".panel"),"hidden",function(){alert("hidden")});
-                }
-                panel_refresh($("#pc_refresh").parents(".panel"),"shown",p_refresh_shown);
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/icheck/icheck.min.js"></script>        
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
-            });
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/morris/raphael-min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/morris/morris.min.js"></script>       
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/rickshaw/d3.v3.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/rickshaw/rickshaw.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/owl/owl.carousel.min.js"></script> 
 
-            $("#pc_collapse").click(function(){
-                function p_collapse_hidden(){
-                    alert("hidden");
-                    panel_collapse($("#pc_collapse").parents(".panel"),"shown",function(){alert(\'shown\')});
-                }
-                panel_collapse($("#pc_collapse").parents(".panel"),"hidden",p_collapse_hidden);
-            });
-
-            $("#pc_remove").click(function(){
-                function p_remove_before(){
-                    alert("before");
-                    panel_remove($("#pc_remove").parents(".panel"),"after",function(){alert("after")});
-                }
-                panel_remove($("#pc_remove").parents(".panel"),"before",p_remove_before);
-
-            });
-        </script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/daterangepicker/daterangepicker.js"></script>
+';
 ?>
 
-<!-- START PANELS WITH CONTROLS -->
+<!-- START WIDGETS -->
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-3">
 
-
-
-        <!-- START PANEL WITH HIDDEN CONTROLS -->
-        <div class="panel panel-default panel-hidden-controls">
-            <div class="panel-heading">
-                <h3 class="panel-title">Bienvenue dans la zone d'administration</h3>
-                <ul class="panel-controls">
-                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Collapse</a></li>
-                            <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span> Refresh</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                </ul>
-            </div>
-            <div class="panel-body">
-                <div class="row help-block">
-                    <span style="font-size: 14px;">Quelques liens pour vous aider à démarer</span>
-                    <p>&nbsp;</p>
+        <!-- START WIDGET SLIDER -->
+        <div class="widget widget-default widget-carousel">
+            <div class="owl-carousel" id="owl-example">
+                <div>
+                    <div class="widget-title">Total Visitors</div>
+                    <div class="widget-subtitle">27/08/2014 15:23</div>
+                    <div class="widget-int">3,548</div>
                 </div>
-                <div class="row faq">
-                    <div class="col-md-4">
-                        <div class=" faq-item">
-                            <p class="col-md-12" style="font-size: 16px; font-weight: bold;">Commencez ici !</p>
-                            <div class="btn-group" style="font-size: 18px;margin-bottom: 10px; width: 75%; padding: 15px 0 15px 0">
-                                <a href="#" data-toggle="dropdown" class="btn btn-info dropdown-toggle" style="font-size: 18px;margin-bottom: 10px; width: 100%; padding: 17px 0 17px 0">Vie étudiante &nbsp; &nbsp;<span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#" style="font-size: 14px">Actualité étudiante</a></li>
-                                    <li><a href="#" style="font-size: 14px">Trouver un sponsor</a></li>
-                                    <li><a href="#" style="font-size: 14px">Santé et danger</a></li>
-                                    <li><a href="#" style="font-size: 14px">Mode et beauté</a></li>
-                                    <li><a href="#" style="font-size: 14px">Concours pour étudiants</a></li>
-                                </ul>
-                            </div>
-                            <p class="col-md-12">ou alors, <a href="#"><code>faites nous une suggestion</code></a></p>
-                            <p style="margin-bottom: 33px;">&nbsp;</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class=" faq-item">
-                            <p class="col-md-12" style="font-size: 16px; font-weight: bold;">Etapes suivantes</p>
-                            <a href="<?php echo Router::url('bouwou/universites/edit'); ?>" class="col-md-12 faq-title" style="margin-bottom: 5px;"><span class="fa fa-edit"></span> <span class="">Inscrire une nouvelle université</span></a>
-                            <a href="<?php echo Router::url('bouwou/formations'); ?>" class="col-md-12 faq-title" style="margin-bottom: 5px;"><span class="fa fa-external-link-square"></span> <span class="">Mettre à jour vos formations</span></a>
-                            <a href="<?php echo Router::url('bouwou/concours/edit'); ?>" class="col-md-12 faq-title" style="margin-bottom: 5px;"><span class="fa fa-plus"></span> <span class="">Ajouter un concours</span></a>
-                            <a href="<?php echo Router::url(''); ?>" class="col-md-12 faq-title" style="margin-bottom: 5px;"><span class="fa fa-laptop"></span> <span class="">Accéder au site web</span></a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class=" faq-item">
-                            <p class="col-md-12" style="font-size: 16px; font-weight: bold;">Plus d'actions</p>
-                            <a href="#" class="col-md-12 faq-title" style="margin-bottom: 5px;"><span class="fa fa-bug"></span> <span class="">Signaler un bug</span></a>
-                            <a href="#" class="col-md-12 faq-title" style="margin-bottom: 5px;"><span class="fa fa-exclamation"></span> <span class="">Proposez nous vos idées</span></a>
-                            <p style="margin-bottom: 53px;">&nbsp;</p>
-                        </div>
-                    </div>
+                <div>
+                    <div class="widget-title">Returned</div>
+                    <div class="widget-subtitle">Visitors</div>
+                    <div class="widget-int">1,695</div>
+                </div>
+                <div>
+                    <div class="widget-title">New</div>
+                    <div class="widget-subtitle">Visitors</div>
+                    <div class="widget-int">1,977</div>
                 </div>
             </div>
-
+            <div class="widget-controls">
+                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+            </div>
         </div>
-        <!-- END PANEL WITH HIDDEN CONTROLS -->
-
-
+        <!-- END WIDGET SLIDER -->
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
 
-        <!-- START PANEL WITH REFRESH CALLBACKS -->
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #ffffff">
-                <h3 class="panel-title">D'un coup d'oeil</h3>
-                <ul class="panel-controls">
-                    <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
-                </ul>
+        <!-- START WIDGET CLOCK -->
+        <div class="widget widget-danger widget-padding-sm">
+            <div class="widget-big-int plugin-clock">00:00</div>
+            <div class="widget-subtitle plugin-date">Loading...</div>
+            <div class="widget-controls">
+                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
             </div>
-            <div class="panel-body">
-                <div class="row" >
-                    <div class="col-md-6">
-                        <a href="<?php echo Router::url('bouwou/universites'); ?>" class="col-md-12" style="margin-bottom: 5px;"><span class="fa fa-home fa-2x" style="color: #22262e;margin: 0 5px 10px 0;"></span> <span class="" style="font-size: 14px;text-decoration: none;"> <?php //echo $total_univ; ?> Universités</span></a>
-                        <a href="<?php echo Router::url('bouwou/formations'); ?>" class="col-md-12" style="margin-bottom: 5px;"><span class="glyphicon glyphicon-book fa-2x" style="color: #22262e;margin: 0 5px 10px 0;"></span> <span class="" style="font-size: 14px;text-decoration: none;"><?php //echo $total_formations; ?> Formations</span></a>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="<?php echo Router::url('bouwou/concours'); ?>" class="col-md-12" style="margin-bottom: 5px;"><span class="glyphicon glyphicon-edit fa-2x" style="color: #22262e;margin: 0 5px 10px 0;"></span> <span class="" style="font-size: 14px;text-decoration: none;"><?php //echo $total_concours; ?> Concours</span></a>
-                    </div>
+            <div class="widget-buttons widget-c3">
+                <div class="col">
+                    <a href="#"><span class="fa fa-clock-o"></span></a>
+                </div>
+                <div class="col">
+                    <a href="#"><span class="fa fa-bell"></span></a>
+                </div>
+                <div class="col">
+                    <a href="#"><span class="fa fa-calendar"></span></a>
                 </div>
             </div>
         </div>
-        <!-- END PANEL WITH REFRESH CALLBACKS -->
-
-        <!-- START PANEL WITH COLLAPSE CALLBACKS -->
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #ffffff">
-                <h3 class="panel-title">Activité Etudiante</h3>
-                <ul class="panel-controls">
-                    <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
-                </ul>
-            </div>
-            <div class="panel-body">
-                <div class="row" >
-                    <p>&nbsp;</p>
-                </div>
-            </div>
-        </div>
-        <!-- END PANEL WITH REMOVE CALLBACKS -->
-
-    </div>
-    <div class="col-md-6">
-
-        <!-- START PANEL WITH REFRESH CALLBACKS -->
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #ffffff">
-                <h3 class="panel-title">Quelques suggestions</h3>
-                <ul class="panel-controls">
-                    <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
-                </ul>
-            </div>
-            <div class="panel-body faq">
-                <div class="faq-item">
-                    <blockquote style="border: none;">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer>Proposé par <cite title="Source Title">Source Title</cite></footer>
-                    </blockquote>
-                </div>
-
-                <div class="faq-item">
-                    <blockquote style="border: none;">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer>Proposé par <cite title="Source Title">Source Title</cite></footer>
-                    </blockquote>
-                </div>
-                <div class="faq-item">
-                    <blockquote style="border: none;">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer>Proposé par <cite title="Source Title">Source Title</cite></footer>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-        <!-- END PANEL WITH REFRESH CALLBACKS -->
-
-
+        <!-- END WIDGET CLOCK -->
 
     </div>
 </div>
-<!-- END PANELS WITH CONTROLS -->
+<!-- END WIDGETS -->
 
+<div class="row">
+    <div class="col-md-12">
+
+        <!-- START SALES BLOCK -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title-box">
+                    <h3>Vente</h3>
+                    <span>Activité de vente</span>
+                </div>
+                <!-- <ul class="panel-controls panel-controls-title">
+                    <li>
+                        <div id="reportrange" class="dtrange">
+                            <span></span><b class="caret"></b>
+                        </div>
+                    </li>
+                    <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
+                </ul> -->
+
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <!-- <div class="col-md-3">
+
+                
+                        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+                            <div class="widget-item-left">
+                                <span class="fa fa-envelope"></span>
+                            </div>
+                            <div class="widget-data">
+                                <div class="widget-int num-count"><?php echo $totalVente; ?></div>
+                                <div class="widget-title">Vente total</div>
+                                <div class="widget-subtitle">In your mailbox</div>
+                            </div>
+                            <div class="widget-controls">
+                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            </div>
+                        </div>
+                       
+
+                    </div> -->
+                    <div class="col-md-3">
+
+                        <!-- START WIDGET MESSAGES -->
+                        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+                            <div class="widget-item-left">
+                                <span class="fa fa-envelope"></span>
+                            </div>
+                            <div class="widget-data">
+                                <div class="widget-int num-count">*</div>
+                                <div class="widget-title">De l'année</div>
+                                <div class="widget-subtitle"><?php echo $totalVenteYear; ?> FCFA</div>
+                            </div>
+                            <div class="widget-controls">
+                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            </div>
+                        </div>
+                        <!-- END WIDGET MESSAGES -->
+
+                    </div>
+                    <div class="col-md-3">
+
+                        <!-- START WIDGET MESSAGES -->
+                        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+                            <div class="widget-item-left">
+                                <span class="fa fa-envelope"></span>
+                            </div>
+                            <div class="widget-data">
+                                <div class="widget-int num-count">*</div>
+                                <div class="widget-title">Du mois</div>
+                                <div class="widget-subtitle"><?php echo $totalVenteMonth; ?> FCFA</div>
+                            </div>
+                            <div class="widget-controls">
+                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            </div>
+                        </div>
+                        <!-- END WIDGET MESSAGES -->
+
+                    </div>
+                    <div class="col-md-3">
+
+                        <!-- START WIDGET MESSAGES -->
+                        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+                            <div class="widget-item-left">
+                                <span class="fa fa-envelope"></span>
+                            </div>
+                            <div class="widget-data">
+                                <div class="widget-int num-count">*</div>
+                                <div class="widget-title">De la semaine</div>
+                                <div class="widget-subtitle"><?php echo $totalVenteWeek; ?> FCFA</div>
+                            </div>
+                            <div class="widget-controls">
+                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            </div>
+                        </div>
+                        <!-- END WIDGET MESSAGES -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SALES BLOCK -->
+
+    </div>
+</div>

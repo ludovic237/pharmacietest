@@ -5,9 +5,17 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     var reduc;
     var stock;
     
+    $("#tab_produit_stock_detail").hide();
+    $("#produit_stock_detail_a").hide();
+
+
     $("#tab_produit_detail").hide();
     $("#produit_detail_a").hide();
     $("#produit_detail_b").hide();
+
+    $("#tab_produit_commande_detail").hide();
+    $("#produit_commande_detail_a").hide();
+    $("#produit_commande_detail_b").hide();
 
     $("#tab_GrechercheEntre").hide();
     $("#tab_Grecherche").hide();
@@ -736,6 +744,33 @@ function load_produit_detail(id) {
                         $('#tab_produit_commande_detail_b').html(server_responce);
                         $("#produit_commande_detail_b").show();
                         $("#tab_produit_commande_detail_b").show();
+                    }        
+                })
+            }
+
+
+        })
+
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/load_produit_stock_detail.php',
+            data: {
+                id: id
+            },
+            success: function (server_responce) {
+                $('#tab_produit_stock_detail_a').html(server_responce);
+                $("#produit_stock_detail_a").show();
+                $("#tab_produit_stock_detail_a").show();
+                $.ajax({
+                    type: "POST",
+                    url: '/pharmacietest/koudjine/inc/load_produit_stock_detail_table.php',
+                    data: {
+                        id: id
+                    },
+                    success: function (server_responce) {
+                        $('#tab_produit_stock_detail_b').html(server_responce);
+                        $("#produit_stock_detail_b").show();
+                        $("#tab_produit_stock_detail_b").show();
                     }        
                 })
             }

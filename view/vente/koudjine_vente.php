@@ -6,99 +6,17 @@
 
         $position_for_layout = '<li><a href="#">Vente</a></li><li class="active">' . $position . '</li>';
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
         ?> -->
 
-
-<!-- START WIDGETS -->
-<div class="row">
-    
-    <div class="col-md-3">
-
-        <!-- START WIDGET MESSAGES -->
-        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
-            <div class="widget-item-left">
-                <span class="fa fa-money"></span>
-            </div>
-            <div class="widget-data">
-                <div class="widget-int num-count"><?php echo $totalVente; ?></div>
-                <div class="widget-title">Vente total</div>
-                <!-- <div class="widget-subtitle">In your mailbox</div> -->
-            </div>
-            <div class="widget-controls">
-                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-            </div>
-        </div>
-        <!-- END WIDGET MESSAGES -->
-
-    </div>
-    <div class="col-md-3">
-
-        <!-- START WIDGET MESSAGES -->
-        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
-            <div class="widget-item-left">
-                <span class="fa fa-money"></span>
-            </div>
-            <div class="widget-data">
-                <div class="widget-int num-count"><?php echo $totalVente; ?></div>
-                <div class="widget-title">Vente d'aujourdhui</div>
-                <!-- <div class="widget-subtitle">In your mailbox</div> -->
-            </div>
-            <div class="widget-controls">
-                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-            </div>
-        </div>
-        <!-- END WIDGET MESSAGES -->
-
-    </div>
-    <div class="col-md-3">
-
-        <!-- START WIDGET MESSAGES -->
-        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
-            <div class="widget-item-left">
-                <span class="fa fa-money"></span>
-            </div>
-            <div class="widget-data">
-                <div class="widget-int num-count"><?php echo $totalVente; ?></div>
-                <div class="widget-title">Vente sur une semaine</div>
-                <!-- <div class="widget-subtitle">In your mailbox</div> -->
-            </div>
-            <div class="widget-controls">
-                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-            </div>
-        </div>
-        <!-- END WIDGET MESSAGES -->
-
-    </div>
-    <div class="col-md-3">
-
-        <!-- START WIDGET MESSAGES -->
-        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
-            <div class="widget-item-left">
-                <span class="fa fa-money"></span>
-            </div>
-            <div class="widget-data">
-                <div class="widget-int num-count"><?php echo $totalVente; ?></div>
-                <div class="widget-title">Vente total</div>
-                <!-- <div class="widget-subtitle">In your mailbox</div> -->
-            </div>
-            <div class="widget-controls">
-                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-            </div>
-        </div>
-        <!-- END WIDGET MESSAGES -->
-
-    </div>
-    
-</div>
-<!-- END WIDGETS -->
 
 <!-- START RESPONSIVE TABLES -->
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
 
-            <div class="panel-body panel-body-table">
+            <div class="panel-heading">
                 <div class="btn-group pull-right">
                     <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
                     <ul class="dropdown-menu">
@@ -125,16 +43,16 @@
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table id="customers2" class="table datatable table-bordered table-striped table-actions export tableExport">
+                        <table id="customers2" class="table datatable">
                             <thead>
                                 <tr>
+                                    <th width="100">Ref</th>
                                     <th width="100">Montant</th>
                                     <th width="200">Montant percu</th>
                                     <th width="200">Client</th>
                                     <th width="200">Vendeur</th>
                                     <th width="200">Date de vente</th>
                                     <th width="100">Etat</th>
-                                    <th width="100">Ref</th>
                                     <th width="100">Actions</th>
                                 </tr>
                             </thead>
@@ -142,16 +60,6 @@
                                 <?php $i = 0;
                                 if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
                                     <tr id="<?php echo $v->id; ?>">
-                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
-                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
-                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
-                                        <td class="seller"><?php echo $v->identifiant; ?></td>
-                                        <td class="datevte">
-                                            <?php echo $v->dateVente; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $v->etat; ?>
-                                        </td>
                                         <td>
                                             <?php
                                             echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
@@ -166,6 +74,17 @@
                                             endforeach;
                                             $i++;
                                             ?>
+                                        </td>
+
+                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
+                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                        <td class="seller"><?php echo $v->identifiant; ?></td>
+                                        <td class="datevte">
+                                            <?php echo $v->dateVente; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $v->etat; ?>
                                         </td>
                                         <td>
                                             <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</button>
@@ -213,7 +132,7 @@
                                     <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p>
                                 </div>
                                 <div>
-                                    <table class="table table-inverse table-responsive" id="tab_GGBfactureImprimer">
+                                    <table class="table table-inverse table-responsive">
                                         <thead class="thead-inverse">
                                             <tr>
                                                 <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>
