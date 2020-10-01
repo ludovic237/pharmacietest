@@ -29,7 +29,7 @@ if (isset($_GET["motclef1"])) {
                                             <td class='nom'><strong>" . $result->nom . "</strong></td>
 
                                             <td>
-                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit_detail('" . $result->idp . "')\"><span class=\"\">Charger</span></button>
+                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit_detail('" . $result->idp . "','" . $result->nom . "')\"><span class=\"\">Charger</span></button>
                                             </td>
                                         </tr>";
             //echo "<li  style=\"background-color: #fff; list-style-type: none; margin: 0; padding: 0;\"><tr><a href=\"update/".$result->id."\" style=\"display:block; height: 25px; color: #000; text-decoration: none;\"><td>$result->nom</td></a><td>$result->stock</td><tr>$result->reductionMax</tr></li>";

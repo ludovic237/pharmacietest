@@ -85,9 +85,9 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default">
+                                            <div class="panel panel-default" id="produit_detail_a">
 
-                                                <div class="panel-body panel-body-table" id="produit_detail_a">
+                                                <div class="panel-body panel-body-table" >
 
                                                     <div class="panel-body">
                                                         <table class="table datatable table-bordered table-striped table-actions">
@@ -114,9 +114,9 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default">
+                                            <div class="panel panel-default" id="produit_detail_b">
 
-                                                <div class="panel-body panel-body-table" id="produit_detail_b">
+                                                <div class="panel-body panel-body-table" >
 
                                                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                                                         <h1 style="color:#fff">
@@ -152,9 +152,9 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default">
+                                            <div class="panel panel-default" id="produit_commande_detail_a">
 
-                                                <div class="panel-body panel-body-table" id="produit_commande_detail_a">
+                                                <div class="panel-body panel-body-table" >
 
                                                     <div class="panel-body">
                                                         <table class="table datatable table-bordered table-striped table-actions">
@@ -180,9 +180,9 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default">
+                                            <div class="panel panel-default" id="produit_commande_detail_b">
 
-                                                <div class="panel-body panel-body-table" id="produit_commande_detail_b">
+                                                <div class="panel-body panel-body-table" >
 
                                                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                                                         <h1 style="color:#fff">
@@ -216,9 +216,9 @@
                                 <div class="block">
                                 <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default">
+                                            <div class="panel panel-default" id="produit_stock_detail_a">
 
-                                                <div class="panel-body panel-body-table" id="produit_commande_detail_a">
+                                                <div class="panel-body panel-body-table" >
 
                                                     <div class="panel-body">
                                                         <h1 >Stock total : 
@@ -235,9 +235,9 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default">
+                                            <div class="panel panel-default" id="produit_stock_detail_b">
 
-                                                <div class="panel-body panel-body-table" id="produit_stock_detail_b">
+                                                <div class="panel-body panel-body-table" >
 
                                                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                                                         <h1 style="color:#fff">
