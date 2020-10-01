@@ -7,7 +7,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     
     $("#tab_produit_stock_detail").hide();
     $("#produit_stock_detail_a").hide();
-
+    $("#produit_stock_detail_b").hide();
 
     $("#tab_produit_detail").hide();
     $("#produit_detail_a").hide();
@@ -688,7 +688,8 @@ function load_produit(id) {
 
 }
 
-function load_produit_detail(id) {
+function load_produit_detail(id,nomp=null) {
+    $('#detail_recherche').val(nomp);
     $("#tab_produit_detail").hide();
     var qte = parseInt($("#R" + id + " .qte").val());
     var stock = parseInt($("#R" + id + " .stock").html());
