@@ -295,7 +295,7 @@ function reimprime_ticket(id){
             //$("#iconPreview .icon-preview").html(icon_preview);
 
             $('#tab_vente_caisse').empty();
-            $('#tab_GGBfactureImprimer  tr').each(function (i) {
+            $('#tab_BfactureImprimer  tr').each(function (i) {
                 if($(this).attr("class") == 'ligne_facture'){
                     //alert("passe");
                     $(this).remove();

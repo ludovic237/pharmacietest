@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge" />
     <ignored path="Site.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -43,20 +41,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="693" column="37" lean-forward="true" selection-start-line="693" selection-start-column="37" selection-end-line="693" selection-end-column="37" />
+            <state relative-caret-position="106">
+              <caret line="1136" column="67" selection-start-line="1136" selection-start-column="62" selection-end-line="1136" selection-end-column="67" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/demo_tables.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-387">
-              <caret line="221" column="22" selection-start-line="221" selection-start-column="9" selection-end-line="221" selection-end-column="22" />
+              <caret line="269" column="14" selection-start-line="269" selection-start-column="9" selection-end-line="269" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -103,7 +101,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>today.getFullYear()</find>
       <find>modal</find>
       <find>modal('show')</find>
       <find>imprimer</find>
@@ -133,6 +130,7 @@
       <find>charge</find>
       <find>charger_vente</find>
       <find>load_produit_d</find>
+      <find>reimp</find>
     </findStrings>
     <replaceStrings>
       <replace>Fournisseur</replace>
@@ -494,14 +492,7 @@
       <workItem from="1600622252361" duration="6692000" />
       <workItem from="1600635199798" duration="107449000" />
       <workItem from="1600848494697" duration="5909000" />
-      <workItem from="1601398850437" duration="33734000" />
-    </task>
-    <task id="LOCAL-00026" summary="merge">
-      <created>1596719297124</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1596719297124</updated>
+      <workItem from="1601398850437" duration="34990000" />
     </task>
     <task id="LOCAL-00027" summary="merge">
       <created>1596727144124</created>
@@ -839,14 +830,22 @@
       <option name="project" value="LOCAL" />
       <updated>1601551078829</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="merge">
+      <created>1601574274866</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1601574274869</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="790040000" />
+    <option name="totallyTimeSpent" value="791296000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29878542" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -1350,13 +1349,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/demo_tables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-387">
-          <caret line="221" column="22" selection-start-line="221" selection-start-column="9" selection-end-line="221" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/comptabilite/koudjine_caisse.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -1381,8 +1373,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="693" column="37" lean-forward="true" selection-start-line="693" selection-start-column="37" selection-end-line="693" selection-end-column="37" />
+        <state relative-caret-position="106">
+          <caret line="1136" column="67" selection-start-line="1136" selection-start-column="62" selection-end-line="1136" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/demo_tables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-387">
+          <caret line="269" column="14" selection-start-line="269" selection-start-column="9" selection-end-line="269" selection-end-column="14" />
         </state>
       </provider>
     </entry>
