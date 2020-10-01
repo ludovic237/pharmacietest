@@ -143,8 +143,8 @@
                                                   <div class="form-group row">
                                                        <label class="col-md-3 control-label">Montant en caissé:</label>
                                                        <div class="col-md-9">
-                                                            <!-- <input type="number" id="espececaisse1" class="form-control montant caisse Espècecaisse1" data="1" data1="Espèce" data2="1" data3="tab1" value="" placeholder="" /> -->
-                                                            <input type="number" class="form-control montant" value="" placeholder="" />
+                                                             <input type="number" id="espececaisse1" class="form-control montant caisse Espècecaisse1" data="1" data1="Espèce" data2="1" data3="tab1" value="" placeholder="" />
+<!--                                                            <input type="number" class="form-control montant" value="" placeholder="" />-->
                                                             <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                        </div>
                                                   </div>
