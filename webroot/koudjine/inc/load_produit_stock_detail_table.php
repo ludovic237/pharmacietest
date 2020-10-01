@@ -1,3 +1,4 @@
+
 <?php
 require_once('database.php');
 require_once('../Class/produit.php');

@@ -24,18 +24,13 @@ $managerEnRayon = new En_rayonManager($pdo);
 if (isset($_POST['id']))
     $id = $_POST['id'];
 
-$enrayon = $managerEnRayon->getList($id);
-$quantiteRestante = 0;
+$produit = $managerProduit->get($id);
 
 
 // echo "passe";
 if (isset($_POST['id']) || isset($_GET['id'])) {
 
 
-    foreach ($enrayon as $k => $e) :
-        $enrayonid = $e->id();
-        $quantiteRestante = $quantiteRestante + $e->quantiteRestante();
-    endforeach;
-    echo $quantiteRestante;
+    echo $produit->stock();
   
 }
