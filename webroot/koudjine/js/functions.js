@@ -688,7 +688,7 @@ function load_produit(id) {
 
 }
 
-function load_produit_detail(id,nomp) {
+function load_produit_detail(id,nomp=null) {
     $('#detail_recherche').val(nomp);
     $("#tab_produit_detail").hide();
     var qte = parseInt($("#R" + id + " .qte").val());
