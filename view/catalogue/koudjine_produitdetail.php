@@ -241,7 +241,7 @@
 
                                                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                                                         <h1 style="color:#fff">
-                                                            Commande du Mois en cours
+                                                            Entrée en rayon
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
