@@ -128,10 +128,10 @@
                         <table id="customers2" class="table datatable table-bordered table-striped table-actions export tableExport">
                             <thead>
                                 <tr>
-                                    <th width="100" class="sorting_desc" aria-label="Position: activate to sort column descending" aria-sort="descending">Montant</th>
+                                    <th width="100">Montant</th>
                                     <th width="200">Montant percu</th>
                                     <th width="200">Client</th>
-                                    <th width="200">Commentaire</th>
+                                    <th width="200">Vendeur</th>
                                     <th width="200">Date de vente</th>
                                     <th width="100">Etat</th>
                                     <th width="100">Ref</th>
@@ -141,12 +141,12 @@
                             <tbody>
                                 <?php $i = 0;
                                 if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
-                                    <tr id="<?php echo $v->idv; ?>">
-                                        <td><strong><?php echo $v->prixTotal; ?></strong></td>
-                                        <td><?php echo $v->prixPercu; ?></td>
-                                        <td><?php if (isset($user)) echo $user[$i]; ?></td>
-                                        <td><?php echo $v->commentaire; ?></td>
-                                        <td>
+                                    <tr id="<?php echo $v->id; ?>">
+                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
+                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                        <td class="seller"><?php echo $v->identifiant; ?></td>
+                                        <td class="datevte">
                                             <?php echo $v->dateVente; ?>
                                         </td>
                                         <td>
@@ -154,7 +154,7 @@
                                         </td>
                                         <td>
                                             <?php
-                                            echo '<p style="font-size: 14px;">' . $v->reference . '</p>';
+                                            echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
                                             $count = 0;
                                             if (isset($produits)) foreach ($produits[$i] as $p => $q) :
                                                 if ($count == 3) break;
@@ -168,7 +168,7 @@
                                             ?>
                                         </td>
                                         <td>
-                                            <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket()">Imprimer ticket</button>
+                                            <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</button>
                                             <!-- <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button> -->
                                         </td>
                                         <p></p>
@@ -213,7 +213,7 @@
                                     <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p>
                                 </div>
                                 <div>
-                                    <table class="table table-inverse table-responsive">
+                                    <table class="table table-inverse table-responsive" id="tab_GGBfactureImprimer">
                                         <thead class="thead-inverse">
                                             <tr>
                                                 <th style="background-color: white;color: black;font-weight: 400;">LIBELLE PRODUIT</th>

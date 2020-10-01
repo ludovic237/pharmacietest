@@ -65,6 +65,7 @@ function imprimer_commande() {
     $("#ref_commande").html($('#facture_commande').attr("data1"));
     $("#nomf_commande").html($('#facture_commande').attr("data2"));
     $("#date_commande").html($('#facture_commande').attr("data3"));
+    $('#btn_receptionner').removeAttr("disabled");
     $("#iconPreviewRecu").modal("show");
 }
 function imprimer_com(id, ref, nom) {
@@ -94,6 +95,42 @@ function imprimer_com(id, ref, nom) {
     $(".nomf_commande").html(nom);
     $('#facture_commande').html('0');
     $("#iconPreviewBonCommande").modal("show");
+}
+function imprimer_com_recu(id, ref, nom, date, bordereau) {
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_list_commande.php',
+        data: {
+            id: id,
+            option: 'recu'
+        },
+        success: function (server_responce) {
+            //alert(server_responce);
+            //$("#iconPreview .icon-preview").html(icon_preview);
+
+            $('#tab_Bcommande_Recu').empty();
+            $('#tab_Bcommande_Recu').html(server_responce);
+            //alert($('#total_com').attr("data"));
+            $("#article_commande").html($('#total_com').attr("data1"));
+            $("#produit_commande").html($('#total_com').attr("data"));
+            $("#bordereau_livraison").html(bordereau);
+            var yo = ref;
+            var one = yo.substr( 0, 9);
+            var three = yo.substr(12, 3);
+
+            var chaine = one +"REC"+ three;
+            $("#rec_commande").html(chaine);
+            $("#ref_commande").html(ref);
+            $("#nomf_commande").html(nom);
+            $("#date_commande").html(date);
+            $('#btn_receptionner').attr("disabled", "disabled");
+            $("#iconPreviewRecu").modal("show");
+
+        }
+
+
+    })
 }
 function receptionner_commande(nbre) {
     var  action = 0;

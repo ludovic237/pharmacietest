@@ -73,10 +73,10 @@ class VenteController extends Controller
 
         if (!empty($d['caisse'])) {
             $d['ventes'] = $this->Vente->find(array(
-                //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
-                'table' => 'vente',
+                'fields' => 'v.id as id,prixTotal,prixPercu,commentaire,dateVente,v.etat,v.user_id,nouveau_info,reference,identifiant',
+                'table' => 'vente v, employe e',
                 'order' => 'dateVente-DESC',
-                'conditions' => array('supprimer' => 0, 'caisse_id' => $d['caisse']->id)
+                'conditions' => array('v.supprimer' => 0, 'caisse_id' => $d['caisse']->id, 'v.employe_id' => 'e.id')
             ));
             // $js_code = json_encode($d['ventes'],JSON_HEX_TAG);
             // for ($i=0; $i < $js_code; $i++) { 
@@ -109,6 +109,7 @@ class VenteController extends Controller
 
                 //$js_code = json_encode($d['ventePresentMonth'],JSON_HEX_TAG);
                 //echo $js_code;
+                //print_r($d['ventes']);
 
                 foreach ($d['ventes'] as $k => $v) :
                     $d['produits'][$i] = $this->Vente->find(array(

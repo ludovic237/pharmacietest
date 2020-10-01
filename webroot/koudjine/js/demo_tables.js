@@ -258,6 +258,53 @@ function charger_vente(id) {
 
 }
 
+function reimprime_ticket(id){
+    var datevte = $("#"+id+" .datevte").html();
+    var yo = datevte;
+    var date = yo.substr( 0, 10);
+    var heure = yo.substr(12, 8);
+    //var tab = explode(" ", datevte);
+    $('#ticketListe .reference').html($("#"+id+" .reference").html());
+    $('#ticketListe .datevente').html(date);
+    $('#ticketListe .heurevente').html(heure);
+    $('#ticketListe .vendeur').html($("#"+id+" .seller").html());
+    $('#ticketListe .acheteur').html($("#"+id+" .client").html());
+    $('#ticketListe .netapayer').html($("#"+id+" .prixp").html());
+    $('#ticketListe .montanttotal').html($("#"+id+" .prixt").html());
+    $('#ticketListe .remise').html(parseInt($("#"+id+" .prixt").html()) - parseInt($("#"+id+" .prixp").html()));
+
+
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_vente.php',
+        data: {
+            id: id
+        },
+        success: function (server_responce) {
+            ////alert(server_responce);
+            //$("#iconPreview .icon-preview").html(icon_preview);
+
+            $('#tab_vente_caisse').empty();
+            $('#tab_GGBfactureImprimer  tr').each(function (i) {
+                if($(this).attr("class") == 'ligne_facture'){
+                    //alert("passe");
+                    $(this).remove();
+                }
+            });
+            //$('#tab_vente_caisse').html(server_responce);
+            $('#tab_BfactureImprimer').prepend(server_responce);
+            $('#iconPreviewFacture').modal("show");
+
+
+        }
+
+
+    })
+
+
+}
+
 function update_row_produit(id) {
     //alert("link");
     var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;

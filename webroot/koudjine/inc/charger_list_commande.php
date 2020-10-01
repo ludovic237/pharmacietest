@@ -16,7 +16,7 @@ $id=$_POST['id'];
 
 
 
-if (isset($_POST['id'])){
+if (isset($_POST['id']) && !isset($_POST['option'])){
     $Produit_cmds = $managerPc->getList($id);
     $i = 1;
     $nbre = 0;
@@ -30,7 +30,7 @@ if (isset($_POST['id'])){
     $total = $total + ($v->qtiteCmd()*$v->puCmd());
 
         echo "<tr id=\"".$v->produit_id()."\">
-                                            <td>".$i."</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;'>".$i."</td>
                                             <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' ><strong class='nom' id='nom".$v->produit_id()."'>".$nom."</strong></td>
                                             <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' class='qteCmd'>".$v->qtiteCmd()."</td>
                                             <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' class='prixCmd'>".$v->puCmd()."</td>
@@ -44,6 +44,35 @@ if (isset($_POST['id'])){
                                            
                                         </tr>";
 
+}else{
+    $Produit_cmds = $managerPc->getList($id);
+    $i = 1;
+    $nbre = 0;
+    $total = 0;
+
+    foreach ($Produit_cmds as $k => $v) :
+        //echo $v->en_rayon_id();
+        $nom = $managerPr->get($v->produit_id())->nom();
+        //echo $nom;
+        $nbre = $nbre + $v->qtiteRecu();
+        $total = $total + ($v->qtiteRecu()*$v->puRecept());
+
+        echo "<tr id=\"".$v->produit_id()."\">
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;'>".$i."</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' ><strong class='nom' id='nom".$v->produit_id()."'>".$nom."</strong></td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' class='qteCmd'>".$v->qtiteCmd()."</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' class='qteCmd'>".$v->qtiteRecu()."</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' class='prixCmd'>".$v->puRecept()."</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' class='prixCmd'>".$v->prixPublic()."</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' class='total'>".($v->qtiteRecu()*$v->puRecept())."</td>
+                                        </tr>";
+        $i++;
+    endforeach;
+    echo "<tr id=\"".$v->produit_id()."\">
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' colspan=\"6\" >Total</td>
+                                            <td style='background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;' ><strong class='total_com' id='total_com' data='".$nbre."' data1='".($i-1)."'>".$total."</strong></td>
+                                           
+                                        </tr>";
 }
 
 

@@ -78,7 +78,7 @@
                             <?php foreach ($commande as $k => $v) : ?>
                                 <tr id="<?php echo $v->id; ?>">
                                     <td><strong><?php
-                                                $date = DateTime::createFromFormat('Y-m-d H:i:s', $v->dateCreation);
+                                                $date = DateTime::createFromFormat('Y-m-d H:i:s', $v->dateLivraison);
                                                 $datel = $date->format('d-m-Y');
                                                 echo $v->dateCreation; ?></strong></td>
                                     <td><?php echo $v->dateLivraison; ?></td>
@@ -107,6 +107,9 @@
                                     <td>
                                         <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="imprimer_com(<?php echo $v->id; ?>,'<?php echo $v->ref; ?>','<?php echo $v->nom; ?>')">
                                             Imprimer
+                                        </button>
+                                        <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="imprimer_com_recu(<?php echo $v->id; ?>,'<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $datel; ?>','<?php echo $v->note; ?>')">
+                                            Imprimer Reçu
                                         </button>
                                         <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_produit_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>','<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $datel; ?>')">
                                             Charger
@@ -376,7 +379,7 @@
 
                             </div>
                             <div style="display: flex;justify-content: space-around;">
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i class="fa fa-check-square" style="font-size:10px" onclick="receptionner_commande(0)"></i>&nbsp;Receptionner
+                                <button type="button" id="btn_receptionner" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i class="fa fa-check-square" style="font-size:10px" onclick="receptionner_commande(0)"></i>&nbsp;Receptionner
                                 </button>
                                 <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onclick="imprimer_recu('recu','recu')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer
                                 </button>
