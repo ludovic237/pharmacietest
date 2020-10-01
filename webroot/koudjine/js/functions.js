@@ -688,7 +688,7 @@ function load_produit(id) {
 
 }
 
-function load_produit_detail(id,nomp=null) {
+function load_produit_detail(id,nomp) {
     $('#detail_recherche').val(nomp);
     $("#tab_produit_detail").hide();
     var qte = parseInt($("#R" + id + " .qte").val());
@@ -799,7 +799,7 @@ function ajouter_produit() {
         var qte = parseInt($("#" + id1 + " .qte").val());
         var qterest = parseInt($("#" + id1 + " .qterest").html());
         var prix = parseInt($("#" + id1 + " .prixv").val());
-        alert(prix);
+        //alert(prix);
         var stockg = parseInt($("#" + id1 + " .stock").html());
         var datel = $("#" + id1 + " .datel").html();
         ////alert(qte);

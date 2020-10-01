@@ -12,7 +12,7 @@ $(document).ready(function(){
         
     });
     $(".search .search-container").on("click",function(e){
-        alert("test");
+        //alert("test");
         e.stopPropagation();
     });// end toggle search
 
