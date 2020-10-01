@@ -86,7 +86,7 @@
 
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane panel-body active" id="tab1">
+                            <div class="tab-pane panel-body active" id="tab1" >
                                 <div class="block">
 
                                     <div class="row">
@@ -106,7 +106,7 @@
                                                                     <th width="100">Reduction</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody id="tab_produit_detail_a">
+                                                            <tbody id="tab_produit_detail_a" data="<?php if(isset($id)) echo $id; ?>">
 
                                                             </tbody>
                                                         </table>

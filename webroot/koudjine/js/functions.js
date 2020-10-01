@@ -5,17 +5,19 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     var reduc;
     var stock;
     
-    $("#tab_produit_stock_detail").hide();
-    $("#produit_stock_detail_a").hide();
-    $("#produit_stock_detail_b").hide();
+    if($("#tab_produit_detail_a").attr("data") == ''){
+        $("#tab_produit_stock_detail").hide();
+        $("#produit_stock_detail_a").hide();
+        $("#produit_stock_detail_b").hide();
 
-    $("#tab_produit_detail").hide();
-    $("#produit_detail_a").hide();
-    $("#produit_detail_b").hide();
+        $("#tab_produit_detail").hide();
+        $("#produit_detail_a").hide();
+        $("#produit_detail_b").hide();
 
-    $("#tab_produit_commande_detail").hide();
-    $("#produit_commande_detail_a").hide();
-    $("#produit_commande_detail_b").hide();
+        $("#tab_produit_commande_detail").hide();
+        $("#produit_commande_detail_a").hide();
+        $("#produit_commande_detail_b").hide();
+    }
 
     $("#tab_GrechercheEntre").hide();
     $("#tab_Grecherche").hide();
