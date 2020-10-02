@@ -79,10 +79,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="col-md-9">
                         <select class="selectpicker form-control input-xlarge " name="type" id="type">
                                
-                               <option value="Caissier">Caissier</option>
-                               <option value="Vendeur">Vendeur</option>
-                               <option value="Gestionnaire">Gestionnaire</option>
-                               <option value="Administrateur">Administrateur</option>
+                               <option <?php if ($position == 'Modifier') if ('Caissier' == $employe->type) echo "selected=\"selected\""; ?> value="Caissier">Caissier</option>
+                               <option <?php if ($position == 'Modifier') if ('Vendeur' == $employe->type) echo "selected=\"selected\""; ?> value="Vendeur">Vendeur</option>
+                               <option <?php if ($position == 'Modifier') if ('Gestionnaire' == $employe->type) echo "selected=\"selected\""; ?> value="Gestionnaire">Gestionnaire</option>
+                               <option <?php if ($position == 'Modifier') if ('Administrateur' == $employe->type) echo "selected=\"selected\""; ?> value="Administrateur">Administrateur</option>
                             </select>
                         </div>
                     </div>

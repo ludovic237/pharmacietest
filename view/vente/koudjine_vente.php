@@ -167,7 +167,7 @@
                                     <p style="margin: 0px; color: black;font-weight: 400;">NoCT /rtdrstrdsy</p>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
+                            <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
                         </div>
                     </div>
 
