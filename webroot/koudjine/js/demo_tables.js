@@ -927,8 +927,8 @@ function imprimer(divName) {
 function imprimer_bloc(titre, objet) {
     // Définition de la zone à imprimer
     var zone = document.getElementById(objet).innerHTML;
-
-    // Ouverture du popup
+    //alert("Hello");
+    // Ouverture du popup,
     var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
 
     // style du popup

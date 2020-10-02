@@ -78,7 +78,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <label class="col-md-3 control-label">Type:</label>
                         <div class="col-md-9">
                         <select class="selectpicker form-control input-xlarge " name="type" id="type">
-                               
+
                                <option value="Caissier">Caissier</option>
                                <option value="Vendeur">Vendeur</option>
                                <option value="Gestionnaire">Gestionnaire</option>
@@ -124,7 +124,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 
 
                     <div class="btn-group pull-right">
-                        <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
+                        <a class="btn btn-primary" style="margin-right: 20px" href="<?php echo Router::url('bouwou/pharmanet/employe'); ?>">Annuler</a>
                         <button class="btn btn-success" type="submit">Enregistrer</button>
                     </div>
                 </div>

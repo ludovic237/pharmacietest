@@ -320,6 +320,16 @@ class VenteManager
         return $ventes;
     } 
 
+    public function getDateVente($info)
+    {
+
+        $q = $this->_db->query( 'SELECT `dateVente` FROM `vente` WHERE `id`='.$info);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Vente($donnees);
+
+
+    }
+
     public function getListCaisseComplete($id)
     {
         $ventes = array();

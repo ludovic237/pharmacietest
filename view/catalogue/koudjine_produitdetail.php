@@ -134,6 +134,7 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Vente id</th>
+                                                                    <th width="100">Date et heure</th>
                                                                     <th width="100">En rayon</th>
                                                                     <th width="200">Prix unitaire</th>
                                                                     <th width="200">Quantité</th>

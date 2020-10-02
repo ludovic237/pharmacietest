@@ -44,11 +44,17 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
         foreach ($enrayon as $k => $e) :
             $enrayonid = $e->id();
             $concerner =  $managerConcerner->getExistsVenteIdAndEn_rayonId($venteid, $enrayonid);
+
             foreach ($concerner as $k => $c) :
                 echo
                     "<tr \">
                         <td class='prix'>
                             " . $c->vente_id(). "
+                        </td>
+                        <td class='prix'>
+                            " .
+                            $venteDate = $managerVente->getDateVente($c->vente_id())->dateVente()
+                             . "
                         </td>
                         <td class='prix'>
                         " . $c->en_rayon_id(). "

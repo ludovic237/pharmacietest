@@ -114,7 +114,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </div>
                     </div>
                     <div class="btn-group pull-right">
-                        <button class="btn btn-primary" style="margin-right: 20px">Annuler</button>
+                        <a class="btn btn-primary" style="margin-right: 20px" href="<?php echo Router::url('bouwou/catalogue/assureur'); ?>">Annuler</a>
                         <button class="btn btn-success" type="submit">Enregistrer</button>
                     </div>
                 </div>

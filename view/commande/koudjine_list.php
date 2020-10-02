@@ -409,7 +409,7 @@
                 <div class="mb-footer">
                     <div class="pull-right">
                         <a onclick="imprimer_commande()" class="btn btn-success btn-lg">Suivant</a>
-                        <button class="btn btn-default btn-lg mb-control-close" data-dismiss="modal">Annuler</button>
+                        <button class="btn btn-default btn-lg mb-control-close" data-dismiss="modal" href="<?php echo Router::url('bouwou/commande/list'); ?>">Annuler</a>
                     </div>
                 </div>
             </div>
