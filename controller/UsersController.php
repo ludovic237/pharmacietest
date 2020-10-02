@@ -16,7 +16,7 @@ class UsersController extends Controller
                     'table' => 'employe'
                 ));
             }else{
-                $data->password = sha1($data->password);
+                $data->password = $data->password;
                 $this->loadModel('Users');
                 $user = $this->Users->findFirst(array(
                     'conditions' => array('identifiant' => '"'.$data->username.'"', 'password' => '"'.$data->password.'"'),
