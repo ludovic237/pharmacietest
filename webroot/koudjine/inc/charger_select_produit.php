@@ -29,6 +29,6 @@ if (isset($_POST["nom"])) {
             $i++;
         }
     } else {
-        echo "Aucun résultat pour le mot : " . $_GET["motclef1"];
+        echo "Aucun résultat pour le mot : " . $nom;
     }
 }
