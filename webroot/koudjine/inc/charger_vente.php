@@ -14,8 +14,8 @@ $managerCo = new ConcernerManager($pdo);
 $managerPr = new ProduitManager($pdo);
 
 $id=$_POST['id'];
-//echo $id;
 
+//echo $id;
 
 
 if (isset($_POST['id'])){

@@ -227,7 +227,8 @@ class En_rayonManager
     public function get($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM en_rayon WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND id = '.$info);
+        $q->execute();
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new en_rayon($donnees);
 
@@ -251,6 +252,19 @@ class En_rayonManager
         }
         return $produits;
     }
+
+    public function getAll()
+    {
+        $produits = array();
+        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND quantiteRestante > 0 ');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $produits[] = new En_rayon($donnees);
+        }
+        return $produits;
+    }
+
     public function update(En_rayon $en_rayon)
     {
 

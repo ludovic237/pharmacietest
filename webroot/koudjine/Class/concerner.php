@@ -19,11 +19,9 @@ class Concerner
 
     public function hydrate(array $donnees)
     {
-        foreach ($donnees as $key => $value)
-        {
-            $method = 'set'.($key);
-            if (method_exists($this, $method))
-            {
+        foreach ($donnees as $key => $value) {
+            $method = 'set' . ($key);
+            if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
@@ -67,56 +65,49 @@ class Concerner
     public function setid($id)
     {
 
-        if ($id > 0)
-        {
+        if ($id > 0) {
             $this->_id = $id;
         }
     }
     public function setvente_id($id)
     {
 
-        if ($id > 0)
-        {
+        if ($id > 0) {
             $this->_vente_id = $id;
         }
     }
     public function setproduit_id($id)
     {
 
-        if ($id > 0)
-        {
+        if ($id > 0) {
             $this->_produit_id = $id;
         }
     }
     public function seten_rayon_id($id)
     {
 
-        if ($id > 0)
-        {
+        if ($id > 0) {
             $this->_en_rayon_id = $id;
         }
     }
     public function setprixUnit($id)
     {
 
-        if ($id > 0)
-        {
+        if ($id > 0) {
             $this->_prixUnit = $id;
         }
     }
     public function setquantite($id)
     {
 
-        if ($id > 0)
-        {
+        if ($id > 0) {
             $this->_quantite = $id;
         }
     }
     public function setreduction($id)
     {
 
-        if ($id >= 0)
-        {
+        if ($id >= 0) {
             $this->_reduction = $id;
         }
     }
@@ -124,9 +115,7 @@ class Concerner
     {
 
         $this->_supprimer = $value;
-
     }
-
 }
 
 class ConcernerManager
@@ -155,19 +144,17 @@ class ConcernerManager
     }
     public function delete(Concerner $concerner)
     {
-        $this->_db->exec('DELETE FROM concerner WHERE id = '.$concerner->id());
+        $this->_db->exec('DELETE FROM concerner WHERE id = ' . $concerner->id());
     }
     public function existsId($info)
     {
 
-        return (bool) $this->_db->query('SELECT COUNT(*) FROM concerner WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
-
+        return (bool) $this->_db->query('SELECT COUNT(*) FROM concerner WHERE supprimer = 0 AND id = ' . $info)->fetchColumn();
     }
     public function existsEn_rayonId($idv, $ide)
     {
 
-        return (bool) $this->_db->query('SELECT COUNT(*) FROM concerner WHERE supprimer = 0 AND vente_id = '.$idv.' AND en_rayon_id = '.$ide)->fetchColumn();
-
+        return (bool) $this->_db->query('SELECT COUNT(*) FROM concerner WHERE supprimer = 0 AND vente_id = ' . $idv . ' AND en_rayon_id = ' . $ide)->fetchColumn();
     }
     public function existsEan($info)
     {
@@ -175,29 +162,25 @@ class ConcernerManager
         $q = $this->_db->prepare('SELECT COUNT(*) FROM concerner WHERE supprimer = 0 AND ean13 = :info');
         $q->execute(array(':info' => $info));
         return (bool) $q->fetchColumn();
-
-
     }
-  
+
     public function getExistsEn_rayonId($ide)
     {
         $concerners = array();
-        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND en_rayon_id = '.$ide);
+        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND en_rayon_id = ' . $ide);
         $q->execute();
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-        {
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $concerners[] = new Concerner($donnees);
         }
         return $concerners;
     }
 
-    public function getExistsVenteIdAndEn_rayonId($idv,$ide)
+    public function getExistsVenteIdAndEn_rayonId($idv, $ide)
     {
         $concerners = array();
-        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND en_rayon_id = '.$ide.' AND vente_id = '.$idv);
+        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND en_rayon_id = ' . $ide . ' AND vente_id = ' . $idv);
         $q->execute();
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-        {
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $concerners[] = new Concerner($donnees);
         }
         return $concerners;
@@ -206,10 +189,9 @@ class ConcernerManager
     public function getExistsVenteId($ide)
     {
         $concerners = array();
-        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND en_rayon_id = '.$ide);
+        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND en_rayon_id = ' . $ide);
         $q->execute();
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-        {
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $concerners[] = new Concerner($donnees);
         }
         return $concerners;
@@ -217,19 +199,49 @@ class ConcernerManager
     public function get($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM concerner WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->query('SELECT * FROM concerner WHERE supprimer = 0 AND id = ' . $info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Concerner($donnees);
-
     }
     public function getList($id)
     {
         $concerners = array();
-        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND vente_id ='.$id);
+        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND vente_id =' . $id);
         $q->execute();
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-        {
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $concerners[] = new Concerner($donnees);
+        }
+        return $concerners;
+    }
+    public function getListSameRayonId($id)
+    {
+        $concerners = array();
+        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND en_rayon_id =' . $id);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $concerners[] = new Concerner($donnees);
+        }
+        return $concerners;
+    }
+    public function getListSameRayonIdAndVenteId($idr,$idv)
+    {
+        $concerners = array();
+        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND en_rayon_id =' . $idr.' AND vente_id =' . $idv);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $concerners[] = new Concerner($donnees);
+        }
+        return $concerners;
+    }
+    public function getListSameRayonId2()
+    {
+        $concerners = array();
+        $q = $this->_db->prepare('SELECT DISTINCT en_rayon_id FROM concerner ');
+        $q->execute();
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            //echo $donnees;
+           array_push($concerners,$donnees) ;
         }
         return $concerners;
     }
@@ -251,5 +263,3 @@ class ConcernerManager
         $this->_db = $db;
     }
 }
-
-?>

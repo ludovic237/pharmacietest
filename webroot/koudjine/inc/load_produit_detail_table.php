@@ -4,7 +4,7 @@ require_once('../Class/produit.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/vente.php');
 require_once('../Class/concerner.php');
-
+echo "start";
 $id;
 $vente;
 $produit;
