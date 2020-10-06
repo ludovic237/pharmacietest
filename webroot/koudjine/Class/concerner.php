@@ -238,10 +238,14 @@ class ConcernerManager
         $concerners = array();
         $q = $this->_db->prepare('SELECT DISTINCT en_rayon_id FROM concerner ');
         $q->execute();
-        $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+        //$donnees = $q->fetch(PDO::FETCH_ASSOC);
+        /*while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             //echo $donnees;
            array_push($concerners,$donnees) ;
+        }
+        return $concerners;*/
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $concerners[] = new Concerner($donnees);
         }
         return $concerners;
     }

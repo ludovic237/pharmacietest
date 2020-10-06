@@ -35,17 +35,17 @@ $vente = $managerVente->getDateVenteRange($start, $end);
 $i = 0;
 $concernerTest =  $managerConcerner->getListSameRayonId2();
 foreach ($concernerTest as $k => $c) :
-    $i = $i + 1;
+    //$i = $i + 1;
     //echo '-' . $i . '-' . $c['en_rayon_id'];
-    $rayoninfo = $managerEnRayon->get($c['en_rayon_id']);
+    $rayoninfo = $managerEnRayon->get($c->en_rayon_id());
     $idprod = $rayoninfo->produit_id();
     $produit = $managerProduit->get($idprod);
     $nom = $produit->nom();
     echo $nom . " : ";
     
     $quantiteTotalSameRayonId = 0;
-    foreach ($vente as $k => $v) :
-        $concernerSameRayonId =  $managerConcerner->getListSameRayonIdAndVenteId($c['en_rayon_id'],$v->id());
+    foreach ($vente as $g => $v) :
+        $concernerSameRayonId =  $managerConcerner->getListSameRayonIdAndVenteId($c->en_rayon_id(),$v->id());
         foreach ($concernerSameRayonId as $k => $cd) :
             $quantiteTotalSameRayonId = $quantiteTotalSameRayonId + $cd->quantite();
         endforeach;
