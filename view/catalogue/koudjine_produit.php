@@ -299,7 +299,7 @@
                             <label class="col-md-3 control-label">Date de péremption:</label>
                             <div class="col-md-9">
                                 <div class="input-group">
-                                    <input class="form-control" id="dateDebut" name="datPeremp" placeholder="Date de péremption" type="date" required="">
+                                    <input class="form-control" id="dateDebut" name="datPeremp" placeholder="Date de péremption" style="line-height: normal;" type="date" required="">
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>
@@ -310,7 +310,7 @@
                             <label class="col-md-3 control-label">Date de commande:</label>
                             <div class="col-md-9">
                                 <div class="input-group">
-                                    <input class="form-control" id="dateDebut" name="datPeremp" placeholder="Date de péremption" type="date" required="">
+                                    <input class="form-control" id="dateDebut" name="datPeremp" placeholder="Date de péremption" style="line-height: normal;" type="date" required="">
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>

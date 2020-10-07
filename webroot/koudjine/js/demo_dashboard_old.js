@@ -1,7 +1,4 @@
 $(function () {
-    var assurance = 1;
-    var credit = 1;
-    var comptant = 1;
     /* reportrange */
     if ($("#reportrange").length > 0) {
         $("#reportrange").daterangepicker({
@@ -29,31 +26,16 @@ $(function () {
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/dashboard_info_today.php',
                 data: {
-                    start: a_,
-                    end: b_
+                    start:a_,
+                    end:b_
                 },
                 dataType: 'json',
                 success: function (server_responce) {
                     console.log(server_responce);
-                    console.log(server_responce.comptant.total);
-                    assurance = server_responce.assurance.total;
-                    comptant = server_responce.comptant.total;
-                    credit = server_responce.credit.total;
+                    console.log(server_responce.venteTotal);
+                    // $('#nbrVente').html(server_responce.venteTotal);
+                    // $('#nbrProduit').html(server_responce.quantiteTotal);
 
-                    Morris.Donut({
-                        element: 'dashboard-donut-1',
-                        data: [
-                            { label: "Assurance", value: assurance },
-                            { label: "credit", value: credit },
-                            { label: "Comptant", value: comptant }
-                        ],
-                        colors: ['#33414E', '#3FBAE4', '#FEA223'],
-                        resize: true
-                    });
-
-                    $('#nbrVente').html(server_responce.venteTotal).show();
-                    $('#nbrProduit').html(server_responce.quantiteTotal).show();
-                    $('#beneficeTotal').html(server_responce.beneficeTotal).show();;
                 }
 
 
@@ -108,9 +90,9 @@ $(function () {
     Morris.Donut({
         element: 'dashboard-donut-1',
         data: [
-            { label: "Assurance", value: assurance },
-            { label: "credit", value: credit },
-            { label: "Comptant", value: comptant }
+            { label: "Returned", value: 2513 },
+            { label: "New", value: 764 },
+            { label: "Registred", value: 311 }
         ],
         colors: ['#33414E', '#3FBAE4', '#FEA223'],
         resize: true

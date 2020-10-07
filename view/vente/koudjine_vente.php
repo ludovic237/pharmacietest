@@ -8,100 +8,337 @@
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+        
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery/jquery.min.js"></script>
+
+<!-- START THIS PAGE PLUGINS-->
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/icheck/icheck.min.js"></script>
+
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- END THIS PAGE PLUGINS-->
+
+<!-- START TEMPLATE -->
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_dashboard.js"></script>
+
+
+
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
         ?> -->
 
 
+<div class="row">
+    <div class="col-md-12">
+
+        <form class="form-horizontal">
+
+            <div class="panel panel-default tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Caisse active</a></li>
+                    <li><a href="#tab-second" role="tab" data-toggle="tab">Total</a></li>
+                    <li><a href="#tab-third" role="tab" data-toggle="tab">Par caisse</a></li>
+                </ul>
+                <div class="panel-body tab-content">
+                    <div class="tab-pane active" id="tab-first">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading">
+                                <div class="btn-group pull-right">
+                                    <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false'});"><img src="img/icons/json.png" width="24"> JSON</a></li>
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src="img/icons/json.png" width="24"> JSON (ignoreColumn)</a></li>
+                                        <li><a href="#" onclick="$('#customers2'). tableExport({type:'json',escape:'true'});"><img src="img/icons/json.png" width="24"> JSON (with Escape)</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'xml',escape:'false'});"><img src="img/icons/xml.png" width="24"> XML</a></li>
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'sql'});"><img src="img/icons/sql.png" width="24"> SQL</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'csv',escape:'false'});"><img src="img/icons/csv.png" width="24"> CSV</a></li>
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'txt',escape:'false'});"><img src="img/icons/txt.png" width="24"> TXT</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'excel',escape:'false'});"><img src="img/icons/xls.png" width="24"> XLS</a></li>
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'doc',escape:'false'});"><img src="img/icons/word.png" width="24"> Word</a></li>
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img src="img/icons/ppt.png" width="24"> PowerPoint</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'png',escape:'false'});"><img src="img/icons/png.png" width="24"> PNG</a></li>
+                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src="img/icons/pdf.png" width="24"> PDF</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table id="customers2" class="table datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th width="100">Ref</th>
+                                                    <th width="100">Montant</th>
+                                                    <th width="200">Montant percu</th>
+                                                    <th width="200">Client</th>
+                                                    <th width="200">Vendeur</th>
+                                                    <th width="200">Date de vente</th>
+                                                    <th width="100">Etat</th>
+                                                    <th width="100">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i = 0;
+                                                if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
+                                                    <tr id="<?php echo $v->id; ?>">
+                                                        <td>
+                                                            <?php
+                                                            echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
+                                                            $count = 0;
+                                                            if (isset($produits)) foreach ($produits[$i] as $p => $q) :
+                                                                if ($count == 3) break;
+                                                                echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                                //echo $q->nom."\n";
+                                                                if ($count == 2)
+                                                                    echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                                $count++;
+                                                            endforeach;
+                                                            $i++;
+                                                            ?>
+                                                        </td>
+
+                                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
+                                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                                        <td class="seller"><?php echo $v->identifiant; ?></td>
+                                                        <td class="datevte">
+                                                            <?php echo $v->dateVente; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $v->etat; ?>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</button>
+                                                            <!-- <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button> -->
+                                                        </td>
+                                                        <p></p>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="tab-second">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading">
+
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th width="100">Ref</th>
+                                                    <th width="100">Montant</th>
+                                                    <th width="200">Montant percu</th>
+                                                    <th width="200">Client</th>
+                                                    <th width="200">Vendeur</th>
+                                                    <th width="200">Date de vente</th>
+                                                    <th width="100">Etat</th>
+                                                    <th width="100">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i = 0;
+                                                if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
+                                                    <tr id="<?php echo $v->id; ?>">
+                                                        <td>
+                                                            <?php
+                                                            echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
+                                                            $count = 0;
+                                                            if (isset($produits)) foreach ($produits[$i] as $p => $q) :
+                                                                if ($count == 3) break;
+                                                                echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                                //echo $q->nom."\n";
+                                                                if ($count == 2)
+                                                                    echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                                $count++;
+                                                            endforeach;
+                                                            $i++;
+                                                            ?>
+                                                        </td>
+
+                                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
+                                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                                        <td class="seller"><?php echo $v->identifiant; ?></td>
+                                                        <td class="datevte">
+                                                            <?php echo $v->dateVente; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $v->etat; ?>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</button>
+                                                            <!-- <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button> -->
+                                                        </td>
+                                                        <p></p>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="tab-pane" id="tab-third">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <!-- START SALES BLOCK -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+
+                                        <div class="form-group panel-title-box" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:10px">
+                                            <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un caisse
+                                                :</label>
+                                            <div style="display: flex;flex:1;margin-right: 30px;">
+                                                <select class="selectpicker form-control input-xlarge" name="fabproduit" id="fournisseur_commande">
+                                                    <option value="0">Choisissez</option>
+                                                    <?php
+                                                    foreach ($caisse as $k => $v) : ?>
+                                                        <option <?php if (isset($caisse_id)) if ($v->id == $caisse_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" data="<?php echo $v->code; ?>"><?php echo $v->nom; ?></option>
+                                                    <?php
+                                                    endforeach;
+                                                    ?>
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+                                        <ul class="panel-controls panel-controls-title">
+                                            <li>
+                                                <div id="reportrange" class="dtrange">
+                                                    <span></span><b class="caret"></b>
+                                                </div>
+                                            </li>
+                                            <!-- <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li> -->
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <!-- END SALES BLOCK -->
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Responsive tables</h3>
+                                    </div>
+
+                                    <div class="panel-body panel-body-table">
+
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped table-actions">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="50">id</th>
+                                                        <th>Date de vente</th>
+                                                        <th width="100">Etat</th>
+                                                        <th width="100">Reference</th>
+                                                        <th width="100">Employé</th>
+                                                        <th width="100">actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $i = 0;
+                                                    if (isset($ventesCaisse)) foreach ($ventesCaisse as $k => $v) : ?>
+                                                        <tr id="<?php echo $v->id; ?>">
+                                                            <td>
+                                                                1
+                                                            </td>
+
+                                                            <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                                            <td class="prixp"><?php echo $v->prixPercu; ?></td>
+                                                            <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                                            <td class="seller"><?php echo $v->identifiant; ?></td>
+                                                            <td class="datevte">
+                                                                <?php echo $v->dateVente; ?>
+                                                            </td>
+
+                                                            <p></p>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                    <tr id="trow_1">
+                                                        <td class="text-center">1</td>
+                                                        <td><strong>John Doe</strong></td>
+                                                        <td><span class="label label-success">New</span></td>
+                                                        <td>$430.20</td>
+                                                        <td>24/09/2014</td>
+                                                        <td>
+                                                            <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
+                                                            <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trow_2">
+                                                        <td class="text-center">2</td>
+                                                        <td><strong>Dmitry Ivaniuk</strong></td>
+                                                        <td><span class="label label-warning">Pending</span></td>
+                                                        <td>$1,351.00</td>
+                                                        <td>23/09/2014</td>
+                                                        <td>
+                                                            <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
+                                                            <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_2');"><span class="fa fa-times"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trow_3">
+                                                        <td class="text-center">3</td>
+                                                        <td><strong>Nadia Ali</strong></td>
+                                                        <td><span class="label label-info">In Queue</span></td>
+                                                        <td>$2,621.00</td>
+                                                        <td>22/09/2014</td>
+                                                        <td>
+                                                            <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
+                                                            <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-primary pull-right">Save Changes <span class="fa fa-floppy-o fa-right"></span></button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
 <!-- START RESPONSIVE TABLES -->
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
 
-            <div class="panel-heading">
-                <div class="btn-group pull-right">
-                    <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false'});"><img src="img/icons/json.png" width="24"> JSON</a></li>
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src="img/icons/json.png" width="24"> JSON (ignoreColumn)</a></li>
-                        <li><a href="#" onclick="$('#customers2'). tableExport({type:'json',escape:'true'});"><img src="img/icons/json.png" width="24"> JSON (with Escape)</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'xml',escape:'false'});"><img src="img/icons/xml.png" width="24"> XML</a></li>
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'sql'});"><img src="img/icons/sql.png" width="24"> SQL</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'csv',escape:'false'});"><img src="img/icons/csv.png" width="24"> CSV</a></li>
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'txt',escape:'false'});"><img src="img/icons/txt.png" width="24"> TXT</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'excel',escape:'false'});"><img src="img/icons/xls.png" width="24"> XLS</a></li>
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'doc',escape:'false'});"><img src="img/icons/word.png" width="24"> Word</a></li>
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img src="img/icons/ppt.png" width="24"> PowerPoint</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'png',escape:'false'});"><img src="img/icons/png.png" width="24"> PNG</a></li>
-                        <li><a href="#" onclick="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src="img/icons/pdf.png" width="24"> PDF</a></li>
-                    </ul>
-                </div>
-                <div>
-
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table id="customers2" class="table datatable">
-                            <thead>
-                                <tr>
-                                    <th width="100">Ref</th>
-                                    <th width="100">Montant</th>
-                                    <th width="200">Montant percu</th>
-                                    <th width="200">Client</th>
-                                    <th width="200">Vendeur</th>
-                                    <th width="200">Date de vente</th>
-                                    <th width="100">Etat</th>
-                                    <th width="100">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 0;
-                                if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
-                                    <tr id="<?php echo $v->id; ?>">
-                                        <td>
-                                            <?php
-                                            echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
-                                            $count = 0;
-                                            if (isset($produits)) foreach ($produits[$i] as $p => $q) :
-                                                if ($count == 3) break;
-                                                echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
-                                                //echo $q->nom."\n";
-                                                if ($count == 2)
-                                                    echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
-                                                $count++;
-                                            endforeach;
-                                            $i++;
-                                            ?>
-                                        </td>
-
-                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
-                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
-                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
-                                        <td class="seller"><?php echo $v->identifiant; ?></td>
-                                        <td class="datevte">
-                                            <?php echo $v->dateVente; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $v->etat; ?>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</button>
-                                            <!-- <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button> -->
-                                        </td>
-                                        <p></p>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
 
     </div>
 </div>

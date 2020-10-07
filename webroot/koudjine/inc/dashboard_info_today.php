@@ -13,8 +13,8 @@ $vente;
 $concerner;
 $enrayon;
 $end;
-$venteTotal = 0;
-$quantiteTotal = 0;
+$venteTotalRange = 0;
+$quantiteTotalRange = 0;
 $quantiteTotalEnRayon = 0;
 $quantiteTotalSameRayonId = 0;
 $nom;
@@ -27,80 +27,61 @@ $managerConcerner = new ConcernerManager($pdo);
 $start = $_POST['start'];
 $end = $_POST['end'];
 
+$totalEntee=0;
+$enrayonAll =  $managerEnRayon->getAll();
+foreach ($enrayonAll as $k => $en) :
+    $totalEntee = $totalEntee + ($en->prixAchat()*$en->quantite());
+endforeach;
 
+$totalSortie=0;
+$venteAll =  $managerVente->getList();
+foreach ($venteAll as $k => $va) :
+    $totalSortie = $totalSortie + ($va->prixTotal());
+endforeach;
+
+$totalSortie=0;
+$venteAll =  $managerVente->getList();
+foreach ($venteAll as $k => $va) :
+    $totalSortie = $totalSortie + ($va->prixTotal());
+endforeach;
+
+$assurance =  $managerVente->VenteCountEtat('assurance');
+$comptant =  $managerVente->VenteCountEtat('comptant');
+$credit =  $managerVente->VenteCountEtat('credit');
 
 $vente = $managerVente->getDateVenteRange($start, $end);
 
-
+$med = [];
 $i = 0;
 $concernerTest =  $managerConcerner->getListSameRayonId2();
 foreach ($concernerTest as $k => $c) :
-    //$i = $i + 1;
-    //echo '-' . $i . '-' . $c['en_rayon_id'];
     $rayoninfo = $managerEnRayon->get($c->en_rayon_id());
     $idprod = $rayoninfo->produit_id();
     $produit = $managerProduit->get($idprod);
     $nom = $produit->nom();
-    echo $nom . " : ";
-    
+
     $quantiteTotalSameRayonId = 0;
     foreach ($vente as $g => $v) :
-        $concernerSameRayonId =  $managerConcerner->getListSameRayonIdAndVenteId($c->en_rayon_id(),$v->id());
+        $concernerSameRayonId =  $managerConcerner->getListSameRayonIdAndVenteId($c->en_rayon_id(), $v->id());
         foreach ($concernerSameRayonId as $k => $cd) :
             $quantiteTotalSameRayonId = $quantiteTotalSameRayonId + $cd->quantite();
         endforeach;
-    endforeach;    
-    
-    echo $quantiteTotalSameRayonId.", ";
-    
-endforeach;
-echo '-' . $i . '-';
-
-
-foreach ($vente as $k => $v) :
-    $venteTotal = $venteTotal + $v->prixTotal();
-    $concerner =  $managerConcerner->getList($v->id());
-    $enrayon = $managerEnRayon->getAll();
-    // foreach ($enrayon as $k => $e) :
-    //     $concernerIdRay =  $managerConcerner->getList($e->id());
-    //     foreach ($concernerIdRay as $k => $c) :
-    //         $quantiteTotal = $quantiteTotal + $c->quantite();
-    //         //echo $quantiteTotal;
-    //     endforeach;
-    // endforeach;
-
-
-    foreach ($concerner as $k => $c) :
-        $quantiteTotal = $quantiteTotal + $c->quantite();
-    //echo $quantiteTotal;
     endforeach;
 
-// foreach ($enrayon as $k => $e) :
-//     $rayoninfo = $managerEnRayon->get($e->id());
-//     $idprod = $rayoninfo->produit_id();
-//     $produit = $managerProduit->get($idprod);
-//     $nom = $produit->nom();
-//     echo $nom . " : ";
-
-// $concernerSameRayonId =  $managerConcerner->getListSameRayonId($e->id());
-// foreach ($concernerSameRayonId as $k => $c) :
-//     echo "-".$c->quantite();
-
-// endforeach;
-
-// $rayoninfo = $managerEnRayon->get($e->id());
-// $idprod = $rayoninfo->produit_id();
-// $produit = $managerProduit->get($idprod);
-// $nom = $produit->nom();
-// echo $nom . " : ";
-// foreach ($concernerSameRayonId as $k => $c) :
-//     $quantiteTotalEnRayon = $quantiteTotalEnRayon + $c->quantite();
-
-// endforeach;
-// echo $quantiteTotal . "-";
-//endforeach;
+    $med[] = array('nom' => $nom, 'quantiteTotalSameRayonId' => $quantiteTotalSameRayonId);
 endforeach;
-echo $venteTotal . " - " . $quantiteTotal;
-//$vente = $managerVente->getList();
-//$js_code = json_encode($vente, JSON_HEX_TAG);
-//echo $js_code;
+
+foreach ($vente as $k => $v) :
+    $venteTotalRange = $venteTotalRange + $v->prixTotal();
+    $concerner =  $managerConcerner->getList($v->id());
+    $enrayon = $managerEnRayon->getAll();
+
+    foreach ($concerner as $k => $c) :
+        $quantiteTotalRange = $quantiteTotalRange + $c->quantite();
+    endforeach;
+
+endforeach;
+
+$donnees = array('credit' => $credit,'comptant' => $comptant,'assurance' => $assurance,'beneficeTotal' => ($totalEntee-$totalSortie),'venteTotal' => $venteTotalRange, 'quantiteTotal' => $quantiteTotalRange, 'med' => $med);
+
+echo json_encode($donnees);
