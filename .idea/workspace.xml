@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/concerner.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/concerner.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/dashboard_info_today.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/dashboard_info_today.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/home/koudjine_index.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/home/koudjine_index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/demo_dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/demo_dashboard.js" afterDir="false" />
     </list>
     <ignored path="Site.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +45,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/dashboard_info_today.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="39" column="55" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
+            <state relative-caret-position="144">
+              <caret line="45" column="34" lean-forward="true" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -57,17 +57,57 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webroot/koudjine/Class/concerner.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="249" column="27" selection-start-line="249" selection-start-column="27" selection-end-line="249" selection-end-column="27" />
+            <state relative-caret-position="129">
+              <caret line="242" column="28" selection-start-line="242" selection-start-column="28" selection-end-line="242" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Documents/themeforest-9217590-atlant-bootstrap-admin-template-with-frontend/html/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="741" column="56" selection-start-line="741" selection-start-column="56" selection-end-line="741" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Documents/themeforest-9217590-atlant-bootstrap-admin-template-with-frontend/html/js/demo_dashboard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1292" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/view/home/koudjine_index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="340" column="62" selection-start-line="340" selection-start-column="46" selection-end-line="340" selection-end-column="62" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Documents/themeforest-9217590-atlant-bootstrap-admin-template-with-frontend/html/charts-morris.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="447" column="58" selection-start-line="447" selection-start-column="58" selection-end-line="447" selection-end-column="58" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/demo_dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1734">
-              <caret line="102" column="35" lean-forward="true" selection-start-line="102" selection-start-column="35" selection-end-line="102" selection-end-column="35" />
+            <state relative-caret-position="-289">
+              <caret line="100" column="5" selection-start-line="100" selection-start-column="3" selection-end-line="121" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -81,21 +121,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/catalogue/koudjine_produitdetail.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1819">
-              <caret line="108" column="91" selection-start-line="108" selection-start-column="71" selection-end-line="108" selection-end-column="91" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>modal('show')</find>
-      <find>imprimer</find>
       <find>char</find>
       <find>#ticket</find>
       <find>iconPreviewVente</find>
@@ -124,6 +153,8 @@
       <find>load_produit_d</find>
       <find>tab_GGBfactureImprimer</find>
       <find>reimp</find>
+      <find>morris-line-example</find>
+      <find>Sales &amp; Event</find>
     </findStrings>
     <replaceStrings>
       <replace>Fournisseur</replace>
@@ -179,8 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/webroot/koudjine/Class/caisse.php" />
-        <option value="$PROJECT_DIR$/webroot/koudjine/inc/result_sortie.php" />
         <option value="$PROJECT_DIR$/view/commande/koudjine_cmdparticuliere.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/inc/charger_sortie_produit.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/Class/sortie_sortie.php" />
@@ -230,6 +259,8 @@
         <option value="$PROJECT_DIR$/controller/UsersController.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/Class/concerner.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/inc/dashboard_info_today.php" />
+        <option value="$PROJECT_DIR$/view/home/koudjine_index.php" />
+        <option value="$PROJECT_DIR$/webroot/koudjine/js/demo_dashboard.js" />
       </list>
     </option>
   </component>
@@ -382,6 +413,23 @@
               <item name="js" type="462c0819:PsiDirectoryNode" />
               <item name="Comptabilite" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="pharmacietest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pharmacietest" type="462c0819:PsiDirectoryNode" />
+              <item name="webroot" type="462c0819:PsiDirectoryNode" />
+              <item name="koudjine" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pharmacietest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pharmacietest" type="462c0819:PsiDirectoryNode" />
+              <item name="webroot" type="462c0819:PsiDirectoryNode" />
+              <item name="koudjine" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="rickshaw" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -486,14 +534,7 @@
       <workItem from="1600635199798" duration="107449000" />
       <workItem from="1600848494697" duration="5909000" />
       <workItem from="1601398850437" duration="38482000" />
-      <workItem from="1601972161208" duration="1422000" />
-    </task>
-    <task id="LOCAL-00029" summary="merge">
-      <created>1597515581551</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1597515581553</updated>
+      <workItem from="1601972161208" duration="4024000" />
     </task>
     <task id="LOCAL-00030" summary="merge">
       <created>1597849752726</created>
@@ -831,11 +872,18 @@
       <option name="project" value="LOCAL" />
       <updated>1601652369485</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="merge">
+      <created>1601973772101</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1601973772102</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="796210000" />
+    <option name="totallyTimeSpent" value="798812000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -997,50 +1045,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/sortie.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1517">
-          <caret line="75" column="17" lean-forward="true" selection-start-line="71" selection-start-column="8" selection-end-line="75" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/vente.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="65" column="71" selection-start-line="65" selection-start-column="71" selection-end-line="65" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/result_commande_prog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="25" column="283" selection-start-line="25" selection-start-column="283" selection-end-line="25" selection-end-column="283" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/result_entre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/result_sortie.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/result2.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/result1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="45" column="47" lean-forward="true" selection-start-line="44" selection-start-column="20" selection-end-line="45" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/charger_select_produit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/charger_commande.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-816" />
@@ -1312,13 +1316,6 @@
     <entry file="file://$PROJECT_DIR$/view/layout/log.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/demo_dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="102" column="35" lean-forward="true" selection-start-line="102" selection-start-column="35" selection-end-line="102" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/pharmanet/koudjine_employeadd.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1326,17 +1323,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/Class/concerner.php">
+    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/dashboard_info_today.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="249" column="27" selection-start-line="249" selection-start-column="27" selection-end-line="249" selection-end-column="27" />
+        <state relative-caret-position="144">
+          <caret line="45" column="34" lean-forward="true" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/dashboard_info_today.php">
+    <entry file="file://$PROJECT_DIR$/webroot/koudjine/Class/concerner.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="39" column="55" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
+        <state relative-caret-position="129">
+          <caret line="242" column="28" selection-start-line="242" selection-start-column="28" selection-end-line="242" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/themeforest-9217590-atlant-bootstrap-admin-template-with-frontend/html/js/plugins.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-31" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/themeforest-9217590-atlant-bootstrap-admin-template-with-frontend/html/js/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-31" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/themeforest-9217590-atlant-bootstrap-admin-template-with-frontend/html/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="741" column="56" selection-start-line="741" selection-start-column="56" selection-end-line="741" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/plugins/rickshaw/rickshaw.min.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/themeforest-9217590-atlant-bootstrap-admin-template-with-frontend/html/js/demo_charts_morris.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="35" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/themeforest-9217590-atlant-bootstrap-admin-template-with-frontend/html/charts-morris.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="447" column="58" selection-start-line="447" selection-start-column="58" selection-end-line="447" selection-end-column="58" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/themeforest-9217590-atlant-bootstrap-admin-template-with-frontend/html/js/demo_dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1292" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/home/koudjine_index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="340" column="62" selection-start-line="340" selection-start-column="46" selection-end-line="340" selection-end-column="62" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/demo_dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-289">
+          <caret line="100" column="5" selection-start-line="100" selection-start-column="3" selection-end-line="121" selection-end-column="37" />
         </state>
       </provider>
     </entry>

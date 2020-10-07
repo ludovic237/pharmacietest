@@ -46,7 +46,7 @@ $(function () {
     }
     /* end reportrange */
 
-    /* Rickshaw dashboard chart */
+    /*/!* Rickshaw dashboard chart *!/
     var seriesData = [[], []];
     var random = new Rickshaw.Fixtures.RandomData(1000);
 
@@ -83,7 +83,7 @@ $(function () {
     window.addEventListener('resize', rdc_resize);
 
     rdc_resize();
-    /* END Rickshaw dashboard chart */
+    /!* END Rickshaw dashboard chart *!/*/
 
     /* Donut dashboard chart */
     Morris.Donut({
@@ -98,7 +98,7 @@ $(function () {
     });
     /* END Donut dashboard chart */
 
-    /* Bar dashboard chart */
+   /* /!* Bar dashboard chart *!/
     Morris.Bar({
         element: 'dashboard-bar-1',
         data: [
@@ -119,7 +119,7 @@ $(function () {
         resize: true,
         gridLineColor: '#E5E5E5'
     });
-    /* END Bar dashboard chart */
+    /!* END Bar dashboard chart *!/*/
 
     /* Line dashboard chart */
     Morris.Line({
