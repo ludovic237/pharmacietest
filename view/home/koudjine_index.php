@@ -20,8 +20,6 @@ $script_for_layout = '
 
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/morris/raphael-min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/morris/morris.min.js"></script>    
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/owl/owl.carousel.min.js"></script> 
 
