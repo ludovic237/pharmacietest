@@ -236,7 +236,7 @@
 
                                             </div>
                                             <div class="col-md-2 col-xs-12">
-                                                <button class="btn btn-primary pull-right charger_info_employe">Charger</button>
+                                                <button class="btn btn-primary charger_info_employe">Charger</button>
                                             </div>
 
                                         </div>

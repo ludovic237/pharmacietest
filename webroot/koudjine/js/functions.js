@@ -7,7 +7,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 
     $(".charger_info_employe").on("click", function () {
         var idemploye = $('#dataEmploye option:selected').val();
-        alert(idemploye);
+        //alert(idemploye);
         if (idemploye == 0) {
             $.ajax({
                 type: "POST",
@@ -19,7 +19,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                 },
                 // dataType: 'json',
                 success: function (server_responce) {
-                    //console.log(server_responce);
+                    console.log(server_responce);
                     $('#tab_employe_id').html(server_responce);
     
                 }

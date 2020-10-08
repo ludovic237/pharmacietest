@@ -36,41 +36,49 @@ $idemploye = $_POST['idemploye'];
 if ($idemploye==0) {
     $idemploye = null;
 }
-if ($start == $_POST['start'] && $end == $_POST['end'] && $idemploye == 0) {
+if ($start != 0 && $end != 0 && $idemploye == null) {
     $caisse = $managerCaisse->getDateRangeCaisse($start, $end);
+    //echo "passe 0";
+} else if ($start != 0 && $end != 0 && $idemploye != null){
+    //echo "passe 1";
+    $caisse = $managerCaisse->getDateRangeCaisseUserid($start, $end, $idemploye);
+} else if ($start == 0 && $end == 0 && $idemploye != null){
+    //echo "passe 2";
+    $caisse = $managerCaisse->getIdEmploye($idemploye);
+}else {
+    //echo "passe 3";
+    $caisse = $managerCaisse->getList();
+}
 
-    foreach ($caisse as $k => $c) :
-        $employe = $managerEmploye->get($c->user_id());
-        echo
-            "<tr \">
-                <td class='prix'>
-                    " . $c->id() . "
-                </td>
-                <td class='prix'>
-                    " . $employe->identifiant() . "
-                </td>
-                <td class='prix'>
-                    " . $c->session() . "
-                </td>
-                <td class='prix'>
-                " . $c->etat() . "
-                </td>
-                <td class='prix'>
-                " . $c->fondCaisseFerme() . "
-                </td>
-                <td class='prix'>
-                " . $c->fondCaisseOuvert() . "
-                </td>
-            </tr>";
-    endforeach;
-} else {
+
+
+/*{
     if ($idemploye == $_POST['idemploye'] && $start == 0 && $end == 0) {
 
         $caisse = $managerCaisse->getIdEmploye($idemploye);
-        foreach ($caisse as $k => $c) :
-            $employe = $managerEmploye->get($c->user_id());
-            echo
-                "<tr \">
+
+    } else {
+        if ($start == $_POST['start'] && $end == $_POST['end'] && $idemploye == $_POST['idemploye']) {
+            
+            if ($idemploye != null) {
+
+            } else {
+                $caisse = $managerCaisse->getDateRangeCaisse($start, $end);
+            }
+
+        } else {
+            if ($idemploye == null && $start == 0 && $end == 0) {
+
+                $caisse = $managerCaisse->getList();
+
+            }
+        }
+    }
+}*/
+foreach ($caisse as $k => $c) :
+    $employe = $managerEmploye->get($c->user_id());
+    echo
+        "<tr \">
                         <td class='prix'>
                             " . $c->id() . "
                         </td>
@@ -90,69 +98,4 @@ if ($start == $_POST['start'] && $end == $_POST['end'] && $idemploye == 0) {
                         " . $c->fondCaisseOuvert() . "
                         </td>
                     </tr>";
-        endforeach;
-    } else {
-        if ($start == $_POST['start'] && $end == $_POST['end'] && $idemploye == $_POST['idemploye']) {
-            
-            if ($idemploye != null) {
-                $caisse = $managerCaisse->getDateRangeCaisseUserid($start, $end, $idemploye);
-            } else {
-                $caisse = $managerCaisse->getDateRangeCaisse($start, $end);
-            }
-            
-            foreach ($caisse as $k => $c) :
-                $employe = $managerEmploye->get($c->user_id());
-                echo
-                    "<tr \">
-                            <td class='prix'>
-                                " . $c->id() . "
-                            </td>
-                            <td class='prix'>
-                                " . $employe->identifiant() . "
-                            </td>
-                            <td class='prix'>
-                                " . $c->session() . "
-                            </td>
-                            <td class='prix'>
-                            " . $c->etat() . "
-                            </td>
-                            <td class='prix'>
-                            " . $c->fondCaisseFerme() . "
-                            </td>
-                            <td class='prix'>
-                            " . $c->fondCaisseOuvert() . "
-                            </td>
-                        </tr>";
-            endforeach;
-        } else {
-            if ($idemploye == null && $start == 0 && $end == 0) {
-
-                $caisse = $managerCaisse->getList();
-                foreach ($caisse as $k => $c) :
-                    $employe = $managerEmploye->get($c->user_id());
-                    echo
-                        "<tr \">
-                                <td class='prix'>
-                                    " . $c->id() . "
-                                </td>
-                                <td class='prix'>
-                                    " . $employe->identifiant() . "
-                                </td>
-                                <td class='prix'>
-                                    " . $c->session() . "
-                                </td>
-                                <td class='prix'>
-                                " . $c->etat() . "
-                                </td>
-                                <td class='prix'>
-                                " . $c->fondCaisseFerme() . "
-                                </td>
-                                <td class='prix'>
-                                " . $c->fondCaisseOuvert() . "
-                                </td>
-                            </tr>";
-                endforeach;
-            }
-        }
-    }
-}
+endforeach;
