@@ -107,5 +107,8 @@ foreach ($caisse as $k => $c) :
                         <td class='prix'>
                         " . $c->dateFerme() . "
                         </td>
+                        <td>
+                            <a class=\"btn btn-success btn-rounded btn-sm \"  onclick=\"showVenteCaisse('" . $c->id() . "')\"><span class=\"\">Voir vente</span></a>
+                        </td>
                     </tr>";
 endforeach;

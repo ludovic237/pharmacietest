@@ -1080,13 +1080,13 @@
                                                                  <input type="text">
                                                             </td>
                                                             <td>
-                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="generer_bon_caisse(<?php echo $v->id; ?>)">
                                                                       Générer
                                                                  </button>
-                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="cencaisser_bon_caisse(<?php echo $v->id; ?>)">
                                                                       Encaisser
                                                                  </button>
-                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="imprimer_bon_caisse()">
                                                                       Imprimer
                                                                  </button>
                                                             </td>
@@ -1189,12 +1189,12 @@
 
 <!-- END MODAL ICON PREVIEW -->
 <!-- START MODAL ICON PREVIEW -->
-<div class="modal fade" id="iconPreviewListeCaisse" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="iconPreviewImprimerBonCaisse" tabindex="-1" role="dialog" aria-hidden="true">
      <div class="modal-dialog" style="width: 85%;">
           <div class="modal-content">
                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Caisse</h4>
+                    <h4 class="modal-title">Impression bon de caisse</h4>
                </div>
                <div class="modal-body">
                     <div class="row">
@@ -1236,6 +1236,56 @@
      </div>
 </div>
 
+<div class="modal fade" id="previewImprimerBonCaisse" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Impression bon de caisse</h4>
+               </div>
+               <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-4">
+                              <div class="icon-preview">
+                                   <div style="width: 35mm;display:flex;height: 30mm;flex-direction: column;" id="ticket">
+                                        <table style="table-layout: fixed; width: 40mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
+                                             <tbody>
+                                                  <tr style="display: flex;table-layout: fixed; width: 40mm ;">
+                                                       <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
+
+                                                            <div style="display: flex;flex-direction: column;">
+                                                                 <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
+                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Nom client</p>
+                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Montant</p>
+                                                                 </div>
+                                                                 <div>
+                                                                      <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="demo">code barre</p>
+                                                                 </div>
+                                                                 <div style="display: flex;flex-direction: row;justify-content: space-around;">
+                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Date généré</p>
+                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Caissier</p>
+                                                                 </div>
+                                                            </div>
+                                                       </td>
+
+                                                  </tr>
+                                             </tbody>
+                                        </table>
+
+                                   </div>
+                                   <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
+                              </div>
+                         </div>
+
+                    </div>
+
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+               </div>
+          </div>
+     </div>
+</div>
 <!-- <div class="modal fade" id="iconPreviewBonCaisse" tabindex="-1" role="dialog" aria-hidden="true">
      <div class="modal-dialog" style="width: 85%;">
           <div class="modal-content">

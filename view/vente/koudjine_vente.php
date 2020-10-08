@@ -6,7 +6,7 @@
 
         $position_for_layout = '<li><a href="#">Vente</a></li><li class="active">' . $position . '</li>';
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
+
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 
@@ -59,7 +59,7 @@
 
                             <div class="panel-heading">
                                 <div class="btn-group pull-right">
-                                    <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
+                                    <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false'});"><img src="img/icons/json.png" width="24"> JSON</a></li>
                                         <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src="img/icons/json.png" width="24"> JSON (ignoreColumn)</a></li>
@@ -128,8 +128,7 @@
                                                             <?php echo $v->etat; ?>
                                                         </td>
                                                         <td>
-                                                            <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</button>
-                                                            <!-- <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button> -->
+                                                            <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
                                                         </td>
                                                         <p></p>
                                                     </tr>
@@ -195,8 +194,8 @@
                                                             <?php echo $v->etat; ?>
                                                         </td>
                                                         <td>
-                                                            <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</button>
-                                                            <!-- <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button> -->
+                                                            <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
+                                                            <!-- <a class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></a> -->
                                                         </td>
                                                         <p></p>
                                                     </tr>
@@ -236,7 +235,7 @@
 
                                             </div>
                                             <div class="col-md-2 col-xs-12">
-                                                <button class="btn btn-primary pull-right charger_info_employe">Charger</button>
+                                                <a class="btn btn-primary pull-right charger_info_employe">Charger</a>
                                             </div>
 
                                         </div>
@@ -258,10 +257,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-default">
-
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Responsive tables</h3>
-                                    </div>
+                                    <!-- 
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Responsive tables</h3>
+                            </div> -->
 
                                     <div class="panel-body panel-body-table">
 
@@ -277,6 +276,7 @@
                                                         <th width="100">fond Caisse Ferme</th>
                                                         <th width="100">Date Ouverture</th>
                                                         <th width="100">Date fermeture</th>
+                                                        <th width="100">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tab_employe_id">
@@ -292,14 +292,17 @@
                                                             <td><strong class="prixt"><?php if (isset($employe)) echo $employe[$j]; ?></strong></td>
 
                                                             <td class="prixp"><?php echo $v->session; ?></td>
-                                                            <td class="seller"><span class="label label-success"><?php echo $v->etat; ?></span></td>
+                                                            <td><span class="label label-success"><?php echo $v->etat; ?></span></td>
                                                             <!-- <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td> -->
-                                                            <td class="datevte">
+                                                            <td>
                                                                 <?php echo $v->fondCaisseOuvert; ?>
                                                             </td>
-                                                            <td class="seller"><?php echo $v->fondCaisseFerme; ?></td>
-                                                            <td class="seller"><?php echo $v->dateOuvert; ?></td>
-                                                            <td class="seller"><?php echo $v->dateFerme; ?></td>
+                                                            <td><?php echo $v->fondCaisseFerme; ?></td>
+                                                            <td><?php echo $v->dateOuvert; ?></td>
+                                                            <td><?php echo $v->dateFerme; ?></td>
+                                                            <td>
+                                                                <a class="btn btn-success btn-rounded btn-sm" onclick="showVenteCaisse(<?php echo $v->id; ?>)">Voir vente</a>
+                                                            </td>
                                                             <p></p>
                                                         </tr>
 
@@ -317,7 +320,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
         </form>
@@ -337,7 +340,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <a  class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>
                 <h4 class="modal-title">Produit</h4>
             </div>
             <div class="modal-body">
@@ -394,7 +397,7 @@
                                     <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">NoCT /P058512700488Z</p>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
+                            <a  class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</a>
                         </div>
                     </div>
 
@@ -402,9 +405,136 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <a  class="btn btn-primary" data-dismiss="modal">Close</a>
             </div>
         </div>
     </div>
 </div>
 <!-- END MODAL ICON PREVIEW -->
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewListVenteCaisse" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width: 85%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a  class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>
+                <h4 class="modal-title">Liste de vente de la caisse</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading">
+
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th width="100">Ref</th>
+                                                    <th width="100">Montant Total</th>
+                                                    <th width="200">Montant percu</th>
+                                                    <th width="200">identifiant</th>
+                                                    <th width="200">Date de vente</th>
+                                                    <th width="100">Etat</th>
+                                                    <th width="100">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tab_list_vente_caisse">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <a  class="btn btn-primary" data-dismiss="modal">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+
+<div class="modal fade" id="iconPreviewFacture2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a  class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="icon-preview">
+                            <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture2" id="ticketListe2">
+
+                                <div style="display: flex;flex-direction:column;text-align: left;">
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Pharmacie ALSAS</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Dr GAMWO Sandrine</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">BP 38 FOUMBOT</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Tel :(+237) 233 267 487</p>
+                                    <div style="display: flex;justify-content:space-between">
+                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Ticket N°: <span class="reference"></span></p>
+                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;"><span class="datevente"></span> à <span class="heurevente"></span> </p>
+                                    </div>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Vendeur: <span class="vendeur"></span> </p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Acheteur: <span class="acheteur"></span> </p>
+                                </div>
+                                <div>
+                                    <table class="table table-bordered table-striped table-actions table-responsive" id="tab_GGBfactureImprimer">
+                                        <thead>
+                                            <tr>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" width="200">Libelle</th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" width="150">Prix U.</th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" width="100">Qte</th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" width="100">Total</th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" width="50">Rd(%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tab_BfactureImprimer2">
+
+                                            <tr>
+                                                <td colspan="1" style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" scope="row">Montant Total</td>
+                                                <td colspan="4" style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 12px;"><span class="montanttotal"></span> FCFA</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1" style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: start;" scope="row">Remise</td>
+                                                <td colspan="4" style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: end;"><span class="remise"></span> FCFA</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1" style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: start;" scope="row">Net à payer</td>
+                                                <td colspan="4" style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: end;"><span class="netapayer"></span> FCFA</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="display: flex;flex-direction:column;text-align: left;">
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Payer en espece : <span class="montantpercu"></span> </p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Montant rendu : <span class="montantrendu"></span> </p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Ce ticket vaut facture</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Merci et bonne santé</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">NoCT /P058512700488Z</p>
+                                </div>
+                            </div>
+                            <a  class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <a  class="btn btn-primary" data-dismiss="modal">Close</a>
+            </div>
+        </div>
+    </div>
+</div>

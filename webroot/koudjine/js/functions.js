@@ -2879,3 +2879,28 @@ function liste_caisse(id) {
     })
 }
 
+function imprimer_bon_caisse() {
+    $("#previewImprimerBonCaisse").modal('show');
+}
+
+function showVenteCaisse(id) {
+    alert(id);
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/vente.php',
+        data: {
+            idCaisse: id
+        },
+        success: function (data) {
+            //alert(data);
+            $("#iconPreviewListVenteCaisse").modal('show');
+            $('#tab_list_vente_caisse').empty();
+            $('#tab_list_vente_caisse').prepend(data);
+
+
+        }
+    })
+    $("#previewImprimerBonCaisse").modal('show');
+    return false;
+}
+
