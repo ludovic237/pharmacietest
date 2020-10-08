@@ -91,14 +91,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="form-group">
                         <label class="col-md-3 control-label">date livraison:</label>
                         <div class="col-md-9">
-                            <input type="date" class="form-control" name="dateLivraison" id="dateLivraison" value="<?php if ($position == 'Modifier') echo $en_rayon->dateLivraison; ?>" placeholder="dateLivraison" />
+                            <input style="line-height: normal;" type="date" class="form-control" name="dateLivraison" id="dateLivraison" value="<?php if ($position == 'Modifier') echo $en_rayon->dateLivraison; ?>" placeholder="dateLivraison" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">date peremption:</label>
                         <div class="col-md-9">
-                            <input type="date" class="form-control" name="datePeremption" id="datePeremption" value="<?php if ($position == 'Modifier') echo $en_rayon->datePeremption; ?>" placeholder="datePeremption" />
+                            <input style="line-height: normal;" type="date" class="form-control" name="datePeremption" id="datePeremption" value="<?php if ($position == 'Modifier') echo $en_rayon->datePeremption; ?>" placeholder="datePeremption" />
                             <span class="help-block">exemple: Boris Daudga</span>
                         </div>
                     </div>

@@ -40,11 +40,11 @@
                             <img src="<?php echo BASE_URL . '/koudjine/assets/images/users/' . $this->Session->user('PHOTO_PROFIL'); ?>" alt="<?php echo $this->Session->user('NOM') . ' ' . $this->Session->user('PRENOM'); ?>" />
                         </div>
                         <div class="profile-data">
-                            <div class="profile-data-name"><?php echo $this->Session->user('identifiant') ?></div>
+                            <div class="profile-data-name"><?php echo $_SESSION["User"]->nom.' '.$_SESSION["User"]->prenom ?></div>
                             <div class="profile-data-title"><?php echo $this->Session->user('type') . ' ' ?><?php if ($this->Session->user('FONCTION') != null) echo ' / ' . $this->Session->user('FONCTION') ?></div>
                         </div>
                         <div class="profile-controls">
-                            <a href="<?php echo Router::url('bouwou/pharmanet/userprofile/' . $_SESSION["Users"]->id); ?>" class="profile-control-left"><span class="fa fa-info"></span></a>
+                            <a href="<?php echo Router::url('bouwou/pharmanet/userprofile/' . $_SESSION["User"]->nom); ?>" class="profile-control-left"><span class="fa fa-info"></span></a>
                             <a href="pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
                         </div>
                     </div>

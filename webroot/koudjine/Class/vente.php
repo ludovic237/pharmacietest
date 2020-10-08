@@ -320,6 +320,15 @@ class VenteManager
         return $ventes;
     } 
 
+    public function VenteCountEtat($text)
+    {
+        $q = $this->_db->prepare("SELECT COUNT(*) as total FROM vente WHERE etat LIKE '%$text%' ");
+        //$q = $this->_db->prepare("SELECT COUNT(*) as total FROM vente WHERE etat LIKE '%comptant%' ");
+        $q->execute();
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return $donnees;
+    } 
+
     public function getDateVente($info)
     {
 

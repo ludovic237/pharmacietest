@@ -10,6 +10,10 @@ $(document).ready(function () {
         "order": [[3, "desc"]]
     });
 
+    $('#datatable1').DataTable({
+        "order": [[3, "desc"]]
+    });
+
     $(".argent").keyup(function (event) {
         ////alert($(this).val())
         var total = ($("#argent_1").val() * 500) + ($("#argent_2").val() * 10000) + ($("#argent_3").val() * 100) + ($("#argent_4").val() * 5000) + ($("#argent_5").val() * 50) + ($("#argent_6").val() * 2000) + ($("#argent_7").val() * 25) + ($("#argent_8").val() * 1000) + ($("#argent_9").val() * 10) + ($("#argent_10").val() * 500)

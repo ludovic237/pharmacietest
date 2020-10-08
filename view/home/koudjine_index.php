@@ -98,7 +98,7 @@ $script_for_layout = '
                 <span class="fa fa-user"></span>
             </div> -->
             <div style="padding-top: 10px;">
-                <div class="widget-int num-count">375</div>
+                <div class="widget-int num-count "><span id="nbrVente">0</span> FCFA</div>
                 <div class="widget-title">Chiffre d'affaire</div>
                 <div class="widget-subtitle">Vente</div>
             </div>
@@ -119,7 +119,7 @@ $script_for_layout = '
                 <span class="fa fa-user"></span>
             </div> -->
             <div style="padding-top: 10px;">
-                <div class="widget-int num-count">375</div>
+                <div class="widget-int num-count"><span id="beneficeTotal">0</span> FCFA</div>
                 <div class="widget-title">Benefice</div>
                 <div class="widget-subtitle">Vente</div>
             </div>
@@ -140,7 +140,7 @@ $script_for_layout = '
                 <span class="fa fa-user"></span>
             </div> -->
             <div style="padding-top: 10px;">
-                <div class="widget-int num-count">375</div>
+                <div class="widget-int num-count " id="nbrProduit">0</div>
                 <div class="widget-title">Total d'article</div>
                 <div class="widget-subtitle">Vente</div>
             </div>
@@ -216,7 +216,35 @@ $script_for_layout = '
         <!-- END PROJECTS BLOCK -->
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
+
+        <!-- START SALES & EVENTS BLOCK -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title-box">
+                    <h3>Sales & Event</h3>
+                    <span>Event "Purchase Button"</span>
+                </div>
+                <ul class="panel-controls" style="margin-top: 2px;">
+                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                    <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Collapse</a></li>
+                            <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body padding-0">
+                <div class="chart-holder" id="dashboard-line-1" style="height: 200px;"></div>
+            </div>
+        </div>
+        <!-- END SALES & EVENTS BLOCK -->
+
+    </div>
+    <div class="col-md-4">
 
         <!-- START PROJECTS BLOCK -->
         <div class="panel panel-default">
@@ -243,9 +271,9 @@ $script_for_layout = '
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th width="50%">Project</th>
-                                <th width="20%">Status</th>
-                                <th width="30%">Activity</th>
+                                <th width="50%">Employé</th>
+                                <th width="20%">Quantité vendu</th>
+                                <th width="30%">Statut</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -314,14 +342,14 @@ $script_for_layout = '
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
 
-        <!-- START SALES & EVENTS BLOCK -->
+        <!-- START USERS ACTIVITY BLOCK -->
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title-box">
-                    <h3>Sales & Event</h3>
-                    <span>Event "Purchase Button"</span>
+                    <h3>Users Activity</h3>
+                    <span>Users vs returning</span>
                 </div>
                 <ul class="panel-controls" style="margin-top: 2px;">
                     <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
@@ -336,13 +364,13 @@ $script_for_layout = '
                 </ul>
             </div>
             <div class="panel-body padding-0">
-                <div class="chart-holder" id="dashboard-line-1" style="height: 200px;"></div>
+                <div class="chart-holder" id="dashboard-bar-1" style="height: 200px;"></div>
             </div>
         </div>
-        <!-- END SALES & EVENTS BLOCK -->
+        <!-- END USERS ACTIVITY BLOCK -->
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
 
         <!-- START VISITORS BLOCK -->
         <div class="panel panel-default">

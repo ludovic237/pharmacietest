@@ -26,6 +26,12 @@ class UsersController extends Controller
             if(!empty($user)){
                 //die('pass');
                 $this->Session->write('Users',$user);
+                $this->loadModel('Users');
+                $users = $this->Users->findFirst(array(
+                    'conditions' => array('id' => $user->user_id),
+                    'table' => 'user'
+                ));
+                $this->Session->write('User',$users);
             }
                 $data->password = '';
 

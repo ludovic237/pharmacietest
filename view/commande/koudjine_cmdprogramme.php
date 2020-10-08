@@ -496,7 +496,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                             <label class="col-md-3 control-label">Date de péremption:</label>
                             <div class="col-md-9">
                                 <div class="input-group">
-                                    <input style="padding-top: 0px;" class="form-control champ champ5" data="5" id="date_cmdprogramme" placeholder="Date de péremption" type="date" required="">
+                                    <input style="padding-top: 0px;" class="form-control champ champ5" data="5" id="date_cmdprogramme" placeholder="Date de péremption" style="line-height: normal;" type="date" required="">
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>
