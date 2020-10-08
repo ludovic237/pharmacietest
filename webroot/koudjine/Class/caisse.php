@@ -225,6 +225,18 @@ class CaisseManager
         return new Caisse($donnees);
 
     }
+    public function getIdEmploye($id)
+    {
+        $caisses = array();
+        $q = $this->_db->prepare('SELECT * FROM caisse WHERE supprimer = 0 AND user_id = '.$id);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $caisses[] = new Caisse($donnees);
+        }
+        return $caisses;
+
+    }
     public function getList()
     {
         $caisses = array();
@@ -235,6 +247,33 @@ class CaisseManager
             $caisses[] = new Caisse($donnees);
         }
         return $caisses;
+    }
+
+    public function getDateRangeCaisseUserid($start,$end, $user_id)
+    {
+        $q = $this->_db->prepare( "SELECT * FROM `caisse` WHERE `user_id` = '.$user_id.' AND `dateOuvert` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH ) AND `dateFerme` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");
+        $caisses = array();
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $caisses[] = new Caisse($donnees);
+        }
+        return $caisses;
+
+
+    }
+    public function getDateRangeCaisse($start,$end)
+    {
+        $q = $this->_db->prepare( "SELECT * FROM `caisse` WHERE  `dateOuvert` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH ) AND `dateFerme` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");
+        $caisses = array();
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $caisses[] = new Caisse($donnees);
+        }
+        return $caisses;
+
+
     }
     public function update(Caisse $caisse)
     {

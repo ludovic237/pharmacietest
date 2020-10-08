@@ -65,11 +65,31 @@ class VenteController extends Controller
     {
         $this->loadModel('Vente');
 
+        $d['employes'] = $this->Vente->find(array(
+            'table' => 'employe'
+        ));
+
         $d['caisse'] = $this->Vente->findFirst(array(
             //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
             'table' => 'caisse',
             'conditions' => array('supprimer' => 0, 'etat' => '"Ouvert"')
         ));
+        $d['caisseAll'] = $this->Vente->find(array(
+            'table' => 'caisse'
+        ));
+
+        $j = 0;
+        foreach ($d['caisseAll'] as $k => $v) :
+
+            $d['employe'][$j] = $this->Vente->findFirst(array(
+                //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                'table' => 'employe',
+                'conditions' => array('id' => $v->user_id, 'supprimer' => 0)
+            ));
+            $d['employe'][$j] = $d['employe'][$j]->identifiant;
+
+            $j++;
+        endforeach;
 
         if (!empty($d['caisse'])) {
             $d['ventes'] = $this->Vente->find(array(
