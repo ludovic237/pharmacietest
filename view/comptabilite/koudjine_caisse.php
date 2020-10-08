@@ -155,7 +155,7 @@
                                                             <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                        </div>
                                                   </div>
-                                                  <div class="btn-group pull-right">
+                                                  <div class="btn-group">
                                                        <a class="btn btn-primary" style="margin-right: 20px" href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>">Annuler</a>
                                                        <button class="btn btn-success" style="margin-right: 20px" onclick="valider_facture('Espèce','tab1', '<?php echo $action_fermeture->id; ?>', false)">Valider</button>
                                                        <button class="btn btn-success" onclick="valider_facture('Espèce','tab1','<?php echo $action_fermeture->id; ?>', true)">Imprimer</button>
@@ -166,45 +166,42 @@
                                    </div>
                                    <div class="tab-pane panel-body" id="tab2">
                                         <div class="block">
-                                             <!-- <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau entrée</h4> -->
-                                             <form role="form" class="form-horizontal">
-                                                  <div class="panel-body">
+                                                  <div class="panel-body" style="display: flex;flex-direction: column;">
 
                                                        <div class="form-group">
                                                             <label class="col-md-3 control-label">Numéro de téléphone:</label>
                                                             <div class="col-md-9">
-                                                                 <input type="number" class="form-control" value="" placeholder="" />
+                                                                 <input type="number" id="Electroniquecaisse1" class="form-control telephone caisse Electroniquecaisse1" data="1" data1="Electronique" data2="2" data3="tab2" value="" placeholder="" />
                                                                  <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                        </div>
                                                        <div class="form-group">
                                                             <label class="col-md-3 control-label">Montant:</label>
                                                             <div class="col-md-9">
-                                                                 <input type="number" class="form-control" value="" placeholder="" />
+                                                                 <input type="number" id="Electroniquecaisse2" class="form-control montant caisse Electroniquecaisse2" data="2" data1="Electronique" data2="2" data3="tab2" value="" placeholder="" />
                                                                  <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                        </div>
                                                        <div class="form-group">
                                                             <label class="col-md-3 control-label">Frais:</label>
                                                             <div class="col-md-9">
-                                                                 <input type="number" class="form-control" value="" placeholder="" />
+                                                                 <input type="number" disabled class="form-control" value="" placeholder="" />
                                                                  <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                        </div>
                                                        <div class="form-group">
                                                             <label class="col-md-3 control-label">Rendu:</label>
                                                             <div class="col-md-9">
-                                                                 <input type="number" class="form-control" value="" placeholder="" />
+                                                                 <input type="number" disabled class="form-control reste" value="" placeholder="" />
                                                                  <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                        </div>
                                                        <div class="btn-group pull-right">
                                                             <a class="btn btn-primary" style="margin-right: 20px" href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>">Annuler</a>
-                                                            <button class="btn btn-success" style="margin-right: 20px">Valider</button>
-                                                            <button class="btn btn-success">Imprimer</button>
+                                                            <button class="btn btn-success" onclick="valider_facture('Electronique','tab2','<?php echo $action_fermeture->id; ?>', false)" style="margin-right: 20px">Valider</button>
+                                                            <button class="btn btn-success" onclick="valider_facture('Electronique','tab2','<?php echo $action_fermeture->id; ?>', true)">Imprimer</button>
                                                        </div>
                                                   </div>
-                                             </form>
                                              <!-- END JQUERY VALIDATION PLUGIN -->
                                         </div>
                                    </div>

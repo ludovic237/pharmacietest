@@ -85,6 +85,10 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
         ////alert('passe');
         $('#tab1 .reste').val($('#tab1 .montant').val() - parseInt($('#facture_caisse').html()));
     })
+    $('#tab2 .montant').keyup(function (e) {
+        ////alert('passe');
+        $('#tab2 .reste').val($('#tab2 .montant').val() - parseInt($('#facture_caisse').html()));
+    })
     $("#credit").hover(function () {
         netpayer = $("#netTotal").html();
         reduc = $("#prixReduit").html();
@@ -1231,15 +1235,21 @@ function valider_vente(type, etat) {
 }
 
 function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
-    var montantTtc = parseInt($('#facture_caisse').html()), count = 0, rec = 0;
+    var telephone,montantTtc = parseInt($('#facture_caisse').html()), count = 0, rec = 0;
     var reduction = parseInt($('#facture_caisse').attr('data'));
-    $('#ticketCaisse .montantpercu').html($('#' + onglet + ' .montant').val());
+    $('#ticketCaisse .montantpercu').html($('#' + onglet + ' .montant').val()+' ('+typePaiement+')');
     $('#ticketCaisse .montantrendu').html($('#' + onglet + ' .reste').val());
     //alert(reduction);
     var montantPercu = null;
     if ($('#' + onglet + ' .montant').val() != '') {
         ////alert(caisse_id);
         montantPercu = parseInt($('#' + onglet + ' .montant').val());
+    }
+    if (typePaiement == 'Electronique') {
+        ////alert(caisse_id);
+        telephone = $('#' + onglet + ' .telephone').val();
+    }else {
+        telephone = '';
     }
     var reste = parseInt($('#' + onglet + ' .reste').val());
     var vente_id = parseInt($('#fen_facture').attr("data"));
@@ -1263,12 +1273,13 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                 montant: montantTtc,
                 montantPercu: montantPercu,
                 reste: reste,
+                telephone: telephone,
                 reduction: reduction,
                 typePaiement: typePaiement,
                 caisse_id: parseInt(caisse_id)
             },
             success: function (server_responce) {
-                //  alert(server_responce);
+                  alert(server_responce);
                 $('#tab_vente_caisse  tr').each(function (i) {
                     count++;
                 });
