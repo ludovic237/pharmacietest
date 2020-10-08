@@ -4,8 +4,50 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     var netpayer;
     var reduc;
     var stock;
+
+    $(".charger_info_employe").on("click", function () {
+        var idemploye = $('#dataEmploye option:selected').val();
+        alert(idemploye);
+        if (idemploye == 0) {
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/vente_info_today.php',
+                data: {
+                    start: 0,
+                    end: 0,
+                    idemploye: 0
+                },
+                // dataType: 'json',
+                success: function (server_responce) {
+                    //console.log(server_responce);
+                    $('#tab_employe_id').html(server_responce);
     
-    if($("#tab_produit_detail_a").attr("data") == ''){
+                }
+            });
+            $('#reportrange span').html();
+            return false;
+        }
+        else{
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/vente_info_today.php',
+                data: {
+                    start: 0,
+                    end: 0,
+                    idemploye: idemploye
+                },
+                // dataType: 'json',
+                success: function (server_responce) {
+                    //console.log(server_responce);
+                    $('#tab_employe_id').html(server_responce);
+    
+                }
+            });
+            return false;
+        }
+    });
+
+    if ($("#tab_produit_detail_a").attr("data") == '') {
         $("#tab_produit_stock_detail").hide();
         $("#produit_stock_detail_a").hide();
         $("#produit_stock_detail_b").hide();
@@ -388,7 +430,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                                 $(".option_nouveauClient").val(prixReduit);
                                 ////alert($(".option_nouveauClient").val());
                             }*/
-                        }else if(data.find == 'non'){
+                        } else if (data.find == 'non') {
                             load_produit(data.id);
                             $('#recherche').val("");
                             $("#tab_Grecherche").hide();
@@ -720,7 +762,7 @@ function load_produit_detail(id, nomp) {
                         $('#tab_produit_detail_b').html(server_responce);
                         $("#produit_detail_b").show();
                         $("#tab_produit_detail_b").show();
-                    }        
+                    }
                 })
             }
 
@@ -747,7 +789,7 @@ function load_produit_detail(id, nomp) {
                         $('#tab_produit_commande_detail_b').html(server_responce);
                         $("#produit_commande_detail_b").show();
                         $("#tab_produit_commande_detail_b").show();
-                    }        
+                    }
                 })
             }
 
@@ -774,7 +816,7 @@ function load_produit_detail(id, nomp) {
                         $('#tab_produit_stock_detail_b').html(server_responce);
                         $("#produit_stock_detail_b").show();
                         $("#tab_produit_stock_detail_b").show();
-                    }        
+                    }
                 })
             }
 
@@ -857,7 +899,7 @@ function ajouter_produit() {
                 ////alert(stock);
                 //stockg = stockg-qte;
                 var cat = '<tr id="' + id1 + '">'
-                    + ' <td><strong>' + nom + '</strong></td>' 
+                    + ' <td><strong>' + nom + '</strong></td>'
                     + '<td>' + prix + '</td>'
                     + '<td>' + qte + '</td>'
                     + '<td>' + (prix * qte) + '</td>'
@@ -950,7 +992,7 @@ function envoyer_en_caisse(vente_id, caisse_id) {
         }
 
 
-    }) 
+    })
 }
 
 function valider_vente(type, etat) {
@@ -958,7 +1000,7 @@ function valider_vente(type, etat) {
     var idClient;
     var idPrescripteur;
     var idv, reference;
-    var prix, qte, prixReduit, id1, count=0, rec=0;
+    var prix, qte, prixReduit, id1, count = 0, rec = 0;
 
     /**/
     // vérifier si le prix est > à 0
@@ -1002,7 +1044,7 @@ function valider_vente(type, etat) {
         } else {
             idPrescripteur = null;
         }
-        
+
         nouveau = nouveau + $("#input_vente_nomPrescripteur").val();
 
         var commentaire = $("#commentaire_vente").val();
@@ -1010,7 +1052,7 @@ function valider_vente(type, etat) {
 
         var prixr = parseInt($('#prixReduit').html());
         //alert("Tata");
-        
+
         $.ajax({
             type: "POST",
             url: "/pharmacietest/koudjine/inc/vente.php",
@@ -1033,7 +1075,8 @@ function valider_vente(type, etat) {
                     reference = data.ref;
                     //alert(idv);
                     $('#tab_vente  tr').each(function (i) {
-                        count++;});
+                        count++;
+                    });
                     console.log(count);
 
                     $('#tab_vente  tr').each(function (i) {
@@ -1080,7 +1123,7 @@ function valider_vente(type, etat) {
 
 
                         });
-                        console.log(prix+'-'+qte+'-'+prixReduit);
+                        console.log(prix + '-' + qte + '-' + prixReduit);
                         $.ajax({
                             type: "POST",
                             url: "/pharmacietest/koudjine/inc/concerner_vente.php",
@@ -1095,7 +1138,7 @@ function valider_vente(type, etat) {
                                 console.log(server_responce);
                                 rec++;
                                 console.log(rec);
-                                if(type == 2 && rec == count){
+                                if (type == 2 && rec == count) {
                                     // Imprimer ticket
                                     var box = $("#mb-confirmation-print");
                                     box.addClass("open");
@@ -1103,18 +1146,18 @@ function valider_vente(type, etat) {
                                     box.find(".mb-control-yes").on("click", function () {
                                         box.removeClass("open");
                                         var today = new Date();
-                                        var dd = String(today.getDate()).padStart(2,'0');
-                                        var mm = String(today.getMonth()+1).padStart(2,'0');
+                                        var dd = String(today.getDate()).padStart(2, '0');
+                                        var mm = String(today.getMonth() + 1).padStart(2, '0');
                                         var yyyy = today.getFullYear();
-                                        var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-                                        today = dd+"-"+mm+"-"+yyyy;
+                                        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                                        today = dd + "-" + mm + "-" + yyyy;
                                         $('#ticketVente .reference').html(reference);
                                         $('#ticketVente .datevente').html(today);
                                         $('#ticketVente .heurevente').html(time);
                                         $('#ticketVente .vendeur').html($("#comptant").attr('data1'));
-                                        if(idClient == null){
+                                        if (idClient == null) {
                                             $('#ticketVente .acheteur').html(nouveau);
-                                        }else{
+                                        } else {
                                             $('#ticketVente .acheteur').html($("#select_vente_client option:selected").text());
                                         }
 
@@ -1136,7 +1179,7 @@ function valider_vente(type, etat) {
 
                                                 $('#tab_BfactureImprimer').prepend(server_responce)
                                                 //$("#iconPreviewFacture").modal('show');
-                                                imprimer_bloc('ticketVente','ticketVente');
+                                                imprimer_bloc('ticketVente', 'ticketVente');
 
                                                 var link = '/pharmacietest/users/logout';
                                                 window.location.href = link;
@@ -1154,9 +1197,9 @@ function valider_vente(type, etat) {
 
                                     });
 
-                                }else{
+                                } else {
 
-                                    if(rec == count){
+                                    if (rec == count) {
                                         console.log('Redirige');
                                         var link = '/pharmacietest/users/logout';
                                         window.location.href = link;
@@ -1174,7 +1217,7 @@ function valider_vente(type, etat) {
                     });
 
 
-                }else{
+                } else {
                     //alert('3 - '+data.erreur);
                     $('#alertCaisse').modal("show");
                 }
@@ -1188,21 +1231,21 @@ function valider_vente(type, etat) {
 }
 
 function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
-    var montantTtc = parseInt($('#facture_caisse').html()),  count=0, rec=0;
+    var montantTtc = parseInt($('#facture_caisse').html()), count = 0, rec = 0;
     var reduction = parseInt($('#facture_caisse').attr('data'));
     $('#ticketCaisse .montantpercu').html($('#' + onglet + ' .montant').val());
     $('#ticketCaisse .montantrendu').html($('#' + onglet + ' .reste').val());
     //alert(reduction);
     var montantPercu = null;
-    if($('#'+onglet+' .montant').val() != ''){
+    if ($('#' + onglet + ' .montant').val() != '') {
         ////alert(caisse_id);
-        montantPercu = parseInt($('#'+onglet+' .montant').val());
+        montantPercu = parseInt($('#' + onglet + ' .montant').val());
     }
-    var reste = parseInt($('#'+onglet+' .reste').val());
+    var reste = parseInt($('#' + onglet + ' .reste').val());
     var vente_id = parseInt($('#fen_facture').attr("data"));
     ////alert(montantPercu);
     ////alert(reste);
-    if(montantPercu == null || montantPercu == 0 || reste < 0){
+    if (montantPercu == null || montantPercu == 0 || reste < 0) {
         // vérifier qu'on a entré le montant perçu
         $('#message-box-danger p').html('Veuillez Entrer un bon montant perçu !!!');
         $("#message-box-danger").modal("show");
@@ -1210,7 +1253,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
             $("#message-box-danger").modal("hide");
         }, 3000);
     }
-    else{
+    else {
         ////alert('valide');
         $.ajax({
             type: "POST",
@@ -1225,18 +1268,19 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                 caisse_id: parseInt(caisse_id)
             },
             success: function (server_responce) {
-              //  alert(server_responce);
+                //  alert(server_responce);
                 $('#tab_vente_caisse  tr').each(function (i) {
-                    count++;});
-                $('#tab_vente_caisse  tr').each(function(i){
+                    count++;
+                });
+                $('#tab_vente_caisse  tr').each(function (i) {
                     var id1 = $(this).attr("id");
                     var qte;
                     ////alert(id1);
 
 
-                    $("#"+id1+" td").each(function(j){
+                    $("#" + id1 + " td").each(function (j) {
                         ////alert($(this).html());
-                        if(j==2) {qte = parseInt($(this).html()); }
+                        if (j == 2) { qte = parseInt($(this).html()); }
 
 
                     });
@@ -1252,14 +1296,14 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                             //alert(server_responce);
                             rec++;
                             rafraichir_vente(caisse_id);
-                            $('#'+onglet+' .montant').val('');
-                            $('#'+onglet+' .reste').val('');
+                            $('#' + onglet + ' .montant').val('');
+                            $('#' + onglet + ' .reste').val('');
                             $('#facture_caisse').html('0');
 
                             if (imprimer && rec == count) {
-                                imprimer_bloc('ticketCaisse','ticketCaisse');
+                                imprimer_bloc('ticketCaisse', 'ticketCaisse');
                                 $('#tab_vente_caisse').empty();
-                            }else{
+                            } else {
                                 $('#tab_vente_caisse').empty();
                             }
                             //var link = '/pharmacietest/users/logout';
@@ -1498,9 +1542,9 @@ function enregistrer_produit(option, id) {
     var prod = $('#produits').val();
     console.log(prod);
     //alert(contenu);
-    if(contenu == '') contenu = null;
+    if (contenu == '') contenu = null;
     var newprod = ""
-    if (prod ==null || prod=="") {
+    if (prod == null || prod == "") {
 
     } else {
         for (index = 0; index < prod.length; index++) {
@@ -2797,22 +2841,22 @@ function fileBrowser(field_name, url, type, win) {
     return false;
 }
 function change_input(option, id) {
-    if(option == 'plus'){
-        if($("#"+id).val() == '' || $("#"+id).val() == null)
-            $("#"+id).val(1);
+    if (option == 'plus') {
+        if ($("#" + id).val() == '' || $("#" + id).val() == null)
+            $("#" + id).val(1);
         else
-            $("#"+id).val(parseInt($("#"+id).val())+1);
+            $("#" + id).val(parseInt($("#" + id).val()) + 1);
     }
     else {
-        if(parseInt($("#"+id).val()) != 0)
-            $("#"+id).val(parseInt($("#"+id).val())-1);
+        if (parseInt($("#" + id).val()) != 0)
+            $("#" + id).val(parseInt($("#" + id).val()) - 1);
     }
     var prixTotal = 0, qte, prix;
     $("#tab_produit_commande tr").each(function (j) {
 
         var id = $(this).attr("id");
-        if(parseInt($("#inputQteRecu"+id).val()) != 0){
-            prixTotal = prixTotal + (parseInt($("#inputQteRecu"+id).val())*parseInt($("#prixCmd"+id).val()))
+        if (parseInt($("#inputQteRecu" + id).val()) != 0) {
+            prixTotal = prixTotal + (parseInt($("#inputQteRecu" + id).val()) * parseInt($("#prixCmd" + id).val()))
         }
         $('#facture_commande').html(prixTotal);
     })

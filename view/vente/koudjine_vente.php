@@ -6,24 +6,35 @@
 
         $position_for_layout = '<li><a href="#">Vente</a></li><li class="active">' . $position . '</li>';
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
-        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
-        
-        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- END PLUGINS -->
 
 <!-- START THIS PAGE PLUGINS-->
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/icheck/icheck.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/owl/owl.carousel.min.js"></script> 
 
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- END THIS PAGE PLUGINS-->
 
 <!-- START TEMPLATE -->
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/settings.js"></script>
 
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_dashboard.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/actions.js"></script>
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_vente.js"></script>
 
 
 
@@ -213,16 +224,19 @@
                                             <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un caisse
                                                 :</label>
                                             <div style="display: flex;flex:1;margin-right: 30px;">
-                                                <select class="selectpicker form-control input-xlarge" name="fabproduit" id="fournisseur_commande">
-                                                    <option value="0">Choisissez</option>
+                                                <select class="selectpicker form-control input-xlarge" id="dataEmploye">
+                                                    <option value="0">Tous</option>
                                                     <?php
-                                                    foreach ($caisse as $k => $v) : ?>
-                                                        <option <?php if (isset($caisse_id)) if ($v->id == $caisse_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" data="<?php echo $v->code; ?>"><?php echo $v->nom; ?></option>
+                                                    foreach ($employes as $k => $v) : ?>
+                                                        <option <?php if (isset($employes_id)) if ($v->id == $employes_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" data="<?php echo $v->id; ?>"><?php echo $v->identifiant; ?></option>
                                                     <?php
                                                     endforeach;
                                                     ?>
                                                 </select>
 
+                                            </div>
+                                            <div class="col-md-2 col-xs-12">
+                                                <button class="btn btn-primary pull-right charger_info_employe">Charger</button>
                                             </div>
 
                                         </div>
@@ -256,65 +270,39 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="50">id</th>
-                                                        <th>Date de vente</th>
+                                                        <th>Employé</th>
+                                                        <th width="100">Session</th>
                                                         <th width="100">Etat</th>
-                                                        <th width="100">Reference</th>
-                                                        <th width="100">Employé</th>
-                                                        <th width="100">actions</th>
+                                                        <th width="100">fond Caisse Ferme</th>
+                                                        <th width="100">fond Caisse Ouvert</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <?php $i = 0;
-                                                    if (isset($ventesCaisse)) foreach ($ventesCaisse as $k => $v) : ?>
+                                                <tbody id="tab_employe_id">
+                                                    <?php $j = 0;
+                                                    if (isset($caisseAll))
+                                                        foreach ($caisseAll as $k => $v) : ?>
                                                         <tr id="<?php echo $v->id; ?>">
                                                             <td>
-                                                                1
+                                                                <?php echo $v->id; ?>
                                                             </td>
 
-                                                            <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
-                                                            <td class="prixp"><?php echo $v->prixPercu; ?></td>
-                                                            <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
-                                                            <td class="seller"><?php echo $v->identifiant; ?></td>
+
+                                                            <td><strong class="prixt"><?php if (isset($employe)) echo $employe[$j]; ?></strong></td>
+
+                                                            <td class="prixp"><?php echo $v->session; ?></td>
+                                                            <td class="seller"><span class="label label-success"><?php echo $v->etat; ?></span></td>
+                                                            <!-- <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td> -->
+                                                            <td class="seller"><?php echo $v->fondCaisseFerme; ?></td>
                                                             <td class="datevte">
-                                                                <?php echo $v->dateVente; ?>
+                                                                <?php echo $v->fondCaisseOuvert; ?>
                                                             </td>
 
                                                             <p></p>
                                                         </tr>
-                                                    <?php endforeach; ?>
-                                                    <tr id="trow_1">
-                                                        <td class="text-center">1</td>
-                                                        <td><strong>John Doe</strong></td>
-                                                        <td><span class="label label-success">New</span></td>
-                                                        <td>$430.20</td>
-                                                        <td>24/09/2014</td>
-                                                        <td>
-                                                            <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                            <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr id="trow_2">
-                                                        <td class="text-center">2</td>
-                                                        <td><strong>Dmitry Ivaniuk</strong></td>
-                                                        <td><span class="label label-warning">Pending</span></td>
-                                                        <td>$1,351.00</td>
-                                                        <td>23/09/2014</td>
-                                                        <td>
-                                                            <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                            <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_2');"><span class="fa fa-times"></span></button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr id="trow_3">
-                                                        <td class="text-center">3</td>
-                                                        <td><strong>Nadia Ali</strong></td>
-                                                        <td><span class="label label-info">In Queue</span></td>
-                                                        <td>$2,621.00</td>
-                                                        <td>22/09/2014</td>
-                                                        <td>
-                                                            <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                            <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
-                                                        </td>
-                                                    </tr>
+
+                                                    <?php $j++;
+                                                        endforeach; ?>
+
                                                 </tbody>
                                             </table>
                                         </div>
