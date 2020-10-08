@@ -115,6 +115,8 @@ function close_caisse_row() {
 
 }
 
+
+
 function close_caisse_row_valide(user_id) {
     ////alert("session");
     var total = parseInt($('.totalaisse').html());
@@ -200,6 +202,18 @@ function valider_fermeture(caisse_id) {
         });
     }
 
+}
+
+function open_rapport() {
+    $("#iconPreviewRapport").modal("show");
+}
+
+function open_bon_caisse() {
+    $("#iconPreviewBonCaisse").modal("show");
+}
+
+function open_depense() {
+    $("#iconPreviewDepense").modal("show");
 }
 function rafraichir_vente(id) {
 

@@ -416,4 +416,16 @@ class ComptabiliteController extends Controller
 
     }
 
+    function koudjine_caisse_fermer()
+    {
+        $this->loadModel('Comptabilite');
+       
+    }
+
+    function koudjine_caisse_rapport()
+    {
+        $this->loadModel('Comptabilite');
+       
+    }
+
 }
