@@ -236,7 +236,7 @@
 
                                             </div>
                                             <div class="col-md-2 col-xs-12">
-                                                <button class="btn btn-primary charger_info_employe">Charger</button>
+                                                <button class="btn btn-primary pull-right charger_info_employe">Charger</button>
                                             </div>
 
                                         </div>
@@ -273,8 +273,10 @@
                                                         <th>Employé</th>
                                                         <th width="100">Session</th>
                                                         <th width="100">Etat</th>
-                                                        <th width="100">fond Caisse Ferme</th>
                                                         <th width="100">fond Caisse Ouvert</th>
+                                                        <th width="100">fond Caisse Ferme</th>
+                                                        <th width="100">Date Ouverture</th>
+                                                        <th width="100">Date fermeture</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tab_employe_id">
@@ -292,11 +294,12 @@
                                                             <td class="prixp"><?php echo $v->session; ?></td>
                                                             <td class="seller"><span class="label label-success"><?php echo $v->etat; ?></span></td>
                                                             <!-- <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td> -->
-                                                            <td class="seller"><?php echo $v->fondCaisseFerme; ?></td>
                                                             <td class="datevte">
                                                                 <?php echo $v->fondCaisseOuvert; ?>
                                                             </td>
-
+                                                            <td class="seller"><?php echo $v->fondCaisseFerme; ?></td>
+                                                            <td class="seller"><?php echo $v->dateOuvert; ?></td>
+                                                            <td class="seller"><?php echo $v->dateFerme; ?></td>
                                                             <p></p>
                                                         </tr>
 
@@ -314,9 +317,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-footer">
-                    <button class="btn btn-primary pull-right">Save Changes <span class="fa fa-floppy-o fa-right"></span></button>
-                </div>
+                
             </div>
 
         </form>

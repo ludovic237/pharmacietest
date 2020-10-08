@@ -35,7 +35,9 @@
 
                     <div class="panel-body">
                          <div style="justify-content:space-evenly;display:flex; margin-bottom: 10px;">
-                              <button class="btn btn-primary  pull-left" data="" id="" onclick="close_caisse_row()">Fermer caisse</button>
+                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_bon_caisse()">Bon de caisse</button>
+                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_rapport()">Rapport</button>
+                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_depense()">Entrez dépense</button>
 
                               <button class="btn btn-primary  pull-right" data="" id="" onclick="rafraichir_vente('<?php echo $caisse->id; ?>')">Rafraichir</button>
                               <button class="btn btn-primary btn-rounded  pull-right" data="" id="" onclick="liste_caisse('<?php echo $caisse->id; ?>')">Afficher vente</button>
@@ -143,8 +145,8 @@
                                                   <div class="form-group row">
                                                        <label class="col-md-3 control-label">Montant en caissé:</label>
                                                        <div class="col-md-9">
-                                                             <input type="number" id="espececaisse1" class="form-control montant caisse Espècecaisse1" data="1" data1="Espèce" data2="1" data3="tab1" value="" placeholder="" />
-<!--                                                            <input type="number" class="form-control montant" value="" placeholder="" />-->
+                                                            <input type="number" id="espececaisse1" class="form-control montant caisse Espècecaisse1" data="1" data1="Espèce" data2="1" data3="tab1" value="" placeholder="" />
+                                                            <!--                                                            <input type="number" class="form-control montant" value="" placeholder="" />-->
                                                             <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                        </div>
                                                   </div>
@@ -418,8 +420,8 @@
 
                                         <div class="panel-body" style="display: flex;flex-direction: column;padding: 0px;">
                                              <!-- <div style="display: flex;align-items: center;">
-                                                  <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Session caisse</h4>
-                                             </div> -->
+                                             <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Session caisse</h4>
+                                        </div> -->
                                              <div>
                                                   <div class="form-group row">
                                                        <label class="col-md-3 control-label">Session:</label>
@@ -529,94 +531,163 @@
                     <h4 class="modal-title">Fermer Caisse</h4>
                </div>
                <div class="modal-body" style="padding: 0px;">
-                    <div class="row">
-                         <div class="col-md-12">
-                              <div class="panel panel-default" style="margin-bottom: 0px;">
+                    <div class="panel panel-default tabs">
+                         <ul class="nav nav-tabs" role="tablist">
+                              <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Monnaie</a></li>
+                              <li><a href="#tab-second" role="tab" data-toggle="tab">Fiche </a></li>
+                         </ul>
+                         <div class="panel-body tab-content">
+                              <div class="tab-pane active" id="tab-first">
+                                   <div class="row">
+                                        <div class="col-md-12">
+                                             <div class="panel panel-default" style="margin-bottom: 0px;">
 
-                                   <div class="panel-body panel-body-table">
+                                                  <div class="panel-body panel-body-table">
 
-                                        <div class="panel-body" style="display: flex;flex-direction: column;padding: 0px;">
-                                             <!-- <div style="display: flex;align-items: center;">
-                                                  <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Session caisse</h4>
-                                             </div> -->
+                                                       <div class="panel-body" style="display: flex;flex-direction: column;padding: 0px;">
+                                                            <!-- <div style="display: flex;align-items: center;">
+                                             <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Session caisse</h4>
+                                        </div> -->
 
-                                             <div style="display: flex;align-items: center;">
-                                                  <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Fond de caisse</h4>
+                                                            <div style="display: flex;align-items: center;">
+                                                                 <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Fond de caisse</h4>
+                                                            </div>
+                                                            <div>
+                                                                 <table class="table  table-bordered table-striped table-actions">
+                                                                      <thead>
+                                                                           <tr>
+                                                                                <th width="150" colspan="2">Piece</th>
+                                                                                <th width="150" colspan="2">Billets</th>
+                                                                           </tr>
+                                                                      </thead>
+                                                                      <tbody>
+                                                                           <tr>
+                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent1 x" data="1" value="0" id="fargent_1" placeholder=""></td>
+                                                                                <td>500</td>
+                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent6 x" data="6" value="0" id="fargent_2" placeholder=""></td>
+                                                                                <td>10000</td>
+                                                                           </tr>
+                                                                           <tr>
+                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent2 x" data="2" value="0" id="fargent_3" placeholder=""></td>
+                                                                                <td>100</td>
+                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent7 x" data="7" value="0" id="fargent_4" placeholder=""></td>
+                                                                                <td>5000</td>
+                                                                           </tr>
+                                                                           <tr>
+                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent3 x" data="3" value="0" id="fargent_5" placeholder=""></td>
+                                                                                <td>50</td>
+                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent8 x" data="8" value="0" id="fargent_6" placeholder=""></td>
+                                                                                <td>2000</td>
+                                                                           </tr>
+                                                                           <tr>
+                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent4 x" data="4" value="0" id="fargent_7" placeholder=""></td>
+                                                                                <td>25</td>
+                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent9 x" data="9" value="0" id="fargent_8" placeholder=""></td>
+                                                                                <td>1000</td>
+                                                                           </tr>
+                                                                           <tr>
+                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent5 x" data="5" value="0" id="fargent_9" placeholder=""></td>
+                                                                                <td>10</td>
+                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent10 x" data="10" value="0" id="fargent_10" placeholder=""></td>
+                                                                                <td>500</td>
+                                                                           </tr>
+                                                                           <tr>
+                                                                                <td>
+                                                                                     <h6>
+                                                                                          Sous total
+                                                                                     </h6>
+                                                                                </td>
+                                                                                <td>
+                                                                                     <h6 style="margin-bottom: 0px;"><span class="fsoustotalaisse1">0</span></h6>
+                                                                                </td>
+                                                                                <td>
+                                                                                     <h6>
+                                                                                          Sous total
+                                                                                     </h6>
+                                                                                </td>
+                                                                                <td>
+                                                                                     <h6 style="margin-bottom: 0px;"><span class="fsoustotalaisse2">0</span></h6>
+                                                                                </td>
+                                                                           </tr>
+                                                                           <tr>
+                                                                                <td colspan="4">
+                                                                                     <div style="justify-content: space-between;display:flex">
+                                                                                          <p style="margin-bottom: 0px;"> Total</p>
+                                                                                          <h4 style="margin-bottom: 0px;"><span class="ftotalaisse">0</span></h4>
+                                                                                     </div>
+                                                                                </td>
+                                                                           </tr>
+                                                                      </tbody>
+                                                                 </table>
+                                                            </div>
+                                                       </div>
+
+                                                  </div>
                                              </div>
-                                             <div>
-                                                  <table class="table  table-bordered table-striped table-actions">
-                                                       <thead>
-                                                            <tr>
-                                                                 <th width="150" colspan="2">Piece</th>
-                                                                 <th width="150" colspan="2">Billets</th>
-                                                            </tr>
-                                                       </thead>
-                                                       <tbody>
-                                                            <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent1 x" data="1" value="0" id="fargent_1" placeholder=""></td>
-                                                                 <td>500</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent6 x" data="6" value="0" id="fargent_2" placeholder=""></td>
-                                                                 <td>10000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent2 x" data="2" value="0" id="fargent_3" placeholder=""></td>
-                                                                 <td>100</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent7 x" data="7" value="0" id="fargent_4" placeholder=""></td>
-                                                                 <td>5000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent3 x" data="3" value="0" id="fargent_5" placeholder=""></td>
-                                                                 <td>50</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent8 x" data="8" value="0" id="fargent_6" placeholder=""></td>
-                                                                 <td>2000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent4 x" data="4" value="0" id="fargent_7" placeholder=""></td>
-                                                                 <td>25</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent9 x" data="9" value="0" id="fargent_8" placeholder=""></td>
-                                                                 <td>1000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent5 x" data="5" value="0" id="fargent_9" placeholder=""></td>
-                                                                 <td>10</td>
-                                                                 <td class="inputcountdisable"><input type="number" class="form-control fargent fargent10 x" data="10" value="0" id="fargent_10" placeholder=""></td>
-                                                                 <td>500</td>
-                                                            </tr>
-                                                            <tr>
-                                                                 <td>
-                                                                      <h6>
-                                                                           Sous total
-                                                                      </h6>
-                                                                 </td>
-                                                                 <td>
-                                                                      <h6 style="margin-bottom: 0px;"><span class="fsoustotalaisse1">0</span></h6>
-                                                                 </td>
-                                                                 <td>
-                                                                      <h6>
-                                                                           Sous total
-                                                                      </h6>
-                                                                 </td>
-                                                                 <td>
-                                                                      <h6 style="margin-bottom: 0px;"><span class="fsoustotalaisse2">0</span></h6>
-                                                                 </td>
-                                                            </tr>
-                                                            <tr>
-                                                                 <td colspan="4">
-                                                                      <div style="justify-content: space-between;display:flex">
-                                                                           <p style="margin-bottom: 0px;"> Total</p>
-                                                                           <h4 style="margin-bottom: 0px;"><span class="ftotalaisse">0</span></h4>
-                                                                      </div>
-                                                                 </td>
-                                                            </tr>
-                                                       </tbody>
-                                                  </table>
-                                             </div>
+
                                         </div>
-
                                    </div>
-                              </div>
 
+                              </div>
+                              <div class="tab-pane" id="tab-second">
+                                   <div class="panel panel-default">
+
+                                        <div class="panel-body" style="display: flex;flex-direction: column;">
+
+                                             <div class="form-group">
+                                                  <label class="col-md-3 col-xs-12 control-label">OM</label>
+                                                  <div class="col-md-6 col-xs-12">
+                                                       <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
+                                                            <input type="text" class="form-control" />
+                                                       </div>
+                                                       <!-- <span class="help-block">This is sample of text field</span> -->
+                                                  </div>
+                                             </div>
+
+                                             <div class="form-group">
+                                                  <label class="col-md-3 col-xs-12 control-label">Espece</label>
+                                                  <div class="col-md-6 col-xs-12">
+                                                       <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                                                            <input class="form-control" />
+                                                       </div>
+                                                       <!-- <span class="help-block">Password field sample</span> -->
+                                                  </div>
+                                             </div>
+                                             <div class="form-group">
+                                                  <label class="col-md-3 col-xs-12 control-label">En lettre</label>
+                                                  <div class="col-md-6 col-xs-12">
+                                                       <div class="input-group">
+
+                                                            <input class="form-control" />
+                                                       </div>
+                                                       <!-- <span class="help-block">Password field sample</span> -->
+                                                  </div>
+                                             </div>
+                                             <div class="form-group">
+                                                  <label class="col-md-3 col-xs-12 control-label">En lettre</label>
+                                                  <div class="col-md-6 col-xs-12">
+                                                       <div class="input-group">
+
+                                                            <input class="form-control" />
+                                                       </div>
+                                                       <!-- <span class="help-block">Password field sample</span> -->
+                                                  </div>
+                                             </div>
+
+
+                                        </div>
+                                        <!-- <div class="panel-footer">
+                                        <button class="btn btn-default">Clear Form</button>
+                                        <button class="btn btn-primary pull-right">Submit</button>
+                                   </div> -->
+                                   </div>
+
+
+                              </div>
                          </div>
+
                     </div>
                </div>
                <div class="modal-footer">
@@ -706,6 +777,415 @@
 </div>
 <!-- END MODAL ICON PREVIEW -->
 <!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewRapport" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog" style="width: 85%;">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Rapport</h4>
+               </div>
+               <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-6">
+                              <div class="panel panel-default">
+
+                                   <div class="panel-heading">
+                                        <div class="panel-title-box">
+                                             <h3>Entrée</h3>
+                                             <!-- <span>Projects activity</span> -->
+                                        </div>
+                                   </div>
+                                   <div class="panel-body panel-body-table">
+                                        <div class="table-responsive">
+                                             <table class="table table-bordered table-striped">
+                                                  <thead>
+                                                       <!-- <tr>
+                                   <th>Entree</th>
+                              </tr> -->
+                                                  </thead>
+                                                  <tbody>
+                                                       <tr>
+                                                            <td>Espece</td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td>OM</td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td>Total</td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                       </tr>
+                                                  </tbody>
+                                             </table>
+                                        </div>
+                                   </div>
+                              </div>
+
+                         </div>
+                         <div class="col-md-6">
+                              <div class="panel panel-default">
+                                   <div class="panel-heading">
+                                        <div class="panel-title-box">
+                                             <h3>Depense</h3>
+                                             <!-- <span>Projects activity</span> -->
+                                        </div>
+                                        <ul class="panel-controls" style="margin-top: 2px;">
+                                             <!-- <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li> -->
+                                             <li><a href="#" class="panel-refresh"><span class="fa fa-plus"></span></a></li>
+
+                                        </ul>
+                                   </div>
+                                   <div class="panel-body panel-body-table">
+                                        <div class="table-responsive">
+                                             <table class="table table-bordered table-striped">
+                                                  <thead>
+                                                       <tr>
+                                                            <th width="50">N°</th>
+                                                            <th>Motifs</th>
+                                                            <th>Quantite</th>
+                                                            <th>Prix unitaire</th>
+                                                            <th>Total</th>
+                                                            <th>Action</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                       <tr>
+                                                            <td>1</td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier">Valider</button>
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td>2</td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier">Valider</button>
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td colspan="4">Total</td>
+                                                            <td colspan="2">
+                                                                 0
+                                                            </td>
+                                                       </tr>
+                                                  </tbody>
+                                             </table>
+                                        </div>
+                                   </div>
+                              </div>
+
+                         </div>
+                         <div class="col-md-6">
+                              <div class="panel panel-default">
+                                   <div class="panel-heading">
+                                        <div class="panel-title-box">
+                                             <h3>Bon de caisse</h3>
+                                             <!-- <span>Projects activity</span> -->
+                                        </div>
+                                        <ul class="panel-controls" style="margin-top: 2px;">
+                                             <li><a href="#" class="panel-refresh"><span class="fa fa-plus"></span></a></li>
+                                        </ul>
+                                   </div>
+                                   <div class="panel-body panel-body-table">
+                                        <div class="table-responsive">
+                                             <table class="table table-bordered table-striped">
+                                                  <thead>
+                                                       <tr>
+                                                            <th>Nom client </th>
+                                                            <th>Montant</th>
+                                                            <th>Type</th>
+                                                            <th>Action</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                       <tr>
+                                                            <td>1</td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier">Valider</button>
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td>2</td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier">Valider</button>
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td colspan="2">Total</td>
+                                                            <td colspan="2">
+                                                                 0
+                                                            </td>
+                                                       </tr>
+                                                  </tbody>
+                                             </table>
+                                        </div>
+                                   </div>
+                              </div>
+
+                         </div>
+
+                    </div>
+                    <div class="row">
+                         <div class="col-md-12">
+                              <div class="panel panel-default">
+
+                                   <div class="panel-heading" style="background: #333;">
+                                        <div class="panel-title-box" style="color: aquamarine;">
+                                             <h3 style="color: white;">Recapitulatif</h3>
+                                             <!-- <span>Projects activity</span> -->
+                                        </div>
+                                   </div>
+                                   <div class="panel-body panel-body-table">
+                                        <div class="table-responsive">
+                                             <table class="table table-bordered table-striped">
+                                                  <thead>
+                                                       <tr>
+                                                            <th> </th>
+                                                            <th>Total entrée </th>
+                                                            <th>Total sortie</th>
+                                                            <th>Total</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                       <tr>
+                                                            <td>Caisse</td>
+                                                            <td>1</td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td>Systeme</td>
+                                                            <td>1</td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td>Difference</td>
+                                                            <td>1</td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                       </tr>
+                                                  </tbody>
+                                             </table>
+                                        </div>
+                                   </div>
+
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-success data-dismiss=" modal">Valider</button>
+               </div>
+          </div>
+     </div>
+</div>
+<div class="modal fade" id="iconPreviewBonCaisse" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog" style="width: 85%;">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Bon de caisse</h4>
+                    <div class="form-group row">
+                         <label class="col-md-2 control-label">Scanner bon:</label>
+                         <div class="col-md-3">
+                              <input class="form-control montant caisse Espècecaisse1" data="1" data1="Espèce" data2="1" data3="tab1" value="" placeholder="" />
+                         </div>
+                         <div class="col-md-7" style="display: flex;justify-content: end;">
+                              <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                                   Ajouter bon
+                              </button>
+                         </div>
+                    </div>
+               </div>
+               <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-12 ">
+                              <div class="panel panel-default">
+
+                                   <div class="panel-body panel-body-table">
+                                        <div class="table-responsive">
+                                             <table class="table table-bordered table-striped">
+                                                  <thead>
+                                                       <tr>
+                                                            <th>Nom client </th>
+                                                            <th>Montant</th>
+                                                            <th>Action</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                       <tr>
+                                                            <td>
+                                                                 <input type="text">
+                                                            </td>
+                                                            <td>
+                                                                 <input type="text">
+                                                            </td>
+                                                            <td>
+                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                                                                      Générer
+                                                                 </button>
+                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                                                                      Encaisser
+                                                                 </button>
+                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                                                                      Imprimer
+                                                                 </button>
+                                                            </td>
+                                                       </tr>
+                                                  </tbody>
+                                             </table>
+                                        </div>
+                                        <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
+                                             <h6>Total <span>0000</span> </h6>
+                                        </div>
+                                   </div>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-success" style="margin-right: 20px; ">Valider</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+               </div>
+          </div>
+     </div>
+</div>
+<div class="modal fade" id="iconPreviewDepense" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog" style="width: 85%;">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Dépense</h4>
+                    <a href="#" class="panel-refresh">Ajouter</a>
+               </div>
+               <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-12 ">
+                              <div class="panel panel-default">
+
+                                   <div class="panel-body panel-body-table">
+                                        <div class="table-responsive">
+                                             <table class="table table-bordered table-striped">
+                                                  <thead>
+                                                       <tr>
+                                                            <th>Designation </th>
+                                                            <th>Quantite</th>
+                                                            <th>Prix unitaire</th>
+                                                            <th>Total</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                       <tr>
+                                                            <td>
+                                                                 <input type="text">
+                                                            </td>
+                                                            <td>
+                                                                 <input type="text">
+                                                            </td>
+                                                            <td>
+                                                                 <input type="text">
+                                                            </td>
+                                                            <td>
+                                                                 0
+                                                            </td>
+                                                       </tr>
+                                                  </tbody>
+                                             </table>
+                                        </div>
+                                        <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
+                                             <h6>Total <span>0000</span> </h6>
+                                        </div>
+                                   </div>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-success" style="margin-right: 20px; ">Valider</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+<!-- <div class="message-box animated fadeIn" data-sound="alert" id="mb-confirmation-caisse" data="">
+<div class="mb-container">
+     <div class="mb-middle">
+          <div class="mb-title"><span class="fa fa-sign-out"></span> Confirmation <strong>Paiement</strong> ?</div>
+          <div class="mb-content">
+               <p>Voulez-vous valider le paiement et l'impression d'un <strong><mark>Ticket de caisse</mark></strong>?</p>
+               <p>Cliquez sur oui si vous le voulez ou sur non pour pas maintenant.</p>
+          </div>
+          <div class="mb-footer">
+               <div class="pull-right">
+                    <button class="btn btn-success btn-lg mb-control-yes">Oui</button>
+                    <button class="btn btn-default btn-lg mb-control-close">Non</button>
+               </div>
+          </div>
+     </div>
+</div>
+</div> -->
+
+<!-- END MODAL ICON PREVIEW -->
+<!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreviewListeCaisse" tabindex="-1" role="dialog" aria-hidden="true">
      <div class="modal-dialog" style="width: 85%;">
           <div class="modal-content">
@@ -752,20 +1232,103 @@
           </div>
      </div>
 </div>
-<!-- END MODAL ICON PREVIEW -->
-<!-- <div class="message-box animated fadeIn" data-sound="alert" id="mb-confirmation-caisse" data="">
-     <div class="mb-container">
-          <div class="mb-middle">
-               <div class="mb-title"><span class="fa fa-sign-out"></span> Confirmation <strong>Paiement</strong> ?</div>
-               <div class="mb-content">
-                    <p>Voulez-vous valider le paiement et l'impression d'un <strong><mark>Ticket de caisse</mark></strong>?</p>
-                    <p>Cliquez sur oui si vous le voulez ou sur non pour pas maintenant.</p>
+
+<!-- <div class="modal fade" id="iconPreviewBonCaisse" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog" style="width: 85%;">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Caisse</h4>
                </div>
-               <div class="mb-footer">
-                    <div class="pull-right">
-                         <button class="btn btn-success btn-lg mb-control-yes">Oui</button>
-                         <button class="btn btn-default btn-lg mb-control-close">Non</button>
+               <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-12 ">
+                              <div class="panel panel-default">
+
+                                   <div class="panel-body" style="display: flex;flex-direction: column;">
+
+
+                                        <div class="form-group">
+                                             <label class="col-md-3 col-xs-12 control-label">Montant</label>
+                                             <div class="col-md-6 col-xs-12">
+                                                  <div class="input-group">
+                                                       <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                                                       <input class="form-control" />
+                                                  </div>
+                                                  <!-- <span class="help-block">Password field sample</span> 
+                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                             <label class="col-md-3 col-xs-12 control-label">En lettre</label>
+                                             <div class="col-md-6 col-xs-12">
+                                                  <div class="input-group" style="display: flex;">
+                                                       <input class="form-control" />
+                                                  </div>
+                                                  <!-- <span class="help-block">Password field sample</span> 
+                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                             <label class="col-md-3 col-xs-12 control-label">Objet</label>
+                                             <div class="col-md-6 col-xs-12">
+                                                  <div class="input-group" style="display: flex;">
+                                                       <input class="form-control" />
+                                                  </div>
+                                                  <!-- <span class="help-block">Password field sample</span> 
+                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                             <label class="col-md-3 col-xs-12 control-label">Remis à </label>
+                                             <div class="col-md-6 col-xs-12">
+                                                  <div class="input-group" style="display: flex;">
+                                                       <input class="form-control" />
+                                                  </div>
+                                                  
+                                             </div>
+                                        </div>
+                                        <div class="form-group row">
+                                             <label class="col-md-2 col-xs-4 control-label">N CNI</label>
+                                             <div class="col-md-2 col-xs-3">
+                                                  <div class="input-group">
+                                                       <input class="form-control" />
+                                                  </div>
+                                                  
+                                             </div>
+                                             <label class="col-md-2 col-xs-1 control-label">Fait le </label>
+                                             <div class="col-md-2 col-xs-2">
+                                                  <div class="input-group">
+                                                       <input type="date" style="line-height: normal;" class="form-control" />
+                                                  </div>
+                                                  
+                                             </div>
+                                             <label class="col-md-2 col-xs-1 control-label"> à </label>
+                                             <div class="col-md-2 col-xs-2">
+                                                  <div class="input-group">
+                                                       <input class="form-control" />
+                                                  </div>
+                                                  
+                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                             <label class="col-md-3 col-xs-12 control-label">Remis à </label>
+                                             <div class="col-md-6 col-xs-12">
+                                                  <div class="input-group" style="display: flex;">
+                                                       <input class="form-control" />
+                                                  </div>
+                                                  
+                                             </div>
+                                        </div>
+
+
+
+                                   </div>
+                              </div>
+
+                         </div>
                     </div>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-success" style="margin-right: 20px; ">Valider</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                </div>
           </div>
      </div>

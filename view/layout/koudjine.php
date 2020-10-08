@@ -40,7 +40,7 @@
                             <img src="<?php echo BASE_URL . '/koudjine/assets/images/users/' . $this->Session->user('PHOTO_PROFIL'); ?>" alt="<?php echo $this->Session->user('NOM') . ' ' . $this->Session->user('PRENOM'); ?>" />
                         </div>
                         <div class="profile-data">
-                            <div class="profile-data-name"><?php echo $_SESSION["User"]->nom.' '.$_SESSION["User"]->prenom ?></div>
+                            <div class="profile-data-name"><?php echo $_SESSION["User"]->nom . ' ' . $_SESSION["User"]->prenom ?></div>
                             <div class="profile-data-title"><?php echo $this->Session->user('type') . ' ' ?><?php if ($this->Session->user('FONCTION') != null) echo ' / ' . $this->Session->user('FONCTION') ?></div>
                         </div>
                         <div class="profile-controls">
@@ -128,7 +128,14 @@
                 <a href="#"><span class="fa fa-credit-card"></span> <span class="xn-text">Comptabilite</span></a>
                 <ul>
                     <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'budget') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/budget'); ?>"><span class="fa lettre">B</span>budget</a></li>
-                    <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>"><span class="fa lettre">C</span>Caisse</a></li>
+                    <li class="xn-openable <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse' || $this->request->controller == 'comptabilite' && $this->request->action == 'caisse_rapport' || $this->request->controller == 'comptabilite' && $this->request->action == 'caisse_fermer') { ?>active <?php } ?>">
+                        <a href="#"><span class="fa lettre">C</span>Caisse</a>
+                        <ul>
+                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>"><span class="fa lettre">O</span> Ouvert</a></li>
+                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_rapport') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/caisse_rapport'); ?>"><span class="fa lettre">R</span> Rapport</a></li>
+                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_fermer') { ?>class="active" <?php } ?>><a onclick="close_caisse_row()"><span class="fa lettre">F</span> Fermer</a></li>
+                        </ul>
+                    </li>
                     <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'consultation') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/consultation'); ?>"><span class="fa lettre">C</span> Consultation</a></li>
                     <li class="xn-openable <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'entre' || $this->request->controller == 'comptabilite' && $this->request->action == 'entreadd') { ?>active <?php } ?>">
                         <a href="#"><span class="fa lettre">E</span> Entrée</a>

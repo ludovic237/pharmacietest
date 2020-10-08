@@ -80,7 +80,9 @@ foreach ($caisse as $k => $c) :
     echo
         "<tr \">
                         <td class='prix'>
+                            <strong >
                             " . $c->id() . "
+                            </strong>
                         </td>
                         <td class='prix'>
                             " . $employe->identifiant() . "
@@ -89,13 +91,21 @@ foreach ($caisse as $k => $c) :
                             " . $c->session() . "
                         </td>
                         <td class='prix'>
-                        " . $c->etat() . "
+                            <span class='label label-success'>
+                            " . $c->etat() . "
+                            </span>
                         </td>
                         <td class='prix'>
                         " . $c->fondCaisseFerme() . "
                         </td>
                         <td class='prix'>
                         " . $c->fondCaisseOuvert() . "
+                        </td>
+                        <td class='prix'>
+                        " . $c->dateOuvert() . "
+                        </td>
+                        <td class='prix'>
+                        " . $c->dateFerme() . "
                         </td>
                     </tr>";
 endforeach;
