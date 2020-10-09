@@ -2895,7 +2895,7 @@ function imprimer_bon_caisse() {
 }
 
 function showVenteCaisse(id) {
-    alert(id);
+    //alert(id);
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/vente.php',
@@ -2910,7 +2910,7 @@ function showVenteCaisse(id) {
 
 
         }
-    })
+    });
     $("#previewImprimerBonCaisse").modal('show');
     return false;
 }
