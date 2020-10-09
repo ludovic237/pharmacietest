@@ -157,7 +157,7 @@
                                                   <div class="form-group row">
                                                        <label class="col-md-3 control-label">Rendu</label>
                                                        <div class="col-md-9">
-                                                            <input type="number" style="color: #383838;" disabled class="form-control reste" value="" placeholder="" />
+                                                            <input type="number" style="color: #383838;font-size:25px" disabled class="form-control reste" value="" placeholder="" />
                                                             <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                        </div>
                                                   </div>
@@ -198,7 +198,7 @@
                                                        <div class="form-group">
                                                             <label class="col-md-3 control-label">Rendu:</label>
                                                             <div class="col-md-9">
-                                                                 <input type="number" disabled class="form-control reste" value="" placeholder="" />
+                                                                 <input type="number" style="color: #383838;font-size:25px"  disabled class="form-control reste" value="" placeholder="" />
                                                                  <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                        </div>
@@ -234,7 +234,7 @@
                                                        <div class="form-group">
                                                             <label class="col-md-3 control-label">Rendu:</label>
                                                             <div class="col-md-9">
-                                                                 <input type="number" disabled class="form-control" value="" placeholder="" />
+                                                                 <input type="number" style="color: #383838;font-size:25px"  disabled class="form-control" value="" placeholder="" />
                                                                  <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                        </div>
@@ -330,7 +330,7 @@
                                                        <div class="form-group">
                                                             <label class="col-md-3 control-label">Rendu:</label>
                                                             <div class="col-md-9">
-                                                                 <input type="number" class="form-control" value="" placeholder="">
+                                                                 <input type="number" style="color: #383838;font-size:25px"  class="form-control" value="" placeholder="">
                                                                  <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                        </div>
