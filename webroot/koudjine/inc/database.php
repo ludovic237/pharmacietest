@@ -18,6 +18,10 @@ function genererID(){
     }
     return $id;
 }
+function genererCodebarreID(){
+    $id = date('ymdHis');
+    return $id;
+}
 function genererreference($num){
     //DEBUT PROGRAMME - CREATION REFERENCE EN AUTOMATIQUE - DEBUT PROGRAMME
 

@@ -177,7 +177,7 @@ class DepenseManager
     }
     public function add(Depense $Depense)
     {
-        $q = $this->_db->prepare('INSERT INTO depense SET id = :id, caisse_id = :caisse_id, designation = :designation, quantite = :quantite, prixUnitaire = :prixUnitaire, dateDepense = :dateDepense, beneficiaire = :beneficiaire, numeroCni = :numeroCni, lieuDelivrance = :lieuDelivrance, dateDelivrance = :dateDelivrance, societe = :societe, typeDepense = :ubipharm, etat = :etat, etagere = :etagere, contenuDetail = :contenuDetail, prixDetail = :prixDetail, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO depense SET id = :id, caisse_id = :caisse_id, designation = :designation, quantite = :quantite, prixUnitaire = :prixUnitaire, dateDepense = :dateDepense, beneficiaire = :beneficiaire, numeroCni = :numeroCni, lieuDelivrance = :lieuDelivrance, dateDelivrance = :dateDelivrance, societe = :societe, typeDepense = :typeDepense, supprimer=0');
         $q->bindValue(':id', $Depense->id(), PDO::PARAM_INT);
         $q->bindValue(':caisse_id', $Depense->caisse_id(), PDO::PARAM_INT);
         $q->bindValue(':designation', $Depense->designation());
@@ -266,10 +266,10 @@ class DepenseManager
 
 
     }
-    public function getList()
+    public function getList($id)
     {
         $Depenses = array();
-        $q = $this->_db->prepare('SELECT * FROM depense WHERE supprimer = 0 ORDER BY numeroCni');
+        $q = $this->_db->prepare('SELECT * FROM depense WHERE supprimer = 0 AND caisse_id = '.$id.' ORDER BY designation');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
@@ -291,7 +291,7 @@ class DepenseManager
     public function update(Depense $Depense)
     {
 
-        $q = $this->_db->prepare('UPDATE Depense SET caisse_id = :caisse_id, designation = :designation, quantite = :quantite, prixUnitaire = :prixUnitaire, dateDepense = :dateDepense, beneficiaire = :beneficiaire, numeroCni = :numeroCni, lieuDelivrance = :lieuDelivrance, dateDelivrance = :dateDelivrance, etat = :etat, etagere = :etagere, contenuDetail = :contenuDetail, prixDetail = :prixDetail, societe = :societe, typeDepense = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE depense SET caisse_id = :caisse_id, designation = :designation, quantite = :quantite, prixUnitaire = :prixUnitaire, dateDepense = :dateDepense, beneficiaire = :beneficiaire, numeroCni = :numeroCni, lieuDelivrance = :lieuDelivrance, dateDelivrance = :dateDelivrance, societe = :societe, typeDepense = :typeDepense WHERE id = :id');
         $q->bindValue(':id', $Depense->id(), PDO::PARAM_INT);
         $q->bindValue(':caisse_id', $Depense->caisse_id(), PDO::PARAM_INT);
         $q->bindValue(':designation', $Depense->designation());
