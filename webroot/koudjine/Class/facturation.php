@@ -206,6 +206,17 @@ class FacturationManager
         }
         return $facturation;
     }
+    public function getListCaisseType($caisse_id, $type)
+    {
+        $facturation = array();
+        $q = $this->_db->prepare('SELECT * FROM facturation WHERE supprimer = 0 AND caisse_id = '.$caisse_id.' AND typePaiement = "'.$type.'" ORDER BY typePaiement ASC');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $facturation[] = new Facturation($donnees);
+        }
+        return $facturation;
+    }
     public function update(Facturation $facturation)
     {
 

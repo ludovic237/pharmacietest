@@ -72,6 +72,18 @@ class ComptabiliteController extends Controller
             'table' => 'caisse',
             'conditions' => "supprimer = 0 AND etat = \"En cours\" AND user_id =".$_SESSION["Users"]->id
         ));
+        $check = $this->Comptabilite->findFirst(array(
+            //'fields' => 'produit.nom as nom',
+            'table' => 'caisse',
+            'conditions' => "supprimer = 0 AND etat = \"En cours1\" AND user_id =".$_SESSION["Users"]->id
+        ));
+        if(!empty($check)){
+            $d['caisseCheck'] = $this->Comptabilite->findFirst(array(
+                //'fields' => 'produit.nom as nom',
+                'table' => 'caisse',
+                'conditions' => "supprimer = 0 AND etat = \"En cours1\" AND user_id =".$_SESSION["Users"]->id
+            ));
+        }
         if (empty($d['caisseCheck'])) {
             $d['caisse'] = $this->Comptabilite->findFirst(array(
                 //'fields' => 'produit.nom as nom',

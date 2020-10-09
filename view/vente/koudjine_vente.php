@@ -58,7 +58,7 @@
                         <div class="panel panel-default">
 
                             <div class="panel-heading">
-                                <div class="btn-group pull-right">
+                                <div class="btn-group">
                                     <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
                                     <ul class="dropdown-menu">
                                         <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false'});"><img src="img/icons/json.png" width="24"> JSON</a></li>

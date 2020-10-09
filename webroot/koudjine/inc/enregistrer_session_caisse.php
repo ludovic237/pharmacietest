@@ -22,7 +22,7 @@ if (isset($_POST['id'])){
 
             $caisse->setfermetureCaisse($fermetureCaisse);
             $caisse->setfondCaisseFerme($fondCaisse);
-            $caisse->setetat('Clot');
+            $caisse->setetat('En cours1');
             if($caisse->dateFerme() == null){
                 $manager->updateFermeCaisse($caisse);
             }else{
@@ -34,7 +34,17 @@ if (isset($_POST['id'])){
         else{
             echo 'Pas de session ouverte';
         }
-    }else{
+    }elseif (isset($_POST['etat'])){
+        $id=$_POST['id'];
+        $caisse = $manager->getId($id);
+        $etat=$_POST['etat'];
+        //echo 'patasse';
+
+        $caisse->setetat($etat);
+        $manager->updateFermeCaisse1($caisse);
+
+    }
+    else{
         $id=$_POST['id'];
 
         //echo $id;

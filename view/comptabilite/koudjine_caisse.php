@@ -18,8 +18,12 @@
           $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisse").modal("show"); });</script>';
      }
      if (isset($caisseCheck) && $caisseCheck != null) {
-          $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisseFermer").modal("show"); });</script>';
-     }
+         if($caisseCheck->etat == "En cours"){
+             $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisseFermer").modal("show"); });</script>';
+         }else{
+             $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(open_rapport());</script>';
+         }
+               }
      ?> -->
 
 
@@ -35,9 +39,9 @@
 
                     <div class="panel-body">
                          <div style="justify-content:space-evenly;display:flex; margin-bottom: 10px;">
-                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_bon_caisse()">Bon de caisse</button>
-                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_rapport()">Rapport</button>
-                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_depense()">Entrez dépense</button>
+                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_bon_caisse('<?php echo $action_fermeture->id; ?>')">Bon de caisse</button>
+<!--                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_rapport('<?php //echo $action_fermeture->id; ?>//')">Rapport</button>-->
+                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_depense('<?php echo $action_fermeture->id; ?>')">Entrez dépense</button>
 
                               <button class="btn btn-primary  pull-right" data="" id="" onclick="rafraichir_vente('<?php echo $caisse->id; ?>')">Rafraichir</button>
                               <button class="btn btn-primary btn-rounded  pull-right" data="" id="" onclick="liste_caisse('<?php echo $caisse->id; ?>')">Afficher vente</button>
@@ -807,19 +811,19 @@
                                                        <tr>
                                                             <td>Espece</td>
                                                             <td>
-                                                                 0
+                                                                <span id="espece_caisse_rapport">0</span>
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <td>OM</td>
                                                             <td>
-                                                                 0
+                                                                <span id="electronique_rapport">0</span>
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <td>Total</td>
                                                             <td>
-                                                                 0
+                                                                <span id="total_entree_rapport_caisse">0</span>
                                                             </td>
                                                        </tr>
                                                   </tbody>
@@ -838,7 +842,7 @@
                                         </div>
                                         <ul class="panel-controls" style="margin-top: 2px;">
                                              <!-- <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li> -->
-                                             <li><a href="#" class="panel-refresh"><span class="fa fa-plus"></span></a></li>
+                                             <li><a href="#" onclick="ajouter_une_depense()" class=""><span class="fa fa-plus"></span></a></li>
 
                                         </ul>
                                    </div>
@@ -855,49 +859,9 @@
                                                             <th>Action</th>
                                                        </tr>
                                                   </thead>
-                                                  <tbody>
-                                                       <tr>
-                                                            <td>1</td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier">Valider</button>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td>2</td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier">Valider</button>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="4">Total</td>
-                                                            <td colspan="2">
-                                                                 0
-                                                            </td>
-                                                       </tr>
+                                                  <tbody id="tab_RapportDepense">
+
+
                                                   </tbody>
                                              </table>
                                         </div>
@@ -912,9 +876,6 @@
                                              <h3>Bon de caisse</h3>
                                              <!-- <span>Projects activity</span> -->
                                         </div>
-                                        <ul class="panel-controls" style="margin-top: 2px;">
-                                             <li><a href="#" class="panel-refresh"><span class="fa fa-plus"></span></a></li>
-                                        </ul>
                                    </div>
                                    <div class="panel-body panel-body-table">
                                         <div class="table-responsive">
@@ -924,40 +885,11 @@
                                                             <th>Nom client </th>
                                                             <th>Montant</th>
                                                             <th>Type</th>
-                                                            <th>Action</th>
                                                        </tr>
                                                   </thead>
-                                                  <tbody>
-                                                       <tr>
-                                                            <td>1</td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier">Valider</button>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td>2</td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                            <td>
-                                                                 <button class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier">Valider</button>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="2">Total</td>
-                                                            <td colspan="2">
-                                                                 0
-                                                            </td>
-                                                       </tr>
+                                                  <tbody id="tab_RapportBon">
+
+
                                                   </tbody>
                                              </table>
                                         </div>
@@ -991,31 +923,31 @@
                                                   <tbody>
                                                        <tr>
                                                             <td>Caisse</td>
-                                                            <td>1</td>
-                                                            <td>
+                                                            <td id="total_entree_caisse">1</td>
+                                                            <td id="total_sortie_caisse">
                                                                  0
                                                             </td>
-                                                            <td>
+                                                            <td id="total_tout_caisse">
                                                                  0
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <td>Systeme</td>
-                                                            <td>1</td>
-                                                            <td>
+                                                            <td id="total_entree_syst">1</td>
+                                                            <td id="total_sortie_syst">
                                                                  0
                                                             </td>
-                                                            <td>
+                                                            <td id="total_tout_syst">
                                                                  0
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <td>Difference</td>
-                                                            <td>1</td>
-                                                            <td>
+                                                            <td id="diff_entree">1</td>
+                                                            <td id="diff_sortie">
                                                                  0
                                                             </td>
-                                                            <td>
+                                                            <td id="diff_total">
                                                                  0
                                                             </td>
                                                        </tr>
@@ -1030,7 +962,7 @@
                     </div>
                </div>
                <div class="modal-footer">
-                    <button type="button" class="btn btn-success data-dismiss=" modal">Valider</button>
+                    <button type="button" class="btn btn-success" onclick="valider_rapport()" >Valider</button>
                </div>
           </div>
      </div>
@@ -1044,10 +976,10 @@
                     <div class="form-group row">
                          <label class="col-md-2 control-label">Scanner bon:</label>
                          <div class="col-md-3">
-                              <input class="form-control montant caisse Espècecaisse1" data="1" data1="Espèce" data2="1" data3="tab1" value="" placeholder="" />
+                              <input class="form-control " data="1" id="scanner_bon" value="" placeholder="" />
                          </div>
                          <div class="col-md-7" style="display: flex;justify-content: end;">
-                              <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
+                              <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="ajouter_bon_caisse()">
                                    Ajouter bon
                               </button>
                          </div>
@@ -1068,26 +1000,8 @@
                                                             <th>Action</th>
                                                        </tr>
                                                   </thead>
-                                                  <tbody>
-                                                       <tr>
-                                                            <td>
-                                                                 <input type="text">
-                                                            </td>
-                                                            <td>
-                                                                 <input type="text">
-                                                            </td>
-                                                            <td>
-                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
-                                                                      Générer
-                                                                 </button>
-                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
-                                                                      Encaisser
-                                                                 </button>
-                                                                 <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="charger_vente(<?php echo $v->id; ?>)">
-                                                                      Imprimer
-                                                                 </button>
-                                                            </td>
-                                                       </tr>
+                                                  <tbody id="tab_GBonCaisse" data="<?php echo $action_fermeture->id; ?>">
+
                                                   </tbody>
                                              </table>
                                         </div>
@@ -1113,7 +1027,7 @@
                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Dépense</h4>
-                    <a href="#" class="panel-refresh">Ajouter</a>
+                    <a onclick="ajouter_depense()" href="#" class="panel-refresh">Ajouter</a>
                </div>
                <div class="modal-body">
                     <div class="row">
@@ -1122,7 +1036,7 @@
 
                                    <div class="panel-body panel-body-table">
                                         <div class="table-responsive">
-                                             <table class="table table-bordered table-striped">
+                                             <table class="table table-bordered table-striped" id="tab_depense">
                                                   <thead>
                                                        <tr>
                                                             <th>Designation </th>
@@ -1131,26 +1045,13 @@
                                                             <th>Total</th>
                                                        </tr>
                                                   </thead>
-                                                  <tbody>
-                                                       <tr>
-                                                            <td>
-                                                                 <input type="text">
-                                                            </td>
-                                                            <td>
-                                                                 <input type="text">
-                                                            </td>
-                                                            <td>
-                                                                 <input type="text">
-                                                            </td>
-                                                            <td>
-                                                                 0
-                                                            </td>
-                                                       </tr>
+                                                  <tbody id="tab_Gdepense">
+
                                                   </tbody>
                                              </table>
                                         </div>
                                         <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
-                                             <h6>Total <span>0000</span> </h6>
+                                             <h6>Total <span id="total_depense">0</span> F CFA </h6>
                                         </div>
                                    </div>
                               </div>
@@ -1159,7 +1060,7 @@
                     </div>
                </div>
                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" style="margin-right: 20px; ">Valider</button>
+                    <button type="button" class="btn btn-success" onclick="valider_depense('<?php echo $action_fermeture->id; ?>')" style="margin-right: 20px; ">Valider</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                </div>
           </div>

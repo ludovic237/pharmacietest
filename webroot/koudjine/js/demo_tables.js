@@ -14,6 +14,41 @@ $(document).ready(function () {
         "order": [[3, "desc"]]
     });
 
+    $("#scanner_bon").keyup(function (event) {
+        if (event.keyCode == 13) {
+            var recherche = $(this).val();
+            //$("#resultat ul").empty();
+            recherche = $.trim(recherche);
+            if (recherche.length > 1) {
+                ////alert('yes');
+                $.ajax({
+                    type: "POST",
+                    url: "/pharmacietest/koudjine/inc/gerer_bon_caisse.php",
+                    data: {
+                        id: recherche
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        ////alert(data);
+                        if (data.erreur == 'non') {
+
+                            var cat = '<tr id="' + data.id + '" >'
+                                + ' <td> <input class=\'nom\' type="text" value="' + data.nom + '"></td>'
+                                + ' <td><input class=\'montant\' type="text" value="' + data.montant + '"></td>'
+                                + '<td>'
+                                + '<button class="btn btn-primary btn-rounded btn-sm" onclick="gerer_bon_caisse()" >Encaisser</button>'
+                                + '</td>'
+                                + '</tr>';
+                            $('#tab_GBonCaisse').prepend(cat);
+                            $("#scanner_bon").val('');
+
+                            }
+                    }
+                })
+            }
+        }
+    });
+
     $(".argent").keyup(function (event) {
         ////alert($(this).val())
         var total = ($("#argent_1").val() * 500) + ($("#argent_2").val() * 10000) + ($("#argent_3").val() * 100) + ($("#argent_4").val() * 5000) + ($("#argent_5").val() * 50) + ($("#argent_6").val() * 2000) + ($("#argent_7").val() * 25) + ($("#argent_8").val() * 1000) + ($("#argent_9").val() * 10) + ($("#argent_10").val() * 500)
@@ -99,6 +134,10 @@ $(document).ready(function () {
     $('#iconPreviewCaisseFermer').on('hidden.bs.modal', function () {
         ////alert('passe');
         $("#iconPreviewCaisseFermer").modal("show");
+    })
+    $('#iconPreviewRapport').on('hidden.bs.modal', function () {
+        ////alert('passe');
+        $("#iconPreviewRapport").modal("show");
     })
 });
 
@@ -195,8 +234,8 @@ function valider_fermeture(caisse_id) {
             success: function (server_responce) {
 
                 //alert(server_responce);
-                var link = '/pharmacietest/users/logout';
-                window.location.href = link;
+                $("#iconPreviewCaisseFermer").modal("hide");
+                open_rapport();
 
             }
         });
@@ -205,15 +244,288 @@ function valider_fermeture(caisse_id) {
 }
 
 function open_rapport() {
+    var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
+    //alert(caisse_id);
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/liste_depense.php',
+        data: {
+            id: caisse_id
+        },
+        success: function (server_responce) {
+            //alert(server_responce);
+
+            $('#tab_RapportDepense').empty();
+            $('#tab_RapportDepense').html(server_responce);
+
+        }
+
+
+    })
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/liste_bon_caisse.php',
+        data: {
+            id: caisse_id
+        },
+        success: function (server_responce) {
+            //alert(server_responce);
+
+            $('#tab_RapportBon').empty();
+            $('#tab_RapportBon').html(server_responce);
+
+        }
+
+
+    })
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/rapport_caisse.php',
+        data: {
+            id: caisse_id
+        },
+        dataType: 'json',
+        success: function (data) {
+            //alert(data);
+
+            if(data.erreur == 'non'){
+                //alert('passe');
+                $("#espece_caisse_rapport").html(data.espece_caisse);
+                $("#electronique_rapport").html(data.electronique);
+                $("#total_entree_rapport_caisse").html((data.electronique + data.espece_caisse));
+
+                // Charger tableau recapitulatif
+                $("#total_entree_caisse").html((data.electronique + data.espece_caisse + parseInt($("#total_entree_rapport_bon").html())));
+                $("#total_sortie_caisse").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
+                $("#total_tout_caisse").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_sortie_caisse").html())));
+
+                //Système
+                $("#total_entree_syst").html((data.electronique + data.espece_syst + parseInt($("#total_entree_rapport_bon").html())));
+                $("#total_sortie_syst").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
+                $("#total_tout_syst").html((parseInt($("#total_entree_syst").html()) - parseInt($("#total_sortie_syst").html())));
+
+                //Difference
+                $("#diff_entree").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_entree_syst").html())));
+                $("#diff_sortie").html((parseInt($("#total_sortie_caisse").html()) - parseInt($("#total_sortie_syst").html())));
+                $("#diff_total").html((parseInt($("#total_tout_caisse").html()) - parseInt($("#total_tout_syst").html())));
+
+
+
+
+            }
+
+        }
+
+
+    })
     $("#iconPreviewRapport").modal("show");
 }
+function valider_rapport() {
+    var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/enregistrer_session_caisse.php',
+        data: {
+            id: caisse_id,
+            etat: 'Clot'
+        },
+        success: function (server_responce) {
 
-function open_bon_caisse() {
-    $("#iconPreviewBonCaisse").modal("show");
+            //alert(server_responce);
+            var link = '/pharmacietest/users/logout';
+            window.location.href = link;
+
+        }
+    });
 }
 
-function open_depense() {
+function open_bon_caisse(caisse_id) {
+    $('#tab_GBonCaisse').empty();
+    $("#iconPreviewBonCaisse").modal("show");
+}
+function ajouter_bon_caisse() {
+    var cat = '<tr id="0" >'
+        + ' <td> <input class=\'nom\' type="text"></td>'
+        + ' <td><input class=\'montant\' type="text"></td>'
+        + '<td>'
+        + '<button class="btn btn-primary btn-rounded btn-sm" onclick="gerer_bon_caisse()" >Générer</button>'
+        + '</td>'
+        + '</tr>';
+    $('#tab_GBonCaisse').prepend(cat);
+
+}
+function gerer_bon_caisse() {
+    $('#tab_GBonCaisse  tr').each(function (i) {
+        var dateEncaisser,id1 = $(this).attr("id");
+        if(parseInt(id1) == 0){
+            dateEncaisser = '';
+        }else {
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2,'0');
+            var mm = String(today.getMonth()+1).padStart(2,'0');
+            var yyyy = today.getFullYear();
+            var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+            today = yyyy+"-"+mm+"-"+dd+"  "+time;
+            dateEncaisser = today;
+        }
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/gerer_bon_caisse.php',
+            data: {
+                new_id: parseInt(id1),
+                caisse_id: $("#tab_GBonCaisse").attr("data"),
+                nom: $("#" + id1 + " .nom").val(),
+                montant: parseInt($("#" + id1 + " .montant").val()),
+                dateEncaisser: dateEncaisser
+            },
+            success: function (server_responce) {
+                //alert(server_responce);
+
+                $('#tab_GBonCaisse').empty();
+                $("#iconPreviewBonCaisse").modal("hide");
+
+            }
+
+
+        })
+
+    });
+}
+function open_depense(caisse_id) {
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/gerer_depense.php',
+        data: {
+            id: caisse_id
+        },
+        success: function (server_responce) {
+            ////alert(server_responce);
+            //$("#iconPreview .icon-preview").html(icon_preview);
+
+            $('#tab_Gdepense').empty();
+            $('#tab_Gdepense').html(server_responce);
+            var total, prixTotal = 0, qteTotal = 0;
+            var qte = 0;
+            $('#tab_Gdepense  tr').each(function (i) {
+                var id1 = $(this).attr("id");
+                prixTotal = prixTotal + parseInt($("#" + id1 + " .total").val());
+
+
+            });
+            $("#total_depense").html('');
+            $("#total_depense").html(prixTotal);
+
+        }
+
+
+    })
     $("#iconPreviewDepense").modal("show");
+}
+function ajouter_depense() {
+    var depense_id;
+    $('#tab_Gdepense  tr').each(function (i) {
+        //var id1 = $(this).attr("id");
+        if(i == 0)
+        depense_id = parseInt($(this).attr("data"));
+
+    });
+    depense_id++;
+    var cat = '<tr id="'+depense_id+'" data="'+depense_id+'" >'
+        + ' <td><strong> <input class=\'designation\' type="text"></strong></td>'
+        + ' <td><input class=\'qte\' type="text"></td>'
+        + ' <td><input class=\'prix\' type="text"></td>'
+        + ' <td><input disabled class=\'total\' type="text"></td>'
+        + '</tr>';
+    $('#tab_Gdepense').prepend(cat);
+
+}
+function ajouter_une_depense(){
+    $('#-1').remove();
+    var cat = '<tr id="-1" >'
+        + ' <td>0</td>'
+        + ' <td><strong> <input class=\'designation\' type="text"></strong></td>'
+        + ' <td><input class=\'qte\' type="text"></td>'
+        + ' <td><input class=\'prix\' type="text"></td>'
+        + ' <td><input disabled class=\'total\' type="text"></td>'
+        + '<td>'
+        + '<button class="btn btn-primary btn-rounded btn-sm" onclick="valider_une_depense()" >Valider</button>'
+        + '</td>'
+        + '</tr>';
+    $('#tab_RapportDepense').prepend(cat);
+}
+function valider_une_depense(){
+    var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/gerer_depense.php',
+        data: {
+            new_id: -1,
+            caisse_id: caisse_id,
+            designation: $("#-1 .designation").val(),
+            qte: parseInt($("#-1 .qte").val()),
+            prix: parseInt($("#-1 .prix").val())
+        },
+        success: function (server_responce) {
+            //alert(server_responce);
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/liste_depense.php',
+                data: {
+                    id: caisse_id
+                },
+                success: function (server_responce) {
+                    //alert(server_responce);
+
+                    $('#tab_RapportDepense').empty();
+                    $('#tab_RapportDepense').html(server_responce);
+                    open_rapport();
+
+                }
+
+
+            })
+
+
+        }
+
+
+    })
+}
+function valider_depense(caisse_id) {
+    $('#tab_Gdepense  tr').each(function (i) {
+        var id1 = $(this).attr("id");
+        var send_id,id = $(this).attr("data");
+        if(id == id1){
+            send_id = -1;
+        }else{
+            send_id = id1;
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/gerer_depense.php',
+            data: {
+                new_id: parseInt(send_id),
+                caisse_id: caisse_id,
+                designation: $("#" + id1 + " .designation").val(),
+                qte: parseInt($("#" + id1 + " .qte").val()),
+                prix: parseInt($("#" + id1 + " .prix").val())
+            },
+            success: function (server_responce) {
+                //alert(server_responce);
+                $("#iconPreviewDepense").modal("hide");
+                //$("#iconPreview .icon-preview").html(icon_preview);
+
+
+            }
+
+
+        })
+
+
+    });
 }
 function rafraichir_vente(id) {
 
