@@ -1,7 +1,7 @@
 <!-- <?php
 
      $title_for_layout = ' ALSAS -' . 'Comptabilite';
-     $page_for_layout = 'Caisse ouverte par : ' . $employe->nom;
+     $page_for_layout = 'Caisse ouverte par : ' . $employe->nom.' '.$employe->prenom;
      $action_fermeture = (isset($caisse)) ? $caisse : $caisseCheck;
      //if(isset($employe)) echo 'passe';
 
