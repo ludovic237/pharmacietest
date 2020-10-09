@@ -165,7 +165,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php $i = 0;
-                                                if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
+                                                if (isset($venteAll)) foreach ($ventes as $k => $v) : ?>
                                                     <tr id="<?php echo $v->id; ?>">
                                                         <td>
                                                             <?php

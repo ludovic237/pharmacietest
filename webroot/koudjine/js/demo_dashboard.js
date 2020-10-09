@@ -1,3 +1,40 @@
+$(document).ready(function() {
+    var datas;
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/dashboard_info_today.php',
+        data: {
+            start: '2020-09-22 18:27:08',
+            end: '2019-02-22 18:27:08'
+        },
+        dataType: 'json',
+        success: function (data) {
+            var datas = JSON.stringify(data)
+            console.log(data);
+            $('#example').dataTable({
+                //dom: "Bfrtip",
+                //"processing": true,
+                //"serverSide": true,
+                ajax: {
+                    type: "POST",
+                    url: '/pharmacietest/koudjine/inc/dashboard_info_today.php',
+                    data: {
+                        start: '2019-02-22 18:27:08',
+                        end: '2020-09-22 18:27:08'
+                    },
+                    dataType: 'json',
+                },
+                columns: [
+                    { data: "nom" },
+                    { data: "quantiteTotalSameRayonId" }
+                ]
+            });
+
+        }
+
+
+    })
+} );
 $(function () {
     var assurance = 1;
     var credit = 1;

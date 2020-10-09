@@ -91,6 +91,13 @@ class VenteController extends Controller
             $j++;
         endforeach;
 
+        $d['venteAll'] = $this->Vente->find(array(
+            'fields' => 'v.id as id,prixTotal,prixPercu,commentaire,dateVente,v.etat,v.user_id,nouveau_info,reference,identifiant',
+            'table' => 'vente v, employe e',
+            'order' => 'dateVente-DESC',
+            'conditions' => array('v.supprimer' => 0)
+        ));
+
         if (!empty($d['caisse'])) {
             $d['ventes'] = $this->Vente->find(array(
                 'fields' => 'v.id as id,prixTotal,prixPercu,commentaire,dateVente,v.etat,v.user_id,nouveau_info,reference,identifiant',

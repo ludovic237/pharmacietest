@@ -18,6 +18,8 @@ $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
+<script type="text/javascript" src="'.BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/morris/raphael-min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/morris/morris.min.js"></script>    
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
@@ -38,6 +40,22 @@ $script_for_layout = '
 ';
 ?>
 
+<!-- <div class="row">
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>nom</th>
+                <th>quantiteTotalSameRayonId</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>nom</th>
+                <th>quantiteTotalSameRayonId</th>
+            </tr>
+        </tfoot>
+    </table>
+</div> -->
 <div class="row">
     <div class="col-md-12">
 
