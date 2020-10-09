@@ -13,17 +13,22 @@
      $position_for_layout = '<li><a href="#">Comptabilite</a></li><li class="active">' . $position . '</li>';
      $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
+
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>';
      if (isset($caisse) && $caisse == null) {
           $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisse").modal("show"); });</script>';
      }
      if (isset($caisseCheck) && $caisseCheck != null) {
-         if($caisseCheck->etat == "En cours"){
-             $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisseFermer").modal("show"); });</script>';
-         }else{
-             $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(open_rapport());</script>';
-         }
-               }
+          if ($caisseCheck->etat == "En cours") {
+               $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisseFermer").modal("show"); });</script>';
+          } else {
+               $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(open_rapport());</script>';
+          }
+     }
      ?> -->
 
 
@@ -40,7 +45,8 @@
                     <div class="panel-body">
                          <div style="justify-content:space-evenly;display:flex; margin-bottom: 10px;">
                               <button class="btn btn-primary  pull-left" data="" id="" onclick="open_bon_caisse('<?php echo $action_fermeture->id; ?>')">Bon de caisse</button>
-<!--                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_rapport('<?php //echo $action_fermeture->id; ?>//')">Rapport</button>-->
+                              <!--                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_rapport('<?php //echo $action_fermeture->id; 
+                                                                                                                                                 ?>//')">Rapport</button>-->
                               <button class="btn btn-primary  pull-left" data="" id="" onclick="open_depense('<?php echo $action_fermeture->id; ?>')">Entrez dépense</button>
 
                               <button class="btn btn-primary  pull-right" data="" id="" onclick="rafraichir_vente('<?php echo $caisse->id; ?>')">Rafraichir</button>
@@ -172,42 +178,42 @@
                                    </div>
                                    <div class="tab-pane panel-body" id="tab2">
                                         <div class="block">
-                                                  <div class="panel-body" style="display: flex;flex-direction: column;">
+                                             <div class="panel-body" style="display: flex;flex-direction: column;">
 
-                                                       <div class="form-group">
-                                                            <label class="col-md-3 control-label">Numéro de téléphone:</label>
-                                                            <div class="col-md-9">
-                                                                 <input type="number" id="Electroniquecaisse1" class="form-control telephone caisse Electroniquecaisse1" data="1" data1="Electronique" data2="2" data3="tab2" value="" placeholder="" />
-                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
-                                                            </div>
-                                                       </div>
-                                                       <div class="form-group">
-                                                            <label class="col-md-3 control-label">Montant:</label>
-                                                            <div class="col-md-9">
-                                                                 <input type="number" id="Electroniquecaisse2" class="form-control montant caisse Electroniquecaisse2" data="2" data1="Electronique" data2="2" data3="tab2" value="" placeholder="" />
-                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
-                                                            </div>
-                                                       </div>
-                                                       <div class="form-group">
-                                                            <label class="col-md-3 control-label">Frais:</label>
-                                                            <div class="col-md-9">
-                                                                 <input type="number" disabled class="form-control" value="" placeholder="" />
-                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
-                                                            </div>
-                                                       </div>
-                                                       <div class="form-group">
-                                                            <label class="col-md-3 control-label">Rendu:</label>
-                                                            <div class="col-md-9">
-                                                                 <input type="number" style="color: #383838;font-size:25px"  disabled class="form-control reste" value="" placeholder="" />
-                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
-                                                            </div>
-                                                       </div>
-                                                       <div class="btn-group pull-right">
-                                                            <a class="btn btn-primary" style="margin-right: 20px" href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>">Annuler</a>
-                                                            <button class="btn btn-success" onclick="valider_facture('Electronique','tab2','<?php echo $action_fermeture->id; ?>', false)" style="margin-right: 20px">Valider</button>
-                                                            <button class="btn btn-success" onclick="valider_facture('Electronique','tab2','<?php echo $action_fermeture->id; ?>', true)">Imprimer</button>
+                                                  <div class="form-group">
+                                                       <label class="col-md-3 control-label">Numéro de téléphone:</label>
+                                                       <div class="col-md-9">
+                                                            <input type="number" id="Electroniquecaisse1" class="form-control telephone caisse Electroniquecaisse1" data="1" data1="Electronique" data2="2" data3="tab2" value="" placeholder="" />
+                                                            <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                        </div>
                                                   </div>
+                                                  <div class="form-group">
+                                                       <label class="col-md-3 control-label">Montant:</label>
+                                                       <div class="col-md-9">
+                                                            <input type="number" id="Electroniquecaisse2" class="form-control montant caisse Electroniquecaisse2" data="2" data1="Electronique" data2="2" data3="tab2" value="" placeholder="" />
+                                                            <!-- <span class="help-block">exemple: Boris Daudga</span> -->
+                                                       </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                       <label class="col-md-3 control-label">Frais:</label>
+                                                       <div class="col-md-9">
+                                                            <input type="number" disabled class="form-control" value="" placeholder="" />
+                                                            <!-- <span class="help-block">exemple: Boris Daudga</span> -->
+                                                       </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                       <label class="col-md-3 control-label">Rendu:</label>
+                                                       <div class="col-md-9">
+                                                            <input type="number" style="color: #383838;font-size:25px" disabled class="form-control reste" value="" placeholder="" />
+                                                            <!-- <span class="help-block">exemple: Boris Daudga</span> -->
+                                                       </div>
+                                                  </div>
+                                                  <div class="btn-group pull-right">
+                                                       <a class="btn btn-primary" style="margin-right: 20px" href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>">Annuler</a>
+                                                       <button class="btn btn-success" onclick="valider_facture('Electronique','tab2','<?php echo $action_fermeture->id; ?>', false)" style="margin-right: 20px">Valider</button>
+                                                       <button class="btn btn-success" onclick="valider_facture('Electronique','tab2','<?php echo $action_fermeture->id; ?>', true)">Imprimer</button>
+                                                  </div>
+                                             </div>
                                              <!-- END JQUERY VALIDATION PLUGIN -->
                                         </div>
                                    </div>
@@ -234,7 +240,7 @@
                                                        <div class="form-group">
                                                             <label class="col-md-3 control-label">Rendu:</label>
                                                             <div class="col-md-9">
-                                                                 <input type="number" style="color: #383838;font-size:25px"  disabled class="form-control" value="" placeholder="" />
+                                                                 <input type="number" style="color: #383838;font-size:25px" disabled class="form-control" value="" placeholder="" />
                                                                  <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                        </div>
@@ -330,7 +336,7 @@
                                                        <div class="form-group">
                                                             <label class="col-md-3 control-label">Rendu:</label>
                                                             <div class="col-md-9">
-                                                                 <input type="number" style="color: #383838;font-size:25px"  class="form-control" value="" placeholder="">
+                                                                 <input type="number" style="color: #383838;font-size:25px" class="form-control" value="" placeholder="">
                                                                  <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                        </div>
@@ -811,19 +817,19 @@
                                                        <tr>
                                                             <td>Espece</td>
                                                             <td>
-                                                                <span id="espece_caisse_rapport">0</span>
+                                                                 <span id="espece_caisse_rapport">0</span>
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <td>OM</td>
                                                             <td>
-                                                                <span id="electronique_rapport">0</span>
+                                                                 <span id="electronique_rapport">0</span>
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <td>Total</td>
                                                             <td>
-                                                                <span id="total_entree_rapport_caisse">0</span>
+                                                                 <span id="total_entree_rapport_caisse">0</span>
                                                             </td>
                                                        </tr>
                                                   </tbody>
@@ -962,7 +968,7 @@
                     </div>
                </div>
                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="valider_rapport()" >Valider</button>
+                    <button type="button" class="btn btn-success" onclick="valider_rapport()">Valider</button>
                </div>
           </div>
      </div>
@@ -1005,9 +1011,9 @@
                                                   </tbody>
                                              </table>
                                         </div>
-                                        <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
+                                        <!-- <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
                                              <h6>Total <span>0000</span> </h6>
-                                        </div>
+                                        </div> -->
                                    </div>
                               </div>
 
@@ -1015,7 +1021,7 @@
                     </div>
                </div>
                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" style="margin-right: 20px; ">Valider</button>
+                    <!-- <button type="button" class="btn btn-success" style="margin-right: 20px; ">Valider</button> -->
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                </div>
           </div>
@@ -1027,7 +1033,9 @@
                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Dépense</h4>
-                    <a onclick="ajouter_depense()" href="#" class="panel-refresh">Ajouter</a>
+                    <div style="display: flex;justify-content: flex-end;">
+                         <a onclick="ajouter_depense()" href="#" class="btn btn-default btn-rounded btn-sm">Ajouter</a>
+                    </div>
                </div>
                <div class="modal-body">
                     <div class="row">
@@ -1145,23 +1153,24 @@
                     <div class="row">
                          <div class="col-md-4">
                               <div class="icon-preview">
-                                   <div style="width: 35mm;display:flex;height: 30mm;flex-direction: column;" id="ticket">
-                                        <table style="table-layout: fixed; width: 40mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
+                                   <div style="width: 80mm;display:flex;flex-direction: column;" id="ticket">
+                                        <table style="table-layout: fixed; width: 80mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
                                              <tbody>
-                                                  <tr style="display: flex;table-layout: fixed; width: 40mm ;">
-                                                       <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
+                                                  <tr style="display: flex;table-layout: fixed; width: 80mm ;">
+                                                       <td style="width: 80mm;background-color: white;color: black;font-weight: 400;text-align: start;" colspan="2">
 
-                                                            <div style="display: flex;flex-direction: column;">
+                                                            <div style="display: flex;flex-direction: column;padding:5px">
                                                                  <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
-                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Nom client</p>
-                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Montant</p>
+                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;"> <span id="nomclientimp"></span></p>
+                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;"><span id="montantimp"></span> FCFA</p>
                                                                  </div>
-                                                                 <div>
-                                                                      <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="demo">code barre</p>
+                                                                 <div style="justify-content: center; display: flex;flex-direction: column;align-items: center;">
+                                                                      <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="codebarreimp"></p>
+                                                                      <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="codebarrenulimp"></p>
                                                                  </div>
-                                                                 <div style="display: flex;flex-direction: row;justify-content: space-around;">
-                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Date généré</p>
-                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Caissier</p>
+                                                                 <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
+                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;"><span id="dateimp"></span></p>
+                                                                      <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;"> <span id="caissierimp"> <?php echo $employe->nom; ?> </span></p>
                                                                  </div>
                                                             </div>
                                                        </td>
