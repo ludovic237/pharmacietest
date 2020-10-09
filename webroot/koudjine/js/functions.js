@@ -316,7 +316,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
             //$("#resultat ul").empty();
             recherche = $.trim(recherche);
             if (recherche.length > 1) {
-                ////alert('yes');
+                ////alert('yes');va
                 $.ajax({
                     type: "GET",
                     url: "/pharmacietest/koudjine/inc/result1.php",

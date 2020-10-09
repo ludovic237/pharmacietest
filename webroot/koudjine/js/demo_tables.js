@@ -293,15 +293,15 @@ function open_rapport() {
                 //alert('passe');
                 $("#espece_caisse_rapport").html(data.espece_caisse);
                 $("#electronique_rapport").html(data.electronique);
-                $("#total_entree_rapport_caisse").html((data.electronique + data.espece_caisse));
+                $("#total_entree_rapport_caisse").html((parseInt(data.electronique) + parseInt(data.espece_caisse)));
 
                 // Charger tableau recapitulatif
-                $("#total_entree_caisse").html((data.electronique + data.espece_caisse + parseInt($("#total_entree_rapport_bon").html())));
+                $("#total_entree_caisse").html((parseInt(data.electronique) + parseInt(data.espece_caisse) + parseInt($("#total_entree_rapport_bon").html())));
                 $("#total_sortie_caisse").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
                 $("#total_tout_caisse").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_sortie_caisse").html())));
 
                 //Système
-                $("#total_entree_syst").html((data.electronique + data.espece_syst + parseInt($("#total_entree_rapport_bon").html())));
+                $("#total_entree_syst").html((parseInt(data.electronique) + parseInt(data.espece_syst) + parseInt($("#total_entree_rapport_bon").html())));
                 $("#total_sortie_syst").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
                 $("#total_tout_syst").html((parseInt($("#total_entree_syst").html()) - parseInt($("#total_sortie_syst").html())));
 
