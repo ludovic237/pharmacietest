@@ -19,25 +19,16 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             var jvalidate = $("#jvalidate").validate({
                 ignore: [],
                 rules: {
-                    reduction: {
+                    faireReductionMax: {
                         required: true,
                         minlength: 2,
                         maxlength: 50
                     },
                     password: {
-                        required: false,
-                    },
-                    stockmin: {
-                        required: true
-                    },
-                    stockmax: {
                         required: true,
                     },
-                    stock: {
+                    codebarre_id: {
                         required: true,
-                    },
-                    reduction: {
-                        required: true
                     },
                     identifiant: {
                         required: true

@@ -21,22 +21,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 rules: {
                     reduction: {
                         required: true,
-                        minlength: 2,
-                        maxlength: 50
                     },
                     prenom: {
                         required: false,
                     },
-                    stockmin: {
-                        required: true
-                    },
-                    stockmax: {
-                        required: true,
-                    },
-                    stock: {
-                        required: true,
-                    },
-                    reduction: {
+                    reductionMax: {
                         required: true
                     },
                     nom: {
