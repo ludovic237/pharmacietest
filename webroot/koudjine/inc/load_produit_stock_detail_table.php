@@ -58,6 +58,9 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
                         <td class='prix'>
                         " . $e->quantiteRestante() . "
                         </td>
+                        <td>
+                            <a class=\"btn btn-success btn-rounded btn-sm \"  onclick=\"show_modif_enrayon('" . $e->id() . "')\"><span class=\"\">Modifier</span></a>
+                        </td>
                     </tr>";
     endforeach;
 

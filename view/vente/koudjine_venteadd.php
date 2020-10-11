@@ -48,7 +48,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     </thead>
                                     <tbody id="tab_Brecherche">
 
-                                    </tbody>
+                                    </tbody>  
                                 </table>
                             </div>
                         </div>

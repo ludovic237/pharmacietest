@@ -21,13 +21,13 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                 success: function (server_responce) {
                     console.log(server_responce);
                     $('#tab_employe_id').html(server_responce);
-    
+
                 }
             });
             $('#reportrange span').html();
             return false;
         }
-        else{
+        else {
             $.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/vente_info_today.php',
@@ -40,7 +40,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                 success: function (server_responce) {
                     //console.log(server_responce);
                     $('#tab_employe_id').html(server_responce);
-    
+
                 }
             });
             return false;
@@ -1235,9 +1235,9 @@ function valider_vente(type, etat) {
 }
 
 function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
-    var telephone,montantTtc = parseInt($('#facture_caisse').html()), count = 0, rec = 0;
+    var telephone, montantTtc = parseInt($('#facture_caisse').html()), count = 0, rec = 0;
     var reduction = parseInt($('#facture_caisse').attr('data'));
-    $('#ticketCaisse .montantpercu').html($('#' + onglet + ' .montant').val()+' ('+typePaiement+')');
+    $('#ticketCaisse .montantpercu').html($('#' + onglet + ' .montant').val() + ' (' + typePaiement + ')');
     $('#ticketCaisse .montantrendu').html($('#' + onglet + ' .reste').val());
     //alert(reduction);
     var montantPercu = null;
@@ -1248,7 +1248,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
     if (typePaiement == 'Electronique') {
         ////alert(caisse_id);
         telephone = $('#' + onglet + ' .telephone').val();
-    }else {
+    } else {
         telephone = '';
     }
     var reste = parseInt($('#' + onglet + ' .reste').val());
@@ -1279,7 +1279,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                 caisse_id: parseInt(caisse_id)
             },
             success: function (server_responce) {
-                  alert(server_responce);
+                alert(server_responce);
                 $('#tab_vente_caisse  tr').each(function (i) {
                     count++;
                 });
@@ -2915,3 +2915,50 @@ function showVenteCaisse(id) {
     return false;
 }
 
+
+function show_modif_enrayon(id) {
+    $("#iconPreviewDetailModif").modal('show');
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/enregistrer_enrayon.php',
+        data: {
+            id: id
+        },
+        dataType: 'json',
+        success: function (data) {
+            var datas =JSON.stringify(data);
+            $("#erprixachat").val(datas.prixAchat);
+            $("#erprixvente").val(datas.prixVente);
+            $("#erdatePeremption").val(datas.datePeremption);
+            $("#erquantite").val(datas.quantite);
+        }
+    });
+
+}
+
+
+function save_produit_detail() {
+    var erprixachat = $('#erprixachat').val();
+    var erprixvente = $('#erprixvente').val();
+    var erquantite = $('#erquantite').val();
+    var erdatePeremption = $('#erdatePeremption').val();
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/enregistrer_enrayon.php',
+        data: {
+            prixAchat:erprixachat,
+            prixVente:erprixvente,
+            datePeremption:erquantite,
+            quantite:erdatePeremption
+        },
+        success: function (data) {
+            //alert(data);
+            $("#iconPreviewDetailModif").modal('hide');
+            $('#tab_list_vente_caisse').empty();
+            $('#tab_list_vente_caisse').prepend(data);
+
+
+        }
+    });
+    $("#iconPreviewDetailModif").modal('show');
+}

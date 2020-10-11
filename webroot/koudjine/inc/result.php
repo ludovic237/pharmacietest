@@ -19,7 +19,7 @@ if (isset($_GET["motclef1"])) {
 
     if ($count) {
         while ($result = $sth->fetch(PDO::FETCH_OBJ)) {
-            $datelivraison = $result->dateLivraison;
+            $datelivraison = $result->dateLivraison; 
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
             $datel = $date->format('d-m-Y');
             //   </p><div class='input-group' style='display:-webkit-inline-box;'>

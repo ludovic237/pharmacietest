@@ -3,9 +3,9 @@
         $title_for_layout = ' Admin -' . 'Catalogue';
         $page_for_layout = 'Catalogue';
         $action_for_layout = 'Ajouter';
-        if(isset($id)){
-            $add_script = '<script>load_produit_detail('.$id.')</script>';
-        }else {
+        if (isset($id)) {
+            $add_script = '<script>load_produit_detail(' . $id . ')</script>';
+        } else {
             $add_script = '';
         }
 
@@ -23,7 +23,7 @@
                                             document.getElementById("detail_recherche").focus();
                                         };
                                         
-                                    </script>'.$add_script;
+                                    </script>' . $add_script;
         ?> -->
 
 
@@ -86,14 +86,14 @@
 
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane panel-body active" id="tab1" >
+                            <div class="tab-pane panel-body active" id="tab1">
                                 <div class="block">
 
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel panel-default" id="produit_detail_a">
 
-                                                <div class="panel-body panel-body-table" >
+                                                <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
                                                         <table class="table datatable table-bordered table-striped table-actions">
@@ -106,7 +106,7 @@
                                                                     <th width="100">Reduction</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody id="tab_produit_detail_a" data="<?php if(isset($id)) echo $id; ?>">
+                                                            <tbody id="tab_produit_detail_a" data="<?php if (isset($id)) echo $id; ?>">
 
                                                             </tbody>
                                                         </table>
@@ -122,7 +122,7 @@
                                         <div class="col-md-12">
                                             <div class="panel panel-default" id="produit_detail_b">
 
-                                                <div class="panel-body panel-body-table" >
+                                                <div class="panel-body panel-body-table">
 
                                                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                                                         <h1 style="color:#fff">
@@ -161,7 +161,7 @@
                                         <div class="col-md-12">
                                             <div class="panel panel-default" id="produit_commande_detail_a">
 
-                                                <div class="panel-body panel-body-table" >
+                                                <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
                                                         <table class="table datatable table-bordered table-striped table-actions">
@@ -189,7 +189,7 @@
                                         <div class="col-md-12">
                                             <div class="panel panel-default" id="produit_commande_detail_b">
 
-                                                <div class="panel-body panel-body-table" >
+                                                <div class="panel-body panel-body-table">
 
                                                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                                                         <h1 style="color:#fff">
@@ -221,14 +221,14 @@
                             </div>
                             <div class="tab-pane panel-body" id="tab3">
                                 <div class="block">
-                                <div class="row">
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel panel-default" id="produit_stock_detail_a">
 
-                                                <div class="panel-body panel-body-table" >
+                                                <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
-                                                        <h1 >Stock total : 
+                                                        <h1>Stock total :
                                                             <span id="tab_produit_stock_detail_a">
                                                             </span>
                                                         </h1>
@@ -244,7 +244,7 @@
                                         <div class="col-md-12">
                                             <div class="panel panel-default" id="produit_stock_detail_b">
 
-                                                <div class="panel-body panel-body-table" >
+                                                <div class="panel-body panel-body-table">
 
                                                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                                                         <h1 style="color:#fff">
@@ -262,6 +262,7 @@
                                                                     <th width="200">Prix achat</th>
                                                                     <th width="200">Prix vente</th>
                                                                     <th width="200">Quantité restante</th>
+                                                                    <th width="200">Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="tab_produit_stock_detail_b">
@@ -286,3 +287,52 @@
         </div>
     </div>
 </div>
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewDetailModif" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Detail</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="panel-body">
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Prix d'achat:</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control erprixachat" name="erprixachat" id="erprixachat" value="" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Prix de vente:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control erprixvente" name="erprixvente" id="erprixvente" value="" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Quantité:</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control erquantite" name="erquantite" id="erquantite" value="" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Date de peremption:</label>
+                                <div class="col-md-9">
+                                    <input type="date" class="form-control erdatePeremption" name="erdatePeremption" id="erdatePeremption" value="" placeholder="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" onclick="save_produit_detail()">Sauvegarder</a>
+                <a class="btn btn-primary" data-dismiss="modal">Annuler</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
