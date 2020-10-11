@@ -48,7 +48,7 @@ class PharmanetController extends Controller
         $d['pharmanet'] = $this->Pharmanet->find(array(
             'fields' => 'employe.id as idemploye,employe.identifiant as identifiantemploye,employe.codebarre_id as codebarreidemploye,employe.user_id as useridemploye,employe.etat as etatemploye,employe.faireReductionMax as reductionemploye,employe.type as typeemploye',
             'table' => 'employe',
-
+            'conditions' => array('supprimer' => 0)
         ));
         //die($d);
         if (empty($d['pharmanet'])) {
@@ -65,7 +65,7 @@ class PharmanetController extends Controller
             //'fields' => 'nom',
             'table' => 'user',
             'order' => 'nom-ASC',
-            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+            'conditions' => array('supprimer' => 0)
         ));
 
         if ($id != null) {
@@ -75,7 +75,7 @@ class PharmanetController extends Controller
             $d['employe'] = $this->Pharmanet->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'employe',
-                'conditions' => array('id' => $id)
+                'conditions' => array('id' => $id, 'supprimer' => 0)
             ));
 
 
@@ -95,7 +95,7 @@ class PharmanetController extends Controller
         $d['pharmanet'] = $this->Pharmanet->find(array(
             'fields' => 'user.id as iduser,user.nom as nomuser,user.prenom as prenomuser,user.telephone as telephoneuser,user.email as emailuser,user.fonction as fonctionuser,user.reduction as reductionuser',
             'table' => 'user',
-
+            'conditions' => array('supprimer' => 0)
         ));
         //die($d);
         if (empty($d['pharmanet'])) {
@@ -115,7 +115,7 @@ class PharmanetController extends Controller
             $d['user'] = $this->Pharmanet->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'user',
-                'conditions' => array('id' => $id)
+                'conditions' => array('id' => $id, 'supprimer' => 0)
             ));
 
 
@@ -139,12 +139,12 @@ class PharmanetController extends Controller
             $d['employe'] = $this->Pharmanet->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'employe',
-                'conditions' => array('id' => $id)
+                'conditions' => array('id' => $id, 'supprimer' => 0)
             ));
             $d['user'] = $this->Pharmanet->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'user',
-                'conditions' => array('id' => $d['employe']->user_id)
+                'conditions' => array('id' => $d['employe']->user_id, 'supprimer' => 0)
             ));
 
             if (empty($d['user'])) {
@@ -160,6 +160,13 @@ class PharmanetController extends Controller
     {
         $this->loadModel('Pharmanet');
 
+    }
+
+    function koudjine_delete($id, $table)
+    {
+        $this->loadModel('Pharmanet');
+        $this->Pharmanet->delete($id, $table, 'id');
+        //$this->redirect('koudjine/universites/index');
     }
 
 }

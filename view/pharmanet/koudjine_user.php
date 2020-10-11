@@ -53,7 +53,7 @@
                                              </td>
                                              <td>
                                                   <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_user(<?php echo $v->iduser; ?>)"><span class="fa fa-pencil"></span></button>
-                                                  <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->iduser; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
+                                                  <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->iduser; ?>','<?php echo $this->request->controller; ?>','user');"><span class="fa fa-times"></span></button>
                                              </td>
                                         </tr>
                                    <?php endforeach; ?>

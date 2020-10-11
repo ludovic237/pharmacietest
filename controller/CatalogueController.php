@@ -122,7 +122,7 @@ class CatalogueController extends Controller
             $d['client'] = $this->Catalogue->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'client',
-                'conditions' => array('id' => $id)
+                'conditions' => array('id' => $id, 'supprimer' => 0)
             ));
 
 
@@ -170,7 +170,7 @@ class CatalogueController extends Controller
             $d['fabriquant'] = $this->Catalogue->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'fabriquant',
-                'conditions' => array('id' => $id)
+                'conditions' => array('id' => $id, 'supprimer' => 0)
             ));
 
 
@@ -212,7 +212,7 @@ class CatalogueController extends Controller
             $d['fournisseur'] = $this->Catalogue->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'fournisseur',
-                'conditions' => array('id' => $id)
+                'conditions' => array('id' => $id, 'supprimer' => 0)
             ));
 
 
@@ -252,7 +252,7 @@ class CatalogueController extends Controller
             $d['prescripteur'] = $this->Catalogue->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'prescripteur',
-                'conditions' => array('id' => $id)
+                'conditions' => array('id' => $id, 'supprimer' => 0)
             ));
 
 
@@ -399,7 +399,7 @@ class CatalogueController extends Controller
             $d['categorie'] = $this->Catalogue->findFirst(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'categorie',
-                'conditions' => array('id' => $id)
+                'conditions' => array('id' => $id, 'supprimer' => 0)
             ));
 
 

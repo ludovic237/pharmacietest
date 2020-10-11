@@ -1372,7 +1372,7 @@ function enregistrer_user(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/pharmanet/user/';
+                    var link = '/pharmacietest/bouwou/pharmanet/user';
                     window.location.href = link;
                 }
                 else {
@@ -1403,7 +1403,7 @@ function enregistrer_user(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/pharmanet/user/';
+                    var link = '/pharmacietest/bouwou/pharmanet/user';
                     //var link = '/pharmacietest/bouwou/pharmanet/useradd/' + id;
                     window.location.href = link;
                 }
@@ -1454,7 +1454,7 @@ function enregistrer_employe(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/pharmanet/employe/';
+                    var link = '/pharmacietest/bouwou/pharmanet/employe';
                     window.location.href = link;
                 }
                 else {
