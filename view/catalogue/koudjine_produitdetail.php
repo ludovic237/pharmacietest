@@ -17,6 +17,7 @@
         $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script>
                                         window.onload = function () {
@@ -294,7 +295,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Detail</h4>
+                <h4 class="modal-title">Detail</h4> <span id="id"></span>
             </div>
             <div class="modal-body">
                 <div class="row">

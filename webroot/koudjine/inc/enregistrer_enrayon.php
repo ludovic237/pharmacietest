@@ -13,8 +13,13 @@ $prixVente;
 $datePeremption;
 $quantite;
 
+$id = $_POST['id'];
+$prixAchat = $_POST['prixAchat'];
+$prixVente = $_POST['prixVente'];
+$datePeremption = $_POST['datePeremption'];
+$quantite = $_POST['quantite'];
 
-if (isset($_POST['id'])) {
+if ($prixAchat == 0) {
 
     $id = $_POST['id'];
     if ($manager->existsId($id)) {
@@ -23,7 +28,7 @@ if (isset($_POST['id'])) {
         $prixVente = $prod->prixVente();
         $datePeremption = $prod->datePeremption();
         $quantite = $prod->quantite();
-        $donnees = array('prixAchat' => $prixAchat, 'datePeremption' => $datePeremption, 'quantite' => $quantite, 'prixVente' => $prixVente);
+        $donnees = array('id' => $id, 'prixAchat' => $prixAchat, 'datePeremption' => $datePeremption, 'quantite' => $quantite, 'prixVente' => $prixVente);
         echo json_encode($donnees);
     } else {
 
@@ -31,33 +36,12 @@ if (isset($_POST['id'])) {
     }
 } else {
 
-
-
-    $id = $_POST['id'];
-    $prixAchat = $_POST['prixAchat'];
-    $prixVente = $_POST['prixVente'];
-    $datePeremption = $_POST['datePeremption'];
-    $quantite = $_POST['quantite'];
     if ($manager->existsId($id)) {
-        $prod = $manager->get($id);
-        //echo "Ce departement existe";
-        if ($prod->id() == $id) {
-            $prod->prixAchat($prixAchat);
-            $prod->prixVente($prixVente);
-            $prod->datePeremption($datePeremption);
-            $prod->quantite($quantite);
-            $manager->update($prod);
-            echo 'ok';
-        } else {
-            echo 'Ce nom de rayon existe déjà';
-        }
+        $manager->myupdate($datePeremption, $prixAchat, $prixVente, $quantite, $id);
+        echo 'success';
     } else {
         $prod = $manager->get($id);
-        $prod->prixAchat($prixAchat);
-        $prod->prixVente($prixVente);
-        $prod->datePeremption($datePeremption);
-        $prod->quantite($quantite);
-        $manager->update($prod);
+        $manager->myupdate($datePeremption, $prixAchat, $prixVente, $quantite, $id);
         echo 'ok';
     }
 }

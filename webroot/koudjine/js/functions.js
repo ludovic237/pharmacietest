@@ -2922,15 +2922,20 @@ function show_modif_enrayon(id) {
         type: "POST",
         url: '/pharmacietest/koudjine/inc/enregistrer_enrayon.php',
         data: {
-            id: id
+            id: id,
+            prixAchat:0,
+            prixVente:0,
+            datePeremption:0,
+            quantite:0
         },
         dataType: 'json',
         success: function (data) {
             var datas =JSON.stringify(data);
-            $("#erprixachat").val(datas.prixAchat);
-            $("#erprixvente").val(datas.prixVente);
-            $("#erdatePeremption").val(datas.datePeremption);
-            $("#erquantite").val(datas.quantite);
+            $("#id").val(data.id);
+            $("#erprixachat").val(data.prixAchat);
+            $("#erprixvente").val(data.prixVente);
+            $("#erdatePeremption").val(data.datePeremption);
+            $("#erquantite").val(data.quantite);
         }
     });
 
@@ -2938,27 +2943,29 @@ function show_modif_enrayon(id) {
 
 
 function save_produit_detail() {
+    var id = $('#id').val();
+    alert(id);
     var erprixachat = $('#erprixachat').val();
     var erprixvente = $('#erprixvente').val();
     var erquantite = $('#erquantite').val();
-    var erdatePeremption = $('#erdatePeremption').val();
+    var erdatePeremption = moment($('#erdatePeremption').val()).format("YYYY-MM-DD");
+    console.log(erdatePeremption);
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/enregistrer_enrayon.php',
         data: {
+            id: id,
             prixAchat:erprixachat,
             prixVente:erprixvente,
-            datePeremption:erquantite,
-            quantite:erdatePeremption
+            datePeremption:erdatePeremption,
+            quantite:erquantite
         },
         success: function (data) {
-            //alert(data);
+            alert(data);
             $("#iconPreviewDetailModif").modal('hide');
-            $('#tab_list_vente_caisse').empty();
-            $('#tab_list_vente_caisse').prepend(data);
 
 
         }
     });
-    $("#iconPreviewDetailModif").modal('show');
+  
 }

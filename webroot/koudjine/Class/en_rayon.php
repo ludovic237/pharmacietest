@@ -268,6 +268,7 @@ class En_rayonManager
     public function update(En_rayon $en_rayon)
     {
 
+        // UPDATE `en_rayon` SET `datePeremption` = '2021-04-23', `prixAchat` = '420', `prixVente` = '105', `quantite` = '102', `quantiteRestante` = '74' WHERE `en_rayon`.`id` = '10010120171115'; 
         $q = $this->_db->prepare('UPDATE en_rayon SET produit_id = :produit_id, fournisseur_id = :fournisseur_id, commande_id = :commande_id, dateLivraison = :dateLivraison, datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prixa, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = :reduction WHERE id = :id');
         $q->bindValue(':id', $en_rayon->id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $en_rayon->produit_id(), PDO::PARAM_INT);
@@ -282,6 +283,17 @@ class En_rayonManager
         $q->bindValue(':reduction', $en_rayon->reduction());
         $q->execute();
     }
+
+    public function myupdate($datePeremption,$prixAchat,$prixVente,$quantite,$id)
+    {
+
+        // UPDATE `en_rayon` SET `datePeremption` = '2021-04-23', `prixAchat` = '420', `prixVente` = '105', `quantite` = '102', `quantiteRestante` = '74' WHERE `en_rayon`.`id` = '10010120171115'; 
+        $q = $this->_db->prepare(' UPDATE `en_rayon` SET `datePeremption` = '.$datePeremption.', `prixAchat` = '.$prixAchat.', `prixVente` = '.$prixVente.', `quantite` = '.$quantite.' WHERE `id` = '.$id );
+        $q->execute();
+    }
+
+   
+
     public function setDb(PDO $db)
     {
         $this->_db = $db;
