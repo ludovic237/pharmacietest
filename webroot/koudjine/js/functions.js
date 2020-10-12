@@ -828,6 +828,36 @@ function load_produit_detail(id, nomp) {
         })
 
 
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/load_produit_detail_sortie.php',
+            data: {
+                id: id
+            },
+            success: function (responce) {
+                $('#tab_produit_stock_detail_sortie_a').html(responce);
+                $("#produit_stock_detail_sortie_a").show();
+                $("#tab_produit_stock_detail_sortie_a").show();
+                alert(responce);
+                $.ajax({
+                    type: "POST",
+                    url: "/pharmacietest/koudjine/inc/load_produit_sortie_stock.php",
+                    data: {
+                        id: id
+                    },
+                    success: function (responce) {
+                        alert(responce);
+                        $('#tab_produit_stock_detail_sortie_b').html(responce);
+                        $("#produit_stock_detail_sortie_b").show();
+                        $("#tab_produit_stock_detail_b").show();
+                    }
+                })
+            }
+
+
+        })
+
+
 
         // var icon_preview = $("<i></i>").addClass(iClass);
         $("#iconPreviewVente").modal("show");
@@ -2923,14 +2953,14 @@ function show_modif_enrayon(id) {
         url: '/pharmacietest/koudjine/inc/enregistrer_enrayon.php',
         data: {
             id: id,
-            prixAchat:0,
-            prixVente:0,
-            datePeremption:0,
-            quantite:0
+            prixAchat: 0,
+            prixVente: 0,
+            datePeremption: 0,
+            quantite: 0
         },
         dataType: 'json',
         success: function (data) {
-            var datas =JSON.stringify(data);
+            var datas = JSON.stringify(data);
             $("#id").val(data.id);
             $("#erprixachat").val(data.prixAchat);
             $("#erprixvente").val(data.prixVente);
@@ -2948,17 +2978,18 @@ function save_produit_detail() {
     var erprixachat = $('#erprixachat').val();
     var erprixvente = $('#erprixvente').val();
     var erquantite = $('#erquantite').val();
-    var erdatePeremption = moment($('#erdatePeremption').val()).format("YYYY-MM-DD");
+    var erdatePeremption = moment($('#erdatePeremption').val()).format("YYYY-MM-DD HH:MM:SS");
+    //var erdatePeremption = $('#erdatePeremption').val();
     console.log(erdatePeremption);
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/enregistrer_enrayon.php',
         data: {
             id: id,
-            prixAchat:erprixachat,
-            prixVente:erprixvente,
-            datePeremption:erdatePeremption,
-            quantite:erquantite
+            prixAchat: erprixachat,
+            prixVente: erprixvente,
+            datePeremption: erdatePeremption,
+            quantite: erquantite
         },
         success: function (data) {
             alert(data);
@@ -2967,5 +2998,5 @@ function save_produit_detail() {
 
         }
     });
-  
+
 }

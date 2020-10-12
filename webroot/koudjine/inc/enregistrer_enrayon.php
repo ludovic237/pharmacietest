@@ -36,11 +36,12 @@ if ($prixAchat == 0) {
     }
 } else {
 
+    echo $datePeremption;
+    
     if ($manager->existsId($id)) {
         $manager->myupdate($datePeremption, $prixAchat, $prixVente, $quantite, $id);
         echo 'success';
     } else {
-        $prod = $manager->get($id);
         $manager->myupdate($datePeremption, $prixAchat, $prixVente, $quantite, $id);
         echo 'ok';
     }
