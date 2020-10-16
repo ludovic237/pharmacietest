@@ -14,10 +14,12 @@ global $pdo;
 $manager = new VenteManager($pdo);
 $managerCa = new CaisseManager($pdo);
 $managerFa = new FacturationManager($pdo);
-$managerFe = new FactureEspeceManager($pdo);
-$managerFe = new FactureElectroniqueManager($pdo);
+$managerFes = new FactureEspeceManager($pdo);
+$managerFel = new FactureElectroniqueManager($pdo);
 $managerEm = new EmployeManager($pdo);
 $managerUs = new UserManager($pdo);
+
+$espece;
 
 $caisse_id = $_POST['caisse_id'];
 $vente_id=$_POST['vente_id'];
@@ -47,7 +49,7 @@ if ($typePaiement == "Espèce"){
         'facturation_id' => $idGen,
         'montant' => $montant
     ));
-    $managerFe->add($espece);
+    $managerFes->add($espece);
     $vente = $manager->get($vente_id);
     $vente->setprixPercu($montant);
     $manager->update($vente);
@@ -66,12 +68,12 @@ if ($typePaiement == "Espèce"){
 
 } elseif ($typePaiement == "Electronique"){
 
-    $espece = new FactureElectronique(array(
+    $electronique = new FactureElectronique(array(
         'facturation_id' => $idGen,
         'numeroTelephone' => $telephone,
         'montant' => $montant
     ));
-    $managerFe->add($espece);
+    $managerFel->add($electronique);
     $vente = $manager->get($vente_id);
     $vente->setprixPercu($montant);
     $manager->update($vente);
