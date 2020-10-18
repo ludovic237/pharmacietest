@@ -51,7 +51,7 @@
                         <div class="panel-body panel-body-table">
 
                             <div class="table-responsive">
-                                <table id="tab_produit_detail" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                <table id="tab_produit_detail" style="display: block;max-height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
                                     <thead>
                                         <tr>
                                             <th width="800">Nom</th>
