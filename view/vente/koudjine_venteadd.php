@@ -34,23 +34,21 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
                 <label class="control-label" style="margin-right: 30px;width: 150px;"></label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <div>
 
-                        <div class="panel-body panel-body-table">
+                    <div class="panel-body panel-body-table" style="width: 100%;" >
 
-                            <div class="table-responsive">
-                                <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
-                                    <thead>
-                                        <tr>
-                                            <th width="800">Nom</th>
-                                            <th width="100">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tab_Brecherche">
+                        <div class="table-responsive">
+                            <table id="tab_Grecherche" style="display: block;max-height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 100%;">Nom</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tab_Brecherche">
 
-                                    </tbody>  
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
 
                     </div>
@@ -272,10 +270,10 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
         </div>
 
         <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
-            <a onclick="valider_vente('1', 'Comptant')" data="<?php echo $_SESSION['Users']->id; ?>" data1="<?php echo $_SESSION['Users']->identifiant; ?>"  id="comptant" class="btn btn-success" role="button" style="float: left; font-weight: bold;background-color: #66e17f;border-color: #66e17f;width: 50%;display: flex;justify-content: center;align-items: center;font-size: 18px;">Comptant</a>
+            <a onclick="valider_vente('1', 'Comptant')" data="<?php echo $_SESSION['Users']->id; ?>" data1="<?php echo $_SESSION['Users']->identifiant; ?>" id="comptant" class="btn btn-success" role="button" style="float: left; font-weight: bold;background-color: #66e17f;border-color: #66e17f;width: 50%;display: flex;justify-content: center;align-items: center;font-size: 18px;">Comptant</a>
             <div style="display: flex;flex-direction: column;width: 40%;">
-                <a onclick="valider_vente('2', 'Assurance')"  data1="Assurance" id="assurance" class="btn btn-primary" role="button" style="float: left; width: 100%;padding: 4px;">Assurance</a>
-                <a onclick="valider_vente('2', 'Crédit')"  id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 100%;padding: 4px;margin-top: 4px;">Crédit</a>
+                <a onclick="valider_vente('2', 'Assurance')" data1="Assurance" id="assurance" class="btn btn-primary" role="button" style="float: left; width: 100%;padding: 4px;">Assurance</a>
+                <a onclick="valider_vente('2', 'Crédit')" id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 100%;padding: 4px;margin-top: 4px;">Crédit</a>
             </div>
 
 
@@ -429,28 +427,28 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                 <div>
                                     <table class="table table-inverse table-responsive">
                                         <thead class="thead-inverse">
-                                        <tr>
-                                        <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="200">Libelle</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Prix U.</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Qte</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Total</th>
-                                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="50">Rd(%)</th>
-                                        </tr>
+                                            <tr>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="200">Libelle</th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Prix U.</th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Qte</th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="100">Total</th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;" width="50">Rd(%)</th>
+                                            </tr>
                                         </thead>
                                         <tbody id="tab_BfactureImprimer">
 
-                                        <tr>
-                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
-                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="montanttotal"></span> FCFA</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
-                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="remise"></span> FCFA</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
-                                            <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="netapayer"></span> FCFA</td>
-                                        </tr>
+                                            <tr>
+                                                <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Montant Total</td>
+                                                <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="montanttotal"></span> FCFA</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Remise</td>
+                                                <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="remise"></span> FCFA</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style=" background-color: white;color: black;font-weight: 400;text-align: end;" scope="row">Net à payer</td>
+                                                <td colspan="2" style=" background-color: white;color: black;font-weight: 400;text-align: end;"><span class="netapayer"></span> FCFA</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -505,8 +503,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
             </div>
             <div class="mb-footer">
                 <div class="pull-right">
-                    <a class="btn btn-success btn-lg" >Oui</a>
-                    <a class="btn btn-default btn-lg mb-control-close" >Non</a>
+                    <a class="btn btn-success btn-lg">Oui</a>
+                    <a class="btn btn-default btn-lg mb-control-close">Non</a>
                 </div>
             </div>
         </div>
