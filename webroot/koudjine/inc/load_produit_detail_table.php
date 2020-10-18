@@ -4,7 +4,7 @@ require_once('../Class/produit.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/vente.php');
 require_once('../Class/concerner.php');
-echo "start";
+
 $id;
 $vente;
 $produit;
@@ -32,9 +32,7 @@ $nbrVenteMois = 0;
 $nbrVenteTotal = 0;
 $nbrQteStock = 0;
 $nbrReduction = 0;
-
-
-echo "passe";
+$datas = [];
 if (isset($_POST['id']) || isset($_GET['id'])) {
 
 
@@ -46,33 +44,26 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
             $concerner =  $managerConcerner->getExistsVenteIdAndEn_rayonId($venteid, $enrayonid);
 
             foreach ($concerner as $k => $c) :
-                echo
-                    "<tr \">
-                        <td class='prix'>
-                            " . $c->vente_id(). "
-                        </td>
-                        <td class='prix'>
-                            " .
-                            $venteDate = $managerVente->getDateVente($c->vente_id())->dateVente()
-                             . "
-                        </td>
-                        <td class='prix'>
-                        " . $c->en_rayon_id(). "
-                        </td>
-                        <td class='prix'>
-                        " . $c->prixUnit(). "
-                        </td>
-                        <td class='prix'>
-                        " . $c->quantite(). "
-                        </td>
-                        <td class='prix'>
-                        " . $c->reduction(). "
-                        </td>
-                    </tr>";
+                $venteDate = $managerVente->getDateVente($c->vente_id())->dateVente();
+                $datas[] = array(
+                    'venteid' => "<p class='venteid'> " . $c->vente_id(). "</p>",
+                    'datevente' => "<p class='datevente'> " .  $venteDate. "</p>",
+                    'enrayon' => "<p class='enrayon'> " . $c->en_rayon_id() . "</p>",
+                    'prixunit' => "<p class='prixunit'> " . $c->prixUnit() . "</p>",
+                    'quantite' => "<p class='quantite'> " .$c->quantite() . "</p>",
+                    'reduction' => "<p class='reduction'> " . $c->reduction() . "</p>",
+                );
+                
             endforeach;
         endforeach;
     endforeach;
-
-    //$js_code = json_encode($concerner, JSON_HEX_TAG);
+    if ($datas == null) {
+        $donnees = array('data' => []);
+        echo json_encode($donnees);
+    }
+    else{
+        $donnees = array('data' => $datas);
+        echo json_encode($donnees);
+    }
 
 }

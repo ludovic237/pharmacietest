@@ -146,7 +146,7 @@ class SortieStockManager
 
         $q = $this->_db->query('SELECT * FROM sortie_stock WHERE supprimer = 0 AND id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new sortie_stock($donnees);
+        return new SortieStock($donnees);
 
     }
     public function getEn_rayon_id($info)
@@ -154,7 +154,7 @@ class SortieStockManager
 
         $q = $this->_db->query('SELECT * FROM sortie_stock WHERE supprimer = 0 AND en_rayon_id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new sortie_stock($donnees);
+        return new SortieStock($donnees);
 
     }
     public function getDetail_id($info)
@@ -162,7 +162,20 @@ class SortieStockManager
 
         $q = $this->_db->query('SELECT * FROM sortie_stock WHERE supprimer = 0 AND detail_id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new sortie_stock($donnees);
+        return new SortieStock($donnees);
+
+    }
+
+    public function getListId($info)
+    {
+        $stocks = array();
+        $q = $this->_db->prepare('SELECT * FROM sortie_stock WHERE supprimer = 0 AND en_rayon_id = '.$info);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $stocks[] = new SortieStock($donnees);
+        }
+        return $stocks;
 
     }
     public function getList()
@@ -190,5 +203,3 @@ class SortieStockManager
         $this->_db = $db;
     }
 }
-
-?>

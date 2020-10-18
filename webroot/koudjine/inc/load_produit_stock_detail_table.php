@@ -27,43 +27,35 @@ $enrayon = $managerEnRayon->getList($id);
 $produit = $managerProduit->get($id);
 $nom = $produit->nom();
 
+$datas = [];
 
-echo "passe";
 if (isset($_POST['id']) || isset($_GET['id'])) {
 
 
 
     foreach ($enrayon as $k => $e) :
         $enrayonid = $e->id();
-        echo
-            "<tr \">
-                        <td class='prix'>
-                            " . $nom . "
-                        </td>
-                        <td class='prix'>
-                        " . $e->fournisseur_id() . "
-                        </td>
-                        <td class='prix'>
-                        " . $e->dateLivraison() . "
-                        </td>
-                        <td class='prix'>
-                        " . $e->datePeremption() . "
-                        </td>
-                        <td class='prix'>
-                        " . $e->prixAchat() . "
-                        </td>
-                        <td class='prix'>
-                        " . $e->prixVente() . "
-                        </td>
-                        <td class='prix'>
-                        " . $e->quantiteRestante() . "
-                        </td>
-                        <td>
-                            <a class=\"btn btn-success btn-rounded btn-sm \"  onclick=\"show_modif_enrayon('" . $e->id() . "')\"><span class=\"\">Modifier</span></a>
-                        </td>
-                    </tr>";
+
+        $datas[] = array(
+            "DT_RowId"  => $e->id(),
+            'nom' => "<p class='nom'> " . $nom . "</p>",
+            'fournisseur_id' => "<p class='fournisseur_id'> " . $e->fournisseur_id() . "</p>",
+            'dateLivraison' => "<p class='dateLivraison'> " . $e->dateLivraison() . "</p>",
+            'datePeremption' => "<p class='datePeremption'> " . $e->datePeremption() . "</p>",
+            'prixAchat' => "<p class='prixAchat'> " . $e->prixAchat() . "</p>",
+            'prixVente' => "<p class='prixVente'> " . $e->prixVente() . "</p>",
+            'quantiteRestante' => "<p class='quantiteRestante'> " . $e->quantiteRestante() . "</p>",
+            'action' => " <a class=\"btn btn-success btn-rounded btn-sm \"  onclick=\"show_modif_enrayon('" . $e->id() . "')\"><span class=\"\">Modifier</span></a>",
+        );
     endforeach;
 
-    //$js_code = json_encode($concerner, JSON_HEX_TAG);
-
+    if ($datas == null) {
+        $donnees = array('data' => []);
+        echo json_encode($donnees);
+    }
+    else{
+        $donnees = array('data' => $datas);
+        echo json_encode($donnees);
+    }
 }
+

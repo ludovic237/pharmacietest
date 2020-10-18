@@ -2,7 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_detail_sortie.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_detail_sortie_table .php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_sortie_stock.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/CatalogueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CatalogueController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_produitdetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_produitdetail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/en_rayon.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/en_rayon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/sortie_sortie.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/sortie_sortie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/dashboard_info_today.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/dashboard_info_today.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_enrayon.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_enrayon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_commande_detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_commande_detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_commande_detail_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_commande_detail_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_detail_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_detail_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_sortie.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_sortie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_stock_detail_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_stock_detail_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/valider_facture.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/valider_facture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/demo_dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/demo_dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/functions.js" afterDir="false" />
     </list>
     <ignored path="Site.iws" />
@@ -93,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/view/catalogue/koudjine_produitdetail.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
-              <caret line="331" column="62" lean-forward="true" selection-start-line="331" selection-start-column="62" selection-end-line="331" selection-end-column="62" />
+              <caret line="390" column="62" lean-forward="true" selection-start-line="390" selection-start-column="62" selection-end-line="390" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -110,8 +128,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="2932" column="37" lean-forward="true" selection-start-line="2932" selection-start-column="37" selection-end-line="2932" selection-end-column="37" />
+            <state relative-caret-position="55">
+              <caret line="705" column="22" selection-start-line="705" selection-start-column="9" selection-end-line="705" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -120,7 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>charge</find>
       <find>charger_vente</find>
       <find>load_produit_d</find>
       <find>tab_GGBfactureImprimer</find>
@@ -150,6 +167,7 @@
       <find>c</find>
       <find>open_ra</find>
       <find>enregistrer_e</find>
+      <find>load_produit(</find>
     </findStrings>
     <replaceStrings>
       <replace>fournisseur_id</replace>
@@ -483,14 +501,7 @@
       <workItem from="1600848494697" duration="5909000" />
       <workItem from="1601398850437" duration="38482000" />
       <workItem from="1601972161208" duration="6112000" />
-      <workItem from="1602145517272" duration="47781000" />
-    </task>
-    <task id="LOCAL-00040" summary="merge">
-      <created>1600447868000</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1600447868001</updated>
+      <workItem from="1602145517272" duration="49617000" />
     </task>
     <task id="LOCAL-00041" summary="merge">
       <created>1600448004619</created>
@@ -828,17 +839,24 @@
       <option name="project" value="LOCAL" />
       <updated>1602293802978</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="merge">
+      <created>1603032726890</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1603032726892</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="848681000" />
+    <option name="totallyTimeSpent" value="850517000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30850202" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30850202" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -854,7 +872,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Changes" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3285968" />
-      <window_info anchor="bottom" id="Version Control" order="9" visible="true" weight="0.29307282" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" visible="true" weight="0.29307282" />
       <window_info anchor="bottom" id="Application Servers" order="10" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="11" weight="0.32852563" />
       <window_info anchor="bottom" id="Terminal" order="12" />
@@ -1464,14 +1482,14 @@
     <entry file="file://$PROJECT_DIR$/view/catalogue/koudjine_produitdetail.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
-          <caret line="331" column="62" lean-forward="true" selection-start-line="331" selection-start-column="62" selection-end-line="331" selection-end-column="62" />
+          <caret line="390" column="62" lean-forward="true" selection-start-line="390" selection-start-column="62" selection-end-line="390" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="2932" column="37" lean-forward="true" selection-start-line="2932" selection-start-column="37" selection-end-line="2932" selection-end-column="37" />
+        <state relative-caret-position="55">
+          <caret line="705" column="22" selection-start-line="705" selection-start-column="9" selection-end-line="705" selection-end-column="22" />
         </state>
       </provider>
     </entry>

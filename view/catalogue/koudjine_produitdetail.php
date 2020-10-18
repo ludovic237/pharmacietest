@@ -17,6 +17,7 @@
         $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script>
                                         window.onload = function () {
@@ -73,7 +74,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" id="detailTab">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-body panel-body-table">
@@ -83,6 +84,7 @@
                             <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Vente</a></li>
                             <li class=""><a href="#tab2" data-toggle="tab" aria-expanded="false">Commande</a></li>
                             <li class=""><a href="#tab3" data-toggle="tab" aria-expanded="false">Gestion de stock</a></li>
+                            <li class=""><a href="#tab4" data-toggle="tab" aria-expanded="false">Sortie</a></li>
 
                         </ul>
                         <div class="tab-content">
@@ -91,12 +93,12 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_detail_a">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_detail_a" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Nom</th>
@@ -106,7 +108,7 @@
                                                                     <th width="100">Reduction</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody id="tab_produit_detail_a" data="<?php if (isset($id)) echo $id; ?>">
+                                                            <tbody >
 
                                                             </tbody>
                                                         </table>
@@ -120,7 +122,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_detail_b">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
@@ -130,7 +132,7 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_detail_b" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Vente id</th>
@@ -141,7 +143,7 @@
                                                                     <th width="100">Reduction</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody id="tab_produit_detail_b">
+                                                            <tbody>
 
                                                             </tbody>
                                                         </table>
@@ -159,12 +161,12 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_commande_detail_a">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_commande_detail_a" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Nom</th>
@@ -187,7 +189,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_commande_detail_b">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
@@ -197,7 +199,7 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_commande_detail_b" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Produit id</th>
@@ -242,7 +244,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_stock_detail_b">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
@@ -252,7 +254,7 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_stock_detail_b" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Nom</th>
@@ -266,6 +268,63 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="tab_produit_stock_detail_b">
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane panel-body" id="tab4">
+                                <div class="block">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default" id="produit_stock_detail_sortie_a">
+
+                                                <div class="panel-body panel-body-table">
+
+                                                    <div class="panel-body">
+                                                        <h1>Stock total :
+                                                            <span id="tab_produit_stock_detail_sortie_a">
+                                                            </span>
+                                                        </h1>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default" >
+
+                                                <div class="panel-body panel-body-table">
+
+                                                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
+                                                        <h1 style="color:#fff">
+                                                            Sortie
+                                                        </h1>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table id="produit_stock_detail_sortie_b" class="table datatable table-bordered table-striped table-actions">
+                                                            <thead>
+                                                                <tr>
+                                                                    <!-- <th width="200">Nom</th> -->
+                                                                    <th width="100">Date de sortie</th>
+                                                                    <th width="100">Quantite</th>
+                                                                    <th width="200">Id en rayon</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
 
                                                             </tbody>
                                                         </table>
@@ -294,7 +353,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Detail</h4>
+                <h4 class="modal-title">Detail</h4> <span id="id"></span>
             </div>
             <div class="modal-body">
                 <div class="row">
