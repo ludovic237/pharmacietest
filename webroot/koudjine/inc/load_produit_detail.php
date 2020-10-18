@@ -33,48 +33,38 @@ $nbrVenteTotal = 0;
 $nbrQteStock = 0;
 $nbrReduction = 0;
 
-
+$datas;
 // echo "passe";
 if (isset($_POST['id']) || isset($_GET['id'])) {
 
 
     foreach ($vente as $k => $v) :
         $venteid = $v->id();
-       // echo $venteid . "-";
+        // echo $venteid . "-";
         foreach ($enrayon as $k => $e) :
             $enrayonid = $e->id();
-            $concerner =  $managerConcerner->getExistsVenteIdAndEn_rayonId($venteid,$enrayonid);
+            $concerner =  $managerConcerner->getExistsVenteIdAndEn_rayonId($venteid, $enrayonid);
             foreach ($concerner as $k => $c) :
-               $nbrVenteMois = $nbrVenteMois + $c->quantite();
+                $nbrVenteMois = $nbrVenteMois + $c->quantite();
             endforeach;
         endforeach;
     endforeach;
 
     foreach ($enrayon as $k => $e) :
         $enrayonid = $e->id();
-       // echo $enrayonid . "-";
+        // echo $enrayonid . "-";
         $concerner =  $managerConcerner->getExistsEn_rayonId($enrayonid);
         foreach ($concerner as $k => $c) :
             $nbrVenteTotal = $nbrVenteTotal + $c->quantite();
         endforeach;
     endforeach;
-    //$js_code = json_encode($concerner, JSON_HEX_TAG);
-    echo
-        "<tr \">
-        <td class='prix'>
-            " . $nom . "
-        </td>
-        <td class='prix'>
-           " . $nbrVenteMois . "
-        </td>
-        <td class='prix'>
-           " . $nbrVenteTotal . "
-        </td>
-        <td class='prix'>
-           " . $nbrQteStock . "
-        </td>
-        <td class='prix'>
-        " . $nbrReduction . "
-        </td>
-    </tr>";
+    $datas[] = array(
+        'nom' => "<span ><strong class='nom'>" . $nom . "</strong></span>",
+        'nbrVenteMois' => "<p class='nbrVenteMois'> " . $nbrVenteMois . "</p>",
+        'nbrVenteTotal' => "<p class='nbrVenteTotal'> " . $nbrVenteTotal . "</p>",
+        'nbrQteStock' => "<p class='nbrQteStock'> " . $nbrQteStock . "</p>",
+        'nbrReduction' => "<p class='nbrReduction'> " . $nbrReduction . "</p>"
+    );
+    $donnees = array('data' => $datas);
+    echo json_encode($donnees);
 }

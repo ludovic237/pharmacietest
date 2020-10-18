@@ -36,6 +36,7 @@ $nbrCommandeTotal = 0;
 $nbrQteStock = 0;
 $nbrReduction = 0;
 
+$datas = [];
 
 // echo "passe";
 if (isset($_POST['id']) || isset($_GET['id'])) {
@@ -54,19 +55,13 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
         $nbrCommandeTotal = $nbrCommandeTotal + $c->qtiteCmd();
     endforeach;
     //$js_code = json_encode($concerner, JSON_HEX_TAG);
-    echo
-        "<tr \">
-        <td class='prix'>
-            " . $nom . "
-        </td>
-        <td class='prix'>
-           " . $nbrCommandeMois . "
-        </td>
-        <td class='prix'>
-           " . $nbrCommandeTotal . "
-        </td>
-        <td class='prix'>
-           " . $nbrQteStock . "
-        </td>
-    </tr>";
+    $datas[] = array(
+        'nom' => "<p class='nom'> " . $nom . "</p>",
+        'nbrCommandeMois' => "<p class='nbrCommandeMois'> " . $nbrCommandeMois . "</p>",
+        'nbrCommandeTotal' => "<p class='nbrCommandeTotal'> " . $nbrCommandeTotal . "</p>",
+        'nbrQteStock' => "<p class='nbrQteStock'> " . $nbrQteStock . "</p>",
+    );
+   
+    $donnees = array('data' => $datas);
+    echo json_encode($donnees);
 }

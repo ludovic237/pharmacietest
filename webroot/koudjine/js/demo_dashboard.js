@@ -9,7 +9,7 @@ $(document).ready(function() {
         },
         dataType: 'json',
         success: function (data) {
-            var datas = JSON.stringify(data)
+            var datas = JSON.stringify(data) 
             console.log(data);
             $('#example').dataTable({
                 //dom: "Bfrtip",

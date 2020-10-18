@@ -22,23 +22,24 @@ $managerEnRayon = new En_rayonManager($pdo);
 
 if (isset($_POST['id']))
     $id = $_POST['id'];
-
+$datas = [];
 $enrayon = $managerEnRayon->getList($id);
 foreach ($enrayon as $key => $value) :
     $sortie_stock = $managerSortie->getListId($value->id());
     foreach ($sortie_stock as $key => $e) :
-        echo
-            "<tr >
-                       
-                        <td class='prix'>
-                        " . $e->dateSortie() . "
-                        </td>
-                        <td class='prix'>
-                        " . $e->quantite() . "
-                        </td>
-                        <td class='prix'>
-                        " . $e->en_rayon_id() . "
-                        </td>
-                    </tr>";
+        $datas[] = array(
+            'dateSortie' => "<p class='dateSortie'> " . $e->dateSortie() . "</p>",
+            'quantite' => "<p class='quantite'> " . $e->quantite() . "</p>",
+            'en_rayon_id' => "<p class='en_rayon_id'> " . $e->en_rayon_id() . "</p>",
+        );
+
     endforeach;
 endforeach;
+
+if ($datas == null) {
+    $donnees = array('data' => []);
+    echo json_encode($donnees);
+} else {
+    $donnees = array('data' => $datas);
+    echo json_encode($donnees);
+}

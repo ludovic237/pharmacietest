@@ -74,7 +74,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" id="detailTab">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-body panel-body-table">
@@ -93,12 +93,12 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_detail_a">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_detail_a" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Nom</th>
@@ -108,7 +108,7 @@
                                                                     <th width="100">Reduction</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody id="tab_produit_detail_a" data="<?php if (isset($id)) echo $id; ?>">
+                                                            <tbody >
 
                                                             </tbody>
                                                         </table>
@@ -122,7 +122,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_detail_b">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
@@ -132,7 +132,7 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_detail_b" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Vente id</th>
@@ -143,7 +143,7 @@
                                                                     <th width="100">Reduction</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody id="tab_produit_detail_b">
+                                                            <tbody>
 
                                                             </tbody>
                                                         </table>
@@ -161,12 +161,12 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_commande_detail_a">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_commande_detail_a" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Nom</th>
@@ -189,7 +189,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_commande_detail_b">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
@@ -199,7 +199,7 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_commande_detail_b" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Produit id</th>
@@ -244,7 +244,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_stock_detail_b">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
@@ -254,7 +254,7 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_stock_detail_b" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="100">Nom</th>
@@ -304,7 +304,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" id="produit_stock_detail_sortie_b">
+                                            <div class="panel panel-default" >
 
                                                 <div class="panel-body panel-body-table">
 
@@ -314,7 +314,7 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_stock_detail_sortie_b" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
                                                                     <!-- <th width="200">Nom</th> -->
@@ -324,7 +324,7 @@
 
                                                                 </tr>
                                                             </thead>
-                                                            <tbody id="tab_produit_stock_detail_sortie_b">
+                                                            <tbody>
 
                                                             </tbody>
                                                         </table>

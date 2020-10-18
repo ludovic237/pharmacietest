@@ -31,32 +31,32 @@ $produit = $managerProduit->get($id);
 $commande = $managerCommande->CommandeActuMois();
 $nom = $produit->nom();
 
-
-echo "passe";
+$datas = [];
 if (isset($_POST['id']) || isset($_GET['id'])) {
 
     foreach ($commande as $k => $v) :
         $commandeid = $v->id();
         $pdtcmd =  $managerProduitCommande->getExistsCmdIdAndProduitId($commandeid, $id);
         foreach ($pdtcmd as $k => $c) :
-            echo
-                    "<tr \">
-                        <td class='prix'>
-                            " . $c->produit_id(). "
-                        </td>
-                        <td class='prix'>
-                        " . $c->commande_id(). "
-                        </td>
-                        <td class='prix'>
-                        " . $c->prixPublic(). "
-                        </td>
-                        <td class='prix'>
-                        " . $c->qtiteCmd(). "
-                        </td>
-                    </tr>";
+            $datas[] = array(
+                'produit_id' => "<p class='produit_id'> " . $c->produit_id() . "</p>",
+                'commande_id' => "<p class='commande_id'> " . $c->commande_id() . "</p>",
+                'prixPublic' => "<p class='prixPublic'> " . $c->prixPublic() . "</p>",
+                'qtiteCmd' => "<p class='qtiteCmd'> " . $c->qtiteCmd() . "</p>",
+            );
         endforeach;
     endforeach;
 
+   
+    if ($datas == null) {
+        $donnees = array('data' => []);
+        echo json_encode($donnees);
+    }
+    else{
+        $donnees = array('data' => $datas);
+        echo json_encode($donnees);
+    }
+    
     //$js_code = json_encode($concerner, JSON_HEX_TAG);
 
 }

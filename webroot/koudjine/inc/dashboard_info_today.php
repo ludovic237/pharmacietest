@@ -81,7 +81,7 @@ foreach ($vente as $k => $v) :
     endforeach;
 
 endforeach;
-
-$donnees = array('credit' => $credit,'comptant' => $comptant,'assurance' => $assurance,'beneficeTotal' => ($totalEntee-$totalSortie),'venteTotal' => $venteTotalRange, 'quantiteTotal' => $quantiteTotalRange, 'med' => $med);
-//$donnees = array('data' => $med);
+ 
+//$donnees = array('credit' => $credit,'comptant' => $comptant,'assurance' => $assurance,'beneficeTotal' => ($totalEntee-$totalSortie),'venteTotal' => $venteTotalRange, 'quantiteTotal' => $quantiteTotalRange, 'med' => $med);
+$donnees = array('data' => $med);
 echo json_encode($donnees);
