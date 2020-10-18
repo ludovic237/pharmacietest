@@ -2927,10 +2927,10 @@ function show_modif_enrayon(id) {
         dataType: 'json',
         success: function (data) {
             var datas =JSON.stringify(data);
-            $("#erprixachat").val(datas.prixAchat);
-            $("#erprixvente").val(datas.prixVente);
-            $("#erdatePeremption").val(datas.datePeremption);
-            $("#erquantite").val(datas.quantite);
+            $("#erprixachat").val(data.prixAchat);
+            $("#erprixvente").val(data.prixVente);
+            $("#erdatePeremption").val(data.datePeremption);
+            $("#erquantite").val(data.quantite);
         }
     });
 
