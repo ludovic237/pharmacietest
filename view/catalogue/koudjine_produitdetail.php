@@ -1,7 +1,7 @@
 <!-- <?php
 
-        $title_for_layout = ' Admin -' . 'Catalogue';
-        $page_for_layout = 'Catalogue';
+        $title_for_layout = ' ALSAS -' . 'Catalogue';
+        $page_for_layout = 'Détail produit';
         $action_for_layout = 'Ajouter';
         if (isset($id)) {
             $add_script = '<script>load_produit_detail(' . $id . ')</script>';
@@ -46,25 +46,21 @@
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
                 <label class="control-label" style="margin-right: 30px;width: 150px;"></label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <div>
+                    <div class="panel-body panel-body-table" style="width: 100%;">
 
-                        <div class="panel-body panel-body-table">
+                        <div class="table-responsive">
+                            <table id="tab_produit_detail" style="display: block;max-height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 100%;">Nom</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tab_produit_detail_data">
 
-                            <div class="table-responsive">
-                                <table id="tab_produit_detail" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
-                                    <thead>
-                                        <tr>
-                                            <th width="800">Nom</th>
-                                            <th width="100">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tab_produit_detail_data">
-
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
-
                     </div>
                 </div>
                 <div style="width: 150px;">
@@ -93,7 +89,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" >
+                                            <div class="panel panel-default">
 
                                                 <div class="panel-body panel-body-table">
 
@@ -108,7 +104,7 @@
                                                                     <th width="100">Reduction</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody >
+                                                            <tbody>
 
                                                             </tbody>
                                                         </table>
@@ -122,7 +118,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" >
+                                            <div class="panel panel-default">
 
                                                 <div class="panel-body panel-body-table">
 
@@ -161,7 +157,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" >
+                                            <div class="panel panel-default">
 
                                                 <div class="panel-body panel-body-table">
 
@@ -189,7 +185,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" >
+                                            <div class="panel panel-default">
 
                                                 <div class="panel-body panel-body-table">
 
@@ -244,7 +240,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" >
+                                            <div class="panel panel-default">
 
                                                 <div class="panel-body panel-body-table">
 
@@ -304,7 +300,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="panel panel-default" >
+                                            <div class="panel panel-default">
 
                                                 <div class="panel-body panel-body-table">
 
