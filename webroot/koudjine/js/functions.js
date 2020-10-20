@@ -493,7 +493,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                 url: "/pharmacietest/koudjine/inc/resultdetail.php",
                 data: data,
                 success: function (server_responce) {
-                    
+
                     $("#tab_produit_detail").show();
                     $("#tab_produit_detail_data").html(server_responce).show();
                     ////alert(server_responce);
@@ -1057,9 +1057,12 @@ function load_produit_detail(id, nomp) {
                     dataType: 'json',
                 },
                 columns: [
-                    { data: "dateSortie" },
+                    { data: "nom" },
                     { data: "quantite" },
-                    { data: "en_rayon_id" }
+                    { data: "nomproduitdetail" },
+                    { data: "forme" },
+                    { data: "dateSortie" },
+                    { data: "operation" }
                 ]
             });
         }
@@ -1075,9 +1078,12 @@ function load_produit_detail(id, nomp) {
                     dataType: 'json',
                 },
                 columns: [
-                    { data: "dateSortie" },
+                    { data: "nom" },
                     { data: "quantite" },
-                    { data: "en_rayon_id" }
+                    { data: "nomproduitdetail" },
+                    { data: "forme" },
+                    { data: "dateSortie" },
+                    { data: "operation" }
                 ]
             });
         }
