@@ -36,9 +36,9 @@ $(document).ready(function() {
     })
 } );
 $(function () {
-    var assurance = 1;
-    var credit = 1;
-    var comptant = 1;
+    var assurance ;
+    var credit ;
+    var comptant ;
     /* reportrange */
     if ($("#reportrange").length > 0) {
         $("#reportrange").daterangepicker({
@@ -76,7 +76,7 @@ $(function () {
                     assurance = server_responce.assurance.total;
                     comptant = server_responce.comptant.total;
                     credit = server_responce.credit.total;
-
+                    $("#dashboard-donut-1").empty();
                     Morris.Donut({
                         element: 'dashboard-donut-1',
                         data: [
@@ -142,16 +142,16 @@ $(function () {
     /!* END Rickshaw dashboard chart *!/*/
 
     /* Donut dashboard chart */
-    Morris.Donut({
-        element: 'dashboard-donut-1',
-        data: [
-            { label: "Assurance", value: assurance },
-            { label: "credit", value: credit },
-            { label: "Comptant", value: comptant }
-        ],
-        colors: ['#33414E', '#3FBAE4', '#FEA223'],
-        resize: true
-    });
+    // Morris.Donut({
+    //     element: 'dashboard-donut-1',
+    //     data: [
+    //         { label: "Assurance", value: assurance },
+    //         { label: "credit", value: credit },
+    //         { label: "Comptant", value: comptant }
+    //     ],
+    //     colors: ['#33414E', '#3FBAE4', '#FEA223'],
+    //     resize: true
+    // });
     /* END Donut dashboard chart */
 
     /!* Bar dashboard chart *!/

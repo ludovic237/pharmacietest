@@ -54,7 +54,7 @@ $vente = $managerVente->getDateVenteRange($start, $end);
 $med = [];
 $i = 0;
 $concernerTest =  $managerConcerner->getListSameRayonId2();
-foreach ($concernerTest as $k => $c) :
+foreach ($concernerTest as $k => $c) : 
     $rayoninfo = $managerEnRayon->get($c->en_rayon_id());
     $idprod = $rayoninfo->produit_id();
     $produit = $managerProduit->get($idprod);
@@ -82,6 +82,6 @@ foreach ($vente as $k => $v) :
 
 endforeach;
  
-//$donnees = array('credit' => $credit,'comptant' => $comptant,'assurance' => $assurance,'beneficeTotal' => ($totalEntee-$totalSortie),'venteTotal' => $venteTotalRange, 'quantiteTotal' => $quantiteTotalRange, 'med' => $med);
-$donnees = array('data' => $med);
+$donnees = array('credit' => $credit,'comptant' => $comptant,'assurance' => $assurance,'beneficeTotal' => ($totalEntee-$totalSortie),'venteTotal' => $venteTotalRange, 'quantiteTotal' => $quantiteTotalRange, 'med' => $med);
+//$donnees = array('data' => $med);
 echo json_encode($donnees);
