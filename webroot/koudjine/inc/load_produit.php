@@ -19,7 +19,7 @@ if (isset($_POST['id']))
 $enrayon = $managerEnRayon->getList($id);
 $produit = $managerProduit->get($id);
 
-$datas;
+$datas = [];
 
 
 if (isset($_POST['id']) || isset($_GET['id'])) {
@@ -109,6 +109,12 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
         );
     endforeach;
 }
-$donnees = array('data' => $datas);
 
-echo json_encode($donnees);
+if ($datas == null) {
+    $donnees = array('data' => []);
+    echo json_encode($donnees);
+}
+else{
+    $donnees = array('data' => $datas);
+    echo json_encode($donnees);
+}
