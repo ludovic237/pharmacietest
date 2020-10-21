@@ -313,10 +313,12 @@
                                                         <table id="produit_stock_detail_sortie_b" class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                                 <tr>
-                                                                    <!-- <th width="200">Nom</th> -->
-                                                                    <th width="100">Date de sortie</th>
-                                                                    <th width="100">Quantite</th>
-                                                                    <th width="200">Id en rayon</th>
+                                                                    <th width="200">Nom</th>
+                                                                    <th width="100">Quantité</th>
+                                                                    <th width="100">Nom produit détail</th>
+                                                                    <th width="100">Forme</th>
+                                                                    <th width="100">Date Opération</th>
+                                                                    <th width="100">Opération</th>
 
                                                                 </tr>
                                                             </thead>

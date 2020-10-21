@@ -13,7 +13,8 @@ $managerEn = new En_rayonManager($pdo);
 $managerCo = new ConcernerManager($pdo);
 $managerPr = new ProduitManager($pdo);
 
-$ide = substr($_POST['ide'], 1);
+//$ide = substr($_POST['ide'], 1);
+$ide = $_POST['ide'];
 $idv=$_POST['idv'];
 $qte=$_POST['qte'];
 $reduction=$_POST['reduction'];

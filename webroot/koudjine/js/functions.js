@@ -1057,9 +1057,12 @@ function load_produit_detail(id, nomp) {
                     dataType: 'json',
                 },
                 columns: [
-                    { data: "dateSortie" },
+                    { data: "nom" },
                     { data: "quantite" },
-                    { data: "en_rayon_id" }
+                    { data: "nomproduitdetail" },
+                    { data: "forme" },
+                    { data: "dateSortie" },
+                    { data: "operation" }
                 ]
             });
         }
@@ -1075,9 +1078,12 @@ function load_produit_detail(id, nomp) {
                     dataType: 'json',
                 },
                 columns: [
-                    { data: "dateSortie" },
+                    { data: "nom" },
                     { data: "quantite" },
-                    { data: "en_rayon_id" }
+                    { data: "nomproduitdetail" },
+                    { data: "forme" },
+                    { data: "dateSortie" },
+                    { data: "operation" }
                 ]
             });
         }
@@ -1537,7 +1543,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                 caisse_id: parseInt(caisse_id)
             },
             success: function (server_responce) {
-                alert(server_responce);
+                //alert(server_responce);
                 $('#tab_vente_caisse  tr').each(function (i) {
                     count++;
                 });
