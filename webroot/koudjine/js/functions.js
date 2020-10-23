@@ -3204,6 +3204,10 @@ function show_modif_enrayon(id) {
     });
 
 }
+function show_modif_sortie(id) {
+    var link = '/pharmacietest/bouwou/comptabilite/sortie/' + id;
+    window.location.href = link;
+}
 
 
 function save_produit_detail() {

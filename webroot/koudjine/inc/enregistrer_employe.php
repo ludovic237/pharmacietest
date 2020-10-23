@@ -22,7 +22,7 @@ if (isset($_POST['id'])){
     //echo $id;
     //$prod = new Departement();
     if ($manager->existsidentifiant($identifiant)) {
-        $prod = $manager->get($id);
+        $prod = $manager->getIdentifiant($identifiant);
         //echo "Ce departement existe";
         if($prod->id() == $id){
             $prod->setidentifiant($identifiant);
@@ -37,7 +37,7 @@ if (isset($_POST['id'])){
         }
         else{
 
-            echo 'Ce password de produit existe déjà1';
+            echo 'Cet identifiant existe déjà1';
 
         }
     }
@@ -106,7 +106,7 @@ else{
         $manager->add($employe);
         echo 'ok';
     }
-    else echo 'Ce password de produit existe déjà2';
+    else echo 'Cet identifiant existe déjà2';
 
 
 

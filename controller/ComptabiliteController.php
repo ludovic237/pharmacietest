@@ -98,7 +98,7 @@ class ComptabiliteController extends Controller
                 ));
                 //print_r($d['caisse']);
                 $d['employe'] = $this->Comptabilite->findFirst(array(
-                    'fields' => 'user.nom as nom, user.prenom as prenom',
+                    'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
                     'table' => 'employe, user',
                     'conditions' => array('employe.id' => $d['caisse']->user_id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
                 ));

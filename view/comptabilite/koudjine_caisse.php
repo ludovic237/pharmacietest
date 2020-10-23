@@ -32,7 +32,7 @@
      ?> -->
 
 
-
+<?php if($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users']->type == 'Administrateur' || $_SESSION['Users']->type == 'Gestionnaire'){ ?>
 
 <!-- START RESPONSIVE TABLES -->
 
@@ -412,6 +412,7 @@
 <?php } ?>
 
 <!-- END RESPONSIVE TABLES -->
+<?php } ?>
 
 <!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreviewCaisse" tabindex="-1" role="dialog" aria-hidden="false">
