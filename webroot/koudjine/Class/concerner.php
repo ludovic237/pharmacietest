@@ -237,7 +237,7 @@ class ConcernerManager
     public function getListConverneProduit()
     {
         $concerners = array();
-        $q = $this->_db->prepare('SELECT *, concerner.quantite AS qte FROM concerner,en_rayon,produit WHERE en_rayon.id = concerner.en_rayon_id && en_rayon.produit_id = produit.id GROUP BY concerner.id HAVING concerner.quantite>0 ORDER BY concerner.quantite DESC LIMIT 10  ');
+        $q = $this->_db->prepare('SELECT *, concerner.quantite AS qte FROM concerner,en_rayon,produit WHERE en_rayon.id = concerner.en_rayon_id && en_rayon.produit_id = produit.id GROUP BY concerner.id HAVING concerner.quantite>0 ORDER BY concerner.quantite DESC  ');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $concerners[] = $donnees;

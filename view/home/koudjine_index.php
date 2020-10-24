@@ -308,73 +308,21 @@ $script_for_layout = '
                 </ul>
             </div>
             <div class="panel-body panel-body-table">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table id="tableProduitVendu" class="table datatable table-bordered table-striped table-actions">
+                            <thead>
+                                <tr>
+                                    <th width="50%">Medicament</th>
+                                    <th width="20%">Quantité vendu</th>
+                                    <th width="30%">Quantité restante</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <div class="table-responsive">
-                    <table id="tableProduitVendu" class="table datatable table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th width="50%">Medicament</th>
-                                <th width="20%">Quantité vendu</th>
-                                <th width="30%">Quantité restante</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- <tr>
-                        <td><strong>Atlant</strong></td>
-                        <td><span class="label label-danger">Developing</span></td>
-                        <td>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">85%</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Gemini</strong></td>
-                        <td><span class="label label-warning">Updating</span></td>
-                        <td>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">40%</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Taurus</strong></td>
-                        <td><span class="label label-warning">Updating</span></td>
-                        <td>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 72%;">72%</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Leo</strong></td>
-                        <td><span class="label label-success">Support</span></td>
-                        <td>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Virgo</strong></td>
-                        <td><span class="label label-success">Support</span></td>
-                        <td>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Aquarius</strong></td>
-                        <td><span class="label label-success">Support</span></td>
-                        <td>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>
-                            </div>
-                        </td>
-                    </tr> -->
-                        </tbody>
-                    </table>
                 </div>
 
             </div>
@@ -404,21 +352,21 @@ $script_for_layout = '
                 </ul>
             </div>
             <div class="panel-body panel-body-table">
-
-                <div class="table-responsive">
-                    <table id="tableEmployeVendu" class="table datatable table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th width="50%">Employé</th>
-                                <th width="20%">Quantité vendu</th>
-                                <th width="30%">Statut</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table id="tableEmployeVendu" class="table datatable table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th width="50%">Employé</th>
+                                    <th width="20%">Quantité vendu</th>
+                                    <th width="30%">Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
             </div>
         </div>
         <!-- END PROJECTS BLOCK -->
