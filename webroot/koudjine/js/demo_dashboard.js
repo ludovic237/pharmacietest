@@ -1,39 +1,89 @@
 $(document).ready(function() {
     var datas;
+    var startDate = moment().subtract('days', 29);
+    var endDate = moment();
+    var a_ = startDate.format("YYYY-MM-DD HH:mm:ss");
+    var b_ = endDate.format("YYYY-MM-DD HH:mm:ss");
+    console.log(a_ + ' - ' + b_);
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/dashboard_info_today.php',
         data: {
-            start: '2020-09-22 18:27:08',
-            end: '2019-02-22 18:27:08'
+            start: a_,
+            end: b_
         },
         dataType: 'json',
-        success: function (data) {
-            var datas = JSON.stringify(data) 
-            console.log(data);
-            $('#example').dataTable({
-                //dom: "Bfrtip",
-                //"processing": true,
-                //"serverSide": true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/dashboard_info_today.php',
-                    data: {
-                        start: '2019-02-22 18:27:08',
-                        end: '2020-09-22 18:27:08'
-                    },
-                    dataType: 'json',
-                },
-                columns: [
-                    { data: "nom" },
-                    { data: "quantiteTotalSameRayonId" }
-                ]
+        success: function (server_responce) {
+            console.log(server_responce);
+            console.log(server_responce.con);
+            assurance = server_responce.assurance.total;
+            comptant = server_responce.comptant.total;
+            credit = server_responce.credit.total;
+            if ($.fn.dataTable.isDataTable('#tableProduitVendu')) {
+                $('#tableProduitVendu').dataTable({
+                    destroy: true,
+                    order:[[1,"desc"]],
+                    data:  server_responce.con,
+                    columns: [
+                        { data: 'nom' },
+                        { data: 'qte' },
+                        { data: 'quantiteRestante' },
+                    ]
+                });
+                $('#tableEmployeVendu').dataTable({
+                    order:[[1,"desc"]],
+                    destroy: true,
+                    data:  server_responce.empl,
+                    columns: [
+                        { data: 'identifiant' },
+                        { data: 'totalqte' },
+                        { data: 'type' },
+                    ]
+                });
+    
+            }
+            else {
+                $('#tableProduitVendu').dataTable({
+                    destroy: true,
+                    order:[[1,"desc"]],
+                    data:  server_responce.con,
+                    columns: [
+                        { con: 'nom' },
+                        { con: 'qte' },
+                        { con: 'type' },
+                    ]
+                });
+                $('#tableEmployeVendu').dataTable({
+                    order:[[1,"desc"]],
+                    destroy: true,
+                    data:  server_responce.empl,
+                    columns: [
+                        { data: 'identifiant' },
+                        { data: 'totalqte' },
+                        { data: 'quantiteRestante' },
+                    ]
+                });
+            };
+            $("#dashboard-donut-1").empty();
+            Morris.Donut({
+                element: 'dashboard-donut-1',
+                data: [
+                    { label: "Assurance", value: assurance },
+                    { label: "credit", value: credit },
+                    { label: "Comptant", value: comptant }
+                ],
+                colors: ['#33414E', '#3FBAE4', '#FEA223'],
+                resize: true
             });
 
+            $('#nbrVente').html(server_responce.venteTotal).show();
+            $('#nbrProduit').html(server_responce.quantiteTotal).show();
+            $('#beneficeTotal').html(server_responce.beneficeTotal).show();
+            $('#beneficeTotalRange').html(server_responce.beneficeTotalRange).show();;
         }
 
 
-    })
+    });
 } );
 $(function () {
     var assurance ;
@@ -72,10 +122,56 @@ $(function () {
                 dataType: 'json',
                 success: function (server_responce) {
                     console.log(server_responce);
-                    console.log(server_responce.comptant.total);
+                    console.log(server_responce.con);
                     assurance = server_responce.assurance.total;
                     comptant = server_responce.comptant.total;
                     credit = server_responce.credit.total;
+                    if ($.fn.dataTable.isDataTable('#tableProduitVendu')) {
+                        $('#tableProduitVendu').dataTable({
+                            destroy: true,
+                            order:[[1,"desc"]],
+                            data:  server_responce.con,
+                            columns: [
+                                { data: 'nom' },
+                                { data: 'qte' },
+                                { data: 'quantiteRestante' },
+                            ]
+                        });
+                        $('#tableEmployeVendu').dataTable({
+                            order:[[1,"desc"]],
+                            destroy: true,
+                            data:  server_responce.empl,
+                            columns: [
+                                { data: 'identifiant' },
+                                { data: 'totalqte' },
+                                { data: 'type' },
+                            ]
+                        });
+            
+                    }
+                    else {
+                        $('#tableProduitVendu').dataTable({
+                            destroy: true,
+                            order:[[1,"desc"]],
+                            data:  server_responce.con,
+                            columns: [
+                                { data: 'nom' },
+                                { data: 'qte' },
+                                { data: 'quantiteRestante' },
+                            ]
+                        });
+                        $('#tableEmployeVendu').dataTable({
+                            order:[[1,"desc"]],
+                            destroy: true,
+                            data:  server_responce.empl,
+                            columns: [
+                                { data: 'identifiant' },
+                                { data: 'totalqte' },
+                                { data: 'type' },
+                            ]
+                        });
+            
+                    }
                     $("#dashboard-donut-1").empty();
                     Morris.Donut({
                         element: 'dashboard-donut-1',
@@ -90,7 +186,8 @@ $(function () {
 
                     $('#nbrVente').html(server_responce.venteTotal).show();
                     $('#nbrProduit').html(server_responce.quantiteTotal).show();
-                    $('#beneficeTotal').html(server_responce.beneficeTotal).show();;
+                    $('#beneficeTotal').html(server_responce.beneficeTotal).show();
+                    $('#beneficeTotalRange').html(server_responce.beneficeTotalRange).show();
                 }
 
 
@@ -164,7 +261,14 @@ $(function () {
             { y: 'Oct 13', a: 82, b: 34 },
             { y: 'Oct 14', a: 86, b: 39 },
             { y: 'Oct 15', a: 94, b: 40 },
-            { y: 'Oct 16', a: 96, b: 41 }
+            { y: 'Oct 16', a: 96, b: 41 },
+            { y: 'Oct 17', a: 75, b: 35 },
+            { y: 'Oct 18', a: 64, b: 26 },
+            { y: 'Oct 19', a: 78, b: 39 },
+            { y: 'Oct 20', a: 82, b: 34 },
+            { y: 'Oct 21', a: 86, b: 39 },
+            { y: 'Oct 22', a: 94, b: 40 },
+            { y: 'Oct 23', a: 96, b: 41 }
         ],
         xkey: 'y',
         ykeys: ['a', 'b'],
@@ -181,6 +285,13 @@ $(function () {
     Morris.Line({
         element: 'dashboard-line-1',
         data: [
+            { y: '2014-10-10', a: 2, b: 4 },
+            { y: '2014-10-11', a: 4, b: 6 },
+            { y: '2014-10-12', a: 7, b: 10 },
+            { y: '2014-10-13', a: 5, b: 7 },
+            { y: '2014-10-14', a: 6, b: 9 },
+            { y: '2014-10-15', a: 9, b: 12 },
+            { y: '2014-10-16', a: 18, b: 20 },
             { y: '2014-10-10', a: 2, b: 4 },
             { y: '2014-10-11', a: 4, b: 6 },
             { y: '2014-10-12', a: 7, b: 10 },

@@ -79,7 +79,7 @@ class VenteController extends Controller
         ));
 
         $j = 0;
-        foreach ($d['caisseAll'] as $k => $v) :
+        foreach ($d['caisseAll'] as $k => $v) : 
 
             $d['employe'][$j] = $this->Vente->findFirst(array(
                 //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',

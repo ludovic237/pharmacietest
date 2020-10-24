@@ -39,10 +39,16 @@ foreach ($venteAll as $k => $va) :
     $totalSortie = $totalSortie + ($va->prixTotal());
 endforeach;
 
-$totalSortie=0;
-$venteAll =  $managerVente->getList();
-foreach ($venteAll as $k => $va) :
-    $totalSortie = $totalSortie + ($va->prixTotal());
+$totalEnteeRange=0;
+$enrayonAllRange =  $managerEnRayon->getAllRange($start, $end);
+foreach ($enrayonAllRange as $k => $en) :
+    $totalEnteeRange = $totalEnteeRange + ($en->prixAchat()*$en->quantite());
+endforeach;
+
+$totalSortieRange=0;
+$venteAllRange =  $managerVente->getListRange($start, $end);
+foreach ($venteAllRange as $k => $va) :
+    $totalSortieRange = $totalSortieRange + ($va->prixTotal());
 endforeach;
 
 $assurance =  $managerVente->VenteCountEtat('assurance');
@@ -53,7 +59,7 @@ $vente = $managerVente->getDateVenteRange($start, $end);
 
 $med = [];
 $i = 0;
-$concernerTest =  $managerConcerner->getListSameRayonId2();
+$concernerTest =  $managerConcerner->getListSameRayonId2(); 
 foreach ($concernerTest as $k => $c) : 
     $rayoninfo = $managerEnRayon->get($c->en_rayon_id());
     $idprod = $rayoninfo->produit_id();
@@ -81,7 +87,9 @@ foreach ($vente as $k => $v) :
     endforeach;
 
 endforeach;
- 
-$donnees = array('credit' => $credit,'comptant' => $comptant,'assurance' => $assurance,'beneficeTotal' => ($totalEntee-$totalSortie),'venteTotal' => $venteTotalRange, 'quantiteTotal' => $quantiteTotalRange, 'med' => $med);
+
+$concernerProduit =  $managerConcerner->getListConverneProduit(); 
+$concernerEmploye =  $managerConcerner->getListConvernePEmploye(); 
+$donnees = array('credit' => $credit,'comptant' => $comptant,'assurance' => $assurance,'beneficeTotalRange' => -($totalEnteeRange-$totalSortieRange),'beneficeTotal' => ($totalEntee-$totalSortie),'venteTotal' => $venteTotalRange, 'quantiteTotal' => $quantiteTotalRange, 'med' => $med, 'con' => $concernerProduit, 'empl' => $concernerEmploye);
 //$donnees = array('data' => $med);
 echo json_encode($donnees);
