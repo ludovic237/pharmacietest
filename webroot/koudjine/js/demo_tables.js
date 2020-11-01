@@ -357,6 +357,10 @@ function ajouter_bon_caisse() {
     $('#tab_GBonCaisse').prepend(cat);
 
 }
+var qrcode = new QRCode(document.getElementById("codebarreimp"), {
+    width: 65,
+    height: 65
+});
 function gerer_bon_caisse() {
     $('#tab_GBonCaisse  tr').each(function (i) {
         var dateEncaisser, id1 = $(this).attr("id");
@@ -365,10 +369,11 @@ function gerer_bon_caisse() {
             $('#nomclientimp').html($("#" + id1 + " .nom").val());
             $('#montantimp').html($("#" + id1 + " .montant").val());
             $('#dateimp').html(moment().format("YYYY-MM-DD HH:mm:ss"));
-            $("#codebarreimp").barcode(
-                moment().format("YYMMDDHHmmss"), // Value barcode (dependent on the type of barcode)
-                "code128" // type (string)
-            );
+            qrcode.makeCode(moment().format("YYMMDDHHmmss"));
+            // $("#codebarreimp").barcode(
+            //     moment().format("YYMMDDHHmmss"), // Value barcode (dependent on the type of barcode)
+            //     "code128" // type (string)
+            // );
             $('#codebarrenulimp').html(moment().format("YYMMDDHHmmss"));
 
             $("#previewImprimerBonCaisse").modal("show");

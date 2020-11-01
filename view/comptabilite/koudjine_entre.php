@@ -8,7 +8,9 @@ if ($this->request->action == "entre") {
     $position = "Entrées Stock";
 }
 $position_for_layout = '<li><a href="#">Comptabilité</a></li><li class="active">' . $position . '</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
+$script_for_layout = '
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
@@ -189,8 +191,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                         <p class="nomp" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
                                                         <p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
                                                     </div>
-                                                    <div>
-                                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="demo"></p>
+                                                    <div style="justify-content: center;display:flex">
+                                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="qrcode"></p>
                                                     </div>
                                                     <div style="display: flex;flex-direction: row;justify-content: space-around;">
                                                         <p class="datel" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>

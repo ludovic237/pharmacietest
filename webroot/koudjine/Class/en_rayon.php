@@ -253,6 +253,17 @@ class En_rayonManager
         return $produits;
     }
 
+    public function getAllRange($start,$end)
+    {
+        $produits = array();
+        $q = $this->_db->prepare("SELECT * FROM en_rayon WHERE supprimer = 0 AND quantiteRestante > 0 AND `dateLivraison` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $produits[] = new En_rayon($donnees);
+        }
+        return $produits;
+    }
+
     public function update(En_rayon $en_rayon)
     {
 

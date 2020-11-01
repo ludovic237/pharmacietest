@@ -296,6 +296,17 @@ class VenteManager
         }
         return $ventes;
     }
+    public function getListRange($start,$end)
+    {
+        $ventes = array();
+        $q = $this->_db->prepare("SELECT * FROM vente WHERE supprimer = 0 AND `dateVente` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH ) ORDER BY dateVente");
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $ventes[] = new Vente($donnees);
+        }
+        return $ventes;
+    }
     public function getListCaisse($id)
     {
         $ventes = array();

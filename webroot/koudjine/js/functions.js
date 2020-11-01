@@ -3238,3 +3238,65 @@ function save_produit_detail() {
     });
 
 }
+
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+    width: 65,
+    height: 65
+});
+
+function makeCodeid() {
+    var elText = document.getElementById("text");
+    qrcode.makeCode(elText.value);
+}
+
+function info_row_entree(row) {
+
+    //var lien = $(this).attr('id');
+    ////alert('test');
+    var code;
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/info_entree.php',
+        data: {
+            id: row
+        },
+        dataType: 'json',
+        success: function (data) {
+            //alert(data);
+            //$("#iconPreview .icon-preview").html(icon_preview);
+
+            $('#iconPreviewEntree .nomp').html(data.nomP);
+            $("#iconPreviewEntree .nomf").html(data.nomF);
+            $("#iconPreviewEntree .code").html(data.code);
+            $("#iconPreviewEntree .codebarre").html(row);
+            $("#iconPreviewEntree .datel").html(data.datel);
+            $("#iconPreviewEntree .datep").html(data.datep);
+            $("#iconPreviewEntree .prixv").html(data.prixv);
+            $("#iconPreviewEntree .quantite").html(data.quantite);
+            $("#iconPreviewEntree .quantiter").html(data.quantiter);
+            $("#iconPreviewEntree .reduction").html(data.reduction);
+            $("#iconPreviewEntree .prixa").html(data.prixa);
+            //$("#code").barcode(data.codebarre);
+            code1 = data.codebarre;
+            qrcode.makeCode(code1);
+            // $("#demo").barcode(
+            //     code1, // Value barcode (dependent on the type of barcode)
+            //     "code128" // type (string)
+
+            // );
+
+
+        }
+
+
+    })
+    ////alert(code);
+    //$(".fittext1").fitText();
+    //$("#demo").fitText();
+
+
+    // var icon_preview = $("<i></i>").addClass(iClass);
+    $("#iconPreviewEntree").modal("show");
+
+}
