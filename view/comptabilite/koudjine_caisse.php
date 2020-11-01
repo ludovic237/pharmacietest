@@ -533,7 +533,7 @@
 </div>
 <!-- END MODAL ICON PREVIEW -->
 
-
+<?php if($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users']->type == 'Administrateur' || $_SESSION['Users']->type == 'Gestionnaire'){ ?>
 <!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreviewCaisseFermer" tabindex="-1" role="dialog" aria-hidden="false">
      <div class="modal-dialog">
@@ -711,6 +711,7 @@
 </div>
 
 <!-- END MODAL ICON PREVIEW -->
+<?php } ?>
 
 <!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreviewFacture" tabindex="-1" role="dialog" aria-hidden="true">

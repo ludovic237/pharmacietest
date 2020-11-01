@@ -27,6 +27,9 @@ $detail_id=$_POST['detail_id'];
         $ent = $managerEn->get($id);
         $ent->setquantiteRestante(($ent->quantiteRestante()-$qte));
         $managerEn->update($ent);
+        $prod = $managerPr->get($ent->produit_id());
+        $prod->setstock(($prod->stock()-$qte));
+        $managerPr->update($prod);
         if($detail_id !='' && $detail_id != null){
             $ent1 = $managerEn->get($detail_id);
             //$pro = $managerPr->get($ent->produit_id());
