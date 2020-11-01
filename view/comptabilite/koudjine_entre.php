@@ -143,7 +143,7 @@ $script_for_layout = '
                     <div class="col-md-4">
                         <div class="icon-preview">
                             <!-- <div style="border: 1px solid black;width: 40mm;display:flex;height: 30mm;flex-direction: column;" id="ticket"> -->
-                            <div style="width: 35mm;display:flex;height: 40mm;flex-direction: column;" id="ticket">
+                            <div style="width: 35mm;display:flex;height: 30mm;flex-direction: column;" id="ticket">
                                 <!-- <table class="fixed" style="display: flex;overflow: auto;border-collapse: collapse;border-spacing: 0px;border: 0;">
                                     <tbody>
                                         <tr style="display: flex;">
