@@ -2,6 +2,7 @@
 <?php
 require_once('database.php');
 require_once('../Class/produit.php');
+require_once('../Class/fournisseur1.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/vente.php');
 require_once('../Class/concerner.php');
@@ -16,6 +17,7 @@ global $pdo;
 global $conndb;
 
 $managerProduit = new ProduitManager($pdo);
+$managerFournisseur = new FournisseurManager($pdo);
 $managerEnRayon = new En_rayonManager($pdo);
 
 //On sélectionne tous les users dont le nom = Pierre
@@ -39,7 +41,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
         $datas[] = array(
             "DT_RowId"  => $e->id(),
             'nom' => "<p class='nom'> " . $nom . "</p>",
-            'fournisseur_id' => "<p class='fournisseur_id'> " . $e->fournisseur_id() . "</p>",
+            'fournisseur_id' => "<p class='fournisseur_id'> " . $managerFournisseur->get($e->fournisseur_id())->nom() . "</p>",
             'dateLivraison' => "<p class='dateLivraison'> " . $e->dateLivraison() . "</p>",
             'datePeremption' => "<p class='datePeremption'> " . $e->datePeremption() . "</p>",
             'prixAchat' => "<p class='prixAchat'> " . $e->prixAchat() . "</p>",

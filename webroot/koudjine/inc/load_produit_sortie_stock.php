@@ -36,14 +36,16 @@ foreach ($enrayon as $key => $value) :
     foreach ($sortie_stock as $key => $e) :
         if ($e->detail_id() != '' && $e->detail_id() !=null ) {
             $opration = 'Détail';
+            $prod = $managerProduit->get($managerEnRayon->get($e->detail_id())->produit_id())->nom();
         } else {
             $opration = 'Périmé';
+            $prod = $e->detail_id();
         }
         
         $datas[] = array(
             'nom' => "<strong class='nom'><a href='/pharmacietest/bouwou/comptabilite/entre/". $value->produit_id()."'>" . $nom . " - [". $dateLivraison ."]</a> </strong>",
             'quantite' => "<p class='quantite'> " . $e->quantite() . "</p>",
-            'nomproduitdetail' => "<p class='nomproduitdetail'> 2</p>",
+            'nomproduitdetail' => "<p class='nomproduitdetail'> " . $prod . "</p>",
             'forme' => "<p class='forme'> " . $forme . "</p>",
             'dateSortie' => "<p class='dateSortie'> " . $e->dateSortie() . "</p>",
             'operation' => "<p class='operation'> " . $opration . " </p>",
