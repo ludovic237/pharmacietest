@@ -358,8 +358,8 @@ function ajouter_bon_caisse() {
 
 }
 var qrcode = new QRCode(document.getElementById("codebarreimp"), {
-    width: 65,
-    height: 65
+    width: 30,
+    height: 30
 });
 function gerer_bon_caisse() {
     $('#tab_GBonCaisse  tr').each(function (i) {

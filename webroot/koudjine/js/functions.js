@@ -3240,8 +3240,8 @@ function save_produit_detail() {
 }
 
 var qrcode = new QRCode(document.getElementById("qrcode"), {
-    width: 65,
-    height: 65
+    width: 30,
+    height: 30
 });
 
 function makeCodeid() {
