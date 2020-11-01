@@ -57,7 +57,7 @@
                 <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['vente'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'vente') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-shopping-cart "></span> <span class="xn-text">Vente</span></a>
                     <ul>
-                        <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'vente') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/vente'); ?>"><span class="fa lettre">V</span>Vente</a></li>
+                        <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'vente') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/vente'); ?>"><span class="fa lettre">L</span>Liste</a></li>
                         <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'venteadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/venteadd'); ?>"><span class="fa lettre">A</span>Ajouter</a></li>
                         <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'reglement') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/reglement'); ?>"><span class="fa lettre">R</span> Règlement</a></li>
                         <li <?php if ($this->request->controller == 'vente' && $this->request->action == 'chiffreaffaire') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/vente/chiffreaffaire'); ?>"><span class="fa lettre">C</span> Chiffre d'affaire</a></li>
@@ -66,11 +66,11 @@
                 <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['catalogue'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'catalogue') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-book"></span> <span class="xn-text">Catalogue</span></a>
                     <ul>
-                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit' || $this->request->controller == 'catalogue' && $this->request->action == 'produitadd') { ?>active <?php } ?>">
+                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit' || $this->request->controller == 'catalogue' && $this->request->action == 'produitadd' || $this->request->controller == 'catalogue' && $this->request->action == 'produitdetail') { ?>active <?php } ?>">
                             <a href="#"><span class="fa lettre">E</span> Produit</a>
                             <ul>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produit'); ?>"><span class="fa lettre">L</span> Lister</a></li>
-                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitdetail') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitdetail'); ?>"><span class="fa lettre">L</span> Lister detail</a></li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitdetail') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitdetail'); ?>"><span class="fa lettre">L</span> Lister detail</a></li> 
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitadd'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
                                 <!-- <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitimpression') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitimpression'); ?>"><span class="fa lettre">I</span> Impression code</a></li> -->
                             </ul>

@@ -77,7 +77,7 @@ $script_for_layout = '
 
             </div>
             <div class="panel-body">
-                <div class="row stacked">
+                <div class="row ">
                     <div class="col-md-3">
 
                         <!-- START WIDGET CLOCK -->
@@ -106,16 +106,14 @@ $script_for_layout = '
 
                         <!-- START WIDGET REGISTRED -->
                         <div class="widget widget-default widget-item-icon" onclick="location.href='pages-address-book.html';">
-                            <!-- <div class="widget-item-left">
-        <span class="fa fa-user"></span>
-    </div> -->
+
                             <div style="padding-top: 10px;">
                                 <div class="widget-int num-count "><span id="nbrVente">0</span> FCFA</div>
                                 <div class="widget-title">Total</div>
                                 <div class="widget-subtitle">Vente</div>
                             </div>
                             <div class="widget-controls">
-                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                <!-- <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a> -->
                             </div>
                         </div>
                         <!-- END WIDGET REGISTRED -->
@@ -127,16 +125,14 @@ $script_for_layout = '
 
                         <!-- START WIDGET REGISTRED -->
                         <div class="widget widget-default widget-item-icon" onclick="location.href='pages-address-book.html';">
-                            <!-- <div class="widget-item-left">
-        <span class="fa fa-user"></span>
-    </div> -->
+
                             <div style="padding-top: 10px;">
                                 <div class="widget-int num-count"><span id="beneficeTotal">0</span> FCFA</div>
                                 <div class="widget-title">Benefice total</div>
                                 <div class="widget-subtitle">Vente</div>
                             </div>
                             <div class="widget-controls">
-                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                <!-- <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a> -->
                             </div>
                         </div>
                         <!-- END WIDGET REGISTRED -->
@@ -148,37 +144,14 @@ $script_for_layout = '
 
                         <!-- START WIDGET REGISTRED -->
                         <div class="widget widget-default widget-item-icon" onclick="location.href='pages-address-book.html';">
-                            <!-- <div class="widget-item-left">
-        <span class="fa fa-user"></span>
-    </div> -->
+
                             <div style="padding-top: 10px;">
                                 <div class="widget-int num-count"><span id="beneficeTotalRange">0</span> FCFA</div>
                                 <div class="widget-title">Benefice</div>
                                 <div class="widget-subtitle">Vente</div>
                             </div>
                             <div class="widget-controls">
-                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                            </div>
-                        </div>
-                        <!-- END WIDGET REGISTRED -->
-
-
-
-                    </div>
-                    <div class="col-md-3">
-
-                        <!-- START WIDGET REGISTRED -->
-                        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-address-book.html';">
-                            <!-- <div class="widget-item-left">
-        <span class="fa fa-user"></span>
-    </div> -->
-                            <div style="padding-top: 10px;">
-                                <div class="widget-int num-count " id="nbrProduit">0</div>
-                                <div class="widget-title">Total d'article</div>
-                                <div class="widget-subtitle">Vente</div>
-                            </div>
-                            <div class="widget-controls">
-                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                <!-- <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a> -->
                             </div>
                         </div>
                         <!-- END WIDGET REGISTRED -->
@@ -194,6 +167,113 @@ $script_for_layout = '
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+
+        <!-- START SALES BLOCK -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title-box">
+                    <h3>Entrée et sortie</h3>
+                    <span>Activité</span>
+                </div>
+                <ul class="panel-controls panel-controls-title">
+                    <li>
+                        <div id="reportrange2" class="dtrange">
+                            <span></span><b class="caret"></b>
+                        </div>
+                    </li>
+                    <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
+                </ul>
+
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <!-- START WIDGET REGISTRED -->
+                        <div class="widget widget-default widget-item-icon">
+                            <div style="padding-top: 10px;">
+                                <div class="widget-int num-count"><span id="quantiteEntre">0</span></div>
+                                <div class="widget-title">Quantité</div>
+                                <div class="widget-subtitle">Entrée</div>
+                            </div>
+                            <div class="widget-controls">
+                                <!-- <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a> -->
+                            </div>
+                        </div>
+                        <!-- END WIDGET REGISTRED -->
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <!-- START WIDGET REGISTRED -->
+                        <div class="widget widget-default widget-item-icon">
+                            <div style="padding-top: 10px;">
+                                <div class="widget-int num-count"><span id="prixEntre">0</span> FCFA</div>
+                                <div class="widget-title">Prix</div>
+                                <div class="widget-subtitle">Entrée</div>
+                            </div>
+                            <div class="widget-controls">
+                                <!-- <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a> -->
+                            </div>
+                        </div>
+                        <!-- END WIDGET REGISTRED -->
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <!-- START WIDGET REGISTRED -->
+                        <div class="widget widget-default widget-item-icon">
+                            <div style="padding-top: 10px;">
+                                <div class="widget-int num-count"><span id="quantiteSortie">0</span></div>
+                                <div class="widget-title">Quantité</div>
+                                <div class="widget-subtitle">Sortie</div>
+                            </div>
+                            <div class="widget-controls">
+                                <!-- <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a> -->
+                            </div>
+                        </div>
+                        <!-- END WIDGET REGISTRED -->
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="widget widget-default widget-item-icon">
+                            <div style="padding-top: 10px;">
+                                <div class="widget-int num-count"><span id="prixSortie">0</span> FCFA</div>
+                                <div class="widget-title">Prix</div>
+                                <div class="widget-subtitle">Sortie</div>
+                            </div>
+                            <div class="widget-controls">
+                                <!-- <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-address-book.html';">
+                            <div style="padding-top: 10px;">
+                                <div class="widget-int num-count"><span id="quantiteentresortie">0</span> FCFA</div>
+                                <div class="widget-title">Quantité</div>
+                                <div class="widget-subtitle">Entrée/Sortie</div>
+                            </div>
+                            <div class="widget-controls">
+                                <!-- <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="widget widget-default widget-item-icon" onclick="location.href='pages-address-book.html';">
+                            <div style="padding-top: 10px;">
+                                <div class="widget-int num-count"><span id="prixentresortie">0</span> FCFA</div>
+                                <div class="widget-title">Prix</div>
+                                <div class="widget-subtitle">Entrée/Sortie</div>
+                            </div>
+                            <div class="widget-controls">
+                                <!-- <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SALES BLOCK -->
+
+    </div>
+</div>
 <!-- END WIDGETS -->
 
 

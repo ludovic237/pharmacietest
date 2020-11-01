@@ -1,10 +1,31 @@
-$(document).ready(function() {
+$(document).ready(function () {
+
     var datas;
     var startDate = moment().subtract('days', 29);
     var endDate = moment();
     var a_ = startDate.format("YYYY-MM-DD HH:mm:ss");
     var b_ = endDate.format("YYYY-MM-DD HH:mm:ss");
     console.log(a_ + ' - ' + b_);
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/dashboard_info_today2.php',
+        data: {
+            start: a_,
+            end: b_
+        },
+        dataType: 'json',
+        success: function (server_responce) {
+            console.log(server_responce);
+            $('#quantiteEntre').html(server_responce.totalquantiteEnteeRange).show();
+            $('#prixEntre').html(server_responce.totalprixEnteeRange).show();
+            $('#quantiteSortie').html(server_responce.totalquantiteSortieRange).show();
+            $('#prixSortie').html(server_responce.totalprixSortieRange).show();
+            $('#quantiteentresortie').html(server_responce.quantiteentresortie).show();
+            $('#prixentresortie').html(server_responce.prixentresortie).show();
+        }
+
+
+    });
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/dashboard_info_today.php',
@@ -22,8 +43,8 @@ $(document).ready(function() {
             if ($.fn.dataTable.isDataTable('#tableProduitVendu')) {
                 $('#tableProduitVendu').dataTable({
                     destroy: true,
-                    order:[[1,"desc"]],
-                    data:  server_responce.con,
+                    order: [[1, "desc"]],
+                    data: server_responce.con,
                     columns: [
                         { data: 'nom' },
                         { data: 'qte' },
@@ -31,22 +52,22 @@ $(document).ready(function() {
                     ]
                 });
                 $('#tableEmployeVendu').dataTable({
-                    order:[[1,"desc"]],
+                    order: [[1, "desc"]],
                     destroy: true,
-                    data:  server_responce.empl,
+                    data: server_responce.empl,
                     columns: [
                         { data: 'identifiant' },
                         { data: 'totalqte' },
                         { data: 'type' },
                     ]
                 });
-    
+
             }
             else {
                 $('#tableProduitVendu').dataTable({
                     destroy: true,
-                    order:[[1,"desc"]],
-                    data:  server_responce.con,
+                    order: [[1, "desc"]],
+                    data: server_responce.con,
                     columns: [
                         { con: 'nom' },
                         { con: 'qte' },
@@ -54,9 +75,9 @@ $(document).ready(function() {
                     ]
                 });
                 $('#tableEmployeVendu').dataTable({
-                    order:[[1,"desc"]],
+                    order: [[1, "desc"]],
                     destroy: true,
-                    data:  server_responce.empl,
+                    data: server_responce.empl,
                     columns: [
                         { data: 'identifiant' },
                         { data: 'totalqte' },
@@ -84,11 +105,12 @@ $(document).ready(function() {
 
 
     });
-} );
+});
 $(function () {
-    var assurance ;
-    var credit ;
-    var comptant ;
+    var assurance;
+    var credit;
+    var comptant;
+
     /* reportrange */
     if ($("#reportrange").length > 0) {
         $("#reportrange").daterangepicker({
@@ -129,8 +151,8 @@ $(function () {
                     if ($.fn.dataTable.isDataTable('#tableProduitVendu')) {
                         $('#tableProduitVendu').dataTable({
                             destroy: true,
-                            order:[[1,"desc"]],
-                            data:  server_responce.con,
+                            order: [[1, "desc"]],
+                            data: server_responce.con,
                             columns: [
                                 { data: 'nom' },
                                 { data: 'qte' },
@@ -138,22 +160,22 @@ $(function () {
                             ]
                         });
                         $('#tableEmployeVendu').dataTable({
-                            order:[[1,"desc"]],
+                            order: [[1, "desc"]],
                             destroy: true,
-                            data:  server_responce.empl,
+                            data: server_responce.empl,
                             columns: [
                                 { data: 'identifiant' },
                                 { data: 'totalqte' },
                                 { data: 'type' },
                             ]
                         });
-            
+
                     }
                     else {
                         $('#tableProduitVendu').dataTable({
                             destroy: true,
-                            order:[[1,"desc"]],
-                            data:  server_responce.con,
+                            order: [[1, "desc"]],
+                            data: server_responce.con,
                             columns: [
                                 { data: 'nom' },
                                 { data: 'qte' },
@@ -161,16 +183,16 @@ $(function () {
                             ]
                         });
                         $('#tableEmployeVendu').dataTable({
-                            order:[[1,"desc"]],
+                            order: [[1, "desc"]],
                             destroy: true,
-                            data:  server_responce.empl,
+                            data: server_responce.empl,
                             columns: [
                                 { data: 'identifiant' },
                                 { data: 'totalqte' },
                                 { data: 'type' },
                             ]
                         });
-            
+
                     }
                     $("#dashboard-donut-1").empty();
                     Morris.Donut({
@@ -196,6 +218,53 @@ $(function () {
         });
 
         $("#reportrange span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+    }
+    if ($("#reportrange2").length > 0) {
+        $("#reportrange2").daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            opens: 'left',
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary',
+            cancelClass: 'btn-small',
+            format: 'MM.DD.YYYY',
+            separator: ' to ',
+            startDate: moment().subtract('days', 29),
+            endDate: moment()
+        }, function (start, end) {
+            var a_ = start.format("YYYY-MM-DD HH:mm:ss");
+            var b_ = end.format("YYYY-MM-DD HH:mm:ss");
+            console.log(a_ + ' - ' + b_);
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/dashboard_info_today2.php',
+                data: {
+                    start: a_,
+                    end: b_
+                },
+                dataType: 'json',
+                success: function (server_responce) {
+                    console.log(server_responce);
+                    $('#quantiteEntre').html(server_responce.totalquantiteEnteeRange).show();
+                    $('#prixEntre').html(server_responce.totalprixEnteeRange).show();
+                    $('#quantiteSortie').html(server_responce.totalquantiteSortieRange).show();
+                    $('#prixSortie').html(server_responce.totalprixSortieRange).show();
+                    $('#quantiteentresortie').html(server_responce.quantiteentresortie).show();
+                    $('#prixentresortie').html(server_responce.prixentresortie).show();
+                }
+
+
+            });
+            $('#reportrange2 span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        });
+
+        $("#reportrange2 span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
     }
     /* end reportrange */
 

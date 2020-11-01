@@ -6,7 +6,7 @@ $action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
     $position = "Toutes les Geonetliste";
-} else {
+} else { 
     //$position = $this->request->action;
 }
 $position_for_layout = '<li><a href="#">Geonetliste</a></li><li class="active">' . $position . '</li>';
