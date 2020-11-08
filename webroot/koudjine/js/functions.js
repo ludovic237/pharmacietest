@@ -4,7 +4,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     var netpayer;
     var reduc;
     var stock;
-
+    
     $("#tab_produit_detail").hide();
     $("#detailTab").hide();
     $(".charger_info_employe").on("click", function () {
@@ -700,6 +700,8 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
             $("#tab_Grecherche").hide();
         }
     });
+
+    load_produit_detail(test);
 });
 // Ajax
 // Fonctions PHARMACIE
@@ -780,6 +782,7 @@ function load_produit(id) {
 }
 
 function load_produit_detail(id, nomp) {
+    //alert(id + "" + nomp);
     $('#detail_recherche').val(nomp);
     $("#tab_produit_detail").hide();
     var qte = parseInt($("#R" + id + " .qte").val());
@@ -1014,8 +1017,8 @@ function load_produit_detail(id, nomp) {
                     { data: "datePeremption" },
                     { data: "prixAchat" },
                     { data: "prixVente" },
+                    { data: "quantiteRestante" },
                     { data: "action" },
-                    { data: "datel" },
                 ]
             });
         }
@@ -3237,16 +3240,6 @@ function save_produit_detail() {
         }
     });
 
-}
-
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-    width: 30,
-    height: 30
-});
-
-function makeCodeid() {
-    var elText = document.getElementById("text");
-    qrcode.makeCode(elText.value);
 }
 
 function info_row_entree(row) {

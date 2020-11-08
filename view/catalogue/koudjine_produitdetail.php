@@ -3,12 +3,8 @@
         $title_for_layout = ' ALSAS -' . 'Catalogue';
         $page_for_layout = 'Détail produit';
         $action_for_layout = 'Ajouter';
-        if (isset($id)) {
-            $add_script = '<script>load_produit_detail(' . $id . ')</script>';
-        } else {
-            $add_script = '';
-        }
-
+        $id = $_GET['id'];
+      
         if ($this->request->action == "index") {
             $position = "Tout";
         } else {
@@ -24,6 +20,9 @@
                                             document.getElementById("detail_recherche").focus();
                                         };
                                         
+                                    </script>
+                                    <script>
+var test = "'.$id.'"
                                     </script>' . $add_script;
         ?> -->
 

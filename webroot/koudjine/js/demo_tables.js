@@ -357,10 +357,7 @@ function ajouter_bon_caisse() {
     $('#tab_GBonCaisse').prepend(cat);
 
 }
-var qrcode = new QRCode(document.getElementById("codebarreimp"), {
-    width: 30,
-    height: 30
-});
+
 function gerer_bon_caisse() {
     $('#tab_GBonCaisse  tr').each(function (i) {
         var dateEncaisser, id1 = $(this).attr("id");
@@ -1257,57 +1254,6 @@ function info_row(row) {
 }
 
 // Fonctions Pharmacie
-
-function info_row_entree(row) {
-
-    //var lien = $(this).attr('id');
-    ////alert('test');
-    var code;
-
-    $.ajax({
-        type: "POST",
-        url: '/pharmacietest/koudjine/inc/info_entree.php',
-        data: {
-            id: row
-        },
-        dataType: 'json',
-        success: function (data) {
-            //alert(data);
-            //$("#iconPreview .icon-preview").html(icon_preview);
-
-            $('#iconPreviewEntree .nomp').html(data.nomP);
-            $("#iconPreviewEntree .nomf").html(data.nomF);
-            $("#iconPreviewEntree .code").html(data.code);
-            $("#iconPreviewEntree .codebarre").html(row);
-            $("#iconPreviewEntree .datel").html(data.datel);
-            $("#iconPreviewEntree .datep").html(data.datep);
-            $("#iconPreviewEntree .prixv").html(data.prixv);
-            $("#iconPreviewEntree .quantite").html(data.quantite);
-            $("#iconPreviewEntree .quantiter").html(data.quantiter);
-            $("#iconPreviewEntree .reduction").html(data.reduction);
-            $("#iconPreviewEntree .prixa").html(data.prixa);
-            //$("#code").barcode(data.codebarre);
-            code1 = data.codebarre;
-            $("#demo").barcode(
-                code1, // Value barcode (dependent on the type of barcode)
-                "code128" // type (string)
-
-            );
-
-
-        }
-
-
-    })
-    ////alert(code);
-    //$(".fittext1").fitText();
-    //$("#demo").fitText();
-
-
-    // var icon_preview = $("<i></i>").addClass(iClass);
-    $("#iconPreviewEntree").modal("show");
-
-}
 
 function imprimer(divName) {
     //$("#iconPreviewEntree").modal("hide");
