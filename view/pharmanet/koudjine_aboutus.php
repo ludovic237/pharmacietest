@@ -92,12 +92,12 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <form class="form-horizontal" role="form">
                         <div class="col-md-6">
 
-                            <div class="form-group">
+                            <div style="margin-bottom: 15px;" class="form-group">
                                 <label class="col-md-3 control-label">Nom employé:</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" placeholder="Country Name" id="search-employe-box" />
                                     <div id="suggesstion-employe-box-block">
-                                        <div  id="suggesstion-employe-box"></div>
+                                        <div id="suggesstion-employe-box"></div>
                                     </div>
 
                                     <span class="help-block"></span>
@@ -115,19 +115,25 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Type:</label>
+                            <div style="margin-bottom: 15px;" class="form-group">
+                                <label class="col-md-3 control-label">Catégorie:</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" value="" id="pharmanettype" />
-                                    <span class="help-block"></span>
+                                    <select class="selectpicker form-control" name="pharmanettype" id="pharmanettype">
+                                       <option value="0">Depense</option>
+                                       <option value="1">Vente</option>
+                                       <option value="2">Commandé</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div style="margin-bottom: 15px;" class="form-group">
                                 <label class="col-md-3 control-label">Caisse:</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" value="" id="pharmanetcaisse" />
+                                    <div id="suggesstion-caisse-box-block">
+                                        <div id="suggesstion-caisse-box"></div>
+                                    </div>
                                     <span class="help-block"></span>
                                 </div>
                             </div>

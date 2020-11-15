@@ -6,6 +6,42 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     var reduc;
     var stock;
 
+    $('#search-employe-box').keyup(function () {
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/reademploye.php',
+            data: 'keyword='+$(this).val(),
+            beforeSend: function () {
+                $("#search-employe-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
+            },
+            success: function (data) {
+                //alert(data);
+                $("#suggesstion-employe-box-block").show();
+                $("#suggesstion-employe-box").html(data).show();
+                $("#suggesstion-employe-box").css("background", "#FFF");
+
+            }
+        });
+    });
+
+    $('#search-caisse-box').keyup(function () {
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/readcaisse.php',
+            data: 'keywordcaisse='+$(this).val(),
+            beforeSend: function () {
+                $("#search-caisse-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
+            },
+            success: function (data) {
+                //alert(data);
+                $("#suggesstion-caisse-box-block").show();
+                $("#suggesstion-caisse-box").html(data).show();
+                $("#suggesstion-caisse-box").css("background", "#FFF");
+
+            }
+        });
+    });
+
     if($("#reportrangepharmanet").length > 0){   
         $("#reportrangepharmanet").daterangepicker({                    
             ranges: {
@@ -30,24 +66,6 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
         
         $("#reportrangepharmanet span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
     }
-
-    $('#search-employe-box').keyup(function () {
-        $.ajax({
-            type: "POST",
-            url: '/pharmacietest/koudjine/inc/reademploye.php',
-            data: 'keyword='+$(this).val(),
-            beforeSend: function () {
-                $("#search-employe-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
-            },
-            success: function (data) {
-                //alert(data);
-                $("#suggesstion-employe-box-block").show();
-                $("#suggesstion-employe-box").html(data).show();
-                $("#suggesstion-employe-box").css("background", "#FFF");
-
-            }
-        });
-    })
 
     $("#tab_produit_detail").hide();
     $("#detailTab").hide();

@@ -262,6 +262,18 @@ class CaisseManager
 
 
     }
+
+    public function getListKeywordCaisse($word)
+    {
+        $employes = array();
+        $q = $this->_db->prepare("SELECT * FROM employe WHERE identifiant like '".$word."%' ORDER BY identifiant LIMIT 0,6 ");
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $employes[] = new Employe($donnees);
+        }
+        return $employes;
+    }
+
     public function getDateRangeCaisse($start,$end)
     {
         $q = $this->_db->prepare( "SELECT * FROM `caisse` WHERE  `dateOuvert` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH ) AND `dateFerme` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");

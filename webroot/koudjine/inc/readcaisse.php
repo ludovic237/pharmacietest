@@ -28,17 +28,17 @@ $managerEmploye = new EmployeManager($pdo);
 $managerConcerner = new ConcernerManager($pdo);
 
 
-if (!empty($_POST["keyword"])) {
-    $keyword = $_POST["keyword"];
-    $employe = $managerEmploye->getListKeyword($keyword);
-    if (!empty($employe)) {
+if (!empty($_POST["keywordcaisse"])) {
+    $keywordcaisse = $_POST["keywordcaisse"];
+    $caisse = $managerCaisse->getListKeywordCaisse($keywordcaisse);
+    if (!empty($caisse)) {
 ?>
         <ul class="list-tags" id="country-list">
             <?php
-            foreach ($employe as $k => $s) {
+            foreach ($caisse as $k => $s) {
             ?>
                 <li>
-                    <a onClick="selectemploye('<?php echo $s->identifiant(); ?>');"><?php echo $s->identifiant(); ?></a>
+                    <a onClick="selectcaisse('<?php echo $s->identifiant(); ?>');"><?php echo $s->identifiant(); ?></a>
                 </li>
             <?php } ?>
         </ul>
