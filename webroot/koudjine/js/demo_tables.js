@@ -407,11 +407,55 @@ function gerer_bon_caisse() {
     });
 }
 function open_depense(caisse_id) {
+    //noty({text: 'Successful action', layout: 'topRight', type: 'success'});
+    var x = document.getElementById("savedepenseid");
+    x.style.display = "none";
+    //$("#savedepenseid").style.display = "none";
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/gerer_depense.php',
         data: {
-            id: caisse_id
+            id: caisse_id,
+            type: "open"
+        },
+        success: function (server_responce) {
+            ////alert(server_responce);
+            //$("#iconPreview .icon-preview").html(icon_preview);
+
+            $('#tab_Gdepense').empty();
+            $('#tab_Gdepense').html(server_responce);
+            var total, prixTotal = 0, qteTotal = 0;
+            var qte = 0;
+            $('#tab_Gdepense  tr').each(function (i) {
+                var id1 = $(this).attr("id");
+                prixTotal = prixTotal + parseInt($("#" + id1 + " .total").val());
+
+
+            });
+            console.log(prixTotal);
+            $("#total_depense").html('');
+            $("#total_depense").html(prixTotal);
+
+        }
+
+
+    })
+    $("#iconPreviewDepense").modal("show");
+}
+
+function modify_depense(caisse_id) {
+    var x = document.getElementById("savedepenseid");
+    x.style.display = "initial";
+    var x = document.getElementById("adddepenseid");
+    x.style.display = "none";
+    var x = document.getElementById("modifydepenseid");
+    x.style.display = "none";
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/gerer_depense.php',
+        data: {
+            id: caisse_id,
+            type: "modify"
         },
         success: function (server_responce) {
             ////alert(server_responce);
@@ -436,7 +480,13 @@ function open_depense(caisse_id) {
     })
     $("#iconPreviewDepense").modal("show");
 }
+
+
 function ajouter_depense() {
+    
+    var x = document.getElementById("savedepenseid");
+    var y = document.getElementById("adddepenseid");
+    var z = document.getElementById("modifydepenseid");
     var depense_id;
     $('#tab_Gdepense  tr').each(function (i) {
         //var id1 = $(this).attr("id");
@@ -452,8 +502,22 @@ function ajouter_depense() {
         + ' <td><input disabled class=\'total\' type="text"></td>'
         + '</tr>';
     $('#tab_Gdepense').prepend(cat);
+    x.style.display = "initial";
+    y.style.display = "none";
+    z.style.display = "none";
 
 }
+
+function close_depense() {
+    $("#iconPreviewDepense").modal("hide");
+    var x = document.getElementById("savedepenseid");
+    var y = document.getElementById("adddepenseid");
+    var z = document.getElementById("modifydepenseid");
+    x.style.display = "none";
+    y.style.display = "initial";
+    z.style.display = "initial";
+}
+
 function ajouter_une_depense() {
     $('#-1').remove();
     var cat = '<tr id="-1" >'
@@ -507,6 +571,9 @@ function valider_une_depense() {
     })
 }
 function valider_depense(caisse_id) {
+    var x = document.getElementById("savedepenseid");
+    var y = document.getElementById("adddepenseid");
+    var z = document.getElementById("modifydepenseid");
     $('#tab_Gdepense  tr').each(function (i) {
         var id1 = $(this).attr("id");
         var send_id, id = $(this).attr("data");
@@ -528,7 +595,11 @@ function valider_depense(caisse_id) {
                 prix: parseInt($("#" + id1 + " .prix").val())
             },
             success: function (server_responce) {
+                
                 //alert(server_responce);
+                x.style.display = "none";
+                y.style.display = "initial";
+                z.style.display = "initial";
                 $("#iconPreviewDepense").modal("hide");
                 //$("#iconPreview .icon-preview").html(icon_preview);
 
@@ -540,6 +611,7 @@ function valider_depense(caisse_id) {
 
 
     });
+    noty({text: 'Information enregistré', layout: 'topRight', type: 'success'});
 }
 function rafraichir_vente(id) {
 

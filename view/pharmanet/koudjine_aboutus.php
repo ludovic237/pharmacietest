@@ -2,7 +2,7 @@
 
 $title_for_layout = ' ALSAS -' . 'Universités';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter un assureur' : 'Modifier un assureur';
-$action_for_layout = 'Ajouter';
+// $action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
     $position = "Toutes les universités";
@@ -10,7 +10,11 @@ if ($this->request->action == "index") {
     //$position = $this->request->action;
 }
 $position_for_layout = '<li><a href="#">Universites</a></li><li class="active">' . $position . '</li>';
+
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/daterangepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-file-input.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
@@ -76,45 +80,111 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         </script>';
 ?>
 
-<div class="row">
-    <div class="col-md-8">
 
-        <!-- START JQUERY VALIDATION PLUGIN -->
-        <div class="block">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">A propos de Pharma'Net</h4>
-                </div>
-                <div class="alert alert-info">
-                    Pharma'Net version 1.0, tout droit réservé.<br>
-                    <h3> Nos modules </h3>
-                    <ul>
-                        <li>Stock</li>
-                        <li>Inventaire</li>
-                        <li>Vente</li>
-                        <li>Statistique</li>
-                        <li>Consultation en ligne</li>
-                        <li>Geo Net</li>
-                    </ul>
-                </div>
-                <div class="alert alert-danger">
-                    Ce logiciel est protégé par la loi du copyright et par des conventions internationales.
-                    Toute Reproduction ou distribution partielle ou totale du logiciel est strictement interdite.
-                </div>
-                <div class="alert alert-info">
-                    Contact : andersonazotsie@gmail.com +237 693 406 034
-                </div>
-                <div class="form-actions modal-footer">
-                    <div class="row">
-                        <div class="col-md-offset-3 col-md-9">
-                            <button type="button" class="btn default" data-dismiss="modal">O.K</button>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <!-- START MASKED INPUT PLUGIN -->
+                <div class="block">
+                    <h4>Recherche</h4>
+                    <form class="form-horizontal" role="form">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Nom employé:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="Country Name" id="search-employe-box" />
+                                    <div id="suggesstion-employe-box-block">
+                                        <div  id="suggesstion-employe-box"></div>
+                                    </div>
+
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Date:</label>
+                                <div class="col-md-9">
+                                    <div id="reportrangepharmanet" class="dtrange">
+                                        <span></span><b class="caret"></b>
+                                    </div>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Type:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" value="" id="pharmanettype" />
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Caisse:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" value="" id="pharmanetcaisse" />
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+                <!-- END MASKED INPUT PLUGIN -->
             </div>
         </div>
 
+
     </div>
+</div>
+
+<div class="row">
+
+
+    <!-- START PROJECTS BLOCK -->
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading ui-draggable-handle">
+
+                <ul class="panel-controls" style="margin-top: 2px;">
+                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                    <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
+                        <ul class="dropdown-menu">
+                            <li> <a href="#" class="btn btn-default btn-rounded btn-sm">Modifier</a></li>
+                            <li><a href="#" class="btn btn-default btn-rounded btn-sm">Ajouter</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body panel-body-table">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="tab_depense">
+                        <thead>
+                            <tr>
+                                <th>Designation </th>
+                                <th>Quantite</th>
+                                <th>Prix unitaire</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tab_Gdepense">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
+                    <h6>Total <span id="total_depense">0</span> FCFA </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PROJECTS BLOCK -->
+
 
 </div>

@@ -3,7 +3,11 @@
         $title_for_layout = ' ALSAS -' . 'Catalogue';
         $page_for_layout = 'Détail produit';
         $action_for_layout = 'Ajouter';
-        $id = $_GET['id'];
+        if ($_GET['id']) {
+            $id = $_GET['id'];
+        } else {
+            $id = null;
+        }
       
         if ($this->request->action == "index") {
             $position = "Tout";

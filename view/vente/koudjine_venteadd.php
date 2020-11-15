@@ -17,7 +17,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         window.onload = function () {
                                             document.getElementById("recherche").focus();
                                         };
-                                    </script>';
+                                    </script>'; 
 ?>
 <div class="row">
     <div class="col-md-12">

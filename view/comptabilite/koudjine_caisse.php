@@ -1036,14 +1036,15 @@ var qrcode = new QRCode(document.getElementById("codebarreimp"), {
           </div>
      </div>
 </div>
-<div class="modal fade" id="iconPreviewDepense" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="iconPreviewDepense" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="false">
      <div class="modal-dialog" style="width: 85%;">
           <div class="modal-content">
                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <button type="button" class="close" onclick="close_depense()"><span aria-hidden="false">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Dépense</h4>
                     <div style="display: flex;justify-content: flex-end;">
-                         <a onclick="ajouter_depense()" href="#" class="btn btn-default btn-rounded btn-sm">Ajouter</a>
+                         <a onclick="modify_depense('<?php echo $action_fermeture->id; ?>')" id="modifydepenseid" href="#" class="btn btn-default btn-rounded btn-sm">Modifier</a>
+                         <a onclick="ajouter_depense()" id="adddepenseid" href="#" class="btn btn-default btn-rounded btn-sm">Ajouter</a>
                     </div>
                </div>
                <div class="modal-body">
@@ -1068,7 +1069,7 @@ var qrcode = new QRCode(document.getElementById("codebarreimp"), {
                                              </table>
                                         </div>
                                         <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
-                                             <h6>Total <span id="total_depense">0</span> F CFA </h6>
+                                             <h6>Total <span id="total_depense">0</span> FCFA </h6>
                                         </div>
                                    </div>
                               </div>
@@ -1077,8 +1078,8 @@ var qrcode = new QRCode(document.getElementById("codebarreimp"), {
                     </div>
                </div>
                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="valider_depense('<?php echo $action_fermeture->id; ?>')" style="margin-right: 20px; ">Valider</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="button" id='savedepenseid' class="btn btn-success" onclick="valider_depense('<?php echo $action_fermeture->id; ?>')" style="margin-right: 20px; ">Enregistrer</button>
+                    <button type="button" class="btn btn-primary" onclick="close_depense()">Ferler</button>
                </div>
           </div>
      </div>
@@ -1302,3 +1303,56 @@ var qrcode = new QRCode(document.getElementById("codebarreimp"), {
           </div>
      </div>
 </div> -->
+
+<div class="modal fade" id="iconPreviewListeCaisse" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog" style="width: 85%;">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Caisse</h4>
+               </div>
+               <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-12 ">
+                              <div class="panel panel-default">
+
+                                   <div class="panel-body panel-body-table">
+
+                                        <div class="panel-body">
+                                             <div class="table-responsive">
+                                                  <table id="tab_load_produit_caisse" style="height: 200px;overflow: auto;" class="table table-bordered table-actions">
+                                                       <thead>
+                                                            <tr>
+                                                                 <th width="100">Montant</th>
+                                                                 <th width="200">Montant percu</th>
+                                                                 <th width="200">Date de vente</th>
+                                                                 <th width="100">Etat</th>
+                                                                 <th width="100">Ref</th>
+                                                            </tr>
+                                                       </thead>
+                                                       <tbody id="tab_Bload_produit_caisse">
+
+                                                       </tbody>
+                                                  </table>
+                                             </div>
+
+                                        </div>
+
+                                   </div>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+               </div>
+          </div>
+     </div>
+</div>
+
+<ul>
+     <li onclick="selectemploye('<?php echo $employename; ?>')"></li>
+</ul>
+
+p

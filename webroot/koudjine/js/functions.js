@@ -1,10 +1,54 @@
+var test = 0;
 $(document).ready(function () { 	// le document est charg鍊   $("a").click(function(){ 	// on selectionne tous les liens et on d?nit une action quand on clique dessus
 
     // Pharmacie
     var netpayer;
     var reduc;
     var stock;
-    
+
+    if($("#reportrangepharmanet").length > 0){   
+        $("#reportrangepharmanet").daterangepicker({                    
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            opens: 'left',
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary',
+            cancelClass: 'btn-small',
+            format: 'MM.DD.YYYY',
+            separator: ' to ',
+            startDate: moment().subtract('days', 29),
+            endDate: moment()            
+          },function(start, end) {
+              $('#reportrangepharmanet span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        });
+        
+        $("#reportrangepharmanet span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+    }
+
+    $('#search-employe-box').keyup(function () {
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/reademploye.php',
+            data: 'keyword='+$(this).val(),
+            beforeSend: function () {
+                $("#search-employe-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
+            },
+            success: function (data) {
+                //alert(data);
+                $("#suggesstion-employe-box-block").show();
+                $("#suggesstion-employe-box").html(data).show();
+                $("#suggesstion-employe-box").css("background", "#FFF");
+
+            }
+        });
+    })
+
     $("#tab_produit_detail").hide();
     $("#detailTab").hide();
     $(".charger_info_employe").on("click", function () {
@@ -329,7 +373,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                     success: function (data) {
                         ////alert(data);
                         if (data.erreur == 'non') {
-                            var action = 0;
+                            var action = 0; 
                             $('#tab_vente  tr').each(function (i) {
                                 var id1 = $(this).attr("id");
                                 var prix, qte;
@@ -700,9 +744,21 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
             $("#tab_Grecherche").hide();
         }
     });
+    console.log(); (test);
+    if (test != '') {
+        load_produit_detail(test);
+    } else {
 
-    load_produit_detail(test);
+    }
+
 });
+
+function selectemploye(val) {
+    $("#suggesstion-employe-box-block").hide();
+    $("#search-employe-box").val(val);
+    $("#suggesstion-employe-box").hide();
+}
+
 // Ajax
 // Fonctions PHARMACIE
 function load_produit(id) {
@@ -1639,8 +1695,12 @@ function enregistrer_user(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/pharmanet/user';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/pharmanet/user';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -1670,9 +1730,13 @@ function enregistrer_user(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/pharmanet/user';
-                    //var link = '/pharmacietest/bouwou/pharmanet/useradd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/pharmanet/user';
+                        //var link = '/pharmacietest/bouwou/pharmanet/useradd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -1721,8 +1785,12 @@ function enregistrer_employe(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/pharmanet/employe';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/pharmanet/employe';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -1916,7 +1984,9 @@ function enregistrer_produit(option, id) {
             },
             success: function (data) {
                 ////alert(data.erreur);
+
                 if (data == 'ok') {
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
                     var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
                     window.location.href = link;
                 }
@@ -1960,7 +2030,11 @@ function enregistrer_assureur(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/assureur/';
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/assureur/';
+                    }, 5000);
+
                     window.location.href = link;
                 }
                 else {
@@ -1988,8 +2062,12 @@ function enregistrer_assureur(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/assureuradd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/assureuradd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2019,8 +2097,12 @@ function enregistrer_categorie(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/categorie/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/categorie/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2044,8 +2126,12 @@ function enregistrer_categorie(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/categorieadd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/categorieadd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2091,8 +2177,12 @@ function enregistrer_commande(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/commande/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/commande/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2234,8 +2324,12 @@ function enregistrer_codepostal(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/codepostal/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/codepostal/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2260,8 +2354,12 @@ function enregistrer_codepostal(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/codepostaladd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/codepostaladd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2301,8 +2399,12 @@ function enregistrer_fabriquant(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/fabriquant/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/fabriquant/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2331,8 +2433,12 @@ function enregistrer_fabriquant(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/fabriquantadd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/fabriquantadd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2364,8 +2470,12 @@ function enregistrer_forme(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/forme/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/forme/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2390,8 +2500,12 @@ function enregistrer_forme(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/formeadd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/formeadd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2433,8 +2547,12 @@ function enregistrer_fournisseur(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/fournisseur/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/fournisseur/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2464,8 +2582,12 @@ function enregistrer_fournisseur(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/fournisseuradd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/fournisseuradd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2497,8 +2619,12 @@ function enregistrer_magasin(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/magasin/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/magasin/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2522,8 +2648,12 @@ function enregistrer_magasin(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/magasinadd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/magasinadd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2559,8 +2689,12 @@ function enregistrer_prescripteur(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/prescripteur/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/prescripteur/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2587,8 +2721,12 @@ function enregistrer_prescripteur(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/prescripteuradd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/prescripteuradd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2620,8 +2758,12 @@ function enregistrer_ville(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/ville/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/ville/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2645,8 +2787,12 @@ function enregistrer_ville(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/villeadd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/villeadd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2678,8 +2824,12 @@ function enregistrer_unite(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/unite/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/unite/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2704,8 +2854,12 @@ function enregistrer_unite(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/uniteadd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/uniteadd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2739,8 +2893,12 @@ function enregistrer_rayon(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/rayon/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/rayon/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2766,8 +2924,12 @@ function enregistrer_rayon(option, id) {
 
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/rayonadd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/rayonadd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2814,8 +2976,12 @@ function enregistrer_en_rayon(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/en_rayon/';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/en_rayon/';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -2848,8 +3014,12 @@ function enregistrer_en_rayon(option, id) {
 
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/geonetliste/en_rayonadd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/geonetliste/en_rayonadd/' + id;
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
