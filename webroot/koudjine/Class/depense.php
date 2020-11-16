@@ -277,6 +277,22 @@ class DepenseManager
         }
         return $Depenses;
     }
+
+    public function getDateRangeDepenseUserid($start,$end,$id)
+    {
+        $Depenses = array();
+        $q = $this->_db->prepare( "SELECT * FROM `depense` WHERE `caisse_id` = ".$id." AND `dateDepense` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH ) ");
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $Depenses[] = new Depense($donnees);
+        }
+        return $Depenses;
+
+
+    }
+
+
     public function getListEtat()
     {
         $Depenses = array();

@@ -6,10 +6,15 @@ global $pdo;
 
 
 $manager = new DepenseManager($pdo);
+$type=null;
+if (isset($_POST['type']))
+$type = $_POST['type'];
 
 if (isset($_POST['id']))
 $id = $_POST['id'];
-$type = $_POST['type'];
+
+if (isset($_POST['dateDepense']))
+$dateDepense = $_POST['dateDepense'];
 
 
 if ($type == "modify") {
@@ -91,7 +96,9 @@ if ($type == "modify") {
         $prix = $_POST['prix'];
     
         if($new_id < 0){
+           
             $depense = new Depense(array(
+                'dateDepense' => $dateDepense,
                 'designation' => $designation,
                 'caisse_id' => $caisse_id,
                 'quantite' => $qte,

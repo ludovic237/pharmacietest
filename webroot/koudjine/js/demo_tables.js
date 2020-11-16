@@ -405,7 +405,7 @@ function gerer_bon_caisse() {
         }
 
     });
-}
+} 
 function open_depense(caisse_id) {
     //noty({text: 'Successful action', layout: 'topRight', type: 'success'});
     var x = document.getElementById("savedepenseid");
@@ -588,6 +588,7 @@ function valider_depense(caisse_id) {
             type: "POST",
             url: '/pharmacietest/koudjine/inc/gerer_depense.php',
             data: {
+                dateDepense:moment().format("YYYY-MM-DD HH:mm:ss"),
                 new_id: parseInt(send_id),
                 caisse_id: caisse_id,
                 designation: $("#" + id1 + " .designation").val(),

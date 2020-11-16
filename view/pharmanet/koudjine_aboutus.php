@@ -1,7 +1,8 @@
 <?php
 
 $title_for_layout = ' ALSAS -' . 'Universités';
-$page_for_layout = ($position == 'Ajouter') ? 'Ajouter un assureur' : 'Modifier un assureur';
+// $page_for_layout = ($position == 'Ajouter') ? 'Ajouter un assureur' : 'Modifier un assureur';
+$page_for_layout = 'Pharmanet recherche';
 // $action_for_layout = 'Ajouter';
 
 if ($this->request->action == "index") {
@@ -9,7 +10,7 @@ if ($this->request->action == "index") {
 } else {
     //$position = $this->request->action;
 }
-$position_for_layout = '<li><a href="#">Universites</a></li><li class="active">' . $position . '</li>';
+$position_for_layout = '<li><a href="#">Universites</a></li><li class="active">about</li>';
 
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 
@@ -95,7 +96,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div style="margin-bottom: 15px;" class="form-group">
                                 <label class="col-md-3 control-label">Nom employé:</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="Country Name" id="search-employe-box" />
+                                    <input type="text" class="form-control" placeholder="Saisir nom employé" id="search-employe-box" />
                                     <div id="suggesstion-employe-box-block">
                                         <div id="suggesstion-employe-box"></div>
                                     </div>
@@ -119,14 +120,15 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <label class="col-md-3 control-label">Catégorie:</label>
                                 <div class="col-md-9">
                                     <select class="selectpicker form-control" name="pharmanettype" id="pharmanettype">
-                                       <option value="0">Depense</option>
-                                       <option value="1">Vente</option>
-                                       <option value="2">Commandé</option>
+                                        <option value="depense">Depense</option>
+                                        <option value="caisse">Caisse</option>
+                                        <option value="vente">Vente</option>
+                                        <option value="commande">Commandé</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div style="margin-bottom: 15px;" class="form-group">
                                 <label class="col-md-3 control-label">Caisse:</label>
                                 <div class="col-md-9">
@@ -137,10 +139,15 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <span class="help-block"></span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
                 <!-- END MASKED INPUT PLUGIN -->
+            </div>
+            <div class="panel-footer">
+
+                <button class="btn btn-primary" onclick="pharmanet_recherche_valide()">Recherche <span class="fa fa-search"></span></button>
+
             </div>
         </div>
 
@@ -152,10 +159,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
 
     <!-- START PROJECTS BLOCK -->
-    <div class="col-md-12">
+    <div class="col-md-12" id="pharmanet_tab_depense">
         <div class="panel panel-default">
             <div class="panel-heading ui-draggable-handle">
-
+                <div class="panel-title-box">
+                    <h3>Dépense total : <span id="pharmanet_total_depense" style="font-size: 20px;font-weight: bold;">0</span> FCFA</h3>
+                    <!-- <span>Projects activity</span> -->
+                </div>
                 <ul class="panel-controls" style="margin-top: 2px;">
                     <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                     <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
@@ -170,7 +180,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             </div>
             <div class="panel-body panel-body-table">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped" id="tab_depense">
+                    <table class="table table-bordered table-striped" id="pharmanet_tab_depense">
                         <thead>
                             <tr>
                                 <th>Designation </th>
@@ -179,7 +189,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <th>Total</th>
                             </tr>
                         </thead>
-                        <tbody id="tab_Gdepense">
+                        <tbody id="pharmanet_tab_Gdepense">
 
                         </tbody>
                     </table>
@@ -187,6 +197,96 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
                     <h6>Total <span id="total_depense">0</span> FCFA </h6>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PROJECTS BLOCK -->
+
+    <!-- START PROJECTS BLOCK -->
+    <div class="col-md-12" id="pharmanet_tab_caisse">
+        <div class="panel panel-default">
+            <div class="panel-heading ui-draggable-handle">
+                <div class="panel-title-box">
+                    <h3>Caisse ouvert total : <span id="pharmanet_total_caisse_ouvert" style="font-size: 20px;font-weight: bold;">0</span> FCFA et Caisse fermé total : <span id="pharmanet_total_caisse_ferme" style="font-size: 20px;font-weight: bold;">0</span> FCFA</h3>
+                    <!-- <span>Projects activity</span> -->
+                </div>
+                <ul class="panel-controls" style="margin-top: 2px;">
+                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                    <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
+                        <ul class="dropdown-menu">
+                            <li> <a href="#" class="btn btn-default btn-rounded btn-sm">Modifier</a></li>
+                            <li><a href="#" class="btn btn-default btn-rounded btn-sm">Ajouter</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body panel-body-table">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-actions">
+                        <thead>
+                            <tr>
+                                <th width="50">id</th>
+                                <th>Employé</th>
+                                <th width="100">Session</th>
+                                <th width="100">Etat</th>
+                                <th width="100">fond Caisse Ouvert</th>
+                                <th width="100">fond Caisse Ferme</th>
+                                <th width="100">Date Ouverture</th>
+                                <th width="100">Date fermeture</th>
+                                <th width="100">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pharmanet_caisse_employe">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- END PROJECTS BLOCK -->
+
+    <!-- START PROJECTS BLOCK -->
+    <div class="col-md-12" id="pharmanet_tab_vente">
+        <div class="panel panel-default">
+            <div class="panel-heading ui-draggable-handle">
+                <div class="panel-title-box">
+                    <h3>Vente total : <span id="pharmanet_total_vente" style="font-size: 20px;font-weight: bold;">0</span> FCFA</h3>
+                    <!-- <span>Projects activity</span> -->
+                </div>
+                <ul class="panel-controls" style="margin-top: 2px;">
+                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                    <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
+                        <ul class="dropdown-menu">
+                            <li> <a href="#" class="btn btn-default btn-rounded btn-sm">Modifier</a></li>
+                            <li><a href="#" class="btn btn-default btn-rounded btn-sm">Ajouter</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body panel-body-table">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-actions">
+                        <thead>
+                            <tr>
+                                <th width="100">Ref</th>
+                                <th width="100">Montant</th>
+                                <th width="200">Montant percu</th>
+                                <th width="200">Client</th>
+                                <th width="200">Date de vente</th>
+                                <th width="100">Etat</th>
+                                <th width="100">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pharmanet_vente_employe">
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>

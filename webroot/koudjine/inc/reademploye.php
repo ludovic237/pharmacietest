@@ -38,7 +38,7 @@ if (!empty($_POST["keyword"])) {
             foreach ($employe as $k => $s) {
             ?>
                 <li>
-                    <a onClick="selectemploye('<?php echo $s->identifiant(); ?>');"><?php echo $s->identifiant(); ?></a>
+                    <a onClick="selectemploye('<?php echo $s->identifiant(); ?>','<?php echo $s->id(); ?>');"><?php echo $s->identifiant(); ?></a>
                 </li>
             <?php } ?>
         </ul>
