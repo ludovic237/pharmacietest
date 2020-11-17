@@ -156,7 +156,13 @@ class PharmanetController extends Controller
         $this->set($d);
     }
 
-    function koudjine_aboutus()
+    function koudjine_list()
+    {
+        $this->loadModel('Pharmanet');
+
+    }
+
+    function koudjine_depenseadd()
     {
         $this->loadModel('Pharmanet');
 

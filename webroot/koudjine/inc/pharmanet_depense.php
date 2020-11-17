@@ -25,6 +25,8 @@ if (isset($_POST['idemploye'])) {
     $endDate = $_POST['endDate'];
     $listecaisse = $managercaisse->getIdEmploye($idemploye);
 
+
+
     if ($type == "depense") {
         foreach ($listecaisse as $key => $value) {
             $depense = $managerdepensse->getDateRangeDepenseUserid($startDate, $endDate, $value->id());
@@ -32,17 +34,28 @@ if (isset($_POST['idemploye'])) {
             foreach ($depense as $k => $v) :
                 echo
                     "<tr id='" . $v->id() . "' data='1000'>
-        <td class=''>
-            <input class='designation' type=\"text\" value='" . $v->designation() . "'>
+        <td class=''>" . $v->designation() . "
+        </td>
+        <td class=''>" . $v->quantite() . "
+        </td>
+        <td class=''>" . $v->prixUnitaire() . "
+        </td>
+        <td class=''>" . ($v->quantite() * $v->prixUnitaire()) . "
+        </td>
+        <td class=''>" . $v->beneficiaire() . "
+        </td>
+        <td class=''>" . $v->numeroCni() . "
+        </td>
+        <td class=''>" . $v->dateDepense() . "
         </td>
         <td class=''>
-            <input class='qte' type=\"text\" value='" . $v->quantite() . "'>
+        " . $v->societe() . "
         </td>
         <td class=''>
-            <input class='prix' type=\"text\" value='" . $v->prixUnitaire() . "'>
-        </td>
-        <td class=''>
-            <input class='total' type=\"text\" value='" . ($v->quantite() * $v->prixUnitaire()) . "'>
+                
+        <a data-toggle='tooltip' data-placement='top' data-original-title='Modifier' class='btn btn-default btn-rounded btn-sm' onclick='modify_depense_row(" . $v->id() . ");'><span class='fa fa-pencil'></span></a>
+        <a data-toggle='tooltip' data-placement='top' data-original-title='Spprimer' class='btn btn-danger btn-rounded btn-sm' onclick='delete_row('trow_1');'><span class='fa fa-times'></span></a>
+    
         </td>
     </tr>";
             endforeach;

@@ -146,7 +146,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             </div>
             <div class="panel-footer">
 
-                <button class="btn btn-primary" onclick="pharmanet_recherche_valide()">Recherche <span class="fa fa-search"></span></button>
+                <button class="btn btn-success" onclick="pharmanet_recherche_valide()">Recherche <span class="fa fa-search"></span></button>
 
             </div>
         </div>
@@ -187,15 +187,17 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <th>Quantite</th>
                                 <th>Prix unitaire</th>
                                 <th>Total</th>
+                                <th>Bénéficiaire</th>
+                                <th>Numéro CNI</th>
+                                <th>Date de délivrance</th>
+                                <th>Société</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="pharmanet_tab_Gdepense">
 
                         </tbody>
                     </table>
-                </div>
-                <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
-                    <h6>Total <span id="total_depense">0</span> FCFA </h6>
                 </div>
             </div>
         </div>

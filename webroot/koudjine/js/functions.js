@@ -2,6 +2,7 @@ var test = 0;
 var startDate;
 var endDate;
 var idemploye;
+var idfulldepense;
 $('#pharmanet_tab_vente').hide();
 $('#pharmanet_tab_depense').hide();
 $('#pharmanet_tab_caisse').hide();
@@ -773,6 +774,11 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
             $("#tab_Grecherche").hide();
         }
     });
+
+
+    idfulldepense = idfulldepense;
+    load_depense_info(idfulldepense);
+
     console.log(); (test);
     if (test != '') {
         load_produit_detail(test);
@@ -782,12 +788,39 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 
 });
 
+function load_depense_info(id) {
+    $.ajax({
+        type: "POST",
+        url: "/pharmacietest/koudjine/inc/add_full_depense.php",
+        data: {
+            id: id,
+            type: "modify"
+        },
+        dataType: 'json',
+        success: function (data) {
+            //alert(data.depense_objet);
+            $('#depense_type').val(data.depense_type);
+            $('#depense_quantite').val(data.depense_quantite);
+            $('#depense_prixunitaire').val(data.depense_prixunitaire);
+            $('#depense_objet').val(data.depense_objet);
+            $('#depense_remis').val(data.depense_remis);
+            $('#depense_lieu').val(data.depense_lieu);
+            $('#depense_societe').val(data.depense_societe);
+            $('#depense_datedepense').val(data.depense_datedepense);
+            $('#depense_date').val(data.depense_date);
+            $('#depense_cni').val(data.depense_cni);
+        }
+    })
+}
+
 function selectemploye(val, id) {
     idemploye = id;
     $("#suggesstion-employe-box-block").hide();
     $("#search-employe-box").val(val);
     $("#suggesstion-employe-box").hide();
 }
+
+
 
 function pharmanet_recherche_valide() {
     var nomemploye = $('#search-employe-box').val();
@@ -864,7 +897,7 @@ function pharmanet_recherche_valide() {
 
             $('#pharmanet_caisse_employe').empty();
             $('#pharmanet_caisse_employe').html(server_responce);
-            
+
 
         }
 
@@ -1950,6 +1983,21 @@ function enregistrer_employe(option, id) {
     }
 
 }
+
+function update_row_produit(id) {
+    //alert("link");
+    var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+
+function modify_depense_row(id) {
+    //alert("link");
+    var link = '/pharmacietest/bouwou/pharmanet/depenseadd/?id=' + id;
+    //alert(link);
+    window.location.href = link;
+}
+
 function charger_select_produit() {
     var nom = $('#nom').val();
     //alert('pass')

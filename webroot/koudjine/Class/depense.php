@@ -244,7 +244,7 @@ class DepenseManager
     public function get($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM depense WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->query("SELECT * FROM depense WHERE supprimer = 0 AND id = ".$info."");
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Depense($donnees);
 

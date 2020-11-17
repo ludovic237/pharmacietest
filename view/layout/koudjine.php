@@ -191,7 +191,14 @@
                             <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'useradd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/useradd'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
                         </ul>
                     </li>
-                    <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'aboutus') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/aboutus'); ?>"><span class="fa lettre">A</span>About us</a></li>
+                    <li class="xn-openable <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'list' || $this->request->controller == 'pharmanet' && $this->request->action == 'depenseadd') { ?>active <?php } ?>">
+                        <a href="#"><span class="fa lettre">U</span> Activité</a>
+                        <ul>
+                            <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'list') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/list'); ?>"> <span class="fa lettre">L</span>Recherche</a></li>
+                            <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'depenseadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/depenseadd'); ?>"><span class="fa lettre">A</span> Ajouter dépense</a></li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </li>
 
