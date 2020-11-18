@@ -1015,7 +1015,6 @@ function load_produit_detail(id, nomp) {
                     { data: "prixAchat" },
                     { data: "prixVente" },
                     { data: "action" },
-                    { data: "datel" },
                 ]
             });
         }
@@ -1871,7 +1870,7 @@ function enregistrer_produit(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/produit/';
+                    var link = '/pharmacietest/bouwou/catalogue/produit';
                     window.location.href = link;
                 }
                 else {

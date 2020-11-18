@@ -357,10 +357,10 @@ function ajouter_bon_caisse() {
     $('#tab_GBonCaisse').prepend(cat);
 
 }
-var qrcode = new QRCode(document.getElementById("codebarreimp"), {
+/*var qrcode = new QRCode(document.getElementById("codebarreimp"), {
     width: 30,
     height: 30
-});
+});*/
 function gerer_bon_caisse() {
     $('#tab_GBonCaisse  tr').each(function (i) {
         var dateEncaisser, id1 = $(this).attr("id");

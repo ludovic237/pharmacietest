@@ -40,7 +40,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         required: true
                     },
                     ean13: {
-                        required: true
+                        required: false
                     }
 
                 }
@@ -233,9 +233,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 </div>
                 <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                     <h4 style="background-color: #2d3945;color: white;">Détail produit </h4>
-                    <span>
+                    <!--<span>
                         <input type="checkbox" id="check_compo-1">
-                    </span>
+                    </span>-->
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
