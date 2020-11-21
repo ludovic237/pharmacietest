@@ -14,7 +14,7 @@
     <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" id="theme" href="<?php echo BASE_URL . '/koudjine/css/theme-default.css'; ?>" />
 
-    
+
 </head>
 
 <body>
@@ -145,7 +145,13 @@
                             <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'entreadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/entreadd'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
                         </ul>
                     </li>
-                    <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortie') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">S</span> Sortie</a></li>
+                    <li class="xn-openable <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortie' || $this->request->controller == 'comptabilite' && $this->request->action == 'sortieautre') { ?>active <?php } ?>">
+                        <a href="#"><span class="fa lettre">E</span> Sortie</a>
+                        <ul>
+                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortie') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">D</span> Detail</a></li>
+                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortieautre') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortieautre'); ?>"><span class="fa lettre">A</span> Autre sortie</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['commande'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'commande') { ?>active<?php } ?>">
@@ -198,7 +204,7 @@
                             <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'depenseadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/depenseadd'); ?>"><span class="fa lettre">A</span> Ajouter dépense</a></li>
                         </ul>
                     </li>
-                    
+
                 </ul>
             </li>
 

@@ -1,4 +1,4 @@
-<?php
+ <!-- <?php
 
 $title_for_layout = ' ALSAS -' . 'Pharmanet';
 // $page_for_layout = ($position == 'Ajouter') ? 'Ajouter un assureur' : 'Modifier un assureur';
@@ -7,7 +7,7 @@ $page_for_layout = 'Validation dépénse';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-} else {
+} else { 
     $id = null;
 }
 
@@ -77,7 +77,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             });
 
         </script>';
-?>
+?>-->
 
 
 <div class="row">
