@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
-      <change beforePath="$PROJECT_DIR$/view/pharmanet/koudjine_depenseadd.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/pharmanet/koudjine_depenseadd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/functions.js" afterDir="false" />
-    </list>
+    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -221,6 +215,7 @@
       <workItem from="1601972161208" duration="6112000" />
       <workItem from="1602145517272" duration="59603000" />
       <workItem from="1605816872598" duration="214000" />
+      <workItem from="1605950983653" duration="131000" />
     </task>
     <task id="LOCAL-00043" summary="merge">
       <created>1600629500626</created>
