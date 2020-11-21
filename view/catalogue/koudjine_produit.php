@@ -65,7 +65,7 @@
                                             </button>
                                         </div>
                                         <div>
-                                            <a class="btn btn-warning btn-rounded btn-sm" href="<?php echo Router::url('bouwou/catalogue/produitdetail/' .  $v->idp); ?>" style="margin-right: 20px">Detail</a>
+                                            <a class="btn btn-warning btn-rounded btn-sm" href="<?php echo Router::url('bouwou/catalogue/produitdetail/?id=' .  $v->idp); ?>" style="margin-right: 20px">Detail</a>
                                         </div>
                                     </td>
                                 </tr>

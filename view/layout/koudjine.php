@@ -13,7 +13,8 @@
     <!-- END META SECTION -->
     <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" id="theme" href="<?php echo BASE_URL . '/koudjine/css/theme-default.css'; ?>" />
-    <!-- EOF CSS INCLUDE -->
+
+    
 </head>
 
 <body>
@@ -70,7 +71,7 @@
                             <a href="#"><span class="fa lettre">E</span> Produit</a>
                             <ul>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produit'); ?>"><span class="fa lettre">L</span> Lister</a></li>
-                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitdetail') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitdetail'); ?>"><span class="fa lettre">L</span> Lister detail</a></li> 
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitdetail') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitdetail'); ?>"><span class="fa lettre">L</span> Lister detail</a></li>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitadd'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
                                 <!-- <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitimpression') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitimpression'); ?>"><span class="fa lettre">I</span> Impression code</a></li> -->
                             </ul>
@@ -144,7 +145,7 @@
                             <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'entreadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/entreadd'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
                         </ul>
                     </li>
-                    <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortie') { ?>class="active"  <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">S</span> Sortie</a></li>
+                    <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'sortie') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/comptabilite/sortie'); ?>"><span class="fa lettre">S</span> Sortie</a></li>
                 </ul>
             </li>
             <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['commande'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'commande') { ?>active<?php } ?>">
@@ -190,7 +191,14 @@
                             <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'useradd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/useradd'); ?>"><span class="fa lettre">A</span> Ajouter</a></li>
                         </ul>
                     </li>
-                    <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'aboutus') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/aboutus'); ?>"><span class="fa lettre">A</span>About us</a></li>
+                    <li class="xn-openable <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'list' || $this->request->controller == 'pharmanet' && $this->request->action == 'depenseadd') { ?>active <?php } ?>">
+                        <a href="#"><span class="fa lettre">U</span> Activité</a>
+                        <ul>
+                            <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'list') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/list'); ?>"> <span class="fa lettre">L</span>Recherche</a></li>
+                            <li <?php if ($this->request->controller == 'pharmanet' && $this->request->action == 'depenseadd') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/pharmanet/depenseadd'); ?>"><span class="fa lettre">A</span> Ajouter dépense</a></li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </li>
 
@@ -500,6 +508,47 @@
     <script type='text/javascript' src="<?php echo BASE_URL . '/koudjine/js/plugins/scrolltotop/scrolltopcontrol.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'; ?>"></script>
 
+    <!-- EOF CSS INCLUDE -->
+
+    <script type='text/javascript' src="<?php echo BASE_URL . '/koudjine/js/plugins/noty/jquery.noty.js'  ?>"></script>
+    <script type='text/javascript' src="<?php echo BASE_URL . '/koudjine/js/plugins/noty/layouts/topCenter.js'  ?>"></script>
+    <script type='text/javascript' src="<?php echo BASE_URL . '/koudjine/js/plugins/noty/layouts/topLeft.js'  ?>"></script>
+    <script type='text/javascript' src="<?php echo BASE_URL . '/koudjine/js/plugins/noty/layouts/topRight.js'  ?>"></script>
+
+    <script type='text/javascript' src="<?php echo BASE_URL . '/koudjine/js/plugins/noty/themes/default.js'  ?>"></script>
+    <script type="text/javascript">
+        function notyConfirm() {
+            noty({
+                text: 'Do you want to continue?',
+                layout: 'topRight',
+                buttons: [{
+                        addClass: 'btn btn-success btn-clean',
+                        text: 'Ok',
+                        onClick: function($noty) {
+                            $noty.close();
+                            noty({
+                                text: 'You clicked "Ok" button',
+                                layout: 'topRight',
+                                type: 'success'
+                            });
+                        }
+                    },
+                    {
+                        addClass: 'btn btn-danger btn-clean',
+                        text: 'Cancel',
+                        onClick: function($noty) {
+                            $noty.close();
+                            noty({
+                                text: 'You clicked "Cancel" button',
+                                layout: 'topRight',
+                                type: 'error'
+                            });
+                        }
+                    }
+                ]
+            })
+        }
+    </script>
     <!-- THIS PAGE PLUGINS -->
     <?php echo $script_for_layout; ?>
     <!-- END THIS PAGE PLUGINS -->

@@ -18,6 +18,13 @@ $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+<script>
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+     width: 30,
+     height: 30
+ });
+                                    </script>
+
 ';
 ?>
 

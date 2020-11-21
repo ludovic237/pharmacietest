@@ -467,7 +467,7 @@ if(typeof Object.create !== 'function') {
             easing: 'linear',
             speed : 100
         },
-        timeout     : false,
+        timeout     : 5000,
         force       : false,
         modal       : false,
         maxVisible  : 5,
