@@ -162,9 +162,25 @@ class PharmanetController extends Controller
 
     }
 
-    function koudjine_depenseadd()
+    function koudjine_depenseadd($id = null)
     {
         $this->loadModel('Pharmanet');
+        $d['type_depense'] = $this->Pharmanet->find(array(
+            //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+            'table' => 'type_depense',
+            'conditions' => array( 'supprimer' => 0)
+        ));
+        if($id != null){
+            $d['position'] = 'Modifier';
+            $d['depense'] = $this->Pharmanet->findFirst(array(
+                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+                'table' => 'depense',
+                'conditions' => array('id' => $id, 'supprimer' => 0)
+            ));
+        }else {
+            $d['position'] = 'Ajouter';
+        }
+        $this->set($d);
 
     }
 

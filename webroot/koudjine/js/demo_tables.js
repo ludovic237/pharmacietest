@@ -358,6 +358,10 @@ function ajouter_bon_caisse() {
 
 }
 
+/*var qrcode = new QRCode(document.getElementById("codebarreimp"), {
+    width: 30,
+    height: 30
+});*/
 function gerer_bon_caisse() {
     $('#tab_GBonCaisse  tr').each(function (i) {
         var dateEncaisser, id1 = $(this).attr("id");
@@ -405,7 +409,7 @@ function gerer_bon_caisse() {
         }
 
     });
-} 
+}
 function open_depense(caisse_id) {
     //noty({text: 'Successful action', layout: 'topRight', type: 'success'});
     var x = document.getElementById("savedepenseid");
@@ -483,7 +487,7 @@ function modify_depense(caisse_id) {
 
 
 function ajouter_depense() {
-    
+
     var x = document.getElementById("savedepenseid");
     var y = document.getElementById("adddepenseid");
     var z = document.getElementById("modifydepenseid");
@@ -596,7 +600,7 @@ function valider_depense(caisse_id) {
                 prix: parseInt($("#" + id1 + " .prix").val())
             },
             success: function (server_responce) {
-                
+
                 //alert(server_responce);
                 x.style.display = "none";
                 y.style.display = "initial";

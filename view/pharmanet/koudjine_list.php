@@ -278,7 +278,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <th width="100">Ref</th>
                                 <th width="100">Montant</th>
                                 <th width="200">Montant percu</th>
-                                <th width="200">Client</th>
+                                <th width="200">Vendeur</th>
                                 <th width="200">Date de vente</th>
                                 <th width="100">Etat</th>
                                 <th width="100">Actions</th>

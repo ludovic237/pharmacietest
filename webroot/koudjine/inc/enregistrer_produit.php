@@ -38,7 +38,7 @@ if (isset($_POST['id'])){
     //echo $id;
     //$prod = new Departement();
     if ($manager->existsNom($nom)) {
-        $prod = $manager->get($id);
+        $prod = $manager->getNom($nom);
         //echo "Ce departement existe";
         if($prod->id() == $id){
             $prod->setcategorie_id($cat);
@@ -172,7 +172,7 @@ else{
         $prd = $manager->getLast();
         $Date_Du_Jour = date("Ymd");
         $ide = $prd->id().'00'.$Date_Du_Jour;
-        echo $ide;
+        //echo $ide;
         $en_rayon = new En_rayon(array(
             'id' => $ide,
             'produit_id' => $prd->id(),

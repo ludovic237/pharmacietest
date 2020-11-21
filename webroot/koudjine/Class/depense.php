@@ -100,10 +100,8 @@ class Depense
     public function setcaisse_id($id)
     {
 
-        if ($id > 0)
-        {
             $this->_caisse_id = $id;
-        }
+
     }
     public function setdesignation($id)
     {
@@ -179,7 +177,7 @@ class DepenseManager
     {
         $q = $this->_db->prepare('INSERT INTO depense SET id = :id, caisse_id = :caisse_id, designation = :designation, quantite = :quantite, prixUnitaire = :prixUnitaire, dateDepense = :dateDepense, beneficiaire = :beneficiaire, numeroCni = :numeroCni, lieuDelivrance = :lieuDelivrance, dateDelivrance = :dateDelivrance, societe = :societe, typeDepense = :typeDepense, supprimer=0');
         $q->bindValue(':id', $Depense->id(), PDO::PARAM_INT);
-        $q->bindValue(':caisse_id', $Depense->caisse_id(), PDO::PARAM_INT);
+        $q->bindValue(':caisse_id', $Depense->caisse_id());
         $q->bindValue(':designation', $Depense->designation());
         $q->bindValue(':quantite', $Depense->quantite());
         $q->bindValue(':prixUnitaire', $Depense->prixUnitaire());
@@ -244,7 +242,7 @@ class DepenseManager
     public function get($info)
     {
 
-        $q = $this->_db->query("SELECT * FROM depense WHERE supprimer = 0 AND id = ".$info."");
+        $q = $this->_db->query("SELECT * FROM depense WHERE supprimer = 0 AND id = ".$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Depense($donnees);
 
@@ -309,7 +307,7 @@ class DepenseManager
 
         $q = $this->_db->prepare('UPDATE depense SET caisse_id = :caisse_id, designation = :designation, quantite = :quantite, prixUnitaire = :prixUnitaire, dateDepense = :dateDepense, beneficiaire = :beneficiaire, numeroCni = :numeroCni, lieuDelivrance = :lieuDelivrance, dateDelivrance = :dateDelivrance, societe = :societe, typeDepense = :typeDepense WHERE id = :id');
         $q->bindValue(':id', $Depense->id(), PDO::PARAM_INT);
-        $q->bindValue(':caisse_id', $Depense->caisse_id(), PDO::PARAM_INT);
+        $q->bindValue(':caisse_id', $Depense->caisse_id());
         $q->bindValue(':designation', $Depense->designation());
         $q->bindValue(':quantite', $Depense->quantite());
         $q->bindValue(':prixUnitaire', $Depense->prixUnitaire());

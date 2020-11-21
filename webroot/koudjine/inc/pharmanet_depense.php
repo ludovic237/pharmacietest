@@ -23,8 +23,11 @@ if (isset($_POST['idemploye'])) {
     $idemploye = $_POST['idemploye'];
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
-    $listecaisse = $managercaisse->getIdEmploye($idemploye);
-
+    if($idemploye != null){
+        $listecaisse = $managercaisse->getIdEmploye($idemploye);
+    }else{
+        $listecaisse = $managercaisse->getList();
+    }
 
 
     if ($type == "depense") {
@@ -62,8 +65,13 @@ if (isset($_POST['idemploye'])) {
         }
     } else {
         if ($type == "caisse") {
+            if($idemploye != null){
+                $caisseRange = $managercaisse->getDateRangeCaisseUserid($startDate, $endDate, $idemploye);
+            }else{
+                $caisseRange = $managercaisse->getDateRangeCaisse($startDate, $endDate);
+            }
 
-            $caisseRange = $managercaisse->getDateRangeCaisseUserid($startDate, $endDate, $idemploye);
+
             foreach ($caisseRange as $k => $c) :
                 $employename = $managerEmploye->get($c->user_id());
                 echo
@@ -103,8 +111,13 @@ if (isset($_POST['idemploye'])) {
             endforeach;
         } else {
             if ($type == "vente") {
+                if($idemploye != null){
+                    $listvente = $managerVente->getListVenteRangeEmploye($startDate, $endDate, $idemploye);
+                }else{
+                    $listvente = $managerVente->getListVenteRange($startDate, $endDate);
+                }
 
-                $listvente = $managerVente->getListVenteRangeEmploye($startDate, $endDate, $idemploye);
+
                 foreach ($listvente as $key => $v) {
 
                     echo "<tr id=\"" . $v->id() . "\">
@@ -114,7 +127,7 @@ if (isset($_POST['idemploye'])) {
     
                     <td class='prixTotal'>" . $v->prixTotal() . "</td>
                     <td >" . $v->prixPercu() . "</td>
-                    <td >" . $v->employe_id() . "</td>
+                    <td >" . $managerEmploye->get($v->employe_id())->identifiant() . "</td>
                     <td class=\"datevte\">
                         " . $v->dateVente() . "
                     </td>

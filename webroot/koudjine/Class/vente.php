@@ -402,6 +402,18 @@ class VenteManager
         return $ventes;
     }
 
+    public function getListVenteRange($start,$end)
+    {
+        $q = $this->_db->prepare( "SELECT * FROM `vente` WHERE `dateVente` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");
+        $ventes = array();
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $ventes[] = new Vente($donnees);
+        }
+        return $ventes;
+    }
+
     public function getListCaisseComplete($id)
     {
         $ventes = array();

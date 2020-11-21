@@ -1,7 +1,8 @@
 var test = 0;
 var startDate;
 var endDate;
-var idemploye;
+var idemploye = null
+;
 var idfulldepense;
 $('#pharmanet_tab_vente').hide();
 $('#pharmanet_tab_depense').hide();
@@ -1846,7 +1847,7 @@ function enregistrer_user(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/pharmanet/user';
                         window.location.href = link;
                     }, 5000);
@@ -1881,7 +1882,7 @@ function enregistrer_user(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/pharmanet/user';
                         //var link = '/pharmacietest/bouwou/pharmanet/useradd/' + id;
                         window.location.href = link;
@@ -1936,7 +1937,7 @@ function enregistrer_employe(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function() {
                         var link = '/pharmacietest/bouwou/pharmanet/employe';
                         window.location.href = link;
                     }, 5000);
@@ -2107,7 +2108,7 @@ function enregistrer_produit(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/produit/';
+                    var link = '/pharmacietest/bouwou/catalogue/produit';
                     window.location.href = link;
                 }
                 else {
@@ -2196,7 +2197,7 @@ function enregistrer_assureur(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/assureur/';
                     }, 5000);
 
@@ -2228,7 +2229,7 @@ function enregistrer_assureur(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/assureuradd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -2263,7 +2264,7 @@ function enregistrer_categorie(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/categorie/';
                         window.location.href = link;
                     }, 5000);
@@ -2292,7 +2293,7 @@ function enregistrer_categorie(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/categorieadd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -2343,7 +2344,7 @@ function enregistrer_commande(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/commande/';
                         window.location.href = link;
                     }, 5000);
@@ -2490,7 +2491,7 @@ function enregistrer_codepostal(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/codepostal/';
                         window.location.href = link;
                     }, 5000);
@@ -2520,7 +2521,7 @@ function enregistrer_codepostal(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/codepostaladd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -2565,7 +2566,7 @@ function enregistrer_fabriquant(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/fabriquant/';
                         window.location.href = link;
                     }, 5000);
@@ -2599,7 +2600,7 @@ function enregistrer_fabriquant(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/fabriquantadd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -2636,7 +2637,7 @@ function enregistrer_forme(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/forme/';
                         window.location.href = link;
                     }, 5000);
@@ -2666,7 +2667,7 @@ function enregistrer_forme(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/formeadd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -2713,7 +2714,7 @@ function enregistrer_fournisseur(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/fournisseur/';
                         window.location.href = link;
                     }, 5000);
@@ -2748,7 +2749,7 @@ function enregistrer_fournisseur(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/fournisseuradd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -2785,7 +2786,7 @@ function enregistrer_magasin(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/magasin/';
                         window.location.href = link;
                     }, 5000);
@@ -2814,7 +2815,7 @@ function enregistrer_magasin(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/magasinadd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -2855,7 +2856,7 @@ function enregistrer_prescripteur(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/prescripteur/';
                         window.location.href = link;
                     }, 5000);
@@ -2887,7 +2888,7 @@ function enregistrer_prescripteur(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/catalogue/prescripteuradd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -2924,7 +2925,7 @@ function enregistrer_ville(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/ville/';
                         window.location.href = link;
                     }, 5000);
@@ -2953,7 +2954,7 @@ function enregistrer_ville(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/villeadd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -2990,7 +2991,7 @@ function enregistrer_unite(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/unite/';
                         window.location.href = link;
                     }, 5000);
@@ -3020,7 +3021,7 @@ function enregistrer_unite(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/uniteadd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -3059,7 +3060,7 @@ function enregistrer_rayon(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/rayon/';
                         window.location.href = link;
                     }, 5000);
@@ -3090,7 +3091,7 @@ function enregistrer_rayon(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/rayonadd/' + id;
                         window.location.href = link;
                     }, 5000);
@@ -3142,7 +3143,7 @@ function enregistrer_en_rayon(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/en_rayon/';
                         window.location.href = link;
                     }, 5000);
@@ -3180,7 +3181,7 @@ function enregistrer_en_rayon(option, id) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(() => {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/en_rayonadd/' + id;
                         window.location.href = link;
                     }, 5000);

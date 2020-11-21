@@ -15,7 +15,8 @@
             $position = $this->request->action;
         }
         $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
-        $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        $script_for_layout = '
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
