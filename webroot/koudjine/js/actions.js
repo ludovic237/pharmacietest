@@ -419,7 +419,9 @@ $(document).ready(function(){
             },
             success: function (data) {
                 panel_refresh(panel);
-                $('#produits').append(data);
+                link = '/pharmacietest/bouwou/pharmanet/list';
+                window.location.href=link;
+                //$('#produits').append(data);
                 //alert(data);
 
             }

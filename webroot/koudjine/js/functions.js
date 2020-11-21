@@ -777,7 +777,10 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
 
 
     idfulldepense = idfulldepense;
-    load_depense_info(idfulldepense);
+    if (idfulldepense!=null) {
+        load_depense_info(idfulldepense);
+    }
+    
 
     console.log(); (test);
     if (test != '') {
