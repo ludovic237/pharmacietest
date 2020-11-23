@@ -1224,7 +1224,7 @@ body.page-container-boxed .page-container {
 .breadcrumb li a {
   font-size: 11px;
   line-height: 12px;
-  color: #99a0aa;
+  color: white;
   text-decoration: none;
 }
 .breadcrumb li:hover,
@@ -1232,7 +1232,7 @@ body.page-container-boxed .page-container {
   color: #656d78;
 }
 .breadcrumb li:last-child {
-  color: #656d78;
+  color: #33414e;
 }
 .breadcrumb > li + li:before {
   font-family: "FontAwesome";

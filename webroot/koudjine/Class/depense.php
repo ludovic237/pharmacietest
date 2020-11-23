@@ -304,7 +304,6 @@ class DepenseManager
     }
     public function update(Depense $Depense)
     {
-
         $q = $this->_db->prepare('UPDATE depense SET caisse_id = :caisse_id, designation = :designation, quantite = :quantite, prixUnitaire = :prixUnitaire, dateDepense = :dateDepense, beneficiaire = :beneficiaire, numeroCni = :numeroCni, lieuDelivrance = :lieuDelivrance, dateDelivrance = :dateDelivrance, societe = :societe, typeDepense = :typeDepense WHERE id = :id');
         $q->bindValue(':id', $Depense->id(), PDO::PARAM_INT);
         $q->bindValue(':caisse_id', $Depense->caisse_id());

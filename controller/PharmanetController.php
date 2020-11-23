@@ -191,5 +191,10 @@ class PharmanetController extends Controller
         //$this->redirect('koudjine/universites/index');
     }
 
+    function koudjine_configuration()
+    {
+        $this->loadModel('Pharmanet');
+    }
+
 }
 
