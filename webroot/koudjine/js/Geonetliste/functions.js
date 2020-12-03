@@ -61,7 +61,7 @@ function enregistrer_codepostal(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    noty({ text: 'Ajout effectué', layout: 'topRight', type: 'success' });
                     setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/codepostal/';
                         window.location.href = link;
@@ -91,7 +91,7 @@ function enregistrer_codepostal(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    noty({ text: 'Modification effectué', layout: 'topRight', type: 'success' });
                     setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/codepostaladd/' + id;
                         window.location.href = link;

@@ -11,9 +11,9 @@
      }
      $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
      $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-                <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Catologue/functions.js"></script>
                 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
                 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/formsCategorie.js"></script>
+                <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Catalogue/functions.js"></script>
                 <script>
                                 $(window).load(function(){
                                     $(\'#form2\').forms({

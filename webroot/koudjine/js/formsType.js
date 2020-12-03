@@ -120,6 +120,7 @@
                                             },
                                             dataType:'json',
                                             success: function(data) {
+                                                noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
                                                 if(certif == 'En attente'){
                                                     if (data.erreur == 'non') {
                                                         var type = '<tr id="' + data.id + '">'
@@ -245,7 +246,7 @@
                                         },
                                         dataType:'json',
                                         success: function(data){
-                                            //alert('passe')
+                                            noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
                                             if(data.erreur == 'non' ){
                                             $("#"+lien+" td").each(function(i){
                                                 //alert(i);

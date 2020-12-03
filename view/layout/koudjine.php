@@ -28,13 +28,13 @@
             <!-- START X-NAVIGATION -->
             <ul class="x-navigation">
                 <!-- <li class="xn-logo"> -->
-                <li>
-                    <a href="index.html" style="font-size: 20px;background-color: #b64645;text-align: center;align-content: center;align-items: center;justify-content: center;display: flex;">ALSAS</a>
+                <li class="xn-logo">
+                    <div href="index.html" style="font-size: 20px;background: white;text-align: center;align-content: center;align-items: center;justify-content: center;display: flex;height: 50px;color:#0ba360">ALSAS</div>
                     <a href="#" class="x-navigation-control"></a>
                 </li>
                 <li class="xn-profile">
                     <a href="#" class="profile-mini">
-                        <img src="<?php echo BASE_URL . '/koudjine/assets/images/users/' . $this->Session->user('PHOTO_PROFIL'); ?>" alt="<?php echo $this->Session->user('NOM') . ' ' . $this->Session->user('PRENOM'); ?>" />
+                        <img width="50px" height="50px" src="<?php echo BASE_URL . '/koudjine/assets/images/users/' . $this->Session->user('PHOTO_PROFIL'); ?>" alt="<?php echo $this->Session->user('NOM') . ' ' . $this->Session->user('PRENOM'); ?>" />
                     </a>
                     <div class="profile">
                         <div class="profile-image">
@@ -44,16 +44,16 @@
                             <div class="profile-data-name"><?php echo $_SESSION["User"]->nom . ' ' . $_SESSION["User"]->prenom ?></div>
                             <div class="profile-data-title"><?php echo $this->Session->user('type') . ' ' ?><?php if ($this->Session->user('FONCTION') != null) echo ' / ' . $this->Session->user('FONCTION') ?></div>
                         </div>
-                        <div class="profile-controls">
+                        <!-- <div class="profile-controls">
                             <a href="<?php echo Router::url('bouwou/pharmanet/userprofile/' . $_SESSION["User"]->nom); ?>" class="profile-control-left"><span class="fa fa-info"></span></a>
                             <a href="pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
-                        </div>
+                        </div> -->
                     </div>
                 </li>
                 <li <?php if ($this->request->controller == 'home') { ?>class="active" <?php } ?>>
                     <a href="<?php echo Router::url('bouwou/home'); ?>"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
                 </li>
-                <li class="xn-title">Etudes</li>
+                <!-- <li class="xn-title">Etudes</li> -->
 
                 <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['vente'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'vente') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-shopping-cart "></span> <span class="xn-text">Vente</span></a>
@@ -316,11 +316,11 @@
                 </li>
                 <!-- END TOGGLE NAVIGATION -->
                 <!-- SEARCH -->
-                <li class="xn-search">
+                <!-- <li class="xn-search">
                     <form role="form">
                         <input type="text" name="search" placeholder="Search..." />
                     </form>
-                </li>
+                </li> -->
                 <!-- END SEARCH -->
                 <!-- SIGN OUT -->
                 <li class="xn-icon-button pull-right">
@@ -432,36 +432,45 @@
             <!-- PAGE TITLE -->
             <div class="page-title">
                 <?php if (isset($page_for_layout)) { ?>
-                    <h2><span class=" <?php
-                                        if ($this->request->controller == 'universites' && $this->request->action == 'index' || $this->request->controller == 'facultes' && $this->request->action == 'index' || $this->request->controller == 'types' && $this->request->action == 'index') {
-                                        ?>
-                    fa fa-home
+                    <h2><span class=" 
                     <?php
-                                        } elseif ($this->request->controller == 'concours' && $this->request->action == 'index') {
-                    ?>
-                    fa fa-edit
-                    <?php
-                                        } elseif ($this->request->controller == 'vie-etudiante' && $this->request->action == 'index') {
-                    ?>
-                    fa fa-suitcase
-                    <?php
-                                        } elseif ($this->request->controller == 'users' && $this->request->action == 'index') {
-                    ?>
-                    fa fa-users
-                    <?php
-                                        } elseif ($this->request->controller == 'formations' && $this->request->action == 'index') {
+                    if ($this->request->controller == 'catalogue') {
                     ?>
                     glyphicon glyphicon-book
                     <?php
-                                        } elseif ($this->request->controller == 'comments' && $this->request->action == 'index') {
+                    } elseif ($this->request->controller == 'vente') {
                     ?>
-                    fa fa-comments
+                    glyphicon glyphicon-shopping-cart
                     <?php
-                                        } else {
+                    } elseif ($this->request->controller == 'geonetliste') {
+                    ?>
+                    glyphicon glyphicon-tags
+                    <?php
+                    } elseif ($this->request->controller == 'comptabilite') {
+                    ?>
+                    glyphicon glyphicon-usd
+                    <?php
+                    } elseif ($this->request->controller == 'commande') {
+                    ?>
+                   fa fa-truck
+                    <?php
+                    } elseif ($this->request->controller == 'stock') {
+                    ?>
+                    glyphicon glyphicon-book
+                    <?php
+                    } elseif ($this->request->controller == 'statistique') {
+                    ?>
+                    fa fa-bar-chart-o
+                    <?php
+                    } elseif ($this->request->controller == 'pharmanet') {
+                    ?>
+                    glyphicon glyphicon-plus
+                    <?php
+                    } else {
                     ?>
                     fa fa-arrow-circle-o-left
                     <?php
-                                        }
+                    }
                     ?>"></span> <?php echo $page_for_layout; ?></h2> <?php } ?>
                 <?php if (isset($action_for_layout)) { ?>
                     <button class="btn btn-primary ajouter pull-right" controller="<?php echo $this->request->controller; ?>" data="<?php if (isset($this->request->params[0])) echo $this->request->params[0]; ?>" id="<?php echo $this->request->url; ?>"><?php echo $action_for_layout; ?></button> <?php } ?>

@@ -2,14 +2,14 @@ var test = 0;
 var startDate;
 var endDate;
 var idemploye = null
-;
+    ;
 var idfulldepense;
 $('#pharmanet_tab_vente').hide();
 
 $(document).ready(function () {
 
     $("#tab_produit_detail").hide();
-    
+
     $("#detail_recherche").keyup(function (event) {
         $("#tab_produit_detail").hide();
         var recherche = $(this).val();
@@ -33,7 +33,7 @@ $(document).ready(function () {
         }
 
     });
-    
+
 });
 
 
@@ -228,8 +228,12 @@ function enregistrer_produit(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/produit';
-                    window.location.href = link;
+                    noty({ text: 'Ajout effectué', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/produit';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -242,7 +246,7 @@ function enregistrer_produit(option, id) {
         });
     }
     else {
-        
+
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_produit.php',
@@ -272,9 +276,11 @@ function enregistrer_produit(option, id) {
                 ////alert(data.erreur);
 
                 if (data == 'ok') {
-                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
-                    window.location.href = link;
+                    noty({ text: 'Modification effectué', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
+                        window.location.href = link;
+                    }, 5000);
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -571,8 +577,12 @@ function enregistrer_client(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/client/';
-                    window.location.href = link;
+
+                    noty({ text: 'Ajout effectué', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/client/';
+                        window.location.href = link;
+                    }, 5000);
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -603,8 +613,12 @@ function enregistrer_client(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/catalogue/clientadd/' + id;
-                    window.location.href = link;
+                   
+                    noty({ text: 'Modification effectué', layout: 'topRight', type: 'success' });
+                    setTimeout(() => {
+                        var link = '/pharmacietest/bouwou/catalogue/clientadd/' + id;
+                        window.location.href = link;
+                    }, 5000);
                 }
                 else {
                     $('#message-box-danger p').html(data);
@@ -1599,7 +1613,7 @@ function enregistrer_employe(option, id) {
 
                 if (data == 'ok') {
                     noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
-                    setTimeout(function() {
+                    setTimeout(function () {
                         var link = '/pharmacietest/bouwou/pharmanet/employe';
                         window.location.href = link;
                     }, 5000);

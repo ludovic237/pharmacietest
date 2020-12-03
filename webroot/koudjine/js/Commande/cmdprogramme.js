@@ -451,6 +451,27 @@ function valider_commande(imprimer) {
 
 }
 
+function imprimer_bloc(titre, objet) {
+    // Définition de la zone à imprimer
+    var zone = document.getElementById(objet).innerHTML;
+    //alert("Hello");
+    // Ouverture du popup,
+    var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
 
+    // style du popup
+    fen.document.body.style.color = '#000000';
+    fen.document.body.style.backgroundColor = '#FFFFFF';
+    fen.document.body.style.padding = "0px";
 
+    // Ajout des données a imprimer
+    fen.document.title = titre;
+    fen.document.body.innerHTML += " " + zone + " ";
+
+    // Impression du popup
+    fen.window.print();
+
+    //Fermeture du popup
+    fen.window.close();
+    return true;
+}
 
