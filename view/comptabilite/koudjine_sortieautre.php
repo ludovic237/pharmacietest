@@ -6,7 +6,8 @@ $position = "Sortie";
 $position_for_layout = '<li><a href="#">Comptabilité</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/sortie.js"></script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/sortie.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/functions.js"></script>';
 ?>
 
 <div class="row">

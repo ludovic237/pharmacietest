@@ -19,6 +19,7 @@
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>
 <script>
 var qrcode = new QRCode(document.getElementById("codebarreimp"), {
      width: 30,
@@ -1048,7 +1049,7 @@ var qrcode = new QRCode(document.getElementById("codebarreimp"), {
                     </div>
                </div>
                <div class="modal-body">
-                    <div class="row">
+                    <div class="row"> 
                          <div class="col-md-12 ">
                               <div class="panel panel-default">
 

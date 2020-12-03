@@ -15,6 +15,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/entree.js"></script>
 <script type="text/javascript">
 <script type="text/javascript">
             var jvalidate = $("#jvalidate").validate({

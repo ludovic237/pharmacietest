@@ -106,9 +106,6 @@ function imprimer_com_recu(id, ref, nom, date, bordereau) {
             option: 'recu'
         },
         success: function (server_responce) {
-            //alert(server_responce);
-            //$("#iconPreview .icon-preview").html(icon_preview);
-
             $('#tab_Bcommande_Recu').empty();
             $('#tab_Bcommande_Recu').html(server_responce);
             //alert($('#total_com').attr("data"));

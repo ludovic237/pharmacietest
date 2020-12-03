@@ -22,7 +22,7 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
 <script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/bootstrap/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/bootstrap/bootstrap-file-input.js"></script>
 <script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/bootstrap/bootstrap-colorpicker.js"></script>
-<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/functions.js"></script>
+<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/Catalogue/functions.js"></script>
 <script type="text/javascript">
             var jvalidate = $("#jvalidate").validate({
                 ignore: [],
