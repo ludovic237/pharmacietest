@@ -1,16 +1,7 @@
 $(document).ready(function(){
     $("#tab_Grecherche").hide();
-    $(".contenu").hide();
-    $("#choix").change(function () {
+    $(".contenu").show();
 
-        if ($("#choix").val() == 1) {
-            ////alert('coché');
-            $(".contenu").show();
-        }
-        else {
-            $(".contenu").hide();
-        }
-    })
     $("#parent").change(function () {
 
         if($("#parent option:selected").val() != 0){
@@ -49,7 +40,10 @@ $(document).ready(function(){
                 $.ajax({
                     type: "GET",
                     url: "/pharmacietest/koudjine/inc/result_sortie.php",
-                    data: data,
+                    data: {
+                        motclef1: recherche,
+                        action: $(this).attr("data1")
+                    },
                     success: function (server_responce) {
                         $("#tab_Grecherche").show();
                         $("#tab_Brecherche").html(server_responce).show();
@@ -153,14 +147,15 @@ function valider_sortie() {
         }
     }
 }
-function load_produit(id) {
+function load_produit(id, action) {
     //alert(id)
 
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/load_produit_sortie.php',
             data: {
-                id: id
+                id: id,
+                action: action
             },
             success: function (server_responce) {
                 //alert(server_responce);

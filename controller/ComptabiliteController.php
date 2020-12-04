@@ -364,6 +364,11 @@ class ComptabiliteController extends Controller
                         'table' => 'produit',
                         'conditions' => array('id' => $v, 'supprimer' => 0)
                     ));
+                    $d['entrees'][$i] = $this->Comptabilite->find(array(
+                        //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                        'table' => 'produit p, en_rayon e',
+                        'conditions' => array('p.id' => $d['produits'][$i]->id, 'e.supprimer' => 0, 'p.supprimer' => 0,'e.produit_id' => 'p.id')
+                    ));
                     $i++;
                 endforeach;
             }
