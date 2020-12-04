@@ -43,8 +43,12 @@ function enregistrer_depense(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    var link = '/pharmacietest/bouwou/pharmanet/depenseadd';
-                    window.location.href = link;
+                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    setTimeout(function () {
+                        var link = '/pharmacietest/bouwou/pharmanet/depenseadd';
+                        window.location.href = link;
+                    }, 5000);
+
                 }
                 else {
                     $('#message-box-danger p').html(data);

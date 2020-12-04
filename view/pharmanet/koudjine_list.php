@@ -269,6 +269,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </ul>
                     </li>
                 </ul>
+
             </div>
             <div class="panel-body panel-body-table">
                 <div class="table-responsive">
@@ -286,6 +287,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </thead>
                         <tbody id="pharmanet_vente_employe">
                         </tbody>
+
                     </table>
                 </div>
 

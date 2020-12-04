@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
+      <change afterPath="$PROJECT_DIR$/view/pharmanet/koudjine_configuration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/ComptabiliteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ComptabiliteController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/comptabilite/koudjine_sortie.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/comptabilite/koudjine_sortie.php" afterDir="false" />
@@ -9,6 +15,13 @@
       <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_sortie.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_sortie.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/result_sortie.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/result_sortie.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/sortie.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/sortie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/PharmanetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/PharmanetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/layout/koudjine.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/layout/koudjine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/pharmanet/koudjine_depenseadd.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/pharmanet/koudjine_depenseadd.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/pharmanet/koudjine_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/pharmanet/koudjine_list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/depense.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/depense.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/css/theme-default.css" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/css/theme-default.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Pharmanet/depenseadd.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Pharmanet/depenseadd.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,26 +30,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
@@ -261,11 +258,7 @@
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="30" />
-    <option name="width" value="1890" />
-    <option name="height" value="960" />
-  </component>
+  <component name="ProjectId" id="1kbVoyozlGdvyf1Z4ucqE5m4ZNH" />
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -395,29 +388,33 @@
         </subPane>
       </pane>
     </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql&#10;mariadb" />
     <property name="SearchEverywhereHistoryKey" value="header&#9;null&#9;null&#10;json&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/view/pharmanet" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="options.lastSelected" value="preferences.sourceCode.PHP" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Site\webroot\koudjine\js" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/view/pharmanet" />
       <recent name="C:\laragon\www\pharmacietest\webroot\koudjine\inc" />
       <recent name="C:\xampp\htdocs\Site\view\formations" />
       <recent name="C:\xampp\htdocs\Site\view" />
       <recent name="C:\xampp\htdocs\Site\model" />
-      <recent name="C:\xampp\htdocs\Site\controller" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -505,6 +502,24 @@
       <workItem from="1606585881858" duration="4891000" />
       <workItem from="1606978062816" duration="1237000" />
       <workItem from="1606979887997" duration="418000" />
+      <workItem from="1605816872598" duration="214000" />
+      <workItem from="1605950983653" duration="131000" />
+      <workItem from="1605969469386" duration="746000" />
+      <workItem from="1605972201234" duration="4950000" />
+      <workItem from="1605989013715" duration="36000" />
+      <workItem from="1606043871825" duration="152000" />
+      <workItem from="1606044069600" duration="934000" />
+      <workItem from="1606045672750" duration="950000" />
+      <workItem from="1606046669090" duration="229000" />
+      <workItem from="1606119256769" duration="356000" />
+      <workItem from="1606119921671" duration="2443000" />
+    </task>
+    <task id="LOCAL-00045" summary="merge">
+      <created>1600647920791</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1600647920791</updated>
     </task>
     <task id="LOCAL-00046" summary="merge">
       <created>1600672518390</created>
@@ -1318,5 +1333,38 @@
         </state>
       </provider>
     </entry>
+  <component name="WindowStateProjectService">
+    <state x="261" y="31" width="824" height="684" key="#CLI_Interpreters" timestamp="1606044297404">
+      <screen x="0" y="27" width="1366" height="692" />
+    </state>
+    <state x="261" y="31" width="824" height="684" key="#CLI_Interpreters/0.27.1366.692@0.27.1366.692" timestamp="1606044297404" />
+    <state x="328" y="27" width="700" height="692" key="#PHP" timestamp="1606044298789">
+      <screen x="0" y="27" width="1366" height="692" />
+    </state>
+    <state x="328" y="27" width="700" height="692" key="#PHP/0.27.1366.692@0.27.1366.692" timestamp="1606044298789" />
+    <state x="278" y="33" width="800" height="579" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606122117157">
+      <screen x="0" y="27" width="1366" height="692" />
+    </state>
+    <state x="278" y="33" width="800" height="579" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1366.692@0.27.1366.692" timestamp="1606122117157" />
+    <state width="263" height="500" key="HiddenNamespacesPopup" timestamp="1606119330991">
+      <screen x="0" y="27" width="1366" height="692" />
+    </state>
+    <state width="263" height="500" key="HiddenNamespacesPopup/0.27.1366.692@0.27.1366.692" timestamp="1606119330991" />
+    <state x="266" y="118" width="824" height="508" key="IDE.errors.dialog" timestamp="1606121867710">
+      <screen x="0" y="27" width="1366" height="692" />
+    </state>
+    <state x="266" y="118" width="824" height="508" key="IDE.errors.dialog/0.27.1366.692@0.27.1366.692" timestamp="1606121867710" />
+    <state x="172" y="27" width="1012" height="692" key="SettingsEditor" timestamp="1606046629622">
+      <screen x="0" y="27" width="1366" height="692" />
+    </state>
+    <state x="172" y="27" width="1012" height="692" key="SettingsEditor/0.27.1366.692@0.27.1366.692" timestamp="1606046629622" />
+    <state x="374" y="111" width="618" height="522" key="find.popup" timestamp="1605973195141">
+      <screen x="0" y="27" width="1366" height="692" />
+    </state>
+    <state x="374" y="111" width="618" height="522" key="find.popup/0.27.1366.692@0.27.1366.692" timestamp="1605973195141" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
 </project>

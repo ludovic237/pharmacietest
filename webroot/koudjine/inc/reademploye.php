@@ -33,12 +33,12 @@ if (!empty($_POST["keyword"])) {
     $employe = $managerEmploye->getListKeyword($keyword);
     if (!empty($employe)) {
 ?>
-        <ul class="list-tags" id="country-list">
+        <ul class="list-tags" style="width: 100%;list-style: none;padding: 0px;margin: 0px;display: flex;flex-direction: column;height: 100px;overflow: auto;" id="country-list">
             <?php
             foreach ($employe as $k => $s) {
             ?>
                 <li>
-                    <a style="cursor: pointer;" onClick="selectemploye('<?php echo $s->identifiant(); ?>','<?php echo $s->id(); ?>');"><?php echo $s->identifiant(); ?></a>
+                    <a style="cursor: pointer;width: 100%;" onClick="selectemploye('<?php echo $s->identifiant(); ?>','<?php echo $s->id(); ?>');"><?php echo $s->identifiant(); ?></a>
                 </li>
             <?php } ?>
         </ul>
