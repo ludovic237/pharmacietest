@@ -22,7 +22,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="form-group">
                             <label class="col-md-3 control-label">Entrée Produit:</label>
                             <div class="col-md-9">
-                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->ide . '"'; ?> class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
+                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->ide . '"'; ?> data1="<?php echo $this->request->action; ?>" class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
                             </div>
                         </div>
                         <div class="row">
@@ -72,20 +72,34 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="row" style="margin-top: 15px">
                                 <div class="col-md-6 control-label">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label"> Choix:</label>
+                                        <label class="col-md-3 control-label"> Parent :</label>
                                         <div class="col-md-9">
-                                            <select class="form-control question selectpicker" name="question" id="choix">
-                                                <option value="0">Perimée</option>
-                                                <?php if (isset($produits)) { ?><option value="1">Détail</option> <?php  } ?>
+                                            <select class="form-control question selectpicker" name="question" id="parent">
+                                                <option value="0">Veuillez selectionner</option>
+                                                <?php if (isset($produits))
+                                                    foreach ($produits as $k => $v) : ?>
+                                                        <option data="<?php echo $v->contenuDetail; ?>" value="<?php echo $v->id; ?>"><?php echo $v->nom; ?> &nbsp;&nbsp <?php echo '[' . $v->contenuDetail . ']'; ?>
+                                                        </option>
+                                                    <?php
+                                                    endforeach;
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 control-label">
+                                <div class="col-md-3 control-label">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Quantité:</label>
-                                        <div class="col-md-9">
-                                            <input class="form-control" type="text" value="" id="qte_sortie">
+                                        <label class="col-md-4 control-label">Contenu:</label>
+                                        <div class="col-md-5">
+                                            <input width="200px" class="form-control" type="text" disabled value="<?php //if (isset($entree)) echo $produits[0]->contenuDetail; ?>" id="contenu">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 control-label">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Quantité:</label>
+                                        <div class="col-md-5">
+                                            <input width="200px" class="form-control" type="text" value="" id="qte_sortie">
                                         </div>
                                     </div>
                                 </div>
@@ -104,29 +118,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 </div>
                             </div> -->
                             <div class="row" style="margin-top: 15px">
-                                <div class="col-md-6 control-label contenu">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label"> Parent :</label>
-                                        <div class="col-md-9">
-                                            <select class="form-control question selectpicker" name="question" id="parent">
-                                                <option value="0">Veuillez selectionner</option>
-                                                <?php if (isset($produits))
-                                                    foreach ($produits as $k => $v) : ?>
-                                                    <option data="<?php echo $v->contenuDetail; ?>" value="<?php echo $v->id; ?>"><?php echo $v->nom; ?> &nbsp;&nbsp <?php echo '[' . $v->contenuDetail . ']'; ?>
-                                                    </option>
-                                                <?php
-                                                    endforeach;
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 control-label contenu">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Contenu:</label>
-                                        <div class="col-md-9">
-                                            <input class="form-control" type="text" disabled value="<?php if (isset($entree)) echo $produits[0]->contenuDetail; ?>" id="contenu">
-                                        </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Recherchrer parent:</label>
+                                    <div class="col-md-5">
+                                        <input class="form-control" type="text" value="" id="recherche_parent">
                                     </div>
                                 </div>
                             </div>

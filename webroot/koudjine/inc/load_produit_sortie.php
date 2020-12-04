@@ -13,8 +13,13 @@ $managerEnRayon = new En_rayonManager($pdo);
 
 if (isset($_POST['id']))
     $id=$_POST['id'];
+$action = $_POST['action'];
+if($action == 'sortie'){
+    $enrayon = $managerEnRayon->getListDetail($id);
+}else{
+    $enrayon = $managerEnRayon->getList($id);
+}
 
-$enrayon = $managerEnRayon->getList($id);
 $produit = $managerProduit->get($id);
 
 
