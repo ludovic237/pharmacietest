@@ -34,6 +34,15 @@ $(document).ready(function () {
 
     });
 
+    if (test == 0)
+    {
+        console.log("No id");
+    }
+    else{
+        console.log("id exist");
+        load_produit_detail(test,null);
+    }
+
 });
 
 
@@ -278,7 +287,8 @@ function enregistrer_produit(option, id) {
                 if (data == 'ok') {
                     noty({ text: 'Modification effectué', layout: 'topRight', type: 'success' });
                     setTimeout(() => {
-                        var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
+                        //var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
+                        var link = '/pharmacietest/bouwou/catalogue/produit';
                         window.location.href = link;
                     }, 5000);
                 }

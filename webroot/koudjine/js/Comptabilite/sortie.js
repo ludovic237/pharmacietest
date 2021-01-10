@@ -15,14 +15,12 @@ $(document).ready(function(){
                 success: function (data) {
                     $("#tab_Bsortie").empty();
                     $("#tab_Bsortie").prepend(data);
-
                 }
             })
         }else{
             $("#tab_Bsortie").empty();
             $("#contenu").val('');
         }
-
     })
     $("#recherche").keyup(function (event) {
         if (event.keyCode == 13) {

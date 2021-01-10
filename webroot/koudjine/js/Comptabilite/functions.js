@@ -176,15 +176,10 @@ function load_produit(id) {
         //  alert("Quantité en stock pas suffisante pour cette opération ");
     }
     else {
-
+        alert(id);
         if ($.fn.dataTable.isDataTable('#tab_load_produit')) {
             $('#tab_load_produit').dataTable({
                 destroy: true,
-                // searching: false,
-                // retrieve: true,
-                // "processing": true,
-                // "serverSide": true,
-                //dom: "Bfrtip",
                 ajax: {
                     type: "POST",
                     url: '/pharmacietest/koudjine/inc/load_produit.php',
@@ -209,12 +204,6 @@ function load_produit(id) {
         else {
             $('#tab_load_produit').dataTable({
                 destroy: true,
-                // paging: false,
-                // searching: false,
-                // retrieve: true,
-                // "processing": true,
-                // "serverSide": true,
-                //dom: "Bfrtip",
                 ajax: {
                     type: "POST",
                     url: '/pharmacietest/koudjine/inc/load_produit.php',
