@@ -38,7 +38,8 @@
 
 
 
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Vente/functions.js"></script>';
         ?> -->
 
 

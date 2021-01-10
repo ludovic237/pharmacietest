@@ -364,6 +364,71 @@ class ComptabiliteController extends Controller
                         'table' => 'produit',
                         'conditions' => array('id' => $v, 'supprimer' => 0)
                     ));
+                    $d['entrees'][$i] = $this->Comptabilite->find(array(
+                        //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                        'table' => 'produit p, en_rayon e',
+                        'conditions' => array('p.id' => $d['produits'][$i]->id, 'e.supprimer' => 0, 'p.supprimer' => 0,'e.produit_id' => 'p.id')
+                    ));
+                    $i++;
+                endforeach;
+            }
+
+        }
+          $this->set($d);
+        
+    }
+
+    function koudjine_sortieautre($id=null)
+    {
+        $this->loadModel('Comptabilite');
+        $d['sorties'] = $this->Comptabilite->find(array(
+            //'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
+            'table' => 'sortie_stock',
+            //'order' => 'dateLivraison-ASC',
+            'conditions' => "supprimer = 0 "
+        ));
+        if(!empty($d['sorties'])){
+            $i = 0;
+            foreach ($d['sorties'] as $k => $v):
+                $d['produit_rayon'][$i] = $this->Comptabilite->findFirst(array(
+                    'fields' => 'p.nom as nomp, p.id as idp, e.id as ide, f.nom as nomf, e.dateLivraison',
+                    'table' => 'produit p, en_rayon e, forme f',
+                    'conditions' => array('e.id' => $v->en_rayon_id, 'p.forme_id' =>'f.id', 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
+                ));
+                if($v->detail_id != '' && $v->detail_id != null){
+                    $d['produit_detail'][$i] = $this->Comptabilite->findFirst(array(
+                        //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                        'table' => 'produit p, en_rayon e',
+                        'conditions' => array('e.id' => $v->detail_id, 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
+                    ));
+                    $d['produit_detail'][$i] = $d['produit_detail'][$i]->nom;
+                    $d['operation'][$i] = 'Détail';
+                }else{
+                    $d['produit_detail'][$i] = $v->detail_id;
+                    $d['operation'][$i] = 'Périmé';
+                }
+
+                $i++;
+            endforeach;
+        }
+
+        if(isset($id)){
+            $d['entree'] = $this->Comptabilite->findFirst(array(
+                'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
+                'table' => 'en_rayon,produit',
+                //'order' => 'dateLivraison-ASC',
+                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.supprimer = 0 AND en_rayon.id = ".$id
+            ));
+            if($d['entree']->grossiste_id != '' || $d['entree']->grossiste_id != null){
+                $grossistes = $d['entree']->grossiste_id;
+                $texto  = explode('-', $grossistes);
+                $i = 0;
+                foreach ($texto as $k => $v):
+                    $d['produits'][$i] = $this->Comptabilite->findFirst(array(
+                        //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                        'table' => 'produit',
+                        'conditions' => array('id' => $v, 'supprimer' => 0)
+                    ));
                     $i++;
                 endforeach;
             }

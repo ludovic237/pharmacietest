@@ -1,16 +1,7 @@
 $(document).ready(function(){
     $("#tab_Grecherche").hide();
-    $(".contenu").hide();
-    $("#choix").change(function () {
+    $(".contenu").show();
 
-        if ($("#choix").val() == 1) {
-            ////alert('coché');
-            $(".contenu").show();
-        }
-        else {
-            $(".contenu").hide();
-        }
-    })
     $("#parent").change(function () {
 
         if($("#parent option:selected").val() != 0){
@@ -24,14 +15,12 @@ $(document).ready(function(){
                 success: function (data) {
                     $("#tab_Bsortie").empty();
                     $("#tab_Bsortie").prepend(data);
-
                 }
             })
         }else{
             $("#tab_Bsortie").empty();
             $("#contenu").val('');
         }
-
     })
     $("#recherche").keyup(function (event) {
         if (event.keyCode == 13) {
@@ -49,7 +38,10 @@ $(document).ready(function(){
                 $.ajax({
                     type: "GET",
                     url: "/pharmacietest/koudjine/inc/result_sortie.php",
-                    data: data,
+                    data: {
+                        motclef1: recherche,
+                        action: $(this).attr("data1")
+                    },
                     success: function (server_responce) {
                         $("#tab_Grecherche").show();
                         $("#tab_Brecherche").html(server_responce).show();
@@ -92,9 +84,6 @@ function valider_sortie() {
                 }
                 qte_total = qte_total + qte;
             })
-            //alert(qte_total);
-            //alert(qteT);
-            //alert(statut);
             if(qte_total == qteT && statut == 1 && $('#contenu').val() != ''){
                 $('#tab_Bsortie  tr').each(function (i) {
                     var id1 = $(this).attr("id");
@@ -147,25 +136,22 @@ function valider_sortie() {
                     window.location.href = link;
 
                 }
-
-
             })
         }
     }
 }
-function load_produit(id) {
+function load_produit(id, action) {
     //alert(id)
 
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/load_produit_sortie.php',
             data: {
-                id: id
+                id: id,
+                action: action
             },
             success: function (server_responce) {
-                //alert(server_responce);
-                //$("#iconPreview .icon-preview").html(icon_preview);
-
+                
                 $('#tab_Bload_produit').html(server_responce);
                 //$("#code").barcode(data.codebarre);
 
@@ -174,9 +160,6 @@ function load_produit(id) {
 
 
         })
-
-
-        // var icon_preview = $("<i></i>").addClass(iClass);
         $("#iconPreviewVente").modal("show");
 
 }

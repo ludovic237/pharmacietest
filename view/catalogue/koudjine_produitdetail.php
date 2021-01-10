@@ -1,22 +1,23 @@
 <!-- <?php
 
-        $title_for_layout = ' ALSAS -' . 'Catalogue';
-        $page_for_layout = 'Détail produit';
-        $action_for_layout = 'Ajouter';
-        if (isset($id)) {
-            $add_script = '<script>load_produit_detail(' . $id . ')</script>';
-        } else {
-            $add_script = '';
-        }
+$title_for_layout = ' ALSAS -' . 'Catalogue';
+$page_for_layout = 'Détail produit';
+$action_for_layout = 'Ajouter';
+if ($_GET['id']) {
+    $id = $_GET['id'];
+} else {
+    $id = null;
+}
 
-        if ($this->request->action == "index") {
-            $position = "Tout";
-        } else {
-            $position = $this->request->action;
-        }
-        $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
-        $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+if ($this->request->action == "index") {
+    $position = "Tout";
+} else {
+    $position = $this->request->action;
+}
+$position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
+$script_for_layout = '
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Catalogue/functions.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script>
@@ -24,9 +25,11 @@
                                             document.getElementById("detail_recherche").focus();
                                         };
                                         
+                                    </script>
+                                    <script>
+var test = "' . $id . '"
                                     </script>' . $add_script;
-        ?> -->
-
+?> -->
 
 
 <!-- START RESPONSIVE TABLES -->
@@ -35,26 +38,30 @@
     <div class="col-md-12">
         <div class="panel-body" style="margin-bottom: 20px;background-color: #fff;
         border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 0 1px 1px rgba(0,0,0,.05);">
-            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
+            <div class="form-group"
+                 style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Recherche d'un médicament:</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <input type="text" class="form-control col-md-4" name="nom" id="detail_recherche" value="" placeholder="Médicaments">
+                    <input type="text" class="form-control col-md-4" name="nom" id="detail_recherche" value=""
+                           placeholder="Médicaments">
                 </div>
                 <div style="width: 150px;">
                 </div>
             </div>
-            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+            <div class="form-group"
+                 style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
                 <label class="control-label" style="margin-right: 30px;width: 150px;"></label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
                     <div class="panel-body panel-body-table" style="width: 100%;">
 
                         <div class="table-responsive">
-                            <table id="tab_produit_detail" style="display: block;max-height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                            <table id="tab_produit_detail" style="display: block;max-height: 200px;overflow: auto;"
+                                   class="table table-bordered table-striped table-actions">
                                 <thead>
-                                    <tr>
-                                        <th style="width: 100%;">Nom</th>
-                                        <th>Action</th>
-                                    </tr>
+                                <tr>
+                                    <th style="width: 100%;">Nom</th>
+                                    <th>Action</th>
+                                </tr>
                                 </thead>
                                 <tbody id="tab_produit_detail_data">
 
@@ -79,7 +86,8 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Vente</a></li>
                             <li class=""><a href="#tab2" data-toggle="tab" aria-expanded="false">Commande</a></li>
-                            <li class=""><a href="#tab3" data-toggle="tab" aria-expanded="false">Gestion de stock</a></li>
+                            <li class=""><a href="#tab3" data-toggle="tab" aria-expanded="false">Gestion de stock</a>
+                            </li>
                             <li class=""><a href="#tab4" data-toggle="tab" aria-expanded="false">Sortie</a></li>
 
                         </ul>
@@ -94,15 +102,16 @@
                                                 <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
-                                                        <table id="produit_detail_a" class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_detail_a"
+                                                               class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
-                                                                <tr>
-                                                                    <th width="100">Nom</th>
-                                                                    <th width="100">Nombre de vente du mois</th>
-                                                                    <th width="100">Nombre de vente total</th>
-                                                                    <th width="200">Quantité en stock</th>
-                                                                    <th width="100">Reduction</th>
-                                                                </tr>
+                                                            <tr>
+                                                                <th width="100">Nom</th>
+                                                                <th width="100">Nombre de vente du mois</th>
+                                                                <th width="100">Nombre de vente total</th>
+                                                                <th width="200">Quantité en stock</th>
+                                                                <th width="100">Reduction</th>
+                                                            </tr>
                                                             </thead>
                                                             <tbody>
 
@@ -128,16 +137,17 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table id="produit_detail_b" class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_detail_b"
+                                                               class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
-                                                                <tr>
-                                                                    <th width="100">Vente id</th>
-                                                                    <th width="100">Date et heure</th>
-                                                                    <th width="100">En rayon</th>
-                                                                    <th width="200">Prix unitaire</th>
-                                                                    <th width="200">Quantité</th>
-                                                                    <th width="100">Reduction</th>
-                                                                </tr>
+                                                            <tr>
+                                                                <th width="100">Vente id</th>
+                                                                <th width="100">Date et heure</th>
+                                                                <th width="100">En rayon</th>
+                                                                <th width="200">Prix unitaire</th>
+                                                                <th width="200">Quantité</th>
+                                                                <th width="100">Reduction</th>
+                                                            </tr>
                                                             </thead>
                                                             <tbody>
 
@@ -162,14 +172,15 @@
                                                 <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
-                                                        <table id="produit_commande_detail_a" class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_commande_detail_a"
+                                                               class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
-                                                                <tr>
-                                                                    <th width="100">Nom</th>
-                                                                    <th width="100">Nombre de Commande du mois</th>
-                                                                    <th width="100">Nombre de Commande total</th>
-                                                                    <th width="200">Quantité en stock</th>
-                                                                </tr>
+                                                            <tr>
+                                                                <th width="100">Nom</th>
+                                                                <th width="100">Nombre de Commande du mois</th>
+                                                                <th width="100">Nombre de Commande total</th>
+                                                                <th width="200">Quantité en stock</th>
+                                                            </tr>
                                                             </thead>
                                                             <tbody id="tab_produit_commande_detail_a">
 
@@ -195,14 +206,15 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table id="produit_commande_detail_b" class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_commande_detail_b"
+                                                               class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
-                                                                <tr>
-                                                                    <th width="100">Produit id</th>
-                                                                    <th width="100">Commande id</th>
-                                                                    <th width="200">Prix public</th>
-                                                                    <th width="200">Quantite commande</th>
-                                                                </tr>
+                                                            <tr>
+                                                                <th width="100">Produit id</th>
+                                                                <th width="100">Commande id</th>
+                                                                <th width="200">Prix public</th>
+                                                                <th width="200">Quantite commande</th>
+                                                            </tr>
                                                             </thead>
                                                             <tbody id="tab_produit_commande_detail_b">
 
@@ -250,18 +262,19 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table id="produit_stock_detail_b" class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_stock_detail_b"
+                                                               class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
-                                                                <tr>
-                                                                    <th width="100">Nom</th>
-                                                                    <th width="100">Fournisseur id</th>
-                                                                    <th width="200">Date livraison</th>
-                                                                    <th width="200">Date peremption</th>
-                                                                    <th width="200">Prix achat</th>
-                                                                    <th width="200">Prix vente</th>
-                                                                    <th width="200">Quantité restante</th>
-                                                                    <th width="200">Action</th>
-                                                                </tr>
+                                                            <tr>
+                                                                <th width="100">Nom</th>
+                                                                <th width="100">Fournisseur id</th>
+                                                                <th width="200">Date livraison</th>
+                                                                <th width="200">Date peremption</th>
+                                                                <th width="200">Prix achat</th>
+                                                                <th width="200">Prix vente</th>
+                                                                <th width="200">Quantité restante</th>
+                                                                <th width="200">Action</th>
+                                                            </tr>
                                                             </thead>
                                                             <tbody id="tab_produit_stock_detail_b">
 
@@ -310,17 +323,18 @@
                                                         </h1>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <table id="produit_stock_detail_sortie_b" class="table datatable table-bordered table-striped table-actions">
+                                                        <table id="produit_stock_detail_sortie_b"
+                                                               class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
-                                                                <tr>
-                                                                    <th width="200">Nom</th>
-                                                                    <th width="100">Quantité</th>
-                                                                    <th width="100">Nom produit détail</th>
-                                                                    <th width="100">Forme</th>
-                                                                    <th width="100">Date Opération</th>
-                                                                    <th width="100">Opération</th>
+                                                            <tr>
+                                                                <th width="200">Nom</th>
+                                                                <th width="100">Quantité</th>
+                                                                <th width="100">Nom produit détail</th>
+                                                                <th width="100">Forme</th>
+                                                                <th width="100">Date Opération</th>
+                                                                <th width="100">Opération</th>
 
-                                                                </tr>
+                                                            </tr>
                                                             </thead>
                                                             <tbody>
 
@@ -350,7 +364,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
                 <h4 class="modal-title">Detail</h4> <span id="id"></span>
             </div>
             <div class="modal-body">
@@ -360,25 +375,29 @@
                             <div class="form-group row">
                                 <label class="col-md-3 control-label">Prix d'achat:</label>
                                 <div class="col-md-9">
-                                    <input type="number" class="form-control erprixachat" name="erprixachat" id="erprixachat" value="" placeholder="" />
+                                    <input type="number" class="form-control erprixachat" name="erprixachat"
+                                           id="erprixachat" value="" placeholder=""/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3 control-label">Prix de vente:</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control erprixvente" name="erprixvente" id="erprixvente" value="" placeholder="" />
+                                    <input type="text" class="form-control erprixvente" name="erprixvente"
+                                           id="erprixvente" value="" placeholder=""/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3 control-label">Quantité:</label>
                                 <div class="col-md-9">
-                                    <input type="number" class="form-control erquantite" name="erquantite" id="erquantite" value="" placeholder="" />
+                                    <input type="number" class="form-control erquantite" name="erquantite"
+                                           id="erquantite" value="" placeholder=""/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3 control-label">Date de peremption:</label>
                                 <div class="col-md-9">
-                                    <input type="date" class="form-control erdatePeremption" name="erdatePeremption" id="erdatePeremption" value="" placeholder="" />
+                                    <input type="date" class="form-control erdatePeremption" name="erdatePeremption"
+                                           id="erdatePeremption" value="" placeholder=""/>
                                 </div>
                             </div>
                         </div>

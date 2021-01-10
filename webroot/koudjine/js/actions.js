@@ -387,6 +387,54 @@ $(document).ready(function(){
         $(this).parents(".dropdown").removeClass("open");
         return false;
     });
+
+    $(".panel-refresh-depense").on("click",function(){
+        var panel = $(this).parents(".panel");
+        panel_refresh(panel);
+        var depense_type = $("#depense_type").val();
+        var depense_quantite = $("#depense_quantite").val();
+        var depense_prixunitaire = $("#depense_prixunitaire").val();
+        var depense_objet = $("#depense_objet").val();
+        var depense_remis = $("#depense_remis").val();
+        var depense_lieu = $("#depense_lieu").val();
+        var depense_societe = $("#depense_societe").val();
+        var depense_datedepense = $("#depense_datedepense").val();
+        var depense_date = $("#depense_date").val();
+        var depense_cni = $("#depense_cni").val();
+
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/add_full_depense.php',
+            data: {
+                depense_type: depense_type,
+                depense_quantite: depense_quantite,
+                depense_prixunitaire: depense_prixunitaire,
+                depense_objet: depense_objet,
+                depense_remis: depense_remis,
+                depense_lieu: depense_lieu,
+                depense_societe: depense_societe,
+                depense_datedepense: depense_datedepense,
+                depense_date: depense_date,
+                depense_cni: depense_cni,
+            },
+            success: function (data) {
+                panel_refresh(panel);
+                link = '/pharmacietest/bouwou/pharmanet/list';
+                window.location.href=link;
+                //$('#produits').append(data);
+                //alert(data);
+
+            }
+        });
+
+        // setTimeout(function(){
+        //     panel_refresh(panel);
+        //     alert("Alert");
+        // },6000);
+        
+        $(this).parents(".dropdown").removeClass("open");
+        return false;
+    });
     /* EOF PANELS */
     
     /* ACCORDION */
@@ -472,6 +520,20 @@ function onload(){
     x_navigation_onresize();    
     page_content_onresize();
 }
+
+function pharmanet_add_depense() {
+
+    var panel = $(this).parents(".panel");
+    panel_refresh(panel);
+
+    setTimeout(function () {
+        panel_refresh(panel);
+    }, 3000);
+
+    $(this).parents(".dropdown").removeClass("open");
+    return false;
+
+} 
 
 function page_content_onresize(){
     $(".page-content,.content-frame-body,.content-frame-right,.content-frame-left").css("width","").css("height","");

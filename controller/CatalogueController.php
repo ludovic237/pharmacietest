@@ -353,7 +353,7 @@ class CatalogueController extends Controller
             'fields' => 'produit.id as idp,produit.nom as nomp,produit.etat as etatp,ean13,stock,categorie.nom as nomc,rayon.nom as nomr',
             'table' => 'produit,categorie,rayon',
             'order' => 'nomp-ASC',
-            'conditions' => array('produit.categorie_id' => 'categorie.id', 'produit.rayon_id' => 'rayon.id')
+            'conditions' => array('produit.categorie_id' => 'categorie.id', 'produit.rayon_id' => 'rayon.id', 'produit.supprimer' => 0)
         ));
         //die($d);
         if (empty($d['catalogue'])) {
@@ -362,9 +362,16 @@ class CatalogueController extends Controller
         $this->set($d);
     }
 
-    function koudjine_produitdetail()
+    function koudjine_produitdetail($id = null)
     {
         $this->loadModel('Catalogue');
+        if ($id != null) {
+            //die('pass');
+            $d['id'] = $id;
+
+            $this->set($d);
+        }
+
     }
 
     function koudjine_produit_impression()

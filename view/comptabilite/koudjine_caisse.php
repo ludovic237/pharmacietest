@@ -18,8 +18,15 @@
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
-
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>
+<script>
+var qrcode = new QRCode(document.getElementById("codebarreimp"), {
+     width: 30,
+     height: 30
+ });
+                                    </script>
+';
      if (isset($caisse) && $caisse == null) {
           $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisse").modal("show"); });</script>';
      }
@@ -533,184 +540,184 @@
 </div>
 <!-- END MODAL ICON PREVIEW -->
 
-<?php if($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users']->type == 'Administrateur' || $_SESSION['Users']->type == 'Gestionnaire'){ ?>
-<!-- START MODAL ICON PREVIEW -->
-<div class="modal fade" id="iconPreviewCaisseFermer" tabindex="-1" role="dialog" aria-hidden="false">
-     <div class="modal-dialog">
-          <div class="modal-content">
-               <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Fermer Caisse</h4>
-               </div>
-               <div class="modal-body" style="padding: 0px;">
-                    <div class="panel panel-default tabs">
-                         <ul class="nav nav-tabs" role="tablist">
-                              <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Monnaie</a></li>
-                              <li><a href="#tab-second" role="tab" data-toggle="tab">Fiche </a></li>
-                         </ul>
-                         <div class="panel-body tab-content">
-                              <div class="tab-pane active" id="tab-first">
-                                   <div class="row">
-                                        <div class="col-md-12">
-                                             <div class="panel panel-default" style="margin-bottom: 0px;">
+<?php if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users']->type == 'Administrateur' || $_SESSION['Users']->type == 'Gestionnaire') { ?>
+     <!-- START MODAL ICON PREVIEW -->
+     <div class="modal fade" id="iconPreviewCaisseFermer" tabindex="-1" role="dialog" aria-hidden="false">
+          <div class="modal-dialog">
+               <div class="modal-content">
+                    <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                         <h4 class="modal-title">Fermer Caisse</h4>
+                    </div>
+                    <div class="modal-body" style="padding: 0px;">
+                         <div class="panel panel-default tabs">
+                              <ul class="nav nav-tabs" role="tablist">
+                                   <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Monnaie</a></li>
+                                   <li><a href="#tab-second" role="tab" data-toggle="tab">Fiche </a></li>
+                              </ul>
+                              <div class="panel-body tab-content">
+                                   <div class="tab-pane active" id="tab-first">
+                                        <div class="row">
+                                             <div class="col-md-12">
+                                                  <div class="panel panel-default" style="margin-bottom: 0px;">
 
-                                                  <div class="panel-body panel-body-table">
+                                                       <div class="panel-body panel-body-table">
 
-                                                       <div class="panel-body" style="display: flex;flex-direction: column;padding: 0px;">
-                                                            <!-- <div style="display: flex;align-items: center;">
+                                                            <div class="panel-body" style="display: flex;flex-direction: column;padding: 0px;">
+                                                                 <!-- <div style="display: flex;align-items: center;">
                                              <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Session caisse</h4>
                                         </div> -->
 
-                                                            <div style="display: flex;align-items: center;">
-                                                                 <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Fond de caisse</h4>
+                                                                 <div style="display: flex;align-items: center;">
+                                                                      <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Fond de caisse</h4>
+                                                                 </div>
+                                                                 <div>
+                                                                      <table class="table  table-bordered table-striped table-actions">
+                                                                           <thead>
+                                                                                <tr>
+                                                                                     <th width="150" colspan="2">Piece</th>
+                                                                                     <th width="150" colspan="2">Billets</th>
+                                                                                </tr>
+                                                                           </thead>
+                                                                           <tbody>
+                                                                                <tr>
+                                                                                     <td class="inputcountdisable"><input type="number" class="form-control fargent fargent1 x" data="1" value="0" id="fargent_1" placeholder=""></td>
+                                                                                     <td>500</td>
+                                                                                     <td class="inputcountdisable"><input type="number" class="form-control fargent fargent6 x" data="6" value="0" id="fargent_2" placeholder=""></td>
+                                                                                     <td>10000</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                     <td class="inputcountdisable"><input type="number" class="form-control fargent fargent2 x" data="2" value="0" id="fargent_3" placeholder=""></td>
+                                                                                     <td>100</td>
+                                                                                     <td class="inputcountdisable"><input type="number" class="form-control fargent fargent7 x" data="7" value="0" id="fargent_4" placeholder=""></td>
+                                                                                     <td>5000</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                     <td class="inputcountdisable"><input type="number" class="form-control fargent fargent3 x" data="3" value="0" id="fargent_5" placeholder=""></td>
+                                                                                     <td>50</td>
+                                                                                     <td class="inputcountdisable"><input type="number" class="form-control fargent fargent8 x" data="8" value="0" id="fargent_6" placeholder=""></td>
+                                                                                     <td>2000</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                     <td class="inputcountdisable"><input type="number" class="form-control fargent fargent4 x" data="4" value="0" id="fargent_7" placeholder=""></td>
+                                                                                     <td>25</td>
+                                                                                     <td class="inputcountdisable"><input type="number" class="form-control fargent fargent9 x" data="9" value="0" id="fargent_8" placeholder=""></td>
+                                                                                     <td>1000</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                     <td class="inputcountdisable"><input type="number" class="form-control fargent fargent5 x" data="5" value="0" id="fargent_9" placeholder=""></td>
+                                                                                     <td>10</td>
+                                                                                     <td class="inputcountdisable"><input type="number" class="form-control fargent fargent10 x" data="10" value="0" id="fargent_10" placeholder=""></td>
+                                                                                     <td>500</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                     <td>
+                                                                                          <h6>
+                                                                                               Sous total
+                                                                                          </h6>
+                                                                                     </td>
+                                                                                     <td>
+                                                                                          <h6 style="margin-bottom: 0px;"><span class="fsoustotalaisse1">0</span></h6>
+                                                                                     </td>
+                                                                                     <td>
+                                                                                          <h6>
+                                                                                               Sous total
+                                                                                          </h6>
+                                                                                     </td>
+                                                                                     <td>
+                                                                                          <h6 style="margin-bottom: 0px;"><span class="fsoustotalaisse2">0</span></h6>
+                                                                                     </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                     <td colspan="4">
+                                                                                          <div style="justify-content: space-between;display:flex">
+                                                                                               <p style="margin-bottom: 0px;"> Total</p>
+                                                                                               <h4 style="margin-bottom: 0px;"><span class="ftotalaisse">0</span></h4>
+                                                                                          </div>
+                                                                                     </td>
+                                                                                </tr>
+                                                                           </tbody>
+                                                                      </table>
+                                                                 </div>
                                                             </div>
-                                                            <div>
-                                                                 <table class="table  table-bordered table-striped table-actions">
-                                                                      <thead>
-                                                                           <tr>
-                                                                                <th width="150" colspan="2">Piece</th>
-                                                                                <th width="150" colspan="2">Billets</th>
-                                                                           </tr>
-                                                                      </thead>
-                                                                      <tbody>
-                                                                           <tr>
-                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent1 x" data="1" value="0" id="fargent_1" placeholder=""></td>
-                                                                                <td>500</td>
-                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent6 x" data="6" value="0" id="fargent_2" placeholder=""></td>
-                                                                                <td>10000</td>
-                                                                           </tr>
-                                                                           <tr>
-                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent2 x" data="2" value="0" id="fargent_3" placeholder=""></td>
-                                                                                <td>100</td>
-                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent7 x" data="7" value="0" id="fargent_4" placeholder=""></td>
-                                                                                <td>5000</td>
-                                                                           </tr>
-                                                                           <tr>
-                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent3 x" data="3" value="0" id="fargent_5" placeholder=""></td>
-                                                                                <td>50</td>
-                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent8 x" data="8" value="0" id="fargent_6" placeholder=""></td>
-                                                                                <td>2000</td>
-                                                                           </tr>
-                                                                           <tr>
-                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent4 x" data="4" value="0" id="fargent_7" placeholder=""></td>
-                                                                                <td>25</td>
-                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent9 x" data="9" value="0" id="fargent_8" placeholder=""></td>
-                                                                                <td>1000</td>
-                                                                           </tr>
-                                                                           <tr>
-                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent5 x" data="5" value="0" id="fargent_9" placeholder=""></td>
-                                                                                <td>10</td>
-                                                                                <td class="inputcountdisable"><input type="number" class="form-control fargent fargent10 x" data="10" value="0" id="fargent_10" placeholder=""></td>
-                                                                                <td>500</td>
-                                                                           </tr>
-                                                                           <tr>
-                                                                                <td>
-                                                                                     <h6>
-                                                                                          Sous total
-                                                                                     </h6>
-                                                                                </td>
-                                                                                <td>
-                                                                                     <h6 style="margin-bottom: 0px;"><span class="fsoustotalaisse1">0</span></h6>
-                                                                                </td>
-                                                                                <td>
-                                                                                     <h6>
-                                                                                          Sous total
-                                                                                     </h6>
-                                                                                </td>
-                                                                                <td>
-                                                                                     <h6 style="margin-bottom: 0px;"><span class="fsoustotalaisse2">0</span></h6>
-                                                                                </td>
-                                                                           </tr>
-                                                                           <tr>
-                                                                                <td colspan="4">
-                                                                                     <div style="justify-content: space-between;display:flex">
-                                                                                          <p style="margin-bottom: 0px;"> Total</p>
-                                                                                          <h4 style="margin-bottom: 0px;"><span class="ftotalaisse">0</span></h4>
-                                                                                     </div>
-                                                                                </td>
-                                                                           </tr>
-                                                                      </tbody>
-                                                                 </table>
-                                                            </div>
+
                                                        </div>
-
                                                   </div>
-                                             </div>
 
+                                             </div>
                                         </div>
+
                                    </div>
+                                   <div class="tab-pane" id="tab-second">
+                                        <div class="panel panel-default">
 
-                              </div>
-                              <div class="tab-pane" id="tab-second">
-                                   <div class="panel panel-default">
+                                             <div class="panel-body" style="display: flex;flex-direction: column;">
 
-                                        <div class="panel-body" style="display: flex;flex-direction: column;">
-
-                                             <div class="form-group">
-                                                  <label class="col-md-3 col-xs-12 control-label">OM</label>
-                                                  <div class="col-md-6 col-xs-12">
-                                                       <div class="input-group">
-                                                            <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
-                                                            <input type="text" class="form-control" />
+                                                  <div class="form-group">
+                                                       <label class="col-md-3 col-xs-12 control-label">OM</label>
+                                                       <div class="col-md-6 col-xs-12">
+                                                            <div class="input-group">
+                                                                 <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
+                                                                 <input type="text" class="form-control" />
+                                                            </div>
+                                                            <!-- <span class="help-block">This is sample of text field</span> -->
                                                        </div>
-                                                       <!-- <span class="help-block">This is sample of text field</span> -->
                                                   </div>
-                                             </div>
 
-                                             <div class="form-group">
-                                                  <label class="col-md-3 col-xs-12 control-label">Espece</label>
-                                                  <div class="col-md-6 col-xs-12">
-                                                       <div class="input-group">
-                                                            <span class="input-group-addon"><span class="fa fa-money"></span></span>
-                                                            <input class="form-control" />
+                                                  <div class="form-group">
+                                                       <label class="col-md-3 col-xs-12 control-label">Espece</label>
+                                                       <div class="col-md-6 col-xs-12">
+                                                            <div class="input-group">
+                                                                 <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                                                                 <input class="form-control" />
+                                                            </div>
+                                                            <!-- <span class="help-block">Password field sample</span> -->
                                                        </div>
-                                                       <!-- <span class="help-block">Password field sample</span> -->
                                                   </div>
-                                             </div>
-                                             <div class="form-group">
-                                                  <label class="col-md-3 col-xs-12 control-label">En lettre</label>
-                                                  <div class="col-md-6 col-xs-12">
-                                                       <div class="input-group">
+                                                  <div class="form-group">
+                                                       <label class="col-md-3 col-xs-12 control-label">En lettre</label>
+                                                       <div class="col-md-6 col-xs-12">
+                                                            <div class="input-group">
 
-                                                            <input class="form-control" />
+                                                                 <input class="form-control" />
+                                                            </div>
+                                                            <!-- <span class="help-block">Password field sample</span> -->
                                                        </div>
-                                                       <!-- <span class="help-block">Password field sample</span> -->
                                                   </div>
-                                             </div>
-                                             <div class="form-group">
-                                                  <label class="col-md-3 col-xs-12 control-label">En lettre</label>
-                                                  <div class="col-md-6 col-xs-12">
-                                                       <div class="input-group">
+                                                  <div class="form-group">
+                                                       <label class="col-md-3 col-xs-12 control-label">En lettre</label>
+                                                       <div class="col-md-6 col-xs-12">
+                                                            <div class="input-group">
 
-                                                            <input class="form-control" />
+                                                                 <input class="form-control" />
+                                                            </div>
+                                                            <!-- <span class="help-block">Password field sample</span> -->
                                                        </div>
-                                                       <!-- <span class="help-block">Password field sample</span> -->
                                                   </div>
+
+
                                              </div>
-
-
-                                        </div>
-                                        <!-- <div class="panel-footer">
+                                             <!-- <div class="panel-footer">
                                         <button class="btn btn-default">Clear Form</button>
                                         <button class="btn btn-primary pull-right">Submit</button>
                                    </div> -->
+                                        </div>
+
+
                                    </div>
-
-
                               </div>
-                         </div>
 
+                         </div>
                     </div>
-               </div>
-               <div class="modal-footer">
-                    <button type="button" class="btn btn-success" style="margin-right: 20px; " onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Valider</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-success" style="margin-right: 20px; " onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Valider</button>
+                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
                </div>
           </div>
      </div>
-</div>
 
-<!-- END MODAL ICON PREVIEW -->
+     <!-- END MODAL ICON PREVIEW -->
 <?php } ?>
 
 <!-- START MODAL ICON PREVIEW -->
@@ -1030,18 +1037,19 @@
           </div>
      </div>
 </div>
-<div class="modal fade" id="iconPreviewDepense" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="iconPreviewDepense" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="false">
      <div class="modal-dialog" style="width: 85%;">
           <div class="modal-content">
                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <button type="button" class="close" onclick="close_depense()"><span aria-hidden="false">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Dépense</h4>
                     <div style="display: flex;justify-content: flex-end;">
-                         <a onclick="ajouter_depense()" href="#" class="btn btn-default btn-rounded btn-sm">Ajouter</a>
+                         <a onclick="modify_depense('<?php echo $action_fermeture->id; ?>')" id="modifydepenseid" href="#" class="btn btn-default btn-rounded btn-sm">Modifier</a>
+                         <a onclick="ajouter_depense()" id="adddepenseid" href="#" class="btn btn-default btn-rounded btn-sm">Ajouter</a>
                     </div>
                </div>
                <div class="modal-body">
-                    <div class="row">
+                    <div class="row"> 
                          <div class="col-md-12 ">
                               <div class="panel panel-default">
 
@@ -1062,7 +1070,7 @@
                                              </table>
                                         </div>
                                         <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
-                                             <h6>Total <span id="total_depense">0</span> F CFA </h6>
+                                             <h6>Total <span id="total_depense">0</span> FCFA </h6>
                                         </div>
                                    </div>
                               </div>
@@ -1071,8 +1079,8 @@
                     </div>
                </div>
                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="valider_depense('<?php echo $action_fermeture->id; ?>')" style="margin-right: 20px; ">Valider</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="button" id='savedepenseid' class="btn btn-success" onclick="valider_depense('<?php echo $action_fermeture->id; ?>')" style="margin-right: 20px; ">Enregistrer</button>
+                    <button type="button" class="btn btn-primary" onclick="close_depense()">Ferler</button>
                </div>
           </div>
      </div>
@@ -1296,3 +1304,56 @@
           </div>
      </div>
 </div> -->
+
+<div class="modal fade" id="iconPreviewListeCaisse" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog" style="width: 85%;">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Caisse</h4>
+               </div>
+               <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-12 ">
+                              <div class="panel panel-default">
+
+                                   <div class="panel-body panel-body-table">
+
+                                        <div class="panel-body">
+                                             <div class="table-responsive">
+                                                  <table id="tab_load_produit_caisse" style="height: 200px;overflow: auto;" class="table table-bordered table-actions">
+                                                       <thead>
+                                                            <tr>
+                                                                 <th width="100">Montant</th>
+                                                                 <th width="200">Montant percu</th>
+                                                                 <th width="200">Date de vente</th>
+                                                                 <th width="100">Etat</th>
+                                                                 <th width="100">Ref</th>
+                                                            </tr>
+                                                       </thead>
+                                                       <tbody id="tab_Bload_produit_caisse">
+
+                                                       </tbody>
+                                                  </table>
+                                             </div>
+
+                                        </div>
+
+                                   </div>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+               </div>
+          </div>
+     </div>
+</div>
+
+<ul>
+     <li onclick="selectemploye('<?php echo $employename; ?>')"></li>
+</ul>
+
+p

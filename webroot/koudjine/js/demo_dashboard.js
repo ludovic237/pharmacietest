@@ -47,7 +47,13 @@ $(document).ready(function () {
                     data: server_responce.con,
                     columns: [
                         { data: 'nom' },
-                        { data: 'qte' },
+                        {"data":"qte","render":function(data,type,row){
+                            if(!data ){
+                                return '<span class="badge badge-success badge-pill ml-2" style="font-size:90%">Pas de donnée</span>';
+                            }else{
+                                return '<span class="label label-warning" style="font-size:90%">'+data+'</span>';
+                            }
+                        }},
                         { data: 'quantiteRestante' },
                     ]
                 });

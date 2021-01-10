@@ -119,7 +119,7 @@
                                         },
                                         dataType:'json',
                                         success: function(data) {
-                                            //alert('passC'+ JSON.stringify(data))
+                                            noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
                                                 if (data.erreur == 'non') {
                                                     var cat = '<tr id="' + data.id + '">'
                                                         + ' <td><strong>' + nom + '</strong></td>'
@@ -217,7 +217,7 @@
                                         },
                                         dataType:'json',
                                         success: function(data){
-                                            //alert(data.erreur);
+                                            noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
                                             if(data.erreur == 'non' ){
                                                 $("#"+lien+" td").each(function(i){
                                                     //alert(i);

@@ -211,6 +211,17 @@ class EmployeManager
         }
         return $employes;
     }
+
+    public function getListKeyword($word)
+    {
+        $employes = array();
+        $q = $this->_db->prepare("SELECT * FROM employe WHERE identifiant like '".$word."%' ORDER BY identifiant LIMIT 0,6 ");
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $employes[] = new Employe($donnees);
+        }
+        return $employes;
+    }
     public function update(Employe $employe)
     {
 

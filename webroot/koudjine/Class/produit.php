@@ -360,6 +360,14 @@ class ProduitManager
         return new produit($donnees);
 
     }
+    public function getNom($info)
+    {
+
+        $q = $this->_db->query('SELECT * FROM produit WHERE supprimer = 0 AND nom = "'.$info.'"');
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new produit($donnees);
+
+    }
     public function getLast()
     {
 

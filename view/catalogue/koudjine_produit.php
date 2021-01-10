@@ -11,7 +11,7 @@
         }
         $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
         $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Catalogue/functions.js"></script>';
         ?> -->
 
 
@@ -60,12 +60,12 @@
                                             <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->idp; ?>)">
                                                 <span class="fa fa-pencil"></span>
                                             </button>
-                                            <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>');">
+                                            <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->idp; ?>','<?php echo $this->request->controller; ?>','produit');">
                                                 <span class="fa fa-times"></span>
                                             </button>
                                         </div>
                                         <div>
-                                            <a class="btn btn-warning btn-rounded btn-sm" href="<?php echo Router::url('bouwou/catalogue/produitdetail/' .  $v->idp); ?>" style="margin-right: 20px">Detail</a>
+                                            <a class="btn btn-warning btn-rounded btn-sm" href="<?php echo Router::url('bouwou/catalogue/produitdetail/?id=' .  $v->idp); ?>" style="margin-right: 20px">Detail</a>
                                         </div>
                                     </td>
                                 </tr>
