@@ -2,12 +2,14 @@
 require_once('database.php');
 require_once('../Class/vente.php');
 require_once('../Class/caisse.php');
+require_once('../Class/facturation.php');
 
 global $pdo;
 
 
 $manager = new VenteManager($pdo);
 $managerCa = new CaisseManager($pdo);
+$managerFa = new FacturationManager($pdo);
 
 
 
@@ -16,19 +18,26 @@ if (isset($_POST['idCaisse'])) {
     $idCaisse = $_POST['idCaisse'];
     $VenteCaisse = $manager->getListCaisseVente($idCaisse);
     foreach ($VenteCaisse as $key => $v) {
+        if($managerFa->existsvente_id($v->id())){
+            $fact = $managerFa->getVente($v->id());
+            $typePaiement = $fact->typePaiement();
+        }else{
+            $typePaiement = 'Inachevée';
+        }
+
         echo "<tr id=\"" . $v->id() . "\">
                 <td>
                     <p>" . $v->reference() . "</p>
                 </td>
 
-                <td><strong >" . $v->prixTotal() . "</strong></td>
-                <td >" . $v->prixPercu() . "</td>
+                <td><strong class='prixt'>" . $v->prixTotal() . "</strong></td>
+                <td class='prixp'>" . $v->prixPercu() . "</td>
                 <td >" . $v->employe_id() . "</td>
                 <td class=\"datevte\">
                     " . $v->dateVente() . "
                 </td>
                 <td>
-                    " . $v->etat() . "
+                    " . $v->etat() . " / " . $typePaiement . "
                 </td>
                 <td>
                     <a class=\"btn btn-success btn-rounded btn-sm \" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\" onclick=\"reimprime_ticket_caisse(" . $v->id() . ")\">Imprimer ticket</a>

@@ -195,6 +195,14 @@ class FacturationManager
         return new Facturation($donnees);
 
     }
+    public function getVente($info)
+    {
+
+        $q = $this->_db->query('SELECT * FROM facturation WHERE supprimer = 0 AND vente_id = '.$info);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Facturation($donnees);
+
+    }
     public function getList($info)
     {
         $facturation = array();

@@ -137,6 +137,7 @@ class VenteController extends Controller
                 //$js_code = json_encode($d['ventePresentMonth'],JSON_HEX_TAG);
                 //echo $js_code;
                 //print_r($d['ventes']);
+                //$i = 0;
 
                 foreach ($d['ventes'] as $k => $v) :
                     $d['produits'][$i] = $this->Vente->find(array(
@@ -147,7 +148,7 @@ class VenteController extends Controller
                     $js_code = json_encode($d['produits'], JSON_HEX_TAG);
                     //echo $js_code;
                     $d['totalVente'] = $v->prixTotal + $d['totalVente'];
-                    if ($v->user_id == null) {
+                    if ($v->user_id == NULL) {
                         $d['user'][$i] = $v->nouveau_info;
                     } else {
                         $d['user'][$i] = $this->Vente->findFirst(array(

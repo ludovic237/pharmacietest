@@ -499,9 +499,23 @@ class ComptabiliteController extends Controller
        
     }
 
-    function koudjine_caisse_rapport()
+    function koudjine_caisse_rapport($id=null)
     {
         $this->loadModel('Comptabilite');
+
+        $d['check'] = $this->Comptabilite->findFirst(array(
+            //'fields' => 'produit.nom as nom',
+            'table' => 'caisse',
+            'conditions' => "supprimer = 0 AND etat = \"En cours1\" OR etat = \"En cours\""
+        ));
+        if($id != null){
+            $d['id'] = $id;
+        }else{
+            if(!empty($d['check']))
+            $d['id'] = $d['check']->id;
+        }
+
+        $this->set($d);
        
     }
 

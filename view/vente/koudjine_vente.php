@@ -114,7 +114,7 @@
                                                                     echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
                                                                 $count++;
                                                             endforeach;
-                                                            $i++;
+
                                                             ?>
                                                         </td>
 
@@ -133,7 +133,7 @@
                                                         </td>
                                                         <p></p>
                                                     </tr>
-                                                <?php endforeach; ?>
+                                                <?php $i++; endforeach; ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -180,7 +180,7 @@
                                                                     echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
                                                                 $count++;
                                                             endforeach;
-                                                            $i++;
+                                                            //$i++;
                                                             ?>
                                                         </td>
 
@@ -200,7 +200,7 @@
                                                         </td>
                                                         <p></p>
                                                     </tr>
-                                                <?php endforeach; ?>
+                                                <?php $i++; endforeach; ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -303,6 +303,7 @@
                                                             <td><?php echo $v->dateFerme; ?></td>
                                                             <td>
                                                                 <a class="btn btn-success btn-rounded btn-sm" onclick="showVenteCaisse(<?php echo $v->id; ?>)">Voir vente</a>
+                                                                <a href="<?php echo Router::url('bouwou/comptabilite/caisse_rapport/'.$v->id); ?>" class="btn btn-primary btn-rounded btn-sm">Voir rapport</a>
                                                             </td>
                                                             <p></p>
                                                         </tr>
@@ -348,7 +349,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="icon-preview">
-                            <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticketListe">
+                            <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticketListe2">
 
                                 <div style="display: flex;flex-direction:column;text-align: left;">
                                     <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">Pharmacie ALSAS</p>
