@@ -5,8 +5,57 @@ var idemploye = null
     ;
 var idfulldepense;
 
+var id_boncaisse_encaissement;
 
 $(document).ready(function () {
+
+    $("#encaisseCode").keyup(function (event) {
+        $('#verification_code').html("");
+        document.getElementById("btn_encaissement").disabled = true;
+        if (this.value.length == 12) {
+            //alert($(this).val());
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/encaisser_bon_caisse.php',
+                data: {
+                    val: $(this).val(),
+                    type:"check"
+                },
+                success: function (server_responce) {
+
+                    if (server_responce == "OK") {
+                        var cat = '<span class="label label-success">Code valide</span>';
+                        $('#verification_code').prepend(cat);
+                        document.getElementById("btn_encaissement").disabled = false;
+                    } else {
+                        var cat = '<span class="label label-danger">Code invalide</span>';
+                        $('#verification_code').prepend(cat);
+                        document.getElementById("btn_encaissement").disabled = true;
+                    }
+                }
+            });
+        }
+        /*if (event.keyCode == 12) {
+            //alert($(this).val());
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/encaisser_bon_caisse.php',
+                data: {
+                    val: $(this).val(),
+                    type:"check"
+                },
+                success: function (server_responce) {
+                    if (server_responce == "OK") {
+                        alert("Success");
+                        document.getElementById("btn_encaissement").disabled = false;
+                    } else {
+                        alert("Bon inexistant");
+                        document.getElementById("btn_encaissement").disabled = true;
+                    }
+                }
+            });
+        }*/
+    })
 
     $(".fargent").keyup(function (event) {
         ////alert($(this).val())
@@ -153,6 +202,49 @@ function ajouter_bon_caisse() {
 
 }
 
+function showEncaissement() {
+    // Desactivé bouton generer
+    document.getElementById("btn_encaissement").disabled = true;
+    $("#iconPreviewBonCaisse").modal("hide");
+    $("#iconPreviewEncaisserCaisse").modal("show");
+}
+
+function encaisser_bon_caisse() {
+    var code_encaissement = $("#encaisseCode").val();
+    var dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
+    console.log('Encaissemnt :'+dateEncaisser+'-'+$("#tab_GBonCaisse").attr("data")+'-'+code_encaissement);
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/encaisser_bon_caisse.php',
+        data: {
+        code:code_encaissement,
+            type:"encaisser",
+            caisse_id: $("#tab_GBonCaisse").attr("data"),
+            dateEncaisser: dateEncaisser
+        },
+        success: function (server_responce) {
+            if (server_responce == "OK") {
+                document.getElementById("btn_encaissement").disabled = true;
+                noty({ text: 'Encaissement effectué', layout: 'topRight', type: 'success' });
+                setTimeout(() => {
+                    $("#iconPreviewBonCaisse").modal("show");
+                    $("#iconPreviewEncaisserCaisse").modal("hide");
+                }, 5000);
+
+
+            } else {
+                noty({ text: "echec de l'encaissement", layout: 'topRight', type: 'danger' });
+                document.getElementById("btn_encaissement").disabled = true;
+            }
+
+
+        }
+
+
+    })
+}
+
+
 function gerer_bon_caisse() {
     $('#tab_GBonCaisse  tr').each(function (i) {
         var dateEncaisser, id1 = $(this).attr("id");
@@ -162,7 +254,7 @@ function gerer_bon_caisse() {
             $('#montantimp').html($("#" + id1 + " .montant").val());
             $('#dateimp').html(moment().format("YYYY-MM-DD HH:mm:ss"));
             qrcode.makeCode(moment().format("YYMMDDHHmmss"));
-         
+
             $('#codebarrenulimp').html(moment().format("YYMMDDHHmmss"));
 
             $("#previewImprimerBonCaisse").modal("show");
@@ -636,7 +728,7 @@ function charger_vente(id) {
 function valider_fermeture(caisse_id) {
     var total = parseInt($('.ftotalaisse').html());
     var detail_piece_billet = ($("#fargent_1").val()) + "-" + ($("#fargent_2").val()) + "-" + ($("#fargent_3").val()) + "-" + ($("#fargent_4").val()) + "-" + ($("#fargent_5").val()) + "-" + ($("#fargent_6").val()) + "-" + ($("#fargent_7").val()) + "-" + ($("#fargent_8").val()) + "-" + ($("#fargent_9").val()) + "-" + ($("#fargent_10").val());
-    
+
     if (total == 0) {
         //alert("Veuillez saisir votre fond de caisse");
         $.ajax({
@@ -677,7 +769,7 @@ function valider_fermeture(caisse_id) {
 
 function open_rapport() {
     var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
-    
+
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/liste_depense.php',
@@ -799,11 +891,11 @@ function selectemploye(val, id) {
 }
 
 function close_caisse_row_valide(user_id) {
-    
+
     var total = parseInt($('.totalaisse').html());
     var detail_piece_billet = ($("#argent_1").val()) + "-" + ($("#argent_2").val()) + "-" + ($("#argent_3").val()) + "-" + ($("#argent_4").val()) + "-" + ($("#argent_5").val()) + "-" + ($("#argent_6").val()) + "-" + ($("#argent_7").val()) + "-" + ($("#argent_8").val()) + "-" + ($("#argent_9").val()) + "-" + ($("#argent_10").val());
     var session = $('.session option:selected').text();
-    
+
     if (total == 0) {
         //alert("Veuillez saisir votre fond de caisse")
     } else {

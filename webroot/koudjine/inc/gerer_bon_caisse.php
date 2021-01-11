@@ -36,7 +36,7 @@ else{
         $bon = $manager->get($new_id);
         $bon->setcaisse_id_encaisser($caisse_id);
         $bon->setdateEncaisser($dateEncaisser);
-        $bon->settype('Encaisser');
+        $bon->settype('Encaisser'); 
         $manager->update($bon);
     }
 
