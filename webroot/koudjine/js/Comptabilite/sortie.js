@@ -15,14 +15,12 @@ $(document).ready(function(){
                 success: function (data) {
                     $("#tab_Bsortie").empty();
                     $("#tab_Bsortie").prepend(data);
-
                 }
             })
         }else{
             $("#tab_Bsortie").empty();
             $("#contenu").val('');
         }
-
     })
     $("#recherche").keyup(function (event) {
         if (event.keyCode == 13) {
@@ -86,9 +84,6 @@ function valider_sortie() {
                 }
                 qte_total = qte_total + qte;
             })
-            //alert(qte_total);
-            //alert(qteT);
-            //alert(statut);
             if(qte_total == qteT && statut == 1 && $('#contenu').val() != ''){
                 $('#tab_Bsortie  tr').each(function (i) {
                     var id1 = $(this).attr("id");
@@ -141,8 +136,6 @@ function valider_sortie() {
                     window.location.href = link;
 
                 }
-
-
             })
         }
     }
@@ -158,9 +151,7 @@ function load_produit(id, action) {
                 action: action
             },
             success: function (server_responce) {
-                //alert(server_responce);
-                //$("#iconPreview .icon-preview").html(icon_preview);
-
+                
                 $('#tab_Bload_produit').html(server_responce);
                 //$("#code").barcode(data.codebarre);
 
@@ -169,9 +160,6 @@ function load_produit(id, action) {
 
 
         })
-
-
-        // var icon_preview = $("<i></i>").addClass(iClass);
         $("#iconPreviewVente").modal("show");
 
 }

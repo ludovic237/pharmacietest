@@ -19,6 +19,7 @@
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>
 <script>
 var qrcode = new QRCode(document.getElementById("codebarreimp"), {
      width: 30,
@@ -993,7 +994,10 @@ var qrcode = new QRCode(document.getElementById("codebarreimp"), {
                          <div class="col-md-3">
                               <input class="form-control " data="1" id="scanner_bon" value="" placeholder="" />
                          </div>
-                         <div class="col-md-7" style="display: flex;justify-content: end;">
+                         <div class="col-md-7" style="display: flex;justify-content: flex-end;">
+                              <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="showEncaissement()">
+                                   Encaisser bon
+                              </button>
                               <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" onclick="ajouter_bon_caisse()">
                                    Ajouter bon
                               </button>
@@ -1345,6 +1349,42 @@ var qrcode = new QRCode(document.getElementById("codebarreimp"), {
                     </div>
                </div>
                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+               </div>
+          </div>
+     </div>
+</div>
+
+<div class="modal fade" id="iconPreviewEncaisserCaisse" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog" style="width: 85%;">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Encaisser bon de caisse</h4>
+               </div>
+               <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-12 ">
+                              <div class="panel panel-default">
+                                   <p>Entrez le code ou scanner le bon</p>
+                                   <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Code</label>
+                                        <div class="col-md-6 col-xs-12">
+                                             <input type="text" class="form-control" id="encaisseCode" >
+                                        </div>
+                                       <div class="col-md-3 col-xs-12">
+                                           <div id="verification_code">
+
+                                           </div>
+                                       </div>
+                                   </div>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btn_encaissement" onclick="encaisser_bon_caisse()">Encaisser</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
                </div>
           </div>

@@ -106,8 +106,6 @@ function valider_commande(imprimer) {
             },
             dataType: 'json',
             success: function (data) {
-                //alert(server_responce);
-                ////alert('tpasse');
                 if (data.erreur == 'ok') {
                     idc = data.id;
                     ref = data.ref;
@@ -125,7 +123,6 @@ function valider_commande(imprimer) {
 
 
                         });
-                        ////alert(prix+'-'+qte+'-'+prixReduit);
                         $.ajax({
                             type: "POST",
                             url: "/pharmacietest/koudjine/inc/produit_commande.php",
@@ -143,11 +140,6 @@ function valider_commande(imprimer) {
                                 if(!imprimer){
                                     $("#mb-confirmation").modal("show");
                                 }
-                                /*if(data1.erreur == 'ok'){
-                                    var link = '/pharmacietest/users/logout';
-                                    ////alert(link);
-                                    window.location.href = link;
-                                }*/
                             }
                         })
 
@@ -378,12 +370,9 @@ function ajouter_row_inventaire() {
         success: function (server_responce) {
             //alert(id);
             var val = '' + id;
-            //alert($('#'+ id + ' .qteinventaire').html());
-            //$('#' + id + ' .valider_inventaire').attr("disabled", "disabled");
             $("#iconPreviewInventaire").modal("hide");
             var link = '/pharmacietest/bouwou/stock/inventaire';
             window.location.href = link;
-            //$("#"+id+" .qtevalide").html(parseInt($("#"+id+" .qtevalide").html())+ qte);
         }
     })
 }

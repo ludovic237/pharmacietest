@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="MIME-Types1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/webroot/assets/uploads/MIME-Types/Payment Icons.zip!/" />
+      <root url="jar://$PROJECT_DIR$/webroot/assets/uploads/MIME-Types/archive.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
