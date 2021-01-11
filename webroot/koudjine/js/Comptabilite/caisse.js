@@ -14,6 +14,8 @@ $(document).ready(function () {
         document.getElementById("btn_encaissement").disabled = true;
         if (this.value.length == 12) {
             //alert($(this).val());
+            var cat = '<span class="label label-success">Code valide</span>';
+            $('#verification_code').prepend(cat);
             $.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/encaisser_bon_caisse.php',
