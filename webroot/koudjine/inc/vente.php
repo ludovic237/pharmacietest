@@ -2,6 +2,7 @@
 require_once('database.php');
 require_once('../Class/vente.php');
 require_once('../Class/caisse.php');
+require_once('../Class/facturation.php');
 require_once('../Class/employe.php');
 require_once('../Class/user.php');
 require_once('../Class/concerner.php');
@@ -13,6 +14,10 @@ global $pdo;
 
 $manager = new VenteManager($pdo);
 $managerCa = new CaisseManager($pdo);
+$managerFa = new FacturationManager($pdo);
+
+
+
 $managerEn = new EmployeManager($pdo);
 $managerUser = new UserManager($pdo);
 $managerCo = new ConcernerManager($pdo);
@@ -31,12 +36,22 @@ if (isset($_POST['idCaisse'])) {
             $nom = $managerPr->get($managerEnr->get($c->en_rayon_id())->produit_id())->nom();
             $nameProduit = $nom.",".$nameProduit;
         endforeach;
+        if($managerFa->existsvente_id($v->id())){
+            $fact = $managerFa->getVente($v->id());
+            $typePaiement = $fact->typePaiement();
+        }else{
+            $typePaiement = 'Inachevée';
+        }
+
         echo "<tr id=\"" . $v->id() . "\">
                 <td>
                     <p>" . $v->reference() . "</p>
                     <strong>" . $nameProduit . "</strong>
                 </td>
 
+                <td><strong class='prixt'>" . $v->prixTotal() . "</strong></td>
+                <td class='prixp'>" . $v->prixPercu() . "</td>
+                <td >" . $v->employe_id() . "</td>
                 <td><strong >" . $v->prixTotal() . "</strong></td>
                 <td >" . $v->prixPercu() . "</td>
                 <td >" . $employeName->nom() ." ". $employeName->prenom() . "</td>
@@ -44,7 +59,7 @@ if (isset($_POST['idCaisse'])) {
                     " . $v->dateVente() . "
                 </td>
                 <td>
-                    " . $v->etat() . "
+                    " . $v->etat() . " / " . $typePaiement . "
                 </td>
                 <td>
                     <a class=\"btn btn-success btn-rounded btn-sm \" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\" onclick=\"reimprime_ticket_caisse(" . $v->id() . ")\">Imprimer ticket</a>
@@ -107,8 +122,6 @@ if (isset($_POST['idCaisse'])) {
         }
     }
 }
-
-
 
 
 

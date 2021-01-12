@@ -172,7 +172,7 @@ class VenteController extends Controller
                     $js_code = json_encode($d['produits'], JSON_HEX_TAG);
                     //echo $js_code;
                     $d['totalVente'] = $v->prixTotal + $d['totalVente'];
-                    if ($v->user_id == null) {
+                    if ($v->user_id == NULL) {
                         $d['user'][$i] = $v->nouveau_info;
                     } else {
                         $d['user'][$i] = $this->Vente->findFirst(array(

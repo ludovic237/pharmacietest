@@ -106,6 +106,7 @@ if (isset($_POST['idemploye'])) {
                                     </td>
                                     <td>
                                         <a class=\"btn btn-success btn-rounded btn-sm \"  onclick=\"showVenteCaisse('" . $c->id() . "')\"><span class=\"\">Voir vente</span></a>
+                                        <a href=\" /pharmacietest/bouwou/comptabilite/caisse_rapport/" . $c->id() . "\" class=\"btn btn-primary btn-rounded btn-sm \" ><span class=\"\">Voir rapport</span></a>
                                     </td>
                                 </tr>";
             endforeach;

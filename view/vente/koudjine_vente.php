@@ -29,7 +29,16 @@
 <!-- END THIS PAGE PLUGINS-->
 
 <!-- START TEMPLATE -->
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/settings.js"></script>
 
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/actions.js"></script>
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_vente.js"></script>
+
+
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Vente/functions.js"></script>';
         ?> -->
 
@@ -70,61 +79,61 @@
                         </div>
                         <div>
 
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table id="customers2" class="table datatable table-bordered table-striped table-actions">
-                                    <thead>
-                                    <tr>
-                                        <th width="100">Ref</th>
-                                        <th width="100">Montant</th>
-                                        <th width="200">Montant percu</th>
-                                        <th width="200">Client</th>
-                                        <th width="200">Vendeur</th>
-                                        <th width="200">Date de vente</th>
-                                        <th width="100">Etat</th>
-                                        <th width="100">Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php $i = 0;
-                                    if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
-                                        <tr id="<?php echo $v->id; ?>">
-                                            <td>
-                                                <?php
-                                                echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
-                                                $count = 0;
-                                                if (isset($produits)) foreach ($produits[$i] as $p => $q) :
-                                                    if ($count == 3) break;
-                                                    echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
-                                                    //echo $q->nom."\n";
-                                                    if ($count == 2)
-                                                        echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
-                                                    $count++;
-                                                endforeach;
-                                                $i++;
-                                                ?>
-                                            </td>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table id="customers2" class="table datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th width="100">Ref</th>
+                                                    <th width="100">Montant</th>
+                                                    <th width="200">Montant percu</th>
+                                                    <th width="200">Client</th>
+                                                    <th width="200">Vendeur</th>
+                                                    <th width="200">Date de vente</th>
+                                                    <th width="100">Etat</th>
+                                                    <th width="100">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i = 0;
+                                                if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
+                                                    <tr id="<?php echo $v->id; ?>">
+                                                        <td>
+                                                            <?php
+                                                            echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
+                                                            $count = 0;
+                                                            if (isset($produits)) foreach ($produits[$i] as $p => $q) :
+                                                                if ($count == 3) break;
+                                                                echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                                //echo $q->nom."\n";
+                                                                if ($count == 2)
+                                                                    echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                                $count++;
+                                                            endforeach;
+                                                            $i++;
+                                                            ?>
+                                                        </td>
 
-                                            <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
-                                            <td class="prixp"><?php echo $v->prixPercu; ?></td>
-                                            <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
-                                            <td class="seller"><?php echo $v->identifiant; ?></td>
-                                            <td class="datevte">
-                                                <?php echo $v->dateVente; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $v->etat; ?>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
-                                            </td>
-                                            <p></p>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
+                                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                                        <td class="seller"><?php echo $v->identifiant; ?></td>
+                                                        <td class="datevte">
+                                                            <?php echo $v->dateVente; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $v->etat; ?>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
+                                                        </td>
+                                                        <p></p>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
                         </div>
                     </div>
@@ -164,26 +173,28 @@
                                                 ?>
                                             </td>
 
-                                            <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
-                                            <td class="prixp"><?php echo $v->prixPercu; ?></td>
-                                            <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
-                                            <td class="seller"><?php echo $v->identifiant; ?></td>
-                                            <td class="datevte">
-                                                <?php echo $v->dateVente; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $v->etat; ?>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
-                                                <!-- <a class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></a> -->
-                                            </td>
-                                            <p></p>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
+                                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                                        <td class="seller"><?php echo $v->identifiant; ?></td>
+                                                        <td class="datevte">
+                                                            <?php echo $v->dateVente; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $v->etat; ?>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
+                                                            <!-- <a class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></a> -->
+                                                        </td>
+                                                        <p></p>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
 
                         </div>
 
@@ -258,33 +269,20 @@
 
                                                     <td><strong class="prixt"><?php if (isset($employe)) echo $employe[$j]; ?></strong></td>
 
-                                                    <td class="prixp"><?php echo $v->session; ?></td>
-                                                    <td>
-                                                        <?php
-                                                            if ($v->etat === "Clot")
-                                                            {
-                                                                echo '<span class="label label-success">'.$v->etat.'</span>';
-                                                            }
-                                                            else echo '<span class="label label-warning">'.$v->etat.'</span>';
-
-                                                        ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $v->fondCaisseOuvert; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $v->fondCaisseFerme; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $venteCaisse[$j]; ?>
-                                                    </td>
-                                                    <td><?php echo $v->dateOuvert; ?></td>
-                                                    <td><?php echo $v->dateFerme; ?></td>
-                                                    <td>
-                                                        <a class="btn btn-success btn-rounded btn-sm" onclick="showVenteCaisse(<?php echo $v->id; ?>,<?php echo $venteCaisse[$j]; ?>)">Voir vente</a>
-                                                    </td>
-                                                    <p></p>
-                                                </tr>
+                                                            <td class="prixp"><?php echo $v->session; ?></td>
+                                                            <td><span class="label label-success"><?php echo $v->etat; ?></span></td>
+                                                            <!-- <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td> -->
+                                                            <td>
+                                                                <?php echo $v->fondCaisseOuvert; ?>
+                                                            </td>
+                                                            <td><?php echo $v->fondCaisseFerme; ?></td>
+                                                            <td><?php echo $v->dateOuvert; ?></td>
+                                                            <td><?php echo $v->dateFerme; ?></td>
+                                                            <td>
+                                                                <a class="btn btn-success btn-rounded btn-sm" onclick="showVenteCaisse(<?php echo $v->id; ?>)">Voir vente</a>
+                                                            </td>
+                                                            <p></p>
+                                                        </tr>
 
                                                 <?php $j++;
                                             endforeach; ?>

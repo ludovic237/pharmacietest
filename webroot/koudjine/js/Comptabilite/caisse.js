@@ -769,8 +769,11 @@ function valider_fermeture(caisse_id) {
 
 }
 
-function open_rapport() {
+function open_rapport(id) {
     var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
+    if(id != null){
+        caisse_id = id;
+    }
 
     $.ajax({
         type: "POST",
