@@ -48,7 +48,8 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
             'prixVente' => "<p class='prixVente'> " . $e->prixVente() . "</p>",
             'quantiteRestante' => "<p class='quantiteRestante'> " . $e->quantiteRestante() . "</p>",
             'action' => " <a class=\"btn btn-success btn-rounded btn-sm \"  onclick=\"show_modif_enrayon('" . $e->id() . "')\"><span class=\"\">Modifier</span></a>
-                           <a class=\"btn btn-primary btn-rounded btn-sm \"   onclick=\"show_modif_sortie('" . $e->id() . "')\"><span class=\"\">Périmé & Stock détail</span></a>",
+                           <a class=\"btn btn-primary btn-rounded btn-sm \"   onclick=\"show_modif_sortie('" . $e->id() . "')\"><span class=\"\">Périmé & Stock détail</span></a>
+                           <a class=\"btn btn-primary btn-rounded btn-sm \"   onclick=\"info_row_entree('" . $e->id() . "')\"><span class=\"\">Imprimer etiquette</span></a>",
         );
     endforeach;
 

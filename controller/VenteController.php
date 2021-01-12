@@ -74,11 +74,14 @@ class VenteController extends Controller
             'table' => 'caisse',
             'conditions' => array('supprimer' => 0, 'etat' => '"Ouvert"')
         ));
+
+
         $d['caisseAll'] = $this->Vente->find(array(
             'table' => 'caisse'
         ));
 
         $j = 0;
+        $_prixTotalEncaisser = 0;
         foreach ($d['caisseAll'] as $k => $v) : 
 
             $d['employe'][$j] = $this->Vente->findFirst(array(
@@ -88,8 +91,30 @@ class VenteController extends Controller
             ));
             $d['employe'][$j] = $d['employe'][$j]->identifiant;
 
+            $d['venteCaisse'][$j] = $this->Vente->findFirst(array(
+                //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                'table' => 'vente v',
+                'conditions' => array('v.caisse_id' => $v->id, 'v.supprimer' => 0),
+            ));
+            $d['ventes'] = $this->Vente->find(array(
+                'table' => 'vente',
+                'conditions' => array('supprimer' => 0, 'caisse_id' => $v->id)
+            ));
+            $a = 0;
+            $_prix = 0;
+            foreach ($d['ventes'] as $k => $v) :
+
+                $_prix = $v->prixTotal + $_prix;
+
+                $a++;
+            endforeach;
+            $_prixTotalEncaisser = $_prix + $_prixTotalEncaisser;
+            $d['venteCaisse'][$j] = $_prix;
             $j++;
         endforeach;
+        $d['totalVenteEncaisser'] = $_prixTotalEncaisser;
+
+
 
         $d['venteAll'] = $this->Vente->find(array(
             'fields' => 'v.id as id,prixTotal,prixPercu,commentaire,dateVente,v.etat,v.user_id,nouveau_info,reference,identifiant',

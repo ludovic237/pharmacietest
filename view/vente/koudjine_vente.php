@@ -29,16 +29,7 @@
 <!-- END THIS PAGE PLUGINS-->
 
 <!-- START TEMPLATE -->
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/settings.js"></script>
 
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/actions.js"></script>
-
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_vente.js"></script>
-
-
-
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Vente/functions.js"></script>';
         ?> -->
 
@@ -56,266 +47,252 @@
                 </ul>
                 <div class="panel-body tab-content">
                     <div class="tab-pane active" id="tab-first">
-                        <div class="panel panel-default">
-
-                            <div class="panel-heading">
-                                <div class="btn-group pull-right">
-                                    <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false'});"><img src="img/icons/json.png" width="24"> JSON</a></li>
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src="img/icons/json.png" width="24"> JSON (ignoreColumn)</a></li>
-                                        <li><a href="#" onclick="$('#customers2'). tableExport({type:'json',escape:'true'});"><img src="img/icons/json.png" width="24"> JSON (with Escape)</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'xml',escape:'false'});"><img src="img/icons/xml.png" width="24"> XML</a></li>
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'sql'});"><img src="img/icons/sql.png" width="24"> SQL</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'csv',escape:'false'});"><img src="img/icons/csv.png" width="24"> CSV</a></li>
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'txt',escape:'false'});"><img src="img/icons/txt.png" width="24"> TXT</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'excel',escape:'false'});"><img src="img/icons/xls.png" width="24"> XLS</a></li>
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'doc',escape:'false'});"><img src="img/icons/word.png" width="24"> Word</a></li>
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img src="img/icons/ppt.png" width="24"> PowerPoint</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'png',escape:'false'});"><img src="img/icons/png.png" width="24"> PNG</a></li>
-                                        <li><a href="#" onclick="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src="img/icons/pdf.png" width="24"> PDF</a></li>
-                                    </ul>
-                                </div>
-                                <div>
-
-                                </div>
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table id="customers2" class="table datatable">
-                                            <thead>
-                                                <tr>
-                                                    <th width="100">Ref</th>
-                                                    <th width="100">Montant</th>
-                                                    <th width="200">Montant percu</th>
-                                                    <th width="200">Client</th>
-                                                    <th width="200">Vendeur</th>
-                                                    <th width="200">Date de vente</th>
-                                                    <th width="100">Etat</th>
-                                                    <th width="100">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 0;
-                                                if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
-                                                    <tr id="<?php echo $v->id; ?>">
-                                                        <td>
-                                                            <?php
-                                                            echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
-                                                            $count = 0;
-                                                            if (isset($produits)) foreach ($produits[$i] as $p => $q) :
-                                                                if ($count == 3) break;
-                                                                echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
-                                                                //echo $q->nom."\n";
-                                                                if ($count == 2)
-                                                                    echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
-                                                                $count++;
-                                                            endforeach;
-                                                            $i++;
-                                                            ?>
-                                                        </td>
-
-                                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
-                                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
-                                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
-                                                        <td class="seller"><?php echo $v->identifiant; ?></td>
-                                                        <td class="datevte">
-                                                            <?php echo $v->dateVente; ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $v->etat; ?>
-                                                        </td>
-                                                        <td>
-                                                            <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
-                                                        </td>
-                                                        <p></p>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
-
-                            </div>
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false'});"><img src="img/icons/json.png" width="24"> JSON</a></li>
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src="img/icons/json.png" width="24"> JSON (ignoreColumn)</a></li>
+                                <li><a href="#" onclick="$('#customers2'). tableExport({type:'json',escape:'true'});"><img src="img/icons/json.png" width="24"> JSON (with Escape)</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'xml',escape:'false'});"><img src="img/icons/xml.png" width="24"> XML</a></li>
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'sql'});"><img src="img/icons/sql.png" width="24"> SQL</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'csv',escape:'false'});"><img src="img/icons/csv.png" width="24"> CSV</a></li>
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'txt',escape:'false'});"><img src="img/icons/txt.png" width="24"> TXT</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'excel',escape:'false'});"><img src="img/icons/xls.png" width="24"> XLS</a></li>
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'doc',escape:'false'});"><img src="img/icons/word.png" width="24"> Word</a></li>
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img src="img/icons/ppt.png" width="24"> PowerPoint</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'png',escape:'false'});"><img src="img/icons/png.png" width="24"> PNG</a></li>
+                                <li><a href="#" onclick="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src="img/icons/pdf.png" width="24"> PDF</a></li>
+                            </ul>
                         </div>
+                        <div>
 
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table id="customers2" class="table datatable table-bordered table-striped table-actions">
+                                    <thead>
+                                    <tr>
+                                        <th width="100">Ref</th>
+                                        <th width="100">Montant</th>
+                                        <th width="200">Montant percu</th>
+                                        <th width="200">Client</th>
+                                        <th width="200">Vendeur</th>
+                                        <th width="200">Date de vente</th>
+                                        <th width="100">Etat</th>
+                                        <th width="100">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $i = 0;
+                                    if (isset($ventes)) foreach ($ventes as $k => $v) : ?>
+                                        <tr id="<?php echo $v->id; ?>">
+                                            <td>
+                                                <?php
+                                                echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
+                                                $count = 0;
+                                                if (isset($produits)) foreach ($produits[$i] as $p => $q) :
+                                                    if ($count == 3) break;
+                                                    echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                    //echo $q->nom."\n";
+                                                    if ($count == 2)
+                                                        echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                    $count++;
+                                                endforeach;
+                                                $i++;
+                                                ?>
+                                            </td>
+
+                                            <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                            <td class="prixp"><?php echo $v->prixPercu; ?></td>
+                                            <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                            <td class="seller"><?php echo $v->identifiant; ?></td>
+                                            <td class="datevte">
+                                                <?php echo $v->dateVente; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $v->etat; ?>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
+                                            </td>
+                                            <p></p>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="tab-pane" id="tab-second">
-                        <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table datatable table-bordered table-striped table-actions" id="customers3">
+                                    <thead>
+                                    <tr>
+                                        <th width="100">Ref</th>
+                                        <th width="100">Montant</th>
+                                        <th width="200">Montant percu</th>
+                                        <th width="200">Client</th>
+                                        <th width="200">Vendeur</th>
+                                        <th width="200">Date de vente</th>
+                                        <th width="100">Etat</th>
+                                        <th width="100">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $i = 0;
+                                    if (isset($venteAll)) foreach ($ventes as $k => $v) : ?>
+                                        <tr id="<?php echo $v->id; ?>">
+                                            <td>
+                                                <?php
+                                                echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
+                                                $count = 0;
+                                                if (isset($produits)) foreach ($produits[$i] as $p => $q) :
+                                                    if ($count == 3) break;
+                                                    echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                    //echo $q->nom."\n";
+                                                    if ($count == 2)
+                                                        echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                    $count++;
+                                                endforeach;
+                                                $i++;
+                                                ?>
+                                            </td>
 
-                            <div class="panel-heading">
-
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table datatable">
-                                            <thead>
-                                                <tr>
-                                                    <th width="100">Ref</th>
-                                                    <th width="100">Montant</th>
-                                                    <th width="200">Montant percu</th>
-                                                    <th width="200">Client</th>
-                                                    <th width="200">Vendeur</th>
-                                                    <th width="200">Date de vente</th>
-                                                    <th width="100">Etat</th>
-                                                    <th width="100">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 0;
-                                                if (isset($venteAll)) foreach ($ventes as $k => $v) : ?>
-                                                    <tr id="<?php echo $v->id; ?>">
-                                                        <td>
-                                                            <?php
-                                                            echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
-                                                            $count = 0;
-                                                            if (isset($produits)) foreach ($produits[$i] as $p => $q) :
-                                                                if ($count == 3) break;
-                                                                echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
-                                                                //echo $q->nom."\n";
-                                                                if ($count == 2)
-                                                                    echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
-                                                                $count++;
-                                                            endforeach;
-                                                            $i++;
-                                                            ?>
-                                                        </td>
-
-                                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
-                                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
-                                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
-                                                        <td class="seller"><?php echo $v->identifiant; ?></td>
-                                                        <td class="datevte">
-                                                            <?php echo $v->dateVente; ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $v->etat; ?>
-                                                        </td>
-                                                        <td>
-                                                            <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
-                                                            <!-- <a class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></a> -->
-                                                        </td>
-                                                        <p></p>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
-
+                                            <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                            <td class="prixp"><?php echo $v->prixPercu; ?></td>
+                                            <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                            <td class="seller"><?php echo $v->identifiant; ?></td>
+                                            <td class="datevte">
+                                                <?php echo $v->dateVente; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $v->etat; ?>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
+                                                <!-- <a class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></a> -->
+                                            </td>
+                                            <p></p>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
 
+                        </div>
 
                     </div>
                     <div class="tab-pane" id="tab-third">
-                        <div class="row">
-                            <div class="col-md-12">
+                        <!-- START SALES BLOCK -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
 
-                                <!-- START SALES BLOCK -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-
-                                        <div class="form-group panel-title-box" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:10px">
-                                            <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un caisse
-                                                :</label>
-                                            <div style="display: flex;flex:1;margin-right: 30px;">
-                                                <select class="selectpicker form-control input-xlarge" id="dataEmploye">
-                                                    <option value="0">Tous</option>
-                                                    <?php
-                                                    foreach ($employes as $k => $v) : ?>
-                                                        <option <?php if (isset($employes_id)) if ($v->id == $employes_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" data="<?php echo $v->id; ?>"><?php echo $v->identifiant; ?></option>
-                                                    <?php
-                                                    endforeach;
-                                                    ?>
-                                                </select>
-
-                                            </div>
-                                            <div class="col-md-2 col-xs-12">
-                                                <a class="btn btn-primary pull-right charger_info_employe">Charger</a>
-                                            </div>
-
-                                        </div>
-                                        <ul class="panel-controls panel-controls-title">
-                                            <li>
-                                                <div id="reportrange" class="dtrange">
-                                                    <span></span><b class="caret"></b>
-                                                </div>
-                                            </li>
-                                            <!-- <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li> -->
-                                        </ul>
+                                <div class="form-group panel-title-box" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:10px">
+                                    <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un caisse
+                                        :</label>
+                                    <div style="display: flex;flex:1;margin-right: 30px;">
+                                        <select class="selectpicker form-control input-xlarge" id="dataEmploye">
+                                            <option value="0">Tous</option>
+                                            <?php
+                                            foreach ($employes as $k => $v) : ?>
+                                                <option <?php if (isset($employes_id)) if ($v->id == $employes_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" data="<?php echo $v->id; ?>"><?php echo $v->identifiant; ?></option>
+                                            <?php
+                                            endforeach;
+                                            ?>
+                                        </select>
 
                                     </div>
+                                    <div class="col-md-2 col-xs-12">
+                                        <a class="btn btn-primary pull-right charger_info_employe">Charger</a>
+                                    </div>
+
                                 </div>
-                                <!-- END SALES BLOCK -->
+                                <ul class="panel-controls panel-controls-title">
+                                    <li>
+                                        <div id="reportrange" class="dtrange">
+                                            <span></span><b class="caret"></b>
+                                        </div>
+                                    </li>
+                                    <!-- <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li> -->
+                                </ul>
 
                             </div>
                         </div>
+                        <!-- END SALES BLOCK -->
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <!--
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Responsive tables</h3>
-                            </div> -->
-
-                                    <div class="panel-body panel-body-table">
-
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered table-striped table-actions">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="50">id</th>
-                                                        <th>Employé</th>
-                                                        <th width="100">Session</th>
-                                                        <th width="100">Etat</th>
-                                                        <th width="100">fond Caisse Ouvert</th>
-                                                        <th width="100">fond Caisse Ferme</th>
-                                                        <th width="100">Date Ouverture</th>
-                                                        <th width="100">Date fermeture</th>
-                                                        <th width="100">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tab_employe_id">
-                                                    <?php $j = 0;
-                                                    if (isset($caisseAll))
-                                                        foreach ($caisseAll as $k => $v) : ?>
-                                                        <tr id="<?php echo $v->id; ?>">
-                                                            <td>
-                                                                <?php echo $v->id; ?>
-                                                            </td>
-
-
-                                                            <td><strong class="prixt"><?php if (isset($employe)) echo $employe[$j]; ?></strong></td>
-
-                                                            <td class="prixp"><?php echo $v->session; ?></td>
-                                                            <td><span class="label label-success"><?php echo $v->etat; ?></span></td>
-                                                            <!-- <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td> -->
-                                                            <td>
-                                                                <?php echo $v->fondCaisseOuvert; ?>
-                                                            </td>
-                                                            <td><?php echo $v->fondCaisseFerme; ?></td>
-                                                            <td><?php echo $v->dateOuvert; ?></td>
-                                                            <td><?php echo $v->dateFerme; ?></td>
-                                                            <td>
-                                                                <a class="btn btn-success btn-rounded btn-sm" onclick="showVenteCaisse(<?php echo $v->id; ?>)">Voir vente</a>
-                                                            </td>
-                                                            <p></p>
-                                                        </tr>
-
-                                                    <?php $j++;
-                                                        endforeach; ?>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
+                                <div>
+                                    <?php echo $totalVenteEncaisser; ?>
                                 </div>
+                                <div class="table-responsive">
+                                    <table class="table datatable table-bordered table-striped table-actions">
+                                        <thead>
+                                        <tr>
+                                            <th width="50">id</th>
+                                            <th>Employé</th>
+                                            <th width="100">Session</th>
+                                            <th width="100">Etat</th>
+                                            <th width="100">fond Caisse Ouvert</th>
+                                            <th width="100">fond Caisse Ferme</th>
+                                            <th width="100">Montant encaissé</th>
+                                            <th width="100">Date Ouverture</th>
+                                            <th width="100">Date fermeture</th>
+                                            <th width="100">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tab_employe_id">
+                                        <?php $j = 0;
+                                        if (isset($caisseAll))
+                                            foreach ($caisseAll as $k => $v) : ?>
+                                                <tr id="<?php echo $v->id; ?>">
+                                                    <td>
+                                                        <?php echo $v->id; ?>
+                                                    </td>
+
+
+                                                    <td><strong class="prixt"><?php if (isset($employe)) echo $employe[$j]; ?></strong></td>
+
+                                                    <td class="prixp"><?php echo $v->session; ?></td>
+                                                    <td>
+                                                        <?php
+                                                            if ($v->etat === "Clot")
+                                                            {
+                                                                echo '<span class="label label-success">'.$v->etat.'</span>';
+                                                            }
+                                                            else echo '<span class="label label-warning">'.$v->etat.'</span>';
+
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $v->fondCaisseOuvert; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $v->fondCaisseFerme; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $venteCaisse[$j]; ?>
+                                                    </td>
+                                                    <td><?php echo $v->dateOuvert; ?></td>
+                                                    <td><?php echo $v->dateFerme; ?></td>
+                                                    <td>
+                                                        <a class="btn btn-success btn-rounded btn-sm" onclick="showVenteCaisse(<?php echo $v->id; ?>,<?php echo $venteCaisse[$j]; ?>)">Voir vente</a>
+                                                    </td>
+                                                    <p></p>
+                                                </tr>
+
+                                                <?php $j++;
+                                            endforeach; ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
 
                             </div>
                         </div>
@@ -424,11 +401,18 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" style="display: flex;flex-direction: column;">
 
-                            <div class="panel-heading">
+                                <div class="widget widget-warning widget-item-icon">
+                                    <div class="widget-item-right">
+                                        <span style="font-size: 24px;font-weight: bold;">FCFA</span>
+                                    </div>
+                                    <div class="widget-data-left">
+                                        <div class="widget-int num-count" id="totalEncaissement">0</div>
+                                        <div class="widget-title">Total encaissé</div>
+                                    </div>
+                                </div>
 
-                                <div class="panel-body">
                                     <div class="table-responsive">
                                         <table class="table datatable">
                                             <thead>
@@ -436,7 +420,7 @@
                                                     <th width="100">Ref</th>
                                                     <th width="100">Montant Total</th>
                                                     <th width="200">Montant percu</th>
-                                                    <th width="200">identifiant</th>
+                                                    <th width="200">Nom caissier</th>
                                                     <th width="200">Date de vente</th>
                                                     <th width="100">Etat</th>
                                                     <th width="100">Actions</th>
@@ -448,10 +432,7 @@
                                         </table>
                                     </div>
 
-                                </div>
-
                             </div>
-                        </div>
                     </div>
 
                 </div>

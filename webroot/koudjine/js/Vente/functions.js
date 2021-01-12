@@ -8,6 +8,14 @@ $('#pharmanet_tab_vente').hide();
 
 $(document).ready(function () {
 
+    $('#customers2').DataTable( {
+        "order": [[ 5, "desc" ]]
+    } );
+
+    $('#customers3').DataTable( {
+        "order": [[ 5, "desc" ]]
+    } );
+
     $("#recherche").keyup(function (event) {
         var prixTotal = 0;
         var reduction = 0;
@@ -416,8 +424,8 @@ function imprimer_bloc(titre, objet) {
     return true;
 }
 
-function showVenteCaisse(id) {
-    //alert(id);
+function showVenteCaisse(id,total) {
+    $("#totalEncaissement").html(total);
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/vente.php',
@@ -427,7 +435,8 @@ function showVenteCaisse(id) {
         success: function (data) {
             //alert(data);
             $("#iconPreviewListVenteCaisse").modal('show');
-            $('#tab_list_vente_caisse').empty();
+            $('#tab_list_vente_cais' +
+                'se').empty();
             $('#tab_list_vente_caisse').prepend(data);
 
 
@@ -842,6 +851,7 @@ function ajouter_produit() {
 }
 
 function reimprime_ticket_caisse(id) {
+    alert("yo");
     var datevte = $("#" + id + " .datevte").html();
     var yo = datevte;
     var date = yo.substr(0, 10);
@@ -855,8 +865,6 @@ function reimprime_ticket_caisse(id) {
     $('#ticketListe2 .netapayer').html($("#" + id + " .prixp").html());
     $('#ticketListe2 .montanttotal').html($("#" + id + " .prixt").html());
     $('#ticketListe2 .remise').html(parseInt($("#" + id + " .prixt").html()) - parseInt($("#" + id + " .prixp").html()));
-
-
 
     $.ajax({
         type: "POST",
