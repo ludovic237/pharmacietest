@@ -48,10 +48,6 @@ if (isset($_POST['idCaisse'])) {
                     <p>" . $v->reference() . "</p>
                     <strong>" . $nameProduit . "</strong>
                 </td>
-
-                <td><strong class='prixt'>" . $v->prixTotal() . "</strong></td>
-                <td class='prixp'>" . $v->prixPercu() . "</td>
-                <td >" . $v->employe_id() . "</td>
                 <td><strong >" . $v->prixTotal() . "</strong></td>
                 <td >" . $v->prixPercu() . "</td>
                 <td >" . $employeName->nom() ." ". $employeName->prenom() . "</td>
