@@ -129,9 +129,8 @@
 						.replace(/^[\r\n]*|[\r\n]*$/g, '')
 						.replace(/^\s*(\/\/\s*<!--|\/\/\s*<!\[CDATA\[|<!--|<!\[CDATA\[)[\r\n]*/g, '')
 						.replace(/\s*(\/\/\s*\]\]>|\/\/\s*-->|\]\]>|-->|\]\]-->)\s*$/g, '');
-			};
-
-			while (i--) {
+            }
+            while (i--) {
 				node = nodes[i];
 				value = node.firstChild ? node.firstChild.value : '';
 

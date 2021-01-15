@@ -202,6 +202,18 @@ class FournisseurManager
         }
         return $produits;
     }
+
+    public function getGroupFournisseur($groupName)
+    {
+        $q = $this->_db->prepare('SELECT * FROM fournisseur p JOIN commande c ON p.id = c.fournisseur_id WHERE p.statut="'. $groupName.'"');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $produits[] = $donnees;
+        }
+        return $produits;
+    }
+
     public function update(Fournisseur $fournisseur)
     {
         $q = $this->_db->prepare('UPDATE fournisseur SET code = :code, codepostal = :codepostal, statut = :statut, telephone = :tel, adresse = :adr, nom = :nom, email = :email WHERE id = :id');

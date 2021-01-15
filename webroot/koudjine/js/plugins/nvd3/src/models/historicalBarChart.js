@@ -193,7 +193,7 @@ nv.models.historicalBarChart = function() {
 
 
       var barsWrap = g.select('.nv-barsWrap')
-          .datum(data.filter(function(d) { return !d.disabled }))
+          .datum(data.filter(function(d) { return !d.disabled }));
 
       barsWrap.transition().call(bars);
 
@@ -416,4 +416,4 @@ nv.models.historicalBarChart = function() {
 
 
   return chart;
-}
+};

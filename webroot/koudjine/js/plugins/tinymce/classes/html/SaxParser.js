@@ -110,9 +110,8 @@
 					// Remove the open elements from the stack
 					stack.length = pos;
 				}
-			};
-
-			// Precompile RegExps and map objects
+            }
+            // Precompile RegExps and map objects
 			tokenRegExp = new RegExp('<(?:' +
 				'(?:!--([\\w\\W]*?)-->)|' + // Comment
 				'(?:!\\[CDATA\\[([\\w\\W]*?)\\]\\]>)|' + // CDATA

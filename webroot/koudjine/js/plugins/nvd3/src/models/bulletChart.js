@@ -158,7 +158,7 @@ nv.models.bulletChart = function() {
 
       bullet
         .width(availableWidth)
-        .height(availableHeight)
+        .height(availableHeight);
 
       var bulletWrap = g.select('.nv-bulletWrap');
 

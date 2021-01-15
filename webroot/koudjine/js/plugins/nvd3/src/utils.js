@@ -37,7 +37,7 @@ nv.utils.windowResize = function(fun){
     if (typeof oldresize == 'function') oldresize(e);
     fun(e);
   }
-}
+};
 
 // Backwards compatible way to implement more d3-like coloring of graphs.
 // If passed an array, wrap it in a function which implements the old default
@@ -50,13 +50,13 @@ nv.utils.getColor = function(color) {
     else
         return color;
         //can't really help it if someone passes rubbish as color
-}
+};
 
 // Default color chooser uses the index of an object as before.
 nv.utils.defaultColor = function() {
     var colors = d3.scale.category20().range();
     return function(d, i) { return d.color || colors[i % colors.length] };
-}
+};
 
 
 // Returns a color function that takes the result of 'getKey' for each series and
@@ -77,7 +77,7 @@ nv.utils.customTheme = function(dictionary, getKey, defaultColors) {
     else
       return defaultColors[--defIndex]; // no match in dictionary, use default color
   }
-}
+};
 
 
 
@@ -102,7 +102,7 @@ nv.utils.pjax = function(links, content) {
   d3.select(window).on("popstate", function() {
     if (d3.event.state) load(d3.event.state);
   });
-}
+};
 
 /* For situations where we want to approximate the width in pixels for an SVG:text element.
 Most common instance is when the element is in a display:none; container.

@@ -269,4 +269,4 @@ nv.models.legend = function() {
 
 
   return chart;
-}
+};

@@ -73,7 +73,7 @@ nv.models.multiBarHorizontal = function() {
         data[0].values.map(function(d,i) {
           var posBase = 0, negBase = 0;
           data.map(function(d) {
-            var f = d.values[i]
+            var f = d.values[i];
             f.size = Math.abs(f.y);
             if (f.y<0)  {
               f.y1 = negBase - f.size;
@@ -103,7 +103,7 @@ nv.models.multiBarHorizontal = function() {
           .rangeBands(xRange || [0, availableHeight], .1);
 
       //y   .domain(yDomain || d3.extent(d3.merge(seriesData).map(function(d) { return d.y + (stacked ? d.y0 : 0) }).concat(forceY)))
-      y   .domain(yDomain || d3.extent(d3.merge(seriesData).map(function(d) { return stacked ? (d.y > 0 ? d.y1 + d.y : d.y1 ) : d.y }).concat(forceY)))
+      y   .domain(yDomain || d3.extent(d3.merge(seriesData).map(function(d) { return stacked ? (d.y > 0 ? d.y1 + d.y : d.y1 ) : d.y }).concat(forceY)));
 
       if (showValues && !stacked)
         y.range(yRange || [(y.domain()[0] < 0 ? valuePadding : 0), availableWidth - (y.domain()[1] > 0 ? valuePadding : 0) ]);
@@ -165,7 +165,7 @@ nv.models.multiBarHorizontal = function() {
 
       barsEnter.append('rect')
           .attr('width', 0)
-          .attr('height', x.rangeBand() / (stacked ? 1 : data.length) )
+          .attr('height', x.rangeBand() / (stacked ? 1 : data.length) );
 
       bars
           .on('mouseover', function(d,i) { //TODO: figure out why j works above, but not here
@@ -224,7 +224,7 @@ nv.models.multiBarHorizontal = function() {
             .attr('text-anchor', function(d,i) { return getY(d,i) < 0 ? 'end' : 'start' })
             .attr('y', x.rangeBand() / (data.length * 2))
             .attr('dy', '.32em')
-            .text(function(d,i) { return valueFormat(getY(d,i)) })
+            .text(function(d,i) { return valueFormat(getY(d,i)) });
         bars.transition()
           .select('text')
             .attr('x', function(d,i) { return getY(d,i) < 0 ? -4 : y(getY(d,i)) - y(0) + 4 })
@@ -248,7 +248,7 @@ nv.models.multiBarHorizontal = function() {
       }
 
       bars
-          .attr('class', function(d,i) { return getY(d,i) < 0 ? 'nv-bar negative' : 'nv-bar positive'})
+          .attr('class', function(d,i) { return getY(d,i) < 0 ? 'nv-bar negative' : 'nv-bar positive'});
 
       if (barColor) {
         if (!disabled) disabled = data.map(function() { return true });
@@ -444,4 +444,4 @@ nv.models.multiBarHorizontal = function() {
 
 
   return chart;
-}
+};

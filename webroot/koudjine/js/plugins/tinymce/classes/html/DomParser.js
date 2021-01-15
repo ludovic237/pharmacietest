@@ -126,9 +126,8 @@
 					}
 				}
 			}
-		};
-
-		/**
+        }
+        /**
 		 * Runs the specified node though the element and attributes filters.
 		 *
 		 * @param {tinymce.html.Node} Node the node to run filters on.
@@ -267,10 +266,9 @@
 					}
 
 					node = next;
-				};
-			};
-
-			function createNode(name, type) {
+                }
+            }
+            function createNode(name, type) {
 				var node = new Node(name, type), list;
 
 				if (name in nodeFilters) {
@@ -283,9 +281,8 @@
 				}
 
 				return node;
-			};
-
-			function removeWhitespaceBefore(node) {
+            }
+            function removeWhitespaceBefore(node) {
 				var textNode, textVal, sibling;
 
 				for (textNode = node.prev; textNode && textNode.type === 3; ) {
@@ -300,9 +297,8 @@
 						textNode = sibling;
 					}
 				}
-			};
-
-			parser = new tinymce.html.SaxParser({
+            }
+            parser = new tinymce.html.SaxParser({
 				validate : validate,
 				fix_self_closing : !validate, // Let the DOM parser handle <li> in <li> or <p> in <p> for better results
 

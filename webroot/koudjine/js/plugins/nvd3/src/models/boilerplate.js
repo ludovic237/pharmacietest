@@ -44,7 +44,7 @@ nv.models.chartName = function() {
       var wrap = container.selectAll('g.nv-wrap.nv-chartName').data([data]);
       var wrapEnter = wrap.enter().append('g').attr('class', 'nvd3 nv-wrap nv-chartName');
       var gEnter = wrapEnter.append('g');
-      var g = wrap.select('g')
+      var g = wrap.select('g');
 
       gEnter.append('g').attr('class', 'nv-mainWrap');
 
@@ -93,7 +93,7 @@ nv.models.chartName = function() {
 
   chart.color = function(_) {
     if (!arguments.length) return color;
-    color = nv.utils.getColor(_)
+    color = nv.utils.getColor(_);
     return chart;
   };
 
@@ -101,4 +101,4 @@ nv.models.chartName = function() {
 
 
   return chart;
-}
+};

@@ -680,7 +680,7 @@
         clickRange: function (e) {
             var label = e.target.innerHTML;
             this.chosenLabel = label;
-            console.log(label);
+            //console.log(label);
             switch (label) {
                 case 'Today':
                     ////alert('Today');
@@ -734,8 +734,8 @@
 
                 this.startDate = dates[0];
                 this.endDate = dates[1];
-                console.log("start " + this.startDate.format() + "end " + this.endDate.format());
-                console.log(this.endDate.diff(this.startDate, 'days'));
+                //console.log("start " + this.startDate.format() + "end " + this.endDate.format());
+                //console.log(this.endDate.diff(this.startDate, 'days'));
                 dataConnexion(this.startDate.format(),this.endDate.format() );
                 if (!this.timePicker) {
                     this.startDate.startOf('day');
@@ -1254,7 +1254,7 @@
 }));
 
 function dataConnexion(a,b) {
-    console.log("yop");
+    //console.log("yop");
   
 
 }

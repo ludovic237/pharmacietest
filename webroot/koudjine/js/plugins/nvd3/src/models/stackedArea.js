@@ -180,7 +180,7 @@ nv.models.stackedArea = function() {
               pos: [d3.event.pageX, d3.event.pageY],
               seriesIndex: d.seriesIndex
             });
-          })
+          });
 
       path.exit().remove();
 
@@ -220,7 +220,7 @@ nv.models.stackedArea = function() {
 
           for (j = 0; j < m; ++j) { //Looping through all points
             for (i = 0, o = 0; i < dataRaw.length; i++)  //looping through series'
-                o += getY(dataRaw[i].values[j])   //total value of all points at a certian point in time.
+                o += getY(dataRaw[i].values[j]);   //total value of all points at a certian point in time.
 
             if (o) for (i = 0; i < n; i++)
                stackData[i][j][1] /= o;
@@ -245,7 +245,7 @@ nv.models.stackedArea = function() {
 
   scatter.dispatch.on('elementClick.area', function(e) {
     dispatch.areaClick(e);
-  })
+  });
   scatter.dispatch.on('elementMouseover.tooltip', function(e) {
         e.pos = [e.pos[0] + margin.left, e.pos[1] + margin.top],
         dispatch.tooltipShow(e);
@@ -278,7 +278,7 @@ nv.models.stackedArea = function() {
     if (!arguments.length) return getY;
     getY = d3.functor(_);
     return chart;
-  }
+  };
 
   chart.margin = function(_) {
     if (!arguments.length) return margin;
@@ -365,4 +365,4 @@ nv.models.stackedArea = function() {
 
 
   return chart;
-}
+};

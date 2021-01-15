@@ -74,11 +74,14 @@ class VenteController extends Controller
             'table' => 'caisse',
             'conditions' => array('supprimer' => 0, 'etat' => '"Ouvert"')
         ));
+
+
         $d['caisseAll'] = $this->Vente->find(array(
             'table' => 'caisse'
         ));
 
         $j = 0;
+        $_prixTotalEncaisser = 0;
         foreach ($d['caisseAll'] as $k => $v) : 
 
             $d['employe'][$j] = $this->Vente->findFirst(array(
@@ -86,10 +89,37 @@ class VenteController extends Controller
                 'table' => 'employe',
                 'conditions' => array('id' => $v->user_id, 'supprimer' => 0)
             ));
-            $d['employe'][$j] = $d['employe'][$j]->identifiant;
+            $d['employe'][$j] = $d['employe'][$j]->user_id;
 
+            $d['_user'][$j] = $this->Vente->findFirst(array(
+                'table' => 'user',
+                'conditions' => array('id' => $d['employe'][$j], 'supprimer' => 0)
+            ));
+            $d['_user'][$j] = $d['_user'][$j]->nom.'-'.$d['_user'][$j]->prenom;
+
+            $d['venteCaisse'][$j] = $this->Vente->findFirst(array(
+                'table' => 'vente v',
+                'conditions' => array('v.caisse_id' => $v->id, 'v.supprimer' => 0),
+            ));
+            $d['ventes'] = $this->Vente->find(array(
+                'table' => 'vente',
+                'conditions' => array('supprimer' => 0, 'caisse_id' => $v->id)
+            ));
+            $a = 0;
+            $_prix = 0;
+            foreach ($d['ventes'] as $k => $v) :
+
+                $_prix = $v->prixTotal + $_prix;
+
+                $a++;
+            endforeach;
+            $_prixTotalEncaisser = $_prix + $_prixTotalEncaisser;
+            $d['venteCaisse'][$j] = $_prix;
             $j++;
         endforeach;
+        $d['totalVenteEncaisser'] = $_prixTotalEncaisser;
+
+
 
         $d['venteAll'] = $this->Vente->find(array(
             'fields' => 'v.id as id,prixTotal,prixPercu,commentaire,dateVente,v.etat,v.user_id,nouveau_info,reference,identifiant',
@@ -147,7 +177,7 @@ class VenteController extends Controller
                     $js_code = json_encode($d['produits'], JSON_HEX_TAG);
                     //echo $js_code;
                     $d['totalVente'] = $v->prixTotal + $d['totalVente'];
-                    if ($v->user_id == null) {
+                    if ($v->user_id == NULL) {
                         $d['user'][$i] = $v->nouveau_info;
                     } else {
                         $d['user'][$i] = $this->Vente->findFirst(array(

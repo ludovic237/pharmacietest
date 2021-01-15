@@ -81,7 +81,7 @@ nv.models.scatter = function() {
               })
             );
 
-      x   .domain(xDomain || d3.extent(seriesData.map(function(d) { return d.x; }).concat(forceX)))
+      x   .domain(xDomain || d3.extent(seriesData.map(function(d) { return d.x; }).concat(forceX)));
 
       if (padData && data[0])
         x.range(xRange || [(availableWidth * padDataOuter +  availableWidth) / (2 *data[0].values.length), availableWidth - availableWidth * (1 + padDataOuter) / (2 * data[0].values.length)  ]);
@@ -238,7 +238,7 @@ nv.models.scatter = function() {
           pointPaths
               .attr('d', function(d) {
                 if (d.data.length === 0)
-                    return 'M 0 0'
+                    return 'M 0 0';
                 else
                     return 'M' + d.data.join('L') + 'Z';
               });
@@ -671,4 +671,4 @@ nv.models.scatter = function() {
 
 
   return chart;
-}
+};

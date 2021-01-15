@@ -96,9 +96,8 @@
 			}
 
 			return {node : child, position : position, offset : offset, inside : inside};
-		};
-
-		// Returns a W3C DOM compatible range object by using the IE Range API
+        }
+        // Returns a W3C DOM compatible range object by using the IE Range API
 		function getRange() {
 			var ieRange = selection.getRng(), domRange = dom.createRng(), element, collapsed, tmpRange, element2, bookmark, fail;
 
@@ -197,9 +196,8 @@
 				}
 
 				domRange[start ? 'setStart' : 'setEnd'](container, textNodeOffset);
-			};
-
-			try {
+            }
+            try {
 				// Find start point
 				findEndPoint(true);
 
@@ -247,9 +245,8 @@
 			}
 
 			return domRange;
-		};
-
-		this.getBookmark = function(type) {
+        }
+        this.getBookmark = function(type) {
 			var rng = selection.getRng(), start, end, bookmark = {};
 
 			function getIndexes(node) {
@@ -274,9 +271,8 @@
 				}
 
 				return indexes;
-			};
-
-			function getBookmarkEndPoint(start) {
+            }
+            function getBookmarkEndPoint(start) {
 				var position;
 
 				position = getPosition(rng, start);
@@ -288,9 +284,8 @@
 						inside : position.inside
 					};
 				}
-			};
-
-			// Non ubstructive bookmark
+            }
+            // Non ubstructive bookmark
 			if (type === 2) {
 				// Handle text selection
 				if (!rng.item) {
@@ -322,9 +317,8 @@
 				}
 
 				return node;
-			};
-			
-			function setBookmarkEndPoint(start) {
+            }
+            function setBookmarkEndPoint(start) {
 				var endPoint = bookmark[start ? 'start' : 'end'], moveLeft, moveRng, undef;
 
 				if (endPoint) {
@@ -345,9 +339,8 @@
 					if (start)
 						rng.collapse(true);
 				}
-			};
-
-			if (bookmark.start) {
+            }
+            if (bookmark.start) {
 				if (bookmark.start.ctrl) {
 					rng = body.createControlRange();
 					rng.addElement(resolveIndexes(bookmark.start.indexes));
@@ -438,8 +431,7 @@
 
 		// Expose range method
 		this.getRangeAt = getRange;
-	};
-
-	// Expose the selection object
+    }
+    // Expose the selection object
 	tinymce.dom.TridentSelection = Selection;
 })();

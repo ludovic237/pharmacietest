@@ -101,7 +101,7 @@ nv.models.multiBarTimeSeries = function() {
       var wrapEnter = wrap.enter().append('g').attr('class', 'nvd3 nv-wrap nv-multibar');
       var defsEnter = wrapEnter.append('defs');
       var gEnter = wrapEnter.append('g');
-      var g = wrap.select('g')
+      var g = wrap.select('g');
 
       gEnter.append('g').attr('class', 'nv-groups');
 
@@ -216,7 +216,7 @@ nv.models.multiBarTimeSeries = function() {
           });
       bars
           .attr('class', function(d,i) { return getY(d,i) < 0 ? 'nv-bar negative' : 'nv-bar positive'})
-          .attr('transform', function(d,i) { return 'translate(' + x(getX(d,i)) + ',0)'; })
+          .attr('transform', function(d,i) { return 'translate(' + x(getX(d,i)) + ',0)'; });
       if (stacked)
         d3.transition(bars)
             .delay(function(d,i) { return i * delay / data[0].values.length })
@@ -232,7 +232,7 @@ nv.models.multiBarTimeSeries = function() {
                   return stacked ? 0 : (i * bandWidth) + ( j * barWidth )
                 })
                 .attr('width', stacked ? bandWidth : barWidth );
-            })
+            });
       else
         d3.transition(bars)
           .delay(function(d,i) { return i * delay/ data[0].values.length })
@@ -250,7 +250,7 @@ nv.models.multiBarTimeSeries = function() {
                 .attr('height', function(d,i) {
                   return Math.abs(y(getY(d,i)) - y(0))
                 });
-            })
+            });
 
 
       //store old scales for use in transitions on update
@@ -380,5 +380,5 @@ nv.models.multiBarTimeSeries = function() {
 
 
   return chart;
-}
+};
 

@@ -70,7 +70,7 @@ else{
         $fournisseur = new Fournisseur(array(
             'nom' => $nom,
             'code' => $code,
-            'CodePostal_id' => $codepostal,
+            'codepostal' => $codepostal,
             'statut' => $statut,
             'adresse' => $adresse,
             'telephone' => $telephone,
@@ -80,7 +80,6 @@ else{
         echo 'ok';
     }
     else echo 'Ce nom de fournisseur existe déjà';
-
 
 
 }
