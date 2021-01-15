@@ -89,10 +89,15 @@ class VenteController extends Controller
                 'table' => 'employe',
                 'conditions' => array('id' => $v->user_id, 'supprimer' => 0)
             ));
-            $d['employe'][$j] = $d['employe'][$j]->identifiant;
+            $d['employe'][$j] = $d['employe'][$j]->user_id;
+
+            $d['_user'][$j] = $this->Vente->findFirst(array(
+                'table' => 'user',
+                'conditions' => array('id' => $d['employe'][$j], 'supprimer' => 0)
+            ));
+            $d['_user'][$j] = $d['_user'][$j]->nom.'-'.$d['_user'][$j]->prenom;
 
             $d['venteCaisse'][$j] = $this->Vente->findFirst(array(
-                //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
                 'table' => 'vente v',
                 'conditions' => array('v.caisse_id' => $v->id, 'v.supprimer' => 0),
             ));

@@ -180,11 +180,11 @@ nv.models.multiBarTimeSeriesChart = function() {
         .height(availableHeight)
         .color(data.map(function(d,i) {
           return d.color || color(d, i);
-        }).filter(function(d,i) { return !data[i].disabled }))
+        }).filter(function(d,i) { return !data[i].disabled }));
 
 
       var barsWrap = g.select('.nv-barsWrap')
-          .datum(data.filter(function(d) { return !d.disabled }))
+          .datum(data.filter(function(d) { return !d.disabled }));
 
       d3.transition(barsWrap).call(multibar);
 
@@ -208,7 +208,7 @@ nv.models.multiBarTimeSeriesChart = function() {
 
       xTicks
           .selectAll('line, text')
-          .style('opacity', 1)
+          .style('opacity', 1);
 
       if (reduceXTicks)
         xTicks
@@ -371,7 +371,7 @@ nv.models.multiBarTimeSeriesChart = function() {
     if (!arguments.length) return rotateLabels;
     rotateLabels = _;
     return chart;
-  }
+  };
 
   chart.tooltip = function(_) {
     if (!arguments.length) return tooltip;
@@ -401,5 +401,5 @@ nv.models.multiBarTimeSeriesChart = function() {
 
 
   return chart;
-}
+};
 

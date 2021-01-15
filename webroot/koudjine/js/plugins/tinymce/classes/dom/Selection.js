@@ -11,9 +11,8 @@
 (function(tinymce) {
 	function trimNl(s) {
 		return s.replace(/[\n\r]+/g, '');
-	};
-
-	// Shorten names
+    }
+    // Shorten names
 	var is = tinymce.is, isIE = tinymce.isIE, each = tinymce.each;
 
 	/**
@@ -362,9 +361,8 @@
 				});
 
 				return index;
-			};
-
-			if (type == 2) {
+            }
+            if (type == 2) {
 				function getLocation() {
 					var rng = t.getRng(true), root = dom.getRoot(), bookmark = {};
 
@@ -394,17 +392,15 @@
 							point.push(t.dom.nodeIndex(container, normalized));
 
 						return point;
-					};
-
-					bookmark.start = getPoint(rng, true);
+                    }
+                    bookmark.start = getPoint(rng, true);
 
 					if (!t.isCollapsed())
 						bookmark.end = getPoint(rng);
 
 					return bookmark;
-				};
-
-				if (t.tridentSel)
+                }
+                if (t.tridentSel)
 					return t.tridentSel.getBookmark(type);
 
 				return getLocation();
@@ -531,9 +527,8 @@
 						}
 
 						return true;
-					};
-
-					if (t.tridentSel)
+                    }
+                    if (t.tridentSel)
 						return t.tridentSel.moveToBookmark(bookmark);
 
 					if (setEndPoint(true) && setEndPoint()) {
@@ -600,17 +595,15 @@
 								}
 							}
 						}
-					};
-
-					function addBogus(node) {
+                    }
+                    function addBogus(node) {
 						// Adds a bogus BR element for empty block elements or just a space on IE since it renders BR elements incorrectly
 						if (dom.isBlock(node) && !node.innerHTML)
 							node.innerHTML = !isIE ? '<br data-mce-bogus="1" />' : ' ';
 
 						return node;
-					};
-
-					// Restore start/end points
+                    }
+                    // Restore start/end points
 					restoreEndPoint('start');
 					restoreEndPoint('end');
 
@@ -672,9 +665,8 @@
 								return;
 							}
 						} while (node = (start ? walker.next() : walker.prev()));
-					};
-
-					setPoint(node, 1);
+                    }
+                    setPoint(node, 1);
 					setPoint(node);
 				}
 
@@ -990,9 +982,8 @@
 				// Set endpoint if it was normalized
 				if (normalized)
 					rng['set' + (start ? 'Start' : 'End')](container, offset);
-			};
-
-			rng = self.getRng();
+            }
+            rng = self.getRng();
 
 			// Normalize the end points
 			normalizeEndPoint(true);
@@ -1036,9 +1027,8 @@
 				}
 
 				return rng;
-			};
-
-			// Fires while the selection is changing
+            }
+            // Fires while the selection is changing
 			function selectionChange(e) {
 				var pointRng;
 
@@ -1071,9 +1061,8 @@
 				dom.unbind(doc, 'mouseup', endSelection);
 				dom.unbind(doc, 'mousemove', selectionChange);
 				startRng = started = 0;
-			};
-
-			// Detect when user selects outside BODY
+            }
+            // Detect when user selects outside BODY
 			dom.bind(doc, ['mousedown', 'contextmenu'], function(e) {
 				if (e.target.nodeName === 'HTML') {
 					if (started)

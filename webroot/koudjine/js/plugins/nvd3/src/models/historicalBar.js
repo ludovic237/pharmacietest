@@ -39,7 +39,7 @@ nv.models.historicalBar = function() {
       //------------------------------------------------------------
       // Setup Scales
 
-      x   .domain(xDomain || d3.extent(data[0].values.map(getX).concat(forceX) ))
+      x   .domain(xDomain || d3.extent(data[0].values.map(getX).concat(forceX) ));
 
       if (padData)
         x.range(xRange || [availableWidth * .5 / data[0].values.length, availableWidth * (data[0].values.length - .5)  / data[0].values.length ]);
@@ -328,4 +328,4 @@ nv.models.historicalBar = function() {
 
 
   return chart;
-}
+};

@@ -625,4 +625,4 @@ nv.models.scatterChart = function() {
 
 
   return chart;
-}
+};

@@ -230,7 +230,7 @@ $(document).ready(function () {
             $("#netTotal").html($("#prixTotal").html());
             $("#prixReduit").html(0);
         }
-    })
+    });
 
     $(".select_prescripteur").change(function () {
 
@@ -244,7 +244,7 @@ $(document).ready(function () {
             $(".prescripteurExistant").show();
             $(".nouveauPrescripteur").hide();
         }
-    })
+    });
 
     $("#select_vente_client").change(function () {
 
@@ -306,7 +306,7 @@ $(document).ready(function () {
         }
 
 
-    })
+    });
 
     $("#check_reductionGenerale").change(function () {
         var prixTotal = 0;
@@ -667,7 +667,7 @@ function valider_vente(type, etat) {
                                                 ////alert(server_responce);
                                                 //$("#iconPreview .icon-preview").html(icon_preview);
 
-                                                $('#tab_BfactureImprimer').prepend(server_responce)
+                                                $('#tab_BfactureImprimer').prepend(server_responce);
                                                 //$("#iconPreviewFacture").modal('show');
                                                 imprimer_bloc('ticketVente', 'ticketVente');
 
@@ -775,7 +775,7 @@ function ajouter_produit() {
 
                     });
                 }
-            })
+            });
             ////alert('repasse');
 
             if (action == 0) {

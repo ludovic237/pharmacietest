@@ -41,7 +41,7 @@ nv.models.line = function() {
       var wrapEnter = wrap.enter().append('g').attr('class', 'nvd3 nv-wrap nv-line');
       var defsEnter = wrapEnter.append('defs');
       var gEnter = wrapEnter.append('g');
-      var g = wrap.select('g')
+      var g = wrap.select('g');
 
       wrapEnter.append('g').attr('class', 'nv-scatterWrap');
       var scatterWrap = wrap.select('.nv-scatterWrap').datum(data);
@@ -51,7 +51,7 @@ nv.models.line = function() {
 
       scatter
         .width(availableWidth)
-        .height(availableHeight)
+        .height(availableHeight);
 
       d3.transition(scatterWrap).call(scatter);
 
@@ -87,10 +87,10 @@ nv.models.line = function() {
           .attr('class', function(d,i) { return 'nv-group nv-series-' + i })
           .classed('hover', function(d) { return d.hover })
           .style('fill', function(d,i){ return color(d, i) })
-          .style('stroke', function(d,i){ return color(d, i) })
+          .style('stroke', function(d,i){ return color(d, i) });
       d3.transition(groups)
           .style('stroke-opacity', 1)
-          .style('fill-opacity', .5)
+          .style('fill-opacity', .5);
 
 
       var paths = groups.selectAll('path')
@@ -197,4 +197,4 @@ nv.models.line = function() {
   };
 
   return chart;
-}
+};

@@ -159,7 +159,7 @@ nv.models.multiBarChart = function() {
         if (multibar.barColor())
           data.forEach(function(series,i) {
             series.color = d3.rgb('#ccc').darker(i * 1.5).toString();
-          })
+          });
 
         g.select('.nv-legendWrap')
             .datum(data)
@@ -213,11 +213,11 @@ nv.models.multiBarChart = function() {
         .height(availableHeight)
         .color(data.map(function(d,i) {
           return d.color || color(d, i);
-        }).filter(function(d,i) { return !data[i].disabled }))
+        }).filter(function(d,i) { return !data[i].disabled }));
 
 
       var barsWrap = g.select('.nv-barsWrap')
-          .datum(data.filter(function(d) { return !d.disabled }))
+          .datum(data.filter(function(d) { return !d.disabled }));
 
       barsWrap.transition().call(multibar);
 
@@ -242,7 +242,7 @@ nv.models.multiBarChart = function() {
 
           xTicks
               .selectAll('line, text')
-              .style('opacity', 1)
+              .style('opacity', 1);
 
           if (staggerLabels) {
               var getTranslate = function(x,y) {
@@ -467,7 +467,7 @@ nv.models.multiBarChart = function() {
     if (!arguments.length) return rotateLabels;
     rotateLabels = _;
     return chart;
-  }
+  };
 
   chart.staggerLabels = function(_) {
     if (!arguments.length) return staggerLabels;
@@ -521,4 +521,4 @@ nv.models.multiBarChart = function() {
 
 
   return chart;
-}
+};

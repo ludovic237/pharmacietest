@@ -97,7 +97,7 @@ nv.models.bullet = function() {
           .attr('height', availableHeight)
           .attr('width', w1(rangeMax > 0 ? rangeMax : rangeMin))
           .attr('x', xp1(rangeMax > 0 ? rangeMax : rangeMin))
-          .datum(rangeMax > 0 ? rangeMax : rangeMin)
+          .datum(rangeMax > 0 ? rangeMax : rangeMin);
           /*
           .attr('x', rangeMin < 0 ?
                          rangeMax > 0 ?
@@ -110,7 +110,7 @@ nv.models.bullet = function() {
           .attr('height', availableHeight)
           .attr('width', w1(rangeAvg))
           .attr('x', xp1(rangeAvg))
-          .datum(rangeAvg)
+          .datum(rangeAvg);
           /*
           .attr('width', rangeMax <= 0 ?
                              x1(rangeMax) - x1(rangeAvg)
@@ -126,7 +126,7 @@ nv.models.bullet = function() {
           .attr('x', xp1(rangeMax))
           .attr('width', w1(rangeMax > 0 ? rangeMin : rangeMax))
           .attr('x', xp1(rangeMax > 0 ? rangeMin : rangeMax))
-          .datum(rangeMax > 0 ? rangeMin : rangeMax)
+          .datum(rangeMax > 0 ? rangeMin : rangeMax);
           /*
           .attr('width', rangeMax <= 0 ?
                              x1(rangeAvg) - x1(rangeMin)
@@ -156,7 +156,7 @@ nv.models.bullet = function() {
                 value: measurez[0],
                 label: measureLabelz[0] || 'Current'
               })
-          })
+          });
 
       var h3 =  availableHeight / 6;
       if (markerz[0]) {

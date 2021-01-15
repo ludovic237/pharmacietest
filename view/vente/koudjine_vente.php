@@ -257,8 +257,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div>
-                                        <?php echo $totalVenteEncaisser; ?>
+                                    <div style="font-size: 22px;">
+                                       <strong>Total : </strong> <?php echo $totalVenteEncaisser; ?> FCFA
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table datatable table-bordered table-striped table-actions">
@@ -286,7 +286,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                         </td>
 
 
-                                                        <td><strong class="prixt"><?php if (isset($employe)) echo $employe[$j]; ?></strong></td>
+                                                        <td><strong class="prixt"><?php if (isset($_user)) echo $_user[$j]; ?></strong></td>
 
                                                         <td class="prixp"><?php echo $v->session; ?></td>
                                                         <td>
@@ -312,6 +312,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                         <td><?php echo $v->dateFerme; ?></td>
                                                         <td>
                                                             <a class="btn btn-success btn-rounded btn-sm" onclick="showVenteCaisse(<?php echo $v->id; ?>,<?php echo $venteCaisse[$j]; ?>)">Voir vente</a>
+                                                            <a href="<?php echo Router::url('bouwou/comptabilite/caisse_rapport/'.$v->id); ?>" class="btn btn-primary btn-rounded btn-sm">Voir rapport</a>
                                                         </td>
                                                         <p></p>
                                                     </tr>

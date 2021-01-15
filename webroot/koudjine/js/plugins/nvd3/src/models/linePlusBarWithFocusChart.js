@@ -257,7 +257,7 @@ nv.models.linePlusBarWithFocusChart = function() {
           .datum(!dataLines[0].disabled ? dataLines : [{values:[]}]);
           
       g.select('.nv-context')
-          .attr('transform', 'translate(0,' + ( availableHeight1 + margin.bottom + margin2.top) + ')')
+          .attr('transform', 'translate(0,' + ( availableHeight1 + margin.bottom + margin2.top) + ')');
 
       bars2Wrap.transition().call(bars2);
       lines2Wrap.transition().call(lines2);
@@ -276,7 +276,7 @@ nv.models.linePlusBarWithFocusChart = function() {
       if (brushExtent) brush.extent(brushExtent);
 
       var brushBG = g.select('.nv-brushBackground').selectAll('g')
-          .data([brushExtent || brush.extent()])
+          .data([brushExtent || brush.extent()]);
 
       var brushBGenter = brushBG.enter()
           .append('g');
@@ -655,4 +655,4 @@ nv.models.linePlusBarWithFocusChart = function() {
 
 
   return chart;
-}
+};

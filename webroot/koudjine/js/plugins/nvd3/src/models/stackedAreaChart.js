@@ -206,7 +206,7 @@ nv.models.stackedAreaChart = function() {
 
         controlsData = controlsData.filter(function(d) {
           return cData.indexOf(d.metaKey) !== -1;
-        })
+        });
 
         controls
           .width( controlWidth )
@@ -255,7 +255,7 @@ nv.models.stackedAreaChart = function() {
 
       stacked
         .width(availableWidth)
-        .height(availableHeight)
+        .height(availableHeight);
 
       var stackedWrap = g.select('.nv-stackedWrap')
           .datum(data);
@@ -385,7 +385,7 @@ nv.models.stackedAreaChart = function() {
                if ( yValue >= stackedY0 && yValue <= (stackedY + stackedY0))
                {
                   indexToHighlight = i;
-                  return;
+
                }
             });
             if (indexToHighlight != null)
@@ -632,4 +632,4 @@ nv.models.stackedAreaChart = function() {
   //============================================================
 
   return chart;
-}
+};
