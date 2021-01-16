@@ -251,7 +251,7 @@ class CaisseManager
 
     public function getDateRangeCaisseUserid($start,$end, $user_id)
     {
-        $q = $this->_db->prepare( "SELECT * FROM `caisse` WHERE `user_id` = ".$user_id." AND `dateOuvert` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH ) AND `dateFerme` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");
+        $q = $this->_db->prepare( "SELECT * FROM `caisse` WHERE `user_id` = ".$user_id." AND `dateOuvert` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");
         $caisses = array();
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
@@ -276,7 +276,7 @@ class CaisseManager
 
     public function getDateRangeCaisse($start,$end)
     {
-        $q = $this->_db->prepare( "SELECT * FROM `caisse` WHERE  `dateOuvert` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH ) AND `dateFerme` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");
+        $q = $this->_db->prepare( "SELECT * FROM `caisse` WHERE  `dateOuvert` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH ) ");
         $caisses = array();
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))

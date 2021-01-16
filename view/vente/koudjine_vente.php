@@ -42,7 +42,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Caisse active</a></li>
                     <li><a href="#tab-second" role="tab" data-toggle="tab">Total</a></li>
-                    <li><a href="#tab-third" role="tab" data-toggle="tab">Par caisse</a></li>
                 </ul>
                 <div class="panel-body tab-content">
                     <div class="tab-pane active" id="tab-first">
@@ -216,121 +215,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </div>
 
                     </div>
-                    <div class="tab-pane" id="tab-third">
-                        <!-- START SALES BLOCK -->
-                        <div class="panel-body">
-                            <div class="panel-heading">
-
-                                <div class="form-group panel-title-box"
-                                     style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:10px">
-                                    <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un
-                                        caisse
-                                        :</label>
-                                    <div style="display: flex;flex:1;margin-right: 30px;">
-                                        <select class="selectpicker form-control input-xlarge" id="dataEmploye">
-                                            <option value="0">Tous</option>
-                                            <?php
-                                            foreach ($employes as $k => $v) : ?>
-                                                <option <?php if (isset($employes_id)) if ($v->id == $employes_id) echo "selected=\"selected\""; ?>
-                                                        value="<?php echo $v->id; ?>"
-                                                        data="<?php echo $v->id; ?>"><?php echo $v->identifiant; ?></option>
-                                            <?php
-                                            endforeach;
-                                            ?>
-                                        </select>
-
-                                    </div>
-                                    <div class="col-md-2 col-xs-12">
-                                        <a class="btn btn-primary pull-right charger_info_employe">Charger</a>
-                                    </div>
-
-                                </div>
-                                <ul class="panel-controls panel-controls-title">
-                                    <li>
-                                        <div id="reportrange" class="dtrange">
-                                            <span></span><b class="caret"></b>
-                                        </div>
-                                    </li>
-                                    <!-- <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li> -->
-                                </ul>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div style="font-size: 22px;">
-                                       <strong>Total : </strong> <?php echo $totalVenteEncaisser; ?> FCFA
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table datatable table-bordered table-striped table-actions">
-                                            <thead>
-                                            <tr>
-                                                <th width="50">id</th>
-                                                <th>Employé</th>
-                                                <th width="100">Session</th>
-                                                <th width="100">Etat</th>
-                                                <th width="100">fond Caisse Ouvert</th>
-                                                <th width="100">fond Caisse Ferme</th>
-                                                <th width="100">Montant encaissé</th>
-                                                <th width="100">Date Ouverture</th>
-                                                <th width="100">Date fermeture</th>
-                                                <th width="100">Action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="tab_employe_id">
-                                            <?php $j = 0;
-                                            if (isset($caisseAll))
-                                                foreach ($caisseAll as $k => $v) : ?>
-                                                    <tr id="<?php echo $v->id; ?>">
-                                                        <td>
-                                                            <?php echo $v->id; ?>
-                                                        </td>
-
-
-                                                        <td><strong class="prixt"><?php if (isset($_user)) echo $_user[$j]; ?></strong></td>
-
-                                                        <td class="prixp"><?php echo $v->session; ?></td>
-                                                        <td>
-                                                            <?php
-                                                            if ($v->etat === "Clot")
-                                                            {
-                                                                echo '<span class="label label-success">'.$v->etat.'</span>';
-                                                            }
-                                                            else echo '<span class="label label-warning">'.$v->etat.'</span>';
-
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $v->fondCaisseOuvert; ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $v->fondCaisseFerme; ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $venteCaisse[$j]; ?>
-                                                        </td>
-                                                        <td><?php echo $v->dateOuvert; ?></td>
-                                                        <td><?php echo $v->dateFerme; ?></td>
-                                                        <td>
-                                                            <a class="btn btn-success btn-rounded btn-sm" onclick="showVenteCaisse(<?php echo $v->id; ?>,<?php echo $venteCaisse[$j]; ?>)">Voir vente</a>
-                                                            <a href="<?php echo Router::url('bouwou/comptabilite/caisse_rapport/'.$v->id); ?>" class="btn btn-primary btn-rounded btn-sm">Voir rapport</a>
-                                                        </td>
-                                                        <p></p>
-                                                    </tr>
-
-                                                    <?php $j++;
-                                                endforeach; ?>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END SALES BLOCK -->
-
-                    </div>
                 </div>
 
             </div>
@@ -496,7 +380,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table datatable">
+                                <table id="tab_list_vente_caisse" class="table datatable">
                                     <thead>
                                     <tr>
                                         <th width="100">Ref</th>
@@ -508,7 +392,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <th width="100">Actions</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="tab_list_vente_caisse">
+                                    <tbody >
 
                                     </tbody>
                                 </table>

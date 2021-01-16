@@ -196,6 +196,17 @@ class UserManager
         }
         return $users;
     }
+
+    public function getListInfo($info)
+    {
+        $users = array();
+        $q = $this->_db->prepare('SELECT * FROM user WHERE supprimer = 0 id = ' . $info);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $users[] = new User($donnees);
+        }
+        return $users;
+    }
     public function update(User $user)
     {
 

@@ -851,7 +851,7 @@ function ajouter_produit() {
 }
 
 function reimprime_ticket_caisse(id) {
-    alert("yo");
+    //alert("yo");
     var datevte = $("#" + id + " .datevte").html();
     var yo = datevte;
     var date = yo.substr(0, 10);

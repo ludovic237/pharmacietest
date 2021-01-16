@@ -47,7 +47,20 @@ if (isset($_POST['idCaisse'])) {
             $typePaiement = 'Inachevée';
         }
 
-        echo "<tr id=\"" . $v->id() . "\">
+        $data[] = array(
+            "id" => $v->id(),
+            "reference" => $v->reference(),
+            "nameProduit" => $nameProduit ,
+            "prixTotal" =>$v->prixTotal(),
+            "prixPercu" =>$v->prixPercu(),
+            "nom" =>$employeName->nom(),
+            "prenom" =>$employeName->prenom(),
+            "dateVente" =>$v->dateVente(),
+            "etat" =>$v->etat(),
+            "typePaiement" =>$typePaiement
+        );
+
+        /*echo "<tr id=\"" . $v->id() . "\">
                 <td>
                     <p>" . $v->reference() . "</p>
                     <strong>" . $nameProduit . "</strong>
@@ -64,8 +77,10 @@ if (isset($_POST['idCaisse'])) {
                 <td>
                     <a class=\"btn btn-success btn-rounded btn-sm \" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\" onclick=\"reimprime_ticket_caisse(" . $v->id() . ")\">Imprimer ticket</a>
                 </td>
-            </tr>";
+            </tr>";*/
     }
+    $datas = array('data' => $data,'totalEncaisse' => $total);
+    echo json_encode($datas);
 } else {
 
     $idc = $_POST['idc'];
