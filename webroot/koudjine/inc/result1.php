@@ -12,7 +12,7 @@ global $conndb;
         $sth = $pdo->prepare("
               SELECT *
               FROM en_rayon, produit
-              WHERE produit.id = en_rayon.produit_id AND en_rayon.id = :motclef
+              WHERE produit.id = en_rayon.produit_id AND en_rayon.id = :motclef AND produit.supprimer = 0
             ");
         //echo $sth;
         $sth->bindValue('motclef', $motclef);
@@ -33,7 +33,7 @@ global $conndb;
             $sth = $pdo->prepare("
               SELECT *
               FROM produit
-              WHERE ean13 = :motclef
+              WHERE ean13 = :motclef AND supprimer = 0
             ");
             //echo $sth;
             $sth->bindValue('motclef', $motclef);

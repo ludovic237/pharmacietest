@@ -11,7 +11,7 @@ if (isset($_POST["motclef"])) {
     $sth = $pdo->prepare("
               SELECT p.nom, r.quantite, r.reduction, p.reductionMax, r.prixAchat, r.prixVente, r.id as id, r.dateLivraison, p.id as idp 
               FROM produit p, en_rayon r
-              WHERE p.ean13 = :motclef AND p.id = r.produit_id AND r.dateLivraison IN (select max(dateLivraison) from en_rayon e where r.produit_id = e.produit_id )
+              WHERE p.ean13 = :motclef AND p.id = r.produit_id AND p.supprimer = 0 AND r.dateLivraison IN (select max(dateLivraison) from en_rayon e where r.produit_id = e.produit_id )
                ");
     //echo $sth;
     $sth->bindValue('motclef', $motclef);
