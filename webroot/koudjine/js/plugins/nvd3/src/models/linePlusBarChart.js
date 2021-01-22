@@ -196,19 +196,19 @@ nv.models.linePlusBarChart = function() {
         .height(availableHeight)
         .color(data.map(function(d,i) {
           return d.color || color(d, i);
-        }).filter(function(d,i) { return !data[i].disabled && !data[i].bar }))
+        }).filter(function(d,i) { return !data[i].disabled && !data[i].bar }));
 
       bars
         .width(availableWidth)
         .height(availableHeight)
         .color(data.map(function(d,i) {
           return d.color || color(d, i);
-        }).filter(function(d,i) { return !data[i].disabled && data[i].bar }))
+        }).filter(function(d,i) { return !data[i].disabled && data[i].bar }));
 
 
 
       var barsWrap = g.select('.nv-barsWrap')
-          .datum(dataBars.length ? dataBars : [{values:[]}])
+          .datum(dataBars.length ? dataBars : [{values:[]}]);
 
       var linesWrap = g.select('.nv-linesWrap')
           .datum(dataLines[0] && !dataLines[0].disabled ? dataLines : [{values:[]}] );
@@ -430,4 +430,4 @@ nv.models.linePlusBarChart = function() {
 
 
   return chart;
-}
+};

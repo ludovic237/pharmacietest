@@ -52,9 +52,8 @@
 					siblings.push(node);
 
 				return siblings;
-			};
-
-			/**
+            }
+            /**
 			 * Find an end point this is the node just before the common ancestor root.
 			 *
 			 * @private
@@ -69,9 +68,8 @@
 
 					node = node.parentNode;
 				} while(node);
-			};
-
-			function walkBoundary(start_node, end_node, next) {
+            }
+            function walkBoundary(start_node, end_node, next) {
 				var siblingName = next ? 'nextSibling' : 'previousSibling';
 
 				for (node = start_node, parent = node.parentNode; node && node != end_node; node = parent) {
@@ -85,9 +83,8 @@
 						callback(siblings);
 					}
 				}
-			};
-
-			// If index based start position then resolve it
+            }
+            // If index based start position then resolve it
 			if (startContainer.nodeType == 1 && startContainer.hasChildNodes())
 				startContainer = startContainer.childNodes[startOffset];
 

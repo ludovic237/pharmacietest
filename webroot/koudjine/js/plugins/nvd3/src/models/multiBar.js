@@ -81,7 +81,7 @@ nv.models.multiBar = function() {
         data[0].values.map(function(d,i) {
           var posBase = 0, negBase = 0;
           data.map(function(d) {
-            var f = d.values[i]
+            var f = d.values[i];
             f.size = Math.abs(f.y);
             if (f.y<0)  {
               f.y1 = negBase;
@@ -137,7 +137,7 @@ nv.models.multiBar = function() {
       var wrapEnter = wrap.enter().append('g').attr('class', 'nvd3 nv-wrap nv-multibar');
       var defsEnter = wrapEnter.append('defs');
       var gEnter = wrapEnter.append('g');
-      var g = wrap.select('g')
+      var g = wrap.select('g');
 
       gEnter.append('g').attr('class', 'nv-groups');
 
@@ -252,7 +252,7 @@ nv.models.multiBar = function() {
       bars
           .attr('class', function(d,i) { return getY(d,i) < 0 ? 'nv-bar negative' : 'nv-bar positive'})
           .transition()
-          .attr('transform', function(d,i) { return 'translate(' + x(getX(d,i)) + ',0)'; })
+          .attr('transform', function(d,i) { return 'translate(' + x(getX(d,i)) + ',0)'; });
 
       if (barColor) {
         if (!disabled) disabled = data.map(function() { return true });
@@ -458,4 +458,4 @@ nv.models.multiBar = function() {
 
 
   return chart;
-}
+};

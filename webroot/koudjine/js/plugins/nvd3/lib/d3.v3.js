@@ -4397,7 +4397,7 @@ d3 = function() {
         for (var i = 0, list = EventQueue.list, l = list.length; i < l; i++) {
           var next = list[i];
           if (he.ystar > next.ystar || he.ystar == next.ystar && site.x > next.vertex.x) {
-            continue;
+
           } else {
             break;
           }

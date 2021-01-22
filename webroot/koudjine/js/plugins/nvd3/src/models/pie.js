@@ -72,7 +72,7 @@ nv.models.pie = function() {
       var arc = d3.svg.arc()
                   .outerRadius(arcRadius);
 
-      if (startAngle) arc.startAngle(startAngle)
+      if (startAngle) arc.startAngle(startAngle);
       if (endAngle) arc.endAngle(endAngle);
       if (donut) arc.innerRadius(radius * donutRatio);
 
@@ -415,4 +415,4 @@ nv.models.pie = function() {
 
 
   return chart;
-}
+};

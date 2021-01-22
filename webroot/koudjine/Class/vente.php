@@ -331,6 +331,18 @@ class VenteManager
         return $ventes;
     }
 
+    public function getListCaisseEmployeVente($id)
+    {
+        $ventes = array();
+        $q = $this->_db->prepare("SELECT * FROM vente WHERE supprimer = 0 AND caisse_id = ".$id);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $ventes[] = new Vente($donnees);
+        }
+        return $ventes;
+    }
+
     public function VenteActuMois()
     {
         $ventes = array();

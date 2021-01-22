@@ -50,7 +50,7 @@ nv.models.sparkline = function() {
       var gEnter = wrapEnter.append('g');
       var g = wrap.select('g');
 
-      wrap.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+      wrap.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
       //------------------------------------------------------------
 
@@ -191,4 +191,4 @@ nv.models.sparkline = function() {
 
 
   return chart;
-}
+};

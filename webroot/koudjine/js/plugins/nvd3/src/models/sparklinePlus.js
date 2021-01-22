@@ -142,7 +142,7 @@ nv.models.sparklinePlus = function() {
       function updateValueLine() { //index is currently global (within the chart), may or may not keep it that way
         if (paused) return;
 
-        var hoverValue = g.selectAll('.nv-hoverValue').data(index)
+        var hoverValue = g.selectAll('.nv-hoverValue').data(index);
 
         var hoverEnter = hoverValue.enter()
           .append('g').attr('class', 'nv-hoverValue')
@@ -174,7 +174,7 @@ nv.models.sparklinePlus = function() {
             .attr('x', -6)
             .attr('y', -margin.top)
             .attr('text-anchor', 'end')
-            .attr('dy', '.9em')
+            .attr('dy', '.9em');
 
 
         g.select('.nv-hoverValue .nv-xValue')
@@ -184,7 +184,7 @@ nv.models.sparklinePlus = function() {
             .attr('x', 6)
             .attr('y', -margin.top)
             .attr('text-anchor', 'start')
-            .attr('dy', '.9em')
+            .attr('dy', '.9em');
 
         g.select('.nv-hoverValue .nv-yValue')
             .text(yTickFormat(sparkline.y()(data[index[0]], index[0])));
@@ -292,4 +292,4 @@ nv.models.sparklinePlus = function() {
 
 
   return chart;
-}
+};

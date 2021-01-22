@@ -1403,16 +1403,15 @@ var firebug = {
 
               if(element.nodeName!="HEAD"&&element!=document.documentElement&&(view.visibility=="hidden"||view.display=="none")){
                 container.attribute.addClass("Unvisible");
-              };
-
-              if (item.childNodes){
+              }
+                if (item.childNodes){
                 var childLen = item.childNodes.length;
                 if (childLen == 1 && item.childNodes[0].nodeType == 3) {
                   html.child.add(document.createTextNode(item.childNodes[0].nodeValue.substring(0, 50)));
                   html.child.add(document.createTextNode("</"));
                   html.child.add(new lib.element("span").attribute.addClass("Blue").update(item.nodeName.toLowerCase()).environment.getElement());
                   html.child.add(document.createTextNode(">"));
-                  continue;
+
                 }
                 else 
                   if (childLen > 0) {
@@ -1420,8 +1419,8 @@ var firebug = {
                   }
               }
             }
-          };
-          return returnParentVal;
+          }
+            return returnParentVal;
         }
       },
       openProperties:function(){
@@ -1460,11 +1459,11 @@ var firebug = {
             "top":pos.offsetTop-(_bgInspector?0:2)+"px", "left":pos.offsetLeft-(_bgInspector?0:2)+"px",
             "display":"block"
           });
-9
+9;
           if(!_bgInspector){
             d.inspector.el = _element;
           }
-        };
+        }
       },
       toggle:function(_absoluteValue,_event){
         with (firebug) {
@@ -1512,8 +1511,8 @@ var firebug = {
               source = source.split("<br />");
               for (var i = 0; i < source.length; i++) {
                 el.left.scripts.container.child.add(new lib.element("DIV").child.add(new lib.element("DIV").attribute.addClass("LineNumber").update(i + 1), new lib.element("DIV").attribute.addClass("Code").update("&nbsp;" + source[i]), new lib.element("DIV").attribute.addClass('Clear')));
-              };
-            };
+              }
+            }
           } catch(e){
             el.left.scripts.container.child.add(
               new lib.element("DIV").attribute.addClass("CodeContainer").update("<em>Access to restricted URI denied</em>")
@@ -1562,7 +1561,7 @@ var firebug = {
                   val = env.targetWindow.eval(item);
               d.xhr.objects.push([item, val]);
             } catch(e){
-              continue;
+
             }
           }
         }
@@ -1604,8 +1603,8 @@ var firebug = {
             el.left.xhr.responseContent.child.add(new lib.element("span").child.add(
                 new lib.element("A").event.addListener("click",lib.util.Curry(d.str.open,window,response)).update("&nbsp;"+response.substring(0,50))
             ));
-          };
-          if(env.dIndex=="xhr")
+          }
+            if(env.dIndex=="xhr")
             setTimeout(d.xhr.refresh,500);
         }
       }
@@ -1710,7 +1709,7 @@ var firebug = {
         firebug.cancelEvent(_event);
         if(lib.env.ie)
           setTimeout(_el.focus,100);
-      };
+      }
     }
   },
   listen: {
@@ -1903,9 +1902,8 @@ var firebug = {
       indexOf:function(_array,_value){
         if(!pi.env.ie){
           return _array.indexOf(_value);
-        };
-
-        var index = -1;
+        }
+          var index = -1;
         for(var i=0, len=_array.length; i<len; i++){
           if(_array[i]==_value){
             index = i;
@@ -1931,9 +1929,8 @@ var firebug = {
       if(_prototype["$Init"]){
         object.init = _prototype["$Init"];
         delete _prototype["$Init"];
-      };
-
-      object.body = _superClass==pi.base?_prototype:pi.util.Hash.merge(_prototype,_superClass.prototype);
+      }
+        object.body = _superClass==pi.base?_prototype:pi.util.Hash.merge(_prototype,_superClass.prototype);
       object.init=object.init||function(){
         if(_superClass!=pi.base)
           _superClass.apply(this,arguments);
@@ -1948,11 +1945,11 @@ var firebug = {
       if(window.NodeList&&window.NamedNodeMap&&!pi.env.ie8){
         if(_object instanceof Array||_object instanceof NodeList||_object instanceof NamedNodeMap||(window.HTMLCollection&&_object instanceof HTMLCollection))
           return true;
-      };
-      if(!_object||_object==window||typeof _object=="function"||typeof _object=="string"||typeof _object.length!="number"){
+      }
+        if(!_object||_object==window||typeof _object=="function"||typeof _object=="string"||typeof _object.length!="number"){
         return false
-      };
-      var len = _object.length;
+      }
+        var len = _object.length;
       if(len>0&&_object[0]!=undefined&&_object[len-1]!=undefined){
         return true;
       } else {
@@ -1962,7 +1959,7 @@ var firebug = {
           }
         }
         return true
-      };
+      }
     },
     IsHash:function(_object){
       return _object && typeof _object=="object"&&(_object==window||_object instanceof Object)&&!_object.nodeName&&!pi.util.IsArray(_object)
@@ -2031,8 +2028,8 @@ var firebug = {
           offsetLeft +=parseInt(parent.offsetLeft);
           offsetTop += parseInt(parent.offsetTop);
           parent = parent.offsetParent;
-        };
-        return {
+        }
+          return {
           "bottom":view["bottom"],
           "clientLeft":_element.clientLeft,
           "clientTop":_element.clientTop,
@@ -2129,8 +2126,8 @@ var firebug = {
           } else if( _hash[key] )
             value = _hash[ key ];
           _hash[key] = value;
-        };
-        return _hash;
+        }
+          return _hash;
       }
     },
     String:{
@@ -2172,8 +2169,8 @@ var firebug = {
                 //this[key]._parent_ = this;
               }
           }
-        };
-        base.createAccessors( _p, this );
+        }
+          base.createAccessors( _p, this );
         if(base.init)
           return base.init.apply(this,arguments);
         return this;
@@ -2181,8 +2178,8 @@ var firebug = {
       this.movePrivateMembers(this.body,_private);
       if(this.init){
         fn["$Init"] = this.init;
-      };
-      fn.prototype = this.body;
+      }
+        fn.prototype = this.body;
       return fn;
     };
 
@@ -2203,8 +2200,9 @@ var firebug = {
             if(!_branch[name])
               _branch[name] = {};
             this.createAccessors(_p[name], _branch[name]);
-          }   
-      };
+          }
+
+      }
     };
 
     this.movePrivateMembers = function(_object, _branch){
@@ -2220,7 +2218,7 @@ var firebug = {
             _branch[name] = {};
             this.movePrivateMembers(_object[name], _branch[name]);
           }
-      };
+      }
     };
   };
 
@@ -2299,8 +2297,8 @@ var firebug = {
       "addClass":function(_classes){
         for(var i=0,len=arguments.length; i<len; i++){
           pi.util.Element.addClass(this._parent_.environment.getElement(),arguments[i]);
-        };
-        return this._parent_;
+        }
+          return this._parent_;
       },
       "clearClass":function(){
         this.setClass("");
@@ -2412,7 +2410,7 @@ var firebug = {
         try {
           this.environment.setApi(new ActiveXObject(names[i]));
           break;
-        } catch (e) { continue; }
+        } catch (e) {  }
       }
     }
     else {
@@ -2450,8 +2448,8 @@ var firebug = {
       this.api.open(this.environment.getType(),url,this.environment.getAsync());
       if(this.environment.getType()=="POST"){
         this.api.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-      };
-      this.api.send(this.environment.getType()=="GET"?"":dataUrl);
+      }
+        this.api.send(this.environment.getType()=="GET"?"":dataUrl);
       return this;
     }
   };

@@ -55,9 +55,8 @@
 		}
 
 		return '' + o;
-	};
-
-	/**
+    }
+    /**
 	 * JSON parser and serializer class.
 	 *
 	 * @class tinymce.util.JSON

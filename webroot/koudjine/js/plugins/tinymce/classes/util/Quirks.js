@@ -68,9 +68,8 @@
 				});
 			}
 		});
-	};
-
-	/**
+    }
+    /**
 	 * WebKit and IE doesn't empty the editor if you select all contents and hit backspace or delete. This fix will check if the body is empty
 	 * like a <h1></h1> or <p></p> and then forcefully remove all contents.
 	 */
@@ -82,13 +81,12 @@
 				if (ed.dom.isEmpty(ed.getBody())) {
 					ed.setContent('', {format : 'raw'});
 					ed.nodeChanged();
-					return;
+
 				}
 			}
 		});
-	};
-
-	/**
+    }
+    /**
 	 * WebKit on MacOS X has a weird issue where it some times fails to properly convert keypresses to input method keystrokes.
 	 * So a fix where we just get the range and set the range back seems to do the trick.
 	 */
@@ -96,9 +94,8 @@
 		ed.dom.bind(ed.getDoc(), 'focusin', function() {
 			ed.selection.setRng(ed.selection.getRng());
 		});
-	};
-
-	/**
+    }
+    /**
 	 * Firefox 3.x has an issue where the body element won't get proper focus if you click out
 	 * side it's rectangle.
 	 */
@@ -120,9 +117,8 @@
 				}
 			});
 		}
-	};
-
-	/**
+    }
+    /**
 	 * WebKit has a bug where it isn't possible to select image, hr or anchor elements
 	 * by clicking on them so we need to fake that.
 	 */
@@ -141,9 +137,8 @@
 
 			ed.nodeChanged();
 		});
-	};
-
-	tinymce.create('tinymce.util.Quirks', {
+    }
+    tinymce.create('tinymce.util.Quirks', {
 		Quirks: function(ed) {
 			// WebKit
 			if (tinymce.isWebKit) {

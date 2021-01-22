@@ -175,7 +175,7 @@ nv.models.cumulativeLineChart = function() {
         var completeDomain = [
           d3.min(seriesDomains, function(d) { return d[0] }),
           d3.max(seriesDomains, function(d) { return d[1] })
-        ]
+        ];
 
         lines.yDomain(completeDomain);
       } else {
@@ -373,11 +373,11 @@ nv.models.cumulativeLineChart = function() {
           .attr('fill', 'red')
           .attr('fill-opacity', .5)
           .style("pointer-events","all")
-          .call(indexDrag)
+          .call(indexDrag);
 
       indexLine
           .attr('transform', function(d) { return 'translate(' + dx(d.i) + ',0)' })
-          .attr('height', availableHeight)
+          .attr('height', availableHeight);
 
       //------------------------------------------------------------
 
@@ -759,7 +759,7 @@ nv.models.cumulativeLineChart = function() {
       line.values = line.values.map(function(point, pointIndex) {
         point.display = {'y': (lines.y()(point, pointIndex) - v) / (1 + v) };
         return point;
-      })
+      });
 
       return line;
     })
@@ -769,4 +769,4 @@ nv.models.cumulativeLineChart = function() {
 
 
   return chart;
-}
+};

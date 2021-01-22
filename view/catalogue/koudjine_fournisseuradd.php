@@ -86,8 +86,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Statut:</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="statut" id="statut" value="<?php if ($position == 'Modifier') echo $fournisseur->statut; ?>" placeholder="" />
-                                    <span class="help-block">exemple: Gellule</span>
+                                    <select class="selectpicker form-control input-xlarge " name="statut" id="statut">
+                                        <option  value="Grossiste">Grossiste</option>
+                                        <option  value="Detaillant">Detaillant</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
