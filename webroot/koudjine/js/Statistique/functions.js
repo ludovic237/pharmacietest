@@ -285,7 +285,7 @@ $(document).ready(function () {
                                             return '<span class="text-muted" style="font-size:90%">NA</span>';
                                         } else {
                                             return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                                '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
+                                                '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ',' + moment(row.dateFerme).format("YYYY-MM-DD")  + ')"  ><span class="">Voir rapport</span></a>';
                                             ;
                                         }
                                     }
@@ -339,7 +339,7 @@ $(document).ready(function () {
                                             return '<span class="text-muted" style="font-size:90%">NA</span>';
                                         } else {
                                             return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                                '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
+                                                '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ',' + moment(row.dateFerme).format("YYYY-MM-DD")  + ')"  ><span class="">Voir rapport</span></a>';
                                             ;
                                         }
                                     }
@@ -418,7 +418,7 @@ $(document).ready(function () {
                                         return '<span class="text-muted" style="font-size:90%">NA</span>';
                                     } else {
                                         return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                            '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
+                                            '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ',' + moment(row.dateFerme).format("YYYY-MM-DD")  + ')"  ><span class="">Voir rapport</span></a>';
                                         ;
                                     }
                                 }
@@ -472,7 +472,7 @@ $(document).ready(function () {
                                         return '<span class="text-muted" style="font-size:90%">NA</span>';
                                     } else {
                                         return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                            '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
+                                            '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ',' + moment(row.dateFerme).format("YYYY-MM-DD")  + ')"  ><span class="">Voir rapport</span></a>';
                                         ;
                                     }
                                 }
@@ -639,7 +639,7 @@ function getGroupStatistiqueCaisse() {
                                     return '<span class="text-muted" style="font-size:90%">NA</span>';
                                 } else {
                                     return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                        '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
+                                        '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ',' + moment(row.dateFerme).format("YYYY-MM-DD")  + ')"  ><span class="">Voir rapport</span></a>';
                                     ;
                                 }
                             }
@@ -693,7 +693,7 @@ function getGroupStatistiqueCaisse() {
                                     return '<span class="text-muted" style="font-size:90%">NA</span>';
                                 } else {
                                     return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                        '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
+                                        '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ',' + moment(row.dateFerme).format("YYYY-MM-DD")  + ')"  ><span class="">Voir rapport</span></a>';
                                     ;
                                 }
                             }
@@ -862,7 +862,23 @@ function showVenteCaisse(id, total) {
     return false;
 }
 
-function showRapportCaisse(id) {
+function showRapportCaisse(id,date) {
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/rapport_caisse.php',
+        data: {
+            id: id
+        },
+        success: function (server_responce) {
+            var datas = JSON.parse(server_responce);
+            $('#datesRapport').html(moment(datas.dateFerme).format("DD/MMM/YYYY"));
+            $('#heuresRapport').html(moment(datas.dateFerme).format("hh:mm"));
+            $('#nameRapport').html(datas.employe);
+            $('#sessionRapport').html(datas.data.session);
+            $('#etatRapport').html(datas.data.etat);
+        }
+    })
+
     var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
     if(id != null){
         caisse_id = id;

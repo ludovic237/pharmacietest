@@ -508,8 +508,15 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                                             <div class="col-md-9">
                                                 <select class="form-control input-xlarge select2me session"
                                                         name="session" required="">
-                                                    <option value="Matin">Matin</option>
-                                                    <option value="Soir">Soir</option>
+                                                    <?php
+                                                    $time = date("H");
+                                                    if ($time < 12){
+                                                        echo '<option value="Matin">Matin</option>';
+                                                    }
+                                                    else if ($time >= 12){
+                                                        echo '<option value="Soir">Soir</option>';
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>

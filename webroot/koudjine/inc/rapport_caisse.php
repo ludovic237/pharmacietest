@@ -18,6 +18,8 @@ if (isset($_POST['id']))
 
 if (isset($_POST['id'])){
     $caisse = $manager->getId($id);
+    $_caisse = $manager->getIds($id);
+    $_employe = $managerEm->get($caisse->user_id());
     //echo $caisse->fondCaisseFerme();
     $especes = $managerFa->getListCaisseType($id, 'Espèce');
     $electroniques = $managerFa->getListCaisseType($id, 'Electronique');
@@ -29,7 +31,7 @@ if (isset($_POST['id'])){
     foreach ($electroniques as $k => $v) :
         $total_electronique = $total_electronique + $v->montantTtc();
     endforeach;
-    $donnees = array('erreur' =>'non', 'espece_caisse' => $caisse->fondCaisseFerme() ,'espece_syst' => $total_espece, 'electronique' => $total_electronique);
+    $donnees = array('erreur' =>'non', 'espece_caisse' => $caisse->fondCaisseFerme() ,'espece_syst' => $total_espece, 'electronique' => $total_electronique, 'data' => $_caisse, 'employe' => $_employe->identifiant());
     echo json_encode($donnees);
 
 }
