@@ -211,7 +211,7 @@
                             class="sr-only">Close</span></button>
                 <h4 class="modal-title">Commande</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="icon-preview">
@@ -302,7 +302,7 @@
                             class="sr-only">Close</span></button>
                 <h4 class="modal-title">Commande</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="icon-preview">
@@ -409,7 +409,7 @@
                 <div class="mb-footer">
                     <div class="pull-right">
                         <a onclick="imprimer_commande()" class="btn btn-success btn-lg">Suivant</a>
-                        <button class="btn btn-default btn-lg mb-control-close" data-dismiss="modal" href="<?php echo Router::url('bouwou/commande/list'); ?>">Annuler</a>
+                        <a class="btn btn-default btn-lg mb-control-close" data-dismiss="modal" href="<?php echo Router::url('bouwou/commande/list'); ?>">Annuler</a>
                     </div>
                 </div>
             </div>

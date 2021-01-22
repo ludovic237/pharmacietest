@@ -93,7 +93,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-12 ">
                         <ul class="list-group border-bottom">
@@ -220,7 +220,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <form id="jvalidate" role="form" class="form-horizontal" action="javascript:enregistrer_universite('<?php echo $position; ?>','<?php if ($position == 'Modifier')  echo $universites->UNIVERSITE_ID;
                                                                                                                                                 else echo ""; ?>');">
                     <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Informations générales</h4>
