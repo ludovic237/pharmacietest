@@ -394,17 +394,38 @@ var test = "' . $id . '"
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 control-label">Quantité:</label>
+                                <label class="col-md-3 control-label champ1">Reduction max :</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control erreduction" id="erreduction" value="" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Quantité restante:</label>
                                 <div class="col-md-9">
                                     <input type="number" class="form-control erquantite" name="erquantite"
                                            id="erquantite" value="" placeholder=""/>
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-md-3 control-label">Quantité commandé:</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control erquantitecm" name="erquantitecm"
+                                           id="erquantitecm" value="" placeholder=""/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-md-3 control-label">Date de peremption:</label>
                                 <div class="col-md-9">
-                                    <input type="date" class="form-control erdatePeremption" name="erdatePeremption"
-                                           id="erdatePeremption" value="" placeholder=""/>
+                                    <div class="input-group">
+                                        <input style="padding-top: 0px;" class="form-control erdatePeremption"
+                                               name="erdatePeremption"
+                                               id="erdatePeremption" value="" placeholder=""
+                                               placeholder="Date de péremption" style="line-height: normal;" type="date"
+                                               required="">
+                                        <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -425,7 +446,8 @@ var test = "' . $id . '"
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
@@ -474,19 +496,25 @@ var test = "' . $id . '"
                                         </td>
                                     </tr> -->
                                     <tr style="display: flex;table-layout: fixed; width: 40mm ;">
-                                        <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
+                                        <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"
+                                            colspan="2">
 
                                             <div style="display: flex;flex-direction: column;">
                                                 <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
-                                                    <p class="nomp" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
-                                                    <p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                    <p class="nomp"
+                                                       style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                    <p class="prixv"
+                                                       style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
                                                 </div>
                                                 <div style="justify-content: center;display:flex">
-                                                    <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="qrcode"></p>
+                                                    <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
+                                                       id="qrcode"></p>
                                                 </div>
                                                 <div style="display: flex;flex-direction: row;justify-content: space-around;">
-                                                    <p class="datel" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
-                                                    <p class="datep" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                    <p class="datel"
+                                                       style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                    <p class="datep"
+                                                       style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
                                                 </div>
                                             </div>
                                         </td>
@@ -504,7 +532,11 @@ var test = "' . $id . '"
                                 </table>
 
                             </div>
-                            <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
+                            <button type="button" class="btn btn-circle blue"
+                                    style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
+                                    onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print"
+                                                                                  style="font-size:10px"></i>&nbsp;Imprimer
+                            </button>
                         </div>
                     </div>
                     <div class="col-md-8 scroll">

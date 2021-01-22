@@ -1724,7 +1724,12 @@ function info_row(row) {
 
 }
 
+var _idprod;
+var _nameprod;
+
 function load_produit_detail(id, nomp) {
+    _idprod = id;
+    _nameprod = nomp;
     //alert(id + "" + nomp);
     $('#detail_recherche').val(nomp);
     $("#tab_produit_detail").hide();
@@ -2047,6 +2052,8 @@ function save_produit_detail() {
     var erprixachat = $('#erprixachat').val();
     var erprixvente = $('#erprixvente').val();
     var erquantite = $('#erquantite').val();
+    var erreduction = $('#erreduction').val();
+    var erquantitecm = $('#erquantitecm').val();
     var erdatePeremption = moment($('#erdatePeremption').val()).format("YYYY-MM-DD HH:MM:SS");
     //var erdatePeremption = $('#erdatePeremption').val();
     console.log(erdatePeremption);
@@ -2058,13 +2065,16 @@ function save_produit_detail() {
             prixAchat: erprixachat,
             prixVente: erprixvente,
             datePeremption: erdatePeremption,
-            quantite: erquantite
+            quantiteRestante: erquantite,
+            reduction: erreduction,
+            quantite: erquantitecm
         },
         success: function (data) {
-            alert(data);
-            $("#iconPreviewDetailModif").modal('hide');
-
-
+            noty({ text: 'Enregistrement effectué'+data, layout: 'topRight', type: 'success' });
+            load_produit_detail(_idprod,_nameprod);
+            setTimeout(function () {
+                $("#iconPreviewDetailModif").modal('hide');
+            }, 3000);
         }
     });
 
@@ -2085,16 +2095,19 @@ function show_modif_enrayon(id) {
             prixAchat: 0,
             prixVente: 0,
             datePeremption: 0,
-            quantite: 0
+            quantite: 0,
+            reduction: 0,
+            quantiteRestante: 0
         },
         dataType: 'json',
         success: function (data) {
-            var datas = JSON.stringify(data);
-            $("#id").val(data.id);
-            $("#erprixachat").val(data.prixAchat);
-            $("#erprixvente").val(data.prixVente);
-            $("#erdatePeremption").val(data.datePeremption);
-            $("#erquantite").val(data.quantite);
+            $("#id").val(data.data.id);
+            $("#erprixachat").val(data.data.prixAchat);
+            $("#erprixvente").val(data.data.prixVente);
+            $("#erdatePeremption").val(data.data.datePeremption);
+            $("#erquantite").val(data.data.quantiteRestante);
+            $("#erquantitecm").val(data.data.quantite);
+            $("#erreduction").val(data.data.reduction);
         }
     });
 

@@ -214,6 +214,14 @@ class En_rayonManager
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new en_rayon($donnees);
     }
+    public function gets($info)
+    {
+
+        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND id = ' . $info);
+        $q->execute();
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return $donnees;
+    }
     public function getLast()
     {
 
@@ -303,6 +311,20 @@ class En_rayonManager
         $q->bindValue(':prixv', $prixVente);
         $q->bindValue(':prixa', $prixAchat);
         $q->bindValue(':quantite', $quantite);
+        $q->execute();
+    }
+
+    public function myupdate2($datePeremption, $prixAchat, $prixVente, $quantite, $id,$quantiteRestante,$reduction)
+    {
+        // UPDATE `en_rayon` SET `datePeremption` = '2021-04-23', `prixAchat` = '420', `prixVente` = '105', `quantite` = '102', `quantiteRestante` = '74' WHERE `en_rayon`.`id` = '10010120171115';
+        $q = $this->_db->prepare('UPDATE en_rayon SET datePeremption = :datePeremption, prixAchat = :prixa, prixVente = :prixv, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = :reduction WHERE `en_rayon`.`id` = :id');
+        $q->bindValue(':id', $id, PDO::PARAM_INT);
+        $q->bindValue(':datePeremption', $datePeremption);
+        $q->bindValue(':prixv', $prixVente);
+        $q->bindValue(':prixa', $prixAchat);
+        $q->bindValue(':quantite', $quantite);
+        $q->bindValue(':reduction', $reduction);
+        $q->bindValue(':quantiteRestante', $quantiteRestante);
         $q->execute();
     }
 
