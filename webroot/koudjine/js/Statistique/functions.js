@@ -112,10 +112,10 @@ $(document).ready(function () {
             $('#reportRangeDate span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         });
 
-        $("#reportRangeDate span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $("#reportRangeDate span").html(moment().subtract('days', 29).format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
 
-        var a_ = moment().subtract('days', 29).format('MMMM D, YYYY');
-        var b_ = moment().format('MMMM D, YYYY');
+        var a_ = moment().subtract('days', 29).format();
+        var b_ = moment().format();
         var type = $('#fournisseurType option:selected').val();
         $.ajax({
             type: "POST",
@@ -354,10 +354,10 @@ $(document).ready(function () {
             $('#reportRangeDateCaisse span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         });
 
-        $("#reportRangeDateCaisse span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $("#reportRangeDateCaisse span").html(moment().subtract('days', 29).format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
 
-        var a_ = moment().subtract('days', 29).format('MMMM D, YYYY');
-        var b_ = moment().format('MMMM D, YYYY');
+        var a_ = moment().subtract('days', 29).format();
+        var b_ = moment().format();
         var type = $('#dataEmploye option:selected').val();
         $.ajax({
             type: "POST",
