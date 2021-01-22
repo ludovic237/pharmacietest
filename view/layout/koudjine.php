@@ -29,7 +29,7 @@
             <ul class="x-navigation">
                 <!-- <li class="xn-logo"> -->
                 <li class="xn-logo">
-                    <a href="index.html">ATLANT</a>
+                    <a href="index.html">AlSA</a>
                     <a href="#" class="x-navigation-control"></a>
                 </li>
                 <li class="xn-profile">
