@@ -3,6 +3,8 @@ var _end = moment();
 var _startCaisse = moment().subtract('days', 29);
 var _endCaisse = moment();
 
+var caisseData;
+
 $(document).ready(function () {
     if ($("#reportRangeDate").length > 0) {
         $("#reportRangeDate").daterangepicker({
@@ -711,6 +713,21 @@ var dataVentes = [];
 
 function showVenteCaisse(id, total) {
     $("#totalEncaissement").html(total);
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/rapport_caisse.php',
+        data: {
+            id: id
+        },
+        success: function (server_responce) {
+            var datas = JSON.parse(server_responce);
+            $('#dateOuvertRapportVente').html(moment(datas.data.dateOuvert).format("DD/MMM/YYYY"));
+            $('#dateFermeRapportVente').html(moment(datas.data.dateFerme).format("DD/MMM/YYYY"));
+            $('#nameRapportVente').html(datas.employe);
+            $('#sessionRapportVente').html(datas.data.session);
+            $('#etatRapportVente').html(datas.data.etat);
+        }
+    })
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/vente_statistique.php',

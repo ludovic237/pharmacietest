@@ -3038,10 +3038,11 @@ blockquote.pull-right {
 .nav-tabs > .dropdown.active.open > a:hover {
   border: 0px;
   border-top: 2px solid #33414e;
-  background: #FFF;
+  background: #0BA360;
   -moz-border-radius: 3px 3px 0px 0px;
   -webkit-border-radius: 3px 3px 0px 0px;
   border-radius: 3px 3px 0px 0px;
+  color: white;
 }
 .nav-tabs.nav-justified > li > a {
   border: 0px;
@@ -4027,7 +4028,7 @@ td.dataTables_empty {
   background: rgba(255, 255, 255, 0.2);
 }
 .login-container.lightmode .login-box .login-body .form-control {
-  background: rgba(7, 7, 7, 0.04);
+  background: rgba(0, 0, 0, 0.13);
   color: #333;
 }
 .login-container.lightmode .login-box .login-subtitle a {

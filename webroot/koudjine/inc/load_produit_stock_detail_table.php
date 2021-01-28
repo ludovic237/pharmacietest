@@ -1,4 +1,3 @@
-
 <?php
 require_once('database.php');
 require_once('../Class/produit.php');
@@ -30,17 +29,32 @@ $produit = $managerProduit->get($id);
 $nom = $produit->nom();
 
 $datas = [];
+$stockTotal = 0;
+$stockRestant = 0;
 
 if (isset($_POST['id']) || isset($_GET['id'])) {
 
 
-
     foreach ($enrayon as $k => $e) :
         $enrayonid = $e->id();
-
+        $stockTotal = $stockTotal + $e->quantite();
+        $stockRestant = $stockRestant + $e->quantiteRestante();
         $datas[] = array(
+            "DT_RowId" => $e->id(),
+            'nom' => $nom,
+            'fournisseur' => $managerFournisseur->get($e->fournisseur_id())->nom(),
+            'dateLivraison' => $e->dateLivraison(),
+            'datePeremption' => $e->datePeremption(),
+            'prixAchat' => $e->prixAchat(),
+            'prixVente' => $e->prixVente(),
+            'reduction' => $e->reduction(),
+            'quantite' => $e->quantite(),
+            'quantiteRestante' => $e->quantiteRestante(),
+            'id' => $e->id(),
+        );
+        /*$datas[] = array(
             "DT_RowId"  => $e->id(),
-            'nom' => "<p class='nom'> " . $nom . "</p>",
+            'nom' => "<p class='nom'> " . $nom,
             'fournisseur_id' => "<p class='fournisseur_id'> " . $managerFournisseur->get($e->fournisseur_id())->nom() . "</p>",
             'dateLivraison' => "<p class='dateLivraison'> " . $e->dateLivraison() . "</p>",
             'datePeremption' => "<p class='datePeremption'> " . $e->datePeremption() . "</p>",
@@ -50,15 +64,14 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
             'action' => " <a class=\"btn btn-success btn-rounded btn-sm \"  onclick=\"show_modif_enrayon('" . $e->id() . "')\"><span class=\"\">Modifier</span></a>
                            <a class=\"btn btn-primary btn-rounded btn-sm \"   onclick=\"show_modif_sortie('" . $e->id() . "')\"><span class=\"\">Périmé & Stock détail</span></a>
                            <a class=\"btn btn-primary btn-rounded btn-sm \"   onclick=\"info_row_entree('" . $e->id() . "')\"><span class=\"\">Imprimer etiquette</span></a>",
-        );
+        );*/
     endforeach;
 
     if ($datas == null) {
         $donnees = array('data' => []);
         echo json_encode($donnees);
-    }
-    else{
-        $donnees = array('data' => $datas);
+    } else {
+        $donnees = array('data' => $datas,'stockTotal' => $stockTotal,'stockRestant' => $stockRestant);
         echo json_encode($donnees);
     }
 }

@@ -346,7 +346,7 @@ class VenteManager
     public function VenteActuMois()
     {
         $ventes = array();
-        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 AND DATE_FORMAT(CURDATE() ,"%Y-%m-01") AND CURDATE()');
+        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 AND dateVente > DATE_SUB(now(), INTERVAL 1 MONTH) ');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {

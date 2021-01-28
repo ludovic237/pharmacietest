@@ -1,12 +1,164 @@
 var test = 0;
 var startDate;
 var endDate;
+var endDate;
+var _startDetailVente = moment().subtract('days', 29).format("YYYY-MM-DD HH:mm:ss");
+var _endDetailVente = moment().format("YYYY-MM-DD HH:mm:ss");
+var _startDetailCommande = moment().subtract('days', 29).format("YYYY-MM-DD HH:mm:ss");
+var _endDetailCommande = moment().format("YYYY-MM-DD HH:mm:ss");
 var idemploye = null
     ;
 var idfulldepense;
 $('#pharmanet_tab_vente').hide();
 
 $(document).ready(function () {
+
+    if ($("#reportRangeDateVente").length > 0) {
+        $("#reportRangeDateVente").daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            opens: 'left',
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary',
+            cancelClass: 'btn-small',
+            format: 'MM.DD.YYYY',
+            separator: ' to ',
+            startDate: moment().subtract('days', 29),
+            endDate: moment()
+        }, function (start, end) {
+            _startCaisse = start;
+            _endCaisse = end;
+            var a_ = start.format("YYYY-MM-DD HH:mm:ss");
+            var b_ = end.format("YYYY-MM-DD HH:mm:ss");
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/load_produit_detail_table.php',
+                data: {
+                    id: _idprod,
+                    start: a_,
+                    end: b_,
+                },
+                dataType: 'json',
+                success: function (responce) {
+                    var datas = responce;
+                    console.log(datas);
+                    $('#qte_vente_total').html(datas.qteVenteTotal);
+                    $('#reduction_vente_total').html(datas.reductionVenteTotal);
+                    $('#prix_vente_total').html(datas.prixVenteTotal);
+                    $('#produit_detail_b').dataTable({
+                        destroy: true,
+                        data: datas.data,
+                        columns: [
+                            { data: "datevente" },
+                            { data: "vendeur" },
+                            { data: "client" },
+                            { data: "prixunit" },
+                            { data: "quantite" },
+                            { data: "prixTotal" },
+                            { data: "reduction" },
+                            { data: "prixVente" }
+                        ]
+                    });
+                }
+            });
+            $('#reportRangeDateVente span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        });
+
+        $("#reportRangeDateVente span").html(moment().subtract('days', 29).format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
+
+    }
+
+    if ($("#reportRangeDateCommande").length > 0) {
+        $("#reportRangeDateCommande").daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            opens: 'left',
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary',
+            cancelClass: 'btn-small',
+            format: 'MM.DD.YYYY',
+            separator: ' to ',
+            startDate: moment().subtract('days', 29),
+            endDate: moment()
+        }, function (start, end) {
+            _startCaisse = start;
+            _endCaisse = end;
+            var a_ = start.format("YYYY-MM-DD HH:mm:ss");
+            var b_ = end.format("YYYY-MM-DD HH:mm:ss");
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/load_produit_commande_detail_table.php',
+                data: {
+                    id: _idprod,
+                    start: a_,
+                    end: b_,
+                },
+                dataType: 'json',
+                success: function (responce) {
+                    var datas = responce;
+                    console.log(datas);
+                    $('#qte_commande_total').html(datas.qteCommandeRecu);
+                    $('#commande_recu_total').html(datas.qteCommandeRecuTotal);
+                    $('#produit_commande_detail_b').dataTable({
+                        destroy: true,
+                        data: datas.data,
+                        columns: [
+                            { data: "date" },
+                            { data: "produit_id" },
+                            { data: "commande_id" },
+                            { data: "fournisseur" },
+                            { data: "prixAchat" },
+                            { data: "prixVente" },
+                            { data: "qtiteCmd" },
+                            { data: "qtiteRecu" },
+                            { data: "totalCmd" },
+                            { data: "TotalRecu" },
+                            {
+                                data: "etat", "render": function (data, type, row) {
+                                    if (data == "Livré") {
+                                        return '<span class="label label-success">' + data + '</span>';
+                                    } else {
+                                        if (data == "Commandé") {
+                                            return '<span class="label label-warning">' + data + '</span>';
+                                        } else {
+                                            return '<strong >' + data + '</strong>';
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                data: "action", "render": function (data, type, row) {
+                                    if (!data) {
+                                        return '<span class="text-muted" style="font-size:90%">NA</span>';
+                                    } else {
+                                        return '<a class="btn btn-success btn-rounded btn-sm "  onclick="modifier_commande(' + data + ',' + row.totalEncaisse + ')"><span class="">Modifier</span></a>' +
+                                            '<a class="btn btn-primary btn-rounded btn-sm " onclick="delete_row_commande(' + data + ')"  ><span class="">Supprimer</span></a>';
+                                        ;
+                                    }
+                                }
+                            },
+                        ]
+                    });
+                }
+            });
+            $('#reportRangeDateCommande span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        });
+
+        $("#reportRangeDateCommande span").html(moment().subtract('days', 29).format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
+
+    }
 
     $("#tab_produit_detail").hide();
 
@@ -623,7 +775,7 @@ function enregistrer_client(option, id) {
             success: function (data) {
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                   
+
                     noty({ text: 'Modification effectué', layout: 'topRight', type: 'success' });
                     setTimeout(() => {
                         var link = '/pharmacietest/bouwou/catalogue/clientadd/' + id;
@@ -1740,236 +1892,207 @@ function load_produit_detail(id, nomp) {
     }
     else {
         $("#detailTab").show();
-        if ($.fn.dataTable.isDataTable('#produit_detail_a')) {
-            $('#produit_detail_a').dataTable({
-                destroy: true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit_detail.php',
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                },
-                columns: [
-                    { data: "nom" },
-                    { data: "nbrVenteMois" },
-                    { data: "nbrVenteTotal" },
-                    { data: "nbrQteStock" },
-                    { data: "nbrReduction" },
-                ]
-            });
-
-            $('#produit_detail_b').dataTable({
-                destroy: true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit_detail_table.php',
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                },
-                columns: [
-                    { data: "venteid" },
-                    { data: "datevente" },
-                    { data: "enrayon" },
-                    { data: "prixunit" },
-                    { data: "quantite" },
-                    { data: "reduction" },
-                ]
-            });
-
-        }
-        else {
-            $('#produit_detail_a').dataTable({
-                destroy: true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit_detail.php',
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                },
-                columns: [
-                    { data: "nom" },
-                    { data: "nbrVenteMois" },
-                    { data: "nbrVenteTotal" },
-                    { data: "nbrQteStock" },
-                    { data: "nbrReduction" },
-
-                ]
-            });
-
-            $('#produit_detail_b').dataTable({
-                destroy: true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit_detail_table.php',
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                },
-                columns: [
-                    { data: "venteid" },
-                    { data: "datevente" },
-                    { data: "enrayon" },
-                    { data: "prixunit" },
-                    { data: "quantite" },
-                    { data: "reduction" },
-                ]
-            });
-
-
-        }
-
-        if ($.fn.dataTable.isDataTable('#produit_commande_detail_a')) {
-            $('#produit_commande_detail_a').dataTable({
-                destroy: true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit_commande_detail.php',
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                },
-                columns: [
-                    { data: "nom" },
-                    { data: "nbrCommandeMois" },
-                    { data: "nbrCommandeTotal" },
-                    { data: "nbrQteStock" },
-                ]
-            });
-
-            $('#produit_commande_detail_b').dataTable({
-                destroy: true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit_commande_detail_table.php',
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                },
-                success: function (res) {
-                    var dat = res
-                    alert(dat)
-                },
-                columns: [
-                    { data: "produit_id" },
-                    { data: "commande_id" },
-                    { data: "prixPublic" },
-                    { data: "qtiteCmd" },
-                ]
-            });
-
-        }
-        else {
-            $('#produit_commande_detail_a').dataTable({
-                destroy: true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit_commande_detail.php',
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                },
-                columns: [
-                    { data: "nom" },
-                    { data: "nbrCommandeMois" },
-                    { data: "nbrCommandeTotal" },
-                    { data: "nbrQteStock" },
-                ]
-            });
-
-            $('#produit_commande_detail_b').dataTable({
-                destroy: true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit_commande_detail_table.php',
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                },
-                columns: [
-                    { data: "produit_id" },
-                    { data: "commande_id" },
-                    { data: "prixPublic" },
-                    { data: "qtiteCmd" },
-                ]
-            });
-        }
-
         $.ajax({
             type: "POST",
-            url: '/pharmacietest/koudjine/inc/load_produit_stock_detail.php',
+            url: '/pharmacietest/koudjine/inc/load_produit_detail.php',
             data: {
                 id: id
             },
+            dataType: 'json',
             success: function (responce) {
-                $('#tab_produit_stock_detail_a').html(responce);
-                $("#produit_stock_detail_sortie_a").show();
-                $("#tab_produit_stock_detail_a").show();
+                var datas = responce;
+                console.log(datas);
+                $('#qte_vente_total').html(datas.qteVenteTotal);
+                $('#reduction_vente_total').html(datas.reductionVenteTotal);
+                $('#prix_vente_total').html(datas.prixVenteTotal);
+                $('#produit_detail_mois_a').dataTable({
+                    destroy: true,
+                    searching: false,
+                    dFilter: false,
+                    bInfo: false,
+                    bPaginate: false,
+                    data: datas.data,
+                    columns: [
+                    { data: "nomProduit" },
+                    { data: "qteVenteMois" },
+                    { data: "redVenteMois" },
+                    { data: "prixVenteMois" },
+                    ]
+                });
+                $('#produit_detail_total_a').dataTable({
+                    destroy: true,
+                    searching: false,
+                    dFilter: false,
+                    bInfo: false,
+                    bPaginate: false,
+                    data: datas.data,
+                    columns: [
+                        { data: "nomProduit" },
+                        { data: "qteVenteTotal" },
+                        { data: "redVenteTotal" },
+                        { data: "prixVenteTotal" },
+                    ]
+                });
+            }
+        });
 
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/load_produit_detail_table.php',
+            data: {
+                id: id,
+                start: _startDetailVente,
+                end: _endDetailVente,
+            },
+            dataType: 'json',
+            success: function (responce) {
+                var datas = responce;
+                console.log(datas);
+                $('#qte_vente_total').html(datas.qteVenteTotal);
+                $('#reduction_vente_total').html(datas.reductionVenteTotal);
+                $('#prix_vente_total').html(datas.prixVenteTotal);
+                $('#produit_detail_b').dataTable({
+                    destroy: true,
+                    data: datas.data,
+                    columns: [
+                        { data: "datevente" },
+                        { data: "vendeur" },
+                        { data: "client" },
+                        { data: "prixunit" },
+                        { data: "quantite" },
+                        { data: "prixTotal" },
+                        { data: "reduction" },
+                        { data: "prixVente" }
+                    ]
+                });
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/load_produit_commande_detail.php',
+            data: {
+                id: id,
+                start: _startDetailVente,
+                end: _endDetailVente,
+            },
+            dataType: 'json',
+            success: function (responce) {
+                var datas = responce;
+                $('#produit_commande_detail_mois_a').dataTable({
+                    destroy: true,
+                    data: datas.data,
+                    columns: [
+                        { data: "nom" },
+                        { data: "nbrCommandeMois" },
+                        { data: "prixCommandeMois" },
+                    ]
+                });
+                $('#produit_commande_detail_total_a').dataTable({
+                    destroy: true,
+                    data: datas.data,
+                    columns: [
+                        { data: "nom" },
+                        { data: "nbrCommandeTotal" },
+                        { data: "prixCommandeTotal" },
+                    ]
+                });
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/load_produit_commande_detail_table.php',
+            data: {
+                id: id
+            },
+            dataType: 'json',
+            success: function (responce) {
+                var datas = responce;
+                $('#qte_commande_total').html(datas.qteCommandeRecu);
+                $('#commande_recu_total').html(datas.qteCommandeRecuTotal);
+                $('#produit_commande_detail_b').dataTable({
+                    destroy: true,
+                    data: datas.data,
+                    columns: [
+                        { data: "date" },
+                        { data: "produit_id" },
+                        { data: "commande_id" },
+                        { data: "fournisseur" },
+                        { data: "prixAchat" },
+                        { data: "prixVente" },
+                        { data: "qtiteCmd" },
+                        { data: "qtiteRecu" },
+                        { data: "totalCmd" },
+                        { data: "TotalRecu" },
+                        {
+                            data: "etat", "render": function (data, type, row) {
+                                if (data == "Livré") {
+                                    return '<span class="label label-success">' + data + '</span>';
+                                } else {
+                                    if (data == "Commandé") {
+                                        return '<span class="label label-warning">' + data + '</span>';
+                                    } else {
+                                        return '<strong >' + data + '</strong>';
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            data: "action", "render": function (data, type, row) {
+                                if (!data) {
+                                    return '<span class="text-muted" style="font-size:90%">NA</span>';
+                                } else {
+                                    return '<a class="btn btn-success btn-rounded btn-sm "  onclick="modifier_commande(' + data + ',' + row.totalEncaisse + ')"><span class="">Modifier</span></a>' +
+                                        '<a class="btn btn-primary btn-rounded btn-sm " onclick="delete_row_commande(' + data + ')"  ><span class="">Supprimer</span></a>';
+                                    ;
+                                }
+                            }
+                        },
+                    ]
+                });
             }
         })
 
-        if ($.fn.dataTable.isDataTable('#produit_stock_detail_b')) {
-
-
-            $('#produit_stock_detail_b').dataTable({
-                destroy: true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit_stock_detail_table.php',
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                },
-                columns: [
-                    { data: "nom" },
-                    { data: "fournisseur_id" },
-                    { data: "dateLivraison" },
-                    { data: "datePeremption" },
-                    { data: "prixAchat" },
-                    { data: "prixVente" },
-                    { data: "quantiteRestante" },
-                    { data: "action" },
-                ]
-            });
-
-        }
-        else {
-
-
-            $('#produit_stock_detail_b').dataTable({
-                destroy: true,
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit_stock_detail_table.php',
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                },
-                columns: [
-                    { data: "nom" },
-                    { data: "fournisseur_id" },
-                    { data: "dateLivraison" },
-                    { data: "datePeremption" },
-                    { data: "prixAchat" },
-                    { data: "prixVente" },
-                    { data: "quantiteRestante" },
-                    { data: "action" },
-                ]
-            });
-        }
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/load_produit_stock_detail_table.php',
+            data: {
+                id: id
+            },
+            dataType: 'json',
+            success: function (responce) {
+                var datas = responce;
+                $('#tab_produit_stock_detail_total').html(datas.stockTotal);
+                $('#tab_produit_stock_detail_restant').html(datas.stockRestant);
+                $('#produit_stock_detail_b').dataTable({
+                    destroy: true,
+                    data: datas.data,
+                    columns: [
+                        { data: "nom" },
+                        { data: "fournisseur" },
+                        { data: "dateLivraison" },
+                        { data: "datePeremption" },
+                        { data: "prixAchat" },
+                        { data: "prixVente" },
+                        { data: "reduction" },
+                        { data: "quantite" },
+                        { data: "quantiteRestante" },
+                        {
+                            data: "id", "render": function (data, type, row) {
+                                if (!data) {
+                                    return '<span class="text-muted" style="font-size:90%">NA</span>';
+                                } else {
+                                    return '<a class="btn btn-success btn-rounded btn-sm"  onclick="show_modif_enrayon(' + data + ')"><span class="">Modifier</span></a>' +
+                                        '<a class="btn btn-primary btn-rounded btn-sm "   onclick="show_modif_sortie(' + data + ')"><span class="">Périmé & Stock détail</span></a>' +
+                                        '<a class="btn btn-primary btn-rounded btn-sm "   onclick="info_row_entree(' + data + ')"><span class="">Imprimer etiquette</span></a>';
+                                }
+                            }
+                        },
+                    ]
+                });
+            }
+        })
 
         $.ajax({
             type: "POST",
@@ -2053,7 +2176,7 @@ function save_produit_detail() {
     var erprixvente = $('#erprixvente').val();
     var erquantite = $('#erquantite').val();
     var erreduction = $('#erreduction').val();
-    var erquantitecm = $('#erquantitecm').val();
+    //var erquantitecm = $('#erquantitecm').val();
     var erdatePeremption = moment($('#erdatePeremption').val()).format("YYYY-MM-DD HH:MM:SS");
     //var erdatePeremption = $('#erdatePeremption').val();
     console.log(erdatePeremption);
@@ -2067,7 +2190,7 @@ function save_produit_detail() {
             datePeremption: erdatePeremption,
             quantiteRestante: erquantite,
             reduction: erreduction,
-            quantite: erquantitecm
+            //quantite: erquantitecm
         },
         success: function (data) {
             noty({ text: 'Enregistrement effectué'+data, layout: 'topRight', type: 'success' });
