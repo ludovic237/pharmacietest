@@ -32,6 +32,7 @@ $(document).ready(function () {
             startDate: moment().subtract('days', 29),
             endDate: moment()
         }, function (start, end) {
+            alert("passe1");
             _startCaisse = start;
             _endCaisse = end;
             var a_ = start.format("YYYY-MM-DD HH:mm:ss");
@@ -46,11 +47,13 @@ $(document).ready(function () {
                 },
                 dataType: 'json',
                 success: function (responce) {
+                    //alert(responce);
                     var datas = responce;
                     console.log(datas);
                     $('#qte_vente_total').html(datas.qteVenteTotal);
                     $('#reduction_vente_total').html(datas.reductionVenteTotal);
                     $('#prix_vente_total').html(datas.prixVenteTotal);
+                    $('#produit_detail_b').empty();
                     $('#produit_detail_b').dataTable({
                         destroy: true,
                         data: datas.data,

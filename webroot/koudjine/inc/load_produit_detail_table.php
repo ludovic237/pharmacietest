@@ -58,9 +58,9 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
         $venteid = $v->id();
         $employe =  $managerEmploye->get($v->employe_id());
 
-        if (($v->user_id())!=null){
+        if ($v->user_id()!=NULL){
             $user =  $managerUser->get($v->user_id());
-            $client = $user->nom()+' '+$user->prenom();
+            $client = $user->nom().' '.$user->prenom();
         }
         else{
             $client = 'Client pas enregistré';
@@ -103,7 +103,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
             endforeach;
         endforeach;
     endforeach;
-    if ($datas == null) {
+    if (empty($datas )) {
         $donnees = array('data' => []);
         echo json_encode($donnees);
     } else {
