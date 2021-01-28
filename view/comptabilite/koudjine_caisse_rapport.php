@@ -24,7 +24,7 @@
 
 
 <div class="modal-content">
-    <div class="modal-body">
+    <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
         <div class="row">
             <div class="col-md-6">
                 <div class="panel panel-default">

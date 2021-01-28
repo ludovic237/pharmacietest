@@ -3,6 +3,8 @@ var _end = moment();
 var _startCaisse = moment().subtract('days', 29);
 var _endCaisse = moment();
 
+var caisseData;
+
 $(document).ready(function () {
     if ($("#reportRangeDate").length > 0) {
         $("#reportRangeDate").daterangepicker({
@@ -112,10 +114,10 @@ $(document).ready(function () {
             $('#reportRangeDate span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         });
 
-        $("#reportRangeDate span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $("#reportRangeDate span").html(moment().subtract('days', 29).format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
 
-        var a_ = moment().subtract('days', 29).format('MMMM D, YYYY');
-        var b_ = moment().format('MMMM D, YYYY');
+        var a_ = moment().subtract('days', 29).format();
+        var b_ = moment().format();
         var type = $('#fournisseurType option:selected').val();
         $.ajax({
             type: "POST",
@@ -248,6 +250,7 @@ $(document).ready(function () {
                             // "serverSide": true,
                             //dom: "Bfrtip",
                             data: datas.data,
+                            "order": [[ 7, "desc" ]],
                             columns: [
                                 {data: "id"},
                                 {
@@ -284,7 +287,7 @@ $(document).ready(function () {
                                             return '<span class="text-muted" style="font-size:90%">NA</span>';
                                         } else {
                                             return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                                '<a class="btn btn-primary btn-rounded btn-sm " href="http://localhost:8000/pharmacietest/bouwou/comptabilite/caisse_rapport/' + data + '"  ><span class="">Voir rapport</span></a>';
+                                                '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
                                             ;
                                         }
                                     }
@@ -301,6 +304,7 @@ $(document).ready(function () {
                             // "serverSide": true,
                             //dom: "Bfrtip",
                             data: datas.data,
+                            "order": [[ 7, "desc" ]],
                             columns: [
                                 {data: "id"},
                                 {
@@ -337,7 +341,7 @@ $(document).ready(function () {
                                             return '<span class="text-muted" style="font-size:90%">NA</span>';
                                         } else {
                                             return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                                '<a class="btn btn-primary btn-rounded btn-sm " href="http://localhost:8000/pharmacietest/bouwou/comptabilite/caisse_rapport/' + data + '"  ><span class="">Voir rapport</span></a>';
+                                                '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
                                             ;
                                         }
                                     }
@@ -352,10 +356,10 @@ $(document).ready(function () {
             $('#reportRangeDateCaisse span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         });
 
-        $("#reportRangeDateCaisse span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $("#reportRangeDateCaisse span").html(moment().subtract('days', 29).format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
 
-        var a_ = moment().subtract('days', 29).format('MMMM D, YYYY');
-        var b_ = moment().format('MMMM D, YYYY');
+        var a_ = moment().subtract('days', 29).format();
+        var b_ = moment().format();
         var type = $('#dataEmploye option:selected').val();
         $.ajax({
             type: "POST",
@@ -378,6 +382,7 @@ $(document).ready(function () {
                         // "processing": true,
                         // "serverSide": true,
                         //dom: "Bfrtip",
+                        "order": [[ 7, "desc" ]],
                         data: datas.data,
                         columns: [
                             {data: "id"},
@@ -415,7 +420,7 @@ $(document).ready(function () {
                                         return '<span class="text-muted" style="font-size:90%">NA</span>';
                                     } else {
                                         return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                            '<a class="btn btn-primary btn-rounded btn-sm " href="http://localhost:8000/pharmacietest/bouwou/comptabilite/caisse_rapport/' + data + '"  ><span class="">Voir rapport</span></a>';
+                                            '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
                                         ;
                                     }
                                 }
@@ -431,6 +436,7 @@ $(document).ready(function () {
                         // "processing": true,
                         // "serverSide": true,
                         //dom: "Bfrtip",
+                        "order": [[ 7, "desc" ]],
                         data: datas.data,
                         columns: [
                             {data: "id"},
@@ -468,7 +474,7 @@ $(document).ready(function () {
                                         return '<span class="text-muted" style="font-size:90%">NA</span>';
                                     } else {
                                         return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                            '<a class="btn btn-primary btn-rounded btn-sm " href="http://localhost:8000/pharmacietest/bouwou/comptabilite/caisse_rapport/' + data + '"  ><span class="">Voir rapport</span></a>';
+                                            '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
                                         ;
                                     }
                                 }
@@ -598,6 +604,7 @@ function getGroupStatistiqueCaisse() {
                     // "serverSide": true,
                     //dom: "Bfrtip",
                     data: datas.data,
+                    "order": [[ 7, "desc" ]],
                     columns: [
                         {data: "id"},
                         {
@@ -634,7 +641,7 @@ function getGroupStatistiqueCaisse() {
                                     return '<span class="text-muted" style="font-size:90%">NA</span>';
                                 } else {
                                     return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                        '<a class="btn btn-primary btn-rounded btn-sm " href="http://localhost:8000/pharmacietest/bouwou/comptabilite/caisse_rapport/' + data + '"  ><span class="">Voir rapport</span></a>';
+                                        '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
                                     ;
                                 }
                             }
@@ -651,6 +658,7 @@ function getGroupStatistiqueCaisse() {
                     // "serverSide": true,
                     //dom: "Bfrtip",
                     data: datas.data,
+                    "order": [[ 7, "desc" ]],
                     columns: [
                         {data: "id"},
                         {
@@ -687,7 +695,7 @@ function getGroupStatistiqueCaisse() {
                                     return '<span class="text-muted" style="font-size:90%">NA</span>';
                                 } else {
                                     return '<a class="btn btn-success btn-rounded btn-sm "  onclick="showVenteCaisse(' + data + ',' + row.totalEncaisse + ')"><span class="">Voir vente</span></a>' +
-                                        '<a class="btn btn-primary btn-rounded btn-sm " href="http://localhost:8000/pharmacietest/bouwou/comptabilite/caisse_rapport/' + data + '"  ><span class="">Voir rapport</span></a>';
+                                        '<a class="btn btn-primary btn-rounded btn-sm " onclick="showRapportCaisse(' + data + ')"  ><span class="">Voir rapport</span></a>';
                                     ;
                                 }
                             }
@@ -707,6 +715,21 @@ function showVenteCaisse(id, total) {
     $("#totalEncaissement").html(total);
     $.ajax({
         type: "POST",
+        url: '/pharmacietest/koudjine/inc/rapport_caisse.php',
+        data: {
+            id: id
+        },
+        success: function (server_responce) {
+            var datas = JSON.parse(server_responce);
+            $('#dateOuvertRapportVente').html(moment(datas.data.dateOuvert).format("DD/MMM/YYYY"));
+            $('#dateFermeRapportVente').html(moment(datas.data.dateFerme).format("DD/MMM/YYYY"));
+            $('#nameRapportVente').html(datas.employe);
+            $('#sessionRapportVente').html(datas.data.session);
+            $('#etatRapportVente').html(datas.data.etat);
+        }
+    })
+    $.ajax({
+        type: "POST",
         url: '/pharmacietest/koudjine/inc/vente_statistique.php',
         data: {
             idCaisse: id
@@ -724,8 +747,12 @@ function showVenteCaisse(id, total) {
                     // retrieve: true,
                     // "processing": true,
                     // "serverSide": true,
-                    //dom: "Bfrtip",
+                    // dom: "Bfrtip",
                     data: datas.data,
+                    //"scrollY":"300px",
+                    //"scrollCollapse":true,
+                    //'paging':false,
+                    "order": [[ 4, "desc" ]],
                     columns: [
                         {
                             data: "reference", "render": function (data, type, row) {
@@ -787,6 +814,10 @@ function showVenteCaisse(id, total) {
                     // "serverSide": true,
                     //dom: "Bfrtip",
                     data: datas.data,
+                    //"scrollY":"300px",
+                    //"scrollCollapse":true,
+                    //'paging':false,
+                    "order": [[ 4, "desc" ]],
                     columns: [
                         {
                             data: "reference", "render": function (data, type, row) {
@@ -847,6 +878,105 @@ function showVenteCaisse(id, total) {
     $("#previewImprimerBonCaisse").modal('show');
     return false;
 }
+
+function showRapportCaisse(id) {
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/rapport_caisse.php',
+        data: {
+            id: id
+        },
+        success: function (server_responce) {
+            var datas = JSON.parse(server_responce);
+            $('#datesRapport').html(moment(datas.data.dateFerme).format("DD/MMM/YYYY"));
+            $('#heuresRapport').html(moment(datas.data.dateFerme).format("hh:mm"));
+            $('#nameRapport').html(datas.employe);
+            $('#sessionRapport').html(datas.data.session);
+            $('#etatRapport').html(datas.data.etat);
+        }
+    })
+
+    var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
+    if(id != null){
+        caisse_id = id;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/liste_depense.php',
+        data: {
+            id: caisse_id
+        },
+        success: function (server_responce) {
+            //alert(server_responce);
+
+            $('#tab_RapportDepense').empty();
+            $('#tab_RapportDepense').html(server_responce);
+
+        }
+
+
+    })
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/liste_bon_caisse.php',
+        data: {
+            id: caisse_id
+        },
+        success: function (server_responce) {
+            //alert(server_responce);
+
+            $('#tab_RapportBon').empty();
+            $('#tab_RapportBon').html(server_responce);
+
+        }
+
+
+    })
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/rapport_caisse.php',
+        data: {
+            id: caisse_id
+        },
+        dataType: 'json',
+        success: function (data) {
+            //alert(data);
+
+            if (data.erreur == 'non') {
+                //alert('passe');
+                $("#espece_caisse_rapport").html(data.espece_caisse);
+                $("#electronique_rapport").html(data.electronique);
+                $("#total_entree_rapport_caisse").html((parseInt(data.electronique) + parseInt(data.espece_caisse)));
+
+                // Charger tableau recapitulatif
+                $("#total_entree_caisse").html((parseInt(data.electronique) + parseInt(data.espece_caisse) + parseInt($("#total_entree_rapport_bon").html())));
+                $("#total_sortie_caisse").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
+                $("#total_tout_caisse").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_sortie_caisse").html())));
+
+                //Système
+                $("#total_entree_syst").html((parseInt(data.electronique) + parseInt(data.espece_syst) + parseInt($("#total_entree_rapport_bon").html())));
+                $("#total_sortie_syst").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
+                $("#total_tout_syst").html((parseInt($("#total_entree_syst").html()) - parseInt($("#total_sortie_syst").html())));
+
+                //Difference
+                $("#diff_entree").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_entree_syst").html())));
+                $("#diff_sortie").html((parseInt($("#total_sortie_caisse").html()) - parseInt($("#total_sortie_syst").html())));
+                $("#diff_total").html((parseInt($("#total_tout_caisse").html()) - parseInt($("#total_tout_syst").html())));
+
+
+
+
+            }
+
+        }
+
+
+    })
+    $("#iconPreviewRapport").modal('show');
+}
+
 
 function reimprime_ticket_caisse(id) {
     var dataVente_info = [];

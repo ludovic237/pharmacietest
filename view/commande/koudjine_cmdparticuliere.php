@@ -149,7 +149,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-12 ">
                         <div class="">
@@ -191,7 +191,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="">
@@ -287,7 +287,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <!-- <div class="row">
                          <div class="col-md-4">
                               <div class="icon-preview">
@@ -448,7 +448,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="icon-preview">

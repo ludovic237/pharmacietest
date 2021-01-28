@@ -12,23 +12,23 @@ $prixAchat;
 $prixVente;
 $datePeremption;
 $quantite;
+$quantiteRestante ;
+$reduction ;
 
 $id = $_POST['id'];
 $prixAchat = $_POST['prixAchat'];
 $prixVente = $_POST['prixVente'];
 $datePeremption = $_POST['datePeremption'];
-$quantite = $_POST['quantite'];
+//$quantite = $_POST['quantite'];
+$quantiteRestante = $_POST['quantiteRestante'];
+$reduction = $_POST['reduction'];
 
 if ($prixAchat == 0) {
 
     $id = $_POST['id'];
     if ($manager->existsId($id)) {
-        $prod = $manager->get($id);
-        $prixAchat = $prod->prixAchat();
-        $prixVente = $prod->prixVente();
-        $datePeremption = $prod->datePeremption();
-        $quantite = $prod->quantite();
-        $donnees = array('id' => $id, 'prixAchat' => $prixAchat, 'datePeremption' => $datePeremption, 'quantite' => $quantite, 'prixVente' => $prixVente);
+        $prod = $manager->gets($id);
+        $donnees = array('data' => $prod);
         echo json_encode($donnees);
     } else {
 
@@ -39,10 +39,10 @@ if ($prixAchat == 0) {
     echo $datePeremption;
     
     if ($manager->existsId($id)) {
-        $manager->myupdate($datePeremption, $prixAchat, $prixVente, $quantite, $id);
+        $manager->myupdate2($datePeremption, $prixAchat, $prixVente, $id,$quantiteRestante,$reduction);
         echo 'success';
     } else {
-        $manager->myupdate($datePeremption, $prixAchat, $prixVente, $quantite, $id);
+        $manager->myupdate2($datePeremption, $prixAchat, $prixVente, $id,$quantiteRestante,$reduction);
         echo 'ok';
     }
 }

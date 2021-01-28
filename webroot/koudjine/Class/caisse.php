@@ -225,6 +225,13 @@ class CaisseManager
         return new Caisse($donnees);
 
     }
+
+    public function getIds($id)
+    {
+        $q = $this->_db->query('SELECT * FROM caisse WHERE supprimer = 0 AND id = '.$id);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return $donnees;
+    }
     public function getIdEmploye($id)
     {
         $caisses = array();

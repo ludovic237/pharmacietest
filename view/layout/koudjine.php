@@ -29,7 +29,7 @@
             <ul class="x-navigation">
                 <!-- <li class="xn-logo"> -->
                 <li class="xn-logo">
-                    <div href="index.html" style="font-size: 20px;background: white;text-align: center;align-content: center;align-items: center;justify-content: center;display: flex;height: 50px;color:#0ba360">ALSAS</div>
+                    <a href="index.html">AlSA</a>
                     <a href="#" class="x-navigation-control"></a>
                 </li>
                 <li class="xn-profile">
