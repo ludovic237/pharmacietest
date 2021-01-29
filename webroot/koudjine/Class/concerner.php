@@ -186,6 +186,17 @@ class ConcernerManager
         return $concerners;
     }
 
+    public function getCurrentVente($idv, $ide)
+    {
+        $concerners = array();
+        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND en_rayon_id = ' . $ide . ' AND vente_id = ' . $idv);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $concerners[] = new Concerner($donnees);
+        }
+        return $concerners;
+    }
+
     public function getExistsVenteId($ide)
     {
         $concerners = array();

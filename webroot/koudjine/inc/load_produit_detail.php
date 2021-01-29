@@ -27,8 +27,17 @@ if (isset($_POST['id']))
 $enrayon = $managerEnRayon->getList($id);
 $produit = $managerProduit->get($id);
 $vente = $managerVente->VenteActuMois();
+$venteTotal = $managerVente->getList();
 $nom = $produit->nom();
+
 $nbrVenteMois = 0;
+$prixVenteMois = 0;
+$nbrReductionVenteMois = 0;
+
+$nbrVenteTotal = 0;
+$prixVenteTotal = 0;
+$nbrReductionVenteTotal = 0;
+
 $nbrVenteTotal = 0;
 $nbrQteStock = 0;
 $nbrReduction = 0;
@@ -40,30 +49,44 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
 
     foreach ($vente as $k => $v) :
         $venteid = $v->id();
+
+
         // echo $venteid . "-";
         foreach ($enrayon as $k => $e) :
             $enrayonid = $e->id();
             $concerner =  $managerConcerner->getExistsVenteIdAndEn_rayonId($venteid, $enrayonid);
             foreach ($concerner as $k => $c) :
                 $nbrVenteMois = $nbrVenteMois + $c->quantite();
+                $prixVenteMois = $prixVenteMois + $c->prixUnit();
+                $nbrReductionVenteMois = $nbrReductionVenteMois + $c->reduction();
             endforeach;
         endforeach;
     endforeach;
 
-    foreach ($enrayon as $k => $e) :
-        $enrayonid = $e->id();
-        // echo $enrayonid . "-";
-        $concerner =  $managerConcerner->getExistsEn_rayonId($enrayonid);
-        foreach ($concerner as $k => $c) :
-            $nbrVenteTotal = $nbrVenteTotal + $c->quantite();
+    foreach ($venteTotal as $k => $v) :
+        $venteid = $v->id();
+
+        // echo $venteid . "-";
+        foreach ($enrayon as $k => $e) :
+            $enrayonid = $e->id();
+            $concerner =  $managerConcerner->getExistsVenteIdAndEn_rayonId($venteid, $enrayonid);
+            foreach ($concerner as $k => $c) :
+                $nbrVenteTotal = $nbrVenteTotal + $c->quantite();
+                $prixVenteTotal = $prixVenteTotal + ($c->quantite() * $c->prixUnit());
+                $nbrReductionVenteTotal = $nbrReductionVenteTotal + $c->reduction();
+            endforeach;
         endforeach;
     endforeach;
+
+
     $datas[] = array(
-        'nom' => "<span ><strong class='nom'>" . $nom . "</strong></span>",
-        'nbrVenteMois' => "<p class='nbrVenteMois'> " . $nbrVenteMois . "</p>",
-        'nbrVenteTotal' => "<p class='nbrVenteTotal'> " . $nbrVenteTotal . "</p>",
-        'nbrQteStock' => "<p class='nbrQteStock'> " . $nbrQteStock . "</p>",
-        'nbrReduction' => "<p class='nbrReduction'> " . $nbrReduction . "</p>"
+        'nomProduit' =>  $nom,
+        'qteVenteMois' =>  $nbrVenteMois,
+        'redVenteMois' =>  $nbrReductionVenteMois,
+        'prixVenteMois' =>  $prixVenteMois,
+        'qteVenteTotal' =>  $nbrVenteTotal,
+        'redVenteTotal' =>  $nbrReductionVenteTotal,
+        'prixVenteTotal' =>  $prixVenteTotal,
     );
     $donnees = array('data' => $datas);
     echo json_encode($donnees);

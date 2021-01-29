@@ -19,7 +19,7 @@ $id = $_POST['id'];
 $prixAchat = $_POST['prixAchat'];
 $prixVente = $_POST['prixVente'];
 $datePeremption = $_POST['datePeremption'];
-$quantite = $_POST['quantite'];
+//$quantite = $_POST['quantite'];
 $quantiteRestante = $_POST['quantiteRestante'];
 $reduction = $_POST['reduction'];
 
@@ -39,10 +39,10 @@ if ($prixAchat == 0) {
     echo $datePeremption;
     
     if ($manager->existsId($id)) {
-        $manager->myupdate2($datePeremption, $prixAchat, $prixVente, $quantite, $id,$quantiteRestante,$reduction);
+        $manager->myupdate2($datePeremption, $prixAchat, $prixVente, $id,$quantiteRestante,$reduction);
         echo 'success';
     } else {
-        $manager->myupdate2($datePeremption, $prixAchat, $prixVente, $quantite, $id,$quantiteRestante,$reduction);
+        $manager->myupdate2($datePeremption, $prixAchat, $prixVente, $id,$quantiteRestante,$reduction);
         echo 'ok';
     }
 }

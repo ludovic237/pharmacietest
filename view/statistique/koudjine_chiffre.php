@@ -229,8 +229,15 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                             class="sr-only">Close</span></a>
                 <h4 class="modal-title">Liste de vente de la caisse</h4>
+
             </div>
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
+                <h4>Du <span id="dateOuvertRapportVente" style="font-weight: bolder"></span> au <span style="font-weight: bolder" id="dateFermeRapportVente"></span> </h4>
+
+                <div style="display: flex;justify-content: space-between">
+                    <h4 class="modal-title">Caissier : <span style="font-weight: bolder" id="nameRapportVente"></span></h4>
+                    <h4 class="modal-title">Session : <span style="font-weight: bolder" id="sessionRapportVente"></span> </h4>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default" style="display: flex;flex-direction: column;">

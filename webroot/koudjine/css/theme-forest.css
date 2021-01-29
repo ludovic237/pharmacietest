@@ -2987,10 +2987,11 @@ blockquote.pull-right {
 .nav-tabs > .dropdown.active.open > a:hover {
   border: 0px;
   border-top: 2px solid #565249;
-  background: #FFF;
+  background: #0BA360;
   -moz-border-radius: 3px 3px 0px 0px;
   -webkit-border-radius: 3px 3px 0px 0px;
   border-radius: 3px 3px 0px 0px;
+  color: white;
 }
 .nav-tabs.nav-justified > li > a {
   border: 0px;

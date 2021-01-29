@@ -18,8 +18,9 @@ $position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' .
 $script_for_layout = '
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Catalogue/functions.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/daterangepicker/daterangepicker.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Catalogue/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script>
 var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -103,25 +104,58 @@ var test = "' . $id . '"
                                 <div class="block">
 
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="panel panel-default">
 
                                                 <div class="panel-body panel-body-table">
-
+                                                    <div class="panel-heading"
+                                                         style="display: flex;align-items: center;justify-content: space-between;">
+                                                        <h1 style="color:#56688A">
+                                                            Vente du Mois en cours
+                                                        </h1>
+                                                    </div>
                                                     <div class="panel-body">
-                                                        <table id="produit_detail_a"
+                                                        <table id="produit_detail_mois_a"
                                                                class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                             <tr>
-                                                                <th width="100">Nom</th>
-                                                                <th width="100">Nombre de vente du mois</th>
-                                                                <th width="100">Nombre de vente total</th>
-                                                                <th width="200">Quantité en stock</th>
-                                                                <th width="100">Reduction</th>
+                                                                <th>Nom</th>
+                                                                <th>Quantité</th>
+                                                                <th>Réduction</th>
+                                                                <th>Vente</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
 
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default">
+
+                                                <div class="panel-body panel-body-table">
+                                                    <div class="panel-heading"
+                                                         style="display: flex;align-items: center;justify-content: space-between;">
+                                                        <h1 style="color:#56688A">
+                                                            Vente total
+                                                        </h1>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table id="produit_detail_total_a"
+                                                               class="table datatable table-bordered table-striped table-actions">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Nom</th>
+                                                                <th>Quantité</th>
+                                                                <th>Réduction</th>
+                                                                <th>Vente</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -138,22 +172,50 @@ var test = "' . $id . '"
 
                                                 <div class="panel-body panel-body-table">
 
-                                                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
-                                                        <h1 style="color:#fff">
-                                                            Vente du Mois en cours
+                                                    <div class="panel-heading"
+                                                         style="display: flex;align-items: center;justify-content: space-between;">
+                                                        <h1 style="color:#56688A">
+                                                            Liste des ventes
                                                         </h1>
+                                                        <ul class="panel-controls panel-controls-title">
+                                                            <li>
+                                                                <div id="reportRangeDateVente" class="dtrange">
+                                                                    <span></span><b class="caret"></b>
+                                                                </div>
+                                                            </li>
+                                                            <li><a href="#" class="panel-fullscreen rounded"><span
+                                                                            class="fa fa-expand"></span></a></li>
+
+                                                        </ul>
+
+                                                    </div>
+                                                    <div class="panel-body" style="display: flex;justify-content: space-between;">
+                                                        <h3>Quantite :
+                                                            <span id="qte_vente_total">
+                                                            </span>
+                                                        </h3>
+                                                        <h3>Réduction :
+                                                            <span id="reduction_vente_total">
+                                                            </span>
+                                                        </h3>
+                                                        <h3>Prix :
+                                                            <span id="prix_vente_total">
+                                                            </span>
+                                                        </h3>
                                                     </div>
                                                     <div class="panel-body">
                                                         <table id="produit_detail_b"
                                                                class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                             <tr>
-                                                                <th width="100">Vente id</th>
                                                                 <th width="100">Date et heure</th>
-                                                                <th width="100">En rayon</th>
+                                                                <th width="100">Vendeur</th>
+                                                                <th width="100">Client</th>
                                                                 <th width="200">Prix unitaire</th>
                                                                 <th width="200">Quantité</th>
+                                                                <th width="100">Prix total</th>
                                                                 <th width="100">Reduction</th>
+                                                                <th width="100">Prix vente</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -173,24 +235,56 @@ var test = "' . $id . '"
                                 <div class="block">
 
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="panel panel-default">
 
                                                 <div class="panel-body panel-body-table">
-
+                                                    <div class="panel-heading"
+                                                         style="display: flex;align-items: center;justify-content: space-between;">
+                                                        <h1 style="color:#56688A">
+                                                            Commande du Mois en cours
+                                                        </h1>
+                                                    </div>
                                                     <div class="panel-body">
-                                                        <table id="produit_commande_detail_a"
+                                                        <table id="produit_commande_detail_mois_a"
                                                                class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                             <tr>
-                                                                <th width="100">Nom</th>
-                                                                <th width="100">Nombre de Commande du mois</th>
-                                                                <th width="100">Nombre de Commande total</th>
-                                                                <th width="200">Quantité en stock</th>
+                                                                <th>Nom</th>
+                                                                <th>Quantité</th>
+                                                                <th>Cout</th>
                                                             </tr>
                                                             </thead>
-                                                            <tbody id="tab_produit_commande_detail_a">
+                                                            <tbody>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
 
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default">
+
+                                                <div class="panel-body panel-body-table">
+                                                    <div class="panel-heading"
+                                                         style="display: flex;align-items: center;justify-content: space-between;">
+                                                        <h1 style="color:#56688A">
+                                                            Commande total
+                                                        </h1>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table id="produit_commande_detail_total_a"
+                                                               class="table datatable table-bordered table-striped table-actions">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Nom</th>
+                                                                <th>Quantité</th>
+                                                                <th>Cout</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -207,20 +301,50 @@ var test = "' . $id . '"
 
                                                 <div class="panel-body panel-body-table">
 
-                                                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
-                                                        <h1 style="color:#fff">
-                                                            Commande du Mois en cours
+                                                    <div class="panel-heading"
+                                                         style="display: flex;align-items: center;justify-content: space-between;">
+                                                        <h1 style="color:#56688A">
+                                                            Liste des commandes
                                                         </h1>
+                                                        <ul class="panel-controls panel-controls-title">
+                                                            <li>
+                                                                <div id="reportRangeDateCommande" class="dtrange">
+                                                                    <span></span><b class="caret"></b>
+                                                                </div>
+                                                            </li>
+                                                            <li><a href="#" class="panel-fullscreen rounded"><span
+                                                                            class="fa fa-expand"></span></a></li>
+
+                                                        </ul>
+
                                                     </div>
-                                                    <div class="panel-body">
+                                                    <div class="panel-body" style="display: flex;justify-content: space-between;">
+                                                        <h3>Quantite :
+                                                            <span id="qte_commande_total">
+                                                            </span>
+                                                        </h3>
+                                                        <h3>Quantité total :
+                                                            <span id="commande_recu_total">
+                                                            </span>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="panel-body table-responsive">
                                                         <table id="produit_commande_detail_b"
-                                                               class="table datatable table-bordered table-striped table-actions">
+                                                               class="responsive table datatable table-bordered table-striped table-actions">
                                                             <thead>
                                                             <tr>
+                                                                <th width="100">Date</th>
                                                                 <th width="100">Produit id</th>
                                                                 <th width="100">Commande id</th>
-                                                                <th width="200">Prix public</th>
-                                                                <th width="200">Quantite commande</th>
+                                                                <th width="100">Fournisseurs</th>
+                                                                <th width="100">Prix achat</th>
+                                                                <th width="200">Prix vente</th>
+                                                                <th width="100">Quantité commandé</th>
+                                                                <th width="100">Quantité reçu</th>
+                                                                <th width="100">Total commandé</th>
+                                                                <th width="100">Total reçu</th>
+                                                                <th width="200">Etat</th>
+                                                                <th width="200">Action</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody id="tab_produit_commande_detail_b">
@@ -246,7 +370,11 @@ var test = "' . $id . '"
 
                                                     <div class="panel-body">
                                                         <h1>Stock total :
-                                                            <span id="tab_produit_stock_detail_a">
+                                                            <span id="tab_produit_stock_detail_total">
+                                                            </span>
+                                                        </h1>
+                                                        <h1>Entrée en rayon :
+                                                            <span id="tab_produit_stock_detail_restant">
                                                             </span>
                                                         </h1>
                                                     </div>
@@ -268,7 +396,7 @@ var test = "' . $id . '"
                                                             Entrée en rayon
                                                         </h1>
                                                     </div>
-                                                    <div class="panel-body">
+                                                    <div class="panel-body table-responsive">
                                                         <table id="produit_stock_detail_b"
                                                                class="table datatable table-bordered table-striped table-actions">
                                                             <thead>
@@ -279,7 +407,9 @@ var test = "' . $id . '"
                                                                 <th width="200">Date peremption</th>
                                                                 <th width="200">Prix achat</th>
                                                                 <th width="200">Prix vente</th>
-                                                                <th width="200">Quantité restante</th>
+                                                                <th width="200">Réduction</th>
+                                                                <th width="200">Quantité recu</th>
+                                                                <th width="200">Quantité en stock</th>
                                                                 <th width="200">Action</th>
                                                             </tr>
                                                             </thead>
@@ -396,7 +526,8 @@ var test = "' . $id . '"
                             <div class="form-group row">
                                 <label class="col-md-3 control-label champ1">Reduction max :</label>
                                 <div class="col-md-9">
-                                    <input type="number" class="form-control erreduction" id="erreduction" value="" placeholder="" />
+                                    <input type="number" class="form-control erreduction" id="erreduction" value=""
+                                           placeholder=""/>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -406,13 +537,13 @@ var test = "' . $id . '"
                                            id="erquantite" value="" placeholder=""/>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <!--<div class="form-group row">
                                 <label class="col-md-3 control-label">Quantité commandé:</label>
                                 <div class="col-md-9">
                                     <input type="number" class="form-control erquantitecm" name="erquantitecm"
                                            id="erquantitecm" value="" placeholder=""/>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="form-group row">
                                 <label class="col-md-3 control-label">Date de peremption:</label>
                                 <div class="col-md-9">
