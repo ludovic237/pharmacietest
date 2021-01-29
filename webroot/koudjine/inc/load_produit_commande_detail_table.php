@@ -75,7 +75,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
 
 
     if ($datas == null) {
-        $donnees = array('data' => []);
+        $donnees = array('data' => [],'qteCommandeRecuTotal' => 0,'qteCommandeRecu' => 0);
         echo json_encode($donnees);
     } else {
         $donnees = array('data' => $datas,'qteCommandeRecuTotal' => $_qteCommandeRecuTotal,'qteCommandeRecu' => $_qteCommandeRecu);

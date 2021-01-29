@@ -49,42 +49,36 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
 
     foreach ($vente as $k => $v) :
         $venteid = $v->id();
-        $prixVenteMois = $prixVenteMois + $v->prixTotal();
-        $nbrReductionVenteMois = $nbrReductionVenteMois + $v->reduction();
+
+
         // echo $venteid . "-";
         foreach ($enrayon as $k => $e) :
             $enrayonid = $e->id();
             $concerner =  $managerConcerner->getExistsVenteIdAndEn_rayonId($venteid, $enrayonid);
             foreach ($concerner as $k => $c) :
                 $nbrVenteMois = $nbrVenteMois + $c->quantite();
-
+                $prixVenteMois = $prixVenteMois + $c->prixUnit();
+                $nbrReductionVenteMois = $nbrReductionVenteMois + $c->reduction();
             endforeach;
         endforeach;
     endforeach;
 
     foreach ($venteTotal as $k => $v) :
         $venteid = $v->id();
-        $prixVenteTotal = $prixVenteTotal + $v->prixTotal();
-        $nbrReductionVenteTotal = $nbrReductionVenteTotal + $v->reduction();
+
         // echo $venteid . "-";
         foreach ($enrayon as $k => $e) :
             $enrayonid = $e->id();
             $concerner =  $managerConcerner->getExistsVenteIdAndEn_rayonId($venteid, $enrayonid);
             foreach ($concerner as $k => $c) :
                 $nbrVenteTotal = $nbrVenteTotal + $c->quantite();
-
+                $prixVenteTotal = $prixVenteTotal + ($c->quantite() * $c->prixUnit());
+                $nbrReductionVenteTotal = $nbrReductionVenteTotal + $c->reduction();
             endforeach;
         endforeach;
     endforeach;
 
-    foreach ($enrayon as $k => $e) :
-        $enrayonid = $e->id();
-        // echo $enrayonid . "-";
-        $concerner =  $managerConcerner->getExistsEn_rayonId($enrayonid);
-        foreach ($concerner as $k => $c) :
-            $nbrVenteTotal = $nbrVenteTotal + $c->quantite();
-        endforeach;
-    endforeach;
+
     $datas[] = array(
         'nomProduit' =>  $nom,
         'qteVenteMois' =>  $nbrVenteMois,

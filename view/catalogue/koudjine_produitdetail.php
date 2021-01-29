@@ -120,9 +120,9 @@ var test = "' . $id . '"
                                                             <thead>
                                                             <tr>
                                                                 <th>Nom</th>
-                                                                <th>Quantité mois en cours</th>
-                                                                <th>Réduction mois en cours</th>
-                                                                <th>Vente mois en cours</th>
+                                                                <th>Quantité</th>
+                                                                <th>Réduction</th>
+                                                                <th>Vente</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -150,9 +150,9 @@ var test = "' . $id . '"
                                                             <thead>
                                                             <tr>
                                                                 <th>Nom</th>
-                                                                <th>Quantité total</th>
-                                                                <th>Réduction total</th>
-                                                                <th>Vente total</th>
+                                                                <th>Quantité</th>
+                                                                <th>Réduction</th>
+                                                                <th>Vente</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -251,8 +251,8 @@ var test = "' . $id . '"
                                                             <thead>
                                                             <tr>
                                                                 <th>Nom</th>
-                                                                <th>Quantité mois en cours</th>
-                                                                <th>Cout mois en cours</th>
+                                                                <th>Quantité</th>
+                                                                <th>Cout</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -280,8 +280,8 @@ var test = "' . $id . '"
                                                             <thead>
                                                             <tr>
                                                                 <th>Nom</th>
-                                                                <th>Quantité total</th>
-                                                                <th>Cout total</th>
+                                                                <th>Quantité</th>
+                                                                <th>Cout</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>

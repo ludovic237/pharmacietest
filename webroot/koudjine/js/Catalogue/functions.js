@@ -12,7 +12,7 @@ var idfulldepense;
 $('#pharmanet_tab_vente').hide();
 
 $(document).ready(function () {
-
+    $("#detailTab").hide();
     if ($("#reportRangeDateVente").length > 0) {
         $("#reportRangeDateVente").daterangepicker({
             ranges: {
@@ -32,7 +32,6 @@ $(document).ready(function () {
             startDate: moment().subtract('days', 29),
             endDate: moment()
         }, function (start, end) {
-            alert("passe1");
             _startCaisse = start;
             _endCaisse = end;
             var a_ = start.format("YYYY-MM-DD HH:mm:ss");
@@ -49,7 +48,6 @@ $(document).ready(function () {
                 success: function (responce) {
                     //alert(responce);
                     var datas = responce;
-                    console.log(datas);
                     $('#qte_vente_total').html(datas.qteVenteTotal);
                     $('#reduction_vente_total').html(datas.reductionVenteTotal);
                     $('#prix_vente_total').html(datas.prixVenteTotal);
@@ -111,7 +109,6 @@ $(document).ready(function () {
                 dataType: 'json',
                 success: function (responce) {
                     var datas = responce;
-                    console.log(datas);
                     $('#qte_commande_total').html(datas.qteCommandeRecu);
                     $('#commande_recu_total').html(datas.qteCommandeRecuTotal);
                     $('#produit_commande_detail_b').dataTable({
@@ -1950,10 +1947,10 @@ function load_produit_detail(id, nomp) {
             dataType: 'json',
             success: function (responce) {
                 var datas = responce;
-                console.log(datas);
                 $('#qte_vente_total').html(datas.qteVenteTotal);
                 $('#reduction_vente_total').html(datas.reductionVenteTotal);
                 $('#prix_vente_total').html(datas.prixVenteTotal);
+                $('#produit_detail_b').empty();
                 $('#produit_detail_b').dataTable({
                     destroy: true,
                     data: datas.data,
@@ -1984,6 +1981,10 @@ function load_produit_detail(id, nomp) {
                 var datas = responce;
                 $('#produit_commande_detail_mois_a').dataTable({
                     destroy: true,
+                    searching: false,
+                    dFilter: false,
+                    bInfo: false,
+                    bPaginate: false,
                     data: datas.data,
                     columns: [
                         { data: "nom" },
@@ -1993,6 +1994,10 @@ function load_produit_detail(id, nomp) {
                 });
                 $('#produit_commande_detail_total_a').dataTable({
                     destroy: true,
+                    searching: false,
+                    dFilter: false,
+                    bInfo: false,
+                    bPaginate: false,
                     data: datas.data,
                     columns: [
                         { data: "nom" },
@@ -2007,7 +2012,9 @@ function load_produit_detail(id, nomp) {
             type: "POST",
             url: '/pharmacietest/koudjine/inc/load_produit_commande_detail_table.php',
             data: {
-                id: id
+                id: id,
+                start: _startDetailVente,
+                end: _endDetailVente,
             },
             dataType: 'json',
             success: function (responce) {
