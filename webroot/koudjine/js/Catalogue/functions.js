@@ -109,8 +109,10 @@ $(document).ready(function () {
                 dataType: 'json',
                 success: function (responce) {
                     var datas = responce;
-                    $('#qte_commande_total').html(datas.qteCommandeRecu);
-                    $('#commande_recu_total').html(datas.qteCommandeRecuTotal);
+                    $('#prix_cmd_total').html(datas.prixCommandeCmdTotal);
+                    $('#prix_recu_total').html(datas.prixCommandeRecuTotal);
+                    $('#qte_recu_total').html(datas.qteCommandeRecu);
+                    $('#qte_cmd_total').html(datas.qteCommandeCmd);
                     $('#produit_commande_detail_b').dataTable({
                         destroy: true,
                         data: datas.data,
@@ -186,13 +188,12 @@ $(document).ready(function () {
 
     });
 
-    if (test == 0)
-    {
+    if (test == 0) {
         console.log("No id");
     }
-    else{
+    else {
         console.log("id exist");
-        load_produit_detail(test,null);
+        load_produit_detail(test, null);
     }
 
 });
@@ -1896,7 +1897,9 @@ function load_produit_detail(id, nomp) {
             type: "POST",
             url: '/pharmacietest/koudjine/inc/load_produit_detail.php',
             data: {
-                id: id
+                id: id,
+                start: moment().startOf('month').format("YYYY-MM-DD HH:mm:ss"),
+                end: moment().endOf('month').format("YYYY-MM-DD HH:mm:ss"),
             },
             dataType: 'json',
             success: function (responce) {
@@ -1913,10 +1916,10 @@ function load_produit_detail(id, nomp) {
                     bPaginate: false,
                     data: datas.data,
                     columns: [
-                    { data: "nomProduit" },
-                    { data: "qteVenteMois" },
-                    { data: "redVenteMois" },
-                    { data: "prixVenteMois" },
+                        { data: "nomProduit" },
+                        { data: "qteVenteMois" },
+                        { data: "redVenteMois" },
+                        { data: "prixVenteMois" },
                     ]
                 });
                 $('#produit_detail_total_a').dataTable({
@@ -2019,8 +2022,10 @@ function load_produit_detail(id, nomp) {
             dataType: 'json',
             success: function (responce) {
                 var datas = responce;
-                $('#qte_commande_total').html(datas.qteCommandeRecu);
-                $('#commande_recu_total').html(datas.qteCommandeRecuTotal);
+                $('#prix_cmd_total').html(datas.prixCommandeCmdTotal);
+                $('#prix_recu_total').html(datas.prixCommandeRecuTotal);
+                $('#qte_recu_total').html(datas.qteCommandeRecu);
+                $('#qte_cmd_total').html(datas.qteCommandeCmd);
                 $('#produit_commande_detail_b').dataTable({
                     destroy: true,
                     data: datas.data,
@@ -2203,8 +2208,8 @@ function save_produit_detail() {
             //quantite: erquantitecm
         },
         success: function (data) {
-            noty({ text: 'Enregistrement effectué'+data, layout: 'topRight', type: 'success' });
-            load_produit_detail(_idprod,_nameprod);
+            noty({ text: 'Enregistrement effectué' + data, layout: 'topRight', type: 'success' });
+            load_produit_detail(_idprod, _nameprod);
             setTimeout(function () {
                 $("#iconPreviewDetailModif").modal('hide');
             }, 3000);

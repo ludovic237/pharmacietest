@@ -23,10 +23,18 @@ $managerEnRayon = new En_rayonManager($pdo);
 
 if (isset($_POST['id']))
     $id = $_POST['id'];
+if (isset($_POST['start']))
+{
+    $start = $_POST['start'];
+    $end = $_POST['end'];
+}
+    
+    
+
 
 $enrayon = $managerEnRayon->getList($id);
 $produit = $managerProduit->get($id);
-$vente = $managerVente->VenteActuMois();
+$vente = $managerVente->getDateVenteRange($start,$end);
 $venteTotal = $managerVente->getList();
 $nom = $produit->nom();
 

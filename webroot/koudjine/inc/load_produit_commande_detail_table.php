@@ -41,8 +41,10 @@ $fournisseur;
 $commandeid;
 $pdtcmd;
 
+$_qteCommandeCmd=0;
+$_prixCommandeCmdTotal=0;
 $_qteCommandeRecu=0;
-$_qteCommandeRecuTotal=0;
+$_prixCommandeRecuTotal=0;
 
 $datas = [];
 if (isset($_POST['id']) || isset($_GET['id'])) {
@@ -53,8 +55,10 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
         $pdtcmd = $managerProduitCommande->getExistsCmdIdAndProduitId($commandeid, $id);
         foreach ($pdtcmd as $k => $c) :
 
-            $_qteCommandeRecu = $_qteCommandeRecu + $c->qtiteRecu();
-            $_qteCommandeRecuTotal = $_qteCommandeRecuTotal + $c->qtiteRecu();
+            $_qteCommandeRecu = $_qteCommandeRecu + $c->qtiteCmd();
+            $_prixCommandeRecuTotal = $_prixCommandeRecuTotal + ($c->qtiteCmd()*$c->puCmd());
+            $_qteCommandeCmd = $_qteCommandeCmd + $c->qtiteRecu();
+            $_prixCommandeCmdTotal = $_prixCommandeCmdTotal + ($c->qtiteRecu()*$c->puCmd());
 
             $datas[] = array(
                 'date' => $v->dateCreation(),
@@ -65,8 +69,8 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
                 'prixVente' => $c->prixPublic(),
                 'qtiteCmd' => $c->qtiteCmd(),
                 'qtiteRecu' => $c->qtiteRecu(),
-                'totalCmd' => $c->qtiteCmd(),
-                'TotalRecu' => $c->qtiteRecu(),
+                'totalCmd' => ($c->qtiteCmd()*$c->puCmd()),
+                'TotalRecu' => ($c->qtiteRecu()*$c->puCmd()),
                 'etat' => $v->etat(),
                 'action' => $v->id(),
             );
@@ -78,7 +82,9 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
         $donnees = array('data' => [],'qteCommandeRecuTotal' => 0,'qteCommandeRecu' => 0);
         echo json_encode($donnees);
     } else {
-        $donnees = array('data' => $datas,'qteCommandeRecuTotal' => $_qteCommandeRecuTotal,'qteCommandeRecu' => $_qteCommandeRecu);
+        $donnees = array('data' => $datas,
+        'prixCommandeRecuTotal' => $_prixCommandeRecuTotal,'qteCommandeRecu' => $_qteCommandeRecu,
+        'prixCommandeCmdTotal' => $_prixCommandeCmdTotal,'qteCommandeCmd' => $_qteCommandeCmd);
         echo json_encode($donnees);
     }
 

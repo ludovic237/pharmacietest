@@ -96,7 +96,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
                     'prixunit' => $c->prixUnit(),
                     'quantite' => $c->quantite(),
                     'prixTotal' => $prixTotal,
-                    'reduction' => $reduction,
+                    'reduction' => $c->reduction(),
                     'prixVente' => $prixVente,
                 );
 
