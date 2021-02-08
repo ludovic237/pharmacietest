@@ -11,10 +11,11 @@ if($this->request->action == "index"){
 }
 $position_for_layout = '<li><a href="#">Concours</a></li><li class="active">'.$position.'</li>';
 $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="'.BASE_URL.'/koudjine/js/Catalogue/functions.js"></script>';
 ?> -->
 
- 
+
 
 <!-- START RESPONSIVE TABLES -->
 <div class="row">
@@ -25,7 +26,7 @@ $script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/koudjine/
 
                 <div class="panel-body">
                     <table class="table datatable table-bordered table-striped table-actions">
-                        <thead> 
+                        <thead>
                         <tr>
                             <th width="100">Nom</th>
                             <th width="200">Taux</th>

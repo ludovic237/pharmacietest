@@ -189,10 +189,10 @@ $(document).ready(function () {
     });
 
     if (test == 0) {
-        console.log("No id");
+        //console.log("No id");
     }
     else {
-        console.log("id exist");
+        //console.log("id exist");
         load_produit_detail(test, null);
     }
 
@@ -460,7 +460,6 @@ function enregistrer_produit(option, id) {
 }
 
 function update_row_produit(id) {
-    //alert("link");
     var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
     //alert(link);
     window.location.href = link;
@@ -1215,9 +1214,7 @@ function enregistrer_prescripteur(option, id) {
 }
 
 function update_row_prescripteur(id) {
-    //alert("link");
     var link = '/pharmacietest/bouwou/catalogue/prescripteuradd/' + id;
-    //alert(link);
     window.location.href = link;
 }
 
@@ -1615,7 +1612,6 @@ function enregistrer_utilisateur(option, id) {
     var telephone_1 = $('#telephone_1').val();
     var telephone_2 = $('#telephone_2').val();
     var site = $('#site').val();
-    ////alert("passe");
 
     if (option == 'Ajouter') {
         $.ajax({
@@ -1736,9 +1732,7 @@ function enregistrer_utilisateur(option, id) {
 }
 
 function update_row_user(id) {
-    //alert("link");
     var link = '/pharmacietest/bouwou/pharmanet/useradd/' + id;
-    //alert(link);
     window.location.href = link;
 }
 
@@ -1828,9 +1822,7 @@ function enregistrer_employe(option, id) {
 }
 
 function update_row_employe(int) {
-    //alert("link");
     var link = '/pharmacietest/bouwou/pharmanet/employeadd/' + int;
-    //alert(link);
     window.location.href = link;
 }
 
@@ -2292,7 +2284,6 @@ function info_row_entree(row) {
 function imprimer_bloc(titre, objet) {
     // Définition de la zone à imprimer
     var zone = document.getElementById(objet).innerHTML;
-    //alert("Hello");
     // Ouverture du popup,
     var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
 
