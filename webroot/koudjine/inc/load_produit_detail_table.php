@@ -96,7 +96,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
                     'prixunit' => $c->prixUnit(),
                     'quantite' => $c->quantite(),
                     'prixTotal' => $prixTotal,
-                    'reduction' => $reduction,
+                    'reduction' => $c->reduction(),
                     'prixVente' => $prixVente,
                 );
 
@@ -104,7 +104,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
         endforeach;
     endforeach;
     if (empty($datas )) {
-        $donnees = array('data' => []);
+        $donnees = array('data' => [],'reductionVenteTotal' => 0,'prixVenteTotal' => 0,'qteVenteTotal' => 0);
         echo json_encode($donnees);
     } else {
         $donnees = array('data' => $datas,'reductionVenteTotal' => $_reductionVenteTotal,'prixVenteTotal' => $_prixVenteTotal,'qteVenteTotal' => $_qteVenteTotal);

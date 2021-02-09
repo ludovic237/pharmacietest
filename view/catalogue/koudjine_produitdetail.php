@@ -120,9 +120,9 @@ var test = "' . $id . '"
                                                             <thead>
                                                             <tr>
                                                                 <th>Nom</th>
-                                                                <th>Quantité mois en cours</th>
-                                                                <th>Réduction mois en cours</th>
-                                                                <th>Vente mois en cours</th>
+                                                                <th>Quantité</th>
+                                                                <th>Réduction</th>
+                                                                <th>Vente</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -150,9 +150,9 @@ var test = "' . $id . '"
                                                             <thead>
                                                             <tr>
                                                                 <th>Nom</th>
-                                                                <th>Quantité total</th>
-                                                                <th>Réduction total</th>
-                                                                <th>Vente total</th>
+                                                                <th>Quantité</th>
+                                                                <th>Réduction</th>
+                                                                <th>Vente</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -251,8 +251,8 @@ var test = "' . $id . '"
                                                             <thead>
                                                             <tr>
                                                                 <th>Nom</th>
-                                                                <th>Quantité mois en cours</th>
-                                                                <th>Cout mois en cours</th>
+                                                                <th>Quantité</th>
+                                                                <th>Cout</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -280,8 +280,8 @@ var test = "' . $id . '"
                                                             <thead>
                                                             <tr>
                                                                 <th>Nom</th>
-                                                                <th>Quantité total</th>
-                                                                <th>Cout total</th>
+                                                                <th>Quantité</th>
+                                                                <th>Cout</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -319,13 +319,13 @@ var test = "' . $id . '"
 
                                                     </div>
                                                     <div class="panel-body" style="display: flex;justify-content: space-between;">
-                                                        <h3>Quantite :
-                                                            <span id="qte_commande_total">
-                                                            </span>
+                                                        <h3>Total commandé:
+                                                            <span id="prix_cmd_total">
+                                                            </span> FCFA
                                                         </h3>
-                                                        <h3>Quantité total :
-                                                            <span id="commande_recu_total">
-                                                            </span>
+                                                        <h3>Total recu :
+                                                            <span id="prix_recu_total">
+                                                            </span> FCFA
                                                         </h3>
                                                     </div>
                                                     <div class="panel-body table-responsive">
@@ -369,11 +369,11 @@ var test = "' . $id . '"
                                                 <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
-                                                        <h1>Stock total :
+                                                        <h1>Total comma,dé :
                                                             <span id="tab_produit_stock_detail_total">
                                                             </span>
                                                         </h1>
-                                                        <h1>Entrée en rayon :
+                                                        <h1>Stock total :
                                                             <span id="tab_produit_stock_detail_restant">
                                                             </span>
                                                         </h1>

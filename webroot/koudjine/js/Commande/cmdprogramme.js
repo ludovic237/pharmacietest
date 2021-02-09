@@ -113,6 +113,7 @@ function enregistrer_commande_programme() {
         var qte = $('#qte_cmdprogramme').val();
         var prixachat = $('#prixachat_cmdprogramme').val();
         var prixpublic = $('#prixpublic_cmdprogramme').val();
+        var reduction = $('#reduction_max').val();
         var date = $('#date_cmdprogramme').val();
         if(date == '' || qte == ''){
             alert("Vérifier les champs Quantité et Date !!!");
@@ -144,6 +145,7 @@ function enregistrer_commande_programme() {
                 + '<td class="prixachat">' + prixachat + '</td>'
                 + '<td class="prixpublic">' + prixpublic + '</td>'
                 + '<td class="date">' + date + '</td>'
+                + '<td class="reduction">' + reduction + '</td>'
                 + '<td>'
                 + '<button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row_commande(' + codebarre + ')" ><span class="fa fa-times"></span></button>'
                 + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + codebarre + ');" >Imprimer Ticket</span></button>'
@@ -358,7 +360,7 @@ function valider_commande(imprimer) {
                             if (j == 2) { prix = parseInt($(this).html()); }
                             if (j == 3) { prixPublic = parseInt($(this).html()); }
                             if (j == 4) { datep = $(this).html(); }
-
+                            if (j == 5) { reduction = $(this).html(); }
 
                         });
                         var cat = '<tr>'
@@ -374,7 +376,6 @@ function valider_commande(imprimer) {
                         h++;
                         total = total + (prix * qte);
                         nbre = nbre +  qte;
-                        //alert(nbre);
                         //alert(prix+'-'+qte+'-'+prixPublic);
                         $.ajax({
                             type: "POST",
@@ -386,11 +387,13 @@ function valider_commande(imprimer) {
                                 prixu: prix,
                                 prixp: prixPublic,
                                 datep: datep,
-                                qte: qte
+                                qte: qte,
+                                reduction: reduction
                             },
                             success: function (server_responce) {
                                 //alert(server_responce);
                                 //alert(idc);
+                                alert("OK");
                                 rec++;
 
                                 $("#mb-confirmation").attr("data", idc);
@@ -425,6 +428,7 @@ function valider_commande(imprimer) {
                                     $("#date_commande").html(today);
                                     $("#iconPreviewRecu").modal("show");
                                 }else{
+                                    
                                     if(rec == count){
                                         console.log('Redirige');
                                         var link = '/pharmacietest/bouwou/commande/list';

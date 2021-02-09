@@ -159,7 +159,7 @@ class En_rayonManager
     }
     public function add(En_rayon $en_rayon)
     {
-        $q = $this->_db->prepare('INSERT INTO en_rayon SET id = :id, produit_id = :produit_id, fournisseur_id = :fournisseur_id, commande_id = :commande_id, dateLivraison = now(), datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prixa, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = 0, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO en_rayon SET id = :id, produit_id = :produit_id, fournisseur_id = :fournisseur_id, commande_id = :commande_id, dateLivraison = now(), datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prixa, quantite = :quantite, reduction = :reduction, quantiteRestante = :quantiteRestante, supprimer=0');
         $q->bindValue(':id', $en_rayon->id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $en_rayon->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':fournisseur_id', $en_rayon->fournisseur_id(), PDO::PARAM_INT);
@@ -168,6 +168,7 @@ class En_rayonManager
         $q->bindValue(':prixv', $en_rayon->prixVente());
         $q->bindValue(':prixa', $en_rayon->prixAchat());
         $q->bindValue(':quantite', $en_rayon->quantite());
+        $q->bindValue(':reduction', $en_rayon->reduction());
         $q->bindValue(':quantiteRestante', $en_rayon->quantiteRestante());
         $q->execute();
     }

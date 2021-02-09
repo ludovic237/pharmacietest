@@ -276,7 +276,7 @@ class CommandeManager
     public function CommandeActuMois()
     {
         $commandes = array();
-        $q = $this->_db->prepare('SELECT * FROM commande WHERE supprimer = 0 AND dateCreation > DATE_SUB(now(), INTERVAL 1 MONTH))');
+        $q = $this->_db->prepare('SELECT * FROM commande WHERE supprimer = 0 AND dateCreation > DATE_SUB(now(), INTERVAL 1 MONTH)');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $commandes[] = new Commande($donnees);

@@ -163,7 +163,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                     <thead>
                                                     <tr>
                                                         <th width="50">id</th>
-                                                        <th>Employé</th>
+                                                        <th>Nom vendeur</th>
                                                         <th width="100">Session</th>
                                                         <th width="100">Etat</th>
                                                         <th width="100">fond Caisse Ouvert</th>
