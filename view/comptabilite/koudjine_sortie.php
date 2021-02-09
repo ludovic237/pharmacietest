@@ -21,8 +21,12 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="panel-body">
                         <div class="form-group">
                             <label class="col-md-3 control-label">Entrée Produit:</label>
-                            <div class="col-md-9">
-                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->ide . '"'; ?> data1="<?php echo $this->request->action; ?>" class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
+                            <div class="col-md-5">
+                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->ide . '"'; ?> <?php if (isset($entree)) echo 'data2 = "' . $entree->idp . '"'; ?> data1="sortie" class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
+                            </div>
+                            <label class="col-md-2 control-label">Stock:</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" name="nom" id="stock_detail" data="<?php if (isset($entree)) echo $entree->quantiteRestante; ?>" value="<?php if (isset($entree)) echo $entree->quantiteRestante; ?>" disabled />
                             </div>
                         </div>
                         <div class="row">
@@ -70,9 +74,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </div> -->
                         <?php if (isset($entree)) { ?>
                             <div class="row" style="margin-top: 15px">
-                                <div class="col-md-6 control-label">
+                                <div class="col-md-4 control-label">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label"> Parent :</label>
+                                        <label class="col-md-3 control-label">Parent:</label>
                                         <div class="col-md-9">
                                             <select class="form-control question selectpicker" name="question" id="parent">
                                                 <option value="0">Veuillez selectionner</option>
@@ -95,12 +99,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 control-label">
+                                <div class="col-md-5 control-label">
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Quantité:</label>
                                         <div class="col-md-5">
                                             <input width="200px" class="form-control" type="text" value="" id="qte_sortie">
                                         </div>
+                                        <button class="btn btn-success" onclick="load_produit_parent()">Valider</button>
                                     </div>
                                 </div>
                             </div>
@@ -133,8 +138,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                             <tr>
                                                 <th width="200">Nom</th>
                                                 <th width="100">Quantité</th>
+                                                <th width="100">Contenu</th>
                                                 <th width="100">Quantité en stock</th>
                                                 <th width="100">Date de Livraison</th>
+                                                <th width="100">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tab_Bsortie">
@@ -167,7 +174,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             </div> -->
                             <div class="btn-group pull-right" style="margin-top: 15px">
                                 <a class="btn btn-primary" style="margin-right: 20px" href="<?php echo Router::url('bouwou/catalogue/assureur'); ?>">Annuler</a>
-                                <button class="btn btn-success" onclick="valider_sortie()" type="submit">Enregistrer</button>
+                                <button class="btn btn-success" onclick="valider_produit_sortie()" type="submit">Enregistrer</button>
                             </div>
                         <?php } ?>
 
@@ -242,6 +249,47 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     </tr>
                                 </thead>
                                 <tbody id="tab_Bload_produit">
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewSortie" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width: 90%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="table-responsive">
+                            <table id="tab_load_produit" class="table datatable table-bordered table-striped table-actions">
+                                <thead>
+                                <tr>
+                                    <th width="200">Nom</th>
+                                    <th width="100">Prix Unitaire</th>
+                                    <th width="100">Quantité</th>
+                                    <th width="100">Quantité en Stock</th>
+                                    <th width="100">Reduction(%)</th>
+                                    <th width="200">Date de Livraison</th>
+                                    <th width="100">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tab_Bload_produit_sortie">
 
                                 </tbody>
                             </table>

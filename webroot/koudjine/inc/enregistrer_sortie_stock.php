@@ -15,6 +15,8 @@ $managerPr = new ProduitManager($pdo);
 $id=$_POST['id'];
 $qte=$_POST['qte'];
 $detail_id=$_POST['detail_id'];
+$contenu=$_POST['contenu'];
+echo $id."\n".$qte."\n".$contenu."\n".$detail_id;
 
 
         $conc = new SortieStock(array(
@@ -33,7 +35,7 @@ $detail_id=$_POST['detail_id'];
         if($detail_id !='' && $detail_id != null){
             $ent1 = $managerEn->get($detail_id);
             //$pro = $managerPr->get($ent->produit_id());
-            $contenu=$_POST['contenu'];
+
             $ent1->setquantiteRestante(($ent1->quantiteRestante()+ ($qte * $contenu)));
             $managerEn->update($ent1);
         }
