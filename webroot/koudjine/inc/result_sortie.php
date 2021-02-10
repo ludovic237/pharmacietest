@@ -8,11 +8,12 @@ global $conndb;
 if (isset($_GET["motclef1"])) {
     $motclef = '%'.$_GET["motclef1"].'%';
     $action = $_GET["action"];
+    echo $action;
     $q = array('motclef' => $motclef . '%');
     $sth = $pdo->prepare("
               SELECT p.nom, p.id as idp 
               FROM produit p
-              WHERE p.nom like :motclef 
+              WHERE p.nom like :motclef and p.grossiste_id != '' and p.supprimer = 0
               
             ");
     $sth->execute($q);

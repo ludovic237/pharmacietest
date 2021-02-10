@@ -28,7 +28,7 @@ if (isset($_POST['id']))
 $enrayon = $managerEnRayon->getListSortie($id);
 foreach ($enrayon as $key => $value) :
     $sortie_stock = $managerSortie->getListId($value->id());
-    foreach ($sortie_stock as $key => $e) :
+    foreach ($sortie_stock as $k => $e) :
         $quantiteTotal = $quantiteTotal + $e->quantite();
     endforeach;
 endforeach;
