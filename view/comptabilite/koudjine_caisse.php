@@ -1224,32 +1224,51 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                 </div>
             </div>
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
-                <div class="row">
-                    <div class="col-md-12 ">
-                        <div class="panel panel-default">
+                <div class="panel panel-default tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active"><a href="#tab-bon-one" role="tab" data-toggle="tab">Bon</a></li>
+                        <li><a href="#tab-bon-two" role="tab" data-toggle="tab">Liste</a></li>
+                    </ul>
+                    <div class="panel-body tab-content">
+                        <div class="tab-pane active" id="tab-bon-one">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 ">
+                                        <div class="panel panel-default">
 
-                            <div class="panel-body panel-body-table">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>Nom client</th>
-                                            <th>Montant</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="tab_GBonCaisse" data="<?php echo $action_fermeture->id; ?>">
+                                            <div class="panel-body panel-body-table">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Nom client</th>
+                                                            <th>Montant</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tab_GBonCaisse" data="<?php echo $action_fermeture->id; ?>">
 
-                                        </tbody>
-                                    </table>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
+                                                     <h6>Total <span>0000</span> </h6>
+                                                </div> -->
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <!-- <div style="display: flex;justify-content: end; margin:50px 30px 0px 0px;">
-                                     <h6>Total <span>0000</span> </h6>
-                                </div> -->
                             </div>
                         </div>
+                        <div class="tab-pane" id="tab-bon-two">
+                            <div class="panel-body">
+                                hello
+                            </div>
 
+                        </div>
                     </div>
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -1468,7 +1487,7 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                                                        <span class="input-group-addon"><span class="fa fa-money"></span></span>
                                                        <input class="form-control" />
                                                   </div>
-                                                  <!-- <span class="help-block">Password field sample</span> 
+                                                  <!-- <span class="help-block">Password field sample</span>
                                              </div>
                                         </div>
                                         <div class="form-group">
@@ -1477,7 +1496,7 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                                                   <div class="input-group" style="display: flex;">
                                                        <input class="form-control" />
                                                   </div>
-                                                  <!-- <span class="help-block">Password field sample</span> 
+                                                  <!-- <span class="help-block">Password field sample</span>
                                              </div>
                                         </div>
                                         <div class="form-group">
@@ -1486,7 +1505,7 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                                                   <div class="input-group" style="display: flex;">
                                                        <input class="form-control" />
                                                   </div>
-                                                  <!-- <span class="help-block">Password field sample</span> 
+                                                  <!-- <span class="help-block">Password field sample</span>
                                              </div>
                                         </div>
                                         <div class="form-group">
@@ -1495,7 +1514,7 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                                                   <div class="input-group" style="display: flex;">
                                                        <input class="form-control" />
                                                   </div>
-                                                  
+
                                              </div>
                                         </div>
                                         <div class="form-group row">
@@ -1504,21 +1523,21 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                                                   <div class="input-group">
                                                        <input class="form-control" />
                                                   </div>
-                                                  
+
                                              </div>
                                              <label class="col-md-2 col-xs-1 control-label">Fait le </label>
                                              <div class="col-md-2 col-xs-2">
                                                   <div class="input-group">
                                                        <input type="date" style="line-height: normal;" class="form-control" />
                                                   </div>
-                                                  
+
                                              </div>
                                              <label class="col-md-2 col-xs-1 control-label"> à </label>
                                              <div class="col-md-2 col-xs-2">
                                                   <div class="input-group">
                                                        <input class="form-control" />
                                                   </div>
-                                                  
+
                                              </div>
                                         </div>
                                         <div class="form-group">
@@ -1527,7 +1546,7 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                                                   <div class="input-group" style="display: flex;">
                                                        <input class="form-control" />
                                                   </div>
-                                                  
+
                                              </div>
                                         </div>
 
