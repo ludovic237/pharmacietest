@@ -195,17 +195,18 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
                                         <tr style="display: flex;table-layout: fixed; width: 40mm ;">
                                             <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
 
-                                                <div style="display: flex;flex-direction: column;">
+                                                <div style="display: flex;flex-direction: column;padding: 4px;">
                                                     <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
                                                         <p class="nomp" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
-                                                        <p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                        <!--<p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>-->
                                                     </div>
-                                                    <div style="justify-content: center;display:flex">
+                                                    <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
+                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 12px;align-content: center;align-items: center;justify-content: center;justify-items: center;display: flex;"><span class="prixv"></span> FCFA</p>
                                                         <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="qrcode"></p>
                                                     </div>
-                                                    <div style="display: flex;flex-direction: row;justify-content: space-around;">
-                                                        <p class="datel" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
-                                                        <p class="datep" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                    <div style="display: flex;flex-direction: column;justify-content: space-between;width:100%">
+                                                        <p class="nomf" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"><span class="datep"></span> / <span class="datel" ></span></p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -213,10 +214,10 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
                                         </tr>
                                         <!-- <tr style="display: flex">
                                             <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
-                                                
+
                                             </td>
                                             <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
-                                                
+
                                             </td>
                                         </tr> -->
                                     </tbody>

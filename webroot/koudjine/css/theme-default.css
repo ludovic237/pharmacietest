@@ -15,6 +15,99 @@
 @import "dropzone/dropzone.css";
 @import "animate/animate.min.css";
 
+@media print {
+
+  body{
+    font-size: 10px!important;
+  }
+  @media screen {
+    body{
+      font-size: 10px!important;
+    }
+    .divine{
+      font-size: 10px!important;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    p{
+      font-size: 10px!important;
+    }
+    div{
+      font-size: 10px!important;
+    }
+    td{
+      font-size: 10px!important;
+      border-color: #000000;
+      border-width: 1px;
+      border: 1px solid #000000;
+    }
+    th{
+      font-size: 10px!important;
+      border-color: #000000;
+      border-width: 1px;
+    }
+    table{
+      font-size: 10px!important;
+    }
+    .panel-body.panel-body-table .table {
+      margin-bottom: 0px;
+      border: 0px;
+    }
+    .panel-body.panel-body-table td, .panel-body.panel-body-table th {
+      padding: 8px 10px;
+  }
+    .table-bordered {
+      border: 1px solid #000000;
+    }
+    .table > tfoot > tr > td {
+      border-color: #000000;
+      border-width: 1px;
+  }
+    .table-bordered>tbody>tr>td{
+      border: 1px solid #000000;
+    }
+    .table>tfoot>tr>td {
+      padding: 8px;
+      line-height: 1.42857143;
+      vertical-align: top;
+      border-top: 1px solid #000000;
+  }
+  .table {width: 100%;max-width: 100%;margin-bottom: 20px;}
+  tbody {display: table-row-group;vertical-align: middle;border-color: inherit;}
+  }
+
+  @media screen, print {
+    body{
+      font-size: 10px!important;
+    }
+    .divine{
+      font-size: 10px!important;
+    }
+    p{
+      font-size: 10px!important;
+    }
+    div{
+      font-size: 10px!important;
+    }
+    td{
+      font-size: 10px!important;
+    }
+  }
+  .divine{
+    font-size: 10px!important;
+  }
+  p{
+    font-size: 10px!important;
+  }
+  div{
+    font-size: 10px!important;
+  }
+  td{
+    font-size: 10px!important;
+  }
+
+}
 .ticketfacture p{
   margin: 0px;
 }

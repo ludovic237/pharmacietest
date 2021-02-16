@@ -211,6 +211,15 @@ class FournisseurManager
 
     }
 
+    public function getByStatut($info,$statut)
+    {
+
+        $q = $this->_db->query("SELECT * FROM fournisseur WHERE supprimer = 0 AND statut='".$statut."' AND id = " . $info);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Fournisseur($donnees);
+
+    }
+
     public function getList()
     {
         $fournisseurs = array();

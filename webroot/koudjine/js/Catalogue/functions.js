@@ -2274,8 +2274,6 @@ function info_row_entree(row) {
             qrcode.makeCode(code1);
 
         }
-
-
     })
     $("#iconPreviewEntree").modal("show");
 
