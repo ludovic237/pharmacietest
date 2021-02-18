@@ -53,7 +53,7 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                     <div class="panel-body">
                         <div style="justify-content:space-evenly;display:flex; margin-bottom: 10px;">
                             <button class="btn btn-primary  pull-left" data="" id=""
-                                    onclick="open_bon_caisse('<?php echo $action_fermeture->id; ?>')">Bon de caisse
+                                    onclick="open_bon_caisse()">Bon de caisse
                             </button>
                             <!--                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_rapport('<?php //echo $action_fermeture->id;
                             ?>//')">Rapport</button>-->
@@ -1575,7 +1575,7 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                                                 <th width="100">Ref</th>
                                             </tr>
                                             </thead>
-                                            <tbody id="tab_Bload_produit_caisse">
+                                            <tbody id="tab_Bload_produit_caisse_liste">
 
                                             </tbody>
                                         </table>

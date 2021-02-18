@@ -12,7 +12,7 @@ if (isset($_POST['id']))
 
 if (isset($_POST['id'])){
     $bon = $manager->getCodebarre_id($id);
-    $donnees = array('erreur' =>'non', 'nom' => $bon->nom_client() ,'montant' => $bon->montant(), 'id' => $bon->id());
+    $donnees = array('erreur' =>'non', 'nom' => $bon->nom_client() ,'montant' => $bon->montant(), 'id' => $bon->id(), 'dateE' => $bon->dateEncaisser());
     echo json_encode($donnees);
 
 }

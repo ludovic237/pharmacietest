@@ -24,7 +24,7 @@ if (isset($_POST['id'])){
 
     foreach ($ventes as $k => $v) :
         //echo $v->en_rayon_id();
-        if($count == 5) break;
+        if($count == 10) break;
         $produits = $managerCo->getList($v->id());
         $nom = "";
         foreach ($produits as $p => $q) :

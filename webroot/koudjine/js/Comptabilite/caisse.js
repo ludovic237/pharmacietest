@@ -137,12 +137,13 @@ $(document).ready(function () {
 
 
     $("#scanner_bon").keyup(function (event) {
+        var recherche
         if (event.keyCode == 13) {
-            var recherche = $(this).val();
+             recherche = $(this).val();
             //$("#resultat ul").empty();
             recherche = $.trim(recherche);
             if (recherche.length > 1) {
-                ////alert('yes');
+                //alert('yes');
                 $.ajax({
                     type: "POST",
                     url: "/pharmacietest/koudjine/inc/gerer_bon_caisse.php",
@@ -151,19 +152,33 @@ $(document).ready(function () {
                     },
                     dataType: 'json',
                     success: function (data) {
-                        ////alert(data);
+                        //alert(data);
                         if (data.erreur == 'non') {
+                            if(data.dateE != null){
+                                $('#tab_GBonCaisse').empty();
+                                var cat = '<tr id="' + data.id + '" >'
+                                    + ' <td> <input class=\'nom\' type="text" value="' + data.nom + '"></td>'
+                                    + ' <td><input class=\'montant\' type="text" value="' + data.montant + '"></td>'
+                                    + '<td>'
+                                    + '<button disabled class="btn btn-primary btn-rounded btn-sm" onclick="gerer_bon_caisse()" >déjà Encaisser</button>'
+                                    + '</td>'
+                                    + '</tr>';
+                                $('#tab_GBonCaisse').prepend(cat);
+                                $("#scanner_bon").val('');
+                            }else{
+                                $('#tab_GBonCaisse').empty();
+                                var cat = '<tr id="' + data.id + '" >'
+                                    + ' <td> <input class=\'nom\' type="text" value="' + data.nom + '"></td>'
+                                    + ' <td><input class=\'montant\' type="text" value="' + data.montant + '"></td>'
+                                    + '<td>'
+                                    + '<button class="btn btn-primary btn-rounded btn-sm" onclick="gerer_bon_caisse()" >Encaisser</button>'
+                                    + '</td>'
+                                    + '</tr>';
+                                $('#tab_GBonCaisse').prepend(cat);
+                                $("#scanner_bon").val('');
+                            }
+                            //alert('passe');
 
-                            $('#tab_GBonCaisse').empty();
-                            var cat = '<tr id="' + data.id + '" >'
-                                + ' <td> <input class=\'nom\' type="text" value="' + data.nom + '"></td>'
-                                + ' <td><input class=\'montant\' type="text" value="' + data.montant + '"></td>'
-                                + '<td>'
-                                + '<button class="btn btn-primary btn-rounded btn-sm" onclick="gerer_bon_caisse()" >Encaisser</button>'
-                                + '</td>'
-                                + '</tr>';
-                            $('#tab_GBonCaisse').prepend(cat);
-                            $("#scanner_bon").val('');
 
                         }
                     }
@@ -186,8 +201,9 @@ $(document).ready(function () {
     })
 
 });
-function open_bon_caisse(caisse_id) {
+function open_bon_caisse() {
     $('#tab_GBonCaisse').empty();
+    $("#scanner_bon").select();
     $("#iconPreviewBonCaisse").modal("show");
 }
 
@@ -292,7 +308,6 @@ function gerer_bon_caisse() {
 
     });
 }
-
 function reimprime_ticket_caisse(id) {
     var datevte = $("#" + id + " .datevte").html();
     var yo = datevte;
@@ -879,9 +894,10 @@ function liste_caisse(id) {
         },
         success: function (data) {
             //alert(data);
+
+            $('#tab_Bload_produit_caisse_liste').empty();
+            $('#tab_Bload_produit_caisse_liste').prepend(data);
             $("#iconPreviewListeCaisse").modal('show');
-            $('#tab_Bload_produit_caisse').empty();
-            $('#tab_Bload_produit_caisse').prepend(data);
 
 
         }
