@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="correction de quelque erreur dans produit detail">
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/rapport_caisse_all.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/comptabilite/koudjine_caisse.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/comptabilite/koudjine_caisse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/comptabilite/koudjine_entre.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/comptabilite/koudjine_entre.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/fournisseur.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/fournisseur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/vente.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/vente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/css/theme-default.css" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/css/theme-default.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Catalogue/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Catalogue/functions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/caisse.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/caisse.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -452,6 +443,8 @@
       <workItem from="1611921812667" duration="2809000" />
       <workItem from="1613458163920" duration="12185000" />
       <workItem from="1613473480883" duration="4770000" />
+      <workItem from="1613549451663" duration="83000" />
+      <workItem from="1613564608826" duration="71000" />
     </task>
     <task id="LOCAL-00054" summary="merge">
       <created>1600771546162</created>
