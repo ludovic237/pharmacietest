@@ -204,7 +204,7 @@ function showPrintCmdProgramme(id) {
         "code128" // type (string)
 
     );
-    
+
     $("#iconPreviewPrintCmdProgramme .today").html(today);
     $("#iconPreviewPrintCmdProgramme .datelivraisron").html(datelivraisron);
 
@@ -393,7 +393,7 @@ function valider_commande(imprimer) {
                             success: function (server_responce) {
                                 //alert(server_responce);
                                 //alert(idc);
-                                alert("OK");
+                                //alert("OK");
                                 rec++;
 
                                 $("#mb-confirmation").attr("data", idc);
@@ -428,7 +428,7 @@ function valider_commande(imprimer) {
                                     $("#date_commande").html(today);
                                     $("#iconPreviewRecu").modal("show");
                                 }else{
-                                    
+
                                     if(rec == count){
                                         console.log('Redirige');
                                         var link = '/pharmacietest/bouwou/commande/list';

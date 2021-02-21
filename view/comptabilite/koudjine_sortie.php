@@ -31,13 +31,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </div>
                         <div class="row">
                             <div class="col-md-12 control-label">
-                                <table id="tab_Grecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                <table id="tab_SGrecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
                                     <thead>
                                         <tr>
                                             <th style="width: 100%;">Nom</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tab_Brecherche">
+                                    <tbody id="tab_SBrecherche">
 
                                     </tbody>
                                 </table>

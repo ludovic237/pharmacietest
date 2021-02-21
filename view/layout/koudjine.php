@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" id="theme" href="<?php echo BASE_URL . '/koudjine/css/theme-default.css'; ?>" />
 
 
+
 </head>
 
 <body>
@@ -432,7 +433,7 @@
             <!-- PAGE TITLE -->
             <div class="page-title">
                 <?php if (isset($page_for_layout)) { ?>
-                    <h2><span class=" 
+                    <h2><span class="
                     <?php
                     if ($this->request->controller == 'catalogue') {
                     ?>
@@ -563,7 +564,6 @@
         </div>
     </div>
     <!-- end danger -->
-
 
     <!-- START PRELOADS -->
     <audio id="audio-alert" src="<?php echo BASE_URL . '/koudjine/audio/alert.mp3'; ?>" preload="auto"></audio>

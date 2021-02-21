@@ -67,6 +67,11 @@ class ComptabiliteController extends Controller
             'table' => 'vente',
             'conditions' => "supprimer = 0 AND prixPercu = 0 AND etat = \"Crédit\" AND ISNULL(caisse_id) = 1"
         ));
+        $d['bon_caisse'] = $this->Comptabilite->find(array(
+            'fields' => 'b.id as idb, nom_client, identifiant, montant',
+            'table' => 'bon_caisse b, caisse c, employe e',
+            'conditions' => "b.supprimer = 0 AND b.caisse_id = c.id AND c.user_id = e.id AND b.type = \"Générer\""
+        ));
         $d['caisseCheck'] = $this->Comptabilite->findFirst(array(
             //'fields' => 'produit.nom as nom',
             'table' => 'caisse',
@@ -383,7 +388,13 @@ class ComptabiliteController extends Controller
         $this->loadModel('Comptabilite');
         $d['sorties'] = $this->Comptabilite->find(array(
             //'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
-            'table' => 'sortie_stock',
+            'table' => 'sortie_stock s, type_sortie t',
+            //'order' => 'dateLivraison-ASC',
+            'conditions' => "s.supprimer = 0 AND s.type_sortie_id = t.id "
+        ));
+        $d['type_sortie'] = $this->Comptabilite->find(array(
+            //'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
+            'table' => 'type_sortie',
             //'order' => 'dateLivraison-ASC',
             'conditions' => "supprimer = 0 "
         ));
@@ -402,10 +413,10 @@ class ComptabiliteController extends Controller
                         'conditions' => array('e.id' => $v->detail_id, 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
                     ));
                     $d['produit_detail'][$i] = $d['produit_detail'][$i]->nom;
-                    $d['operation'][$i] = 'Détail';
+                    $d['operation'][$i] = $v->nom;
                 }else{
                     $d['produit_detail'][$i] = $v->detail_id;
-                    $d['operation'][$i] = 'Périmé';
+                    $d['operation'][$i] = $v->nom;
                 }
 
                 $i++;

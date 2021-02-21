@@ -353,7 +353,7 @@ class VenteManager
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
-    } 
+    }
 
     public function VenteCountEtat($text)
     {
@@ -362,7 +362,7 @@ class VenteManager
         $q->execute();
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return $donnees;
-    } 
+    }
 
     public function getDateVente($info)
     {
@@ -381,7 +381,7 @@ class VenteManager
         $q = $this->_db->prepare( "SELECT * FROM `vente` WHERE `dateVente` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");
         $ventes = array();
         $q->execute();
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) 
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
             $ventes[] = new Vente($donnees);
         }
@@ -437,7 +437,19 @@ class VenteManager
         }
         return $ventes;
     }
-    
+
+    public function getListCaisseCompleteByEtat($id,$type)
+    {
+        $ventes = array();
+        $q = $this->_db->prepare("SELECT * FROM `vente` WHERE `supprimer` = 0 AND `caisse_id` = ".$id." AND `etat` = '".$type."' AND `prixPercu` <> 0 ORDER BY `dateVente` DESC");
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $ventes[] = new Vente($donnees);
+        }
+        return $ventes;
+    }
+
     public function update(Vente $vente)
     {
 

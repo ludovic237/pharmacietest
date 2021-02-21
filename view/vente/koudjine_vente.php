@@ -130,7 +130,16 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                                             <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
                                             <td class="prixp"><?php echo $v->prixPercu; ?></td>
-                                            <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                            <td class="client">
+                                                <?php
+                                                if (isset($user)){
+                                                    echo $user[$i];
+                                                }
+                                                else{
+                                                    echo "Noooo";
+                                                }
+
+                                                ?></td>
                                             <td class="seller"><?php echo $v->identifiant; ?></td>
                                             <td class="datevte">
                                                 <?php echo $v->dateVente; ?>

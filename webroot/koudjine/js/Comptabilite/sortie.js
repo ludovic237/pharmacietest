@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $("#tab_Grecherche").hide();
+    $("#tab_SGrecherche").hide();
     $(".contenu").show();
 
     $("#parent").change(function () {
@@ -119,7 +120,7 @@ $(document).ready(function(){
             recherche = $.trim(recherche);
             var data = 'motclef1=' + recherche;
             if (recherche.length > 1) {
-                ////alert('yes');
+                //alert($(this).attr("data1"));
                 $.ajax({
                     type: "GET",
                     url: "/pharmacietest/koudjine/inc/result_sortie.php",
@@ -128,13 +129,20 @@ $(document).ready(function(){
                         action: $(this).attr("data1")
                     },
                     success: function (server_responce) {
-                        $("#tab_Grecherche").show();
-                        $("#tab_Brecherche").html(server_responce).show();
+                        if($("#recherche").attr("data1") == 'sortie'){
+                            $("#tab_SGrecherche").show();
+                            $("#tab_SBrecherche").html(server_responce).show();
+                        }else{
+                            $("#tab_Grecherche").show();
+                            $("#tab_Brecherche").html(server_responce).show();
+                        }
+
                         ////alert(server_responce);
                     }
                 })
             } else {
                 $("#tab_Grecherche").hide();
+                $("#tab_SGrecherche").hide();
             }
         }
 
@@ -174,16 +182,17 @@ function valider_produit_sortie() {
     });
 }
 function valider_sortie() {
-    var qteT = parseInt($("#qte_sortie").val());
+
     //alert(qteT);
-    if(false){
+    if($("#recherche").attr('data1')=='autre' && $("#qte_sortie").val()== ''){
         $('#message-box-danger p').html('Veuillez Entrer une quantité valide !!!');
         $("#message-box-danger").modal("show");
         setTimeout(function () {
             $("#message-box-danger").modal("hide");
         }, 6000);
     } else {
-        if($("#choix option:selected").val() == 1){
+        var qteT = parseInt($("#qte_sortie").val());
+        if($("#recherche").attr('data1')=='sortie'){
             var qte_total = 0, statut = 1;
             $('#tab_Bsortie  tr').each(function (i) {
                 var id1 = $(this).attr("id");
@@ -244,11 +253,12 @@ function valider_sortie() {
                 data: {
                     id: $("#recherche").attr('data'),
                     qte: qteT,
+                    type_sortie_id: $("#choix").val(),
                     detail_id:null
                 },
                 success: function (server_responce) {
                     //alert(server_responce);
-                    var link = '/pharmacietest/bouwou/comptabilite/sortie';
+                    var link = '/pharmacietest/bouwou/comptabilite/sortieautre';
                     window.location.href = link;
 
                 }
@@ -264,7 +274,7 @@ function load_produit(id, action) {
             url: '/pharmacietest/koudjine/inc/load_produit_sortie.php',
             data: {
                 id: id,
-                action: action
+                action: $("#recherche").attr('data1')
             },
             success: function (server_responce) {
                 
@@ -351,7 +361,7 @@ function valider_stock_detail(id) {
                         }
 
                     });
-                    if (action == 0) {
+                    if (action == 0 && $("#qte_sortie").val() < data.stock) {
                         var cat = '<tr id="' + id + '">'
                             + ' <td><strong>' + data.nom + '</strong></td>'
                             + '<td class="qte">' + parseInt($("#qte_sortie").val()) + '</td>'
@@ -365,6 +375,12 @@ function valider_stock_detail(id) {
                         $('#tab_Bsortie').prepend(cat);
                         /*total = total + (parseInt($("#qte_sortie").val()) * data.contenu);
                         $("#stock_detail").val((total + parseInt($("#stock_detail").attr("data"))));*/
+                    }else if($("#qte_sortie").val() > data.stock){
+                        $('#message-box-danger p').html("La quantité a détaillé est supérieur au stock en rayon !!!");
+                        $("#message-box-danger").modal("show");
+                        setTimeout(function () {
+                            $("#message-box-danger").modal("hide");
+                        }, 3000);
                     }
 
                 } /*else if (data.find == 'non') {

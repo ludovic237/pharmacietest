@@ -2,7 +2,7 @@ var test = 0;
 var startDate;
 var endDate;
 var idemploye = null
-    ;
+;
 var idfulldepense;
 
 var id_boncaisse_encaissement;
@@ -21,7 +21,7 @@ $(document).ready(function () {
                 url: '/pharmacietest/koudjine/inc/encaisser_bon_caisse.php',
                 data: {
                     val: $(this).val(),
-                    type:"check"
+                    type: "check"
                 },
                 success: function (server_responce) {
 
@@ -230,20 +230,20 @@ function showEncaissement() {
 function encaisser_bon_caisse() {
     var code_encaissement = $("#encaisseCode").val();
     var dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
-    console.log('Encaissemnt :'+dateEncaisser+'-'+$("#tab_GBonCaisse").attr("data")+'-'+code_encaissement);
+    console.log('Encaissemnt :' + dateEncaisser + '-' + $("#tab_GBonCaisse").attr("data") + '-' + code_encaissement);
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/encaisser_bon_caisse.php',
         data: {
-        code:code_encaissement,
-            type:"encaisser",
+            code: code_encaissement,
+            type: "encaisser",
             caisse_id: $("#tab_GBonCaisse").attr("data"),
             dateEncaisser: dateEncaisser
         },
         success: function (server_responce) {
             if (server_responce == "OK") {
                 document.getElementById("btn_encaissement").disabled = true;
-                noty({ text: 'Encaissement effectué', layout: 'topRight', type: 'success' });
+                noty({text: 'Encaissement effectué', layout: 'topRight', type: 'success'});
                 setTimeout(() => {
                     $("#iconPreviewBonCaisse").modal("show");
                     $("#iconPreviewEncaisserCaisse").modal("hide");
@@ -251,10 +251,32 @@ function encaisser_bon_caisse() {
 
 
             } else {
-                noty({ text: "echec de l'encaissement", layout: 'topRight', type: 'danger' });
+                noty({text: "echec de l'encaissement", layout: 'topRight', type: 'danger'});
                 document.getElementById("btn_encaissement").disabled = true;
             }
 
+
+        }
+
+
+    })
+}
+function encaisser_liste_bon(bon_id){
+    var dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/gerer_bon_caisse.php',
+        data: {
+            new_id: bon_id,
+            caisse_id: $("#tab_GBonCaisse").attr("data"),
+            nom: '',
+            montant: null,
+            dateEncaisser: dateEncaisser
+        },
+        success: function (server_responce) {
+            //alert(server_responce);
+
+            $("#bon" + bon_id).hide("slow");
 
         }
 
@@ -281,8 +303,7 @@ function gerer_bon_caisse() {
         }
         if (parseInt(id1) == 0 && $("#" + id1 + " .montant").val() == "") {
             alert("Veuillez entrer le montant");
-        }
-        else {
+        } else {
             $.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/gerer_bon_caisse.php',
@@ -322,7 +343,6 @@ function reimprime_ticket_caisse(id) {
     $('#ticketListe2 .netapayer').html($("#" + id + " .prixp").html());
     $('#ticketListe2 .montanttotal').html($("#" + id + " .prixt").html());
     $('#ticketListe2 .remise').html(parseInt($("#" + id + " .prixt").html()) - parseInt($("#" + id + " .prixp").html()));
-
 
 
     $.ajax({
@@ -499,8 +519,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
         setTimeout(function () {
             $("#message-box-danger").modal("hide");
         }, 3000);
-    }
-    else {
+    } else {
         ////alert('valide');
         $.ajax({
             type: "POST",
@@ -528,7 +547,9 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
 
                     $("#" + id1 + " td").each(function (j) {
                         ////alert($(this).html());
-                        if (j == 2) { qte = parseInt($(this).html()); }
+                        if (j == 2) {
+                            qte = parseInt($(this).html());
+                        }
 
 
                     });
@@ -674,7 +695,7 @@ function valider_depense(caisse_id) {
 
 
     });
-    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+    noty({text: 'Information enregistré', layout: 'topRight', type: 'success'});
 }
 
 function rafraichir_vente(id) {
@@ -712,7 +733,6 @@ function charger_vente(id) {
     $('#ticketCaisse .netapayer').html($("#" + id + " .prixtotal").html());
     $('#ticketCaisse .remise').html($("#" + id + " .reduction").html());
     $('#ticketCaisse .montanttotal').html(parseInt($("#" + id + " .reduction").html()) + parseInt($("#" + id + " .prixtotal").html()));
-
 
 
     $.ajax({
@@ -786,7 +806,7 @@ function valider_fermeture(caisse_id) {
 
 function open_rapport(id) {
     var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
-    if(id != null){
+    if (id != null) {
         caisse_id = id;
     }
 
@@ -853,8 +873,6 @@ function open_rapport(id) {
                 $("#diff_entree").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_entree_syst").html())));
                 $("#diff_sortie").html((parseInt($("#total_sortie_caisse").html()) - parseInt($("#total_sortie_syst").html())));
                 $("#diff_total").html((parseInt($("#total_tout_caisse").html()) - parseInt($("#total_tout_syst").html())));
-
-
 
 
             }
@@ -947,4 +965,152 @@ function close_caisse_row_valide(user_id) {
 function close_caisse_row() {
     $("#iconPreviewCaisseFermer").modal("show");
 
+}
+
+
+function showRapportTest(id) {
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/rapport_caisse_all.php',
+        data: {
+            id: 73,
+        },
+        dataType: 'json',
+        success: function (data) {
+
+            //recap vente par fournisseur
+            $("#rapport_vente_fournisseur_grossiste").html(data.vente_fg);
+            $("#rapport_vente_fournisseur_detaillant").html(data.vente_fd);
+            $("#rapport_vente_fournisseur_total").html(data.vente_ft);
+
+            //recap vente par type vente
+            $("#rapport_vente_comptant").html(data.vente_comptant);
+            $("#rapport_vente_credit").html(data.vente_credit);
+            $("#rapport_vente_assurance").html(data.vente_assurance);
+            $("#rapport_vente_total").html(data.vente_total);
+
+            //Encaissement des ventes
+            $("#rapport_ev_espece").html(data.ev_espece);
+            $("#rapport_ev_electronique").html(data.ev_electronique);
+            $("#rapport_ev_boncaisse").html(data.ev_boncaisse);
+            $("#rapport_ev_total").html(data.ev_total);
+
+            //Encaissement facture à credit
+            $('#rapport_efc_espece').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.efc_espece,
+                columns: [
+                    {data: "numeroFavture"},
+                    {data: "nom"},
+                    {data: "total"},
+                ]
+            });
+            $("#rapport_efc_total").html(data.efc_total);
+
+
+            //Bon de caisse généré
+            $('#rapport_bc_genere').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.bc_genere,
+                columns: [
+                    {data: "id"},
+                    {data: "nom_client"},
+                    {data: "montant"},
+                ]
+            });
+            $("#rapport_bc_total").html(data.bc_total);
+
+            //Bon de caisse encaissé
+            $('#rapport_bc_encaisse').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.bc_encaisse,
+                columns: [
+                    {data: "id"},
+                    {data: "nom_client"},
+                    {data: "montant"},
+                ]
+            });
+            $("#rapport_bc_total_genere").html(data.bc_total_genere);
+
+            //Dépense
+            $('#rapport_depense').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.depense,
+                columns: [
+                    {data: "id"},
+                    {data: "designation"},
+                    {data: "prixUnitaire"},
+                    {data: "total"},
+                ]
+            });
+            $("#rapport_total_depense").html(data.total_depense);
+
+
+            // Etat caisse
+            $("#rapport_ec_solde_reel").html(data.ec_solde_reel);
+            $("#rapport_ec_solde_system").html(data.ec_solde_system);
+            $("#rapport_ec_difference").html(data.ec_difference);
+        }
+    });
+    $("#iconPreviewRapportTest").modal("show");
+
+}
+
+
+function imprimer_blocTest(titre, objet) {
+    // Définition de la zone à imprimer
+    var zone = document.getElementById(objet);
+    //alert("Hello");
+    // Ouverture du popup,
+    var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
+    fen.document.write(
+        '<html> <head><style>' +
+        'body{\n' +
+        '      font-size: 8px!important;\n' +
+        ''+
+        '    }\n' +
+        'body{font-size: 6px!important;}'+
+          '.divine{font-size: 6px!important;display: flex;flex-direction: row;justify-content: space-between;}'+
+          'p{font-size: 6px!important;}'+
+          'div{font-size: 6px!important;}'+
+          'td{font-size: 6px!important;border-color: #000000;border-width: 1px;border: 1px solid #000000;}'+
+          'th{font-size: 6px!important;border-color: #000000;border-width: 1px;border: 1px solid #000000;}'+
+          'table{font-size: 6px!important;}'+
+          '.panel-body.panel-body-table .table {margin-bottom: 0px;border: 0px;}'+
+          '.panel-body.panel-body-table td, .panel-body.panel-body-table th {padding: 8px 6px;}'+
+          '.table-bordered {border: 1px solid #000000;}'+
+          '.table > tfoot > tr > td {border-color: #000000;border-width: 1px;}'+
+          '.table-bordered>tbody>tr>td{border: 1px solid #000000;}'+
+          '.table>tfoot>tr>td {padding: 8px;line-height: 1.42857143;vertical-align: top;border-top: 1px solid #000000;}'+
+          '.table {border-spacing: 2px;border-collapse: separate;width: 100%;border-collapse: collapse;border-spacing: 0;max-width: 100%;margin-bottom: 20px;}'+
+          'tbody {display: table-row-group;vertical-align: middle;border-color: inherit;}'+
+          'thead {display: table-header-group;vertical-align: middle;border-color: inherit;}'+
+        '</style></head>');
+    fen.document.write(
+        '<body style="font-size: 8px!important;">'
+    );
+    fen.document.write(zone.outerHTML);
+    fen.document.write(
+        '</body></html>');
+    fen.document.close();
+    fen.focus();
+    fen.print();
+    fen.close();
+    return true;
 }
