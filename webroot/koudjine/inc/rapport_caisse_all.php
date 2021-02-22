@@ -10,7 +10,7 @@ require_once('../Class/depense.php');
 require_once('../Class/concerner.php');
 require_once('../Class/user.php');
 require_once('../Class/produit.php');
-require_once('../Class/fournisseur.php');
+require_once('../Class/fournisseur1.php');
 
 global $pdo;
 
@@ -35,7 +35,7 @@ $dataBonGeneré = [];
 $dataBoncaisseGenerer = [];
 $dataBoncaisseEncaisser = [];
 $datas = [];
-
+$dataVenteACredit = [];
 
 if (isset($_POST['id']))
     $id = $_POST['id'];
@@ -43,21 +43,26 @@ if (isset($_POST['id']))
 
 $ventes = $managerVente->getListCaisseComplete($id);
 
-
-
+$prixGrossite = 0;
+$prixDetaillant = 0;
+$prixTotalConcerne = 0;
 //Recap vente fournisseur
-foreach ($ventes as $k => $v){
+foreach ($ventes as $k => $v) {
     $concernce = $managerCo->getList($v->id());
-    foreach ($concernce as $a => $b){
-        $en_rayon = $managerEn->getList($b->en_rayon_id());
-        foreach ($en_rayon as $c => $d){
-            $fournisseur = $managerFournisseur->getByStatut($d->fournisseur_id(),"Grossiste");
+    foreach ($concernce as $a => $b) {
 
+        $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite());
+        $en_rayon = $managerEn->get($b->en_rayon_id());
+        $fournisseur = $managerFournisseur->get($en_rayon->fournisseur_id());
 
-            $fournisseurDetaillant = $managerFournisseur->getByStatut($d->fournisseur_id(),"Grossiste");
+        if ($fournisseur->statut() == "Grossiste") {
+            $prixGrossite = $prixTotalConcerne + $prixGrossite;
+        } else if ($fournisseur->statut() == "Detaillant") {
+            $prixDetaillant = $prixTotalConcerne + $prixDetaillant;
         }
     }
 }
+$totalVentFournisseur = $prixGrossite + $prixDetaillant;
 
 //recap vente par type de vente
 $ventesComptant = $managerVente->getListCaisseCompleteByEtat($id, "Comptant");
@@ -83,19 +88,19 @@ $totalVenteTypeVente = $totalVenteAssurance + $totalVenteComptant + $totalVenteC
 
 
 //encaissement vente
-$facturationEspece = $managerFa->getListCaisseType($id,"Espèce");
+$facturationEspece = $managerFa->getListCaisseType($id, "Espèce");
 $totalfacturationEspece = 0;
 foreach ($facturationEspece as $k => $v) :
     $totalfacturationEspece = $totalfacturationEspece + ($v->montantTtc());
 endforeach;
 
-$facturationElectronique = $managerFa->getListCaisseType($id,"Electronique");
+$facturationElectronique = $managerFa->getListCaisseType($id, "Electronique");
 $totalfacturationElectronique = 0;
 foreach ($facturationElectronique as $k => $v) :
     $totalfacturationElectronique = $totalfacturationElectronique + ($v->montantTtc());
 endforeach;
 
-$facturationBonCaisse = $managerFa->getListCaisseType($id,"Bon");
+$facturationBonCaisse = $managerFa->getListCaisseType($id, "Bon");
 $totalfacturationBonCaisse = 0;
 foreach ($facturationBonCaisse as $k => $v) :
     $totalfacturationBonCaisse = $totalfacturationBonCaisse + ($v->montantTtc());
@@ -105,6 +110,26 @@ $totalEncaissementVente = $totalfacturationBonCaisse + $totalfacturationElectron
 
 
 //encaissement vente facture credit
+$ventesCreditFacture = $managerVente->getListCaisseCompleteByEtat($id, "Crédit");
+$totalVenteCreditFacture = 0;
+foreach ($ventesCreditFacture as $k => $v) :
+    if ($v->user_id() != NULL) {
+        $user =  $managerUs->get($v->user_id());
+        $client = $user->nom() . ' ' . $user->prenom();
+    } else {
+        $client = 'Client pas enregistré';
+    }
+    $dataVenteACredit[] = array(
+        "DT_RowId" => $v->id(),
+        "id" => $v->id(),
+        "reference" => $v->reference(),
+        "prixPercu" => $v->prixPercu(),
+        "client" => $client,
+        'dateVente' => $v->dateVente()
+    );
+    $totalVenteCreditFacture= $v->prixPercu() + $totalVenteCreditFacture;
+endforeach;
+
 
 
 // bon caisse genere
@@ -158,13 +183,13 @@ endforeach;
 
 $montantFermeture = $managerCaisse->getId($v->id())->fondCaisseFerme();
 $montantSystem = (+$totalboncaisseGenerer) - ($totalboncaisseEncaisser + $totalDepense);
-$differnce  = $montantFermeture-$montantSystem;
+$differnce  = $montantFermeture - $montantSystem;
 
 
 $donnees = array(
-    'vente_fg' => 0,
-    'vente_fd' => 0,
-    'vente_ft' => 0,
+    'vente_fg' => $prixGrossite,
+    'vente_fd' => $prixDetaillant,
+    'vente_ft' => $totalVentFournisseur,
     'vente_comptant' => $totalVenteComptant,
     'vente_credit' => $totalVenteCredit,
     'vente_assurance' => $totalVenteAssurance,
@@ -173,8 +198,8 @@ $donnees = array(
     'ev_electronique' => $totalfacturationElectronique,
     'ev_boncaisse' => $totalfacturationBonCaisse,
     'ev_total' => $totalEncaissementVente,
-    'efc_espece' => 0,
-    'efc_total' => 0,
+    'efc_espece' => $dataVenteACredit,
+    'efc_total' => $totalVenteCredit,
     'bc_genere' => $dataBoncaisseGenerer,
     'bc_total' => $totalboncaisseGenerer,
     'bc_encaisse' => $dataBoncaisseEncaisser,
@@ -186,6 +211,3 @@ $donnees = array(
     'ec_difference' => $differnce,
 );
 echo json_encode($donnees);
-
-
-?>

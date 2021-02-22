@@ -1871,7 +1871,7 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                                 </div>
                                 <div class="panel-body panel-body-table">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-striped" id="rapport_ev_espece">
+                                        <table class="table table-bordered table-striped" id="rapport_efc_espece">
                                             <thead>
                                             <tr>
                                                 <th>N° Facture</th>
@@ -1883,12 +1883,11 @@ if (isset($caisseCheck) && $caisseCheck != null) {
                                             <tr>
 
                                             </tr>
-                                            <tr>
-                                                <td colspan="4">Total</td>
-                                                <td id="rapport_ev_total">0</td>
-                                            </tr>
                                             </tbody>
                                         </table>
+                                        <div>
+                                        <p>Total: <span id="rapport_efc_total"></span></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
