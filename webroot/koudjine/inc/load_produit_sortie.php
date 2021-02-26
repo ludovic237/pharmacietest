@@ -55,35 +55,61 @@ if (isset($_POST['id'])&& $action == 'sortie'){
 
 
 
-}elseif (isset($_POST['id'])&& $action == 'sortie1'){
+}elseif (isset($_POST['id'])&& $action == 'autre') {
     foreach ($enrayon as $k => $v) :
         $datelivraison = $v->dateLivraison();
         $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
         $datel = $date->format('d-m-Y');
-        if($v->reduction() > $produit->reductionMax()) $reduction = $produit->reductionMax(); else $reduction = $v->reduction();
-        echo "<tr id=\"S".$v->id()."\">
-                                            <td ><strong class='nom'>".$produit->nom()."</strong></td>
+        if ($v->reduction() > $produit->reductionMax()) $reduction = $produit->reductionMax(); else $reduction = $v->reduction();
+        echo "<tr id=\"R" . $v->id() . "\">
+                                            <td ><strong class='nom'><a href='/pharmacietest/bouwou/comptabilite/sortieautre/" . $v->id() . "'>" . $produit->nom() . "</a></strong></td>
                                             <td class='prix'>
-                                                ".$v->prixVente()."
+                                                " . $v->prixVente() . "
                                             </td>
                                             <td class=''>
                                                 <input class='qte' style=\"width: 50px;\" id=\"qte_vente\" type=\"number\" value='0'>
                                             </td>
                                             <td class='qterest'>
-                                                ".$v->quantiteRestante()."
+                                                " . $v->quantiteRestante() . "
                                             </td>
                                             <td class='reduction'>
-                                                ".$reduction."
+                                                " . $reduction . "
                                             </td>
                                             <td class='datel'>
-                                                ".$datel."
+                                                " . $datel . "
                                             </td>
-                                            <td>
-                                               <button class=\"btn btn-primary btn-rounded btn-sm\" onClick=\"valider_stock_detail('".$v->id()."');\">Charger</button>
+                                        </tr>";
+    endforeach;
+}else{
+    foreach ($enrayon as $k => $v) :
+        $datelivraison = $v->dateLivraison();
+        $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
+        $datel = $date->format('d-m-Y');
+        if ($v->reduction() > $produit->reductionMax()) $reduction = $produit->reductionMax(); else $reduction = $v->reduction();
+        echo "<tr id=\"R" . $v->id() . "\">
+                                            <td ><strong class='nom'>" . $produit->nom() . "</strong></td>
+                                            <td class='prix'>
+                                                " . $v->prixVente() . "
+                                            </td>
+                                            <td class=''>
+                                                <input class='qte' style=\"width: 50px;\" id=\"qte_vente\" type=\"number\" value='0'>
+                                            </td>
+                                            <td class='qterest'>
+                                                " . $v->quantiteRestante() . "
+                                            </td>
+                                            <td class='reduction'>
+                                                " . $reduction . "
+                                            </td>
+                                            <td class='datel'>
+                                                " . $datel . "
+                                            </td>
+                                            <td class=''>
+                                               <button class=\"btn btn-primary btn-rounded\" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"valider_stock_detail('".$v->id()."')\"><span class=\"\">Charger</span></button>
                                             </td>
                                         </tr>";
     endforeach;
 }
+
 
 
 

@@ -204,9 +204,4 @@ class VenteController extends Controller
     {
         $this->loadModel('Vente');
     }
-
-    function koudjine_retour_vente()
-    {
-        $this->loadModel('Vente');
-    }
 }

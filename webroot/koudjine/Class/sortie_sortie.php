@@ -4,6 +4,7 @@ class SortieStock
 {
     private $_id,
         $_en_rayon_id,
+        $_type_sortie_id,
         $_quantite,
         $_dateSortie,
         $_detail_id,
@@ -36,6 +37,10 @@ class SortieStock
     {
         return $this->_en_rayon_id;
     }
+    public function type_sortie_id()
+    {
+        return $this->_type_sortie_id;
+    }
     public function quantite()
     {
         return $this->_quantite;
@@ -66,6 +71,12 @@ class SortieStock
     {
 
         $this->_en_rayon_id = $id;
+
+    }
+    public function settype_sortie_id($id)
+    {
+
+        $this->_type_sortie_id = $id;
 
     }
     public function setquantite($id)
@@ -105,9 +116,10 @@ class SortieStockManager
     }
     public function add(SortieStock $sortie_stock)
     {
-        $q = $this->_db->prepare('INSERT INTO sortie_stock SET id = :id, en_rayon_id = :en_rayon_id, quantite = :quantite, dateSortie = now(), detail_id = :detail_id, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO sortie_stock SET id = :id, en_rayon_id = :en_rayon_id, type_sortie_id = :type_sortie_id, quantite = :quantite, dateSortie = now(), detail_id = :detail_id, supprimer=0');
         $q->bindValue(':id', $sortie_stock->id(), PDO::PARAM_INT);
         $q->bindValue(':en_rayon_id', $sortie_stock->en_rayon_id(), PDO::PARAM_INT);
+        $q->bindValue(':type_sortie_id', $sortie_stock->type_sortie_id(), PDO::PARAM_INT);
         $q->bindValue(':quantite', $sortie_stock->quantite());
         $q->bindValue(':detail_id', $sortie_stock->detail_id());
         $q->execute();
@@ -191,9 +203,10 @@ class SortieStockManager
     }
     public function update(SortieStock $sortie_stock)
     {
-        $q = $this->_db->prepare('UPDATE sortie_stock SET en_rayon_id = :en_rayon_id, quantite = :quantite, dateSortie = now(), detail_id = :detail_id WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE sortie_stock SET en_rayon_id = :en_rayon_id,  type_sortie_id = :type_sortie_id, quantite = :quantite, dateSortie = now(), detail_id = :detail_id WHERE id = :id');
         $q->bindValue(':id', $sortie_stock->id(), PDO::PARAM_INT);
         $q->bindValue(':en_rayon_id', $sortie_stock->en_rayon_id(), PDO::PARAM_INT);
+        $q->bindValue(':type_sortie_id', $sortie_stock->type_sortie_id(), PDO::PARAM_INT);
         $q->bindValue(':quantite', $sortie_stock->quantite());
         $q->bindValue(':detail_id', $sortie_stock->detail_id());
         $q->execute();

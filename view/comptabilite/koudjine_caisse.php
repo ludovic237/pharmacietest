@@ -54,8 +54,11 @@
                         <div style="justify-content:space-evenly;display:flex; margin-bottom: 10px;">
                             <!-- <button class="btn btn-primary  pull-left" data="" id=""
                                     onclick="showRapportTest('<?php echo $caisse->id; ?>')">Test rapport caisse
+
                             </button> -->
-                            <button class="btn btn-primary  pull-left" data="" id="" onclick="open_bon_caisse('<?php echo $action_fermeture->id; ?>')">Bon de caisse
+                           
+                            <button class="btn btn-primary  pull-left" data="" id=""
+                                    onclick="open_bon_caisse()">Bon de caisse
                             </button>
                             <!--                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_rapport('<?php //echo $action_fermeture->id;
                                                                                                                                                 ?>//')">Rapport</button>-->
@@ -1114,7 +1117,30 @@
                         </div>
                         <div class="tab-pane" id="tab-bon-two">
                             <div class="panel-body">
-                                hello
+                                <div class="table-responsive">
+                                    <table class="table  table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Nom client</th>
+                                            <th>Montant</th>
+                                            <th>Caisse</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tab_LBonCaisse" data="<?php echo $action_fermeture->id; ?>">
+                                        <?php foreach ($bon_caisse as $k => $v) : ?>
+                                        <tr id="bon<?php echo $v->idb; ?>">
+                                            <td><?php echo $v->nom_client; ?></td>
+                                            <td><?php echo $v->montant; ?></td>
+                                            <td><?php echo $v->identifiant; ?></td>
+                                            <td>
+                                                <button class="btn btn-primary btn-rounded btn-sm" onclick="encaisser_liste_bon(<?php echo $v->idb; ?>)">Encaisser</button>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
                         </div>
@@ -1469,7 +1495,7 @@
                                                     <th width="100">Ref</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tab_Bload_produit_caisse">
+                                            <tbody id="tab_Bload_produit_caisse_liste">
 
                                             </tbody>
                                         </table>
