@@ -896,84 +896,85 @@ function showRapportCaisse(id) {
         }
     })
 
-    var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
-    if(id != null){
-        caisse_id = id;
-    }
+    showRapportTest(id);
+    // var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
+    // if(id != null){
+    //     caisse_id = id;
+    // }
 
-    $.ajax({
-        type: "POST",
-        url: '/pharmacietest/koudjine/inc/liste_depense.php',
-        data: {
-            id: caisse_id
-        },
-        success: function (server_responce) {
-            //alert(server_responce);
+    // $.ajax({
+    //     type: "POST",
+    //     url: '/pharmacietest/koudjine/inc/liste_depense.php',
+    //     data: {
+    //         id: caisse_id
+    //     },
+    //     success: function (server_responce) {
+    //         //alert(server_responce);
 
-            $('#tab_RapportDepense').empty();
-            $('#tab_RapportDepense').html(server_responce);
+    //         $('#tab_RapportDepense').empty();
+    //         $('#tab_RapportDepense').html(server_responce);
 
-        }
-
-
-    })
-
-    $.ajax({
-        type: "POST",
-        url: '/pharmacietest/koudjine/inc/liste_bon_caisse.php',
-        data: {
-            id: caisse_id
-        },
-        success: function (server_responce) {
-            //alert(server_responce);
-
-            $('#tab_RapportBon').empty();
-            $('#tab_RapportBon').html(server_responce);
-
-        }
+    //     }
 
 
-    })
-    $.ajax({
-        type: "POST",
-        url: '/pharmacietest/koudjine/inc/rapport_caisse.php',
-        data: {
-            id: caisse_id
-        },
-        dataType: 'json',
-        success: function (data) {
-            //alert(data);
+    // })
 
-            if (data.erreur == 'non') {
-                //alert('passe');
-                $("#espece_caisse_rapport").html(data.espece_caisse);
-                $("#electronique_rapport").html(data.electronique);
-                $("#total_entree_rapport_caisse").html((parseInt(data.electronique) + parseInt(data.espece_caisse)));
+    // $.ajax({
+    //     type: "POST",
+    //     url: '/pharmacietest/koudjine/inc/liste_bon_caisse.php',
+    //     data: {
+    //         id: caisse_id
+    //     },
+    //     success: function (server_responce) {
+    //         //alert(server_responce);
 
-                // Charger tableau recapitulatif
-                $("#total_entree_caisse").html((parseInt(data.electronique) + parseInt(data.espece_caisse) + parseInt($("#total_entree_rapport_bon").html())));
-                $("#total_sortie_caisse").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
-                $("#total_tout_caisse").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_sortie_caisse").html())));
+    //         $('#tab_RapportBon').empty();
+    //         $('#tab_RapportBon').html(server_responce);
 
-                //Système
-                $("#total_entree_syst").html((parseInt(data.electronique) + parseInt(data.espece_syst) + parseInt($("#total_entree_rapport_bon").html())));
-                $("#total_sortie_syst").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
-                $("#total_tout_syst").html((parseInt($("#total_entree_syst").html()) - parseInt($("#total_sortie_syst").html())));
-
-                //Difference
-                $("#diff_entree").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_entree_syst").html())));
-                $("#diff_sortie").html((parseInt($("#total_sortie_caisse").html()) - parseInt($("#total_sortie_syst").html())));
-                $("#diff_total").html((parseInt($("#total_tout_caisse").html()) - parseInt($("#total_tout_syst").html())));
+    //     }
 
 
+    // })
+    // $.ajax({
+    //     type: "POST",
+    //     url: '/pharmacietest/koudjine/inc/rapport_caisse.php',
+    //     data: {
+    //         id: caisse_id
+    //     },
+    //     dataType: 'json',
+    //     success: function (data) {
+    //         //alert(data);
+
+    //         if (data.erreur == 'non') {
+    //             //alert('passe');
+    //             $("#espece_caisse_rapport").html(data.espece_caisse);
+    //             $("#electronique_rapport").html(data.electronique);
+    //             $("#total_entree_rapport_caisse").html((parseInt(data.electronique) + parseInt(data.espece_caisse)));
+
+    //             // Charger tableau recapitulatif
+    //             $("#total_entree_caisse").html((parseInt(data.electronique) + parseInt(data.espece_caisse) + parseInt($("#total_entree_rapport_bon").html())));
+    //             $("#total_sortie_caisse").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
+    //             $("#total_tout_caisse").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_sortie_caisse").html())));
+
+    //             //Système
+    //             $("#total_entree_syst").html((parseInt(data.electronique) + parseInt(data.espece_syst) + parseInt($("#total_entree_rapport_bon").html())));
+    //             $("#total_sortie_syst").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
+    //             $("#total_tout_syst").html((parseInt($("#total_entree_syst").html()) - parseInt($("#total_sortie_syst").html())));
+
+    //             //Difference
+    //             $("#diff_entree").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_entree_syst").html())));
+    //             $("#diff_sortie").html((parseInt($("#total_sortie_caisse").html()) - parseInt($("#total_sortie_syst").html())));
+    //             $("#diff_total").html((parseInt($("#total_tout_caisse").html()) - parseInt($("#total_tout_syst").html())));
 
 
-            }
-
-        }
 
 
-    })
+    //         }
+
+    //     }
+
+
+    // })
     $("#iconPreviewRapport").modal('show');
 }
 
@@ -1023,5 +1024,114 @@ function reimprime_ticket_caisse(id) {
 
     })
 
+
+}
+
+function showRapportTest(id) {
+    var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
+    if (id != null) {
+        caisse_id = id;
+    }
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/rapport_caisse_all.php',
+        data: {
+            id: caisse_id,
+        },
+        dataType: 'json',
+        success: function (data) {
+
+            //recap vente par fournisseur
+            $("#rapport_vente_fournisseur_grossiste").html(data.vente_fg);
+            $("#rapport_vente_fournisseur_detaillant").html(data.vente_fd);
+            $("#rapport_vente_fournisseur_total").html(data.vente_ft);
+
+            //recap vente par type vente
+            $("#rapport_vente_comptant").html(data.vente_comptant);
+            $("#rapport_vente_credit").html(data.vente_credit);
+            $("#rapport_vente_assurance").html(data.vente_assurance);
+            $("#rapport_vente_total").html(data.vente_total);
+
+            //Encaissement des ventes
+            $("#rapport_ev_espece").html(data.ev_espece);
+            $("#rapport_ev_electronique").html(data.ev_electronique);
+            $("#rapport_ev_boncaisse").html(data.ev_boncaisse);
+            $("#rapport_ev_total").html(data.ev_total);
+
+            //Encaissement facture à credit
+            $('#rapport_efc_espece').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.efc_espece,
+                columns: [
+                    {data: "reference"},
+                    {data: "client"},
+                    {data: "prixPercu"},
+                ]
+            });
+            $("#rapport_efc_total").html(data.efc_total);
+
+
+            //Bon de caisse généré
+            $('#rapport_bc_genere').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.bc_genere,
+                columns: [
+                    {data: "id"},
+                    {data: "nom_client"},
+                    {data: "montant"},
+                ]
+            });
+            $("#rapport_bc_total").html(data.bc_total);
+
+            //Bon de caisse encaissé
+            $('#rapport_bc_encaisse').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.bc_encaisse,
+                columns: [
+                    {data: "id"},
+                    {data: "nom_client"},
+                    {data: "montant"},
+                ]
+            });
+            $("#rapport_bc_total_genere").html(data.bc_total_genere);
+
+            //Dépense
+            $('#rapport_depense').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.depense,
+                columns: [
+                    {data: "id"},
+                    {data: "designation"},
+                    {data: "quantite"},
+                    {data: "prixUnitaire"},
+                    {data: "total"},
+                ]
+            });
+            $("#rapport_total_depense").html(data.total_depense);
+
+
+            // Etat caisse
+            $("#rapport_ec_solde_reel").html(data.ec_solde_reel);
+            $("#rapport_ec_solde_system").html(data.ec_solde_system);
+            $("#rapport_ec_difference").html(data.ec_difference);
+        }
+    });
+    $("#iconPreviewRapportTest").modal("show");
 
 }

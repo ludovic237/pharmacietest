@@ -256,10 +256,15 @@ function gerer_bon_caisse() {
             $('#nomclientimp').html($("#" + id1 + " .nom").val());
             $('#montantimp').html($("#" + id1 + " .montant").val());
             $('#dateimp').html(moment().format("YYYY-MM-DD HH:mm:ss"));
-            qrcode.makeCode(moment().format("YYMMDDHHmmss"));
-
+            //qrcode.makeCode(moment().format("YYMMDDHHmmss"));
+            $("#codebarreimp").barcode(
+                moment().format("YYMMDDHHmmss"), // Value barcode (dependent on the type of barcode)
+                "code128" // type (string)
+        
+            );
+            
             $('#codebarrenulimp').html(moment().format("YYMMDDHHmmss"));
-
+ 
             $("#previewImprimerBonCaisse").modal("show");
         } else {
             dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -932,11 +937,15 @@ function close_caisse_row() {
 
 
 function showRapportTest(id) {
+    var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
+    if (id != null) {
+        caisse_id = id;
+    }
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/rapport_caisse_all.php',
         data: {
-            id: 73,
+            id: caisse_id,
         },
         dataType: 'json',
         success: function (data) {
@@ -1152,7 +1161,7 @@ function imprimer_blocTest(titre, objet) {
         '.table {\n' +
         '    width: 100%;\n' +
         '    max-width: 100%;\n' +
-        '}'+
+        '}' +
         '/* EOF TABLES */\n' +
         '/* Datatables */\n' +
         '.dataTable {\n' +
