@@ -10,7 +10,9 @@ $manager = new  CommandeManager($pdo);
 $idGen = genererID();
 $idf=$_POST['idf'];
 $qte=$_POST['qte'];
+$ug=$_POST['ug'];
 $montant=$_POST['montant'];
+echo $ug;
 
 $ref = genererreferenceCommande($manager->countMois());
 
@@ -24,6 +26,7 @@ $ref = genererreferenceCommande($manager->countMois());
             'qtiteRecu' => null,
             'montantRecu' => null,
             'qtiteCmd' => $qte,
+            'uniteGratuite' => $ug,
             'ref' => $ref,
             'montantCmd' => $montant
         ));
@@ -41,6 +44,7 @@ $ref = genererreferenceCommande($manager->countMois());
             'qtiteRecu' => $qte,
             'montantRecu' => $montant,
             'qtiteCmd' => $qte,
+            'uniteGratuite' => $ug,
             'ref' => $ref,
             'montantCmd' => $montant
         ));

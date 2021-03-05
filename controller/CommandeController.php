@@ -113,7 +113,7 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
     {
         $this->loadModel('Commande');
         $d['commande'] = $this->Commande->find(array(
-            'fields' => 'c.id as id,dateCreation,dateLivraison,nom,fournisseur_id,qtiteCmd,qtiteRecu,montantCmd,montantRecu,etat,ref,note',
+            'fields' => 'c.id as id,dateCreation,dateLivraison,nom,fournisseur_id,qtiteCmd,qtiteRecu,uniteGratuite,montantCmd,montantRecu,etat,ref,note',
             'table' => 'commande c, fournisseur f',
             'order' => 'c.id-DESC',
             'conditions' => 'c.fournisseur_id = f.id and c.supprimer = 0 and  f.supprimer = 0 and c.etat <> "Livré" '

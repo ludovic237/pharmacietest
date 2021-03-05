@@ -9,6 +9,7 @@ class Commande
         $_note,
         $_qtiteCmd,
         $_qtiteRecu,
+        $_uniteGratuite,
         $_montantCmd,
         $_montantRecu,
         $_etat,
@@ -70,6 +71,11 @@ class Commande
     public function qtiteRecu()
     {
         return $this->_qtiteRecu;
+    }
+
+    public function uniteGratuite()
+    {
+        return $this->_uniteGratuite;
     }
 
     public function montantRecu()
@@ -142,6 +148,13 @@ class Commande
         if ($id > 0) {
             $this->_qtiteRecu = $id;
         }
+    }
+
+    public function setuniteGratuite($value)
+    {
+
+        $this->_uniteGratuite = $value;
+
     }
 
     public function setmontantCmd($id)

@@ -8,7 +8,7 @@ class Conf
             'host'      => 'localhost',
             'database'  => 'pharmanet1',
             'login'     => 'root',
-            'password'  => ''
+            'password'  => 'root'
         ),
         'front' => array(
             'host'      => 'localhost',

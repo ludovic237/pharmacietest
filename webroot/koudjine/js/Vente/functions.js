@@ -8,6 +8,7 @@ $('#pharmanet_tab_vente').hide();
 
 $(document).ready(function () {
 
+
     $('#customers2').DataTable( {
         "order": [[ 5, "desc" ]]
     } );
@@ -395,9 +396,20 @@ $(document).ready(function () {
             $('#prixReduit').html(0);
             $('#netTotal').html((prixTotal));
         }
-    })
+    });
+
+    /*$('#search-reference-produit').keyup(function () {
+
+    });*/
 
 });
+
+function selectreferenceproduit(val, id) {
+    idemploye = id;
+    $("#suggesstion-reference-produit-block").hide();
+    $("#search-reference-produit").val(val);
+    $("#suggesstion-reference-produit").hide();
+}
 
 
 function imprimer_bloc(titre, objet) {
