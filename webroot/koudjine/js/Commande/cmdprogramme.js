@@ -336,7 +336,8 @@ function valider_commande(imprimer) {
             type: "POST",
             url: "/pharmacietest/koudjine/inc/enregistrer_commande.php",
             data: {
-                idf: parseInt($("#fournisseur_commande").val()),
+                idf: parseInt($("#fournisse" +
+                    "ur_commande").val()),
                 numLivraison: $("#numero_bon_livraison").val(),
                 montant: prixTotal,
                 datel: today,

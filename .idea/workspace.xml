@@ -5,28 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="correction de quelque erreur dans produit detail">
-      <change afterPath="$PROJECT_DIR$/view/vente/koudjine_retour_vente.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_retour.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_retour_produit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/readreference.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/result_retour.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/js/Vente/retour_produit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/conf.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/conf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/CommandeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CommandeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/VenteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/VenteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/commande/koudjine_cmdprogramme.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/commande/koudjine_cmdprogramme.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/commande/koudjine_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/commande/koudjine_list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/commande.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/produit_retour.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/produit_retour.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/produitcmd.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/produitcmd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/retour_produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/retour_produit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_commande.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/produit_commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/produit_commande.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Pharmanet/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Pharmanet/functions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Vente/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Vente/functions.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -71,28 +51,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/vente/koudjine_retour_vente.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1751">
-              <caret line="103" column="26" selection-start-line="103" selection-start-column="26" selection-end-line="103" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/commande/koudjine_cmdprogramme.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2278">
-              <caret line="136" column="79" selection-start-line="136" selection-start-column="70" selection-end-line="136" selection-end-column="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="338" column="43" selection-start-line="338" selection-start-column="43" selection-end-line="338" selection-end-column="43" />
+            <state relative-caret-position="476">
+              <caret line="335" selection-start-line="335" selection-end-line="335" />
               <folding>
                 <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
@@ -105,6 +67,24 @@
                 <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/Vente/functions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="916" column="53" selection-start-line="916" selection-start-column="45" selection-end-line="916" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/load_produit.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="94" column="19" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -176,7 +156,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>datesRapportVente</find>
       <find>heuresRapportVente</find>
       <find>produit_stock_detail_b</find>
       <find>produit_detail_b</find>
@@ -206,6 +185,7 @@
       <find>tab_Bcommande_Recu</find>
       <find>$(&quot;#prixTotal&quot;).attr(&quot;data&quot;)</find>
       <find>prixTotal</find>
+      <find>load_pro</find>
     </findStrings>
     <replaceStrings>
       <replace>$v</replace>
@@ -326,9 +306,9 @@
         <option value="$PROJECT_DIR$/webroot/koudjine/Class/commande.php" />
         <option value="$PROJECT_DIR$/view/commande/koudjine_list.php" />
         <option value="$PROJECT_DIR$/controller/CommandeController.php" />
-        <option value="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" />
         <option value="$PROJECT_DIR$/view/commande/koudjine_cmdprogramme.php" />
         <option value="$PROJECT_DIR$/webroot/koudjine/inc/enregistrer_commande.php" />
+        <option value="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" />
       </list>
     </option>
   </component>
@@ -356,6 +336,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -463,7 +444,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -657,13 +637,8 @@
       <workItem from="1614352908421" duration="32000" />
       <workItem from="1614453158903" duration="19573000" />
       <workItem from="1614889213585" duration="795000" />
-    </task>
-    <task id="LOCAL-00054" summary="merge">
-      <created>1600771546162</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1600771546163</updated>
+      <workItem from="1614925666206" duration="2465000" />
+      <workItem from="1615240446406" duration="964000" />
     </task>
     <task id="LOCAL-00055" summary="merge">
       <created>1600781726599</created>
@@ -1001,11 +976,18 @@
       <option name="project" value="LOCAL" />
       <updated>1611924715419</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="correction de quelque erreur dans produit detail">
+      <created>1614925820926</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1614925820926</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1059566000" />
+    <option name="totallyTimeSpent" value="1062995000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1017,9 +999,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23157895" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20242915" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -1035,7 +1018,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32824427" />
       <window_info anchor="bottom" id="Changes" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3285968" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="9" visible="true" weight="0.20426288" />
+      <window_info anchor="bottom" id="Version Control" order="9" visible="true" weight="0.11900533" />
       <window_info anchor="bottom" id="Application Servers" order="10" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="11" weight="0.32852563" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.19636364" />
@@ -1194,13 +1177,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="26" column="30" lean-forward="true" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/load_produit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="94" column="19" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1385,13 +1361,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/Vente/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="588" column="49" lean-forward="true" selection-start-line="588" selection-start-column="24" selection-end-line="588" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/vente/koudjine_venteadd.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -1436,8 +1405,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/view/commande/koudjine_cmdprogramme.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2278">
-          <caret line="136" column="79" selection-start-line="136" selection-start-column="70" selection-end-line="136" selection-end-column="79" />
+        <state relative-caret-position="2346">
+          <caret line="140" column="34" selection-start-line="140" selection-start-column="34" selection-end-line="140" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -1492,8 +1461,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="338" column="43" selection-start-line="338" selection-start-column="43" selection-end-line="338" selection-end-column="43" />
+        <state relative-caret-position="476">
+          <caret line="335" selection-start-line="335" selection-end-line="335" />
           <folding>
             <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
@@ -1506,6 +1475,20 @@
             <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webroot/koudjine/js/Vente/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="916" column="53" selection-start-line="916" selection-start-column="45" selection-end-line="916" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/load_produit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="94" column="19" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="19" />
         </state>
       </provider>
     </entry>
