@@ -1,4 +1,6 @@
-$(document).ready(function(){
+$(document).ready(function () {
+
+
     $("#tab_RetourProduit_Achete").hide();
     $("#tab_RetourProduit_Retourne").hide();
 
@@ -26,8 +28,7 @@ $(document).ready(function(){
             } else {
                 //$("#resultat ul").empty();
             }
-        }
-        else {
+        } else {
             $.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/readreference.php',
@@ -45,13 +46,14 @@ $(document).ready(function(){
             });
         }
     })
-
+    loadListProduitRetour();
 
 });
+
 function load_produit_retour(en_rayon_id, vente_id) {
-    var qte = parseInt($("#R" +en_rayon_id+ " .stock").html());
-    var prix = $("#R" +en_rayon_id+ " .prix").html();
-    var nom = $("#R" +en_rayon_id+ " .nom").html();
+    var qte = parseInt($("#R" + en_rayon_id + " .stock").html());
+    var prix = $("#R" + en_rayon_id + " .prix").html();
+    var nom = $("#R" + en_rayon_id + " .nom").html();
     //alert(qte);
     var cat = '<tr id="' + en_rayon_id + '">'
         + ' <td><strong>' + nom + '</strong></td>'
@@ -59,17 +61,17 @@ function load_produit_retour(en_rayon_id, vente_id) {
         + '<td><p></p><div class=\'input-group\'style=\'width:100px;\' >' +
         '<span class=\'input-group-btn\'>' +
         '                                                <button type=\'button\' class=\'btn btn-default btn-number moins\'' +
-        '                                                        onclick="change_input(\'moins\',\'inputQte'+ en_rayon_id +'\',\''+ qte +'\')"'+
+        '                                                        onclick="change_input(\'moins\',\'inputQte' + en_rayon_id + '\',\'' + qte + '\')"' +
         '                                                        style=\'padding: 4px;\'>' +
         '                                                    <span class=\'glyphicon glyphicon-minus\'></span>' +
         '                                                </button>' +
         '                                            </span>' +
         '                                                <input type=\'text\' name=\'quant[1]\' class=\'form-control input-number\'' +
-        '                                                       id="inputQte'+en_rayon_id+'"'+
+        '                                                       id="inputQte' + en_rayon_id + '"' +
         '                                                       value="1" style=\'width: 40px;\'>' +
         '                                                <span class=\'input-group-btn\'>' +
         '                                                <button type=\'button\' class=\'btn btn-default btn-number plus\'' +
-        '                                                        onclick="change_input(\'plus\',\'inputQte'+ en_rayon_id +'\',\''+ qte +'\')"'+
+        '                                                        onclick="change_input(\'plus\',\'inputQte' + en_rayon_id + '\',\'' + qte + '\')"' +
         '                                                        style=\'padding: 4px;\'>' +
         '                                                    <span class=\'glyphicon glyphicon-plus\'></span>' +
         '                                                </button>' +
@@ -82,18 +84,19 @@ function load_produit_retour(en_rayon_id, vente_id) {
     $('#R' + en_rayon_id).empty("slow");
 
 }
+
 function change_input(option, id, max) {
     if (option == 'plus') {
         if ($("#" + id).val() == '' || $("#" + id).val() == null)
             $("#" + id).val(1);
-        else if(parseInt($("#" + id).val()) < parseInt(max))
+        else if (parseInt($("#" + id).val()) < parseInt(max))
             $("#" + id).val(parseInt($("#" + id).val()) + 1);
-    }
-    else {
+    } else {
         if (parseInt($("#" + id).val()) != 0)
             $("#" + id).val(parseInt($("#" + id).val()) - 1);
     }
 }
+
 function valider_retour(employe_id) {
     alert($("#search-reference-produit").attr("data"));
     $.ajax({
@@ -124,6 +127,36 @@ function valider_retour(employe_id) {
                     }
                 })
             })
+
+        }
+    })
+}
+
+function loadListProduitRetour() {
+
+    $.ajax({
+        type: "POST",
+        url: "/pharmacietest/koudjine/inc/list_retour_produit.php",
+        data: {
+            id: 18
+        },
+        success: function (data) {
+            var datas = data
+            $('#tabRetourProduit').dataTable({
+                destroy: true,
+                searching: true,
+                dFilter: true,
+                bInfo: true,
+                bPaginate: true,
+                data: datas.data,
+                columns: [
+                    {data: "vente_id"},
+                    {data: "employe_id"},
+                    {data: "dateRetour"},
+                    {data: "caisse_id"},
+                    {data: "caisse_id"},
+                ]
+            });
 
         }
     })
