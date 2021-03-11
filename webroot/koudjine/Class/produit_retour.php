@@ -4,7 +4,7 @@ class ProduitRetour
 {
     private $_id,
         $_retour_produit_id,
-        $_en_rayon_id,
+        $_concerner_id,
         $_quantite,
         $_supprimer;
 
@@ -35,9 +35,9 @@ class ProduitRetour
     {
         return $this->_retour_produit_id;
     }
-    public function en_rayon_id()
+    public function concerner_id()
     {
-        return $this->_en_rayon_id;
+        return $this->_concerner_id;
     }
     public function quantite()
     {
@@ -63,10 +63,10 @@ class ProduitRetour
         $this->_retour_produit_id = $id;
 
     }
-    public function seten_rayon_id($id)
+    public function setconcerner_id($id)
     {
 
-        $this->_en_rayon_id = $id;
+        $this->_concerner_id = $id;
 
     }
     public function setquantite($id)
@@ -94,10 +94,10 @@ class ProduitRetourManager
     }
     public function add(ProduitRetour $produit_retour)
     {
-        $q = $this->_db->prepare('INSERT INTO produit_retour SET id = :id, retour_produit_id = :retour_produit_id, en_rayon_id = :en_rayon_id, quantite = :quantite, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO produit_retour SET id = :id, retour_produit_id = :retour_produit_id, concerner_id = :concerner_id, quantite = :quantite, supprimer=0');
         $q->bindValue(':id', $produit_retour->id(), PDO::PARAM_INT);
         $q->bindValue(':retour_produit_id', $produit_retour->retour_produit_id(), PDO::PARAM_INT);
-        $q->bindValue(':en_rayon_id', $produit_retour->en_rayon_id());
+        $q->bindValue(':concerner_id', $produit_retour->concerner_id());
         $q->bindValue(':quantite', $produit_retour->quantite());
         $q->execute();
     }
@@ -147,7 +147,7 @@ class ProduitRetourManager
     public function getListEnRayonId($info)
     {
         $stocks = array();
-        $q = $this->_db->prepare('SELECT * FROM produit_retour WHERE supprimer = 0 AND en_rayon_id = '.$info);
+        $q = $this->_db->prepare('SELECT * FROM produit_retour WHERE supprimer = 0 AND concerner_id = '.$info);
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
@@ -159,7 +159,7 @@ class ProduitRetourManager
     public function getList()
     {
         $produits = array();
-        $q = $this->_db->prepare('SELECT * FROM produit_retour WHERE supprimer = 0 ORDER BY en_rayon_id');
+        $q = $this->_db->prepare('SELECT * FROM produit_retour WHERE supprimer = 0 ORDER BY concerner_id');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
@@ -169,10 +169,10 @@ class ProduitRetourManager
     }
     public function update(ProduitRetour $produit_retour           )
     {
-        $q = $this->_db->prepare('UPDATE produit_retour SET retour_produit_id = :retour_produit_id, en_rayon_id = :en_rayon_id, quantite = :quantite WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit_retour SET retour_produit_id = :retour_produit_id, concerner_id = :concerner_id, quantite = :quantite WHERE id = :id');
         $q->bindValue(':id', $produit_retour->id(), PDO::PARAM_INT);
         $q->bindValue(':retour_produit_id', $produit_retour->retour_produit_id(), PDO::PARAM_INT);
-        $q->bindValue(':en_rayon_id', $produit_retour->en_rayon_id());
+        $q->bindValue(':concerner_id', $produit_retour->concerner_id());
         $q->bindValue(':quantite', $produit_retour->quantite());
         $q->execute();
     }

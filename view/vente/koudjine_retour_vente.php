@@ -42,7 +42,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <div class="panel panel-default">
                                     <div class="panel-heading ui-draggable-handle">
                                         <h3 class="panel-title">Produit achetés</h3>
@@ -55,6 +55,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                         <th width="200">Nom</th>
                                                         <th width="100">Prix Unitaire</th>
                                                         <th width="100">Quantité</th>
+                                                        <th width="100">Réduction</th>
                                                         <th width="100">Action</th>
                                                     </tr>
                                                 </thead>
@@ -66,10 +67,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-
-                            </div>
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                             <div class="panel panel-default">
                                     <div class="panel-heading ui-draggable-handle">
                                         <h3 class="panel-title">Produit retourné</h3>
@@ -82,6 +80,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                         <th width="200">Nom</th>
                                                         <th width="100">Prix Unitaire</th>
                                                         <th width="100">Quantité</th>
+                                                        <th width="100">Réduction</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tab_RetourProduit_Retourne">

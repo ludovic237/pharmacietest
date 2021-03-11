@@ -317,7 +317,7 @@ function delete_row_commande(id) {
 }
 function valider_commande(imprimer) {
     var prixTotal, idc, ref;
-    var prix, qte, ug, prixPublic, datep,nomP, count=0, rec=0;
+    var prix, qte, ug, prixPublic, reduction, datep,nomP, count=0, rec=0;
     var h = 1, total = 0, nbre = 0;
     prixTotal = parseInt($('#prixTotal').html());
     var today = new Date();
@@ -325,7 +325,8 @@ function valider_commande(imprimer) {
     var mm = String(today.getMonth()+1).padStart(2,'0');
     var yyyy = today.getFullYear();
     var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-    today = yyyy+"-"+mm+"-"+dd+"  "+time
+    today = yyyy+"-"+mm+"-"+dd+"  "+time;
+    //alert(parseInt($("#prixTotal").attr("data1")));
     $("#date").html(today);
     if (prixTotal == 0) {
         alert('Veuillez sélectionner des produits !!!');
@@ -336,8 +337,7 @@ function valider_commande(imprimer) {
             type: "POST",
             url: "/pharmacietest/koudjine/inc/enregistrer_commande.php",
             data: {
-                idf: parseInt($("#fournisse" +
-                    "ur_commande").val()),
+                idf: parseInt($("#fournisseur_commande").val()),
                 numLivraison: $("#numero_bon_livraison").val(),
                 montant: prixTotal,
                 datel: today,
@@ -350,6 +350,7 @@ function valider_commande(imprimer) {
                 //alert('tpasse');
                 //alert(data.erreur);
                 if (data.erreur == 'ok') {
+                    //alert('passe');
                     idc = data.id;
                     ref = data.ref;
                     //alert(idc);
@@ -405,7 +406,7 @@ function valider_commande(imprimer) {
                                 reduction: reduction
                             },
                             success: function (server_responce) {
-                                //alert(server_responce);
+                                alert(server_responce);
                                 //alert(idc);
                                 //alert("OK");
                                 rec++;

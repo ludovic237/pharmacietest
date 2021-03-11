@@ -15,9 +15,14 @@ $managerEnRayon = new En_rayonManager($pdo);
 
 if (isset($_POST['id']))
     $id = $_POST['id'];
-
-$enrayon = $managerEnRayon->getList($id);
 $produit = $managerProduit->get($id);
+if($produit->grossiste_id() != ''){
+    $enrayon = $managerEnRayon->getListDetail($id);
+}else{
+    $enrayon = $managerEnRayon->getList($id);
+}
+
+
 
 $datas = [];
 

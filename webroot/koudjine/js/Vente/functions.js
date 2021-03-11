@@ -1052,3 +1052,7 @@ function delete_row_vente(id) {
 
 
 }
+function gerer_detail(en_rayon_id) {
+    var link = '/pharmacietest/bouwou/comptabilite/sortie/'+en_rayon_id;
+    window.location.href = link;
+}
