@@ -12,7 +12,7 @@ $idf=$_POST['idf'];
 $qte=$_POST['qte'];
 $ug=$_POST['ug'];
 $montant=$_POST['montant'];
-echo $ug;
+//echo $ug;
 
 $ref = genererreferenceCommande($manager->countMois());
 

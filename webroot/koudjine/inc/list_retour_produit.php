@@ -2,11 +2,13 @@
 require_once('database.php');
 require_once('../Class/retour_produit.php');
 require_once('../Class/produit_retour.php');
+require_once('../Class/caisse.php');
 global $pdo;
 
 
 $managerRetourProduit = new RetourProduitManager($pdo);
 $managerProduitRetour = new ProduitRetourManager($pdo);
+$managerCa = new CaisseManager($pdo);
 
 $data = [];
 $datas = [];
@@ -14,7 +16,7 @@ $datas = [];
 if (isset($_POST['id']))
     $id = $_POST['id'];
 
-$retourproduit = $managerRetourProduit->getListCaisseId($id);
+$retourproduit = $managerRetourProduit->getListCaisseId($managerCa->get()->id());
 foreach ($retourproduit as $k => $v) :
 
     $data[] = array(

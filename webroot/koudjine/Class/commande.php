@@ -235,6 +235,11 @@ class CommandeManager
         return $this->_db->query('SELECT COUNT(*) FROM commande WHERE supprimer = 0 AND MONTH(dateCreation) = MONTH(NOW()) AND YEAR(dateCreation) = YEAR(NOW()) ')->fetchColumn();
     }
 
+    public function countNbreProduitParJour($id, $idf)
+    {
+        return $this->_db->query('SELECT COUNT(*) FROM produit_cmd p, commande c WHERE c.supprimer = 0 AND p.supprimer = 0 AND c.fournisseur_id ='.$idf.' AND c.id = p.commande_id AND DAY(dateCreation) = DAY(NOW()) AND MONTH(dateCreation) = MONTH(NOW()) AND YEAR(dateCreation) = YEAR(NOW()) AND produit_id = ' . $id)->fetchColumn();
+    }
+
     public function delete(Commande $commande)
     {
         $this->_db->exec('DELETE FROM commande WHERE id = ' . $commande->id());

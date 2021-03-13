@@ -42,6 +42,9 @@ if (isset($_POST['ide'])){
             'etat' => "Livré"
         ));
         $managerPo->add($conc);
+        echo 'nbre = '.$manager->countNbreProduitParJour($idp,$manager->get($idc)->fournisseur_id())."\n";
+        $ide = $ide . $manager->countNbreProduitParJour($idp, $manager->get($idc)->fournisseur_id());
+        echo $ide;
         // Créer une entrée en stock
         $en_rayon = new En_rayon(array(
             'id' => $ide,

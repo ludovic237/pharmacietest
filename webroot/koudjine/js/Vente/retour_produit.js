@@ -52,8 +52,9 @@ $(document).ready(function () {
 
 function load_produit_retour(en_rayon_id, vente_id) {
     var qte = parseInt($("#R" + en_rayon_id + " .stock").html());
+    var reduc = parseInt($("#R" + en_rayon_id + " .reduction").html());
     var prix = $("#R" + en_rayon_id + " .prix").html();
-    var nom = $("#R" + en_rayon_id + " .nom").html();
+    var prixTotal = 0, prixReduit = 0, nom = $("#R" + en_rayon_id + " .nom").html();
     //alert(qte);
     var cat = '<tr id="' + en_rayon_id + '">'
         + ' <td><strong>' + nom + '</strong></td>'
@@ -78,14 +79,34 @@ function load_produit_retour(en_rayon_id, vente_id) {
         '                                            </span>' +
         '                                            </div>' +
         '                                            <p></p>' +
-        '</td>';
+        '</td>'
+        + '<td>' + (reduc/qte) + '</td>'
+        + '</tr>';
     $('#tab_RetourProduit_Retourne').prepend(cat).show();
+    $('#tab_RetourProduit_Retourne  tr').each(function (i) {
+        var id1 = $(this).attr("id");
+        var prix1, qte1, reduction;
+        ////alert(id1);
+
+        $("#" + id1 + " td").each(function (j) {
+            //alert($(this).html());
+            if (j == 1) { prix1 = parseInt($(this).html()); }
+            if (j == 2) { qte1 = parseInt($("#inputQte" + id1).val()); prixTotal = prixTotal + (prix1 * qte1); }
+            if (j == 3) { reduction = parseInt($(this).html()); prixReduit = prixReduit + (reduction*qte1); }
+
+        });
+
+    });
+    $('#prixTotal').html(prixTotal);
+    $('#prixReduit').html(prixReduit);
+    $('#netTotal').html((prixTotal - prixReduit));
     $("#search-reference-produit").attr("data", $('#R' + en_rayon_id).attr("data"))
     $('#R' + en_rayon_id).empty("slow");
 
 }
 
 function change_input(option, id, max) {
+    var prixTotal = 0, prixReduit = 0;
     if (option == 'plus') {
         if ($("#" + id).val() == '' || $("#" + id).val() == null)
             $("#" + id).val(1);
@@ -95,6 +116,23 @@ function change_input(option, id, max) {
         if (parseInt($("#" + id).val()) != 0)
             $("#" + id).val(parseInt($("#" + id).val()) - 1);
     }
+    $('#tab_RetourProduit_Retourne  tr').each(function (i) {
+        var id1 = $(this).attr("id");
+        var prix1, qte1, reduction;
+        ////alert(id1);
+
+        $("#" + id1 + " td").each(function (j) {
+            ////alert($(this).html());
+            if (j == 1) { prix1 = parseInt($(this).html()); }
+            if (j == 2) { qte1 = parseInt($("#inputQte" + id1).val()); prixTotal = prixTotal + (prix1 * qte1); }
+            if (j == 3) { reduction = parseInt($(this).html()); prixReduit = prixReduit + (reduction*qte1); }
+
+        });
+
+    });
+    $('#prixTotal').html(prixTotal);
+    $('#prixReduit').html(prixReduit);
+    $('#netTotal').html((prixTotal - prixReduit));
 }
 
 function valider_retour(employe_id) {
@@ -140,8 +178,10 @@ function loadListProduitRetour() {
         data: {
             id: 18
         },
+        dataType: "json",
         success: function (data) {
-            var datas = data
+            //alert(data);
+            var datas = data;
             $('#tabRetourProduit').dataTable({
                 destroy: true,
                 searching: true,
