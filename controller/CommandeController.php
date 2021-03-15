@@ -109,6 +109,11 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
         $this->set($d);
     }
 
+    function koudjine_list_commande()
+    {
+        $this->loadModel('Commande');
+    }
+
     function koudjine_list($id = null)
     {
         $this->loadModel('Commande');

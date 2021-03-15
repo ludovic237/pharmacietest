@@ -231,9 +231,18 @@
                     <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'simplereappro') { ?>class="active" <?php } ?>>
                         <a href="<?php echo Router::url('bouwou/commande/simplereappro'); ?>"><span class="fa lettre">S</span>Simple réappro</a>
                     </li>
-                    <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'cmdprogramme') { ?>class="active" <?php } ?>>
-                        <a href="<?php echo Router::url('bouwou/commande/cmdprogramme'); ?>"><span class="fa lettre">C</span>Commande express</a>
+                    <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['commande'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'commande') { ?>active<?php } ?>">
+                        <a href="#"><span class="fa lettre">A</span>Autre commande</a>
+                        <ul>
+                            <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'cmdprogramme') { ?>class="active" <?php } ?>>
+                                <a href="<?php echo Router::url('bouwou/commande/cmdprogramme'); ?>"><span class="fa lettre">C</span>Commande express</a>
+                            </li>
+                            <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'list_commande') { ?>class="active" <?php } ?>>
+                                <a href="<?php echo Router::url('bouwou/commande/list_commande'); ?>"><span class="fa lettre">L</span>Liste commande</a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li <?php if ($this->request->controller == 'commande' && $this->request->action == 'list') { ?>class="active" <?php } ?>>
                         <a href="<?php echo Router::url('bouwou/commande/list'); ?>"><span class="fa lettre">L</span>Liste
                             de commande</a>

@@ -194,7 +194,6 @@ function loadListProduitRetour() {
                     {data: "employe_id"},
                     {data: "dateRetour"},
                     {data: "caisse_id"},
-                    {data: "caisse_id"},
                 ]
             });
 
