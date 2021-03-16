@@ -13,15 +13,9 @@ if ($this->request->action == "index") {
 $position_for_layout = '<li><a href="#">Comptabilite</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/functions.js"></script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>';
 if (isset($id)) {
-    $script_for_layout = $script_for_layout . '<script type="text/javascript">  
-$(document).ready(
-    open_rapport(' . $id . ');
-    showRapportTest(' . $id . ');
-    )
-</script>';
+    $script_for_layout = $script_for_layout . '<script type="text/javascript"> $(document).ready(function () {showRapportTest(' . $id . ')}) </script>';
 }
 
 ?> -->
@@ -32,30 +26,19 @@ $(document).ready(
 
         <!-- START SALES BLOCK -->
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                            class="sr-only">Close</span></a>
-                <h4 class="modal-title">Rapport caisse de <span style="font-weight: bolder" id="nameRapport"></span> du
-                    : <span id="datesRapport" style="font-weight: bolder"></span> à <span style="font-weight: bolder"
-                                                                                          id="heuresRapport"></span>
-                </h4>
-                <div style="display: flex;justify-content: space-between">
-                    <h4 class="modal-title">Session : <span style="font-weight: bolder" id="sessionRapport"></span></h4>
-                    <h4 class="modal-title"><span id="etatRapport" class="label label-success">' + data + '</span></h4>
-                </div>
-            </div>
+
             <div class="panel-body">
                 <div class="row ">
                     <div class="col-md-12">
                         <div id="rapport_de_caisse">
-                            <h4>Du <span id="dateOuvertRapportVente" style="font-weight: bolder"></span> au <span
-                                        style="font-weight: bolder" id="dateFermeRapportVente"></span></h4>
+                            <h4>Du <span id="dateOuvertRapportVente" style="font-weight: bolder"><?php echo $dateOuvert; ?></span> au <span
+                                        style="font-weight: bolder" id="dateFermeRapportVente"><?php echo $dateFerme; ?></span></h4>
 
                             <div style="display: flex;justify-content: space-between">
                                 <h4 class="modal-title">Caissier : <span style="font-weight: bolder"
                                                                          id="nameRapportVente"></span></h4>
                                 <h4 class="modal-title">Session : <span style="font-weight: bolder"
-                                                                        id="sessionRapportVente"></span></h4>
+                                                                        id="sessionRapportVente"><?php echo $session; ?></span></h4>
                             </div>
                             <div class="row divine">
                                 <div class="col-md-6">
@@ -220,8 +203,8 @@ $(document).ready(
                                                     </tr>
                                                     </tbody>
                                                 </table>
-                                                <div style="padding: 10px;">
-                                                    <p>Total: <span id="rapport_efc_total"></span></p>
+                                                <div style="display:flex;padding: 5px">
+                                                    <p style="margin: 0px">Total: <span id="rapport_efc_total"></span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,11 +236,11 @@ $(document).ready(
                                                     <tr>
 
                                                     </tr>
-                                                    
+
                                                     </tbody>
                                                 </table>
-                                                <div style="padding: 10px;">
-                                                    <p>Total: <span id="rapport_bc_total"></span></p>
+                                                <div style="display:flex;padding: 5px">
+                                                    <p style="margin: 0px">Total: <span id="rapport_bc_total"></span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -288,11 +271,11 @@ $(document).ready(
                                                     <tr>
 
                                                     </tr>
-                                                    
+
                                                     </tbody>
                                                 </table>
-                                                <div style="padding: 10px;">
-                                                    <p>Total: <span id="rapport_bc_total_genere"></span></p>
+                                                <div style="display:flex;padding: 5px">
+                                                    <p style="margin: 0px">Total: <span id="rapport_bc_total_genere"></span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -391,7 +374,7 @@ $(document).ready(
                                         </div>
                                         <div class="panel-body panel-body-table">
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped">
+                                                <table  id="rapport_retour" class="table table-bordered table-striped">
                                                     <thead>
                                                     <tr>
                                                         <th>Quantité</th>
@@ -400,13 +383,13 @@ $(document).ready(
                                                     </thead>
                                                     <tbody>
                                                     <tr>
-                                                        <td id="">0</td>
-                                                        <td id="">
-                                                            0
-                                                        </td>
+
                                                     </tr>
                                                     </tbody>
                                                 </table>
+                                                <div style="display:flex;padding: 5px">
+                                                    <p style="margin: 0px">Total: <span id="rapport_retour_total"></span></p>
+                                                </div>
                                             </div>
                                         </div>
 

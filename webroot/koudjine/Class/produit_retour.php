@@ -97,7 +97,7 @@ class ProduitRetourManager
         $q = $this->_db->prepare('INSERT INTO produit_retour SET id = :id, retour_produit_id = :retour_produit_id, concerner_id = :concerner_id, quantite = :quantite, supprimer=0');
         $q->bindValue(':id', $produit_retour->id(), PDO::PARAM_INT);
         $q->bindValue(':retour_produit_id', $produit_retour->retour_produit_id(), PDO::PARAM_INT);
-        $q->bindValue(':concerner_id', $produit_retour->concerner_id());
+        $q->bindValue(':concerner_id', $produit_retour->concerner_id(), PDO::PARAM_INT);
         $q->bindValue(':quantite', $produit_retour->quantite());
         $q->execute();
     }

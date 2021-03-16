@@ -190,10 +190,12 @@ function loadListProduitRetour() {
                 bPaginate: true,
                 data: datas.data,
                 columns: [
-                    {data: "vente_id"},
                     {data: "employe_id"},
                     {data: "dateRetour"},
                     {data: "caisse_id"},
+                    {data: "list"},
+                    {data: "quantite_total_produitRetour"},
+                    {data: "prix"},
                 ]
             });
 

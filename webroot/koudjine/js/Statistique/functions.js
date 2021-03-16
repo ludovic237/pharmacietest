@@ -1126,6 +1126,20 @@ function showRapportTest(id) {
             $("#rapport_total_depense").html(data.total_depense);
 
 
+            //retour produit
+            $('#rapport_retour').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.tf_retourproduit	,
+                columns: [
+                    {data: "quantite_total_produitRetour"},
+                    {data: "prix"},
+                ]
+            });
+            $("#rapport_retour_total").html(data.tf_retourtotal);
             // Etat caisse
             $("#rapport_ec_solde_reel").html(data.ec_solde_reel);
             $("#rapport_ec_solde_system").html(data.ec_solde_system);

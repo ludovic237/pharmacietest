@@ -115,10 +115,12 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <table id="tabRetourProduit" class="table datatable table-bordered table-striped table-actions">
                             <thead>
                             <tr>
-                                <th width="200">Vente id</th>
                                 <th width="100">Nom employe</th>
                                 <th width="100">Date</th>
                                 <th width="100">Caisse</th>
+                                <th width="100">Produits</th>
+                                <th width="100">Quantite</th>
+                                <th width="100">Prix total</th>
                             </tr>
                             </thead>
                             <tbody >

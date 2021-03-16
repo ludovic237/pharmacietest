@@ -12,10 +12,15 @@ require_once('../Class/user.php');
 require_once('../Class/produit.php');
 require_once('../Class/fournisseur1.php');
 
+require_once('../Class/retour_produit.php');
+require_once('../Class/produit_retour.php');
+
 global $pdo;
 
 
-$managerCaisse = new CaisseManager($pdo);
+$managerRetourProduit = new RetourProduitManager($pdo);
+$managerPrRetour = new ProduitRetourManager($pdo);
+$managerCa = new CaisseManager($pdo);
 $managerFa = new FacturationManager($pdo);
 $managerEm = new EmployeManager($pdo);
 $managerUs = new UserManager($pdo);
@@ -34,6 +39,7 @@ $dataBonCaisse = [];
 $dataBonGeneré = [];
 $dataBoncaisseGenerer = [];
 $dataBoncaisseEncaisser = [];
+$dataProduitRetour = [];
 $datas = [];
 $dataVenteACredit = [];
 
@@ -181,10 +187,49 @@ endforeach;
 
 //etat de la caisse
 
-$montantFermeture = $managerCaisse->getId($v->id())->fondCaisseFerme();
+$montantFermeture = $managerCa->getId($id)->fondCaisseFerme();
 $montantSystem = (+$totalboncaisseGenerer) - ($totalboncaisseEncaisser + $totalDepense);
 $differnce  = $montantFermeture - $montantSystem;
 
+//retour produit
+
+
+$retourproduit = $managerRetourProduit->getListCaisseId($id);
+$prixTotalRetourProduit=0;
+foreach ($retourproduit as $k => $v) :
+
+    $caisse_userid = $managerCa->getId($v->caisse_id())->user_id();
+    $employe_userid = $managerEm->get($caisse_userid)->user_id();
+    $user_nom = $managerUs->get($employe_userid)->nom();
+    $user_prenom = $managerUs->get($employe_userid)->prenom();
+
+    $produitretour = $managerPrRetour->getListRetourProduitId($v->id());
+    $quantite_produitRetour=0;
+    $quantite_total_produitRetour=0;
+    $prixTotal=0;
+    $List_produitRetour="";
+    foreach ($produitretour as $k => $c){
+        $quantite_produitRetour = $quantite_produitRetour + $c->quantite();
+        $concerner_produitId = $managerCo->get($c->concerner_id())->en_rayon_id();
+        $en_rayon_produitId = $managerEn->get($concerner_produitId)->produit_id();
+        $produit_nom = $managerPr->get($en_rayon_produitId)->nom();
+        $List_produitRetour = $List_produitRetour . " " . $produit_nom . " " . $c->quantite()." - ";
+        $prixTotal = $prixTotal + ($c->quantite()*$managerEn->get($concerner_produitId)->prixVente());
+    }
+    $quantite_total_produitRetour = $quantite_produitRetour;
+    $prixTotalRetourProduit = $prixTotal + $prixTotalRetourProduit;
+    $dataProduitRetour[] = array(
+        "DT_RowId" => $v->id(),
+        "id" => $v->id(),
+        "vente_id" => $v->vente_id(),
+        "employe_id" => $user_nom . ' ' . $user_prenom,
+        "dateRetour" => $v->dateRetour(),
+        "caisse_id" => $v->caisse_id(),
+        "quantite_total_produitRetour" => $quantite_total_produitRetour,
+        "list" => $List_produitRetour,
+        "prix" => $prixTotal,
+    );
+endforeach;
 
 $donnees = array(
     'vente_fg' => $prixGrossite,
@@ -209,5 +254,8 @@ $donnees = array(
     'ec_solde_reel' => $montantFermeture,
     'ec_solde_system' => $montantSystem,
     'ec_difference' => $differnce,
+    'tf_retourproduit' => $dataProduitRetour,
+    'tf_retourtotal' => $prixTotalRetourProduit
+
 );
 echo json_encode($donnees);
