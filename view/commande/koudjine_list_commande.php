@@ -80,20 +80,18 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
                         <h6 style="color: #fff;margin-bottom: 0px;">Tableau de commande</h6>
                     </div>
-                    <table class="table table-bordered table-striped table-actions" id="list_commande_table">
+                    <table class="table datatable table table-bordered table-striped table-actions" id="list_commande_tables">
                         <thead>
                         <tr>
-                            <th width="200">Nom</th>
-                            <th width="100">Quantité</th>
-                            <th width="100">Unité gratuite</th>
-                            <th width="100">Prix Achat</th>
-                            <th width="100">Prix Public</th>
-                            <th width="100">Date de perremption</th>
-                            <th width="100">Réduction</th>
-                            <th width="100">Action</th>
+                            <th>Ref</th>
+                            <th>Montant Total</th>
+                            <th>Montant percu</th>
+                            <th>Nom caissier</th>
+                            <th>Date de vente</th>
+                            <th>Etat</th>
                         </tr>
                         </thead>
-                        <tbody id="tab_commande_programme">
+                        <tbody>
 
                         </tbody>
                     </table>
