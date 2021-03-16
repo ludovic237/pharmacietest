@@ -1,8 +1,10 @@
-<!-- <?php
-
+<?php
+if(isset($check))
+print_r($check);
+echo $id;
 $title_for_layout = ' ALSAS -' . 'Comptabilite';
-$page_for_layout = 'Rapport : ' . $employe->nom;
-$action_fermeture = (isset($caisse)) ? $caisse : $caisseCheck;
+//$page_for_layout = 'Rapport : ' . $employe->nom;
+//$action_fermeture = (isset($caisse)) ? $caisse : $caisseCheck;
 //if(isset($employe)) echo 'passe';
 
 if ($this->request->action == "index") {

@@ -814,7 +814,7 @@ function open_rapport(id) {
     if (id != null) {
         caisse_id = id;
     }
-
+    alert(caisse_id)
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/liste_depense.php',

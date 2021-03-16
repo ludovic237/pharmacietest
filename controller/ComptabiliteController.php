@@ -517,7 +517,7 @@ class ComptabiliteController extends Controller
         $d['check'] = $this->Comptabilite->findFirst(array(
             //'fields' => 'produit.nom as nom',
             'table' => 'caisse',
-            'conditions' => "supprimer = 0 AND etat = \"En cours1\" OR etat = \"En cours\" OR etat = \"Ouvert\""
+            'conditions' => "supprimer = 0 AND etat != \"Clot\""
         ));
         if($id != null){
             $d['id'] = $id;
