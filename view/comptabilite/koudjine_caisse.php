@@ -1916,3 +1916,24 @@
     </div>
 </div>
 <!-- END MODAL ICON PREVIEW -->
+
+
+<!-- MESSAGE BOX-->
+<div class="message-box animated fadeIn" data-sound="alert" id="mb-bom-caisse">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-ticket"></span><strong>Confirmation bon de caisse</strong></div>
+            <div class="mb-content">
+                <p>Appuyer sur oui pour valider la validation de votre bon de caisse</p>
+               <!-- <p>Press No if youwant to continue work. Press Yes to logout current user.</p>-->
+            </div>
+            <div class="mb-footer">
+                <div class="pull-right">
+                    <a onclick="gerer_bon_caisse()" class="btn btn-success btn-lg">Oui</a>
+                    <button class="btn btn-danger btn-lg mb-control-close">Non</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MESSAGE BOX-->

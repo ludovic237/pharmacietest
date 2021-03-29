@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL . '/koudjine/css/print.css'; ?>" media="print" />
     <link rel="icon" href="<?php echo BASE_URL . '/koudjine/favicon.ico'; ?>" type="image/x-icon" />
     <!-- END META SECTION -->
     <!-- CSS INCLUDE -->
@@ -693,7 +692,7 @@
 
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins.js'; ?>"></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/actions.js'; ?>"></script>
-    <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/settings.js'; ?>"></script>
+   <!-- <script type=" text/javascript" src="<?php /*echo BASE_URL . '/koudjine/js/settings.js'; */?>"></script>-->
     <!-- END TEMPLATE -->
     <!-- END SCRIPTS -->
 </body>

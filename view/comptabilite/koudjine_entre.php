@@ -202,12 +202,14 @@ $script_for_layout = '
                                                         <!--<p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>-->
                                                     </div>
                                                     <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%;height: 8mm;">
-                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 12px;align-content: center;align-items: center;justify-content: center;justify-items: center;display: flex;"><span class="prixv"></span> FCFA</p>
-                                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="qrcode"></p>
-                                                    </div>
-                                                    <div style="display: flex;flex-direction: column;justify-content: space-between;width:100%">
-                                                        <p class="nomf" style="font-weight: bold;text-align:center; margin:0px;font-size: 5px;"></p>
-                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;"><span class="datep"></span> / <span class="datel" ></span></p>
+                                                        <div style="display: flex;flex-direction: column;justify-content: space-between;width:100%">
+                                                            <p style="font-weight: bold;text-align:center; margin:0px;font-size: 12px;align-content: center;align-items: center;justify-content: center;justify-items: center;display: flex;"><span class="prixv"></span> FCFA</p>
+                                                            <p class="nomf" style="font-weight: bold;text-align:center; margin:0px;font-size: 5px;"></p>
+                                                            <p style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;"><span class="datep"></span> / <span class="datel" ></span></p>
+                                                        </div>
+                                                        <div>
+                                                            <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="qrcode"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </td>
