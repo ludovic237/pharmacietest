@@ -139,7 +139,7 @@ $(document).ready(function () {
     $("#scanner_bon").keyup(function (event) {
         var recherche
         if (event.keyCode == 13) {
-             recherche = $(this).val();
+            recherche = $(this).val();
             //$("#resultat ul").empty();
             recherche = $.trim(recherche);
             if (recherche.length > 1) {
@@ -154,7 +154,7 @@ $(document).ready(function () {
                     success: function (data) {
                         //alert(data);
                         if (data.erreur == 'non') {
-                            if(data.dateE != null){
+                            if (data.dateE != null) {
                                 $('#tab_GBonCaisse').empty();
                                 var cat = '<tr id="' + data.id + '" >'
                                     + ' <td> <input class=\'nom\' type="text" value="' + data.nom + '"></td>'
@@ -165,7 +165,7 @@ $(document).ready(function () {
                                     + '</tr>';
                                 $('#tab_GBonCaisse').prepend(cat);
                                 $("#scanner_bon").val('');
-                            }else{
+                            } else {
                                 $('#tab_GBonCaisse').empty();
                                 var cat = '<tr id="' + data.id + '" >'
                                     + ' <td> <input class=\'nom\' type="text" value="' + data.nom + '"></td>'
@@ -201,6 +201,7 @@ $(document).ready(function () {
     })
 
 });
+
 function open_bon_caisse() {
     $('#tab_GBonCaisse').empty();
     $("#scanner_bon").select();
@@ -261,7 +262,8 @@ function encaisser_bon_caisse() {
 
     })
 }
-function encaisser_liste_bon(bon_id){
+
+function encaisser_liste_bon(bon_id) {
     var dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
     $.ajax({
         type: "POST",
@@ -293,7 +295,12 @@ function gerer_bon_caisse() {
             $('#nomclientimp').html($("#" + id1 + " .nom").val());
             $('#montantimp').html($("#" + id1 + " .montant").val());
             $('#dateimp').html(moment().format("YYYY-MM-DD HH:mm:ss"));
-            qrcode.makeCode(moment().format("YYMMDDHHmmss"));
+            //qrcode.makeCode(moment().format("YYMMDDHHmmss"));
+            $("#codebarreimp").barcode(
+                moment().format("YYMMDDHHmmss"), // Value barcode (dependent on the type of barcode)
+                "code128" // type (string)
+
+            );
 
             $('#codebarrenulimp').html(moment().format("YYMMDDHHmmss"));
 
@@ -329,6 +336,7 @@ function gerer_bon_caisse() {
 
     });
 }
+
 function reimprime_ticket_caisse(id) {
     var datevte = $("#" + id + " .datevte").html();
     var yo = datevte;
@@ -969,11 +977,16 @@ function close_caisse_row() {
 
 
 function showRapportTest(id) {
+    console.log("YO");
+    var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
+    if (id != null) {
+        caisse_id = id;
+    }
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/rapport_caisse_all.php',
         data: {
-            id: 73,
+            id: caisse_id,
         },
         dataType: 'json',
         success: function (data) {
@@ -1004,9 +1017,9 @@ function showRapportTest(id) {
                 bPaginate: false,
                 data: data.efc_espece,
                 columns: [
-                    {data: "numeroFavture"},
-                    {data: "nom"},
-                    {data: "total"},
+                    {data: "reference"},
+                    {data: "client"},
+                    {data: "prixPercu"},
                 ]
             });
             $("#rapport_efc_total").html(data.efc_total);
@@ -1055,12 +1068,27 @@ function showRapportTest(id) {
                 columns: [
                     {data: "id"},
                     {data: "designation"},
+                    {data: "quantite"},
                     {data: "prixUnitaire"},
                     {data: "total"},
                 ]
             });
             $("#rapport_total_depense").html(data.total_depense);
 
+            //retour produit
+            $('#rapport_retour').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.tf_retourproduit,
+                columns: [
+                    {data: "quantite_total_produitRetour"},
+                    {data: "prix"},
+                ]
+            });
+            $("#rapport_retour_total").html(data.tf_retourtotal);
 
             // Etat caisse
             $("#rapport_ec_solde_reel").html(data.ec_solde_reel);
@@ -1068,7 +1096,6 @@ function showRapportTest(id) {
             $("#rapport_ec_difference").html(data.ec_difference);
         }
     });
-    $("#iconPreviewRapportTest").modal("show");
 
 }
 
@@ -1080,27 +1107,205 @@ function imprimer_blocTest(titre, objet) {
     // Ouverture du popup,
     var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
     fen.document.write(
-        '<html> <head><style>' +
+        '<html> <head>' +
+        '' +
+        '<style>' +
         'body{\n' +
         '      font-size: 8px!important;\n' +
-        ''+
+        '' +
         '    }\n' +
-        'body{font-size: 6px!important;}'+
-          '.divine{font-size: 6px!important;display: flex;flex-direction: row;justify-content: space-between;}'+
-          'p{font-size: 6px!important;}'+
-          'div{font-size: 6px!important;}'+
-          'td{font-size: 6px!important;border-color: #000000;border-width: 1px;border: 1px solid #000000;}'+
-          'th{font-size: 6px!important;border-color: #000000;border-width: 1px;border: 1px solid #000000;}'+
-          'table{font-size: 6px!important;}'+
-          '.panel-body.panel-body-table .table {margin-bottom: 0px;border: 0px;}'+
-          '.panel-body.panel-body-table td, .panel-body.panel-body-table th {padding: 8px 6px;}'+
-          '.table-bordered {border: 1px solid #000000;}'+
-          '.table > tfoot > tr > td {border-color: #000000;border-width: 1px;}'+
-          '.table-bordered>tbody>tr>td{border: 1px solid #000000;}'+
-          '.table>tfoot>tr>td {padding: 8px;line-height: 1.42857143;vertical-align: top;border-top: 1px solid #000000;}'+
-          '.table {border-spacing: 2px;border-collapse: separate;width: 100%;border-collapse: collapse;border-spacing: 0;max-width: 100%;margin-bottom: 20px;}'+
-          'tbody {display: table-row-group;vertical-align: middle;border-color: inherit;}'+
-          'thead {display: table-header-group;vertical-align: middle;border-color: inherit;}'+
+        '.row {\n' +
+        '    margin-left: 0px;\n' +
+        '    margin-right: 0px;\n' +
+        '}' +
+        '.col-md-6 {\n' +
+        '    width: 50%;\n' +
+        'min-height: 1px;\n' +
+        '    padding-left: 10px;\n' +
+        '    padding-right: 10px;' +
+        'float: left;' +
+        '}' +
+
+        '.panel.panel-default {\n' +
+        '    border-top-color: #F5F5F5;\n' +
+        '    border-top-width: 1px;\n' +
+        '}' +
+        '.panel .panel-heading, .panel .panel-footer, .panel .panel-body {\n' +
+        '    float: left;\n' +
+        '    width: 100%;\n' +
+        '}' +
+        '.panel {\n' +
+        '    float: left;\n' +
+        '    width: 100%;\n' +
+        '    -moz-border-radius: 0px;\n' +
+        '    -webkit-border-radius: 5px;\n' +
+        '    border-radius: 0px;\n' +
+        '    border: 0px;\n' +
+        '    border-top: 2px solid #E5E5E5;\n' +
+        '    margin-bottom: 20px;\n' +
+        '    position: relative;\n' +
+        '    -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);\n' +
+        '    -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);\n' +
+        '    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);\n' +
+        '}' +
+        'body{font-size: 6px!important;}' +
+        '.divine{font-size: 6px!important;display: flex;flex-direction: row;justify-content: space-between;}' +
+        'p{font-size: 6px!important;}' +
+        'div{font-size: 6px!important;}' +
+        'td{font-size: 6px!important;}' +
+        'th{font-size: 6px!important;}' +
+        'table{font-size: 6px!important;}' +
+        '.panel-body.panel-body-table .table {margin-bottom: 0px;border: 0px;}' +
+        '.panel-body.panel-body-table td, .panel-body.panel-body-table th {padding: 8px 6px;}' +
+        '.table > thead > tr > th,\n' +
+        '.table > tbody > tr > th,\n' +
+        '.table > tfoot > tr > th,\n' +
+        '.table > thead > tr > td,\n' +
+        '.table > tbody > tr > td,\n' +
+        '.table > tfoot > tr > td {\n' +
+        '  border-color: #E5E5E5;\n' +
+        '  border-width: 1px;\n' +
+        '}\n' +
+        '.table-striped > tbody > tr:nth-child(odd) > td,\n' +
+        '.table-striped > tbody > tr:nth-child(odd) > th {\n' +
+        '  background: #F8FAFC;\n' +
+        '}\n' +
+        '.table > thead > tr > th {\n' +
+        '  background: #f1f5f9;\n' +
+        '  color: #56688A;\n' +
+        '  font-size: 12px;\n' +
+        '}\n' +
+        '.panel-body.panel-body-table {\n' +
+        '  padding: 0px;\n' +
+        '}\n' +
+        '.panel-body.panel-body-table h1,\n' +
+        '.panel-body.panel-body-table h2,\n' +
+        '.panel-body.panel-body-table h3,\n' +
+        '.panel-body.panel-body-table h4,\n' +
+        '.panel-body.panel-body-table h5,\n' +
+        '.panel-body.panel-body-table h6 {\n' +
+        '  padding-left: 10px;\n' +
+        '  margin-bottom: 10px;\n' +
+        '}\n' +
+        '.panel-body.panel-body-table .table {\n' +
+        '  margin-bottom: 0px;\n' +
+        '  border: 0px;\n' +
+        '}\n' +
+        '.panel-body.panel-body-table .table tr > td:first-child,\n' +
+        '.panel-body.panel-body-table .table tr > th:first-child {\n' +
+        '  border-left: 0px;\n' +
+        '}\n' +
+        '.panel-body.panel-body-table .table tr > td:last-child,\n' +
+        '.panel-body.panel-body-table .table tr > th:last-child {\n' +
+        '  border-right: 0px;\n' +
+        '}\n' +
+        '.panel-body.panel-body-table .table > tbody > tr:last-child > td {\n' +
+        '  border-bottom: 0px;\n' +
+        '}\n' +
+        '.panel-body.panel-body-table td,\n' +
+        '.panel-body.panel-body-table th {\n' +
+        '  padding: 2px 4px;\n' +
+        '}\n' +
+        '.table.table-actions td {\n' +
+        '  line-height: 28px;\n' +
+        '}\n' +
+        '.table .progress-small {\n' +
+        '  margin: 7px 0px 8px;\n' +
+        '}\n' +
+        '.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {\n' +
+        '    border: 1px solid #ddd;\n' +
+        '        border-top-color: rgb(221, 221, 221);\n' +
+        '        border-top-width: 1px;\n' +
+        '        border-right-color: rgb(221, 221, 221);\n' +
+        '        border-right-width: 1px;\n' +
+        '        border-bottom-color: rgb(221, 221, 221);\n' +
+        '        border-bottom-width: 1px;\n' +
+        '        border-left-color: rgb(221, 221, 221);\n' +
+        '        border-left-style: solid;\n' +
+        '        border-left-width: 1px;\n' +
+        '}' +
+        '.panel .panel-heading .panel-title-box h3 {\n' +
+        'margin-left: 10px;\n'+
+        '    font-size: 7px;\n' +
+        '    font-weight: 600;\n' +
+        '    line-height: 18px;\n' +
+        '    color: #434a54;\n' +
+        '    padding: 0px;\n' +
+        '    margin: 0px;\n' +
+        '}'+
+        '.table {\n' +
+        '    width: 100%;\n' +
+        '    max-width: 100%;\n' +
+        'border-spacing: 0;\n' +
+        'border-collapse: collapse;' +
+        '}' +
+        '/* EOF TABLES */\n' +
+        '/* Datatables */\n' +
+        '.dataTable {\n' +
+        '  float: left;\n' +
+        '  border-bottom: 1px solid #E5E5E5 !important;\n' +
+        '  margin-bottom: 5px;\n' +
+        '}\n' +
+        '.dataTable div.checker,\n' +
+        '.dataTable div.radio {\n' +
+        '  display: inherit;\n' +
+        '}\n' +
+        '.dataTables_wrapper {\n' +
+        '  float: left;\n' +
+        '  width: 100%;\n' +
+        '}\n' +
+        '.dataTables_length {\n' +
+        '  width: 50%;\n' +
+        '  float: left;\n' +
+        '  padding: 0px 0px 5px;\n' +
+        '  border-bottom: 1px solid #E5E5E5;\n' +
+        '  font-size: 12px;\n' +
+        '}\n' +
+        '.dataTables_length label,\n' +
+        '.dataTables_filter label {\n' +
+        '  padding: 0px;\n' +
+        '  line-height: 26px;\n' +
+        '  height: auto;\n' +
+        '  margin: 0px;\n' +
+        '  font-weight: normal;\n' +
+        '}\n' +
+        '.dataTables_length select {\n' +
+        '  width: 70px;\n' +
+        '  display: inline;\n' +
+        '  margin: 0px 5px;\n' +
+        '}\n' +
+        '.dataTables_filter {\n' +
+        '  width: 50%;\n' +
+        '  float: right;\n' +
+        '  padding-left: 5px;\n' +
+        '  padding: 0px 0px 5px;\n' +
+        '  border-bottom: 1px solid #E5E5E5;\n' +
+        '  font-size: 12px;\n' +
+        '}\n' +
+        '.dataTables_filter label {\n' +
+        '  float: right;\n' +
+        '}\n' +
+        '.dataTables_filter label input {\n' +
+        '  width: 150px;\n' +
+        '  display: inline;\n' +
+        '  margin-left: 5px;\n' +
+        '}\n' +
+        'td.dataTables_empty {\n' +
+        '  font-size: 11px;\n' +
+        '  text-align: center;\n' +
+        '  color: #333;\n' +
+        '}\n' +
+        '.dataTables_info {\n' +
+        '  float: left;\n' +
+        '  font-size: 12px;\n' +
+        '  padding: 0px;\n' +
+        '  line-height: 30px;\n' +
+        '}\n' +
+        '.dataTables_paginate {\n' +
+        '  padding: 0px;\n' +
+        '  text-align: right;\n' +
+        '  float: right;\n' +
+        '}\n' +
         '</style></head>');
     fen.document.write(
         '<body style="font-size: 8px!important;">'

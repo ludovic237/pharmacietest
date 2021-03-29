@@ -99,6 +99,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <tr>
                                 <th width="200">Nom</th>
                                 <th width="100">Quantité</th>
+                                <th width="100">Unité gratuite</th>
                                 <th width="100">Prix Achat</th>
                                 <th width="100">Prix Public</th>
                                 <th width="100">Date de perremption</th>
@@ -482,22 +483,28 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-md-3 control-label">Unité gratuite :</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control champ champ2" data="3" id="ug_cmdprogramme" value="0" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-md-3 control-label">Prix d'achat:</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control champ champ3" data="3" id="prixachat_cmdprogramme" value="" placeholder="" />
+                                <input type="number" class="form-control champ champ3" data="4" id="prixachat_cmdprogramme" value="" placeholder="" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Prix public:</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control champ champ4" data="4" value="" id="prixpublic_cmdprogramme" placeholder="" />
+                                <input type="number" class="form-control champ champ4" data="5" value="" id="prixpublic_cmdprogramme" placeholder="" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Date de péremption:</label>
                             <div class="col-md-9">
                                 <div class="input-group">
-                                    <input style="padding-top: 0px;" class="form-control champ champ5" data="5" id="date_cmdprogramme" placeholder="Date de péremption" style="line-height: normal;" type="date" required="">
+                                    <input style="padding-top: 0px;" class="form-control champ champ5" data="6" id="date_cmdprogramme" placeholder="Date de péremption" style="line-height: normal;" type="date" required="">
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>

@@ -37,7 +37,33 @@ function info_row_entree(row) {
             $("#iconPreviewEntree .prixa").html(data.prixa);
             //$("#code").barcode(data.codebarre);
             code1 = data.codebarre;
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                width: 30,
+                height: 30
+            });
             qrcode.makeCode(code1);
+            console.log($('#qrcode').src);
+            console.log(qrcode._oDrawing);
+            console.log(qrcode._oDrawing._elImage);
+            console.log(qrcode._oDrawing._elImage.img);
+            var doc = new jsPDF();
+
+            doc.html(document.body, {
+                callback: function (doc) {
+                    doc.save();
+                }
+            });
+           /* var doc = new jsPDF('l','mm',[30,15]);
+            doc.cell(0, 0, 30, 15, ' ', 1, "center");
+            doc.setFontSize(6);
+            doc.text(0, 1, 'Llllllll');
+            doc.setFontSize(7);
+            doc.text(1, 7, '100000 FCFA');
+            doc.addImage("examples/images/Octonyan.jpg", "JPEG", 20, 2, 7, 7);
+            doc.setFontSize(5);
+            doc.text(10, 12, data.nomF);
+            doc.setFontSize(4);
+            doc.text(8, 14, data.datel+'/'+data.datep);*/
 
         }
 

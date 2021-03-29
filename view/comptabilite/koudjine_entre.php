@@ -20,11 +20,12 @@ $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/entree.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
 <script>
-var qrcode = new QRCode(document.getElementById("qrcode"), {
+/*var qrcode = new QRCode(document.getElementById("qrcode"), {
      width: 30,
      height: 30
- });
+ });*/
                                     </script>
 
 ';
@@ -192,21 +193,21 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
                                                 <p class="code " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
                                         </tr> -->
-                                        <tr style="display: flex;table-layout: fixed; width: 40mm ;">
-                                            <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
+                                        <tr style="display: flex;table-layout: fixed; width: 30mm ;height: 15mm;">
+                                            <td style="width: 29.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;padding-top: 0px;height: 15mm;" colspan="2">
 
-                                                <div style="display: flex;flex-direction: column;padding: 4px;">
+                                                <div style="display: flex;flex-direction: column;padding: 0px 4px;height: 15mm;">
                                                     <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
-                                                        <p class="nomp" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                        <p class="nomp" style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;"></p>
                                                         <!--<p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>-->
                                                     </div>
-                                                    <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
+                                                    <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%;height: 8mm;">
                                                         <p style="font-weight: bold;text-align:center; margin:0px;font-size: 12px;align-content: center;align-items: center;justify-content: center;justify-items: center;display: flex;"><span class="prixv"></span> FCFA</p>
                                                         <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="qrcode"></p>
                                                     </div>
                                                     <div style="display: flex;flex-direction: column;justify-content: space-between;width:100%">
-                                                        <p class="nomf" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
-                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"><span class="datep"></span> / <span class="datel" ></span></p>
+                                                        <p class="nomf" style="font-weight: bold;text-align:center; margin:0px;font-size: 5px;"></p>
+                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;"><span class="datep"></span> / <span class="datel" ></span></p>
                                                     </div>
                                                 </div>
                                             </td>

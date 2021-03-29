@@ -110,7 +110,11 @@ function enregistrer_commande_programme() {
     }else {
         var id = $('#id_xr').attr("data");
         var nom = $('#nom_cmdprogramme').val();
-        var qte = $('#qte_cmdprogramme').val();
+        var ug, qte = $('#qte_cmdprogramme').val();
+        if($('#ug_cmdprogramme').val() != '')
+            ug = $('#ug_cmdprogramme').val();
+        else
+            ug = 0;
         var prixachat = $('#prixachat_cmdprogramme').val();
         var prixpublic = $('#prixpublic_cmdprogramme').val();
         var reduction = $('#reduction_max').val();
@@ -134,6 +138,7 @@ function enregistrer_commande_programme() {
             var data = {
                 nom: nom,
                 qte: qte,
+                ug: ug,
                 prixachat: prixachat,
                 prixpublic: prixpublic,
                 date: date,
@@ -142,6 +147,7 @@ function enregistrer_commande_programme() {
             var cat = '<tr id=' + codebarre + ' >'
                 + ' <td class="nom" data="' + id + '" ><strong>' + nom + '</strong></td>'
                 + '<td class="qte">' + qte + '</td>'
+                + '<td class="ug">' + ug + '</td>'
                 + '<td class="prixachat">' + prixachat + '</td>'
                 + '<td class="prixpublic">' + prixpublic + '</td>'
                 + '<td class="date">' + date + '</td>'
@@ -152,21 +158,24 @@ function enregistrer_commande_programme() {
                 + '</td>'
                 + '</tr>';
             $('#tab_commande_programme').prepend(cat);
-            var total, prixTotal = 0, qteTotal = 0;
+            var total, prixTotal = 0, qteTotal = 0, ugTotal = 0;
             qte = 0;
+            ug = 0;
             $('#tab_commande_programme  tr').each(function (i) {
                 var id1 = $(this).attr("id");
 
                 $("#" + id1 + " td").each(function (j) {
                     ////alert($(this).html());
                     if (j == 1) { qte = parseInt($(this).html()); qteTotal = qteTotal + qte; }
-                    if (j == 2) { total = (qte * parseInt($(this).html())); prixTotal = prixTotal + total; }
+                    if (j == 2) { ug = parseInt($(this).html()); ugTotal = ugTotal + ug; alert(ugTotal); }
+                    if (j == 3) { total = (qte * parseInt($(this).html())); prixTotal = prixTotal + total; }
 
                 });
 
             });
             $('#prixTotal').html(prixTotal);
             $('#prixTotal').attr("data", qteTotal);
+            $('#prixTotal').attr("data1", ugTotal);
 
             //alert(JSON.stringify(data));
             $("#iconPreviewForm").modal("hide");
@@ -308,7 +317,7 @@ function delete_row_commande(id) {
 }
 function valider_commande(imprimer) {
     var prixTotal, idc, ref;
-    var prix, qte, prixPublic, datep,nomP, count=0, rec=0;
+    var prix, qte, ug, prixPublic, reduction, datep,nomP, count=0, rec=0;
     var h = 1, total = 0, nbre = 0;
     prixTotal = parseInt($('#prixTotal').html());
     var today = new Date();
@@ -316,7 +325,8 @@ function valider_commande(imprimer) {
     var mm = String(today.getMonth()+1).padStart(2,'0');
     var yyyy = today.getFullYear();
     var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-    today = yyyy+"-"+mm+"-"+dd+"  "+time
+    today = yyyy+"-"+mm+"-"+dd+"  "+time;
+    //alert(parseInt($("#prixTotal").attr("data1")));
     $("#date").html(today);
     if (prixTotal == 0) {
         alert('Veuillez sélectionner des produits !!!');
@@ -331,7 +341,8 @@ function valider_commande(imprimer) {
                 numLivraison: $("#numero_bon_livraison").val(),
                 montant: prixTotal,
                 datel: today,
-                qte: parseInt($("#prixTotal").attr("data"))
+                qte: parseInt($("#prixTotal").attr("data")),
+                ug: parseInt($("#prixTotal").attr("data1"))
             },
             dataType: 'json',
             success: function (data) {
@@ -339,6 +350,7 @@ function valider_commande(imprimer) {
                 //alert('tpasse');
                 //alert(data.erreur);
                 if (data.erreur == 'ok') {
+                    //alert('passe');
                     idc = data.id;
                     ref = data.ref;
                     //alert(idc);
@@ -357,10 +369,11 @@ function valider_commande(imprimer) {
                             ////alert($(this).html());
                             if (j == 0) { nomP = $(this).html(); }
                             if (j == 1) { qte = parseInt($(this).html()); }
-                            if (j == 2) { prix = parseInt($(this).html()); }
-                            if (j == 3) { prixPublic = parseInt($(this).html()); }
-                            if (j == 4) { datep = $(this).html(); }
-                            if (j == 5) { reduction = $(this).html(); }
+                            if (j == 2) { ug = parseInt($(this).html()); }
+                            if (j == 3) { prix = parseInt($(this).html()); }
+                            if (j == 4) { prixPublic = parseInt($(this).html()); }
+                            if (j == 5) { datep = $(this).html(); }
+                            if (j == 6) { reduction = $(this).html(); }
 
                         });
                         var cat = '<tr>'
@@ -368,6 +381,7 @@ function valider_commande(imprimer) {
                             + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;font-size: 10px;">' +nomP + '</td>'
                             + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + qte + '</td>'
                             + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + qte + '</td>'
+                            + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + ug + '</td>'
                             + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + prix + '</td>'
                             + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + prixPublic + '</td>'
                             + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + (prix * qte) + '</td>'
@@ -388,10 +402,11 @@ function valider_commande(imprimer) {
                                 prixp: prixPublic,
                                 datep: datep,
                                 qte: qte,
+                                ug: ug,
                                 reduction: reduction
                             },
                             success: function (server_responce) {
-                                //alert(server_responce);
+                                alert(server_responce);
                                 //alert(idc);
                                 //alert("OK");
                                 rec++;

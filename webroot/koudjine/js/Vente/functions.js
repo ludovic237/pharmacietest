@@ -8,7 +8,6 @@ $('#pharmanet_tab_vente').hide();
 
 $(document).ready(function () {
 
-
     $('#customers2').DataTable( {
         "order": [[ 5, "desc" ]]
     } );
@@ -406,7 +405,7 @@ $(document).ready(function () {
             beforeSend: function () {
                 $("#search-reference-produit").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
             },
-            success: function (data) { 
+            success: function (data) {
                 //alert(data);
                 $("#suggesstion-reference-produit-block").show();
                 $("#suggesstion-reference-produit").html(data).show();
@@ -1065,4 +1064,8 @@ function delete_row_vente(id) {
 
 
 
+}
+function gerer_detail(en_rayon_id) {
+    var link = '/pharmacietest/bouwou/comptabilite/sortie/'+en_rayon_id;
+    window.location.href = link;
 }

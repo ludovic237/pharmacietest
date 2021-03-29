@@ -16,6 +16,7 @@ $managerEn = new En_rayonManager($pdo);
 $idp = substr($_POST['idp'], 1);
 $idc=$_POST['idc'];
 $qte=$_POST['qte'];
+$ug=$_POST['ug'];
 $prixu=$_POST['prixu'];
 
 
@@ -37,9 +38,13 @@ if (isset($_POST['ide'])){
             'puRecept' => $prixu,
             'qtiteCmd' => $qte,
             'qtiteRecu' => $qte,
+            'uniteGratuite' => $ug,
             'etat' => "Livré"
         ));
         $managerPo->add($conc);
+        echo 'nbre = '.$manager->countNbreProduitParJour($idp,$manager->get($idc)->fournisseur_id())."\n";
+        $ide = $ide . $manager->countNbreProduitParJour($idp, $manager->get($idc)->fournisseur_id());
+        echo $ide;
         // Créer une entrée en stock
         $en_rayon = new En_rayon(array(
             'id' => $ide,
@@ -50,14 +55,14 @@ if (isset($_POST['ide'])){
             'prixVente' => $prixPublic,
             'quantite' => $qte,
             'reduction' => $reduction,
-            'quantiteRestante' => $qte,
+            'quantiteRestante' => ($qte + $ug),
             'datePeremption' => $datep,
         ));
         $en_rayon->setcommaande_id($idc);
         $managerEn->add($en_rayon);
         // on met à jour la quantité du stock produit
         $prod = $managerPr->get($idp);
-        $prod->setstock(($prod->stock() + ($qte)));
+        $prod->setstock(($prod->stock() + ($qte + $ug)));
         $managerPr->update($prod);
 
 

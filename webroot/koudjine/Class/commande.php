@@ -9,6 +9,7 @@ class Commande
         $_note,
         $_qtiteCmd,
         $_qtiteRecu,
+        $_uniteGratuite,
         $_montantCmd,
         $_montantRecu,
         $_etat,
@@ -70,6 +71,11 @@ class Commande
     public function qtiteRecu()
     {
         return $this->_qtiteRecu;
+    }
+
+    public function uniteGratuite()
+    {
+        return $this->_uniteGratuite;
     }
 
     public function montantRecu()
@@ -142,6 +148,13 @@ class Commande
         if ($id > 0) {
             $this->_qtiteRecu = $id;
         }
+    }
+
+    public function setuniteGratuite($value)
+    {
+
+        $this->_uniteGratuite = $value;
+
     }
 
     public function setmontantCmd($id)
@@ -220,6 +233,11 @@ class CommandeManager
     public function countMois()
     {
         return $this->_db->query('SELECT COUNT(*) FROM commande WHERE supprimer = 0 AND MONTH(dateCreation) = MONTH(NOW()) AND YEAR(dateCreation) = YEAR(NOW()) ')->fetchColumn();
+    }
+
+    public function countNbreProduitParJour($id, $idf)
+    {
+        return $this->_db->query('SELECT COUNT(*) FROM produit_cmd p, commande c WHERE c.supprimer = 0 AND p.supprimer = 0 AND c.fournisseur_id ='.$idf.' AND c.id = p.commande_id AND DAY(dateCreation) = DAY(NOW()) AND MONTH(dateCreation) = MONTH(NOW()) AND YEAR(dateCreation) = YEAR(NOW()) AND produit_id = ' . $id)->fetchColumn();
     }
 
     public function delete(Commande $commande)

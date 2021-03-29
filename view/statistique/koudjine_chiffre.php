@@ -44,13 +44,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                                     <!-- START SALES BLOCK -->
                                     <div class="panel panel-default">
-                                        <div class="panel-heading"
-                                             style="display: flex;align-items: center;justify-content: space-between;">
+                                        <div class="panel-heading" style="display: flex;align-items: center;justify-content: space-between;">
                                             <div style="margin-bottom: 15px;" class="form-group">
                                                 <label class="col-md-3 control-label">Type :</label>
                                                 <div class="col-md-6">
-                                                    <select class="selectpicker form-control" name="fournisseurType"
-                                                            id="fournisseurType">
+                                                    <select class="selectpicker form-control" name="fournisseurType" id="fournisseurType">
                                                         <option value="Tous">Tous</option>
                                                         <option value="Grossiste">Grossiste</option>
                                                         <option value="Detaillant">Detaillant</option>
@@ -68,8 +66,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                         <span></span><b class="caret"></b>
                                                     </div>
                                                 </li>
-                                                <li><a href="#" class="panel-fullscreen rounded"><span
-                                                                class="fa fa-expand"></span></a></li>
+                                                <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
 
                                             </ul>
 
@@ -77,23 +74,22 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <div class="panel-body">
                                             <div style="display: flex; flex-direction: row">
                                                 <h3>Total : </h3>
-                                                <h3><span style="color: black;font-size: larger;margin-bottom: 0px;"
-                                                          id="grossisteTotal"> 0</span> FCFA</h3>
+                                                <h3><span style="color: black;font-size: larger;margin-bottom: 0px;" id="grossisteTotal"> 0</span> FCFA</h3>
                                             </div>
 
                                             <div class="table-responsive">
                                                 <table id="tableGrossiste" class="table datatable">
                                                     <thead>
-                                                    <tr>
-                                                        <th width="100">code</th>
-                                                        <th width="100">Statut</th>
-                                                        <th width="200">Nom</th>
-                                                        <th width="200">Montant</th>
-                                                        <th width="200">Etat</th>
-                                                        <th width="200">Email</th>
-                                                        <th width="100">Telephone</th>
-                                                        <th width="100">Actions</th>
-                                                    </tr>
+                                                        <tr>
+                                                            <th width="100">code</th>
+                                                            <th width="100">Statut</th>
+                                                            <th width="200">Nom</th>
+                                                            <th width="200">Montant</th>
+                                                            <th width="200">Etat</th>
+                                                            <th width="200">Email</th>
+                                                            <th width="100">Telephone</th>
+                                                            <th width="100">Actions</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
 
@@ -116,8 +112,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                                     <!-- START SALES BLOCK -->
                                     <div class="panel panel-default">
-                                        <div class="panel-heading"
-                                             style="display: flex;align-items: center;justify-content: space-between;">
+                                        <div class="panel-heading" style="display: flex;align-items: center;justify-content: space-between;">
                                             <div style="margin-bottom: 15px;" class="form-group">
                                                 <label class="col-md-3 control-label">Type :</label>
                                                 <div class="col-md-6">
@@ -125,9 +120,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                         <option value="0">Tous</option>
                                                         <?php
                                                         foreach ($_employes as $k => $v) : ?>
-                                                            <option <?php if (isset($employes_id)) if ($v->id == $employes_id) echo "selected=\"selected\""; ?>
-                                                                    value="<?php echo $v->id; ?>"
-                                                                    data="<?php echo $v->id; ?>"><?php echo $v->identifiant; ?></option>
+                                                            <option <?php if (isset($employes_id)) if ($v->id == $employes_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" data="<?php echo $v->id; ?>"><?php echo $v->identifiant; ?></option>
                                                         <?php
                                                         endforeach;
                                                         ?>
@@ -145,8 +138,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                                         <span></span><b class="caret"></b>
                                                     </div>
                                                 </li>
-                                                <li><a href="#" class="panel-fullscreen rounded"><span
-                                                                class="fa fa-expand"></span></a></li>
+                                                <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
 
                                             </ul>
 
@@ -154,25 +146,24 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <div class="panel-body">
                                             <div style="display: flex; flex-direction: row">
                                                 <h3>Total : </h3>
-                                                <h3><span style="color: black;font-size: larger;margin-bottom: 0px;"
-                                                          id="caisseTotal"> 0</span> FCFA</h3>
+                                                <h3><span style="color: black;font-size: larger;margin-bottom: 0px;" id="caisseTotal"> 0</span> FCFA</h3>
                                             </div>
 
                                             <div class="table-responsive">
                                                 <table id="tableCaisse" class="table datatable table-bordered table-striped table-actions">
                                                     <thead>
-                                                    <tr>
-                                                        <th width="50">id</th>
-                                                        <th>Nom vendeur</th>
-                                                        <th width="100">Session</th>
-                                                        <th width="100">Etat</th>
-                                                        <th width="100">fond Caisse Ouvert</th>
-                                                        <th width="100">fond Caisse Ferme</th>
-                                                        <th width="100">Montant encaissé</th>
-                                                        <th width="100">Date Ouverture</th>
-                                                        <th width="100">Date fermeture</th>
-                                                        <th width="100">Action</th>
-                                                    </tr>
+                                                        <tr>
+                                                            <th width="50">id</th>
+                                                            <th>Nom vendeur</th>
+                                                            <th width="100">Session</th>
+                                                            <th width="100">Etat</th>
+                                                            <th width="100">fond Caisse Ouvert</th>
+                                                            <th width="100">fond Caisse Ferme</th>
+                                                            <th width="100">Montant encaissé</th>
+                                                            <th width="100">Date Ouverture</th>
+                                                            <th width="100">Date fermeture</th>
+                                                            <th width="100">Action</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody id="tab_employe_id">
                                                     </tbody>
@@ -226,8 +217,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     <div class="modal-dialog" style="width: 85%;">
         <div class="modal-content">
             <div class="modal-header">
-                <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                            class="sr-only">Close</span></a>
+                <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>
                 <h4 class="modal-title">Liste de vente de la caisse</h4>
 
             </div>
@@ -255,17 +245,17 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="table-responsive">
                                 <table style="width: 100%;height: 75%;overflow-y: -moz-scrollbars-vertical" id="tab_list_vente_caisse" class="table datatable">
                                     <thead>
-                                    <tr>
-                                        <th >Ref</th>
-                                        <th >Montant Total</th>
-                                        <th >Montant percu</th>
-                                        <th >Nom caissier</th>
-                                        <th >Date de vente</th>
-                                        <th >Etat</th>
-                                        <th >Actions</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Ref</th>
+                                            <th>Montant Total</th>
+                                            <th>Montant percu</th>
+                                            <th>Nom caissier</th>
+                                            <th>Date de vente</th>
+                                            <th>Etat</th>
+                                            <th>Actions</th>
+                                        </tr>
                                     </thead>
-                                    <tbody >
+                                    <tbody>
 
                                     </tbody>
                                 </table>
@@ -290,16 +280,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                            class="sr-only">Close</span></a>
+                <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>
                 <h4 class="modal-title">Produit</h4>
             </div>
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="icon-preview">
-                            <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;"
-                                 class="ticketfacture2" id="ticketListe2">
+                            <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture2" id="ticketListe2">
 
                                 <div style="display: flex;flex-direction:column;text-align: left;">
                                     <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
@@ -314,7 +302,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                             Ticket N°: <span class="reference"></span></p>
                                         <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            <span class="datevente"></span> à <span class="heurevente"></span></p>
+                                            <span class="datevente"></span> à <span class="heurevente"></span>
+                                        </p>
                                     </div>
                                     <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Vendeur: <span class="vendeur"></span></p>
@@ -322,59 +311,44 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         Acheteur: <span class="acheteur"></span></p>
                                 </div>
                                 <div>
-                                    <table class="table table-bordered table-striped table-actions table-responsive"
-                                           id="tab_GGBfactureImprimer">
+                                    <table class="table table-bordered table-striped table-actions table-responsive" id="tab_GGBfactureImprimer">
                                         <thead>
-                                        <tr>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
-                                                width="200">Libelle
-                                            </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
-                                                width="150">Prix U.
-                                            </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
-                                                width="100">Qte
-                                            </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
-                                                width="100">Total
-                                            </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
-                                                width="50">Rd(%)
-                                            </th>
-                                        </tr>
+                                            <tr>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" width="200">Libelle
+                                                </th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" width="150">Prix U.
+                                                </th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" width="100">Qte
+                                                </th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" width="100">Total
+                                                </th>
+                                                <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" width="50">Rd(%)
+                                                </th>
+                                            </tr>
                                         </thead>
                                         <tbody id="tab_BfactureImprimer2">
 
-                                        <tr>
-                                            <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
-                                                scope="row">Montant Total
-                                            </td>
-                                            <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                                <span class="montanttotal"></span> FCFA
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: start;"
-                                                scope="row">Remise
-                                            </td>
-                                            <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: end;">
-                                                <span class="remise"></span> FCFA
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: start;"
-                                                scope="row">Net à payer
-                                            </td>
-                                            <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: end;">
-                                                <span class="netapayer"></span> FCFA
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td colspan="1" style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;" scope="row">Montant Total
+                                                </td>
+                                                <td colspan="4" style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                                    <span class="montanttotal"></span> FCFA
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1" style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: start;" scope="row">Remise
+                                                </td>
+                                                <td colspan="4" style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: end;">
+                                                    <span class="remise"></span> FCFA
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1" style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: start;" scope="row">Net à payer
+                                                </td>
+                                                <td colspan="4" style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: end;">
+                                                    <span class="netapayer"></span> FCFA
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -391,10 +365,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         NoCT /P058512700488Z</p>
                                 </div>
                             </div>
-                            <a class="btn btn-circle blue"
-                               style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
-                               onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print"
-                                                                                       style="font-size:10px"></i>&nbsp;Imprimer</a>
+                            <a class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</a>
                         </div>
                     </div>
 
@@ -409,18 +380,17 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 </div>
 
 <!-- START MODAL ICON PREVIEW -->
-<div class="modal fade" id="iconPreviewRapport" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="iconPreviewRapportOld" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="width: 85%;">
         <div class="modal-content">
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                            class="sr-only">Close</span></a>
+            <!-- <div class="modal-header">
+                <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>
                 <h4 class="modal-title">Rapport caisse de <span style="font-weight: bolder" id="nameRapport"></span> du : <span id="datesRapport" style="font-weight: bolder"></span> à <span style="font-weight: bolder" id="heuresRapport"></span> </h4>
                 <div style="display: flex;justify-content: space-between">
                     <h4 class="modal-title">Session : <span style="font-weight: bolder" id="sessionRapport"></span> </h4>
                     <h4 class="modal-title"><span id="etatRapport" class="label label-success">' + data + '</span> </h4>
                 </div>
-            </div>
+            </div> -->
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-6">
@@ -436,29 +406,29 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <thead>
-                                        <!-- <tr>
+                                            <!-- <tr>
                     <th>Entree</th>
                </tr> -->
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>Espece</td>
-                                            <td>
-                                                <span id="espece_caisse_rapport">0</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>OM</td>
-                                            <td>
-                                                <span id="electronique_rapport">0</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total</td>
-                                            <td>
-                                                <span id="total_entree_rapport_caisse">0</span>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>Espece</td>
+                                                <td>
+                                                    <span id="espece_caisse_rapport">0</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>OM</td>
+                                                <td>
+                                                    <span id="electronique_rapport">0</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total</td>
+                                                <td>
+                                                    <span id="total_entree_rapport_caisse">0</span>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -482,14 +452,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <thead>
-                                        <tr>
-                                            <th width="50">N°</th>
-                                            <th>Motifs</th>
-                                            <th>Quantite</th>
-                                            <th>Prix unitaire</th>
-                                            <th>Total</th>
-                                            <th>Action</th>
-                                        </tr>
+                                            <tr>
+                                                <th width="50">N°</th>
+                                                <th>Motifs</th>
+                                                <th>Quantite</th>
+                                                <th>Prix unitaire</th>
+                                                <th>Total</th>
+                                                <th>Action</th>
+                                            </tr>
                                         </thead>
                                         <tbody id="tab_RapportDepense">
 
@@ -513,11 +483,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <thead>
-                                        <tr>
-                                            <th>Nom client </th>
-                                            <th>Montant</th>
-                                            <th>Type</th>
-                                        </tr>
+                                            <tr>
+                                                <th>Nom client </th>
+                                                <th>Montant</th>
+                                                <th>Type</th>
+                                            </tr>
                                         </thead>
                                         <tbody id="tab_RapportBon">
 
@@ -545,46 +515,425 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <thead>
+                                            <tr>
+                                                <th> </th>
+                                                <th>Total entrée </th>
+                                                <th>Total sortie</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Caisse</td>
+                                                <td id="total_entree_caisse">0</td>
+                                                <td id="total_sortie_caisse">
+                                                    0
+                                                </td>
+                                                <td id="total_tout_caisse">
+                                                    0
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Systeme</td>
+                                                <td id="total_entree_syst">0</td>
+                                                <td id="total_sortie_syst">
+                                                    0
+                                                </td>
+                                                <td id="total_tout_syst">
+                                                    0
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Difference</td>
+                                                <td id="diff_entree">0</td>
+                                                <td id="diff_sortie">
+                                                    0
+                                                </td>
+                                                <td id="diff_total">
+                                                    0
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" data-dismiss="modal">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewRapport" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width: 85%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>
+                <h4 class="modal-title">Rapport caisse de <span style="font-weight: bolder" id="nameRapport"></span> du : <span id="datesRapport" style="font-weight: bolder"></span> à <span style="font-weight: bolder" id="heuresRapport"></span> </h4>
+                <div style="display: flex;justify-content: space-between">
+                    <h4 class="modal-title">Session : <span style="font-weight: bolder" id="sessionRapport"></span> </h4>
+                    <h4 class="modal-title"><span id="etatRapport" class="label label-success">' + data + '</span> </h4>
+                </div>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
+                <div class="row divine">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Recap vente par fournisseur</h3>
+                                    <!-- <span>Projects activity</span> -->
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody>
                                         <tr>
-                                            <th> </th>
-                                            <th>Total entrée </th>
-                                            <th>Total sortie</th>
+                                            <td>Grossiste</td>
+                                            <td>
+                                                <span id="rapport_vente_fournisseur_grossiste">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Detaillant</td>
+                                            <td>
+                                                <span id="rapport_vente_fournisseur_detaillant">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>
+                                                <span id="rapport_vente_fournisseur_total">0</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Recap vente par type de vente</h3>
+                                    <!-- <span>Projects activity</span> -->
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Comptant</td>
+                                            <td>
+                                                <span id="rapport_vente_comptant">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Crédit</td>
+                                            <td>
+                                                <span id="rapport_vente_credit">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Assurance</td>
+                                            <td>
+                                                <span id="rapport_vente_assurance">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>
+                                                <span id="rapport_vente_total">0</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row divine">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Encaissement des ventes</h3>
+                                    <!-- <span>Projects activity</span> -->
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Espece</td>
+                                            <td>
+                                                <span id="rapport_ev_espece">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Electronique</td>
+                                            <td>
+                                                <span id="rapport_ev_electronique">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bon de caisse</td>
+                                            <td>
+                                                <span id="rapport_ev_boncaisse">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>
+                                                <span id="rapport_ev_total">0</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Encaissement facture à crédit</h3>
+                                    <!-- <span>Projects activity</span> -->
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped" id="rapport_efc_espece">
+                                        <thead>
+                                        <tr>
+                                            <th>N° Facture</th>
+                                            <th>Nom</th>
                                             <th>Total</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>Caisse</td>
-                                            <td id="total_entree_caisse">0</td>
-                                            <td id="total_sortie_caisse">
-                                                0
-                                            </td>
-                                            <td id="total_tout_caisse">
-                                                0
-                                            </td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="display:flex;padding: 5px">
+                                        <p style="margin: 0px">Total: <span id="rapport_efc_total"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row divine">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Bon de caisse généré</h3>
+                                    <!-- <span>Projects activity</span> -->
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped" id="rapport_bc_genere">
+                                        <thead>
+                                        <tr>
+                                            <th>Numéro de bon</th>
+                                            <th>Nom client</th>
+                                            <th>Montant</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div style="display:flex;padding: 5px">
+                                        <p style="margin: 0px">Total: <span id="rapport_bc_total"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Bon de caisse encaissé</h3>
+                                    <!-- <span>Projects activity</span> -->
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped" id="rapport_bc_encaisse">
+                                        <thead>
+                                        <tr>
+                                            <th>Numéro de bon</th>
+                                            <th>Nom client</th>
+                                            <th>Montant</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div style="display:flex;padding: 5px">
+                                        <p style="margin: 0px">Total: <span id="rapport_bc_total_genere"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row divine">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Dépenses</h3>
+                                    <!-- <span>Projects activity</span> -->
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped" id="rapport_depense">
+                                        <thead>
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>Motif(Désignation)</th>
+                                            <th>Quantité</th>
+                                            <th>Prix unitaire</th>
+                                            <th>Prix total</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+
                                         </tr>
                                         <tr>
-                                            <td>Systeme</td>
-                                            <td id="total_entree_syst">0</td>
-                                            <td id="total_sortie_syst">
-                                                0
-                                            </td>
-                                            <td id="total_tout_syst">
-                                                0
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Difference</td>
-                                            <td id="diff_entree">0</td>
-                                            <td id="diff_sortie">
-                                                0
-                                            </td>
-                                            <td id="diff_total">
+                                            <td colspan="4">Total</td>
+                                            <td id="rapport_total_depense">
                                                 0
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row divine">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Etat de caisse</h3>
+                                    <!-- <span>Projects activity</span> -->
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Solde réel en caisse</th>
+                                            <th>Solde système</th>
+                                            <th>Différence</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td id="rapport_ec_solde_reel">0</td>
+                                            <td id="rapport_ec_solde_system">
+                                                0
+                                            </td>
+                                            <td id="rapport_ec_difference">
+                                                0
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Retour caisse</h3>
+                                    <!-- <span>Projects activity</span> -->
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <table  id="rapport_retour" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Quantité</th>
+                                            <th>Total</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="display:flex;padding: 5px">
+                                        <p style="margin: 0px">Total: <span id="rapport_retour_total"></span></p>
+                                    </div>
                                 </div>
                             </div>
 

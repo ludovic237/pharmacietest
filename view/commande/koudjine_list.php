@@ -67,6 +67,7 @@
                                 <th width="200">Fournisseur</th>
                                 <th width="100">Quantite commande</th>
                                 <th width="100">Quantite recu</th>
+                                <th width="100">Unité gratuite</th>
                                 <th width="200">Montant commande</th>
                                 <th width="200">Montant recu</th>
                                 <th width="100">Etat</th>
@@ -91,6 +92,9 @@
                                     </td>
                                     <td>
                                         <?php echo $v->qtiteRecu; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $v->uniteGratuite; ?>
                                     </td>
                                     <td>
                                         <?php echo $v->montantCmd; ?>
