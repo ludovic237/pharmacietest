@@ -23,79 +23,87 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     <div class="row">
         <div class="col-md-12">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading ui-draggable-handle">
-                        <div class="form-group">
-                            <label class="col-md-3 col-xs-12 control-label">Reference vente</label>
-                            <div class="col-md-6 col-xs-12">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                    <input type="text" class="form-control" placeholder="Saisir reference produit" id="search-reference-produit">
-                                    <div id="suggesstion-reference-produit-block">
-                                        <div id="suggesstion-reference-produit"></div>
-                                    </div>
+            <div class="panel panel-default">
+                <div class="panel-heading ui-draggable-handle">
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Reference vente</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                <input type="text" class="form-control" placeholder="Saisir reference produit"
+                                       id="search-reference-produit">
+                                <div id="suggesstion-reference-produit-block">
+                                    <div id="suggesstion-reference-produit"></div>
                                 </div>
-                                <!-- <span class="help-block">This is sample of text field</span> -->
                             </div>
+                            <!-- <span class="help-block">This is sample of text field</span> -->
                         </div>
                     </div>
+                </div>
 
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading ui-draggable-handle">
-                                        <h3 class="panel-title">Produit achetés</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered table-striped table-actions" id="tab_produit_achat">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="200">Nom</th>
-                                                        <th width="100">Prix Unitaire</th>
-                                                        <th width="100">Quantité</th>
-                                                        <th width="100">Réduction</th>
-                                                        <th width="100">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tab_RetourProduit_Achete">
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                <div class="panel-body">
+                    <div class="row" style="display: flex;justify-content: center;justify-items: center;align-content: center;align-items: center;">
+                        <div class="col-md-5">
                             <div class="panel panel-default">
-                                    <div class="panel-heading ui-draggable-handle">
-                                        <h3 class="panel-title">Produit retourné</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered table-striped table-actions" id="tab_produit_achat">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="200">Nom</th>
-                                                        <th width="100">Prix Unitaire</th>
-                                                        <th width="100">Quantité</th>
-                                                        <th width="100">Réduction</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tab_RetourProduit_Retourne">
+                                <div class="panel-heading ui-draggable-handle">
+                                    <h3 class="panel-title">Produit achetés</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-actions"
+                                               id="tab_produit_achat">
+                                            <thead>
+                                            <tr>
+                                                <th width="200">Nom</th>
+                                                <th width="100">Prix Unitaire</th>
+                                                <th width="100">Quantité</th>
+                                                <th width="100">Réduction</th>
+                                                <th width="100">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tab_RetourProduit_Achete">
 
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div style="display: flex;justify-content: center;justify-items: center;align-content: center;align-items: center;">
+                                <i style="font-size: 30px" class="fa fa-arrow-right"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="panel panel-default">
+                                <div class="panel-heading ui-draggable-handle">
+                                    <h3 class="panel-title">Produit retourné</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-actions"
+                                               id="tab_produit_achat">
+                                            <thead>
+                                            <tr>
+                                                <th width="200">Nom</th>
+                                                <th width="100">Prix Unitaire</th>
+                                                <th width="100">Quantité</th>
+                                                <th width="100">Réduction</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tab_RetourProduit_Retourne">
 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
+
+            </div>
 
         </div>
     </div>
@@ -123,7 +131,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <th width="100">Prix total</th>
                             </tr>
                             </thead>
-                            <tbody >
+                            <tbody>
 
                             </tbody>
                         </table>
@@ -157,7 +165,9 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
         </div>
 
         <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
-            <a onclick="valider_retour('<?php echo $_SESSION['Users']->id; ?>')"  class="btn btn-success" role="button" style="float: left; font-weight: bold;background-color: #66e17f;border-color: #66e17f;width: 75%;display: flex;justify-content: center;align-items: center;font-size: 18px;">Valider retour </a>
+            <a onclick="valider_retour('<?php echo $_SESSION['Users']->id; ?>')" class="btn btn-success" role="button"
+               style="float: left; font-weight: bold;background-color: #66e17f;border-color: #66e17f;width: 75%;display: flex;justify-content: center;align-items: center;font-size: 18px;">Valider
+                retour </a>
         </div>
 
     </div>

@@ -20,7 +20,16 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
-
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/icheck/icheck.min.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/tableExport.js"></script>
+	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jquery.base64.js"></script>
+	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/html2canvas.js"></script>
+	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
+	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/jspdf.js"></script>
+	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/base64.js"></script>    
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/owl/owl.carousel.min.js"></script> 
 
@@ -33,8 +42,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 ?> -->
 
 
+
 <div class="row">
     <div class="col-md-12">
+
 
         <form class="form-horizontal">
 
@@ -45,57 +56,51 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 </ul>
                 <div class="panel-body tab-content">
                     <div class="tab-pane active" id="tab-first">
-                        <div class="btn-group pull-right">
-                            <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i>
-                                Export Data</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"
-                                       onclick="$('#customers2').tableExport({type:'json',escape:'false'});"><img
-                                                src="img/icons/json.png" width="24"> JSON</a></li>
-                                <li><a href="#"
-                                       onclick="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img
-                                                src="img/icons/json.png" width="24"> JSON (ignoreColumn)</a></li>
-                                <li><a href="#"
-                                       onclick="$('#customers2'). tableExport({type:'json',escape:'true'});"><img
-                                                src="img/icons/json.png" width="24"> JSON (with Escape)</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"
-                                       onclick="$('#customers2').tableExport({type:'xml',escape:'false'});"><img
-                                                src="img/icons/xml.png" width="24"> XML</a></li>
-                                <li><a href="#" onclick="$('#customers2').tableExport({type:'sql'});"><img
-                                                src="img/icons/sql.png" width="24"> SQL</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"
-                                       onclick="$('#customers2').tableExport({type:'csv',escape:'false'});"><img
-                                                src="img/icons/csv.png" width="24"> CSV</a></li>
-                                <li><a href="#"
-                                       onclick="$('#customers2').tableExport({type:'txt',escape:'false'});"><img
-                                                src="img/icons/txt.png" width="24"> TXT</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"
-                                       onclick="$('#customers2').tableExport({type:'excel',escape:'false'});"><img
-                                                src="img/icons/xls.png" width="24"> XLS</a></li>
-                                <li><a href="#"
-                                       onclick="$('#customers2').tableExport({type:'doc',escape:'false'});"><img
-                                                src="img/icons/word.png" width="24"> Word</a></li>
-                                <li><a href="#"
-                                       onclick="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img
-                                                src="img/icons/ppt.png" width="24"> PowerPoint</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"
-                                       onclick="$('#customers2').tableExport({type:'png',escape:'false'});"><img
-                                                src="img/icons/png.png" width="24"> PNG</a></li>
-                                <li><a href="#"
-                                       onclick="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img
-                                                src="img/icons/pdf.png" width="24"> PDF</a></li>
-                            </ul>
-                        </div>
-                        <div>
-
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table id="customers2" class="table datatable">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Export Default Table</h3>
+                                <div class="pull-right">
+                                    <button class="btn btn-danger toggle" data-toggle="exportTable"><i class="fa fa-bars"></i> Export Data</button>
+                                </div>
+                            </div>
+                            <div class="panel-body" id="exportTable" style="display: none;">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="list-group border-bottom">
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'json',escape:'false'});"><img <?php echo  'src="' . BASE_URL . '/koudjine/img/icons/json.png "' ?> width="24"/> JSON</a>
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img <?php echo  'src="' . BASE_URL . '/koudjine/img/icons/json.png "' ?> width="24"/> JSON (ignoreColumn)</a>
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'json',escape:'true'});"><img <?php echo  'src="' . BASE_URL . '/koudjine/img/icons/json.png "' ?> width="24"/> JSON (with Escape)</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="list-group border-bottom">
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'xml',escape:'false'});"><img <?php echo  'src="' . BASE_URL . '/koudjine/img/icons/xml.png "' ?> width="24"/> XML</a>
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'sql'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/sql.png "' ?> width="24"/> SQL</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="list-group border-bottom">
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'csv',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/csv.png "' ?> width="24"/> CSV</a>
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'txt',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/txt.png "' ?> width="24"/> TXT</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="list-group border-bottom">
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'excel',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/xls.png "' ?>  width="24"/> XLS</a>
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'doc',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/word.png "' ?> width="24"/> Word</a>
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'powerpoint',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/ppt.png "' ?> width="24"/> PowerPoint</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="list-group border-bottom">
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'png',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/png.png "' ?> width="24"/> PNG</a>
+                                            <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'pdf',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/pdf.png "' ?> width="24"/> PDF</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <table id="customers" class="table table-striped">
                                     <thead>
                                     <tr>
                                         <th width="100">Ref</th>
@@ -132,10 +137,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                             <td class="prixp"><?php echo $v->prixPercu; ?></td>
                                             <td class="client">
                                                 <?php
-                                                if (isset($user)){
+                                                if (isset($user)) {
                                                     echo $user[$i];
-                                                }
-                                                else{
+                                                } else {
                                                     echo "Noooo";
                                                 }
 
@@ -157,8 +161,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <?php endforeach; ?>
                                     </tbody>
                                 </table>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="tab-second">
@@ -401,7 +405,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <th width="100">Actions</th>
                                     </tr>
                                     </thead>
-                                    <tbody >
+                                    <tbody>
 
                                     </tbody>
                                 </table>

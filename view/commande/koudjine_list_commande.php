@@ -62,7 +62,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title-box">
-                    <!--<h3>Enregister liste commande</h3>-->
+                    <h3>Tableau de commande</h3>
                 </div>
                 <ul class="panel-controls panel-controls-title">
                     <li>
@@ -77,9 +77,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
-                    <div style="padding: 10px 20px;background-color: #2d3945;color: white;display:flex;justify-content: space-between;align-items: center;">
-                        <h6 style="color: #fff;margin-bottom: 0px;">Tableau de commande</h6>
-                    </div>
                     <table class="table datatable table table-bordered table-striped table-actions" id="list_commande_tables">
                         <thead>
                         <tr>
