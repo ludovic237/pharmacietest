@@ -2301,3 +2301,30 @@ function imprimer_bloc(titre, objet) {
     fen.window.close();
     return true;
 }
+function charger_select_produit() {
+    var nom = $('#nom').val();
+    //alert('pass')
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_select_produit.php',
+        data: {
+            nom: nom
+        },
+        success: function (data) {
+            $('ul.dropdown-menu ').append(data);
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/charger_select_produit1.php',
+                data: {
+                    nom: nom
+                },
+                success: function (data) {
+                    $('#produits').append(data);
+                    //alert(data);
+
+                }
+            })
+
+        }
+    })
+}

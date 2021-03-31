@@ -36,7 +36,7 @@ if (isset($id)) {
 
                             <div style="display: flex;justify-content: space-between">
                                 <h4 class="modal-title">Caissier : <span style="font-weight: bolder"
-                                                                         id="nameRapportVente"></span></h4>
+                                                                         id="nameRapportVente"><?php echo $employe->identifiant; ?></span></h4>
                                 <h4 class="modal-title">Session : <span style="font-weight: bolder"
                                                                         id="sessionRapportVente"><?php echo $session; ?></span></h4>
                             </div>
@@ -67,6 +67,12 @@ if (isset($id)) {
                                                         <td>Detaillant</td>
                                                         <td>
                                                             <span id="rapport_vente_fournisseur_detaillant">0</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Produits Detailles</td>
+                                                        <td>
+                                                            <span id="rapport_vente_produit_detaille">0</span>
                                                         </td>
                                                     </tr>
                                                     <tr>

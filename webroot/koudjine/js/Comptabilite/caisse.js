@@ -998,6 +998,7 @@ function showRapportTest(id) {
             //recap vente par fournisseur
             $("#rapport_vente_fournisseur_grossiste").html(data.vente_fg);
             $("#rapport_vente_fournisseur_detaillant").html(data.vente_fd);
+            $("#rapport_vente_produit_detaille").html(data.vente_fpd);
             $("#rapport_vente_fournisseur_total").html(data.vente_ft);
 
             //recap vente par type vente
