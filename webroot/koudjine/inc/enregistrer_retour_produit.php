@@ -13,7 +13,7 @@ $qte = $_POST['qte'];
 
 $retour = new ProduitRetour(array(
     'retour_produit_id' => $manager->getLastId()->id(),
-    'en_rayon_id' => $id,
+    'concerner_id' => $id,
     'quantite' => $qte
 ));
 $managerCa->add($retour);

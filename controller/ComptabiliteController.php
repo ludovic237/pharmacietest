@@ -518,12 +518,17 @@ class ComptabiliteController extends Controller
             //'fields' => 'produit.nom as nom',
             'table' => 'caisse',
             'conditions' => "supprimer = 0 AND etat != \"Clot\""
+            //'conditions' => "supprimer = 0 AND etat = \"Ouvert\""
         ));
         if($id != null){
             $d['id'] = $id;
         }else{
             if(!empty($d['check']))
             $d['id'] = $d['check']->id;
+            $d['session'] = $d['check']->session;
+            $d['dateOuvert'] = $d['check']->dateOuvert;
+            $d['dateFerme'] = $d['check']->dateFerme;
+            $d['etat'] = $d['check']->etat;
         }
 
         $this->set($d);

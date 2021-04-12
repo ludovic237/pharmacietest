@@ -21,23 +21,13 @@ $(document).ready(function () {
             endDate: moment()
         }, function (start, end) {
             $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-            getListCommande(start, end);
+            getListCommande(start.format('YYYY-MM-DD HH:mm:ss'), end.format('YYYY-MM-DD HH:mm:ss'));
         });
 
 
         $("#reportrange span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        getListCommande(moment().subtract('days', 29).format('MMMM D, YYYY'), moment().format('MMMM D, YYYY'));
     }
-
-
-    $.ajax({
-        type: "POST",
-        url: "/pharmacietest/koudjine/inc/get_type_list_commande.php",
-        data: {},
-        dataType: "json",
-        success: function (data) {
-
-        }
-    });
 
 
 });
@@ -65,6 +55,7 @@ function enregistrer_list_commande() {
 }
 
 function getListCommande(start, end) {
+    console.log('start : ' + start + ' - end : ' + end);
     var start = start;
     var end = end;
     $.ajax({
@@ -76,34 +67,53 @@ function getListCommande(start, end) {
         },
         dataType: "json",
         success: function (data) {
-            var datas = data;
-            $('#list_commande_table').dataTable({
+            console.log(data);
+
+            $('#list_commande_tables').dataTable({
                 destroy: true,
-                data: datas.data,
-                "order": [[4, "desc"]],
+                searching: true,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: true,
+                data: data.data,
+                order: [[1, "desc"]],
                 columns: [
                     {
                         data: "reference", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%">NA</span>';
                             } else {
-                                return '<p>"+data+ "</p>' +
-                                    '<strong>"+row.nameProduit+"</strong>';
+                                return '<strong>' + data + '</strong>' +
+                                    '<p>' + row.nameProduit + '</p>';
                                 ;
                             }
                         }
                     },
-                    {data: "prixTotal"},
                     {
-                        data: "prixPercu"
+                        data: "prixTotal", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%">NA</span>';
+                            } else {
+                                return '<p>' + data + ' FCFA</p>';
+                            }
+                        }
+                    },
+                    {
+                        data: "prixPercu", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%">NA</span>';
+                            } else {
+                                return '<p>' + data + ' FCFA</p>';
+                            }
+                        }
                     },
                     {
                         data: "nom", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%">NA</span>';
                             } else {
-                                return '<p>"+data+ "</p>' +
-                                    '<strong>"+row.prenom+"</strong>';
+                                return '<p>' + data + '</p>' +
+                                    '<strong>' + row.prenom + '</strong>';
                                 ;
                             }
                         }
@@ -114,25 +124,14 @@ function getListCommande(start, end) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%">NA</span>';
                             } else {
-                                return '<p>"+data+ "/</p>' +
-                                    '<strong>"+row.typePaiement+"</strong>';
+                                return '<p>' + data + '</p>' +
+                                    '<strong>' + row.typePaiement + '</strong>';
                                 ;
                             }
                         }
-                    },
-                    {
-                        data: "id", "render": function (data, type, row) {
-                            if (!data) {
-                                return '<span class="text-muted" style="font-size:90%">NA</span>';
-                            } else {
-                                return '<a class="btn btn-success btn-rounded btn-sm " data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket_caisse(' + data + ')">Imprimer ticket</a>';
-                                ;
-                            }
-                        }
-                    },
+                    }
                 ]
             });
-
         }
     });
 }

@@ -601,24 +601,24 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Grossiste</td>
-                                                <td>
-                                                    <span id="rapport_vente_fournisseur_grossiste">0</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Detaillant</td>
-                                                <td>
-                                                    <span id="rapport_vente_fournisseur_detaillant">0</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <td>
-                                                    <span id="rapport_vente_fournisseur_total">0</span>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>Grossiste</td>
+                                            <td>
+                                                <span id="rapport_vente_fournisseur_grossiste">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Detaillant</td>
+                                            <td>
+                                                <span id="rapport_vente_fournisseur_detaillant">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>
+                                                <span id="rapport_vente_fournisseur_total">0</span>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -642,30 +642,30 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Comptant</td>
-                                                <td>
-                                                    <span id="rapport_vente_comptant">0</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Crédit</td>
-                                                <td>
-                                                    <span id="rapport_vente_credit">0</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Assurance</td>
-                                                <td>
-                                                    <span id="rapport_vente_assurance">0</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <td>
-                                                    <span id="rapport_vente_total">0</span>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>Comptant</td>
+                                            <td>
+                                                <span id="rapport_vente_comptant">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Crédit</td>
+                                            <td>
+                                                <span id="rapport_vente_credit">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Assurance</td>
+                                            <td>
+                                                <span id="rapport_vente_assurance">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>
+                                                <span id="rapport_vente_total">0</span>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -691,30 +691,30 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Espece</td>
-                                                <td>
-                                                    <span id="rapport_ev_espece">0</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Electronique</td>
-                                                <td>
-                                                    <span id="rapport_ev_electronique">0</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bon de caisse</td>
-                                                <td>
-                                                    <span id="rapport_ev_boncaisse">0</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <td>
-                                                    <span id="rapport_ev_total">0</span>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>Espece</td>
+                                            <td>
+                                                <span id="rapport_ev_espece">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Electronique</td>
+                                            <td>
+                                                <span id="rapport_ev_electronique">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bon de caisse</td>
+                                            <td>
+                                                <span id="rapport_ev_boncaisse">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>
+                                                <span id="rapport_ev_total">0</span>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -735,20 +735,20 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped" id="rapport_efc_espece">
                                         <thead>
-                                            <tr>
-                                                <th>N° Facture</th>
-                                                <th>Nom</th>
-                                                <th>Total</th>
-                                            </tr>
+                                        <tr>
+                                            <th>N° Facture</th>
+                                            <th>Nom</th>
+                                            <th>Total</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                        <tr>
 
-                                            </tr>
+                                        </tr>
                                         </tbody>
                                     </table>
-                                    <div style="padding: 10px;">
-                                        <p>Total: <span id="rapport_efc_total"></span></p>
+                                    <div style="display:flex;padding: 5px">
+                                        <p style="margin: 0px">Total: <span id="rapport_efc_total"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -770,21 +770,21 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped" id="rapport_bc_genere">
                                         <thead>
-                                            <tr>
-                                                <th>Numéro de bon</th>
-                                                <th>Nom client</th>
-                                                <th>Montant</th>
-                                            </tr>
+                                        <tr>
+                                            <th>Numéro de bon</th>
+                                            <th>Nom client</th>
+                                            <th>Montant</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                        <tr>
 
-                                            </tr>
+                                        </tr>
 
                                         </tbody>
                                     </table>
-                                    <div style="padding: 10px;">
-                                        <p>Total: <span id="rapport_bc_total"></span></p>
+                                    <div style="display:flex;padding: 5px">
+                                        <p style="margin: 0px">Total: <span id="rapport_bc_total"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -805,21 +805,21 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped" id="rapport_bc_encaisse">
                                         <thead>
-                                            <tr>
-                                                <th>Numéro de bon</th>
-                                                <th>Nom client</th>
-                                                <th>Montant</th>
-                                            </tr>
+                                        <tr>
+                                            <th>Numéro de bon</th>
+                                            <th>Nom client</th>
+                                            <th>Montant</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                        <tr>
 
-                                            </tr>
+                                        </tr>
 
                                         </tbody>
                                     </table>
-                                    <div style="padding: 10px;">
-                                        <p>Total: <span id="rapport_bc_total_genere"></span></p>
+                                    <div style="display:flex;padding: 5px">
+                                        <p style="margin: 0px">Total: <span id="rapport_bc_total_genere"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -842,24 +842,24 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped" id="rapport_depense">
                                         <thead>
-                                            <tr>
-                                                <th>N°</th>
-                                                <th>Motif(Désignation)</th>
-                                                <th>Quantité</th>
-                                                <th>Prix unitaire</th>
-                                                <th>Prix total</th>
-                                            </tr>
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>Motif(Désignation)</th>
+                                            <th>Quantité</th>
+                                            <th>Prix unitaire</th>
+                                            <th>Prix total</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                        <tr>
 
-                                            </tr>
-                                            <tr>
-                                                <td colspan="4">Total</td>
-                                                <td id="rapport_total_depense">
-                                                    0
-                                                </td>
-                                            </tr>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">Total</td>
+                                            <td id="rapport_total_depense">
+                                                0
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -883,22 +883,22 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <thead>
-                                            <tr>
-                                                <th>Solde réel en caisse</th>
-                                                <th>Solde système</th>
-                                                <th>Différence</th>
-                                            </tr>
+                                        <tr>
+                                            <th>Solde réel en caisse</th>
+                                            <th>Solde système</th>
+                                            <th>Différence</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td id="rapport_ec_solde_reel">0</td>
-                                                <td id="rapport_ec_solde_system">
-                                                    0
-                                                </td>
-                                                <td id="rapport_ec_difference">
-                                                    0
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td id="rapport_ec_solde_reel">0</td>
+                                            <td id="rapport_ec_solde_system">
+                                                0
+                                            </td>
+                                            <td id="rapport_ec_difference">
+                                                0
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -918,22 +918,22 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             </div>
                             <div class="panel-body panel-body-table">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
+                                    <table  id="rapport_retour" class="table table-bordered table-striped">
                                         <thead>
-                                            <tr>
-                                                <th>Quantité</th>
-                                                <th>Total</th>
-                                            </tr>
+                                        <tr>
+                                            <th>Quantité</th>
+                                            <th>Total</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td id="">0</td>
-                                                <td id="">
-                                                    0
-                                                </td>
-                                            </tr>
+                                        <tr>
+
+                                        </tr>
                                         </tbody>
                                     </table>
+                                    <div style="display:flex;padding: 5px">
+                                        <p style="margin: 0px">Total: <span id="rapport_retour_total"></span></p>
+                                    </div>
                                 </div>
                             </div>
 
