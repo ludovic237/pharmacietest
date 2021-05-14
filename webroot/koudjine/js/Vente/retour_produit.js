@@ -161,6 +161,9 @@ function valider_retour(employe_id) {
                         $('#tab_RetourProduit_Retourne').empty();
                         $("#tab_RetourProduit_Achete").empty();
                         $('#search-reference-produit').val('');
+                        $("#prixTotal").html("0");
+                        $("#prixReduit").html("0");
+                        $("#netTotal").html("0");
 
                     }
                 })

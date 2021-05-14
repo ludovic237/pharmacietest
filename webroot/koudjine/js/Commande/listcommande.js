@@ -32,19 +32,21 @@ $(document).ready(function () {
 
 });
 
-function enregistrer_list_commande() {
+function enregistrer_list_commande(dateDerniere) {
     var date = $('#list_commande_date').val();
     var type = $('#list_commande_type option:selected').val();
-    console.log('date : ' + date + ' - type : ' + type)
+    //alert(dateDerniere);
+    console.log('date : ' + dateDerniere + ' - type : ' + type)
     $.ajax({
         type: "POST",
         url: "/pharmacietest/koudjine/inc/enregistrer_list_commande.php",
         data: {
-            type: type,
-            date: date
+            type: "Express",
+            date: dateDerniere
         },
-        dataType: 'json',
+        //dataType: 'json',
         success: function (data) {
+            //alert(data)
             noty({text: 'Enregistrement effectué' + data, layout: 'topRight', type: 'success'});
             load_produit_detail(_idprod, _nameprod);
             setTimeout(function () {
@@ -56,6 +58,7 @@ function enregistrer_list_commande() {
 
 function getListCommande(start, end) {
     console.log('start : ' + start + ' - end : ' + end);
+    //alert(start)
     var start = start;
     var end = end;
     $.ajax({

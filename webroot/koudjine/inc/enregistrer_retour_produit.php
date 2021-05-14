@@ -17,5 +17,6 @@ $retour = new ProduitRetour(array(
     'quantite' => $qte
 ));
 $managerCa->add($retour);
+echo "pass";
 
 ?>

@@ -42,6 +42,7 @@ $dataBoncaisseEncaisser = [];
 $dataProduitRetour = [];
 $datas = [];
 $dataVenteACredit = [];
+$grandTotalCaisse = 0;
 
 if (isset($_POST['id']))
     $id = $_POST['id'];
@@ -52,19 +53,26 @@ $ventes = $managerVente->getListCaisseComplete($id);
 $prixGrossite = 0;
 $prixDetaillant = 0;
 $prixTotalConcerne = 0;
+$prixTotalProduitDetail = 0;
 //Recap vente fournisseur
 foreach ($ventes as $k => $v) {
     $concernce = $managerCo->getList($v->id());
     foreach ($concernce as $a => $b) {
 
-        $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite());
+        $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite()) - $b->reduction();
         $en_rayon = $managerEn->get($b->en_rayon_id());
         $fournisseur = $managerFournisseur->get($en_rayon->fournisseur_id());
 
         if ($fournisseur->statut() == "Grossiste") {
-            $prixGrossite = $prixTotalConcerne + $prixGrossite;
+
         } else if ($fournisseur->statut() == "Detaillant") {
             $prixDetaillant = $prixTotalConcerne + $prixDetaillant;
+        }
+        // On calcule le total des produits detailles
+        $produit = $managerPr->get($en_rayon->produit_id());
+        if ($produit->grossiste_id() != ''){
+            $prixTotalProduitDetail = $prixTotalConcerne + $prixTotalProduitDetail;
+            //echo 'passe';
         }
     }
 }
@@ -74,7 +82,7 @@ $totalVentFournisseur = $prixGrossite + $prixDetaillant;
 $ventesComptant = $managerVente->getListCaisseCompleteByEtat($id, "Comptant");
 $totalVenteComptant = 0;
 foreach ($ventesComptant as $k => $v) :
-    $totalVenteComptant = $totalVenteComptant + ($v->prixTotal());
+    $totalVenteComptant = $totalVenteComptant + ($v->prixPercu());
 endforeach;
 
 $ventesCredit = $managerVente->getListCaisseCompleteByEtat($id, "Crédit");
@@ -185,11 +193,7 @@ foreach ($depense as $k => $v) :
     );
 endforeach;
 
-//etat de la caisse
 
-$montantFermeture = $managerCa->getId($id)->fondCaisseFerme();
-$montantSystem = (+$totalboncaisseGenerer) - ($totalboncaisseEncaisser + $totalDepense);
-$differnce  = $montantFermeture - $montantSystem;
 
 //retour produit
 
@@ -231,9 +235,17 @@ foreach ($retourproduit as $k => $v) :
     );
 endforeach;
 
+//etat de la caisse
+
+$montantFermeture = $managerCa->getId($id)->fondCaisseFerme();
+$montantSystem = ($totalfacturationEspece + $totalboncaisseGenerer) - ($totalboncaisseEncaisser + $totalDepense + $prixTotalRetourProduit);
+$differnce  = $montantFermeture - $montantSystem;
+
+
 $donnees = array(
     'vente_fg' => $prixGrossite,
     'vente_fd' => $prixDetaillant,
+    'vente_fpd' => $prixTotalProduitDetail,
     'vente_ft' => $totalVentFournisseur,
     'vente_comptant' => $totalVenteComptant,
     'vente_credit' => $totalVenteCredit,

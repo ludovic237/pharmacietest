@@ -8,7 +8,6 @@ $('#pharmanet_tab_vente').hide();
 
 $(document).ready(function () {
 
-
     $('#customers2').DataTable( {
         "order": [[ 5, "desc" ]]
     } );
@@ -398,9 +397,23 @@ $(document).ready(function () {
         }
     });
 
-    /*$('#search-reference-produit').keyup(function () {
+    $('#search-reference-produit').keyup(function () {
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/readreference.php',
+            data: 'keyword=' + $(this).val(),
+            beforeSend: function () {
+                $("#search-reference-produit").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
+            },
+            success: function (data) {
+                //alert(data);
+                $("#suggesstion-reference-produit-block").show();
+                $("#suggesstion-reference-produit").html(data).show();
+                $("#suggesstion-reference-produit").css("background", "#FFF");
 
-    });*/
+            }
+        });
+    });
 
 });
 

@@ -214,11 +214,15 @@ function ajouter_bon_caisse() {
         + ' <td> <input class=\'nom\' type="text"></td>'
         + ' <td><input class=\'montant\' type="text"></td>'
         + '<td>'
-        + '<button class="btn btn-primary btn-rounded btn-sm" onclick="gerer_bon_caisse()" >Générer</button>'
+        + '<button class="btn btn-primary btn-rounded btn-sm" onclick="showConfirmationBon()" >Générer</button>'
         + '</td>'
         + '</tr>';
     $('#tab_GBonCaisse').prepend(cat);
 
+}
+
+function showConfirmationBon() {
+    $("#mb-bom-caisse").modal("show");
 }
 
 function showEncaissement() {
@@ -323,7 +327,7 @@ function gerer_bon_caisse() {
                 },
                 success: function (server_responce) {
                     //alert(server_responce);
-
+                    $('#mb-bom-caisse').hide()
                     $('#tab_GBonCaisse').empty();
                     $("#iconPreviewBonCaisse").modal("hide");
 
@@ -994,6 +998,7 @@ function showRapportTest(id) {
             //recap vente par fournisseur
             $("#rapport_vente_fournisseur_grossiste").html(data.vente_fg);
             $("#rapport_vente_fournisseur_detaillant").html(data.vente_fd);
+            $("#rapport_vente_produit_detaille").html(data.vente_fpd);
             $("#rapport_vente_fournisseur_total").html(data.vente_ft);
 
             //recap vente par type vente
