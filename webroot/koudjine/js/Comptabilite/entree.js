@@ -92,20 +92,21 @@ function imprimer_bloc(titre, objet) {
     var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 17
         ]});
     //var doc = new jsPDF('l', 'mm', [30, 15]);
-    doc.cell(0, 0, 30, 15, ' ', 1, "center");
+    doc.cell(0, 0, 30, 17, ' ', 1, "center");
     doc.setFontSize(4);
-    doc.text(1, 3, etiquetteNomP);
+    doc.text(1, 5, etiquetteNomP);
     doc.setFontSize(7);
-    doc.text(1, 7, etiquettePrix+' FCFA');
-    doc.addImage(base64Image, "JPEG", 20, 4, 9, 9);
+    doc.text(1, 9, etiquettePrix+' FCFA');
+    doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
     doc.setFontSize(5);
-    doc.text(2, 12, etiquetteNomF);
+    doc.text(2, 14, etiquetteNomF);
     doc.setFontSize(4);
-    doc.text(2, 14, etiquetteDatel + ' / ' + etiquetteDatep);
+    doc.text(2, 16, etiquetteDatel + ' / ' + etiquetteDatep);
     doc.save('hello.pdf');
     //doc.print('hello');
     return true;
 }
+
 
 function enregistrer_en_rayon(option, id) {
     // Informations université
