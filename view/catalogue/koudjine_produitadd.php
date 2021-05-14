@@ -1,3 +1,4 @@
+
 <?php
 
 $title_for_layout = ' Admin -' . 'Catalogue';
@@ -7,9 +8,9 @@ $page_for_layout = ($position == 'Ajouter') ? 'Ajouter une produit' : 'Modifier 
 if ($this->request->action == "index") {
     $position = "Toutes les universités";
 } else {
-    //$position = $this->request->action; 
+    //$position = $this->request->action; $position
 }
-$position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' . $position . '</li>';
+$position_for_layout = '<li><a href="#">Catalogue</a></li><li class="active">' .  . '</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-validation/jquery.validate.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-datepicker.js"></script>

@@ -92,7 +92,7 @@ function imprimer_bloc(titre, objet) {
     var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 15
         ]});
     //var doc = new jsPDF('l', 'mm', [30, 15]);
-    doc.cell(0, 0, 30, 15, ' ', 1, "center");
+    doc.cell(0, 0, 30, 16, ' ', 1, "center");
     doc.setFontSize(4);
     doc.text(1, 3, etiquetteNomP);
     doc.setFontSize(7);
