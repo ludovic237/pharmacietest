@@ -20,7 +20,8 @@ $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/entree.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+
+<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
 <script>
 /*var qrcode = new QRCode(document.getElementById("qrcode"), {
      width: 30,
@@ -193,7 +194,7 @@ $script_for_layout = '
                                                 <p class="code " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
                                             </td>
                                         </tr> -->
-                                        <tr style="display: flex;table-layout: fixed; width: 30mm ;height: 15mm;">
+                                        <tr style="margin:0px;display: flex;table-layout: fixed; width: 40mm ;height: 15mm;">
                                             <td style="width: 29.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;padding-top: 0px;height: 15mm;" colspan="2">
 
                                                 <div style="display: flex;flex-direction: column;padding: 0px 4px;height: 15mm;">
