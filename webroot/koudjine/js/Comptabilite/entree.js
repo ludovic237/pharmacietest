@@ -89,7 +89,7 @@ function imprimer_bloc(titre, objet) {
     let base64Image = $('#qrcode img').attr('src');
     console.log(base64Image);
     console.log(base64Image);
-    var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 16
+    var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 17
         ]});
     //var doc = new jsPDF('l', 'mm', [30, 15]);
     doc.cell(0, 0, 30, 15, ' ', 1, "center");
