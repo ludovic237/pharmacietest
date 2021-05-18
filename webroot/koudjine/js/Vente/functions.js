@@ -748,9 +748,9 @@ function ajouter_produit() {
     $('#tab_Bload_produit  tr').each(function (i) {
         var id1 = $(this).attr("id");
         var nom = $("#" + id1 + " .nom").html();
-        var qte = parseInt($("#" + id1 + " .qte").val());
+        var qte = parseInt($("#inputQte" + id1 ).val());
         var qterest = parseInt($("#" + id1 + " .qterest").html());
-        var prix = parseInt($("#" + id1 + " .prixv").val());
+        var prix = parseInt($("#inputPrixV" + id1 + " ").val());
         //alert(prix);
         var stockg = parseInt($("#" + id1 + " .stock").html());
         var datel = $("#" + id1 + " .datel").html();
