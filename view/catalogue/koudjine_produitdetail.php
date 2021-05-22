@@ -22,12 +22,7 @@ $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/daterangepicker/daterangepicker.js"></script>
         <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Catalogue/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
-<script>
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-     width: 30,
-     height: 30
- });
-                                    </script>
+<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
 <script>
                                         window.onload = function () {
                                             document.getElementById("detail_recherche").focus();
@@ -189,7 +184,8 @@ var test = "' . $id . '"
                                                         </ul>
 
                                                     </div>
-                                                    <div class="panel-body" style="display: flex;justify-content: space-between;">
+                                                    <div class="panel-body"
+                                                         style="display: flex;justify-content: space-between;">
                                                         <h3>Quantite :
                                                             <span id="qte_vente_total">
                                                             </span>
@@ -318,7 +314,8 @@ var test = "' . $id . '"
                                                         </ul>
 
                                                     </div>
-                                                    <div class="panel-body" style="display: flex;justify-content: space-between;">
+                                                    <div class="panel-body"
+                                                         style="display: flex;justify-content: space-between;">
                                                         <h3>Total commandé:
                                                             <span id="prix_cmd_total">
                                                             </span> FCFA
@@ -587,78 +584,38 @@ var test = "' . $id . '"
                         <div class="icon-preview">
                             <!-- <div style="border: 1px solid black;width: 40mm;display:flex;height: 30mm;flex-direction: column;" id="ticket"> -->
                             <div style="width: 35mm;display:flex;height: 30mm;flex-direction: column;" id="ticket">
-                                <!-- <table class="fixed" style="display: flex;overflow: auto;border-collapse: collapse;border-spacing: 0px;border: 0;">
-                                    <tbody>
-                                        <tr style="display: flex;">
-                                            <td style="width: 30mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
-                                                <p class="nomp" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
-                                            </td>
-                                            <td style="width: 5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
-                                                <p class="prixv " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
-                                            </td>
-                                        </tr>
-                                        <tr style="display: flex;">
-                                            <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
-                                                <p style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;display: flex;" id="demo"></p>
-                                            </td>
-
-                                        </tr>
-                                        <tr style="display: flex;">
-                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
-                                                <p class="datel " style="font-weight: bold;text-align:center; margin-left:0px;font-size: 8px;"></p>
-                                            </td>
-                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
-                                                <p class="datep " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table> -->
                                 <table style="table-layout: fixed; width: 40mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
                                     <tbody>
-                                    <!-- <tr style="display: flex;">
-                                        <td style="width: 25mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
 
-                                        </td>
-                                        <td style="width: 10mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
-
-                                        </td>
-                                        <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
-                                            <p class="code " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
-                                        </td>
-                                    </tr> -->
-                                    <tr style="display: flex;table-layout: fixed; width: 40mm ;">
-                                        <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"
+                                    <tr style="margin:0px;display: flex;table-layout: fixed; width: 40mm ;height: 15mm;">
+                                        <td style="width: 29.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;padding-top: 0px;height: 15mm;"
                                             colspan="2">
 
-                                            <div style="display: flex;flex-direction: column;">
+                                            <div style="display: flex;flex-direction: column;padding: 0px 4px;height: 15mm;">
                                                 <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
                                                     <p class="nomp"
-                                                       style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
-                                                    <p class="prixv"
-                                                       style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                       style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;"></p>
+                                                    <!--<p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>-->
                                                 </div>
-                                                <div style="justify-content: center;display:flex">
-                                                    <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
-                                                       id="qrcode"></p>
-                                                </div>
-                                                <div style="display: flex;flex-direction: row;justify-content: space-around;">
-                                                    <p class="datel"
-                                                       style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
-                                                    <p class="datep"
-                                                       style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>
+                                                <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%;height: 8mm;">
+                                                    <div style="display: flex;flex-direction: column;justify-content: space-between;width:100%">
+                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 12px;align-content: center;align-items: center;justify-content: center;justify-items: center;display: flex;">
+                                                            <span class="prixv"></span> FCFA</p>
+                                                        <p class="nomf"
+                                                           style="font-weight: bold;text-align:center; margin:0px;font-size: 5px;"></p>
+                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;">
+                                                            <span class="datep"></span> / <span class="datel"></span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
+                                                           id="qrcode"></p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
 
                                     </tr>
-                                    <!-- <tr style="display: flex">
-                                        <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
-
-                                        </td>
-                                        <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
-
-                                        </td>
-                                    </tr> -->
                                     </tbody>
                                 </table>
 

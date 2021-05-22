@@ -5,13 +5,13 @@ $(document).ready(function () {
     $(".btn-modifier").hide();
 
     $("#iconPreviewForm .champ").keyup(function (event) {
-        if (event.keyCode == 13){
+        if (event.keyCode == 13) {
             //alert('passe');
             var id = $(this).attr("id");
-            var position = $("#"+id).attr("data");
+            var position = $("#" + id).attr("data");
             position = parseInt(position);
             position = position + 1;
-            $("#iconPreviewForm .champ"+position).focus();
+            $("#iconPreviewForm .champ" + position).focus();
             //$("#iconPreviewForm .champ"+position).val(position);
         }
     })
@@ -36,13 +36,12 @@ $(document).ready(function () {
                     data: data,
                     dataType: 'json',
                     success: function (data) {
-                        if(data.erreur == "non"){
+                        if (data.erreur == "non") {
                             load_produit(data.id, data.nom, data.prixA, data.prixV, data.reduction);
                             $('#recherche').val("");
                             $("#tab_BCrecherche").empty();
                             $("#tab_GCrecherche").hide();
-                        }
-                        else {
+                        } else {
                             $('#message-box-danger p').html(data.erreur);
                             $("#message-box-danger").modal("show");
                             setTimeout(function () {
@@ -100,18 +99,18 @@ function load_produit(id, nom, prixachat, prixvente, reduction) {
 function enregistrer_commande_programme() {
 
 
-    if($("#fournisseur_commande option:selected").val() == 0 || $("#numero_bon_livraison").val() == ''){
+    if ($("#fournisseur_commande option:selected").val() == 0 || $("#numero_bon_livraison").val() == '') {
         $('#message-box-danger p').html("Veuillez selectionner un fournisseur et entrer le numero de Livraison !!!");
         $("#message-box-danger").modal("show");
         setTimeout(function () {
             $("#message-box-danger").modal("hide");
         }, 6000);
         $("#iconPreviewForm").modal("hide");
-    }else {
+    } else {
         var id = $('#id_xr').attr("data");
         var nom = $('#nom_cmdprogramme').val();
         var ug, qte = $('#qte_cmdprogramme').val();
-        if($('#ug_cmdprogramme').val() != '')
+        if ($('#ug_cmdprogramme').val() != '')
             ug = $('#ug_cmdprogramme').val();
         else
             ug = 0;
@@ -119,18 +118,16 @@ function enregistrer_commande_programme() {
         var prixpublic = $('#prixpublic_cmdprogramme').val();
         var reduction = $('#reduction_max').val();
         var date = $('#date_cmdprogramme').val();
-        if(date == '' || qte == ''){
+        if (date == '' || qte == '') {
             alert("Vérifier les champs Quantité et Date !!!");
-        }
-        else{
+        } else {
             var today = new Date();
             var dd = String(today.getDate()).padStart(2, '0');
             var mm = String(today.getMonth() + 1).padStart(2, '0');
             var yyyy = today.getFullYear();
-            today = yyyy  + mm  + dd;
+            today = yyyy + mm + dd;
 
             var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
-
 
 
             var codebarre = id + "" + codefournisseur + "" + today;
@@ -166,9 +163,19 @@ function enregistrer_commande_programme() {
 
                 $("#" + id1 + " td").each(function (j) {
                     ////alert($(this).html());
-                    if (j == 1) { qte = parseInt($(this).html()); qteTotal = qteTotal + qte; }
-                    if (j == 2) { ug = parseInt($(this).html()); ugTotal = ugTotal + ug; alert(ugTotal); }
-                    if (j == 3) { total = (qte * parseInt($(this).html())); prixTotal = prixTotal + total; }
+                    if (j == 1) {
+                        qte = parseInt($(this).html());
+                        qteTotal = qteTotal + qte;
+                    }
+                    if (j == 2) {
+                        ug = parseInt($(this).html());
+                        ugTotal = ugTotal + ug;
+                        alert(ugTotal);
+                    }
+                    if (j == 3) {
+                        total = (qte * parseInt($(this).html()));
+                        prixTotal = prixTotal + total;
+                    }
 
                 });
 
@@ -187,37 +194,6 @@ function enregistrer_commande_programme() {
 
     }
 
-}
-
-function showPrintCmdProgramme(id) {
-
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
-    today = dd + "-" + mm + "-" + yyyy;
-    var todayCode = dd + "" + mm + "" + yyyy;
-    var nom = $("#" + id + " .nom").html();
-    var datelivraisron = $("#" + id + " .date").html();
-    var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
-
-    //var date = $("#" + id + " .date").html();
-    //date = date.replaceAll("-", "");
-
-    var codebarre = id + "" + codefournisseur + "" + todayCode;
-
-    $('#iconPreviewPrintCmdProgramme .nom').html(nom);
-    $("#iconPreviewPrintCmdProgramme .codefournisseur").html(codefournisseur);
-    $("#iconPreviewPrintCmdProgramme .codebarre").barcode(
-        codebarre, // Value barcode (dependent on the type of barcode)
-        "code128" // type (string)
-
-    );
-
-    $("#iconPreviewPrintCmdProgramme .today").html(today);
-    $("#iconPreviewPrintCmdProgramme .datelivraisron").html(datelivraisron);
-
-    $("#iconPreviewPrintCmdProgramme").modal("show");
 }
 
 function imprimer_cmdProgramme(titre, objet) {
@@ -247,7 +223,6 @@ function imprimer_cmdProgramme(titre, objet) {
 function showRecu() {
     $("#iconPreviewRecu").modal("show");
 }
-
 
 
 function imprimer_bon(titre, objet) {
@@ -297,35 +272,42 @@ function imprimer_recu(titre, objet) {
     fen.window.close();
     return true;
 }
+
 function delete_row_commande(id) {
     var total;
     $("#" + id).remove();
 
-    var prixTotal = 0,qte;
+    var prixTotal = 0, qte;
     $('#tab_commande_programme  tr').each(function (i) {
         var id1 = $(this).attr("id");
 
         $("#" + id1 + " td").each(function (j) {
             ////alert($(this).html());
-            if (j == 1) { qte = parseInt($(this).html()); }
-            if (j == 2) { total = (qte * parseInt($(this).html())); prixTotal = prixTotal + total; }
+            if (j == 1) {
+                qte = parseInt($(this).html());
+            }
+            if (j == 2) {
+                total = (qte * parseInt($(this).html()));
+                prixTotal = prixTotal + total;
+            }
 
         });
 
     });
     $('#prixTotal').html(prixTotal);
 }
+
 function valider_commande(imprimer) {
     var prixTotal, idc, ref;
-    var prix, qte, ug, prixPublic, reduction, datep,nomP, count=0, rec=0;
+    var prix, qte, ug, prixPublic, reduction, datep, nomP, count = 0, rec = 0;
     var h = 1, total = 0, nbre = 0;
     prixTotal = parseInt($('#prixTotal').html());
     var today = new Date();
-    var dd = String(today.getDate()).padStart(2,'0');
-    var mm = String(today.getMonth()+1).padStart(2,'0');
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
-    var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-    today = yyyy+"-"+mm+"-"+dd+"  "+time;
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    today = yyyy + "-" + mm + "-" + dd + "  " + time;
     //alert(parseInt($("#prixTotal").attr("data1")));
     $("#date").html(today);
     if (prixTotal == 0) {
@@ -355,7 +337,8 @@ function valider_commande(imprimer) {
                     ref = data.ref;
                     //alert(idc);
                     $('#tab_commande_programme  tr').each(function (i) {
-                        count++;});
+                        count++;
+                    });
                     console.log(count);
                     $('#tab_commande_programme  tr').each(function (i) {
                         var id1 = $(this).attr("id");
@@ -367,18 +350,32 @@ function valider_commande(imprimer) {
 
                         $("#" + id1 + " td").each(function (j) {
                             ////alert($(this).html());
-                            if (j == 0) { nomP = $(this).html(); }
-                            if (j == 1) { qte = parseInt($(this).html()); }
-                            if (j == 2) { ug = parseInt($(this).html()); }
-                            if (j == 3) { prix = parseInt($(this).html()); }
-                            if (j == 4) { prixPublic = parseInt($(this).html()); }
-                            if (j == 5) { datep = $(this).html(); }
-                            if (j == 6) { reduction = $(this).html(); }
+                            if (j == 0) {
+                                nomP = $(this).html();
+                            }
+                            if (j == 1) {
+                                qte = parseInt($(this).html());
+                            }
+                            if (j == 2) {
+                                ug = parseInt($(this).html());
+                            }
+                            if (j == 3) {
+                                prix = parseInt($(this).html());
+                            }
+                            if (j == 4) {
+                                prixPublic = parseInt($(this).html());
+                            }
+                            if (j == 5) {
+                                datep = $(this).html();
+                            }
+                            if (j == 6) {
+                                reduction = $(this).html();
+                            }
 
                         });
                         var cat = '<tr>'
-                            + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">'+h+'</td>'
-                            + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;font-size: 10px;">' +nomP + '</td>'
+                            + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + h + '</td>'
+                            + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;font-size: 10px;">' + nomP + '</td>'
                             + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + qte + '</td>'
                             + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + qte + '</td>'
                             + '<td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">' + ug + '</td>'
@@ -389,7 +386,7 @@ function valider_commande(imprimer) {
                         $('#tab_Bcommande_Recu').append(cat);
                         h++;
                         total = total + (prix * qte);
-                        nbre = nbre +  qte;
+                        nbre = nbre + qte;
                         //alert(prix+'-'+qte+'-'+prixPublic);
                         $.ajax({
                             type: "POST",
@@ -413,28 +410,28 @@ function valider_commande(imprimer) {
 
                                 $("#mb-confirmation").attr("data", idc);
                                 //alert($("#mb-confirmation").attr("data"));
-                                if(imprimer && rec == count){
+                                if (imprimer && rec == count) {
                                     //imprimer_com(idc, ref, $('#fournisseur_commande option:selected').text());
                                     var cat = '<tr>'
                                         + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="6">Total</td>'
-                                        + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"><strong>' +total+ '</strong></td>'
+                                        + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"><strong>' + total + '</strong></td>'
                                         + '</tr>';
                                     $('#tab_Bcommande_Recu').append(cat);
                                     //$("#totalRecu").html(total);
-                                    $("#article_commande").html(h-1);
+                                    $("#article_commande").html(h - 1);
                                     $("#produit_commande").html(nbre);
                                     var yo = ref;
-                                    var one = yo.substr( 0, 9);
+                                    var one = yo.substr(0, 9);
                                     var three = yo.substr(12, 3);
 
-                                    var chaine = one +"REC"+ three;
+                                    var chaine = one + "REC" + three;
 
                                     var today = new Date();
-                                    var dd = String(today.getDate()).padStart(2,'0');
-                                    var mm = String(today.getMonth()+1).padStart(2,'0');
+                                    var dd = String(today.getDate()).padStart(2, '0');
+                                    var mm = String(today.getMonth() + 1).padStart(2, '0');
                                     var yyyy = today.getFullYear();
-                                    var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-                                    today = dd+"-"+mm+"-"+yyyy+"  "+time
+                                    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                                    today = dd + "-" + mm + "-" + yyyy + "  " + time
                                     $("#date").html(today);
                                     $("#bordereau_livraison").html($("#numero_bon_livraison").val());
                                     $("#rec_commande").html(chaine);
@@ -442,9 +439,9 @@ function valider_commande(imprimer) {
                                     $("#nomf_commande").html($('#fournisseur_commande option:selected').text());
                                     $("#date_commande").html(today);
                                     $("#iconPreviewRecu").modal("show");
-                                }else{
+                                } else {
 
-                                    if(rec == count){
+                                    if (rec == count) {
                                         console.log('Redirige');
                                         var link = '/pharmacietest/bouwou/commande/list';
                                         window.location.href = link;
@@ -466,31 +463,78 @@ function valider_commande(imprimer) {
             }
         })
     }
+}
 
+var etiquetteNomP;
+var etiquetteNomF;
+var etiquetteCode;
+var etiquetteDatel;
+var etiquetteDatep;
+var etiquettePrix;
+var qrcode;
 
+function showPrintCmdProgramme(id) {
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = dd + "-" + mm + "-" + yyyy;
+    var todayCode = dd + "" + mm + "" + yyyy;
+    var nom = $("#" + id + " .nom strong").html();
+    var datelivraisron = $("#" + id + " .date").html();
+    var prix = $("#" + id + " .prixpublic").html();
+    var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
+
+    //var date = $("#" + id + " .date").html();
+    //date = date.replaceAll("-", "");
+
+    var codebarre = id + "" + codefournisseur + "" + todayCode;
+
+    //etiquetteNomF = nom;
+    etiquetteNomP = nom;
+    etiquetteNomF = codefournisseur;
+    etiquetteCode = codebarre;
+    etiquetteDatel = today;
+    etiquetteDatep = datelivraisron;
+    etiquettePrix = prix;
+
+    $('#iconPreviewPrintCmdProgramme .nomp').html(nom);
+    $("#iconPreviewPrintCmdProgramme .nomf").html(nom);
+    $("#iconPreviewPrintCmdProgramme .code").html(codefournisseur);
+    $("#iconPreviewPrintCmdProgramme .codebarre").html(codebarre);
+    $("#iconPreviewPrintCmdProgramme .datel").html(today);
+    $("#iconPreviewPrintCmdProgramme .datep").html(datelivraisron);
+    $("#iconPreviewPrintCmdProgramme .prixv").html(prix);
+    code1 = codebarre;
+    qrcode = new QRCode(document.getElementById("qrcode"), {
+        width: 30,
+        height: 30
+    });
+    qrcode.makeCode(code1);
+
+    $("#iconPreviewPrintCmdProgramme").modal("show");
 }
 
 function imprimer_bloc(titre, objet) {
-    // Définition de la zone à imprimer
-    var zone = document.getElementById(objet).innerHTML;
-    //alert("Hello");
-    // Ouverture du popup,
-    var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
-
-    // style du popup
-    fen.document.body.style.color = '#000000';
-    fen.document.body.style.backgroundColor = '#FFFFFF';
-    fen.document.body.style.padding = "0px";
-
-    // Ajout des données a imprimer
-    fen.document.title = titre;
-    fen.document.body.innerHTML += " " + zone + " ";
-
-    // Impression du popup
-    fen.window.print();
-
-    //Fermeture du popup
-    fen.window.close();
+    let base64Image = $('#qrcode img').attr('src');
+    console.log(base64Image);
+    console.log(base64Image);
+    var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 17
+        ]});
+    //var doc = new jsPDF('l', 'mm', [30, 15]);
+    doc.cell(0, 0, 30, 17, ' ', 1, "center");
+    doc.setFontSize(4);
+    doc.text(1, 5, etiquetteNomP);
+    doc.setFontSize(7);
+    doc.text(1, 9, etiquettePrix+' FCFA');
+    doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+    doc.setFontSize(5);
+    doc.text(2, 14, etiquetteNomF);
+    doc.setFontSize(4);
+    doc.text(2, 16, etiquetteDatel + ' / ' + etiquetteDatep);
+    doc.save('hello.pdf');
+    //doc.print('hello');
     return true;
 }
 

@@ -28,9 +28,7 @@ function info_row_entree(row) {
         },
         dataType: 'json',
         success: function (data) {
-            //alert(data);
-            //$("#iconPreview .icon-preview").html(icon_preview);
-            etiquetteNomF = data.code;
+
             etiquetteNomP = data.nomP;
             etiquetteNomF = data.code;
             etiquetteCode = data.code;
