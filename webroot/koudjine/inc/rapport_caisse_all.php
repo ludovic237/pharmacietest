@@ -77,7 +77,7 @@ foreach ($ventes as $k => $v) {
     }
 }
 
-$caisse = $managerCa->get($id);
+$caisse = $managerCa->getId($id);
 //recap vente par type de vente
 if($caisse->etat() != 'Ouvert')
 $ventesComptant = $managerVente->getListCaisseCompleteByEtat($id, "Comptant");
