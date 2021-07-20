@@ -30,14 +30,16 @@ function info_row_entree(row) {
         success: function (data) {
 
             etiquetteNomP = data.nomP;
-            etiquetteNomF = data.code;
-            etiquetteCode = data.code;
+            etiquetteCode = data.codeP+'(1)'+data.code;
+            //etiquetteNomF = data.code;
+            etiquetteNomF = etiquetteCode;
+
             etiquetteDatel = data.datel;
             etiquetteDatep = data.datep;
             etiquettePrix = data.prixv;
 
             $('#iconPreviewEntree .nomp').html(data.nomP);
-            $("#iconPreviewEntree .nomf").html(data.nomF);
+            $("#iconPreviewEntree .nomf").html(etiquetteCode);
             $("#iconPreviewEntree .code").html(data.code);
             $("#iconPreviewEntree .codebarre").html(row);
             $("#iconPreviewEntree .datel").html(data.datel);
@@ -87,20 +89,20 @@ function imprimer_bloc(titre, objet) {
     let base64Image = $('#qrcode img').attr('src');
     console.log(base64Image);
     console.log(base64Image);
-    var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 17
+    var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 21
         ]});
     //var doc = new jsPDF('l', 'mm', [30, 15]);
-    doc.cell(0, 0, 30, 17, ' ', 1, "center");
+    doc.cell(0, 0, 30, 21, ' ', 1, "center");
     doc.setFontSize(4);
-    doc.text(1, 5, etiquetteNomP);
+    doc.text(1, 3, etiquetteNomP);
     doc.setFontSize(7);
-    doc.text(1, 9, etiquettePrix+' FCFA');
+    doc.text(1, 7, etiquettePrix+' FCFA');
     doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
     doc.setFontSize(5);
-    doc.text(2, 14, etiquetteNomF);
+    doc.text(2, 12, etiquetteNomF);
     doc.setFontSize(4);
-    doc.text(2, 16, etiquetteDatel + ' / ' + etiquetteDatep);
-    doc.save('hello.pdf');
+    doc.text(2, 14, etiquetteDatel + ' / ' + etiquetteDatep);
+    doc.save('hello1.pdf');
     //doc.print('hello');
     return true;
 }

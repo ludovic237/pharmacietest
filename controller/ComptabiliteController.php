@@ -109,7 +109,21 @@ class ComptabiliteController extends Controller
                 ));
 
             }
+            else{
+                $d['employe'] = $this->Comptabilite->findFirst(array(
+                    'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+                    'table' => 'employe, user',
+                    'conditions' => array('employe.id' => $_SESSION["Users"]->id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+                ));
+            }
 
+        }
+        else{
+            $d['employe'] = $this->Comptabilite->findFirst(array(
+                'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+                'table' => 'employe, user',
+                'conditions' => array('employe.id' => $d['caisseCheck']->user_id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+            ));
         }
 
         $this->set($d);
@@ -517,8 +531,8 @@ class ComptabiliteController extends Controller
         $d['check'] = $this->Comptabilite->findFirst(array(
             //'fields' => 'produit.nom as nom',
             'table' => 'caisse',
-            'conditions' => "supprimer = 0 AND etat != \"Clot\""
-            //'conditions' => "supprimer = 0 AND etat = \"Ouvert\""
+            //'conditions' => "supprimer = 0 AND etat != \"Clot\""
+            'conditions' => "supprimer = 0 AND etat = \"Ouvert\""
         ));
         if($id != null){
             $d['id'] = $id;

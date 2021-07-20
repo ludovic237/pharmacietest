@@ -214,7 +214,7 @@ function ajouter_bon_caisse() {
         + ' <td> <input class=\'nom\' type="text"></td>'
         + ' <td><input class=\'montant\' type="text"></td>'
         + '<td>'
-        + '<button class="btn btn-primary btn-rounded btn-sm" onclick="showConfirmationBon()" >Générer</button>'
+        + '<button class="btn btn-primary btn-rounded btn-sm" onclick="gerer_bon_caisse()" >Générer</button>'
         + '</td>'
         + '</tr>';
     $('#tab_GBonCaisse').prepend(cat);
@@ -821,7 +821,7 @@ function open_rapport(id) {
     if (id != null) {
         caisse_id = id;
     }
-    alert(caisse_id)
+    //alert(caisse_id)
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/liste_depense.php',
@@ -994,7 +994,7 @@ function showRapportTest(id) {
         },
         dataType: 'json',
         success: function (data) {
-
+            //alert(data)
             //recap vente par fournisseur
             $("#rapport_vente_fournisseur_grossiste").html(data.vente_fg);
             $("#rapport_vente_fournisseur_detaillant").html(data.vente_fd);
@@ -1014,6 +1014,8 @@ function showRapportTest(id) {
             $("#rapport_ev_total").html(data.ev_total);
 
             //Encaissement facture à credit
+            //alert(data.efc_espece)
+            if(data.efc_espece != 0)
             $('#rapport_efc_espece').dataTable({
                 destroy: true,
                 searching: false,

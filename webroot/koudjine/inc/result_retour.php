@@ -12,6 +12,7 @@ if (isset($_POST["motclef"])) {
               SELECT p.nom, c.quantite, c.prixUnit, c.reduction, v.id as idv, c.id as idc
               FROM concerner c, vente v, en_rayon r, produit p
               WHERE c.vente_id = v.id AND v.reference = '".$motclef."' AND c.en_rayon_id = r.id AND p.id = r.produit_id 
+              AND c.vente_id NOT IN (select vente_id from retour_produit )
               
             ");
     $sth->execute();
@@ -38,7 +39,7 @@ if (isset($_POST["motclef"])) {
         }
     }
     else{
-        echo "Aucun résultat pour le mot : ".$_POST["motclef"];
+        echo "Facture déjà retourné ou mot incorrect pour : ".$_POST["motclef"];
     }
 
 

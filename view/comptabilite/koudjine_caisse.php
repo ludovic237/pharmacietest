@@ -28,19 +28,27 @@
                                     </script>
 ';
         if (isset($caisse) && $caisse == null) {
+            //$employe = $caisse;
+            //print_r($caisse);
             $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisse").modal("show"); });</script>';
         }
         if (isset($caisseCheck) && $caisseCheck != null) {
+            //print_r($caisseCheck);
+            //$employe->identifiant = null;
             if ($caisseCheck->etat == "En cours") {
                 $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisseFermer").modal("show"); });</script>';
             } else {
                 $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(open_rapport());</script>';
             }
         }
+
+
+
         ?> -->
 
 
-<?php if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users']->type == 'Administrateur' || $_SESSION['Users']->type == 'Gestionnaire') { ?>
+<?php //print_r($caisseCheck);
+if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users']->type == 'Administrateur' || $_SESSION['Users']->type == 'Gestionnaire') { ?>
 
     <!-- START RESPONSIVE TABLES -->
 

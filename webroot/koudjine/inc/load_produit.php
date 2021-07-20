@@ -77,7 +77,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
          <div class='input-group' style='width:100px;'>
              <span class='input-group-btn'>
                  <button type='button' class='btn btn-default btn-number moins'
-                         onclick=\"change_input('moins','inputQte" . $v->id() . "')\"
+                         onclick=\"change_input_vente('moins','inputQte" . $v->id() . "'," . $v->quantiteRestante() . ")\"
                          style='padding: 4px;'>
                      <span class='glyphicon glyphicon-minus'></span>
                  </button>
@@ -87,7 +87,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
              value='0' style='width: 80px;'>
              <span class='input-group-btn'>
                  <button type='button' class='btn btn-default btn-number plus'
-                         onclick=\"change_input('plus','inputQte" . $v->id() . "')\"
+                         onclick=\"change_input_vente('plus','inputQte" . $v->id() . "'," . $v->quantiteRestante() . ")\"
                          style='padding: 4px;'>
                      <span class='glyphicon glyphicon-plus'></span>
                  </button>
