@@ -44,8 +44,12 @@ $datas = [];
 $dataVenteACredit = [];
 $grandTotalCaisse = 0;
 
-if (isset($_POST['id']))
+if (isset($_POST['id'])){
     $id = $_POST['id'];
+}else{
+    $id = $_GET['id'];
+}
+
 
 
 $ventes = $managerVente->getListCaisseComplete($id);
@@ -185,17 +189,17 @@ foreach ($ventesCreditFacture as $k => $v) :
 endforeach;
 
 //encaissement facture credit
-$ventesCreditFacture1 = $managerVente->getListCaisseCompleteByEtat_2($id, "Crédit");
+$ventesCreditFacture1 = $managerVente->getListCaisseCompleteByEtat_3($id, "Crédit");
 $totalVenteCreditFacture1 = 0;
 foreach ($ventesCreditFacture1 as $k => $v) :
 
-    if ($v->user_id() != NULL) {
-        $user1 = $managerUs->get($managerEm->get($v->user_id())->user_id()) ;
-        $client1 = $user->nom() . ' ' . $user->prenom();
+    if ($v['user_id'] != NULL) {
+        //$user1 = $managerUs->get($v->user_id()) ;
+        $client1 = $v['nom'] . ' ' . $v['prenom'];
     } else {
         $client1 = 'Client pas enregistré';
     }
-    $concernce = $managerCo->getList($v->id());
+    $concernce = $managerCo->getList($v['id']);
     foreach ($concernce as $a => $b) {
 
         $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite()) - $b->reduction();
@@ -215,14 +219,14 @@ foreach ($ventesCreditFacture1 as $k => $v) :
         }
     }
     $dataVenteACredit1[] = array(
-        "DT_RowId" => $v->id(),
-        "id" => $v->id(),
-        "reference" => $v->reference(),
-        "prixPercu" => $v->prixPercu(),
+        "DT_RowId" => $v['id'],
+        "id" => $v['id'],
+        "reference" => $v['reference'],
+        "prixPercu" => $v['prixPercu'],
         "client" => $client1,
-        'dateVente' => $v->dateVente()
+        'dateVente' => $v['dateVente']
     );
-    $totalVenteCreditFacture1= $v->prixPercu() + $totalVenteCreditFacture1;
+    $totalVenteCreditFacture1= $v['prixPercu'] + $totalVenteCreditFacture1;
 endforeach;
 
 if(!isset($dataVenteACredit1)) $dataVenteACredit1 = 0;

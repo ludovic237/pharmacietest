@@ -256,6 +256,17 @@ class ConcernerManager
         return $concerners;
     }
 
+    public function getListConverneProduitId($idvente, $idp)
+    {
+        $concerners = array();
+        $q = $this->_db->prepare('SELECT concerner.quantite  AS totalqte, concerner.id AS id FROM concerner,en_rayon,produit WHERE concerner.vente_id = '.$idvente.' && concerner.en_rayon_id = en_rayon.id && en_rayon.produit_id = produit.id && produit.id = '.$idp.' GROUP BY concerner.en_rayon_id ORDER BY totalqte DESC ');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $concerners[] = $donnees;
+        }
+        return $concerners;
+    }
+
     public function getListConvernePEmploye()
     {
         $concerners = array();

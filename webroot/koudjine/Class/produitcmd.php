@@ -231,6 +231,12 @@ class Produit_cmdManager
         return (bool) $this->_db->query('SELECT COUNT(*) FROM produit_cmd WHERE supprimer = 0 AND commande_id = '.$idc.' AND produit_id = '.$idp)->fetchColumn();
 
     }
+    public function existsLastCmdId($idp)
+    {
+
+        return (bool) $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND produit_id = '.$idp.' ORDER BY id desc LIMIT 1')->fetchColumn();
+
+    }
     public function existsEan($info)
     {
 
@@ -253,6 +259,14 @@ class Produit_cmdManager
     {
 
         $q = $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND produit_id = '.$idp.' AND commande_id ='.$idc);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Produit_cmd($donnees);
+
+    }
+    public function getLastCmdId($idp)
+    {
+
+        $q = $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND produit_id = '.$idp.' ORDER BY id desc LIMIT 1');
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Produit_cmd($donnees);
 

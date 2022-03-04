@@ -1,8 +1,21 @@
 <?php
 require_once('database.php');
+require_once('../Class/vente.php');
+require_once('../Class/produitcmd.php');
+require_once('../Class/commande.php');
+require_once('../Class/concerner.php');
+require_once('../Class/en_rayon.php');
+require_once('../Class/produit.php');
 
 global $pdo;
 global $conndb;
+
+$manager = new VenteManager($pdo);
+$managerPc = new Produit_cmdManager($pdo);
+$managerCm = new CommandeManager($pdo);
+$managerCo = new ConcernerManager($pdo);
+$managerPr = new ProduitManager($pdo);
+$managerEnr = new En_rayonManager($pdo);
 
 //On sélectionne tous les users dont le nom = Pierre
 if (isset($_GET["motclef1"])) {
@@ -24,6 +37,30 @@ if (isset($_GET["motclef1"])) {
             $datel = $date->format('Y-m-d');
             if ($result->reduction > $result->reductionMax) $reduction = $result->reduction;
             else $reduction = $result->reductionMax;
+            // calcul de la quantite vendue depuis la derniere commande
+            if($managerPc->existsLastCmdId($result->idp)){
+                $lastCmd = $managerPc->getLastCmdId($result->idp);
+                $cmd = $managerCm->get($lastCmd->commande_id());
+                $ventes = $manager->getListRangeNow($cmd->dateLivraison());
+                //echo $lastCmd->commande_id();
+                $total = 0;
+                foreach ($ventes as $k => $c) :
+                    //echo $v->en_rayon_id();
+                    $concs = $managerCo->getListConverneProduitId($c->id(), $result->idp);
+                    //print_r($concs);
+                    if( !empty($concs)){
+                        foreach ($concs as $p => $q) :
+                            //print_r($q);
+                            $total = $total + $q['totalqte'];
+                            //echo  $q['totalqte'];
+                        endforeach;
+                    }
+                endforeach;
+            }
+            else{
+                $total = 0;
+            }
+
             echo "<tr id=\"" . $result->idp . "\">
                                             <td class='nom'><strong>" . $result->nom . "</strong></td>
                                             <td class='datel'>
@@ -61,16 +98,16 @@ if (isset($_GET["motclef1"])) {
                                             <div class='input-group' style='width:100px;' >
                                             <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number moins'
-                                                        onclick=\"change_input('moins', 'input".$result->idp."')\"
+                                                        onclick=\"change_input('moins', 'inputQte".$result->idp."')\"
                                                         style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-minus'></span>
                                                 </button>
                                             </span>
                                                 <input type='text' name='quant[1]' class='form-control input-number'
-                                                       id=\"input". $result->idp."\" value='1' style='width: 40px;'>
+                                                       id=\"inputQte". $result->idp."\" value='". $total."' style='width: 40px;'>
 <span class='input-group-btn'>
                                                 <button type='button' class='btn btn-default btn-number plus'
-                                                        onclick=\"change_input('plus','input".$result->idp."')\"
+                                                        onclick=\"change_input('plus','inputQte".$result->idp."')\"
                                                         style='padding: 4px;'>
                                                     <span class='glyphicon glyphicon-plus'></span>
                                                 </button>
