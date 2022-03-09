@@ -109,11 +109,32 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
         $this->set($d);
     }
 
+    function koudjine_list_commande()
+    {
+        $this->loadModel('Commande');
+        $d['com'] = $this->Commande->findFirst(array(
+            //'fields' => 'c.id as id,dateCreation,dateLivraison,nom,fournisseur_id,qtiteCmd,qtiteRecu,montantCmd,montantRecu,etat,ref',
+            'table' => 'ligne_commande',
+            'order' => 'id-DESC',
+            'limit' => (1)
+        ));
+        if(empty($d['com'])){
+
+            $d['date'] = date('Y-m-d') ;
+            $d['dateDerniere'] = date('Y-m-d', strtotime($d['date']. ' - 1 years'));
+            $d['dateDerniere'] = $d['dateDerniere'].' 00:00:00';
+        }else{
+            $d['dateDerniere'] = $d['com']->dateDerniere;
+        }
+        $d['datetime'] = date('Y-m-d H:i:s') ;
+        $this->set($d);
+    }
+
     function koudjine_list($id = null)
     {
         $this->loadModel('Commande');
         $d['commande'] = $this->Commande->find(array(
-            'fields' => 'c.id as id,dateCreation,dateLivraison,nom,fournisseur_id,qtiteCmd,qtiteRecu,montantCmd,montantRecu,etat,ref,note',
+            'fields' => 'c.id as id,dateCreation,dateLivraison,nom,fournisseur_id,qtiteCmd,qtiteRecu,uniteGratuite,montantCmd,montantRecu,etat,ref,note',
             'table' => 'commande c, fournisseur f',
             'order' => 'c.id-DESC',
             'conditions' => 'c.fournisseur_id = f.id and c.supprimer = 0 and  f.supprimer = 0 and c.etat <> "Livré" '

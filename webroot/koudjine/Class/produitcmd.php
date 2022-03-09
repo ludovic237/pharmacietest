@@ -12,6 +12,7 @@ class Produit_cmd
         $_puRecept,
         $_ptRecept,
         $_qtiteRecu,
+        $_uniteGratuite,
         $_etat,
         $_supprimer;
 
@@ -73,6 +74,10 @@ class Produit_cmd
     public function qtiteRecu()
     {
         return $this->_qtiteRecu;
+    }
+    public function uniteGratuite()
+    {
+        return $this->_uniteGratuite;
     }
     public function etat()
     {
@@ -160,6 +165,12 @@ class Produit_cmd
         $this->_qtiteRecu = $value;
 
     }
+    public function setuniteGratuite($value)
+    {
+
+        $this->_uniteGratuite = $value;
+
+    }
     public function setetat($value)
     {
 
@@ -185,7 +196,7 @@ class Produit_cmdManager
     }
     public function add(Produit_cmd $Produit_cmd)
     {
-        $q = $this->_db->prepare('INSERT INTO produit_cmd SET id = :id, produit_id = :produit, commande_id = :commande, prixPublic = :prixpublic, puCmd = :pucmd, ptCmd = :ptcmd, qtiteCmd = :qtiteCmd, puRecept = :montant, ptRecept = :ptRecept, qtiteRecu = :qtiteRecu, etat = :etat, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO produit_cmd SET id = :id, produit_id = :produit, commande_id = :commande, prixPublic = :prixpublic, puCmd = :pucmd, ptCmd = :ptcmd, qtiteCmd = :qtiteCmd, puRecept = :montant, ptRecept = :ptRecept, qtiteRecu = :qtiteRecu, uniteGratuite = :uniteGratuite, etat = :etat, supprimer=0');
         $q->bindValue(':id', $Produit_cmd->id(), PDO::PARAM_INT);
         $q->bindValue(':produit', $Produit_cmd->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':commande', $Produit_cmd->commande_id(), PDO::PARAM_INT);
@@ -196,6 +207,7 @@ class Produit_cmdManager
         $q->bindValue(':montant', $Produit_cmd->puRecept());
         $q->bindValue(':ptRecept', $Produit_cmd->ptRecept());
         $q->bindValue(':qtiteRecu', $Produit_cmd->qtiteRecu());
+        $q->bindValue(':uniteGratuite', $Produit_cmd->uniteGratuite());
         $q->bindValue(':etat', $Produit_cmd->etat());
         $q->execute();
     }
@@ -217,6 +229,12 @@ class Produit_cmdManager
     {
 
         return (bool) $this->_db->query('SELECT COUNT(*) FROM produit_cmd WHERE supprimer = 0 AND commande_id = '.$idc.' AND produit_id = '.$idp)->fetchColumn();
+
+    }
+    public function existsLastCmdId($idp)
+    {
+
+        return (bool) $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND produit_id = '.$idp.' ORDER BY id desc LIMIT 1')->fetchColumn();
 
     }
     public function existsEan($info)
@@ -241,6 +259,14 @@ class Produit_cmdManager
     {
 
         $q = $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND produit_id = '.$idp.' AND commande_id ='.$idc);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Produit_cmd($donnees);
+
+    }
+    public function getLastCmdId($idp)
+    {
+
+        $q = $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND produit_id = '.$idp.' ORDER BY id desc LIMIT 1');
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Produit_cmd($donnees);
 
@@ -284,7 +310,7 @@ class Produit_cmdManager
     public function update(Produit_cmd $Produit_cmd)
     {
 
-        $q = $this->_db->prepare('UPDATE produit_cmd SET produit_id = :produit, commande_id = :commande, prixPublic = :prixpublic, puCmd = :pucmd, ptCmd = :ptcmd, qtiteCmd = :qtiteCmd, puRecept = :montant, ptRecept = :ptRecept, qtiteRecu = :qtiteRecu, etat = :etat WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit_cmd SET produit_id = :produit, commande_id = :commande, prixPublic = :prixpublic, puCmd = :pucmd, ptCmd = :ptcmd, qtiteCmd = :qtiteCmd, puRecept = :montant, ptRecept = :ptRecept, qtiteRecu = :qtiteRecu, uniteGratuite = :uniteGratuite, etat = :etat WHERE id = :id');
         $q->bindValue(':id', $Produit_cmd->id(), PDO::PARAM_INT);
         $q->bindValue(':produit', $Produit_cmd->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':commande', $Produit_cmd->commande_id(), PDO::PARAM_INT);
@@ -295,6 +321,7 @@ class Produit_cmdManager
         $q->bindValue(':montant', $Produit_cmd->puRecept());
         $q->bindValue(':ptRecept', $Produit_cmd->ptRecept());
         $q->bindValue(':qtiteRecu', $Produit_cmd->qtiteRecu());
+        $q->bindValue(':uniteGratuite', $Produit_cmd->uniteGratuite());
         $q->bindValue(':etat', $Produit_cmd->etat());
         $q->execute();
     }

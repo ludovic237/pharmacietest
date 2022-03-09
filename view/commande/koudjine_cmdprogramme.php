@@ -6,19 +6,22 @@ $title_for_layout = ' Admin -' . 'Commande';
 //$position = $this->request->action;
 
 $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Commande express</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/cmdprogramme.js"></script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/cmdprogramme.js"></script>
+<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>';
 ?>
 <div class="row">
     <div class="col-md-12">
         <div class="panel-body" style="margin-bottom: 20px;background-color: #fff;
         border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 0 1px 1px rgba(0,0,0,.05);">
-            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:10px">
+            <div class="form-group"
+                 style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:10px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un fournisseur
                     :</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
@@ -26,7 +29,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <option value="0">Sélectionner Fournisseur</option>
                         <?php
                         foreach ($fournisseur as $k => $v) : ?>
-                            <option <?php if (isset($fournisseur_id)) if ($v->id == $fournisseur_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" data="<?php echo $v->code; ?>"><?php echo $v->nom; ?></option>
+                            <option <?php if (isset($fournisseur_id)) if ($v->id == $fournisseur_id) echo "selected=\"selected\""; ?>
+                                    value="<?php echo $v->id; ?>"
+                                    data="<?php echo $v->code; ?>"><?php echo $v->nom; ?></option>
                         <?php
                         endforeach;
                         ?>
@@ -35,23 +40,28 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 </div>
 
             </div>
-            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:10px">
+            <div class="form-group"
+                 style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:10px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Numéro bon de livraison:</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <input type="text" class="form-control col-md-4" name="numero_bon_livraison" id="numero_bon_livraison" value="" placeholder="">
+                    <input type="text" class="form-control col-md-4" name="numero_bon_livraison"
+                           id="numero_bon_livraison" value="" placeholder="">
                 </div>
                 <div style="width: 150px;">
                 </div>
             </div>
-            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
+            <div class="form-group"
+                 style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Ajouter un médicament:</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <input type="text" class="form-control col-md-4" name="nom" id="recherche_commande_prog" value="" placeholder="Médicaments">
+                    <input type="text" class="form-control col-md-4" name="nom" id="recherche_commande_prog" value=""
+                           placeholder="Médicaments">
                 </div>
                 <div style="width: 150px;">
                 </div>
             </div>
-            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+            <div class="form-group"
+                 style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
                 <label class="control-label" style="margin-right: 30px;width: 150px;"></label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
                     <div>
@@ -59,12 +69,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="panel-body panel-body-table">
 
                             <div class="">
-                                <table id="tab_GCrecherche" style="display: block;height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                <table id="tab_GCrecherche" style="display: block;height: 200px;overflow: auto;"
+                                       class="table table-bordered table-striped table-actions">
                                     <thead>
-                                        <tr>
-                                            <th width="900">Nom</th>
-                                            <th width="100">Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th width="900">Nom</th>
+                                        <th width="100">Action</th>
+                                    </tr>
                                     </thead>
                                     <tbody id="tab_BCrecherche">
 
@@ -96,15 +107,16 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     </div>
                     <table class="table table-bordered table-striped table-actions">
                         <thead>
-                            <tr>
-                                <th width="200">Nom</th>
-                                <th width="100">Quantité</th>
-                                <th width="100">Prix Achat</th>
-                                <th width="100">Prix Public</th>
-                                <th width="100">Date de perremption</th>
-                                <th width="100">Réduction</th>
-                                <th width="100">Action</th>
-                            </tr>
+                        <tr>
+                            <th width="200">Nom</th>
+                            <th width="100">Quantité</th>
+                            <th width="100">Unité gratuite</th>
+                            <th width="100">Prix Achat</th>
+                            <th width="100">Prix Public</th>
+                            <th width="100">Date de perremption</th>
+                            <th width="100">Réduction</th>
+                            <th width="100">Action</th>
+                        </tr>
                         </thead>
                         <tbody id="tab_commande_programme">
 
@@ -137,7 +149,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
         </div>
 
         <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
-            <a onclick="valider_commande(false)" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant" class="btn btn-success" role="button" style="float: left; width: 40%;">Valider</a>
+            <a onclick="valider_commande(false)" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant"
+               class="btn btn-success" role="button" style="float: left; width: 40%;">Valider</a>
             <!-- <a onclick="valider_vente('2', 'Crédit')" id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 40%;">Imprimer</a> -->
             <a onclick="valider_commande(true)" class="btn btn-primary" role="button" style="float: left; width: 40%;">Imprimer</a>
         </div>
@@ -156,24 +169,26 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-12 ">
                         <div class="">
-                            <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;" class="table datatable table-bordered table-striped table-actions">
+                            <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;"
+                                   class="table datatable table-bordered table-striped table-actions">
                                 <thead>
-                                    <tr>
-                                        <th width="200">Nom</th>
-                                        <th width="100">Fournisseur</th>
-                                        <th>Date de Livraison</th>
-                                        <th>Stock total</th>
-                                        <th width="100">Prix Achat</th>
-                                        <th width="100">Quantité</th>
-                                        <th width="100">Action</th>
-                                    </tr>
+                                <tr>
+                                    <th width="200">Nom</th>
+                                    <th width="100">Fournisseur</th>
+                                    <th>Date de Livraison</th>
+                                    <th>Stock total</th>
+                                    <th width="100">Prix Achat</th>
+                                    <th width="100">Quantité</th>
+                                    <th width="100">Action</th>
+                                </tr>
                                 </thead>
                                 <tbody id="tab_FCommande">
 
@@ -198,79 +213,96 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="">
-                            <table style="display: block;overflow: auto;" class="table table-bordered table-striped table-actions">
+                            <table style="display: block;overflow: auto;"
+                                   class="table table-bordered table-striped table-actions">
                                 <thead>
-                                    <tr>
-                                        <th width="200">Nom</th>
-                                        <th width="100">Fournisseur</th>
-                                        <th>Date de Livraison</th>
-                                        <th>Stock total</th>
-                                        <th width="100">Prix Achat</th>
-                                        <th width="100">Quantité</th>
-                                        <th width="100">Action</th>
-                                    </tr>
+                                <tr>
+                                    <th width="200">Nom</th>
+                                    <th width="100">Fournisseur</th>
+                                    <th>Date de Livraison</th>
+                                    <th>Stock total</th>
+                                    <th width="100">Prix Achat</th>
+                                    <th width="100">Quantité</th>
+                                    <th width="100">Action</th>
+                                </tr>
                                 </thead>
                                 <tbody id="tab_FCommande">
-                                    <?php if (isset($fournisseurs)) foreach ($fournisseurs as $k => $v) : ?>
-                                        <tr id="<?php echo $v->idp; ?>">
-                                            <td><strong><?php echo $v->nom; ?></strong></td>
-                                            <td><?php echo $v->nomf; ?></td>
-                                            <td><?php echo $v->dateLivraison; ?></td>
-                                            <td><?php echo $v->stock; ?></td>
-                                            <td class=''>
-                                                <p>
-                                                </p>
-                                                <div class='input-group' style='width: 100px;'>
+                                <?php if (isset($fournisseurs)) foreach ($fournisseurs as $k => $v) : ?>
+                                    <tr id="<?php echo $v->idp; ?>">
+                                        <td><strong><?php echo $v->nom; ?></strong></td>
+                                        <td><?php echo $v->nomf; ?></td>
+                                        <td><?php echo $v->dateLivraison; ?></td>
+                                        <td><?php echo $v->stock; ?></td>
+                                        <td class=''>
+                                            <p>
+                                            </p>
+                                            <div class='input-group' style='width: 100px;'>
                                                     <span class='input-group-btn'>
-                                                        <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','inputPrix<?php echo $v->idp; ?>')" style='padding: 4px;'>
+                                                        <button type='button' class='btn btn-default btn-number moins'
+                                                                onclick="change_input('moins','inputPrix<?php echo $v->idp; ?>')"
+                                                                style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
                                                         </button>
                                                     </span>
-                                                    <input type='text' name='quant[1]' class='form-control input-number' id="inputPrix<?php echo $v->idp; ?>" value='<?php echo trim($v->prixAchat); ?>' style='width: 80px;'>
-                                                    <span class='input-group-btn'>
-                                                        <button type='button' class='btn btn-default btn-number plus' onclick="change_input('plus','inputPrix<?php echo $v->idp; ?>')" style='padding: 4px;'>
+                                                <input type='text' name='quant[1]' class='form-control input-number'
+                                                       id="inputPrix<?php echo $v->idp; ?>"
+                                                       value='<?php echo trim($v->prixAchat); ?>' style='width: 80px;'>
+                                                <span class='input-group-btn'>
+                                                        <button type='button' class='btn btn-default btn-number plus'
+                                                                onclick="change_input('plus','inputPrix<?php echo $v->idp; ?>')"
+                                                                style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-plus'></span>
                                                         </button>
                                                     </span>
-                                                </div>
-                                                <p></p>
+                                            </div>
+                                            <p></p>
 
-                                            </td>
-                                            <td class=''>
-                                                <p>
-                                                </p>
-                                                <div class='input-group' style='width: 100px;'>
+                                        </td>
+                                        <td class=''>
+                                            <p>
+                                            </p>
+                                            <div class='input-group' style='width: 100px;'>
                                                     <span class='input-group-btn'>
-                                                        <button type='button' class='btn btn-default btn-number moins' onclick="change_input('moins','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
+                                                        <button type='button' class='btn btn-default btn-number moins'
+                                                                onclick="change_input('moins','input<?php echo $v->idp; ?>')"
+                                                                style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-minus'></span>
                                                         </button>
                                                     </span>
-                                                    <input type='text' name='quant[1]' class='form-control input-number' id="input<?php echo $v->idp; ?>" value='1' style='width: 40px;'>
-                                                    <span class='input-group-btn'>
-                                                        <button type='button' class='btn btn-default btn-number plus' onclick="change_input('plus','input<?php echo $v->idp; ?>')" style='padding: 4px;'>
+                                                <input type='text' name='quant[1]' class='form-control input-number'
+                                                       id="input<?php echo $v->idp; ?>" value='1' style='width: 40px;'>
+                                                <span class='input-group-btn'>
+                                                        <button type='button' class='btn btn-default btn-number plus'
+                                                                onclick="change_input('plus','input<?php echo $v->idp; ?>')"
+                                                                style='padding: 4px;'>
                                                             <span class='glyphicon glyphicon-plus'></span>
                                                         </button>
                                                     </span>
-                                                </div>
-                                                <p></p>
+                                            </div>
+                                            <p></p>
 
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" id="btn-ajouter<?php echo $v->idp; ?>" onclick="ajouter_commande(<?php echo $v->idp; ?>)">Ajouter à la
-                                                    commande
-                                                </button>
-                                                <button class="btn btn-info btn-rounded btn-sm btn-modifier" id="btn-modifier<?php echo $v->idp; ?>" data-placement="top" onclick="modifier_commande(<?php echo $v->idp; ?>)">Modifier
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip"
+                                                    data-placement="top" id="btn-ajouter<?php echo $v->idp; ?>"
+                                                    onclick="ajouter_commande(<?php echo $v->idp; ?>)">Ajouter à la
+                                                commande
+                                            </button>
+                                            <button class="btn btn-info btn-rounded btn-sm btn-modifier"
+                                                    id="btn-modifier<?php echo $v->idp; ?>" data-placement="top"
+                                                    onclick="modifier_commande(<?php echo $v->idp; ?>)">Modifier
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                                 </tbody>
                             </table>
 
@@ -294,7 +326,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
@@ -359,7 +392,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 <div class="row">
                     <div class="col-md-12">
                         <div class="icon-preview">
-                            <div style="display:block;font-size: 10px;flex-direction: column;background-color: white;" class="ticketfacture" id="commande">
+                            <div style="display:block;font-size: 10px;flex-direction: column;background-color: white;"
+                                 class="ticketfacture" id="commande">
 
                                 <div style="flex-direction: row;display: flex;justify-content: space-between;">
                                     <div>
@@ -384,39 +418,40 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                     </div>
                                 </div>
                                 <div>
-                                    <table style="display: block;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                    <table style="display: block;overflow: auto;"
+                                           class="table table-bordered table-striped table-actions">
                                         <thead>
-                                            <tr>
-                                                <th width="50">N</th>
-                                                <th width="200">Date de delivrance</th>
-                                                <th width="200">Designation</th>
-                                                <th width="100">Quantite</th>
-                                                <th width="100">Prix Achat</th>
-                                                <th width="100">Prix Vente</th>
-                                                <th width="100">Prix Total Achat</th>
-                                            </tr>
+                                        <tr>
+                                            <th width="50">N</th>
+                                            <th width="200">Date de delivrance</th>
+                                            <th width="200">Designation</th>
+                                            <th width="100">Quantite</th>
+                                            <th width="100">Prix Achat</th>
+                                            <th width="100">Prix Vente</th>
+                                            <th width="100">Prix Total Achat</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
 
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
 
-                                                </td>
-                                                <td>
+                                            </td>
+                                            <td>
 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="6">total</td>
-                                                <td>
-                                                    20000
-                                                </td>
-                                            </tr>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">total</td>
+                                            <td>
+                                                20000
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
 
@@ -431,11 +466,18 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
 
                             </div>
                             <div style="display: flex;justify-content: space-around;">
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Annuler
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i
+                                            class="fa fa-print" style="font-size:10px"></i>&nbsp;Annuler
                                 </button>
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Créer commande
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"><i
+                                            class="fa fa-print" style="font-size:10px"></i>&nbsp;Créer commande
                                 </button>
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onclick="imprimer_bon('commande','commande')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
+                                        onclick="imprimer_bon('commande','commande')"><i class="fa fa-print"
+                                                                                         style="font-size:10px"></i>&nbsp;Imprimer
                                 </button>
                             </div>
                         </div>
@@ -457,7 +499,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
@@ -466,38 +509,52 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                         <div class="form-group">
                             <label class="col-md-3 control-label">Nom:</label>
                             <div class="col-md-9">
-                                <input type="text" disabled="true" class="form-control" value="" id="nom_cmdprogramme" placeholder="" />
+                                <input type="text" disabled="true" class="form-control" value="" id="nom_cmdprogramme"
+                                       placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label champ1">Reduction max :</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control champ champ1" data="1" id="reduction_max" value="" placeholder="" />
+                                <input type="number" class="form-control champ champ1" data="1" id="reduction_max"
+                                       value="" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Quantité :</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control champ champ2" data="2" id="qte_cmdprogramme" value="" placeholder="" />
+                                <input type="number" class="form-control champ champ2" data="2" id="qte_cmdprogramme"
+                                       value="" placeholder=""/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Unité gratuite :</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control champ champ2" data="3" id="ug_cmdprogramme"
+                                       value="0" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Prix d'achat:</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control champ champ3" data="3" id="prixachat_cmdprogramme" value="" placeholder="" />
+                                <input type="number" class="form-control champ champ3" data="4"
+                                       id="prixachat_cmdprogramme" value="" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Prix public:</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control champ champ4" data="4" value="" id="prixpublic_cmdprogramme" placeholder="" />
+                                <input type="number" class="form-control champ champ4" data="5" value=""
+                                       id="prixpublic_cmdprogramme" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Date de péremption:</label>
                             <div class="col-md-9">
                                 <div class="input-group">
-                                    <input style="padding-top: 0px;" class="form-control champ champ5" data="5" id="date_cmdprogramme" placeholder="Date de péremption" style="line-height: normal;" type="date" required="">
+                                    <input style="padding-top: 0px;" class="form-control champ champ5" data="6"
+                                           id="date_cmdprogramme" placeholder="Date de péremption"
+                                           style="line-height: normal;" type="date" required="">
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>
@@ -509,7 +566,9 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="id_xr" class="btn btn-success" data="" type="submit" onclick="enregistrer_commande_programme()">Valider</button>
+                <button id="id_xr" class="btn btn-success" data="" type="submit"
+                        onclick="enregistrer_commande_programme()">Valider
+                </button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -531,7 +590,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 <div class="row">
                     <div class="col-md-12">
                         <div class="icon-preview">
-                            <div style="display:block;font-size: 10px;flex-direction: column;background-color: white;" class="ticketfacture" id="recu">
+                            <div style="display:block;font-size: 10px;flex-direction: column;background-color: white;"
+                                 class="ticketfacture" id="recu">
 
                                 <div style="flex-direction: row;display: flex;justify-content: space-between;">
                                     <div>
@@ -576,16 +636,24 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                     </div>
                                 </div>
                                 <div>
-                                    <table style="display: block;overflow: auto;margin-bottom: 20px;margin-top: 40px;border-collapse: collapse;border-spacing: 0px;border: 0;" class="table table-bordered table-striped table-actions">
+                                    <table style="display: block;overflow: auto;margin-bottom: 20px;margin-top: 40px;border-collapse: collapse;border-spacing: 0px;border: 0;"
+                                           class="table table-bordered table-striped table-actions">
                                         <thead>
                                         <tr>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="50"><strong>N°</strong></th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="200"><strong>Designation</strong></th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>Qte commandé</strong></th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>Qte livré</strong></th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>Prix Achat</strong></th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>Prix Vente</strong></th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" width="100"><strong>P T Achat</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"
+                                                width="50"><strong>N°</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"
+                                                width="200"><strong>Designation</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"
+                                                width="100"><strong>Qte commandé</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"
+                                                width="100"><strong>Qte livré</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"
+                                                width="100"><strong>Prix Achat</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"
+                                                width="100"><strong>Prix Vente</strong></th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"
+                                                width="100"><strong>P T Achat</strong></th>
                                         </tr>
                                         </thead>
                                         <tbody id="tab_Bcommande_Recu">
@@ -604,7 +672,10 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
 
                             </div>
                             <div style="display: flex;justify-content: space-around;">
-                                <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onclick="imprimer_recu('recu','recu')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer
+                                <button type="button" class="btn btn-circle blue"
+                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
+                                        onclick="imprimer_recu('recu','recu')"><i class="fa fa-print"
+                                                                                  style="font-size:10px"></i>&nbsp;Imprimer
                                 </button>
                             </div>
                         </div>
@@ -633,33 +704,144 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 <div class="row">
                     <div class="col-md-4">
                         <div class="icon-preview">
-                            <div style="border: 1px solid black;width: 30mm;display:block;height: 15mm;flex-direction: column;" id="ticket">
+                            <!-- <div style="border: 1px solid black;width: 40mm;display:flex;height: 30mm;flex-direction: column;" id="ticket"> -->
+                            <div style="width: 35mm;display:flex;height: 30mm;flex-direction: column;" id="ticket">
+                                <!-- <table class="fixed" style="display: flex;overflow: auto;border-collapse: collapse;border-spacing: 0px;border: 0;">
+                                    <tbody>
+                                        <tr style="display: flex;">
+                                            <td style="width: 30mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                                <p class="nomp" style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                            <td style="width: 5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                                <p class="prixv " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                        </tr>
+                                        <tr style="display: flex;">
+                                            <td style="width: 39.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="2">
+                                                <p style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;display: flex;" id="demo"></p>
+                                            </td>
 
-                                <div style="display: flex; ">
-                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
-                                        <p class="nom" style="width: 15mm; font-weight: bold; text-align: center; margin-bottom: 0px; font-size: 5.4px;"></p>
-                                    </div>
-                                    <div style="border: 1px solid black;height: 5mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
-                                        <p class="codefournisseur " style="width: 10mm;font-weight: bold;text-align:center;margin-bottom:0px;font-size: 7px;"></p>
-                                    </div>
-                                </div>
-                                <div style="display: flex;">
-                                    <div style="border: 1px solid black;height: 6mm;justify-content: center;align-items: center;display: flex;width: 30mm;padding-right: 2px;">
-                                        <div style="display: contents;" class="codebarre"></div>
-                                    </div>
-                                </div>
-                                <div style="display: flex;">
-                                    <div style="border: 1px solid black; height: 4mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
-                                        <p class="today" style="width: 15mm; font-weight: bold; text-align: center; margin-bottom: 0px; font-size: 5.4px;"></p>
-                                    </div>
-                                    <div style="border: 1px solid black; height: 4mm;justify-content: center;align-items: center;display: flex;width: 15mm;">
-                                        <p class="datelivraisron" style="width: 15mm; font-weight: bold; text-align: center; margin-bottom: 0px; font-size: 5.4px;"></p>
-                                    </div>
-                                </div>
+                                        </tr>
+                                        <tr style="display: flex;">
+                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+                                                <p class="datel " style="font-weight: bold;text-align:center; margin-left:0px;font-size: 8px;"></p>
+                                            </td>
+                                            <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+                                                <p class="datep " style="font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table> -->
+                                <table style="table-layout: fixed; width: 40mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
+                                    <tbody>
+                                    <!-- <tr style="display: flex;">
+                                        <td style="width: 25mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+
+                                        </td>
+                                        <td style="width: 10mm;background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+
+                                        </td>
+                                        <td style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;">
+                                            <p class="code " style="width: 10mm; font-weight: bold;text-align:center; margin-bottom:0px;font-size: 8px;"></p>
+                                        </td>
+                                    </tr> -->
+                                    <tr style="margin:0px;display: flex;table-layout: fixed; width: 40mm ;height: 15mm;">
+                                        <td style="width: 29.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;padding-top: 0px;height: 15mm;" colspan="2">
+
+                                            <div style="display: flex;flex-direction: column;padding: 0px 4px;height: 15mm;">
+                                                <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
+                                                    <p class="nomp" style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;"></p>
+                                                    <!--<p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>-->
+                                                </div>
+                                                <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%;height: 8mm;">
+                                                    <div style="display: flex;flex-direction: column;justify-content: space-between;width:100%">
+                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 12px;align-content: center;align-items: center;justify-content: center;justify-items: center;display: flex;"><span class="prixv"></span> FCFA</p>
+                                                        <p class="nomf" style="font-weight: bold;text-align:center; margin:0px;font-size: 5px;"></p>
+                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;"><span class="datep"></span> / <span class="datel" ></span></p>
+                                                    </div>
+                                                    <div>
+                                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="qrcode"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <!-- <tr style="display: flex">
+                                        <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+
+                                        </td>
+                                        <td style="width: 17.5mm;background-color: white;color: black;font-weight: 400; text-align: end;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="1">
+
+                                        </td>
+                                    </tr> -->
+                                    </tbody>
+                                </table>
 
                             </div>
-                            <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onclick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
+                            <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
                         </div>
+                    </div>
+                    <div class="col-md-8 scroll">
+                        <ul class="list-group border-bottom">
+                            <h4>Informations Codebarre</h4>
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                <tr>
+                                    <td width="100">Nom Produit:</td>
+                                    <td class="nomp"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Code barre:</td>
+                                    <td class="codebarre"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Nom Fournisseur:</td>
+                                    <td class="nomf"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Code Fournisseur:</td>
+                                    <td class="code"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Date Livraison:</td>
+                                    <td class="datel"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Date Peremption:</td>
+                                    <td class="datep"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Prix vente:</td>
+                                    <td class="prixv"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <h4>Autres Informations</h4>
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                <tr>
+                                    <td width="100">Quantite:</td>
+                                    <td class="quantite"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Quantité restante:</td>
+                                    <td class="quantiter"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Prix Achat:</td>
+                                    <td class="prixa"></td>
+                                </tr>
+                                <tr>
+                                    <td width="100">Réduction(%):</td>
+                                    <td class="reduction"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </ul>
+
                     </div>
                 </div>
             </div>

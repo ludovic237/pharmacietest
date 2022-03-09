@@ -139,7 +139,7 @@ $(document).ready(function () {
     $("#scanner_bon").keyup(function (event) {
         var recherche
         if (event.keyCode == 13) {
-             recherche = $(this).val();
+            recherche = $(this).val();
             //$("#resultat ul").empty();
             recherche = $.trim(recherche);
             if (recherche.length > 1) {
@@ -154,7 +154,7 @@ $(document).ready(function () {
                     success: function (data) {
                         //alert(data);
                         if (data.erreur == 'non') {
-                            if(data.dateE != null){
+                            if (data.dateE != null) {
                                 $('#tab_GBonCaisse').empty();
                                 var cat = '<tr id="' + data.id + '" >'
                                     + ' <td> <input class=\'nom\' type="text" value="' + data.nom + '"></td>'
@@ -165,7 +165,7 @@ $(document).ready(function () {
                                     + '</tr>';
                                 $('#tab_GBonCaisse').prepend(cat);
                                 $("#scanner_bon").val('');
-                            }else{
+                            } else {
                                 $('#tab_GBonCaisse').empty();
                                 var cat = '<tr id="' + data.id + '" >'
                                     + ' <td> <input class=\'nom\' type="text" value="' + data.nom + '"></td>'
@@ -201,6 +201,7 @@ $(document).ready(function () {
     })
 
 });
+
 function open_bon_caisse() {
     $('#tab_GBonCaisse').empty();
     $("#scanner_bon").select();
@@ -218,6 +219,10 @@ function ajouter_bon_caisse() {
         + '</tr>';
     $('#tab_GBonCaisse').prepend(cat);
 
+}
+
+function showConfirmationBon() {
+    $("#mb-bom-caisse").modal("show");
 }
 
 function showEncaissement() {
@@ -261,7 +266,8 @@ function encaisser_bon_caisse() {
 
     })
 }
-function encaisser_liste_bon(bon_id){
+
+function encaisser_liste_bon(bon_id) {
     var dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
     $.ajax({
         type: "POST",
@@ -297,11 +303,11 @@ function gerer_bon_caisse() {
             $("#codebarreimp").barcode(
                 moment().format("YYMMDDHHmmss"), // Value barcode (dependent on the type of barcode)
                 "code128" // type (string)
-        
+
             );
-            
+
             $('#codebarrenulimp').html(moment().format("YYMMDDHHmmss"));
- 
+
             $("#previewImprimerBonCaisse").modal("show");
         } else {
             dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -321,7 +327,7 @@ function gerer_bon_caisse() {
                 },
                 success: function (server_responce) {
                     //alert(server_responce);
-
+                    $('#mb-bom-caisse').hide()
                     $('#tab_GBonCaisse').empty();
                     $("#iconPreviewBonCaisse").modal("hide");
 
@@ -334,6 +340,7 @@ function gerer_bon_caisse() {
 
     });
 }
+
 function reimprime_ticket_caisse(id) {
     var datevte = $("#" + id + " .datevte").html();
     var yo = datevte;
@@ -814,7 +821,7 @@ function open_rapport(id) {
     if (id != null) {
         caisse_id = id;
     }
-
+    //alert(caisse_id)
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/liste_depense.php',
@@ -974,6 +981,7 @@ function close_caisse_row() {
 
 
 function showRapportTest(id) {
+    console.log("YO");
     var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
     if (id != null) {
         caisse_id = id;
@@ -986,10 +994,11 @@ function showRapportTest(id) {
         },
         dataType: 'json',
         success: function (data) {
-
+            //alert(data)
             //recap vente par fournisseur
             $("#rapport_vente_fournisseur_grossiste").html(data.vente_fg);
             $("#rapport_vente_fournisseur_detaillant").html(data.vente_fd);
+            $("#rapport_vente_produit_detaille").html(data.vente_fpd);
             $("#rapport_vente_fournisseur_total").html(data.vente_ft);
 
             //recap vente par type vente
@@ -1005,6 +1014,8 @@ function showRapportTest(id) {
             $("#rapport_ev_total").html(data.ev_total);
 
             //Encaissement facture à credit
+            //alert(data.efc_espece)
+            if(data.efc_espece != 0)
             $('#rapport_efc_espece').dataTable({
                 destroy: true,
                 searching: false,
@@ -1071,6 +1082,20 @@ function showRapportTest(id) {
             });
             $("#rapport_total_depense").html(data.total_depense);
 
+            //retour produit
+            $('#rapport_retour').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.tf_retourproduit,
+                columns: [
+                    {data: "quantite_total_produitRetour"},
+                    {data: "prix"},
+                ]
+            });
+            $("#rapport_retour_total").html(data.tf_retourtotal);
 
             // Etat caisse
             $("#rapport_ec_solde_reel").html(data.ec_solde_reel);
@@ -1078,7 +1103,6 @@ function showRapportTest(id) {
             $("#rapport_ec_difference").html(data.ec_difference);
         }
     });
-    $("#iconPreviewRapportTest").modal("show");
 
 }
 
@@ -1120,9 +1144,9 @@ function imprimer_blocTest(titre, objet) {
         '.panel {\n' +
         '    float: left;\n' +
         '    width: 100%;\n' +
-        '    -moz-border-radius: 5px;\n' +
+        '    -moz-border-radius: 0px;\n' +
         '    -webkit-border-radius: 5px;\n' +
-        '    border-radius: 5px;\n' +
+        '    border-radius: 0px;\n' +
         '    border: 0px;\n' +
         '    border-top: 2px solid #E5E5E5;\n' +
         '    margin-bottom: 20px;\n' +
@@ -1195,9 +1219,32 @@ function imprimer_blocTest(titre, objet) {
         '.table .progress-small {\n' +
         '  margin: 7px 0px 8px;\n' +
         '}\n' +
+        '.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {\n' +
+        '    border: 1px solid #ddd;\n' +
+        '        border-top-color: rgb(221, 221, 221);\n' +
+        '        border-top-width: 1px;\n' +
+        '        border-right-color: rgb(221, 221, 221);\n' +
+        '        border-right-width: 1px;\n' +
+        '        border-bottom-color: rgb(221, 221, 221);\n' +
+        '        border-bottom-width: 1px;\n' +
+        '        border-left-color: rgb(221, 221, 221);\n' +
+        '        border-left-style: solid;\n' +
+        '        border-left-width: 1px;\n' +
+        '}' +
+        '.panel .panel-heading .panel-title-box h3 {\n' +
+        'margin-left: 10px;\n'+
+        '    font-size: 7px;\n' +
+        '    font-weight: 600;\n' +
+        '    line-height: 18px;\n' +
+        '    color: #434a54;\n' +
+        '    padding: 0px;\n' +
+        '    margin: 0px;\n' +
+        '}'+
         '.table {\n' +
         '    width: 100%;\n' +
         '    max-width: 100%;\n' +
+        'border-spacing: 0;\n' +
+        'border-collapse: collapse;' +
         '}' +
         '/* EOF TABLES */\n' +
         '/* Datatables */\n' +

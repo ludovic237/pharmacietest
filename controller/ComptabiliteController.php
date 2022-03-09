@@ -109,7 +109,21 @@ class ComptabiliteController extends Controller
                 ));
 
             }
+            else{
+                $d['employe'] = $this->Comptabilite->findFirst(array(
+                    'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+                    'table' => 'employe, user',
+                    'conditions' => array('employe.id' => $_SESSION["Users"]->id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+                ));
+            }
 
+        }
+        else{
+            $d['employe'] = $this->Comptabilite->findFirst(array(
+                'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+                'table' => 'employe, user',
+                'conditions' => array('employe.id' => $d['caisseCheck']->user_id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+            ));
         }
 
         $this->set($d);
@@ -517,14 +531,34 @@ class ComptabiliteController extends Controller
         $d['check'] = $this->Comptabilite->findFirst(array(
             //'fields' => 'produit.nom as nom',
             'table' => 'caisse',
-            'conditions' => "supprimer = 0 AND etat = \"En cours1\" OR etat = \"En cours\""
+            //'conditions' => "supprimer = 0 AND etat != \"Clot\""
+            'conditions' => "supprimer = 0 AND etat = \"Ouvert\""
         ));
         if($id != null){
             $d['id'] = $id;
+            $d['check'] = $this->Comptabilite->findFirst(array(
+                //'fields' => 'produit.nom as nom',
+                'table' => 'caisse',
+                'conditions' => "supprimer = 0 AND id = ".$id
+            ));
+            $d['session'] = $d['check']->session;
+            $d['dateOuvert'] = $d['check']->dateOuvert;
+            $d['dateFerme'] = $d['check']->dateFerme;
+            $d['etat'] = $d['check']->etat;
         }else{
             if(!empty($d['check']))
             $d['id'] = $d['check']->id;
+            $d['session'] = $d['check']->session;
+            $d['dateOuvert'] = $d['check']->dateOuvert;
+            $d['dateFerme'] = $d['check']->dateFerme;
+            $d['etat'] = $d['check']->etat;
         }
+
+        $d['employe'] = $this->Comptabilite->findFirst(array(
+            //'fields' => 'produit.nom as nom',
+            'table' => 'employe',
+            'conditions' => "supprimer = 0 AND id = ".$d['check']->user_id
+        ));
 
         $this->set($d);
        

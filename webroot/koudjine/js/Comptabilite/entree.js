@@ -9,10 +9,17 @@ $(document).ready(function () {
 
 });
 
+
+var etiquetteNomP;
+var etiquetteNomF;
+var etiquetteCode;
+var etiquetteDatel;
+var etiquetteDatep;
+var etiquettePrix;
+var qrcode;
 function info_row_entree(row) {
-
+    $('#qrcode').empty();
     var code;
-
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/info_entree.php',
@@ -21,11 +28,18 @@ function info_row_entree(row) {
         },
         dataType: 'json',
         success: function (data) {
-            //alert(data);
-            //$("#iconPreview .icon-preview").html(icon_preview);
+
+            etiquetteNomP = data.nomP;
+            etiquetteCode = data.codeP+'(1)'+data.code;
+            //etiquetteNomF = data.code;
+            etiquetteNomF = etiquetteCode;
+
+            etiquetteDatel = data.datel;
+            etiquetteDatep = data.datep;
+            etiquettePrix = data.prixv;
 
             $('#iconPreviewEntree .nomp').html(data.nomP);
-            $("#iconPreviewEntree .nomf").html(data.nomF);
+            $("#iconPreviewEntree .nomf").html(etiquetteCode);
             $("#iconPreviewEntree .code").html(data.code);
             $("#iconPreviewEntree .codebarre").html(row);
             $("#iconPreviewEntree .datel").html(data.datel);
@@ -37,6 +51,10 @@ function info_row_entree(row) {
             $("#iconPreviewEntree .prixa").html(data.prixa);
             //$("#code").barcode(data.codebarre);
             code1 = data.codebarre;
+            qrcode = new QRCode(document.getElementById("qrcode"), {
+                width: 30,
+                height: 30
+            });
             qrcode.makeCode(code1);
 
         }
@@ -48,7 +66,7 @@ function info_row_entree(row) {
 }
 
 function imprimer_bloc(titre, objet) {
-    // Définition de la zone à imprimer
+    /*// Définition de la zone à imprimer
     var zone = document.getElementById(objet).innerHTML;
     //alert("Hello");
     // Ouverture du popup,
@@ -67,9 +85,28 @@ function imprimer_bloc(titre, objet) {
     fen.window.print();
 
     //Fermeture du popup
-    fen.window.close();
+    fen.window.close();*/
+    let base64Image = $('#qrcode img').attr('src');
+    console.log(base64Image);
+    console.log(base64Image);
+    var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 21
+        ]});
+    //var doc = new jsPDF('l', 'mm', [30, 15]);
+    doc.cell(0, 0, 30, 21, ' ', 1, "center");
+    doc.setFontSize(4);
+    doc.text(1, 3, etiquetteNomP);
+    doc.setFontSize(7);
+    doc.text(1, 7, etiquettePrix+' FCFA');
+    doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+    doc.setFontSize(5);
+    doc.text(2, 12, etiquetteNomF);
+    doc.setFontSize(4);
+    doc.text(2, 14, etiquetteDatel + ' / ' + etiquetteDatep);
+    doc.save('hello1.pdf');
+    //doc.print('hello');
     return true;
 }
+
 
 function enregistrer_en_rayon(option, id) {
     // Informations université
@@ -102,14 +139,13 @@ function enregistrer_en_rayon(option, id) {
             success: function (data) {
 
                 if (data == 'ok') {
-                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    noty({text: 'Information enregistré', layout: 'topRight', type: 'success'});
                     setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/en_rayon/';
                         window.location.href = link;
                     }, 5000);
 
-                }
-                else {
+                } else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
                     setTimeout(function () {
@@ -118,8 +154,7 @@ function enregistrer_en_rayon(option, id) {
                 }
             }
         });
-    }
-    else {
+    } else {
 
         $.ajax({
             type: "POST",
@@ -140,14 +175,13 @@ function enregistrer_en_rayon(option, id) {
 
                 ////alert(data.erreur);
                 if (data == 'ok') {
-                    noty({ text: 'Information enregistré', layout: 'topRight', type: 'success' });
+                    noty({text: 'Information enregistré', layout: 'topRight', type: 'success'});
                     setTimeout(function () {
                         var link = '/pharmacietest/bouwou/geonetliste/en_rayonadd/' + id;
                         window.location.href = link;
                     }, 5000);
 
-                }
-                else {
+                } else {
                     $('#message-box-danger p').html(data);
                     $("#message-box-danger").modal("show");
                     setTimeout(function () {

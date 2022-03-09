@@ -5,6 +5,7 @@ class RetourProduit
     private $_id,
         $_vente_id,
         $_employe_id,
+        $_caisse_id,
         $_dateRetour,
         $_supprimer;
 
@@ -39,6 +40,10 @@ class RetourProduit
     {
         return $this->_employe_id;
     }
+    public function caisse_id()
+    {
+        return $this->_caisse_id;
+    }
     public function dateRetour()
     {
         return $this->_dateRetour;
@@ -69,6 +74,12 @@ class RetourProduit
         $this->_employe_id = $id;
 
     }
+    public function setcaisse_id($id)
+    {
+
+        $this->_caisse_id = $id;
+
+    }
     public function setdateRetour($id)
     {
 
@@ -94,11 +105,11 @@ class RetourProduitManager
     }
     public function add(RetourProduit $retour_produit)
     {
-        $q = $this->_db->prepare('INSERT INTO retour_produit SET id = :id, vente_id = :vente_id, employe_id = :employe_id, dateRetour = :dateRetour, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO retour_produit SET id = :id, vente_id = :vente_id, employe_id = :employe_id, caisse_id = :caisse_id, dateRetour = now(), supprimer=0');
         $q->bindValue(':id', $retour_produit->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $retour_produit->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':employe_id', $retour_produit->employe_id(), PDO::PARAM_INT);
-        $q->bindValue(':dateRetour', $retour_produit->dateRetour());
+        $q->bindValue(':caisse_id', $retour_produit->caisse_id(), PDO::PARAM_INT);
         $q->execute();
     }
     public function count()
@@ -132,6 +143,14 @@ class RetourProduitManager
         return new RetourProduit($donnees);
 
     }
+    public function getLastId()
+    {
+
+        $q = $this->_db->query('SELECT * FROM retour_produit ORDER BY `id` DESC LIMIT 1 ');
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new RetourProduit($donnees);
+
+    }
     public function getVente_id($info)
     {
 
@@ -153,6 +172,18 @@ class RetourProduitManager
         return $stocks;
 
     }
+    public function getListCaisseId($info)
+    {
+        $stocks = array();
+        $q = $this->_db->prepare('SELECT * FROM retour_produit WHERE supprimer = 0 AND caisse_id = '.$info);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $stocks[] = new RetourProduit($donnees);
+        }
+        return $stocks;
+
+    }
     public function getList()
     {
         $produits = array();
@@ -166,10 +197,11 @@ class RetourProduitManager
     }
     public function update(RetourProduit $retour_produit           )
     {
-        $q = $this->_db->prepare('UPDATE retour_produit SET vente_id = :vente_id, employe_id = :employe_id, dateRetour = :dateRetour WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE retour_produit SET vente_id = :vente_id, employe_id = :employe_id, caisse_id = :caisse_id, dateRetour = :dateRetour WHERE id = :id');
         $q->bindValue(':id', $retour_produit->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $retour_produit->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':employe_id', $retour_produit->employe_id(), PDO::PARAM_INT);
+        $q->bindValue(':caisse_id', $retour_produit->caisse_id(), PDO::PARAM_INT);
         $q->bindValue(':dateRetour', $retour_produit->dateRetour());
         $q->execute();
     }

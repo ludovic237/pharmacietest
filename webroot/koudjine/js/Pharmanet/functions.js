@@ -46,7 +46,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
             beforeSend: function () {
                 $("#search-employe-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
             },
-            success: function (data) {
+            success: function (data) { 
                 //alert(data);
                 $("#suggesstion-employe-box-block").show();
                 $("#suggesstion-employe-box").html(data).show();
@@ -57,6 +57,13 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     });
 
 });
+
+function selectemploye(val, id) {
+    idemploye = id;
+    $("#suggesstion-employe-box-block").hide();
+    $("#search-employe-box").val(val);
+    $("#suggesstion-employe-box").hide();
+}
 
 function pharmanet_recherche_valide() {
     var nomemploye = $('#search-employe-box').val();

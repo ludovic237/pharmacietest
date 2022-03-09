@@ -395,9 +395,34 @@ $(document).ready(function () {
             $('#prixReduit').html(0);
             $('#netTotal').html((prixTotal));
         }
-    })
+    });
+
+    $('#search-reference-produit').keyup(function () {
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/readreference.php',
+            data: 'keyword=' + $(this).val(),
+            beforeSend: function () {
+                $("#search-reference-produit").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
+            },
+            success: function (data) {
+                //alert(data);
+                $("#suggesstion-reference-produit-block").show();
+                $("#suggesstion-reference-produit").html(data).show();
+                $("#suggesstion-reference-produit").css("background", "#FFF");
+
+            }
+        });
+    });
 
 });
+
+function selectreferenceproduit(val, id) {
+    idemploye = id;
+    $("#suggesstion-reference-produit-block").hide();
+    $("#search-reference-produit").val(val);
+    $("#suggesstion-reference-produit").hide();
+}
 
 
 function imprimer_bloc(titre, objet) {
@@ -723,9 +748,9 @@ function ajouter_produit() {
     $('#tab_Bload_produit  tr').each(function (i) {
         var id1 = $(this).attr("id");
         var nom = $("#" + id1 + " .nom").html();
-        var qte = parseInt($("#" + id1 + " .qte").val());
+        var qte = parseInt($("#inputQte" + id1 ).val());
         var qterest = parseInt($("#" + id1 + " .qterest").html());
-        var prix = parseInt($("#" + id1 + " .prixv").val());
+        var prix = parseInt($("#inputPrixV" + id1 + " ").val());
         //alert(prix);
         var stockg = parseInt($("#" + id1 + " .stock").html());
         var datel = $("#" + id1 + " .datel").html();
@@ -1039,4 +1064,28 @@ function delete_row_vente(id) {
 
 
 
+}
+function gerer_detail(en_rayon_id) {
+    var link = '/pharmacietest/bouwou/comptabilite/sortie/'+en_rayon_id;
+    window.location.href = link;
+}
+function change_input_vente(option, id, max) {
+    if (option == 'plus') {
+        if ($("#" + id).val() == '' || $("#" + id).val() == null)
+            $("#" + id).val(1);
+        else if (parseInt($("#" + id).val()) < parseInt(max))
+            $("#" + id).val(parseInt($("#" + id).val()) + 1);
+    } else {
+        if (parseInt($("#" + id).val()) != 0)
+            $("#" + id).val(parseInt($("#" + id).val()) - 1);
+    }
+    var prixTotal = 0, qte, prix;
+    $("#tab_produit_commande tr").each(function (j) {
+
+        var id = $(this).attr("id");
+        if (parseInt($("#inputQteRecu" + id).val()) != 0) {
+            prixTotal = prixTotal + (parseInt($("#inputQteRecu" + id).val()) * parseInt($("#prixCmd" + id).val()))
+        }
+        $('#facture_commande').html(prixTotal);
+    })
 }

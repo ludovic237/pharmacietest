@@ -28,19 +28,27 @@
                                     </script>
 ';
         if (isset($caisse) && $caisse == null) {
+            //$employe = $caisse;
+            //print_r($caisse);
             $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisse").modal("show"); });</script>';
         }
         if (isset($caisseCheck) && $caisseCheck != null) {
+            //print_r($caisseCheck);
+            //$employe->identifiant = null;
             if ($caisseCheck->etat == "En cours") {
                 $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(function () { $("#iconPreviewCaisseFermer").modal("show"); });</script>';
             } else {
                 $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(open_rapport());</script>';
             }
         }
+
+
+
         ?> -->
 
 
-<?php if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users']->type == 'Administrateur' || $_SESSION['Users']->type == 'Gestionnaire') { ?>
+<?php //print_r($caisseCheck);
+if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users']->type == 'Administrateur' || $_SESSION['Users']->type == 'Gestionnaire') { ?>
 
     <!-- START RESPONSIVE TABLES -->
 
@@ -1916,3 +1924,24 @@
     </div>
 </div>
 <!-- END MODAL ICON PREVIEW -->
+
+
+<!-- MESSAGE BOX-->
+<div class="message-box animated fadeIn" data-sound="alert" id="mb-bom-caisse">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-ticket"></span><strong>Confirmation bon de caisse</strong></div>
+            <div class="mb-content">
+                <p>Appuyer sur oui pour valider la validation de votre bon de caisse</p>
+               <!-- <p>Press No if youwant to continue work. Press Yes to logout current user.</p>-->
+            </div>
+            <div class="mb-footer">
+                <div class="pull-right">
+                    <a onclick="gerer_bon_caisse()" class="btn btn-success btn-lg">Oui</a>
+                    <button class="btn btn-danger btn-lg mb-control-close">Non</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MESSAGE BOX-->

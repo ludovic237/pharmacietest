@@ -12,6 +12,9 @@ var idfulldepense;
 $('#pharmanet_tab_vente').hide();
 
 $(document).ready(function () {
+
+
+
     $("#detailTab").hide();
     if ($("#reportRangeDateVente").length > 0) {
         $("#reportRangeDateVente").daterangepicker({
@@ -2243,6 +2246,14 @@ function show_modif_enrayon(id) {
 
 }
 
+var etiquetteNomP;
+var etiquetteNomF;
+var etiquetteCode;
+var etiquetteDatel;
+var etiquetteDatep;
+var etiquettePrix;
+var qrcode;
+
 function info_row_entree(row) {
 
     var code;
@@ -2255,8 +2266,12 @@ function info_row_entree(row) {
         },
         dataType: 'json',
         success: function (data) {
-            //alert(data);
-            //$("#iconPreview .icon-preview").html(icon_preview);
+            etiquetteNomP = data.nomP;
+            etiquetteNomF = data.code;
+            etiquetteCode = data.code;
+            etiquetteDatel = data.datel;
+            etiquetteDatep = data.datep;
+            etiquettePrix = data.prixv;
 
             $('#iconPreviewEntree .nomp').html(data.nomP);
             $("#iconPreviewEntree .nomf").html(data.nomF);
@@ -2269,8 +2284,11 @@ function info_row_entree(row) {
             $("#iconPreviewEntree .quantiter").html(data.quantiter);
             $("#iconPreviewEntree .reduction").html(data.reduction);
             $("#iconPreviewEntree .prixa").html(data.prixa);
-            //$("#code").barcode(data.codebarre);
             code1 = data.codebarre;
+            qrcode = new QRCode(document.getElementById("qrcode"), {
+                width: 30,
+                height: 30
+            });
             qrcode.makeCode(code1);
 
         }
@@ -2280,24 +2298,51 @@ function info_row_entree(row) {
 }
 
 function imprimer_bloc(titre, objet) {
-    // Définition de la zone à imprimer
-    var zone = document.getElementById(objet).innerHTML;
-    // Ouverture du popup,
-    var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
 
-    // style du popup
-    fen.document.body.style.color = '#000000';
-    fen.document.body.style.backgroundColor = '#FFFFFF';
-    fen.document.body.style.padding = "0px";
-
-    // Ajout des données a imprimer
-    fen.document.title = titre;
-    fen.document.body.innerHTML += " " + zone + " ";
-
-    // Impression du popup
-    fen.window.print();
-
-    //Fermeture du popup
-    fen.window.close();
+    let base64Image = $('#qrcode img').attr('src');
+    console.log(base64Image);
+    console.log(base64Image);
+    var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 17
+        ]});
+    //var doc = new jsPDF('l', 'mm', [30, 15]);
+    doc.cell(0, 0, 30, 17, ' ', 1, "center");
+    doc.setFontSize(4);
+    doc.text(1, 5, etiquetteNomP);
+    doc.setFontSize(7);
+    doc.text(1, 9, etiquettePrix+' FCFA');
+    doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+    doc.setFontSize(5);
+    doc.text(2, 14, etiquetteNomF);
+    doc.setFontSize(4);
+    doc.text(2, 16, etiquetteDatel + ' / ' + etiquetteDatep);
+    doc.save('hello.pdf');
+    //doc.print('hello');
     return true;
+}
+function charger_select_produit() {
+    var nom = $('#nom').val();
+    //alert('pass')
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_select_produit.php',
+        data: {
+            nom: nom
+        },
+        success: function (data) {
+            $('ul.dropdown-menu ').append(data);
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/charger_select_produit1.php',
+                data: {
+                    nom: nom
+                },
+                success: function (data) {
+                    $('#produits').append(data);
+                    //alert(data);
+
+                }
+            })
+
+        }
+    })
 }
