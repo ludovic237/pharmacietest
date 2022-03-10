@@ -211,13 +211,14 @@ function open_bon_caisse() {
 function ajouter_bon_caisse() {
     $('#0').remove();
     var cat = '<tr id="0" >'
-        + ' <td> <input class=\'nom\' type="text"></td>'
+        + ' <td> <input class=\'nom nom_client_bon\' type="text"></td>'
         + ' <td><input class=\'montant\' type="text"></td>'
         + '<td>'
         + '<button class="btn btn-primary btn-rounded btn-sm" onclick="gerer_bon_caisse()" >Générer</button>'
         + '</td>'
         + '</tr>';
     $('#tab_GBonCaisse').prepend(cat);
+    $(".nom_client_bon").select();
 
 }
 
@@ -325,8 +326,29 @@ function gerer_bon_caisse() {
                     montant: parseInt($("#" + id1 + " .montant").val()),
                     dateEncaisser: dateEncaisser
                 },
-                success: function (server_responce) {
-                    //alert(server_responce);
+                dataType: 'json',
+                success: function (data) {
+                    //alert(data)
+                    //$('#list_bon_caisse').empty();
+                    //Bon de caisse généré
+                    $('#list_bon_caisse').dataTable({
+                        destroy: true,
+                        searching: false,
+                        dFilter: false,
+                        bInfo: false,
+                        bPaginate: false,
+                        data: data.listeBon,
+                        columns: [
+                            {data: "nom_client"},
+                            {data: "montant"},
+                            {data: "date_creation"},
+                            {data: "caisse"},
+                            {"data": "id", "bSortable": false, "render": function (data) {
+                                    return '   <button class="btn btn-primary btn-rounded btn-sm" onClick="encaisser_liste_bon(' + data +');">Encaisser</button>  ';
+                                }
+                            }
+                        ]
+                    });
                     $('#mb-bom-caisse').hide()
                     $('#tab_GBonCaisse').empty();
                     $("#iconPreviewBonCaisse").modal("hide");

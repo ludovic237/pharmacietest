@@ -1126,11 +1126,12 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         <div class="tab-pane" id="tab-bon-two">
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table  table-bordered table-striped">
+                                    <table class="table  table-bordered table-striped" id="list_bon_caisse">
                                         <thead>
                                         <tr>
                                             <th>Nom client</th>
                                             <th>Montant</th>
+                                            <th>Date creation</th>
                                             <th>Caisse</th>
                                             <th>Action</th>
                                         </tr>
@@ -1140,6 +1141,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         <tr id="bon<?php echo $v->idb; ?>">
                                             <td><?php echo $v->nom_client; ?></td>
                                             <td><?php echo $v->montant; ?></td>
+                                            <td><?php echo $v->dateGenerer; ?></td>
                                             <td><?php echo $v->identifiant; ?></td>
                                             <td>
                                                 <button class="btn btn-primary btn-rounded btn-sm" onclick="encaisser_liste_bon(<?php echo $v->idb; ?>)">Encaisser</button>
