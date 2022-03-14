@@ -64,7 +64,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                     onclick="showRapportTest('<?php echo $caisse->id; ?>')">Test rapport caisse
 
                             </button> -->
-                           
+
                             <button class="btn btn-primary  pull-left" data="" id=""
                                     onclick="open_bon_caisse()">Bon de caisse
                             </button>
@@ -255,21 +255,19 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                 </div>
                                 <div class="tab-pane panel-body" id="tab3">
                                     <div class="block">
-                                        <!-- <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau entrée</h4> -->
-                                        <form role="form" class="form-horizontal">
-                                            <div class="panel-body">
+                                            <div class="panel-body" style="display: flex;flex-direction: column;">
 
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label">Numéro de ticket:</label>
                                                     <div class="col-md-9">
-                                                        <input type="number" class="form-control" value="" placeholder="" />
+                                                        <input type="number" id="Ticketcaisse1" class="form-control caisse Ticketcaisse1" data="1" data1="ticket" data2="2" data3="tab3" />
                                                         <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label">Montant:</label>
                                                     <div class="col-md-9">
-                                                        <input type="number" disabled class="form-control" value="" placeholder="" />
+                                                        <input type="number" id="Ticketcaisse2" disabled class="form-control" value="" placeholder="" />
                                                         <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                     </div>
                                                 </div>
@@ -287,8 +285,6 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     <button class="btn btn-success" type="submit">Imprimer</button>
                                                 </div>
                                             </div>
-                                        </form>
-                                        <!-- END JQUERY VALIDATION PLUGIN -->
                                     </div>
                                 </div>
                                 <div class="tab-pane panel-body" id="tab4">

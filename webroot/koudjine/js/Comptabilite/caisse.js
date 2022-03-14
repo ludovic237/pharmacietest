@@ -87,9 +87,24 @@ $(document).ready(function () {
             var position = $("#" + id).attr("data");
             var type = $("#" + id).attr("data1");
             var limite = $("#" + id).attr("data2");
-            console.log($("#" + id).attr("data3") + '-' + $("#facture_caisse").attr("data1"))
+            //console.log($("#" + id).attr("data3") + '-' + $("#facture_caisse").attr("data1"))
             position = parseInt(position);
             limite = parseInt(limite);
+            if (id==="Ticketcaisse1"){
+                console.log(id);
+                $.ajax({
+                    type: "POST",
+                    url: "/pharmacietest/koudjine/inc/info_bon_caisse.php",
+                    data: {
+                        code: $("#" + id).val()
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data.data);
+                        $('#Ticketcaisse2').val(data.data);
+                    }
+                })
+            }
             if (position == limite) {
                 // Imprimer ticket
                 var box = $("#mb-confirmation-caisse");
@@ -291,6 +306,29 @@ function encaisser_liste_bon(bon_id) {
     })
 }
 
+function newDate() {
+    var datas;
+    var startDate = moment().subtract('days', 29);
+    var endDate = moment();
+    var a_ = startDate.format("YYYY-MM-DD HH:mm:ss");
+    var b_ = endDate.format("YYYY-MM-DD HH:mm:ss");
+    console.log(a_ + ' - ' + b_);
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/dashboard_info_today2.php',
+        data: {
+            start: a_,
+            end: b_
+        },
+        dataType: 'json',
+        success: function (server_responce) {
+            console.log(server_responce);
+        }
+
+
+    });
+}
+
 
 function gerer_bon_caisse() {
     $('#tab_GBonCaisse  tr').each(function (i) {
@@ -343,7 +381,7 @@ function gerer_bon_caisse() {
                             {data: "montant"},
                             {data: "date_creation"},
                             {data: "caisse"},
-                            {"data": "id", "bSortable": false, "render": function (data) {
+                            {data: "id", "bSortable": false, "render": function (data) {
                                     return '   <button class="btn btn-primary btn-rounded btn-sm" onClick="encaisser_liste_bon(' + data +');">Encaisser</button>  ';
                                 }
                             }
