@@ -49,7 +49,7 @@ else{
     }
 
     // liste bon caisse genere
-    $boncaisseGenerer = $manager->getList();
+    $boncaisseGenerer = $manager->getListBonGenererTout($caisse_id);
     foreach ($boncaisseGenerer as $k => $v) :
         $dataBoncaisseGenerer[] = array(
             "id" => $v->id(),

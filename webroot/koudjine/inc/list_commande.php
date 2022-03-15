@@ -31,7 +31,14 @@ $managerEnr = new En_rayonManager($pdo);
 $start = $_POST['start'];
 $end = $_POST['end'];
 
-$VenteCaisse = $manager->getDateVenteRange($start, $end);
+if($start == ''){
+    $VenteCaisse = $manager->getDateVenteRangeBegin($end);
+}elseif ($end == ''){
+    $VenteCaisse = $manager->getDateVenteRangeEnd($start);
+}else{
+    $VenteCaisse = $manager->getDateVenteRange($start, $end);
+}
+
 foreach ($VenteCaisse as $key => $v) {
     $employeName = $managerUser->get(($managerEn->get($v->employe_id()))->user_id());
     $produits = $managerCo->getList($v->id());

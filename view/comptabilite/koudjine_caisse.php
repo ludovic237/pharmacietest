@@ -64,7 +64,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                     onclick="showRapportTest('<?php echo $caisse->id; ?>')">Test rapport caisse
 
                             </button> -->
-
+                           
                             <button class="btn btn-primary  pull-left" data="" id=""
                                     onclick="open_bon_caisse()">Bon de caisse
                             </button>
@@ -182,7 +182,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         <div class="panel-body">
 
                                             <div class="form-group row">
-                                                <label class="col-md-3 control-label">Montant en caissé:</label>
+                                                <label class="col-md-3 control-label">Montant encaissé:</label>
                                                 <div class="col-md-9">
                                                     <input type="number" id="espececaisse1" class="form-control montant caisse Espècecaisse1" data="1" data1="Espèce" data2="1" data3="tab1" value="" placeholder="" />
                                                     <!--                                                            <input type="number" class="form-control montant" value="" placeholder="" />-->
@@ -192,7 +192,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             <div class="form-group row">
                                                 <label class="col-md-3 control-label">Rendu</label>
                                                 <div class="col-md-9">
-                                                    <input type="number" style="color: #383838;font-size:25px" disabled class="form-control reste" value="" placeholder="" />
+                                                    <input type="number" style="color: #383838;font-size:25px" disabled class="form-control caisse reste" value="" placeholder="" />
                                                     <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                 </div>
                                             </div>
@@ -228,16 +228,9 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Frais:</label>
-                                                <div class="col-md-9">
-                                                    <input type="number" disabled class="form-control" value="" placeholder="" />
-                                                    <!-- <span class="help-block">exemple: Boris Daudga</span> -->
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
                                                 <label class="col-md-3 control-label">Rendu:</label>
                                                 <div class="col-md-9">
-                                                    <input type="number" style="color: #383838;font-size:25px" disabled class="form-control reste" value="" placeholder="" />
+                                                    <input type="number" style="color: #383838;font-size:25px" disabled class="form-control caisse reste" value="" placeholder="" />
                                                     <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                 </div>
                                             </div>
@@ -260,29 +253,29 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label">Numéro de ticket:</label>
                                                     <div class="col-md-9">
-                                                        <input type="number" id="Ticketcaisse1" class="form-control caisse Ticketcaisse1" data="1" data1="ticket" data2="2" data3="tab3" />
+                                                        <input type="number" id="Ticketcaisse1" class="form-control caisse numero Ticketcaisse1" data="1" data1="ticket" data2="2" data3="tab3" />
                                                         <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label">Montant:</label>
                                                     <div class="col-md-9">
-                                                        <input type="number" id="Ticketcaisse2" disabled class="form-control" value="" placeholder="" />
+                                                        <input type="number" id="Ticketcaisse2" disabled class="form-control caisse montant" value="" placeholder="" />
                                                         <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label">Rendu:</label>
                                                     <div class="col-md-9">
-                                                        <input type="number" style="color: #383838;font-size:25px" disabled class="form-control" value="" placeholder="" />
+                                                        <input type="number" style="color: #383838;font-size:25px" disabled class="form-control caisse reste" value="" placeholder="" />
                                                         <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                     </div>
                                                 </div>
                                                 <div class="btn-group pull-right">
                                                     <a class="btn btn-primary" style="margin-right: 20px" href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>">Annuler</a>
-                                                    <button class="btn btn-success" type="submit" style="margin-right: 20px">Valider
+                                                    <button class="btn btn-success" type="submit" style="margin-right: 20px" onclick="valider_facture('Ticketcaisse','tab3', '<?php echo $action_fermeture->id; ?>', false)">Valider
                                                     </button>
-                                                    <button class="btn btn-success" type="submit">Imprimer</button>
+                                                    <button class="btn btn-success" type="submit" onclick="valider_facture('Ticketcaisse','tab3', '<?php echo $action_fermeture->id; ?>', true)">Imprimer</button>
                                                 </div>
                                             </div>
                                     </div>
@@ -290,8 +283,8 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                 <div class="tab-pane panel-body" id="tab4">
                                     <div class="block">
                                         <!-- <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Nouveau entrée</h4> -->
-                                        <form role="form" class="form-horizontal">
-                                            <div class="panel-body">
+                                        <div class="form-horizontal">
+                                            <div class="panel-body" style="display: flex;flex-direction: column;">
                                                 <div>
                                                     <div style="background-color: #2d3945;color: white;width: 100%;padding:10px">
                                                         <p style="color: white;margin-bottom: 0px">Espèce</p>
@@ -301,7 +294,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label">Montant:</label>
                                                             <div class="col-md-9">
-                                                                <input type="number" class="form-control" value="" placeholder="">
+                                                                <input type="number" id="Mixtecaisse1" class="form-control montant_espece caisse mixte Mixtecaisse1" data="1" data1="Mixte" data2="4" data3="tab4" value="" placeholder="">
                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                         </div>
@@ -318,21 +311,14 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                             <label class="col-md-3 control-label">Numéro de
                                                                 téléphone:</label>
                                                             <div class="col-md-9">
-                                                                <input type="number" class="form-control" value="" placeholder="">
+                                                                <input type="number" id="Mixtecaisse2" class="form-control telephone caisse Mixtecaisse2" data="2" data1="Mixte" data2="4" data3="tab4" value="" placeholder="">
                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label">Montant:</label>
                                                             <div class="col-md-9">
-                                                                <input type="number" class="form-control" value="" placeholder="">
-                                                                <!-- <span class="help-block">exemple: Boris Daudga</span> -->
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="col-md-3 control-label">Frais:</label>
-                                                            <div class="col-md-9">
-                                                                <input type="number" class="form-control" value="" placeholder="">
+                                                                <input type="number" id="Mixtecaisse3" class="form-control montant_electronique caisse mixte Mixtecaisse3" data="3" data1="Mixte" data2="4" data3="tab4" value="" placeholder="">
                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                         </div>
@@ -347,14 +333,14 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label">Numéro ticket:</label>
                                                             <div class="col-md-9">
-                                                                <input type="number" class="form-control" value="" placeholder="">
+                                                                <input type="number" id="Mixtecaisse4" class="form-control numero mixte caisse Mixtecaisse4" data="4" data1="Mixte" data2="4" data3="tab4" value="" placeholder="">
                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label">Montant:</label>
                                                             <div class="col-md-9">
-                                                                <input type="number" class="form-control" value="" placeholder="">
+                                                                <input disabled type="number" class="form-control caisse montant_ticket" value="" placeholder="">
                                                                 <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                             </div>
                                                         </div>
@@ -363,25 +349,25 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label">Total encaissé:</label>
                                                     <div class="col-md-9">
-                                                        <input type="number" class="form-control" value="" placeholder="">
+                                                        <input disabled type="number" class="form-control caisse montant" value="" placeholder="">
                                                         <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label">Rendu:</label>
                                                     <div class="col-md-9">
-                                                        <input type="number" style="color: #383838;font-size:25px" class="form-control" value="" placeholder="">
+                                                        <input disabled type="number" style="color: #383838;font-size:25px" class="form-control caisse reste" value="" placeholder="">
                                                         <!-- <span class="help-block">exemple: Boris Daudga</span> -->
                                                     </div>
                                                 </div>
                                                 <div class="btn-group pull-right">
                                                     <a class="btn btn-primary" style="margin-right: 20px" href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>">Annuler</a>
-                                                    <button class="btn btn-success" type="submit" style="margin-right: 20px">Valider
+                                                    <button class="btn btn-success" type="submit" onclick="valider_facture('Mixte','tab4', '<?php echo $action_fermeture->id; ?>', false)" style="margin-right: 20px">Valider
                                                     </button>
-                                                    <button class="btn btn-success" type="submit">Imprimer</button>
+                                                    <button class="btn btn-success" type="submit" onclick="valider_facture('Mixte','tab4', '<?php echo $action_fermeture->id; ?>', true)">Imprimer</button>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </idv>
                                         <!-- END JQUERY VALIDATION PLUGIN -->
                                     </div>
                                 </div>

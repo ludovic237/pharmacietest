@@ -54,6 +54,8 @@ if (isset($datetime)) {
             <div class="panel-footer">
                 <button type="button" class="btn btn-success" onclick="enregistrer_list_commande('<?php echo $datetime; ?>')">Enregistrer
                 </button>
+                <button type="button" class="btn btn-success" onclick="recherche_list_commande('<?php echo $datetime; ?>')">Rechercher
+                </button>
             </div>
         </div>
 
@@ -89,6 +91,49 @@ if (isset($datetime)) {
                             <th>Nom caissier</th>
                             <th>Date de vente</th>
                             <th>Etat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title-box">
+                    <h3>Tableau de commande</h3>
+                </div>
+                <ul class="panel-controls panel-controls-title">
+                    <li>
+                        <div id="reportrange" class="dtrange">
+                            <span></span><b class="caret"></b>
+                        </div>
+                    </li>
+                    <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
+                </ul>
+
+            </div>
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <table class="table datatable table table-bordered table-striped table-actions" id="new_list_commande_date">
+                        <thead>
+                        <tr>
+                            <th>Numero</th>
+                            <th>Type</th>
+                            <th>Date debut</th>
+                            <th>Date fin</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>

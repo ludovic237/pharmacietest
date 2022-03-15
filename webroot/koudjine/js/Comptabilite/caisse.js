@@ -90,7 +90,7 @@ $(document).ready(function () {
             //console.log($("#" + id).attr("data3") + '-' + $("#facture_caisse").attr("data1"))
             position = parseInt(position);
             limite = parseInt(limite);
-            if (id==="Ticketcaisse1"){
+            if (id==="Ticketcaisse1" || id==="Mixtecaisse4"){
                 console.log(id);
                 $.ajax({
                     type: "POST",
@@ -101,7 +101,29 @@ $(document).ready(function () {
                     dataType: 'json',
                     success: function (data) {
                         console.log(data.data);
-                        $('#Ticketcaisse2').val(data.data);
+                        var montantTtc = parseInt($('#facture_caisse').html());
+                        if(data.etat != 'Encaisser'){
+                            if(id==="Ticketcaisse1"){
+                                $('#Ticketcaisse2').val(data.data);
+                                $('#tab3 .reste').val(parseInt(data.data)-montantTtc);
+                            }else{
+                                $('#tab4 .montant_ticket').val(data.data);
+                                calcul_montant_mixte();
+                            }
+
+
+                        }else{
+                            $('#message-box-danger p').html('Ce ticket a deja ete encaisser !!!');
+                            $("#message-box-danger").modal("show");
+                            setTimeout(function () {
+                                $("#message-box-danger").modal("hide");
+                            }, 3000);
+                            $('#tab3 .montant').val('');
+                            $('#tab3 .reste').val('');
+                            $('#tab4 .montant_ticket').val('');
+                        }
+
+
                     }
                 })
             }
@@ -149,6 +171,9 @@ $(document).ready(function () {
             $(".argent" + position).select();
         }
     })
+    $(".mixte").keyup(function (event) {
+        calcul_montant_mixte();
+    })
 
 
     $("#scanner_bon").keyup(function (event) {
@@ -189,7 +214,9 @@ $(document).ready(function () {
                                     + '<button class="btn btn-primary btn-rounded btn-sm" onclick="gerer_bon_caisse()" >Encaisser</button>'
                                     + '</td>'
                                     + '</tr>';
-                                $('#tab_GBonCaisse').prepend(cat);
+                                $('#ta' +
+                                    '' +
+                                    'b_GBonCaisse').prepend(cat);
                                 $("#scanner_bon").val('');
                             }
                             //alert('passe');
@@ -221,6 +248,28 @@ function open_bon_caisse() {
     $('#tab_GBonCaisse').empty();
     $("#scanner_bon").select();
     $("#iconPreviewBonCaisse").modal("show");
+}
+
+function calcul_montant_mixte(){
+    var montant_espece, montant_electronique, montant_ticket;
+    if($('#tab4 .montant_espece').val() == ''){
+        montant_espece = 0;
+    }else{
+        montant_espece = parseInt($('#tab4 .montant_espece').val());
+    }
+    if($('#tab4 .montant_electronique').val() == ''){
+        montant_electronique = 0;
+    }else{
+        montant_electronique = parseInt($('#tab4 .montant_electronique').val());
+    }
+    if($('#tab4 .montant_ticket').val() == ''){
+        montant_ticket = 0;
+    }else{
+        montant_ticket = parseInt($('#tab4 .montant_ticket').val());
+    }
+    $('#tab4 .montant').val(montant_espece+montant_electronique+montant_ticket);
+    var montantTtc = parseInt($('#facture_caisse').html());
+    $('#tab4 .reste').val(montant_espece+montant_electronique+montant_ticket-montantTtc);
 }
 
 function ajouter_bon_caisse() {
@@ -376,6 +425,11 @@ function gerer_bon_caisse() {
                         bInfo: false,
                         bPaginate: false,
                         data: data.listeBon,
+                        fnCreatedRow: function (nRow, aData, iDataIndex){
+                            console.log(aData[0])
+                            var id1 = aData['id'];
+                            $(nRow).attr('id', 'bon'+ id1+'');
+                        },
                         columns: [
                             {data: "nom_client"},
                             {data: "montant"},
@@ -564,9 +618,11 @@ function ajouter_une_depense() {
 }
 
 function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
-    var telephone, montantTtc = parseInt($('#facture_caisse').html()), count = 0, rec = 0;
+    var telephone,ticket_id, montantTtc = parseInt($('#facture_caisse').html()), count = 0, rec = 0;
     var reduction = parseInt($('#facture_caisse').attr('data'));
-    $('#ticketCaisse .montantpercu').html($('#' + onglet + ' .montant').val() + ' (' + typePaiement + ')');
+    var dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
+    var copytypePaiement = typePaiement;
+    $('#ticketCaisse .montantpercu').html($('#' + onglet + ' .montant').val() + ' (' + copytypePaiement + ')');
     $('#ticketCaisse .montantrendu').html($('#' + onglet + ' .reste').val());
     //alert(reduction);
     var montantPercu = null;
@@ -574,89 +630,230 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
         ////alert(caisse_id);
         montantPercu = parseInt($('#' + onglet + ' .montant').val());
     }
-    if (typePaiement == 'Electronique') {
+    if (typePaiement == 'Electronique' || typePaiement == 'Mixte Electronique') {
         ////alert(caisse_id);
         telephone = $('#' + onglet + ' .telephone').val();
     } else {
         telephone = '';
     }
+    if (typePaiement == 'Ticketcaisse' || typePaiement == 'Mixte Ticketcaisse') {
+        ticket_id = $('#' + onglet + ' .numero').val();
+    } else {
+        ticket_id = 'pour';
+    }
     var reste = parseInt($('#' + onglet + ' .reste').val());
     var vente_id = parseInt($('#fen_facture').attr("data"));
+
+    // Traitement Mixte
+    var typePaiementFinal = 'Mixtes';
+    if(typePaiement == 'Mixte'){
+        if(parseInt($('#' + onglet + ' .montant_espece').val()) > 0){
+            typePaiementFinal = typePaiementFinal + ' '+ 'Espèce';
+            valider_facture("Mixte Espèce", 'tab4', caisse_id, false)
+        }
+        if(parseInt($('#' + onglet + ' .montant_electronique').val()) > 0){
+            typePaiementFinal = typePaiementFinal + ' '+ 'Electronique';
+            valider_facture("Mixte Electronique", 'tab4', caisse_id, false)
+        }
+        if(parseInt($('#' + onglet + ' .montant_ticket').val()) > 0){
+            typePaiementFinal = typePaiementFinal + ' '+ 'Ticketcaisse';
+            valider_facture("Mixte Ticketcaisse", 'tab4', caisse_id, false)
+        }
+        typePaiement = typePaiementFinal;
+    }
+    var montant_espece = null;
+    if ($('#' + onglet + ' .montant_espece').val() != '') {
+        montant_espece = parseInt($('#' + onglet + ' .montant_espece').val());
+    }
+    var montant_electronique = null;
+    if ($('#' + onglet + ' .montant_electronique').val() != '') {
+        montant_electronique = parseInt($('#' + onglet + ' .montant_electronique').val());
+    }
+    var montant_ticket = null;
+    if ($('#' + onglet + ' .montant_ticket').val() != '') {
+        montant_ticket = parseInt($('#' + onglet + ' .montant_ticket').val());
+    }
+    if(typePaiement == 'Mixte Espèce'){
+        montantTtc = parseInt($('#' + onglet + ' .montant_espece').val());
+    }
+    if(typePaiement == 'Mixte Electronique'){
+        montantTtc = parseInt($('#' + onglet + ' .montant_electronique').val());
+    }
+    if(typePaiement == 'Mixte Ticketcaisse'){
+        montantTtc = parseInt($('#' + onglet + ' .montant_ticket').val());
+    }
     ////alert(montantPercu);
     ////alert(reste);
-    if (montantPercu == null || montantPercu == 0 || reste < 0) {
-        // vérifier qu'on a entré le montant perçu
-        $('#message-box-danger p').html('Veuillez Entrer un bon montant perçu !!!');
-        $("#message-box-danger").modal("show");
-        setTimeout(function () {
-            $("#message-box-danger").modal("hide");
-        }, 3000);
-    } else {
-        ////alert('valide');
-        $.ajax({
-            type: "POST",
-            url: '/pharmacietest/koudjine/inc/valider_facture.php',
-            data: {
-                vente_id: vente_id,
-                montant: montantTtc,
-                montantPercu: montantPercu,
-                reste: reste,
-                telephone: telephone,
-                reduction: reduction,
-                typePaiement: typePaiement,
-                caisse_id: parseInt(caisse_id)
-            },
-            success: function (server_responce) {
-                //alert(server_responce);
-                $('#tab_vente_caisse  tr').each(function (i) {
-                    count++;
-                });
-                $('#tab_vente_caisse  tr').each(function (i) {
-                    var id1 = $(this).attr("id");
-                    var qte;
-                    ////alert(id1);
+    if(copytypePaiement == 'Mixte'){
+        if(montant_espece != null && montant_electronique != null || montant_espece != null && montant_ticket != null || montant_ticket != null && montant_electronique != null){
+            if (montantPercu == null || montantPercu == 0 || reste < 0) {
+                // vérifier qu'on a entré le montant perçu
+                $('#message-box-danger p').html('Veuillez Entrer un bon montant perçu !!!');
+                $("#message-box-danger").modal("show");
+                setTimeout(function () {
+                    $("#message-box-danger").modal("hide");
+                }, 3000);
+            } else {
+                ////alert('valide');
+                $.ajax({
+                    type: "POST",
+                    url: '/pharmacietest/koudjine/inc/valider_facture.php',
+                    data: {
+                        vente_id: vente_id,
+                        montant: montantTtc,
+                        montantPercu: montantPercu,
+                        reste: reste,
+                        telephone: telephone,
+                        ticket_id: ticket_id,
+                        reduction: reduction,
+                        dateEncaisser: dateEncaisser,
+                        typePaiement: typePaiement,
+                        caisse_id: parseInt(caisse_id)
+                    },
+                    success: function (server_responce) {
+                        //alert(server_responce);
+                        if(typePaiement == 'Mixte Espèce' || typePaiement == 'Mixte Electronique' || typePaiement == 'Mixte Ticketcaisse'){
+                            console.log('payement mixte');
+                        }else {
+                            $('#tab_vente_caisse  tr').each(function (i) {
+                                count++;
+                            });
+                            $('#tab_vente_caisse  tr').each(function (i) {
+                                var id1 = $(this).attr("id");
+                                var qte;
+                                ////alert(id1);
 
 
-                    $("#" + id1 + " td").each(function (j) {
-                        ////alert($(this).html());
-                        if (j == 2) {
-                            qte = parseInt($(this).html());
+                                $("#" + id1 + " td").each(function (j) {
+                                    ////alert($(this).html());
+                                    if (j == 2) {
+                                        qte = parseInt($(this).html());
+                                    }
+
+
+                                });
+                                ////alert('quantité : '+qte);
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/pharmacietest/koudjine/inc/facture_modifier_quantite_vendu.php",
+                                    data: {
+                                        id: id1,
+                                        qte: qte
+                                    },
+                                    success: function (server_responce) {
+                                        //alert(server_responce);
+                                        rec++;
+                                        rafraichir_vente(caisse_id);
+                                        $('#' + onglet + ' .montant').val('');
+                                        $('#' + onglet + ' .reste').val('');
+                                        $('#facture_caisse').html('0');
+
+                                        if (imprimer && rec == count) {
+                                            imprimer_bloc('ticketCaisse', 'ticketCaisse');
+                                            $('#tab_vente_caisse').empty();
+                                        } else {
+                                            $('#tab_vente_caisse').empty();
+                                        }
+                                    }
+                                })
+
+                            });
                         }
 
 
-                    });
-                    ////alert('quantité : '+qte);
-                    $.ajax({
-                        type: "POST",
-                        url: "/pharmacietest/koudjine/inc/facture_modifier_quantite_vendu.php",
-                        data: {
-                            id: id1,
-                            qte: qte
-                        },
-                        success: function (server_responce) {
-                            //alert(server_responce);
-                            rec++;
-                            rafraichir_vente(caisse_id);
-                            $('#' + onglet + ' .montant').val('');
-                            $('#' + onglet + ' .reste').val('');
-                            $('#facture_caisse').html('0');
-
-                            if (imprimer && rec == count) {
-                                imprimer_bloc('ticketCaisse', 'ticketCaisse');
-                                $('#tab_vente_caisse').empty();
-                            } else {
-                                $('#tab_vente_caisse').empty();
-                            }
-                        }
-                    })
-
-                });
+                    }
 
 
+                })
             }
+        }else{
+            $('#message-box-danger p').html('veillez a utiliser au moins 02 types de paiement sinon changer de mode de paiement !!!');
+            $("#message-box-danger").modal("show");
+            setTimeout(function () {
+                $("#message-box-danger").modal("hide");
+            }, 3000);
+        }
+    }else {
+        if (montantPercu == null || montantPercu == 0 || reste < 0) {
+            // vérifier qu'on a entré le montant perçu
+            $('#message-box-danger p').html('Veuillez Entrer un bon montant perçu !!!');
+            $("#message-box-danger").modal("show");
+            setTimeout(function () {
+                $("#message-box-danger").modal("hide");
+            }, 3000);
+        } else {
+            ////alert('valide');
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/valider_facture.php',
+                data: {
+                    vente_id: vente_id,
+                    montant: montantTtc,
+                    montantPercu: montantPercu,
+                    reste: reste,
+                    telephone: telephone,
+                    ticket_id: ticket_id,
+                    reduction: reduction,
+                    dateEncaisser: dateEncaisser,
+                    typePaiement: typePaiement,
+                    caisse_id: parseInt(caisse_id)
+                },
+                success: function (server_responce) {
+                    //alert(server_responce);
+                    if(typePaiement == 'Mixte Espèce' || typePaiement == 'Mixte Electronique' || typePaiement == 'Mixte Ticketcaisse'){
+                        console.log('payement mixte');
+                    }else {
+                        $('#tab_vente_caisse  tr').each(function (i) {
+                            count++;
+                        });
+                        $('#tab_vente_caisse  tr').each(function (i) {
+                            var id1 = $(this).attr("id");
+                            var qte;
+                            ////alert(id1);
 
 
-        })
+                            $("#" + id1 + " td").each(function (j) {
+                                ////alert($(this).html());
+                                if (j == 2) {
+                                    qte = parseInt($(this).html());
+                                }
+
+
+                            });
+                            ////alert('quantité : '+qte);
+                            $.ajax({
+                                type: "POST",
+                                url: "/pharmacietest/koudjine/inc/facture_modifier_quantite_vendu.php",
+                                data: {
+                                    id: id1,
+                                    qte: qte
+                                },
+                                success: function (server_responce) {
+                                    //alert(server_responce);
+                                    rec++;
+                                    rafraichir_vente(caisse_id);
+                                    $('#' + onglet + ' .montant').val('');
+                                    $('#' + onglet + ' .reste').val('');
+                                    $('#facture_caisse').html('0');
+
+                                    if (imprimer && rec == count) {
+                                        imprimer_bloc('ticketCaisse', 'ticketCaisse');
+                                        $('#tab_vente_caisse').empty();
+                                    } else {
+                                        $('#tab_vente_caisse').empty();
+                                    }
+                                }
+                            })
+
+                        });
+                    }
+
+
+                }
+
+
+            })
+        }
     }
 
 
@@ -791,6 +988,7 @@ function rafraichir_vente(id) {
 }
 
 function charger_vente(id) {
+    $(".caisse").val('');
     $("#facture_caisse").html($("#" + id + " .prixtotal").html());
     $("#facture_caisse").attr("data", $("#" + id + " .reduction").html());
     $('#fen_facture').attr("data", id);

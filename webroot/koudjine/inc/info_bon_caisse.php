@@ -14,7 +14,7 @@ if ($code != "") {
     $bon = $manager->get($codeCheck->id());
 }
 
-$donnees = array('data' => $bon->montant());
+$donnees = array('data' => $bon->montant(), 'etat' => $bon->type());
 echo json_encode($donnees);
 
 

@@ -401,6 +401,38 @@ class VenteManager
 
     }
 
+    public function getDateVenteRangeBegin($start)
+    {
+        //$q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 ORDER BY dateVente');
+        //$q = $this->_db->query( 'SELECT * FROM `vente` WHERE `dateVente` BETWEEN DATE_SUB( "2020-05-23 05:33:46",INTERVAL 0  MONTH ) AND DATE_SUB( "2020-10-23 05:33:46",INTERVAL 0  MONTH )');
+        $q = $this->_db->prepare( "SELECT * FROM `vente` WHERE `dateVente` < DATE_SUB( '".$start."',INTERVAL 0  MONTH )");
+        $ventes = array();
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $ventes[] = new Vente($donnees);
+        }
+        return $ventes;
+
+
+    }
+
+    public function getDateVenteRangeEnd($end)
+    {
+        //$q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 ORDER BY dateVente');
+        //$q = $this->_db->query( 'SELECT * FROM `vente` WHERE `dateVente` BETWEEN DATE_SUB( "2020-05-23 05:33:46",INTERVAL 0  MONTH ) AND DATE_SUB( "2020-10-23 05:33:46",INTERVAL 0  MONTH )');
+        $q = $this->_db->prepare( "SELECT * FROM `vente` WHERE `dateVente` > DATE_SUB( '".$end."',INTERVAL 0  MONTH )");
+        $ventes = array();
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $ventes[] = new Vente($donnees);
+        }
+        return $ventes;
+
+
+    }
+
     public function getDateVenteRangeCaisse($start,$end, $caisse_id)
     {
         $q = $this->_db->prepare( "SELECT * FROM `vente` WHERE caisse_id = '.$caisse_id.' AND `dateVente` BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");

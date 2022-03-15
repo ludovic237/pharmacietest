@@ -217,6 +217,16 @@ class BonCaisseManager
         }
         return $BonCaisses;
     }
+    public function getListBonGenererTout($id)
+    {
+        $BonCaisses = array();
+        $q = $this->_db->prepare('SELECT * FROM bon_caisse WHERE supprimer = 0 AND type= "Générer" ORDER BY nom_client');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $BonCaisses[] = new BonCaisse($donnees);
+        }
+        return $BonCaisses;
+    }
     public function getListBonEncaisser($id)
     {
         $BonCaisses = array();
