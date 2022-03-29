@@ -12,8 +12,8 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     var reduc;
     var stock;
 
+    getListVente();
 
-    
     $('#search-caisse-box').keyup(function () {
         $.ajax({
             type: "POST",
@@ -32,11 +32,11 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
         });
     });
 
-    
 
-    
+
+
     $("#detailTab").hide();
-    
+
     if ($("#tab_produit_detail_a").attr("data") == '') {
         $("#tab_produit_stock_detail").hide();
         $("#produit_stock_detail_a").hide();
@@ -89,8 +89,8 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
         $("#prixReduit").html(reduc);
     })
 
- 
-    
+
+
     $("#recherches").keyup(function (event) {
         var prixTotal = 0;
         var reduction = 0;
@@ -289,8 +289,8 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     });
 
 
-   
-    
+
+
 
     console.log(); (test);
     if (test != '') {
@@ -528,6 +528,121 @@ function change_input(option, id) {
 
 function imprimer_bon_caisse() {
     $("#previewImprimerBonCaisse").modal('show');
+}
+
+function getListVente() {
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/list_vente.php',
+        dataType: 'json',
+        success: function (data) {
+            console.log(data.venteActifCaisse);
+            var venteActifCaisse = data.venteActifCaisse;
+            var venteAll = data.venteAll;
+            console.log(venteActifCaisse);
+            console.log(venteAll);
+            $('#customers').dataTable({
+                destroy: true,
+                searching: true,
+                dFilter: true,
+                bInfo: true,
+                bPaginate: true,
+                data: venteActifCaisse,
+                columns: [
+                    {
+                        "data": "reference", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="reference">' + data + '</strong><strong type="hidden" class="montantfactureEspece">' + row.montantfactureEspece + '</strong>';
+                        }
+                    },
+                    {
+                        "data": "prixTotal", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="prixt">' + data + '</strong><strong type="hidden" class="montantfactureElectronique">' + row.montantfactureElectronique + '</strong>';
+                        }
+                    },
+                    {
+                        "data": "prixPercu", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="prixp">'+data+'</strong><strong type="hidden" class="montantfactureTicket">' + row.montantfactureTicket + '</strong>';
+                        }
+                    },
+                    {
+                        "data": "commentaire", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="commentaire">'+data+'</strong>';
+                        }
+                    },
+                    {
+                        "data": "type_paiement", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="typePaiement">'+data+'</strong>';
+                        }
+                    },
+                    {
+                        "data": "dateVente", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="datevte">'+data+'</strong>';
+                        }
+                    },
+                    {
+                        "data": "etat", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="etat">'+data+'</strong>';
+                        }
+                    },
+                    {
+                        "data": "etat", "bSortable": false, "render": function (data, type, row) {
+                            return '<a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip"\n' +
+                                '                                                   data-placement="top" title="Modifier"\n' +
+                                '                                                   onclick="reimprime_ticket('+row.DT_RowId+',\'' + row.montantfactureEspece + '\',\'' + row.montantfactureElectronique + '\',\'' + row.montantfactureTicket + '\')">Imprimer ticket</a>';
+                        }
+                    }
+                ]
+            });
+            $('#customers3').dataTable({
+                destroy: true,
+                searching: true,
+                dFilter: true,
+                bInfo: true,
+                bPaginate: true,
+                data: venteAll,
+                columns: [
+                    {data: "reference"},
+                    {
+                        "data": "prixTotal", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="prixt">' + data + '</strong></td>';
+                        }
+                    },
+                    {
+                        "data": "prixPercu", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="prixp">'+data+'</strong></td>';
+                        }
+                    },
+                    {
+                        "data": "commentaire", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="commentaire">'+data+'</strong></td>';
+                        }
+                    },
+                    {
+                        "data": "type_paiement", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="typePaiement">'+data+'</strong></td>';
+                        }
+                    },
+                    {
+                        "data": "dateVente", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="datevte">'+data+'</strong></td>';
+                        }
+                    },
+                    {
+                        "data": "etat", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="etat">'+data+'</strong></td>';
+                        }
+                    },
+                    {
+                        "data": "etat", "bSortable": false, "render": function (data, type, row) {
+                            return '<a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip"\n' +
+                                '                                                   data-placement="top" title="Modifier"\n' +
+                                '                                                   onclick="reimprime_ticket('+row.DT_RowId+',\'' + row.montantfactureEspece + '\',\'' + row.montantfactureElectronique + '\',\'' + row.montantfactureTicket + '\')">Imprimer ticket</a>';
+                        }
+                    }
+                ]
+            });
+        }
+    })
 }
 
 

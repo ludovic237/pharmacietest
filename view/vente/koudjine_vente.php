@@ -298,7 +298,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                             Ticket N°: <span class="reference"></span></p>
                                         <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            <span class="datevente"></span> à <span class="heurevente"></span></p>
+                                            <span class="datevente"></span> à <span class="heurevente"></span>
+                                        </p>
                                     </div>
                                     <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Vendeur: <span class="vendeur"></span></p>
@@ -310,52 +311,81 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                            id="tab_GGBfactureImprimer">
                                         <thead>
                                         <tr>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="200">Libelle
                                             </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="150">Prix U.
                                             </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="100">Qte
                                             </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="100">Total
                                             </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="50">Rd(%)
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody id="tab_BfactureImprimer">
-
+                                        <tr type="hidden" id="rowmontantespece">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Espece
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantespece"></span> FCFA
+                                            </td>
+                                        </tr>
+                                        <tr type="hidden" id="rowmontantelectronique">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Electronique
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantelectronique"></span> FCFA
+                                            </td>
+                                        </tr>
+                                        <tr type="hidden" id="rowmontantticket">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Ticket
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantticket"></span> FCFA
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 scope="row">Montant Total
                                             </td>
                                             <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
                                                 <span class="montanttotal"></span> FCFA
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: start;"
+                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: start;"
                                                 scope="row">Remise
                                             </td>
                                             <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: end;">
+                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
                                                 <span class="remise"></span> FCFA
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: start;"
+                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: start;"
                                                 scope="row">Net à payer
                                             </td>
                                             <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: end;">
+                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
                                                 <span class="netapayer"></span> FCFA
                                             </td>
                                         </tr>
@@ -478,7 +508,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                             Ticket N°: <span class="reference"></span></p>
                                         <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            <span class="datevente"></span> à <span class="heurevente"></span></p>
+                                            <span class="datevente"></span> à <span class="heurevente"></span>
+                                        </p>
                                     </div>
                                     <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Vendeur: <span class="vendeur"></span></p>
@@ -490,52 +521,81 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                            id="tab_GGBfactureImprimer">
                                         <thead>
                                         <tr>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="200">Libelle
                                             </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="150">Prix U.
                                             </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="100">Qte
                                             </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="100">Total
                                             </th>
-                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="50">Rd(%)
                                             </th>
                                         </tr>
                                         </thead>
-                                        <tbody id="tab_BfactureImprimer2">
-
+                                        <tbody id="tab_BfactureImprimer">
+                                        <tr type="hidden" id="rowmontantespece">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Espece
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantespece"></span> FCFA
+                                            </td>
+                                        </tr>
+                                        <tr type="hidden" id="rowmontantelectronique">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Electronique
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantelectronique"></span> FCFA
+                                            </td>
+                                        </tr>
+                                        <tr type="hidden" id="rowmontantticket">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Ticket
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantticket"></span> FCFA
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 12px;"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 scope="row">Montant Total
                                             </td>
                                             <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
                                                 <span class="montanttotal"></span> FCFA
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: start;"
+                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: start;"
                                                 scope="row">Remise
                                             </td>
                                             <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: end;">
+                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
                                                 <span class="remise"></span> FCFA
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: start;"
+                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: start;"
                                                 scope="row">Net à payer
                                             </td>
                                             <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;text-align: end;">
+                                                style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
                                                 <span class="netapayer"></span> FCFA
                                             </td>
                                         </tr>
