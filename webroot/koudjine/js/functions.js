@@ -551,17 +551,17 @@ function getListVente() {
                 columns: [
                     {
                         "data": "reference", "bSortable": false, "render": function (data, type, row) {
-                            return '<strong class="reference">' + data + '</strong><strong type="hidden" class="montantfactureEspece">' + row.montantfactureEspece + '</strong>';
+                            return '<strong class="reference">' + data + '</strong>';
                         }
                     },
                     {
                         "data": "prixTotal", "bSortable": false, "render": function (data, type, row) {
-                            return '<strong class="prixt">' + data + '</strong><strong type="hidden" class="montantfactureElectronique">' + row.montantfactureElectronique + '</strong>';
+                            return '<strong class="prixt">' + data + '</strong>';
                         }
                     },
                     {
                         "data": "prixPercu", "bSortable": false, "render": function (data, type, row) {
-                            return '<strong class="prixp">'+data+'</strong><strong type="hidden" class="montantfactureTicket">' + row.montantfactureTicket + '</strong>';
+                            return '<strong class="prixp">'+data+'</strong>';
                         }
                     },
                     {
