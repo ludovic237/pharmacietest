@@ -1259,16 +1259,145 @@ function liste_caisse(id) {
         data: {
             id: id
         },
+        dataType: 'json',
         success: function (data) {
-            //alert(data);
-
-            $('#tab_Bload_produit_caisse_liste').empty();
-            $('#tab_Bload_produit_caisse_liste').prepend(data);
+            console.log(data.vente);
+            $('#listeVenteId').dataTable({
+                destroy: true,
+                searching: true,
+                dFilter: true,
+                bInfo: true,
+                bPaginate: true,
+                data: data.vente,
+                columns: [
+                    {
+                        "data": "prixTotal", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="prixt">' + data + '</strong>';
+                        }
+                    },
+                    {
+                        "data": "prixPercu", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="prixp">' + data + '</strong>';
+                        }
+                    },
+                    {
+                        "data": "dateVente", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="datevte">' + data + '</strong>';
+                        }
+                    },
+                    {
+                        "data": "type_paiement", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="typePaiement">' + data + '</strong>';
+                        }
+                    },
+                    {
+                        "data": "reference", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="reference">' + data + '</strong>';
+                        }
+                    },
+                    {
+                        "data": "etat", "bSortable": false, "render": function (data, type, row) {
+                            return '<a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip"\n' +
+                                '                                                   data-placement="top" title="Modifier"\n' +
+                                '                                                   onclick="imprime_ticket(' + row.DT_RowId + ',\'' + row.montantfactureEspece + '\',\'' + row.montantfactureElectronique + '\',\'' + row.montantfactureTicket + '\',\'' + row.reste + '\')">Imprimer ticket</a>';
+                        }
+                    }
+                ]
+            });
             $("#iconPreviewListeCaisse").modal('show');
+            $('#iconPreviewFacture').modal("hide");
+        }
+    })
+}
+
+function backToModalListVente() {
+    $("#iconPreviewListeCaisse").modal('show');
+    $('#iconPreviewFacture').modal("hide");
+}
+
+function imprime_ticket(id, montantespece,
+                        montantelectronique,
+                        montantticket,reste) {
+    var datevte = $("#" + id + " .datevte").html();
+    var yo = datevte;
+    var date = yo.substr(0, 10);
+    var heure = yo.substr(12, 8);
+    //var tab = explode(" ", datevte);
+    $('#ticketListe .reference').html($("#" + id + " .reference").html());
+    $('#ticketListe .datevente').html(date);
+    $('#ticketListe .heurevente').html(heure);
+    $('#ticketListe .vendeur').html($("#" + id + " .seller").html());
+    $('#ticketListe .acheteur').html($("#" + id + " .client").html());
+    $('#ticketListe .netapayer').html($("#" + id + " .prixp").html());
+    $('#ticketListe .montanttotal').html($("#" + id + " .prixt").html());
+    $('#ticketListe .montantrendu').html(reste);
+    $('#ticketListe .remise').html(parseInt($("#" + id + " .prixt").html()) - parseInt($("#" + id + " .prixp").html()));
+    var typePaiement = $("#" + id + " .typePaiement").html();
+    console.log(typePaiement);
+    console.log(montantespece);
+    console.log(montantelectronique);
+    console.log(montantticket);
+    $('#montantespece').html(montantespece);
+    $('#montantelectronique').html(montantelectronique);
+    $('#montantticket').html(montantticket);
+    if (typePaiement == "Mixte Espèce Electronique Ticketcaisse") {
+        $('#montantespece').html(montantespece);
+        $('#montantelectronique').html(montantelectronique);
+        $('#montantticket').html(montantticket);
+        $('#rowmontantelectronique').css('display', '');
+        $('#rowmontantespece').css('display', '');
+        $('#rowmontantticket').css('display', '');
+    }
+    if (typePaiement == "Mixte Espèce Electronique") {
+        $('#montantespece').html(montantespece);
+        $('#montantelectronique').html(montantelectronique);
+        $('#rowmontantelectronique').css('display', '');
+        $('#rowmontantespece').css('display', '');
+        $('#rowmontantticket').css("display", "none");
+    }
+    if (typePaiement == "Mixte Electronique Ticketcaisse") {
+        $('#montantelectronique').html(montantelectronique);
+        $('#montantticket').html(montantticket);
+        $('#rowmontantelectronique').css('display', '');
+        $('#rowmontantespece').css("display", "none");
+        $('#rowmontantticket').css('display', '');
+    }
+    if (typePaiement == "Mixte Espèce Ticketcaisse") {
+        $('#montantespece').html(montantespece);
+        $('#montantticket').html(montantticket);
+        $('#rowmontantelectronique').css("display", "none");
+        $('#rowmontantespece').css('display', '');
+        $('#rowmontantticket').css('display', '');
+    }
+
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_vente.php',
+        data: {
+            id: id
+        },
+        success: function (server_responce) {
+
+            $('#tab_vente_caisse').empty();
+            $('#tab_BfactureImprimer  tr').each(function (i) {
+                if ($(this).attr("class") == 'ligne_facture') {
+                    //alert("passe");
+                    $(this).remove();
+                }
+            });
+            //$('#tab_vente_caisse').html(server_responce);
+            $('#tab_BfactureImprimer').prepend(server_responce);
+            $("#iconPreviewListeCaisse").modal('hide');
+            $('#iconPreviewFacture').modal("show");
 
 
         }
+
+
     })
+
+
 }
 
 function selectemploye(val, id) {

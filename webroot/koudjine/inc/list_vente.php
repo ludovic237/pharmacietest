@@ -34,6 +34,7 @@ foreach ($venteAll as $k => $c) {
     /*$facture = new Facturation();*/
     if ($managerFacturation->existsvente_id($c->id())) {
         $facture = $managerFacturation->getVente($c->id());
+        $reste = $facture->reste();
         $typefacturation = $facture->typePaiement();
         if ($managerFactureEspece->existsfacturation_id($facture->id())) {
             $factureEspece = $managerFactureEspece->getFacture($facture->id());
@@ -48,6 +49,7 @@ foreach ($venteAll as $k => $c) {
             $montantfactureTicket = $factureTicket->montant();
         }
     } else {
+        $reste=0;
         $typefacturation = "No exist";
         $montantfactureEspece = 0;
         $montantfactureElectronique = 0;
@@ -79,6 +81,7 @@ foreach ($venteAll as $k => $c) {
         "dateVente" => $c->dateVente(),
         "commentaire" => $c->commentaire(),
         "reduction" => $c->reduction(),
+        "reste"=>$reste,
         "type_paiement" => $typefacturation,
         'montantfactureEspece' => $montantfactureEspece,
         'montantfactureElectronique' => $montantfactureElectronique,
@@ -89,6 +92,7 @@ foreach ($venteAll as $k => $c) {
 foreach ($venteActifCaisse as $k => $c) {
     if ($managerFacturation->existsvente_id($c->id())) {
         $facture = $managerFacturation->getVente($c->id());
+        $reste = $facture->reste();
         $typefacturation = $facture->typePaiement();
         if ($managerFactureEspece->existsfacturation_id($facture->id())) {
             $factureEspece = $managerFactureEspece->getFacture($facture->id());
@@ -103,6 +107,7 @@ foreach ($venteActifCaisse as $k => $c) {
             $montantfactureTicket = $factureTicket->montant();
         }
     } else {
+        $reste=0;
         $typefacturation = "No exist";
         $montantfactureEspece = 0;
         $montantfactureElectronique = 0;
@@ -129,6 +134,7 @@ foreach ($venteActifCaisse as $k => $c) {
         "reference" => $c->reference(),
         "prixPercu" => $c->prixPercu(),
         "produitName" => $produitName,
+        "reste"=>$reste,
         "dateVente" => $c->dateVente(),
         "commentaire" => $c->commentaire(),
         "reduction" => $c->reduction(),

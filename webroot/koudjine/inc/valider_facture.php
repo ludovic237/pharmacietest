@@ -78,7 +78,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         ));
         $managerFes->add($espece);
         $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_espece);
+        $vente->setprixPercu($montant_espece+$vente->prixPercu());
         $manager->update($vente);
 
         if ($reduction != 0) {
@@ -103,7 +103,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         ));
         $managerFel->add($electronique);
         $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_electronique);
+        $vente->setprixPercu($montant_electronique+$vente->prixPercu());
         $manager->update($vente);
         if ($reduction != 0) {
             if ($vente->user_id() == null) {
@@ -137,7 +137,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         $managerBo->update($bon);
 
         $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_ticket);
+        $vente->setprixPercu($montant_ticket+$vente->prixPercu());
         $manager->update($vente);
         if ($reduction != 0) {
             if ($vente->user_id() == null) {

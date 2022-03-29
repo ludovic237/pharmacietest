@@ -473,7 +473,7 @@ function showVenteCaisse(id,total) {
 
 function reimprime_ticket(id,montantespece,
                           montantelectronique,
-                          montantticket,) {
+                          montantticket,reste) {
     var datevte = $("#" + id + " .datevte").html();
     var yo = datevte;
     var date = yo.substr(0, 10);
@@ -486,6 +486,7 @@ function reimprime_ticket(id,montantespece,
     $('#ticketListe .acheteur').html($("#" + id + " .client").html());
     $('#ticketListe .netapayer').html($("#" + id + " .prixp").html());
     $('#ticketListe .montanttotal').html($("#" + id + " .prixt").html());
+    $('#ticketListe .montantrendu').html(reste);
     $('#ticketListe .remise').html(parseInt($("#" + id + " .prixt").html()) - parseInt($("#" + id + " .prixp").html()));
     var typePaiement=$("#" + id + " .typePaiement").html();
     console.log(typePaiement);

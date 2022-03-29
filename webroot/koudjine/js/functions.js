@@ -588,7 +588,7 @@ function getListVente() {
                         "data": "etat", "bSortable": false, "render": function (data, type, row) {
                             return '<a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip"\n' +
                                 '                                                   data-placement="top" title="Modifier"\n' +
-                                '                                                   onclick="reimprime_ticket('+row.DT_RowId+',\'' + row.montantfactureEspece + '\',\'' + row.montantfactureElectronique + '\',\'' + row.montantfactureTicket + '\')">Imprimer ticket</a>';
+                                '                                                   onclick="reimprime_ticket('+row.DT_RowId+',\'' + row.montantfactureEspece + '\',\'' + row.montantfactureElectronique + '\',\'' + row.montantfactureTicket + '\',\'' + row.reste + '\')">Imprimer ticket</a>';
                         }
                     }
                 ]
@@ -636,7 +636,7 @@ function getListVente() {
                         "data": "etat", "bSortable": false, "render": function (data, type, row) {
                             return '<a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip"\n' +
                                 '                                                   data-placement="top" title="Modifier"\n' +
-                                '                                                   onclick="reimprime_ticket('+row.DT_RowId+',\'' + row.montantfactureEspece + '\',\'' + row.montantfactureElectronique + '\',\'' + row.montantfactureTicket + '\')">Imprimer ticket</a>';
+                                '                                                   onclick="reimprime_ticket('+row.DT_RowId+',\'' + row.montantfactureEspece + '\',\'' + row.montantfactureElectronique + '\',\'' + row.montantfactureTicket + '\',\'' + row.reste + '\')">Imprimer ticket</a>';
                         }
                     }
                 ]

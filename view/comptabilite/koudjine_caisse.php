@@ -12,6 +12,26 @@ if ($this->request->action == "index") {
 }
 $position_for_layout = '<li><a href="#">Comptabilite</a></li><li class="active">' . $position . '</li>';
 $script_for_layout = '
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- END PLUGINS -->
+
+<!-- START THIS PAGE PLUGINS-->
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/icheck/icheck.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/scrolltotop/scrolltopcontrol.js"></script>
+
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/icheck/icheck.min.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/tableExport.js"></script>
      <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
      <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
      <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
@@ -22,11 +42,8 @@ $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>
-<script>
-
-                                    </script>
-';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Vente/functions.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>';
 if (isset($caisse) && $caisse == null) {
     //$employe = $caisse;
     //print_r($caisse);
@@ -931,7 +948,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         <div class="col-md-4">
                             <div class="icon-preview">
                                 <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;"
-                                     class="ticketfacture" id="ticketCaisse">
+                                     class="ticketfacture" id="ticketListe">
 
                                     <div style="display: flex;flex-direction:column;text-align: left;">
                                         <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
@@ -977,7 +994,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             </tr>
                                             </thead>
                                             <tbody id="tab_BfactureImprimer">
-                                            <tr id="rowmontantespece">
+                                            <tr type="hidden" id="rowmontantespece">
                                                 <td colspan="1"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                     scope="row">Montant Espece
@@ -987,7 +1004,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     <span id="montantespece"></span> FCFA
                                                 </td>
                                             </tr>
-                                            <tr id="rowmontantelectronique">
+                                            <tr type="hidden" id="rowmontantelectronique">
                                                 <td colspan="1"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                     scope="row">Montant Electronique
@@ -997,7 +1014,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     <span id="montantelectronique"></span> FCFA
                                                 </td>
                                             </tr>
-                                            <tr id="rowmontantticket">
+                                            <tr type="hidden" id="rowmontantticket">
                                                 <td colspan="1"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                     scope="row">Montant Ticket
@@ -1053,11 +1070,10 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             NoCT /P058512700488Z</p>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-circle blue"
-                                        style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
-                                        onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print"
-                                                                                      style="font-size:10px"></i>&nbsp;Imprimer
-                                </button>
+                                <a class="btn btn-circle blue"
+                                   style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
+                                   onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print"
+                                                                                           style="font-size:10px"></i>&nbsp;Imprimer</a>
                             </div>
                         </div>
 
@@ -1065,6 +1081,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
 
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="backToModalListVente()">Retour</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -1714,8 +1731,8 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
 
                                     <div class="panel-body">
                                         <div class="table-responsive">
-                                            <table id="tab_load_produit_caisse" style="height: 200px;overflow: auto;"
-                                                   class="table table-bordered table-actions">
+                                            <table class="table datatable table-bordered table-striped table-actions"
+                                                   id="listeVenteId">
                                                 <thead>
                                                 <tr>
                                                     <th width="100">Montant</th>
@@ -1723,10 +1740,48 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     <th width="200">Date de vente</th>
                                                     <th width="100">Etat</th>
                                                     <th width="100">Ref</th>
+                                                    <th width="100">Actions</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody id="tab_Bload_produit_caisse_liste">
+                                                <tbody>
+                                                <?php $i = 0;
+                                                if (isset($venteAll)) foreach ($ventes as $k => $v) : ?>
+                                                    <tr id="<?php echo $v->id; ?>">
+                                                        <td>
+                                                            <?php
+                                                            echo '<p style="font-size: 14px;" class="reference">' . $v->reference . '</p>';
+                                                            $count = 0;
+                                                            if (isset($produits)) foreach ($produits[$i] as $p => $q) :
+                                                                if ($count == 3) break;
+                                                                echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                                //echo $q->nom."\n";
+                                                                if ($count == 2)
+                                                                    echo '<p style="font-size: 8px;font-weight: bold;margin-bottom: 0px;">' . $q->nom . '</p>';
+                                                                $count++;
+                                                            endforeach;
+                                                            $i++;
+                                                            ?>
+                                                        </td>
 
+                                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                                        <td class="prixp"><?php echo $v->prixPercu; ?></td>
+                                                        <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                                        <td class="seller"><?php echo $v->identifiant; ?></td>
+                                                        <td class="datevte">
+                                                            <?php echo $v->dateVente; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $v->etat; ?>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip"
+                                                               data-placement="top" title="Modifier"
+                                                               onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
+                                                            <!-- <a class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></a> -->
+                                                        </td>
+                                                        <p></p>
+                                                    </tr>
+                                                <?php endforeach; ?>
                                                 </tbody>
                                             </table>
                                         </div>
