@@ -61,10 +61,18 @@ foreach ($venteAll as $k => $c) {
     if ($managerCo->getList($c->id())) {
         $listConcerner = $managerCo->getList($c->id());
     }
-    foreach ($listConcerner as $k => $v) {
-        $listEnrayon = $managerEn->get($v->en_rayon_id());
-        $produit = $managerPr->get($listEnrayon->produit_id());
-        $produitName = $produit->nom() . '-' . $produitName;
+    foreach ($listConcerner as $d => $v) {
+        $listConcerner[] = array(
+            "id" => $v->id(),
+            "vente_id" => $v->vente_id(),
+            "en_rayon_id" => $v->en_rayon_id(),
+            "produit_id" => $v->produit_id(),
+            "produit_name" => "",
+            "prixUnit" => $v->prixUnit(),
+            "quantite" => $v->quantite(),
+            "reduction" => $v->reduction(),
+            "supprimer" => $v->supprimer(),
+        );
     }
     $dataAll[] = array(
         "DT_RowId" => $c->id(),
@@ -87,6 +95,7 @@ foreach ($venteAll as $k => $c) {
         'montantfactureElectronique' => $montantfactureElectronique,
         'montantfactureTicket' => $montantfactureTicket,
         "etat" => $c->etat(),
+        "concernerList"=>$listConcerner
     );
 }
 foreach ($venteActifCaisse as $k => $c) {
@@ -117,10 +126,18 @@ foreach ($venteActifCaisse as $k => $c) {
     if ($managerCo->getList($c->id())) {
         $listConcerner = $managerCo->getList($c->id());
     }
-    foreach ($listConcerner as $k => $v) {
-        $listEnrayon = $managerEn->get($v->en_rayon_id());
-        $produit = $managerPr->get($listEnrayon->produit_id());
-        $produitName = $produit->nom() . '-' . $produitName;
+    foreach ($listConcerner as $d => $v) {
+        $listConcerner[] = array(
+            "id" => $v->id(),
+            "vente_id" => $v->vente_id(),
+            "en_rayon_id" => $v->en_rayon_id(),
+            "produit_id" => $v->produit_id(),
+            "produit_name" => "",
+            "prixUnit" => $v->prixUnit(),
+            "quantite" => $v->quantite(),
+            "reduction" => $v->reduction(),
+            "supprimer" => $v->supprimer(),
+        );
     }
     $dataActif[] = array(
         "DT_RowId" => $c->id(),
@@ -143,6 +160,7 @@ foreach ($venteActifCaisse as $k => $c) {
         'montantfactureElectronique' => $montantfactureElectronique,
         'montantfactureTicket' => $montantfactureTicket,
         "etat" => $c->etat(),
+        "concernerList"=>$listConcerner
     );
 }
 

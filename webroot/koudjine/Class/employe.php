@@ -201,6 +201,13 @@ class EmployeManager
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Employe($donnees);
     }
+
+    public function getInfoConnect($username,$password)
+    {
+        $q = $this->_db->query('SELECT * FROM employe WHERE supprimer = 0 AND password = "' . $password .'" AND identifiant = "' . $username .'"');
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Employe($donnees);
+    }
     public function getList()
     {
         $employes = array();
