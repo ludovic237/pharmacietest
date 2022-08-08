@@ -898,8 +898,10 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                     if (imprimer && rec == count) {
                                         imprimer_bloc('ticketCaisse', 'ticketCaisse', typePaiement);
                                         $('#tab_vente_caisse').empty();
+                                        $(".caisse").val('');
                                     } else {
                                         $('#tab_vente_caisse').empty();
+                                        $(".caisse").val('');
                                     }
                                 }
                             })
