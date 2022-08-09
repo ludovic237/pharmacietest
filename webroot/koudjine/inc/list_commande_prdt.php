@@ -68,21 +68,17 @@ foreach ($VenteCaisse as $key => $v) {
         $typePaiement = 'Inachevée';
     }
 
+}
+
+//echo  " Voici la qte".$qte."\n";
+//print_r($prds);
+foreach($prds as $key => $value) {
+
     $data[] = array(
-        "id" => $v->id(),
-        "reference" => $v->reference(),
-        "nameProduit" => $nameProduit,
-        "prixTotal" => $v->prixTotal(),
-        "prixPercu" => $v->prixPercu(),
-        "nom" => $employeName->nom(),
-        "prenom" => $employeName->prenom(),
-        "dateVente" => $v->dateVente(),
-        "etat" => $v->etat(),
-        "typePaiement" => $typePaiement
+        "produit" => $key,
+        "qte" => $value
     );
 
 }
-//echo  " Voici la qte".$qte."\n";
-//print_r($prds);
 $datas = array('data' => $data, 'totalEncaisse' => $total);
 echo json_encode($datas);

@@ -140,12 +140,12 @@ function charger_list_commande() {
 }
 
 function getListCommande(start, end) {
-    console.log('start : ' + start + ' - end : ' + end);
+    //console.log('start : ' + start + ' - end : ' + end);
     //alert(start)
     var start = start;
     var end = end;
-    console.log('pass')
-    console.log(start);
+    //console.log('pass')
+    //console.log(start);
     $.ajax({
         type: "POST",
         url: "/pharmacietest/koudjine/inc/list_commande.php",
@@ -218,6 +218,32 @@ function getListCommande(start, end) {
                             }
                         }
                     }
+                ]
+            });
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "/pharmacietest/koudjine/inc/list_commande_prdt.php",
+        data: {
+            end: end,
+            start: start
+        },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+
+            $('#list_commande_tables_1').dataTable({
+                destroy: true,
+                searching: true,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: true,
+                data: data.data,
+                order: [[1, "desc"]],
+                columns: [
+                    {data: "produit"},
+                    {data: "qte"},
                 ]
             });
         }

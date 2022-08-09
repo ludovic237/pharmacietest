@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/list_commande_prdt.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/caisse.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/caisse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/commande/koudjine_list_commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/commande/koudjine_list_commande.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/list_commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/list_commande.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Commande/listcommande.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Commande/listcommande.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +208,7 @@
     <property name="SearchEverywhereHistoryKey" value="header&#9;null&#9;null&#10;json&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/webroot/koudjine/inc" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -219,15 +221,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\Site\webroot\koudjine\js" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\pharmacietest\webroot\koudjine\inc" />
       <recent name="C:\xampp\htdocs\Site\view\formations" />
       <recent name="C:\xampp\htdocs\Site\view" />
       <recent name="C:\xampp\htdocs\Site\model" />
       <recent name="C:\xampp\htdocs\Site\controller" />
-      <recent name="C:\xampp\htdocs\Site\webroot\koudjine\js\plugins\jquery" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Site\webroot\koudjine\js" />
     </key>
   </component>
   <component name="RunManager">
@@ -281,6 +283,7 @@
       <workItem from="1651906399361" duration="767000" />
       <workItem from="1652898063625" duration="2638000" />
       <workItem from="1656685335539" duration="10000" />
+      <workItem from="1659984759235" duration="6279000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1646899402949</created>
@@ -296,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647335552104</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="merge">
+      <created>1659984836141</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1659984836141</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

@@ -63,11 +63,11 @@ if (isset($datetime)) {
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title-box">
-                    <h3>Tableau de commande</h3>
+                    <h3>Tableau de commande par vente</h3>
                 </div>
                 <ul class="panel-controls panel-controls-title">
                     <li>
@@ -91,6 +91,42 @@ if (isset($datetime)) {
                             <th>Nom caissier</th>
                             <th>Date de vente</th>
                             <th>Etat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title-box">
+                    <h3>Tableau de commande par produit</h3>
+                </div>
+                <ul class="panel-controls panel-controls-title">
+                    <li>
+                        <div id="reportrange" class="dtrange">
+                            <span></span><b class="caret"></b>
+                        </div>
+                    </li>
+                    <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
+                </ul>
+
+            </div>
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <table class="table datatable table table-bordered table-striped table-actions" id="list_commande_tables_1">
+                        <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Quantite vendues</th>
                         </tr>
                         </thead>
                         <tbody>
