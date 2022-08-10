@@ -35,29 +35,15 @@ $dateEncaisser = $_POST['dateEncaisser'];
 $montant_espece = $_POST['montant_espece'];
 $montant_electronique = $_POST['montant_electronique'];
 $montant_ticket = $_POST['montant_ticket'];
+$ticket_id = $_POST['ticket_id'];
 
 $idGen = genererID();
 $tab_type = explode(" ", $typePaiement);
 
-echo "1\n";
-echo "
-" . $caisse_id .
-    "-" . $vente_id .
-    "-" . $montant .
-    "-" . $montantPercu .
-    "-" . $reste .
-    "-" . $typePaiement .
-    "-" . $reduction .
-    "-" . $telephone .
-    "-" . $dateEncaisser .
-    "-" . $montant_espece .
-    "-" . $montant_electronique .
-    "" . $montant_ticket;
 if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement == "Mixte Espèce Electronique" || $typePaiement == "Mixte Electronique Ticketcaisse"
     || $typePaiement == "Mixte Espèce Ticketcaisse" || $typePaiement == "Mixte Espèce"
     || $typePaiement == "Mixte Electronique"
     || $typePaiement == "Mixte Ticketcaisse" || $typePaiement == "Espèce" || $typePaiement == "Electronique" || $typePaiement == "Ticketcaisse" || in_array("Mixtes", $tab_type)) {
-    echo "2";
     $facture = new Facturation(array(
         'id' => $idGen,
         'vente_id' => $vente_id,
@@ -68,10 +54,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         'reste' => $reste
     ));
     $managerFa->add($facture);
-    echo stripos($typePaiement, "Espèce");
-    echo "3";
     if (stripos($typePaiement, "Espèce") !== false) {
-        echo "4";
         $espece = new FactureEspece(array(
             'facturation_id' => $idGen,
             'montant' => $montant_espece
@@ -92,10 +75,9 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
                 $managerUs->update($user);
             }
         }
-
     }
+
     if (stripos($typePaiement, "Electronique") !== false) {
-        echo "5";
         $electronique = new FactureElectronique(array(
             'facturation_id' => $idGen,
             'numeroTelephone' => $telephone,
@@ -116,12 +98,11 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
                 $managerUs->update($user);
             }
         }
-
     }
+
     if (stripos($typePaiement, "Ticketcaisse") !== false) {
-        echo "6";
         // Enregistrement facture ticket
-        $ticket_id = $_POST['ticket_id'];
+
         $bon = $managerBo->getCodebarre_id($ticket_id);
         $ticket = new FactureTicket(array(
             'facturation_id' => $idGen,
@@ -150,6 +131,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
                 $managerUs->update($user);
             }
         }
+
     }
 
     /*$vente = $manager->get($vente_id);
@@ -166,7 +148,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
             $managerUs->update($user);
         }
     }*/
-
+    echo "ok";
 
 } elseif ($typePaiement == "Espèce" || $typePaiement == "Mixte Espèce") {
 
@@ -191,7 +173,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
             }
         }
     }
-    echo "ok";
+    echo "ok".$typePaiement;
 
 } elseif ($typePaiement == "Electronique" || $typePaiement == "Mixte Electronique" ) {
 
@@ -217,7 +199,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
             }
         }
     }
-    echo "ok";
+    echo "ok".$typePaiement;
 
 } elseif ($typePaiement == "Ticketcaisse" || $typePaiement == "Mixte Ticketcaisse") {
 
@@ -252,7 +234,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
             }
         }
     }
-    echo "ok";
+    echo "ok".$typePaiement;
 
 } else {
     $vente = $manager->get($vente_id);
@@ -269,6 +251,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
             $managerUs->update($user);
         }
     }
+    echo "ok2".$typePaiement;
 }
 
 
