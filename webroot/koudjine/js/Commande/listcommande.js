@@ -1,5 +1,7 @@
 $(document).ready(function () {
     var table_list_commande = $('#list_commande_table').dataTable();
+    var new_list_commande_date = $('#new_list_commande_date').dataTable();
+    charger_list_commande()
 
     if ($("#reportrange").length > 0) {
         $("#reportrange").daterangepicker({
@@ -32,6 +34,18 @@ $(document).ready(function () {
 
 });
 
+function recherche_list_commande(a_,b_) {
+    console.log(a_ + ' - ' + b_);
+    if (b_===""){
+        b_ = moment().format('YYYY-MM-DD HH:mm:ss')
+        getListCommande(a_,b_);
+    }
+    else {
+        getListCommande(a_,b_);
+    }
+
+}
+
 function enregistrer_list_commande(dateDerniere) {
     var date = $('#list_commande_date').val();
     var type = $('#list_commande_type option:selected').val();
@@ -41,7 +55,7 @@ function enregistrer_list_commande(dateDerniere) {
         type: "POST",
         url: "/pharmacietest/koudjine/inc/enregistrer_list_commande.php",
         data: {
-            type: "Express",
+            type: "ListeCommande",
             date: dateDerniere
         },
         //dataType: 'json',
@@ -56,11 +70,82 @@ function enregistrer_list_commande(dateDerniere) {
     })
 }
 
+function charger_list_commande() {
+    $.ajax({
+        type: "POST",
+        url: "/pharmacietest/koudjine/inc/load_list_commande.php",
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            $('#new_list_commande_date').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.data,
+                order: [[1, "desc"]],
+                columns: [
+                    {
+                        data: "id", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%">NA</span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
+                    {
+                        data: "type", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%"></span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
+                    {
+                        data: "dateDebut", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%"></span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
+                    {
+                        data: "dateDerniere", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%"></span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
+                    {
+                        data: "id", "render": function (data, type, row) {
+                            return '<button class="btn btn-success" onclick="recherche_list_commande(\'' + row.dateDebut + '\',\'' + row.dateDerniere + '\')" >Charger</button>';
+                        }
+                    }
+                ]
+            });
+            //alert(data)
+            /*noty({text: 'Enregistrement effectué' + data, layout: 'topRight', type: 'success'});
+            load_produit_detail(_idprod, _nameprod);
+            setTimeout(function () {
+                $("#iconPreviewDetailModif").modal('hide');
+            });*/
+        }
+    })
+}
+
 function getListCommande(start, end) {
-    console.log('start : ' + start + ' - end : ' + end);
+    //console.log('start : ' + start + ' - end : ' + end);
     //alert(start)
     var start = start;
     var end = end;
+    //console.log('pass')
+    //console.log(start);
     $.ajax({
         type: "POST",
         url: "/pharmacietest/koudjine/inc/list_commande.php",
@@ -133,6 +218,32 @@ function getListCommande(start, end) {
                             }
                         }
                     }
+                ]
+            });
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "/pharmacietest/koudjine/inc/list_commande_prdt.php",
+        data: {
+            end: end,
+            start: start
+        },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+
+            $('#list_commande_tables_1').dataTable({
+                destroy: true,
+                searching: true,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: true,
+                data: data.data,
+                order: [[1, "desc"]],
+                columns: [
+                    {data: "produit"},
+                    {data: "qte"},
                 ]
             });
         }

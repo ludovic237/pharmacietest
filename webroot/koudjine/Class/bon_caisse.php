@@ -200,7 +200,7 @@ class BonCaisseManager
     public function getList()
     {
         $BonCaisses = array();
-        $q = $this->_db->prepare('SELECT * FROM bon_caisse WHERE supprimer = 0 ORDER BY nom_client');
+        $q = $this->_db->prepare('SELECT * FROM bon_caisse WHERE supprimer = 0 ORDER BY id desc');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $BonCaisses[] = new BonCaisse($donnees);
@@ -211,6 +211,16 @@ class BonCaisseManager
     {
         $BonCaisses = array();
         $q = $this->_db->prepare('SELECT * FROM bon_caisse WHERE supprimer = 0 AND caisse_id = ' . $id . ' ORDER BY nom_client');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $BonCaisses[] = new BonCaisse($donnees);
+        }
+        return $BonCaisses;
+    }
+    public function getListBonGenererTout($id)
+    {
+        $BonCaisses = array();
+        $q = $this->_db->prepare('SELECT * FROM bon_caisse WHERE supprimer = 0 AND type= "Générer" ORDER BY nom_client');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $BonCaisses[] = new BonCaisse($donnees);

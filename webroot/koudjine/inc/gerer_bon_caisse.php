@@ -1,11 +1,19 @@
 <?php
 require_once('database.php');
 require_once('../Class/bon_caisse.php');
+require_once('../Class/caisse.php');
+require_once('../Class/user.php');
+require_once('../Class/employe.php');
 
 global $pdo;
 
 
 $manager = new BonCaisseManager($pdo);
+$managerCa = new CaisseManager($pdo);
+$managerUs = new UserManager($pdo);
+$managerEm = new EmployeManager($pdo);
+
+$dataBoncaisseGenerer = [];
 
 if (isset($_POST['id']))
     $id = $_POST['id'];
@@ -39,6 +47,20 @@ else{
         $bon->settype('Encaisser'); 
         $manager->update($bon);
     }
+
+    // liste bon caisse genere
+    $boncaisseGenerer = $manager->getListBonGenererTout($caisse_id);
+    foreach ($boncaisseGenerer as $k => $v) :
+        $dataBoncaisseGenerer[] = array(
+            "id" => $v->id(),
+            "nom_client" => $v->nom_client(),
+            "montant" => $v->montant(),
+            "date_creation" => $v->dateGenerer(),
+            "caisse" => $managerEm->get($managerCa->getId($v->caisse_id())->user_id())->identifiant(),
+        );
+    endforeach;
+    $donnees = array('listeBon' =>$dataBoncaisseGenerer);
+    echo json_encode($donnees);
 
 
 

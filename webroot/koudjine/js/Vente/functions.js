@@ -19,7 +19,7 @@ $(document).ready(function () {
     $("#recherche").keyup(function (event) {
         var prixTotal = 0;
         var reduction = 0;
-        
+
         if (event.keyCode == 13) {
             var recherche = $(this).val();
             //$("#resultat ul").empty();
@@ -124,7 +124,7 @@ $(document).ready(function () {
                             if ($("#check_reductionGenerale").is(":checked")) {
                                 $('#check_reductionGenerale').prop("checked", false);
                             }
-                        
+
                         } else if (data.find == 'non') {
                             load_produit(data.id);
                             $('#recherche').val("");
@@ -471,7 +471,9 @@ function showVenteCaisse(id,total) {
     return false;
 }
 
-function reimprime_ticket(id) {
+function reimprime_ticket(id,montantespece,
+                          montantelectronique,
+                          montantticket,reste) {
     var datevte = $("#" + id + " .datevte").html();
     var yo = datevte;
     var date = yo.substr(0, 10);
@@ -484,8 +486,45 @@ function reimprime_ticket(id) {
     $('#ticketListe .acheteur').html($("#" + id + " .client").html());
     $('#ticketListe .netapayer').html($("#" + id + " .prixp").html());
     $('#ticketListe .montanttotal').html($("#" + id + " .prixt").html());
+    $('#ticketListe .montantrendu').html(reste);
     $('#ticketListe .remise').html(parseInt($("#" + id + " .prixt").html()) - parseInt($("#" + id + " .prixp").html()));
-
+    var typePaiement=$("#" + id + " .typePaiement").html();
+    console.log(typePaiement);
+    console.log(montantespece);
+    console.log(montantelectronique);
+    console.log(montantticket);
+    $('#montantespece').html(montantespece);
+    $('#montantelectronique').html(montantelectronique);
+    $('#montantticket').html(montantticket);
+    if (typePaiement == "Mixte Espèce Electronique Ticketcaisse") {
+        $('#montantespece').html(montantespece);
+        $('#montantelectronique').html(montantelectronique);
+        $('#montantticket').html(montantticket);
+        $('#rowmontantelectronique').css('display','');
+        $('#rowmontantespece').css('display','');
+        $('#rowmontantticket').css('display','');
+    }
+    if (typePaiement == "Mixte Espèce Electronique") {
+        $('#montantespece').html(montantespece);
+        $('#montantelectronique').html(montantelectronique);
+        $('#rowmontantelectronique').css('display','');
+        $('#rowmontantespece').css('display','');
+        $('#rowmontantticket').css("display","none");
+    }
+    if (typePaiement == "Mixte Electronique Ticketcaisse") {
+        $('#montantelectronique').html(montantelectronique);
+        $('#montantticket').html(montantticket);
+        $('#rowmontantelectronique').css('display','');
+        $('#rowmontantespece').css("display","none");
+        $('#rowmontantticket').css('display','');
+    }
+    if (typePaiement == "Mixte Espèce Ticketcaisse") {
+        $('#montantespece').html(montantespece);
+        $('#montantticket').html(montantticket);
+        $('#rowmontantelectronique').css("display","none");
+        $('#rowmontantespece').css('display','');
+        $('#rowmontantticket').css('display','');
+    }
 
 
     $.ajax({
@@ -495,7 +534,7 @@ function reimprime_ticket(id) {
             id: id
         },
         success: function (server_responce) {
-      
+
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
@@ -534,7 +573,7 @@ function valider_vente(type, etat) {
         }, 3000);
     }
     else if ($('.select_client option:selected').text() == "Client Existant" && $("#select_vente_client option:selected").val() == 0) {
-        
+
         $('#message-box-danger p').html('Veuillez Sélectionner le client');
         $("#message-box-danger").modal("show");
         setTimeout(function () {
@@ -543,7 +582,7 @@ function valider_vente(type, etat) {
 
     }
     else if ($('.select_prescripteur option:selected').text() == "Prescripteur Existant" && $("#select_vente_prescripteur option:selected").val() == 0) {
-        
+
         $('#message-box-danger p').html('Veuillez Sélectionner le prescripteur');
         $("#message-box-danger").modal("show");
         setTimeout(function () {

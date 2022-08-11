@@ -1,6 +1,6 @@
 <?php
 
-class user
+class User
 {
     private $_id,
         $_nom,
@@ -70,7 +70,10 @@ class user
     public function setid($id)
     {
 
-        $this->_id = $id;
+        if ($id > 0)
+        {
+            $this->_id = $id;
+        }
     }
     public function setnom($id)
     {

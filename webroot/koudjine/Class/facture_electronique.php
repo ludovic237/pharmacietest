@@ -135,6 +135,14 @@ class FactureElectroniqueManager
         return new FactureElectronique($donnees);
 
     }
+    public function getFacture($info)
+    {
+
+        $q = $this->_db->query('SELECT * FROM facture_electronique WHERE supprimer = 0 AND facturation_id = '.$info);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new FactureElectronique($donnees);
+
+    }
     public function getList($info)
     {
         $facturation = array();

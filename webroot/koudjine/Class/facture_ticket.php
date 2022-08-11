@@ -1,9 +1,10 @@
 <?php
 
-class FactureEspece
+class FactureTicket
 {
     private $_id,
         $_facturation_id,
+        $_ticket_caisse_id,
         $_montant,
         $_supprimer;
 
@@ -34,6 +35,10 @@ class FactureEspece
     {
         return $this->_facturation_id;
     }
+    public function ticket_caisse_id()
+    {
+        return $this->_ticket_caisse_id;
+    }
     public function montant()
     {
         return $this->_montant;
@@ -60,6 +65,10 @@ class FactureEspece
             $this->_facturation_id = $id;
         }
     }
+    public function setticket_caisse_id($id)
+    {
+        $this->_ticket_caisse_id = $id;
+    }
     public function setmontant($id)
     {
 
@@ -77,7 +86,7 @@ class FactureEspece
 
 }
 
-class FactureEspeceManager
+class FactureTicketManager
 {
     private $_db; // Instance de PDO
 
@@ -85,33 +94,34 @@ class FactureEspeceManager
     {
         $this->setDb($db);
     }
-    public function add(FactureEspece $facturation)
+    public function add(FactureTicket $facturation)
     {
-        $q = $this->_db->prepare('INSERT INTO facture_espece SET id = :id, facturation_id = :facturation_id, montant = :montant, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO facture_ticket SET id = :id, facturation_id = :facturation_id, ticket_caisse_id = :ticket_caisse_id, montant = :montant, supprimer=0');
         $q->bindValue(':id', $facturation->id(), PDO::PARAM_INT);
         $q->bindValue(':facturation_id', $facturation->facturation_id(), PDO::PARAM_INT);
         $q->bindValue(':montant', $facturation->montant(), PDO::PARAM_INT);
+        $q->bindValue(':ticket_caisse_id', $facturation->ticket_caisse_id());
         $q->execute();
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM facture_espece WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM facture_ticket WHERE supprimer = 0 ')->fetchColumn();
     }
-    public function delete(FactureEspece $facturation)
+    public function delete(FactureTicket $facturation)
     {
-        $this->_db->exec('DELETE FROM facture_espece WHERE id = '.$facturation->id());
+        $this->_db->exec('DELETE FROM facture_ticket WHERE id = '.$facturation->id());
     }
     public function existsId($info)
     {
 
-        return (bool) $this->_db->query('SELECT COUNT(*) FROM facture_espece WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
+        return (bool) $this->_db->query('SELECT COUNT(*) FROM facture_ticket WHERE supprimer = 0 AND id = '.$info)->fetchColumn();
 
     }
 
     public function existsfacturation_id($info)
     {
 
-        $q = $this->_db->prepare('SELECT COUNT(*) FROM facture_espece WHERE supprimer = 0 AND facturation_id = '.$info);
+        $q = $this->_db->prepare('SELECT COUNT(*) FROM facture_ticket WHERE supprimer = 0 AND facturation_id = '.$info);
         $q->execute();
         return (bool) $q->fetchColumn();
 
@@ -120,38 +130,38 @@ class FactureEspeceManager
     public function get($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM facture_espece WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->query('SELECT * FROM facture_ticket WHERE supprimer = 0 AND id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new FactureEspece($donnees);
+        return new FactureTicket($donnees);
 
     }
-
     public function getFacture($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM facture_espece WHERE supprimer = 0 AND facturation_id = '.$info);
+        $q = $this->_db->query('SELECT * FROM facture_ticket WHERE supprimer = 0 AND facturation_id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new FactureEspece($donnees);
+        return new FactureTicket($donnees);
 
     }
     public function getList($info)
     {
         $facturation = array();
-        $q = $this->_db->prepare('SELECT * FROM facture_espece WHERE supprimer = 0 AND montant > '.$info.' ORDER BY montant ASC');
+        $q = $this->_db->prepare('SELECT * FROM facture_ticket WHERE supprimer = 0 AND montant > '.$info.' ORDER BY montant ASC');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $facturation[] = new FactureEspece($donnees);
+            $facturation[] = new FactureTicket($donnees);
         }
         return $facturation;
     }
-    public function update(FactureEspece $facturation)
+    public function update(FactureTicket $facturation)
     {
 
-        $q = $this->_db->prepare('UPDATE facture_espece SET facturation_id = :facturation_id, montant = :montant WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE facture_ticket SET facturation_id = :facturation_id, ticket_caisse_id = :ticket_caisse_id, montant = :montant WHERE id = :id');
         $q->bindValue(':id', $facturation->id(), PDO::PARAM_INT);
         $q->bindValue(':facturation_id', $facturation->facturation_id(), PDO::PARAM_INT);
         $q->bindValue(':montant', $facturation->montant(), PDO::PARAM_INT);
+        $q->bindValue(':ticket_caisse_id', $facturation->ticket_caisse_id());
         $q->execute();
     }
     public function setDb(PDO $db)

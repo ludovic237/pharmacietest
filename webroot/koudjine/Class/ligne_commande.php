@@ -122,6 +122,16 @@ class LigneCommandeManager
         }
         return $LigneCommandes;
     }
+    public function getListType($type)
+    {
+        $LigneCommandes = array();
+        $q = $this->_db->prepare('SELECT * FROM ligne_commande WHERE supprimer = 0 AND type = "'.$type.'"');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $LigneCommandes[] = new LigneCommande($donnees);
+        }
+        return $LigneCommandes;
+    }
     public function update(LigneCommande $LigneCommande)
     {
 
