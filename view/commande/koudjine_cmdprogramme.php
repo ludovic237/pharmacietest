@@ -804,6 +804,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                     onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print"
                                                                                   style="font-size:10px"></i>&nbsp;Imprimer
                             </button>
+
                         </div>
                     </div>
                     <div class="col-md-8 scroll">
