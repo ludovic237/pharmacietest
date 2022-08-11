@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#closemodal').click(function() {
+    $('#closemodal').click(function () {
         $('#message-alert-prod').modal('hide');
     });
     //$("#div_inventaire").hide();
@@ -159,6 +159,7 @@ function enregistrer_commande_programme() {
                 + '<td>'
                 + '<button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row_commande(' + codebarre + ')" ><span class="fa fa-times"></span></button>'
                 + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + codebarre + ');" >Imprimer Ticket</span></button>'
+                + '<button class="btn btn-success btn-sm" onClick="printOneTicket(' + codebarre + ');" >Tous Imprimer</span></button>'
                 + '</td>'
                 + '</tr>';
             $('#tab_commande_programme').prepend(cat);
@@ -485,6 +486,7 @@ var etiquetteCode;
 var etiquetteDatel;
 var etiquetteDatep;
 var etiquettePrix;
+var etiquetteQte;
 var qrcode;
 
 function showPrintCmdProgramme(id) {
@@ -499,7 +501,7 @@ function showPrintCmdProgramme(id) {
     var datelivraisron = $("#" + id + " .date").html();
     var prix = $("#" + id + " .prixpublic").html();
     var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
-
+    etiquetteQte = parseInt($("#" + id + " .qte").html()) + parseInt($("#" + id + " .ug").html());
     //var date = $("#" + id + " .date").html();
     //date = date.replaceAll("-", "");
 
@@ -569,7 +571,7 @@ function printAllTicket() {
     //loops through rows
     var tableNew = [];
 
-    if (rowLength > 0){
+    if (rowLength > 0) {
         for (i = 0; i < rowLength; i++) {
 
             //gets cells of current row
@@ -614,11 +616,66 @@ function printAllTicket() {
             tableNew.push({...line});
         }
         showAllPrintCmdProgramme(tableNew)
-    }
-    else {
+    } else {
         $("#message-alert-prod").modal("show");
     }
     //console.log(JSON.stringify(tableNew));
+}
+
+function printOneTicket(id) {
+    var doc = new jspdf.jsPDF({
+        orientation: 'landscape', unit: 'mm', format: [30, 17
+        ]
+    });
+    $('#qrcode').empty();
+    $('#productNameId').empty();
+
+    var nom = $("#" + id + " .nom strong").html();
+    var qte = parseInt($("#" + id + " .qte").html()) + parseInt($("#" + id + " .ug").html());
+    var datePerem = $("#" + id + " .date").html();
+    var prix = $("#" + id + " .prixpublic").html();
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = dd + "-" + mm + "-" + yyyy;
+    var todayCode = dd + "" + mm + "" + yyyy;
+    var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
+    qrcode = new QRCode(document.getElementById("qrcode"), {
+        width: 30,
+        height: 30
+    });
+    // qrcode.clear()
+    qrcode.makeCode(id);
+    /*console.log(tableNew[ind]);
+    console.log($('#qrcode img').attr('src'));
+    console.log("ind: "+ind);*/
+    setTimeout(function () {
+        /*console.log("i2: "+ind);
+        console.log($('#qrcode img').attr('src'));*/
+        for (let i = 0; i < qte; i++) {
+            let base64Image = $('#qrcode img').attr('src');
+
+            console.log(base64Image);
+
+            //var doc = new jsPDF('l', 'mm', [30, 15]);
+            doc.cell(0, 0, 30, 17, ' ', 1, "center");
+            doc.setFontSize(4);
+            doc.text(1, 5, nom);
+            doc.setFontSize(7);
+            doc.text(1, 9, prix + ' FCFA');
+            doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+            doc.setFontSize(5);
+            doc.text(2, 14, codefournisseur);
+            doc.setFontSize(4);
+            doc.text(2, 16, today + ' / ' + datePerem);
+            doc.cellAddPage([30, 17], "l");
+
+        }
+        doc.save('hello.pdf');
+    }, 500);
+
 }
 
 function showAllPrintCmdProgramme(tableNew) {
