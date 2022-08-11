@@ -14,7 +14,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/cmdprogramme.js"></script>
-<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>';
+<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
+<audio id="audio-alert" src="' . BASE_URL . '/koudjine/audio/alert.mp3" preload="auto"></audio>
+<audio id="audio-fail" src="' . BASE_URL . '/koudjine/audio/fail.mp3" preload="auto"></audio>
+<script type=" text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
+<script type=" text/javascript" src="' . BASE_URL . '/koudjine/js/actions.js"></script>';
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -69,7 +73,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="panel-body panel-body-table">
 
                             <div class="">
-                                <table id="tab_GCrecherche" style="display: block;height: 200px;overflow: auto;"
+                                <table id="tab_GCrecherche" style="display: block;max-height: 200px;overflow: auto;"
                                        class="table table-bordered table-striped table-actions">
                                     <thead>
                                     <tr>
@@ -98,7 +102,14 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <div class="row">
     <div class="col-md-9">
         <div class="panel panel-default">
-
+            <div class="panel-heading">
+                <div style="display: flex">
+                    <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
+                       id="qrcode_all"></p>
+                    <a onclick="printAllTicket()" data="1" class="btn btn-success" role="button" style="float: left;">Imprimer
+                        les tickets</a>
+                </div>
+            </div>
             <div class="panel-body panel-body-table">
 
                 <div class="panel-body">
@@ -115,6 +126,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <th width="100">Prix Public</th>
                             <th width="100">Date de perremption</th>
                             <th width="100">Réduction</th>
+                            <th width="100">QrCode</th>
                             <th width="100">Action</th>
                         </tr>
                         </thead>
@@ -177,7 +189,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 <div class="row">
                     <div class="col-md-12 ">
                         <div class="">
-                            <table id="tab_load_produit" style="display: block;height: 200px;overflow: auto;"
+                            <table id="tab_load_produit" style="display: block;max-height: 200px;overflow: auto;"
                                    class="table datatable table-bordered table-striped table-actions">
                                 <thead>
                                 <tr>
@@ -697,7 +709,8 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
                 <h4 class="modal-title">Produit</h4>
             </div>
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
@@ -746,21 +759,28 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                         </td>
                                     </tr> -->
                                     <tr style="margin:0px;display: flex;table-layout: fixed; width: 40mm ;height: 15mm;">
-                                        <td style="width: 29.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;padding-top: 0px;height: 15mm;" colspan="2">
+                                        <td style="width: 29.75mm;background-color: white;color: black;font-weight: 400;padding: 4px 0px 0px 0px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;padding-top: 0px;height: 15mm;"
+                                            colspan="2">
 
                                             <div style="display: flex;flex-direction: column;padding: 0px 4px;height: 15mm;">
                                                 <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%">
-                                                    <p class="nomp" style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;"></p>
+                                                    <p class="nomp"
+                                                       style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;"></p>
                                                     <!--<p class="prixv" style="font-weight: bold;text-align:center; margin:0px;font-size: 8px;"></p>-->
                                                 </div>
                                                 <div style="display: flex;flex-direction: row;justify-content: space-between;width:100%;height: 8mm;">
                                                     <div style="display: flex;flex-direction: column;justify-content: space-between;width:100%">
-                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 12px;align-content: center;align-items: center;justify-content: center;justify-items: center;display: flex;"><span class="prixv"></span> FCFA</p>
-                                                        <p class="nomf" style="font-weight: bold;text-align:center; margin:0px;font-size: 5px;"></p>
-                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;"><span class="datep"></span> / <span class="datel" ></span></p>
+                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 12px;align-content: center;align-items: center;justify-content: center;justify-items: center;display: flex;">
+                                                            <span class="prixv"></span> FCFA</p>
+                                                        <p class="nomf"
+                                                           style="font-weight: bold;text-align:center; margin:0px;font-size: 5px;"></p>
+                                                        <p style="font-weight: bold;text-align:center; margin:0px;font-size: 6px;">
+                                                            <span class="datep"></span> / <span class="datel"></span>
+                                                        </p>
                                                     </div>
                                                     <div>
-                                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px" id="qrcode"></p>
+                                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
+                                                           id="qrcode"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -779,7 +799,11 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                 </table>
 
                             </div>
-                            <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>
+                            <button type="button" class="btn btn-circle blue"
+                                    style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
+                                    onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print"
+                                                                                  style="font-size:10px"></i>&nbsp;Imprimer
+                            </button>
                         </div>
                     </div>
                     <div class="col-md-8 scroll">
@@ -852,3 +876,17 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     </div>
 </div>
 <!-- END MODAL ICON PREVIEW -->
+
+<div class="message-box message-box-danger animated fadeIn" data-sound="fail" id="message-alert-prod">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-times"></span> DANGER!</div>
+            <div class="mb-content">
+                <p>Svp veuillez ajouter un produit.</p>
+            </div>
+            <div class="mb-footer">
+                <button class="btn btn-default btn-lg pull-right mb-control-close" id="closemodal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
