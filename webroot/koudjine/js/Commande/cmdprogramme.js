@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    $('#closemodal').click(function() {
+        $('#message-alert-prod').modal('hide');
+    });
     //$("#div_inventaire").hide();
     $("#tab_BCrecherche").hide();
     $("#tab_GCrecherche").hide();
@@ -96,6 +99,8 @@ function load_produit(id, nom, prixachat, prixvente, reduction) {
     $("#iconPreviewForm").modal("show");
 }
 
+var tableId = [];
+
 function enregistrer_commande_programme() {
 
 
@@ -140,6 +145,7 @@ function enregistrer_commande_programme() {
                 prixpublic: prixpublic,
                 date: date,
             };
+            tableId.push(id);
 
             var cat = '<tr id=' + codebarre + ' >'
                 + ' <td class="nom" data="' + id + '" ><strong>' + nom + '</strong></td>'
@@ -149,6 +155,7 @@ function enregistrer_commande_programme() {
                 + '<td class="prixpublic">' + prixpublic + '</td>'
                 + '<td class="date">' + date + '</td>'
                 + '<td class="reduction">' + reduction + '</td>'
+                + '<td class="mycodeBar">' + reduction + '</td>'
                 + '<td>'
                 + '<button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row_commande(' + codebarre + ')" ><span class="fa fa-times"></span></button>'
                 + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + codebarre + ');" >Imprimer Ticket</span></button>'
@@ -188,6 +195,13 @@ function enregistrer_commande_programme() {
             $("#iconPreviewForm").modal("hide");
             $('#qte_cmdprogramme').val('');
             $('#date_cmdprogramme').val('');
+            console.log($('#' + codebarre + ' .mycodeBar'));
+            qrcode = new QRCode($('#' + codebarre + ' tr .mycodeBar'), {
+                width: 30,
+                height: 30
+            });
+            qrcode.clear()
+            qrcode.makeCode(codebarre);
         }
         //alert(id);
 
@@ -474,7 +488,7 @@ var etiquettePrix;
 var qrcode;
 
 function showPrintCmdProgramme(id) {
-
+    $('#qrcode img').remove();
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -507,10 +521,12 @@ function showPrintCmdProgramme(id) {
     $("#iconPreviewPrintCmdProgramme .datep").html(datelivraisron);
     $("#iconPreviewPrintCmdProgramme .prixv").html(prix);
     code1 = codebarre;
+
     qrcode = new QRCode(document.getElementById("qrcode"), {
         width: 30,
         height: 30
     });
+    qrcode.clear();
     qrcode.makeCode(code1);
 
     $("#iconPreviewPrintCmdProgramme").modal("show");
@@ -520,14 +536,16 @@ function imprimer_bloc(titre, objet) {
     let base64Image = $('#qrcode img').attr('src');
     console.log(base64Image);
     console.log(base64Image);
-    var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 17
-        ]});
+    var doc = new jspdf.jsPDF({
+        orientation: 'landscape', unit: 'mm', format: [30, 17
+        ]
+    });
     //var doc = new jsPDF('l', 'mm', [30, 15]);
     doc.cell(0, 0, 30, 17, ' ', 1, "center");
     doc.setFontSize(4);
     doc.text(1, 5, etiquetteNomP);
     doc.setFontSize(7);
-    doc.text(1, 9, etiquettePrix+' FCFA');
+    doc.text(1, 9, etiquettePrix + ' FCFA');
     doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
     doc.setFontSize(5);
     doc.text(2, 14, etiquetteNomF);
@@ -538,3 +556,157 @@ function imprimer_bloc(titre, objet) {
     return true;
 }
 
+function showPrintAllTicket() {
+    $("#iconPreviewPrintAllCmdProgramme").modal("show");
+}
+
+function printAllTicket() {
+    //gets table
+    var oTable = document.getElementById('tab_commande_programme');
+    //gets rows of table
+    var rowLength = oTable.rows.length;
+    var jsonData = {};
+    //loops through rows
+    var tableNew = [];
+
+    if (rowLength > 0){
+        for (i = 0; i < rowLength; i++) {
+
+            //gets cells of current row
+            var oCells = oTable.rows.item(i).cells;
+            var id = oTable.rows.item(i).id;
+            //gets amount of cells of current row
+            var cellLength = oCells.length;
+
+            //loops through each cell in current row
+            var line = {};
+            for (var j = 0; j < cellLength; j++) {
+
+                // get your cell info here
+                // console.log(oCells.item(j));
+                var cellVal = oCells.item(j).innerHTML;
+                switch (j) {
+                    case 0:
+                        var name = cellVal.replace("<strong>", "").replace("</strong>", "")
+                        line.name = name;
+                        break;
+                    case 1:
+                        line.qte = parseInt(cellVal);
+                        break;
+                    case 2:
+                        line.unit = parseInt(cellVal);
+                        break;
+                    case 3:
+                        line.prixa = parseInt(cellVal);
+                        break;
+                    case 4:
+                        line.prixp = parseInt(cellVal);
+                        break;
+                    case 5:
+                        line.date = "" + cellVal;
+                        break;
+                    case 6:
+                        line.red = cellVal;
+                        break;
+                }
+            }
+            line.id = id
+            tableNew.push({...line});
+        }
+        showAllPrintCmdProgramme(tableNew)
+    }
+    else {
+        $("#message-alert-prod").modal("show");
+    }
+    //console.log(JSON.stringify(tableNew));
+}
+
+function showAllPrintCmdProgramme(tableNew) {
+    console.log(tableNew);
+    var doc = new jspdf.jsPDF({
+        orientation: 'landscape', unit: 'mm', format: [30, 17
+        ]
+    });
+    for (var i = 0; i < tableNew.length; i++) {
+        (function (ind) {
+            setTimeout(function () {
+                $('#qrcode').empty();
+                $('#productNameId').empty();
+                var id = tableNew[ind].id;
+                var nom = tableNew[ind].name;
+                $('#productNameId').html(ind + " - " + nom);
+                var qte = (tableNew[ind].qte + tableNew[ind].unit)
+                var datePerem = tableNew[ind].date;
+                var prix = tableNew[ind].prixp;
+
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0');
+                var yyyy = today.getFullYear();
+                today = dd + "-" + mm + "-" + yyyy;
+                var todayCode = dd + "" + mm + "" + yyyy;
+                var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
+                qrcode = new QRCode(document.getElementById("qrcode"), {
+                    width: 30,
+                    height: 30
+                });
+                // qrcode.clear()
+                qrcode.makeCode(id);
+                /*console.log(tableNew[ind]);
+                console.log($('#qrcode img').attr('src'));
+                console.log("ind: "+ind);*/
+                setTimeout(function () {
+                    /*console.log("i2: "+ind);
+                    console.log($('#qrcode img').attr('src'));*/
+                    for (let i = 0; i < qte; i++) {
+                        let base64Image = $('#qrcode img').attr('src');
+
+                        console.log(base64Image);
+
+                        //var doc = new jsPDF('l', 'mm', [30, 15]);
+                        doc.cell(0, 0, 30, 17, ' ', 1, "center");
+                        doc.setFontSize(4);
+                        doc.text(1, 5, nom);
+                        doc.setFontSize(7);
+                        doc.text(1, 9, prix + ' FCFA');
+                        doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+                        doc.setFontSize(5);
+                        doc.text(2, 14, codefournisseur);
+                        doc.setFontSize(4);
+                        doc.text(2, 16, today + ' / ' + datePerem);
+                        doc.cellAddPage([30, 17], "l");
+
+                    }
+                    if (ind === tableNew.length - 1) {
+                        doc.save('hello.pdf');
+                    }
+                }, 500);
+            }, 1000 + (3000 * ind));
+        })(i);
+
+    }
+}
+
+function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
+    let base64Image = $('#qrcode img').attr('src');
+
+    console.log(base64Image);
+    var doc = new jspdf.jsPDF({
+        orientation: 'landscape', unit: 'mm', format: [30, 17
+        ]
+    });
+    //var doc = new jsPDF('l', 'mm', [30, 15]);
+    doc.cell(0, 0, 30, 17, ' ', 1, "center");
+    doc.setFontSize(4);
+    doc.text(1, 5, nom);
+    doc.setFontSize(7);
+    doc.text(1, 9, prix + ' FCFA');
+    doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+    doc.setFontSize(5);
+    doc.text(2, 14, codefournisseur);
+    doc.setFontSize(4);
+    doc.text(2, 16, date + ' / ' + datePerem);
+    doc.save('hello.pdf');
+    //doc.print('hello');
+    return true;
+}
