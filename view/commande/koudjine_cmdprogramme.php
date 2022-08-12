@@ -14,11 +14,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/cmdprogramme.js"></script>
-<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
-<audio id="audio-alert" src="' . BASE_URL . '/koudjine/audio/alert.mp3" preload="auto"></audio>
-<audio id="audio-fail" src="' . BASE_URL . '/koudjine/audio/fail.mp3" preload="auto"></audio>
-<script type=" text/javascript" src="' . BASE_URL . '/koudjine/js/plugins.js"></script>
-<script type=" text/javascript" src="' . BASE_URL . '/koudjine/js/actions.js"></script>';
+<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>';
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -142,8 +138,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     </div>
 
 </div>
-<div style="display: flex;justify-content: space-between;background-color: white;position: fixed;bottom: 10px;right: 10px;align-items: baseline;background-color: #fff;
-border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 1px 1px 1px rgba(10,0,0,.05);">
+<div style="display: flex;justify-content: space-between;background-color: white;position: fixed;bottom: 10px;right: 10px;align-items: baseline;border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 1px 1px 1px rgba(10,0,0,.05);">
     <div style="flex-direction: column;display: flex;padding: 20px;justify-content: center;align-items: center;width: 250px;">
         <!-- <div style="display: flex;flex-direction: column;width: 100%;">
             <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
