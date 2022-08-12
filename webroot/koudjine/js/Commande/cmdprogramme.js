@@ -178,7 +178,7 @@ function enregistrer_commande_programme() {
                     if (j == 2) {
                         ug = parseInt($(this).html());
                         ugTotal = ugTotal + ug;
-                        alert(ugTotal);
+                        //alert(ugTotal);
                     }
                     if (j == 3) {
                         total = (qte * parseInt($(this).html()));
@@ -647,7 +647,8 @@ function printOneTicket(id) {
         height: 30
     });
     // qrcode.clear()
-    qrcode.makeCode(id);
+    qrcode.makeCode(""+id);
+    console.log(""+id);
     /*console.log(tableNew[ind]);
     console.log($('#qrcode img').attr('src'));
     console.log("ind: "+ind);*/
@@ -665,7 +666,7 @@ function printOneTicket(id) {
             doc.text(1, 5, nom);
             doc.setFontSize(7);
             doc.text(1, 9, prix + ' FCFA');
-            doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+            doc.addImage(base64Image, "JPEG", 0, 0, 10, 10);
             doc.setFontSize(5);
             doc.text(2, 14, codefournisseur);
             doc.setFontSize(4);
@@ -674,14 +675,14 @@ function printOneTicket(id) {
 
         }
         doc.save('hello.pdf');
-    }, 500);
+    }, 2500);
 
 }
 
 function showAllPrintCmdProgramme(tableNew) {
     console.log(tableNew);
     var doc = new jspdf.jsPDF({
-        orientation: 'landscape', unit: 'mm', format: [30, 17
+        orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
     });
     for (var i = 0; i < tableNew.length; i++) {
@@ -709,6 +710,7 @@ function showAllPrintCmdProgramme(tableNew) {
                 });
                 // qrcode.clear()
                 qrcode.makeCode(id);
+                console.log(id);
                 /*console.log(tableNew[ind]);
                 console.log($('#qrcode img').attr('src'));
                 console.log("ind: "+ind);*/
@@ -721,17 +723,18 @@ function showAllPrintCmdProgramme(tableNew) {
                         console.log(base64Image);
 
                         //var doc = new jsPDF('l', 'mm', [30, 15]);
-                        doc.cell(0, 0, 30, 17, ' ', 1, "center");
-                        doc.setFontSize(4);
-                        doc.text(1, 5, nom);
+                        doc.cell(0, 0, 30, 20, ' ', 1, "center");
+                        doc.setFontSize(2);
                         doc.setFontSize(7);
-                        doc.text(1, 9, prix + ' FCFA');
-                        doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+                        doc.text(19, 6, prix + ' F');
+                        doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
                         doc.setFontSize(5);
-                        doc.text(2, 14, codefournisseur);
+                        doc.text(19, 8, codefournisseur);
                         doc.setFontSize(4);
-                        doc.text(2, 16, today + ' / ' + datePerem);
-                        doc.cellAddPage([30, 17], "l");
+                        doc.text(19, 10, today );
+                        doc.text(19, 12,  datePerem);
+                        doc.text(19, 16, nom);
+                        doc.cellAddPage([30, 20], "l");
 
                     }
                     if (ind === tableNew.length - 1) {
@@ -749,20 +752,20 @@ function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
 
     console.log(base64Image);
     var doc = new jspdf.jsPDF({
-        orientation: 'landscape', unit: 'mm', format: [30, 17
+        orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
     });
     //var doc = new jsPDF('l', 'mm', [30, 15]);
-    doc.cell(0, 0, 30, 17, ' ', 1, "center");
-    doc.setFontSize(4);
+    doc.cell(0, 0, 30, 20, ' ', 1, "center");
+    /*doc.setFontSize(4);
     doc.text(1, 5, nom);
     doc.setFontSize(7);
-    doc.text(1, 9, prix + ' FCFA');
-    doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
-    doc.setFontSize(5);
+    doc.text(1, 9, prix + ' FCFA');*/
+    doc.addImage(base64Image, "JPEG", 0, 0, 10, 10);
+    /*doc.setFontSize(5);
     doc.text(2, 14, codefournisseur);
     doc.setFontSize(4);
-    doc.text(2, 16, date + ' / ' + datePerem);
+    doc.text(2, 16, date + ' / ' + datePerem);*/
     doc.save('hello.pdf');
     //doc.print('hello');
     return true;
