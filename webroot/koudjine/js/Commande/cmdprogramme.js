@@ -678,7 +678,7 @@ function printOneTicket(id) {
             doc.cellAddPage([30, 20], "l");
 
         }
-        doc.save('hello.pdf');
+        doc.save(nom+'.pdf');
     }, 2500);
 
 }
@@ -742,7 +742,7 @@ function showAllPrintCmdProgramme(tableNew) {
 
                     }
                     if (ind === tableNew.length - 1) {
-                        doc.save('hello.pdf');
+                        doc.save(nom+'.pdf');
                     }
                 }, 500);
             }, 1000 + (3000 * ind));
