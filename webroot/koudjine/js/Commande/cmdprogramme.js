@@ -158,8 +158,7 @@ function enregistrer_commande_programme() {
                 + '<td class="mycodeBar">' + reduction + '</td>'
                 + '<td>'
                 + '<button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row_commande(' + codebarre + ')" ><span class="fa fa-times"></span></button>'
-                + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + codebarre + ');" >Imprimer Ticket</span></button>'
-                + '<button class="btn btn-success btn-sm" onClick="printOneTicket(' + codebarre + ');" >Tous Imprimer</span></button>'
+                + '<button class="btn btn-primary btn-rounded btn-sm" onClick="printOneTicket(' + codebarre + ');" >Imprimer Ticket</span></button>'
                 + '</td>'
                 + '</tr>';
             $('#tab_commande_programme').prepend(cat);
@@ -539,20 +538,24 @@ function imprimer_bloc(titre, objet) {
     console.log(base64Image);
     console.log(base64Image);
     var doc = new jspdf.jsPDF({
-        orientation: 'landscape', unit: 'mm', format: [30, 17
+        orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
     });
     //var doc = new jsPDF('l', 'mm', [30, 15]);
-    doc.cell(0, 0, 30, 17, ' ', 1, "center");
-    doc.setFontSize(4);
-    doc.text(1, 5, etiquetteNomP);
+
+    doc.cell(0, 0, 30, 20, ' ', 1, "center");
+    doc.setFontSize(2);
     doc.setFontSize(7);
-    doc.text(1, 9, etiquettePrix + ' FCFA');
-    doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+    doc.text(19, 6, etiquettePrix + ' F');
+    doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
     doc.setFontSize(5);
-    doc.text(2, 14, etiquetteNomF);
+    doc.text(19, 8, etiquetteNomF);
     doc.setFontSize(4);
-    doc.text(2, 16, etiquetteDatel + ' / ' + etiquetteDatep);
+    doc.text(19, 10, etiquetteDatel );
+    doc.text(19, 12,  etiquetteDatep);
+    doc.text(19, 16, etiquetteNomP);
+    doc.cellAddPage([30, 20], "l");
+
     doc.save('hello.pdf');
     //doc.print('hello');
     return true;
@@ -624,7 +627,7 @@ function printAllTicket() {
 
 function printOneTicket(id) {
     var doc = new jspdf.jsPDF({
-        orientation: 'landscape', unit: 'mm', format: [30, 17
+        orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
     });
     $('#qrcode').empty();
@@ -661,17 +664,18 @@ function printOneTicket(id) {
             console.log(base64Image);
 
             //var doc = new jsPDF('l', 'mm', [30, 15]);
-            doc.cell(0, 0, 30, 17, ' ', 1, "center");
-            doc.setFontSize(4);
-            doc.text(1, 5, nom);
+            doc.cell(0, 0, 30, 20, ' ', 1, "center");
+            doc.setFontSize(2);
             doc.setFontSize(7);
-            doc.text(1, 9, prix + ' FCFA');
-            doc.addImage(base64Image, "JPEG", 0, 0, 10, 10);
+            doc.text(19, 6, prix + ' F');
+            doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
             doc.setFontSize(5);
-            doc.text(2, 14, codefournisseur);
+            doc.text(19, 8, codefournisseur);
             doc.setFontSize(4);
-            doc.text(2, 16, today + ' / ' + datePerem);
-            doc.cellAddPage([30, 17], "l");
+            doc.text(19, 10, today );
+            doc.text(19, 12,  datePerem);
+            doc.text(19, 16, nom);
+            doc.cellAddPage([30, 20], "l");
 
         }
         doc.save('hello.pdf');
@@ -757,15 +761,17 @@ function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
     });
     //var doc = new jsPDF('l', 'mm', [30, 15]);
     doc.cell(0, 0, 30, 20, ' ', 1, "center");
-    /*doc.setFontSize(4);
-    doc.text(1, 5, nom);
+    doc.setFontSize(2);
     doc.setFontSize(7);
-    doc.text(1, 9, prix + ' FCFA');*/
-    doc.addImage(base64Image, "JPEG", 0, 0, 10, 10);
-    /*doc.setFontSize(5);
-    doc.text(2, 14, codefournisseur);
+    doc.text(19, 6, prix + ' F');
+    doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
+    doc.setFontSize(5);
+    doc.text(19, 8, codefournisseur);
     doc.setFontSize(4);
-    doc.text(2, 16, date + ' / ' + datePerem);*/
+    doc.text(19, 10, today );
+    doc.text(19, 12,  datePerem);
+    doc.text(19, 16, nom);
+    doc.cellAddPage([30, 20], "l");
     doc.save('hello.pdf');
     //doc.print('hello');
     return true;
