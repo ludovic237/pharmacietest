@@ -1,12 +1,16 @@
 <?php
 require_once('database.php');
+require_once('../Class/commande.php');
 
 global $pdo;
 global $conndb;
 
+$manager = new CommandeManager($pdo);
+
 //On sélectionne tous les users dont le nom = Pierre
 if (isset($_POST["motclef"])) {
     $motclef = $_POST["motclef"];
+    $idf = $_POST["idf"];
 
     $sth = $pdo->prepare("
               SELECT p.nom, r.quantite, r.reduction, p.reductionMax, r.prixAchat, r.prixVente, r.id as id, r.dateLivraison, p.id as idp 
@@ -19,8 +23,8 @@ if (isset($_POST["motclef"])) {
     $count = $sth->rowCount();
     if ($count) {
         while ($result = $sth->fetch(PDO::FETCH_OBJ)) {
-
-            $donnees = array('erreur' =>'non', 'find' => 'oui','id' => $result->idp, 'nom' => $result->nom, 'prixV' => $result->prixVente, 'prixA' => $result->prixAchat, 'reduction' => $result->reductionMax);
+            $nbre_cmd = $manager->countNbreProduitParJour($result->idp, $idf);
+            $donnees = array('erreur' =>'non', 'find' => 'oui','id' => $result->idp, 'nom' => $result->nom, 'prixV' => $result->prixVente, 'prixA' => $result->prixAchat, 'reduction' => $result->reductionMax, 'nbre_cmd' => $nbre_cmd);
             echo json_encode($donnees);
         }
 

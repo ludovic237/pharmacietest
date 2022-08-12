@@ -32,15 +32,20 @@ $(document).ready(function () {
             recherche = $.trim(recherche);
             var data = 'motclef=' + recherche;
             if (recherche.length > 1) {
-                ////alert('yes');
+                alert('yes');
                 $.ajax({
                     type: "POST",
                     url: "/pharmacietest/koudjine/inc/result_commande_prog2.php",
-                    data: data,
+                    data: {
+                        motclef: recherche,
+                        idf: $('#fournisseur_commande').val(),
+                    },
                     dataType: 'json',
                     success: function (data) {
                         if (data.erreur == "non") {
-                            load_produit(data.id, data.nom, data.prixA, data.prixV, data.reduction);
+                            load_produit(data.id, data.nom, data.prixA, data.prixV, data.reduction, data.nbre_cmd);
+                            //alert(data.nbre_cmd)
+                            $('#fournisseur_commande').attr("data", data.nbre_cmd);
                             $('#recherche').val("");
                             $("#tab_BCrecherche").empty();
                             $("#tab_GCrecherche").hide();
@@ -69,7 +74,10 @@ $(document).ready(function () {
                 $.ajax({
                     type: "GET",
                     url: "/pharmacietest/koudjine/inc/result_commande_prog.php",
-                    data: data,
+                    data: {
+                        motclef1: recherche,
+                        idf: $('#fournisseur_commande').val(),
+                    },
                     success: function (server_responce) {
                         $("#tab_GCrecherche").show();
                         $("#tab_BCrecherche").html(server_responce).show();
@@ -85,8 +93,8 @@ $(document).ready(function () {
 
 });
 
-function load_produit(id, nom, prixachat, prixvente, reduction) {
-
+function load_produit(id, nom, prixachat, prixvente, reduction, nbre_cmd) {
+    nbre_cmd = parseInt(nbre_cmd) + 1;
     $("#tab_BCrecherche").hide();
     $("#tab_BCrecherche").empty();
     $("#tab_GCrecherche").hide();
@@ -97,6 +105,7 @@ function load_produit(id, nom, prixachat, prixvente, reduction) {
     $('#prixpublic_cmdprogramme').val(prixvente);
     $('#id_xr').attr("data", id);
     $("#iconPreviewForm").modal("show");
+    $("#fournisseur_commande").attr("data", nbre_cmd);
 }
 
 var tableId = [];
@@ -135,7 +144,7 @@ function enregistrer_commande_programme() {
             var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
 
 
-            var codebarre = id + "" + codefournisseur + "" + today;
+            var codebarre = id + "" + codefournisseur + "" + today+ "" + $('#fournisseur_commande').attr("data");
 
             var data = {
                 nom: nom,

@@ -29,7 +29,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Selectionner un fournisseur
                     :</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <select class="selectpicker form-control input-xlarge" name="fabproduit" id="fournisseur_commande">
+                    <select class="selectpicker form-control input-xlarge" name="fabproduit" id="fournisseur_commande" data="">
                         <option value="0">Sélectionner Fournisseur</option>
                         <?php
                         foreach ($fournisseur as $k => $v) : ?>
