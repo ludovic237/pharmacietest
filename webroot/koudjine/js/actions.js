@@ -914,7 +914,7 @@ function charger_stock(){
     var id3 =  $('#srch_perime option:selected').text();
     if(id1 != ''){
         var id = $('#rechercheEntre').attr("data");
-        alert(id);
+        //alert(id);
         if(id2 == 'Tout...'){
             if(id3 == 'Tout...'){
                 var link = '/pharmacietest/bouwou/comptabilite/entre/'+id;

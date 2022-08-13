@@ -32,7 +32,7 @@ $(document).ready(function () {
             recherche = $.trim(recherche);
             var data = 'motclef=' + recherche;
             if (recherche.length > 1) {
-                alert('yes');
+                //alert('yes');
                 $.ajax({
                     type: "POST",
                     url: "/pharmacietest/koudjine/inc/result_commande_prog2.php",
@@ -734,6 +734,7 @@ function showAllPrintCmdProgramme(tableNew) {
         })(i);
     }
 }
+
 
 function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
     let base64Image = $('#qrcode img').attr('src');
