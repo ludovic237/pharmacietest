@@ -426,7 +426,7 @@ function valider_commande(imprimer) {
                                 reduction: reduction
                             },
                             success: function (server_responce) {
-                                alert(server_responce);
+                                //alert(server_responce);
                                 //alert(idc);
                                 //alert("OK");
                                 rec++;
