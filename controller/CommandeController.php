@@ -1,4 +1,5 @@
 <?php
+
 class CommandeController extends Controller
 {
 
@@ -15,7 +16,6 @@ class CommandeController extends Controller
         $d['page'] = ceil($d['total'] / $perPage);
         $this->set($d);
     }*/
-
 
 
     /**
@@ -38,11 +38,11 @@ class CommandeController extends Controller
     function koudjine_simplereappro($id = null, $jour = null)
     {
         $this->loadModel('Commande');
-        if($jour == null){
+        if ($jour == null) {
             $jour = 14;
         }
         $d['jour'] = $jour;
-        if($id == 0){
+        if ($id == 0) {
             $id = null;
         }
 
@@ -50,7 +50,7 @@ class CommandeController extends Controller
             //'fields' => 'nom',
             'table' => 'fournisseur',
             'order' => 'nom-ASC',
-           'conditions' => array( 'supprimer' => 0)
+            'conditions' => array('supprimer' => 0)
         ));
 
         if ($id != null) {
@@ -58,16 +58,16 @@ class CommandeController extends Controller
                 'fields' => 'distinct(p.id) as idp, prixAchat, stock, reductionMax, p.nom as nom, f.nom as nomf, CAST(dateLivraison AS DATE) as dateLivraison',
                 'table' => ' produit p, en_rayon e, concerner c, vente v, fournisseur f',
                 //'order' => 'nom-ASC',
-                'conditions' => 'v.id = c.vente_id and c.en_rayon_id = e.id and e.fournisseur_id = f.id and e.fournisseur_id = '.$id.' and p.id = e.produit_id and 
-dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.dateLivraison IN 
+                'conditions' => 'v.id = c.vente_id and c.en_rayon_id = e.id and e.fournisseur_id = f.id and e.fournisseur_id = ' . $id . ' and p.id = e.produit_id and 
+dateVente between DATE_ADD(now(), INTERVAL -' . $jour . ' day) and now()  AND e.dateLivraison IN 
 (select max(dateLivraison) from en_rayon r where r.produit_id = e.produit_id )'
             ));
             $d['fournisseurs'] = $this->Commande->find(array(
                 'fields' => 'distinct(p.id) as idp, prixAchat, stock, reductionMax, p.nom as nom, f.nom as nomf, CAST(dateLivraison AS DATE) as dateLivraison',
                 'table' => ' produit p, en_rayon e, concerner c, vente v, fournisseur f',
                 //'order' => 'nom-ASC',
-                'conditions' => 'v.id = c.vente_id and c.en_rayon_id = e.id and e.fournisseur_id = f.id and e.fournisseur_id <> '.$id.' and p.id = e.produit_id and 
-dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.dateLivraison IN 
+                'conditions' => 'v.id = c.vente_id and c.en_rayon_id = e.id and e.fournisseur_id = f.id and e.fournisseur_id <> ' . $id . ' and p.id = e.produit_id and 
+dateVente between DATE_ADD(now(), INTERVAL -' . $jour . ' day) and now()  AND e.dateLivraison IN 
 (select max(dateLivraison) from en_rayon r where r.produit_id = e.produit_id )'
             ));
             $d['fournisseur_id'] = $id;
@@ -78,7 +78,7 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
                 'table' => ' produit p, en_rayon e, concerner c, vente v, fournisseur f',
                 //'order' => 'nom-ASC',
                 'conditions' => 'v.id = c.vente_id and c.en_rayon_id = e.id and e.fournisseur_id = f.id and p.id = e.produit_id and 
-dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.dateLivraison IN 
+dateVente between DATE_ADD(now(), INTERVAL -' . $jour . ' day) and now()  AND e.dateLivraison IN 
 (select max(dateLivraison) from en_rayon r where r.produit_id = e.produit_id )'
             ));
         }
@@ -92,11 +92,11 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
             //'fields' => 'nom',
             'table' => 'fournisseur',
             'order' => 'nom-ASC',
-            'conditions' => array( 'supprimer' => 0)
+            'conditions' => array('supprimer' => 0)
         ));
         $this->set($d);
     }
-  
+
     function koudjine_cmdparticuliere()
     {
         $this->loadModel('Commande');
@@ -104,7 +104,7 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
             //'fields' => 'nom',
             'table' => 'fournisseur',
             'order' => 'nom-ASC',
-           'conditions' => array( 'supprimer' => 0)
+            'conditions' => array('supprimer' => 0)
         ));
         $this->set($d);
     }
@@ -118,15 +118,15 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
             'order' => 'id-DESC',
             'limit' => (1)
         ));
-        if(empty($d['com'])){
+        if (empty($d['com'])) {
 
-            $d['date'] = date('Y-m-d') ;
-            $d['dateDerniere'] = date('Y-m-d', strtotime($d['date']. ' - 1 years'));
-            $d['dateDerniere'] = $d['dateDerniere'].' 00:00:00';
-        }else{
+            $d['date'] = date('Y-m-d');
+            $d['dateDerniere'] = date('Y-m-d', strtotime($d['date'] . ' - 1 years'));
+            $d['dateDerniere'] = $d['dateDerniere'] . ' 00:00:00';
+        } else {
             $d['dateDerniere'] = $d['com']->dateDerniere;
         }
-        $d['datetime'] = date('Y-m-d H:i:s') ;
+        $d['datetime'] = date('Y-m-d H:i:s');
         $this->set($d);
     }
 
@@ -139,15 +139,15 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
             'order' => 'c.id-DESC',
             'conditions' => 'c.fournisseur_id = f.id and c.supprimer = 0 and  f.supprimer = 0 and c.etat <> "Livré" '
         ));
-        if($id != null){
+        if ($id != null) {
             $d['com'] = $this->Commande->findFirst(array(
                 //'fields' => 'c.id as id,dateCreation,dateLivraison,nom,fournisseur_id,qtiteCmd,qtiteRecu,montantCmd,montantRecu,etat,ref',
                 'table' => 'commande c',
-                'conditions' => array( 'c.id' => $id , 'c.supprimer' => 0)
+                'conditions' => array('c.id' => $id, 'c.supprimer' => 0)
             ));
         }
 
-        if(empty($d['commande'])){
+        if (empty($d['commande'])) {
             $this->e404('Page introuvable');
         }
         $this->set($d);

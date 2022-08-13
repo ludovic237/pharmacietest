@@ -153,7 +153,7 @@ class FournisseurManager
     }
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM fournisseur WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query('SELECT COUNT(*) FROM fournisseur ')->fetchColumn();
     }
     public function delete(Fournisseur $fournisseur)
     {
