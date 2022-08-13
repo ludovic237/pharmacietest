@@ -32,15 +32,20 @@ $(document).ready(function () {
             recherche = $.trim(recherche);
             var data = 'motclef=' + recherche;
             if (recherche.length > 1) {
-                ////alert('yes');
+                alert('yes');
                 $.ajax({
                     type: "POST",
                     url: "/pharmacietest/koudjine/inc/result_commande_prog2.php",
-                    data: data,
+                    data: {
+                        motclef: recherche,
+                        idf: $('#fournisseur_commande').val(),
+                    },
                     dataType: 'json',
                     success: function (data) {
                         if (data.erreur == "non") {
-                            load_produit(data.id, data.nom, data.prixA, data.prixV, data.reduction);
+                            load_produit(data.id, data.nom, data.prixA, data.prixV, data.reduction, data.nbre_cmd);
+                            //alert(data.nbre_cmd)
+                            $('#fournisseur_commande').attr("data", data.nbre_cmd);
                             $('#recherche').val("");
                             $("#tab_BCrecherche").empty();
                             $("#tab_GCrecherche").hide();
@@ -69,7 +74,10 @@ $(document).ready(function () {
                 $.ajax({
                     type: "GET",
                     url: "/pharmacietest/koudjine/inc/result_commande_prog.php",
-                    data: data,
+                    data: {
+                        motclef1: recherche,
+                        idf: $('#fournisseur_commande').val(),
+                    },
                     success: function (server_responce) {
                         $("#tab_GCrecherche").show();
                         $("#tab_BCrecherche").html(server_responce).show();
@@ -85,8 +93,8 @@ $(document).ready(function () {
 
 });
 
-function load_produit(id, nom, prixachat, prixvente, reduction) {
-
+function load_produit(id, nom, prixachat, prixvente, reduction, nbre_cmd) {
+    nbre_cmd = parseInt(nbre_cmd) + 1;
     $("#tab_BCrecherche").hide();
     $("#tab_BCrecherche").empty();
     $("#tab_GCrecherche").hide();
@@ -97,6 +105,7 @@ function load_produit(id, nom, prixachat, prixvente, reduction) {
     $('#prixpublic_cmdprogramme').val(prixvente);
     $('#id_xr').attr("data", id);
     $("#iconPreviewForm").modal("show");
+    $("#fournisseur_commande").attr("data", nbre_cmd);
 }
 
 var tableId = [];
@@ -135,7 +144,7 @@ function enregistrer_commande_programme() {
             var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
 
 
-            var codebarre = id + "" + codefournisseur + "" + today;
+            var codebarre = id + "" + codefournisseur + "" + today+ "" + $('#fournisseur_commande').attr("data");
 
             var data = {
                 nom: nom,
@@ -158,8 +167,7 @@ function enregistrer_commande_programme() {
                 + '<td class="mycodeBar">' + reduction + '</td>'
                 + '<td>'
                 + '<button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row_commande(' + codebarre + ')" ><span class="fa fa-times"></span></button>'
-                + '<button class="btn btn-primary btn-rounded btn-sm" onClick="showPrintCmdProgramme(' + codebarre + ');" >Imprimer Ticket</span></button>'
-                + '<button class="btn btn-success btn-sm" onClick="printOneTicket(' + codebarre + ');" >Tous Imprimer</span></button>'
+                + '<button class="btn btn-primary btn-rounded btn-sm" onClick="printOneTicket(' + codebarre + ');" >Imprimer Ticket</span></button>'
                 + '</td>'
                 + '</tr>';
             $('#tab_commande_programme').prepend(cat);
@@ -426,34 +434,7 @@ function valider_commande(imprimer) {
                                 $("#mb-confirmation").attr("data", idc);
                                 //alert($("#mb-confirmation").attr("data"));
                                 if (imprimer && rec == count) {
-                                    //imprimer_com(idc, ref, $('#fournisseur_commande option:selected').text());
-                                    var cat = '<tr>'
-                                        + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;" colspan="6">Total</td>'
-                                        + ' <td  style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px;  border-color: #333;border-width: 1px;border-style: solid;text-align: start;"><strong>' + total + '</strong></td>'
-                                        + '</tr>';
-                                    $('#tab_Bcommande_Recu').append(cat);
-                                    //$("#totalRecu").html(total);
-                                    $("#article_commande").html(h - 1);
-                                    $("#produit_commande").html(nbre);
-                                    var yo = ref;
-                                    var one = yo.substr(0, 9);
-                                    var three = yo.substr(12, 3);
-
-                                    var chaine = one + "REC" + three;
-
-                                    var today = new Date();
-                                    var dd = String(today.getDate()).padStart(2, '0');
-                                    var mm = String(today.getMonth() + 1).padStart(2, '0');
-                                    var yyyy = today.getFullYear();
-                                    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-                                    today = dd + "-" + mm + "-" + yyyy + "  " + time
-                                    $("#date").html(today);
-                                    $("#bordereau_livraison").html($("#numero_bon_livraison").val());
-                                    $("#rec_commande").html(chaine);
-                                    $("#ref_commande").html(ref);
-                                    $("#nomf_commande").html($('#fournisseur_commande option:selected').text());
-                                    $("#date_commande").html(today);
-                                    $("#iconPreviewRecu").modal("show");
+                                    printAllTicket();
                                 } else {
 
                                     if (rec == count) {
@@ -539,20 +520,24 @@ function imprimer_bloc(titre, objet) {
     console.log(base64Image);
     console.log(base64Image);
     var doc = new jspdf.jsPDF({
-        orientation: 'landscape', unit: 'mm', format: [30, 17
+        orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
     });
     //var doc = new jsPDF('l', 'mm', [30, 15]);
-    doc.cell(0, 0, 30, 17, ' ', 1, "center");
-    doc.setFontSize(4);
-    doc.text(1, 5, etiquetteNomP);
+
+    doc.cell(0, 0, 30, 20, ' ', 1, "center");
+    doc.setFontSize(2);
     doc.setFontSize(7);
-    doc.text(1, 9, etiquettePrix + ' FCFA');
-    doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+    doc.text(19, 6, etiquettePrix + ' F');
+    doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
     doc.setFontSize(5);
-    doc.text(2, 14, etiquetteNomF);
+    doc.text(19, 8, etiquetteNomF);
     doc.setFontSize(4);
-    doc.text(2, 16, etiquetteDatel + ' / ' + etiquetteDatep);
+    doc.text(19, 10, etiquetteDatel );
+    doc.text(19, 12,  etiquetteDatep);
+    doc.text(19, 16, etiquetteNomP);
+    doc.cellAddPage([30, 20], "l");
+
     doc.save('hello.pdf');
     //doc.print('hello');
     return true;
@@ -624,7 +609,7 @@ function printAllTicket() {
 
 function printOneTicket(id) {
     var doc = new jspdf.jsPDF({
-        orientation: 'landscape', unit: 'mm', format: [30, 17
+        orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
     });
     $('#qrcode').empty();
@@ -661,20 +646,21 @@ function printOneTicket(id) {
             console.log(base64Image);
 
             //var doc = new jsPDF('l', 'mm', [30, 15]);
-            doc.cell(0, 0, 30, 17, ' ', 1, "center");
-            doc.setFontSize(4);
-            doc.text(1, 5, nom);
+            doc.cell(0, 0, 30, 20, ' ', 1, "center");
+            doc.setFontSize(2);
             doc.setFontSize(7);
-            doc.text(1, 9, prix + ' FCFA');
-            doc.addImage(base64Image, "JPEG", 0, 0, 10, 10);
+            doc.text(19, 6, prix + ' F');
+            doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
             doc.setFontSize(5);
-            doc.text(2, 14, codefournisseur);
+            doc.text(19, 8, codefournisseur);
             doc.setFontSize(4);
-            doc.text(2, 16, today + ' / ' + datePerem);
-            doc.cellAddPage([30, 17], "l");
+            doc.text(19, 10, today );
+            doc.text(19, 12,  datePerem);
+            doc.text(19, 16, nom);
+            doc.cellAddPage([30, 20], "l");
 
         }
-        doc.save('hello.pdf');
+        doc.save(nom+'.pdf');
     }, 2500);
 
 }
@@ -738,12 +724,11 @@ function showAllPrintCmdProgramme(tableNew) {
 
                     }
                     if (ind === tableNew.length - 1) {
-                        doc.save('hello.pdf');
+                        doc.save(nom+'.pdf');
                     }
                 }, 500);
             }, 1000 + (3000 * ind));
         })(i);
-
     }
 }
 
@@ -757,15 +742,17 @@ function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
     });
     //var doc = new jsPDF('l', 'mm', [30, 15]);
     doc.cell(0, 0, 30, 20, ' ', 1, "center");
-    /*doc.setFontSize(4);
-    doc.text(1, 5, nom);
+    doc.setFontSize(2);
     doc.setFontSize(7);
-    doc.text(1, 9, prix + ' FCFA');*/
-    doc.addImage(base64Image, "JPEG", 0, 0, 10, 10);
-    /*doc.setFontSize(5);
-    doc.text(2, 14, codefournisseur);
+    doc.text(19, 6, prix + ' F');
+    doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
+    doc.setFontSize(5);
+    doc.text(19, 8, codefournisseur);
     doc.setFontSize(4);
-    doc.text(2, 16, date + ' / ' + datePerem);*/
+    doc.text(19, 10, today );
+    doc.text(19, 12,  datePerem);
+    doc.text(19, 16, nom);
+    doc.cellAddPage([30, 20], "l");
     doc.save('hello.pdf');
     //doc.print('hello');
     return true;

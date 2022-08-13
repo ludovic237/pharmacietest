@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/list_commande_prdt.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/commande/koudjine_list_commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/commande/koudjine_list_commande.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/list_commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/list_commande.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Commande/listcommande.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Commande/listcommande.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/commande/koudjine_cmdprogramme.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/commande/koudjine_cmdprogramme.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/result_commande_prog.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/result_commande_prog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/result_commande_prog2.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/result_commande_prog2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -283,7 +283,7 @@
       <workItem from="1651906399361" duration="767000" />
       <workItem from="1652898063625" duration="2638000" />
       <workItem from="1656685335539" duration="10000" />
-      <workItem from="1659984759235" duration="6279000" />
+      <workItem from="1659984759235" duration="16676000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1646899402949</created>
@@ -306,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659984836141</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="merge">
+      <created>1660072767207</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660072767208</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -385,7 +392,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/design" />
+                        <option value="fonction" />
                       </list>
                     </value>
                   </entry>
