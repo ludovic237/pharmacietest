@@ -2198,6 +2198,7 @@ var qrcode;
 function info_row_entree(row) {
 
     var code;
+    $('#qte_etiquette_table').val('');
 
     $.ajax({
         type: "POST",
