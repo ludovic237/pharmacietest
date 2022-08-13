@@ -2298,25 +2298,51 @@ function info_row_entree(row) {
 }
 
 function imprimer_bloc(titre, objet) {
-
-    let base64Image = $('#qrcode img').attr('src');
-    console.log(base64Image);
-    console.log(base64Image);
+    var qte = parseInt($("#qte_etiquette_table").html()) ;
     var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 17
         ]});
-    //var doc = new jsPDF('l', 'mm', [30, 15]);
-    doc.cell(0, 0, 30, 17, ' ', 1, "center");
-    doc.setFontSize(4);
-    doc.text(1, 5, etiquetteNomP);
-    doc.setFontSize(7);
-    doc.text(1, 9, etiquettePrix+' FCFA');
-    doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
-    doc.setFontSize(5);
-    doc.text(2, 14, etiquetteNomF);
-    doc.setFontSize(4);
-    doc.text(2, 16, etiquetteDatel + ' / ' + etiquetteDatep);
-    doc.save('hello.pdf');
-    //doc.print('hello');
+    if (qte>0){
+        setTimeout(function () {
+            /*console.log("i2: "+ind);
+            console.log($('#qrcode img').attr('src'));*/
+            for (let i = 0; i < qte; i++) {
+                let base64Image = $('#qrcode img').attr('src');
+                console.log(base64Image);
+
+
+                doc.cell(0, 0, 30, 20, ' ', 1, "center");
+                doc.setFontSize(2);
+                doc.setFontSize(7);
+                doc.text(19, 6, etiquettePrix + ' F');
+                doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
+                doc.setFontSize(5);
+                doc.text(19, 8, etiquetteNomF);
+                doc.setFontSize(4);
+                doc.text(19, 10, etiquetteDatel);
+                doc.text(19, 12, etiquetteDatep);
+                doc.text(19, 16, etiquetteNomP);
+            }
+            doc.save(etiquetteNomP + '.pdf');
+        }, 2500);
+    }else {
+        let base64Image = $('#qrcode img').attr('src');
+        console.log(base64Image);
+        //var doc = new jsPDF('l', 'mm', [30, 15]);
+        doc.cell(0, 0, 30, 17, ' ', 1, "center");
+        doc.setFontSize(2);
+        doc.setFontSize(7);
+        doc.text(19, 6, etiquettePrix + ' F');
+        doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
+        doc.setFontSize(5);
+        doc.text(19, 8, etiquetteNomF);
+        doc.setFontSize(4);
+        doc.text(19, 10, etiquetteDatel);
+        doc.text(19, 12, etiquetteDatep);
+        doc.text(19, 16, etiquetteNomP);
+        doc.save('hello.pdf');
+        //doc.print('hello');
+    }
+
     return true;
 }
 function charger_select_produit() {
