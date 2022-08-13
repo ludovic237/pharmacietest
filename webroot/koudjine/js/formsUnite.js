@@ -206,7 +206,7 @@
                             }
                             else {
                                 var lien = $('.button').attr('href');
-                                alert("id : "+lien);
+                                //alert("id : "+lien);
                                 $.ajax({
                                     type: "POST",
                                     url: _.mailHandlerURL,

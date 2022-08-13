@@ -136,7 +136,7 @@ function change_input(option, id, max) {
 }
 
 function valider_retour(employe_id) {
-    alert($("#search-reference-produit").attr("data"));
+    //alert($("#search-reference-produit").attr("data"));
     $.ajax({
         type: "POST",
         url: "/pharmacietest/koudjine/inc/enregistrer_retour.php",
@@ -145,7 +145,7 @@ function valider_retour(employe_id) {
             idEmp: employe_id
         },
         success: function (data) {
-            alert(data);
+            //alert(data);
             $('#tab_RetourProduit_Retourne  tr').each(function (i) {
                 var id1 = $(this).attr("id");
 
@@ -157,7 +157,7 @@ function valider_retour(employe_id) {
                         qte: parseInt($("#inputQte" + id1).val())
                     },
                     success: function (data) {
-                        alert(data);
+                        //alert(data);
                         $('#tab_RetourProduit_Retourne').empty();
                         $("#tab_RetourProduit_Achete").empty();
                         $('#search-reference-produit').val('');
