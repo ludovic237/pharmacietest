@@ -50,7 +50,7 @@ class CommandeController extends Controller
             //'fields' => 'nom',
             'table' => 'fournisseur',
             'order' => 'nom-ASC',
-            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+           'conditions' => array( 'supprimer' => 0)
         ));
 
         if ($id != null) {
@@ -92,7 +92,7 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
             //'fields' => 'nom',
             'table' => 'fournisseur',
             'order' => 'nom-ASC',
-            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+            'conditions' => array( 'supprimer' => 0)
         ));
         $this->set($d);
     }
@@ -104,7 +104,7 @@ dateVente between DATE_ADD(now(), INTERVAL -'.$jour.' day) and now()  AND e.date
             //'fields' => 'nom',
             'table' => 'fournisseur',
             'order' => 'nom-ASC',
-            //'conditions' => array('CONCOURS_ID' => $id, 'SUPPRIMER' => 0)
+           'conditions' => array( 'supprimer' => 0)
         ));
         $this->set($d);
     }
