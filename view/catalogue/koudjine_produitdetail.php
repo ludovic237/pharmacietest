@@ -583,7 +583,7 @@ var test = "' . $id . '"
                     <div class="col-md-4">
                         <div class="icon-preview">
                             <!-- <div style="border: 1px solid black;width: 40mm;display:flex;height: 30mm;flex-direction: column;" id="ticket"> -->
-                            <div style="width: 35mm;display:flex;height: 30mm;flex-direction: column;" id="ticket">
+                            <div style="display:none;width: 35mm;display:flex;height: 30mm;flex-direction: column;" id="ticket">
                                 <table style="table-layout: fixed; width: 40mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
                                     <tbody>
 
@@ -619,6 +619,20 @@ var test = "' . $id . '"
                                     </tbody>
                                 </table>
 
+                            </div>
+                            <div>
+                                <div class="form-group"
+                                     style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
+                                    <label class="control-label" style="margin-right: 30px;width: 150px;">Quantite
+                                        etiquette</label>
+                                    <div style="display: flex;flex:1;margin-right: 30px;">
+                                        <input type="text" class="form-control col-md-4" name="nom" id="qte_etiquette_table"
+                                               value=""
+                                               placeholder="Médicaments">
+                                    </div>
+                                    <div style="width: 150px;">
+                                    </div>
+                                </div>
                             </div>
                             <button type="button" class="btn btn-circle blue"
                                     style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
