@@ -581,9 +581,9 @@ var test = "' . $id . '"
             <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="icon-preview">
+                        <div>
                             <!-- <div style="border: 1px solid black;width: 40mm;display:flex;height: 30mm;flex-direction: column;" id="ticket"> -->
-                            <div style="display:none;width: 35mm;display:flex;height: 30mm;flex-direction: column;" id="ticket">
+                            <div style="display:none;width: 35mm;height: 30mm;flex-direction: column;" id="ticket">
                                 <table style="table-layout: fixed; width: 40mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
                                     <tbody>
 
@@ -621,16 +621,10 @@ var test = "' . $id . '"
 
                             </div>
                             <div>
-                                <div class="form-group"
-                                     style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
-                                    <label class="control-label" style="margin-right: 30px;width: 150px;">Quantite
-                                        etiquette</label>
-                                    <div style="display: flex;flex:1;margin-right: 30px;">
-                                        <input type="text" class="form-control col-md-4" name="nom" id="qte_etiquette_table"
-                                               value=""
-                                               placeholder="Médicaments">
-                                    </div>
-                                    <div style="width: 150px;">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">Quantite etiquette:</label>
+                                    <div class="col-md-7">
+                                        <input type="number" class="form-control" id="qte_etiquette_table" value="" placeholder="">
                                     </div>
                                 </div>
                             </div>
