@@ -321,6 +321,19 @@ function delete_row_commande(id) {
 }
 
 function valider_commande(imprimer) {
+    $.blockUI({
+        css: {
+            backgroundColor: 'transparent',
+            border: 'none'
+        },
+        message: '<div class="spinner-border m-2" role="status"><span class="sr-only">Loading...</span></div>',
+        baseZ: 1500,
+        overlayCSS: {
+            backgroundColor: '#FFFFFF',
+            opacity: 0.7,
+            cursor: 'wait'
+        }
+    });
     var prixTotal, idc, ref;
     var prix, qte, ug, prixPublic, reduction, datep, nomP, count = 0, rec = 0;
     var h = 1, total = 0, nbre = 0;
@@ -351,6 +364,7 @@ function valider_commande(imprimer) {
             },
             dataType: 'json',
             success: function (data) {
+
                 //alert(data);
                 //alert('tpasse');
                 //alert(data.erreur);
@@ -742,6 +756,7 @@ function showAllPrintCmdProgramme(tableNew) {
                     if (ind === tableNew.length - 1) {
                         console.log(compteur);
                         console.log(compteur_total);
+                        $.unblockUI();
                         doc.save(nom + '.pdf');
                         var link = '/pharmacietest/bouwou/commande/cmdprogramme';
                         window.location.href = link;
