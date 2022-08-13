@@ -102,8 +102,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <div style="display: flex">
                     <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
                        id="qrcode_all"></p>
-                    <a onclick="printAllTicket()" data="1" class="btn btn-success" role="button" style="float: left;">Imprimer
-                        les tickets</a>
                 </div>
             </div>
             <div class="panel-body panel-body-table">
@@ -158,8 +156,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
             <a onclick="valider_commande(false)" data="<?php echo $_SESSION['Users']->id; ?>" id="comptant"
                class="btn btn-success" role="button" style="float: left; width: 40%;">Valider</a>
+            <a onclick="valider_commande(true)" data="1" class="btn btn-info" role="button" style="float: left;">Imprimer</a>
             <!-- <a onclick="valider_vente('2', 'Crédit')" id="credit" disabled="disabled" class="btn btn-danger" role="button" style="float: left; width: 40%;">Imprimer</a> -->
-            <a onclick="valider_commande(true)" class="btn btn-primary" role="button" style="float: left; width: 40%;">Imprimer</a>
+           <!-- <a onclick="valider_commande(true)" class="btn btn-primary" role="button" style="float: left; width: 40%;">Imprimer</a>-->
         </div>
 
     </div>
