@@ -2181,7 +2181,7 @@ function load_produit_detail(id, nomp) {
 
 function save_produit_detail() {
     var id = $('#id').val();
-    alert(id);
+    //alert(id);
     var erprixachat = $('#erprixachat').val();
     var erprixvente = $('#erprixvente').val();
     var erquantite = $('#erquantite').val();
