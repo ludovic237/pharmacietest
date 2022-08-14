@@ -250,6 +250,18 @@ class En_rayonManager
         }
         return $enrayon;
     }
+
+    public function getListByCommande($info)
+    {
+        $enrayon = array();
+        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND commande_id = ' . $info . ' ORDER BY dateLivraison ASC');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $enrayon[] = new En_rayon($donnees);
+        }
+        return $enrayon;
+    }
+
     public function getListSortie($info)
     {
         $enrayon = array();

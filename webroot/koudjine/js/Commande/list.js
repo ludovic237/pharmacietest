@@ -215,6 +215,111 @@ function charger_produit_commande(id, etat, prix, ref, nom, dateC) {
     $('#facture_commande').attr("data3",dateC);
     $('#facture_commande').html(prix);
 }
+
+function charger_all_ticket_commande(id, etat, prix, ref, nom, dateC) {
+    //alert('passe');
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_commande.php',
+        data: {
+            id: id,
+            ticket: id
+        },
+        dataType: 'json',
+        success: function (server_responce) {
+            console.log(server_responce.data);
+            showAllPrintCmdList(server_responce.data);
+
+        }
+    })
+}
+var qrcode;
+
+function showAllPrintCmdList(tableNew) {
+    console.log(tableNew);
+    var doc = new jspdf.jsPDF({
+        orientation: 'landscape', unit: 'mm', format: [30, 20
+        ]
+    });
+    var compteur = 0;
+    var compteur_total = 0;
+    var qtetotal = 0;
+    for (var i = 0; i < tableNew.length; i++) {
+        qtetotal = parseInt(tableNew[i].quantite) + qtetotal;
+    }
+    for (var i = 0; i < tableNew.length; i++) {
+        (function (ind) {
+            setTimeout(function () {
+                $('#qrcode').empty();
+                var id = tableNew[ind].id;
+                var nom = tableNew[ind].nom;
+                var qte = parseInt(tableNew[ind].quantite);
+                compteur_total = compteur_total + qte;
+                var datePerem = tableNew[ind].datePeremption;
+                var prix = tableNew[ind].prixVente;
+
+                var today = tableNew[ind].dateLivraison;
+                var codefournisseur = tableNew[ind].fournisseur_code;
+                qrcode = new QRCode(document.getElementById("qrcode"), {
+                    width: 30,
+                    height: 30
+                });
+                // qrcode.clear()
+                qrcode.makeCode(id);
+                console.log(id);
+                /*console.log(tableNew[ind]);
+                console.log($('#qrcode img').attr('src'));
+                console.log("ind: "+ind);*/
+                setTimeout(function () {
+                    /*console.log("i2: "+ind);
+                    console.log($('#qrcode img').attr('src'));*/
+                    for (let i = 0; i < qte; i++) {
+                        let base64Image = $('#qrcode img').attr('src');
+                        console.log(base64Image);
+                        //var doc = new jsPDF('l', 'mm', [30, 15]);
+                        doc.cell(0, 0, 30, 20, ' ', 1, "center");
+                        doc.setFontSize(2);
+                        doc.setFontSize(7);
+                        doc.text(19, 6, prix + ' F');
+                        doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
+                        doc.setFontSize(5);
+                        doc.text(19, 8, codefournisseur);
+                        doc.setFontSize(4);
+                        doc.text(19, 10, today);
+                        doc.text(19, 12, datePerem);
+                        doc.setFontSize(3);
+                        var line1 = nom.substring(0, 16);
+                        var line2 = nom.substring(16, 32);
+                        var line3 = nom.substring(32, 48);
+                        var line4 = nom.substring(48, 64);
+                        doc.text(19, 16, line1);
+                        doc.text(19, 17, line2);
+                        doc.text(19, 18, line3);
+                        doc.text(19, 19, line4);
+                        console.log(compteur + " - " + compteur_total)
+                        /*if (i != qte - 1 && ind != tableNew.length - 1) {
+                            doc.cellAddPage([30, 20], "l");
+                            compteur++;
+                        }*/
+                        if (compteur < qtetotal - 1) {
+                            doc.cellAddPage([30, 20], "l");
+                            compteur++;
+                        }
+
+                    }
+                    if (ind === tableNew.length - 1) {
+                        console.log(compteur);
+                        console.log(compteur_total);
+                        console.log(qtetotal);
+                        $.unblockUI();
+                        doc.save(nom + '.pdf');
+                    }
+                }, 500);
+            }, 1000 + (3000 * ind));
+        })(i);
+    }
+}
+
 function change_input(option, id) {
     if(option == 'plus'){
         if($("#"+id).val() == '' || $("#"+id).val() == null)
