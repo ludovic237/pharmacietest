@@ -106,6 +106,7 @@ function load_produit(id, nom, prixachat, prixvente, reduction, nbre_cmd) {
     $('#qte_cmdprogramme').val("1");
     $('#prixachat_cmdprogramme').val(prixachat);
     $('#prixpublic_cmdprogramme').val(prixvente);
+    $('#date_cmdprogramme').val("2023-03-01");
     $('#id_xr').attr("data", id);
     $('#qte_cmdprogramme').select();
     $("#iconPreviewForm").modal("show");

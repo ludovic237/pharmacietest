@@ -561,7 +561,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <div class="input-group">
                                     <input style="padding-top: 0px;" class="form-control champ champ5" data="6"
                                            id="date_cmdprogramme" placeholder="Date de péremption"
-                                           style="line-height: normal;" type="date" required="" value="2023-03-01">
+                                           style="line-height: normal;" type="date" required="">
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>
