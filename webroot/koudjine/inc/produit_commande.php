@@ -26,7 +26,8 @@ if (isset($_POST['ide'])){
     $prixPublic=$_POST['prixp'];
     $datep=$_POST['datep'];
     $reduction=$_POST['reduction'];
-    if($manager->existsId($idc) && !$managerPo->existsProduit_id($idc, $idp)){
+    //if($manager->existsId($idc) && !$managerPo->existsProduit_id($idc, $idp)){
+    if($manager->existsId($idc)){
         //echo "passe \n";
         //echo $managerPr->getStock($managerEn->get($ide)->produit_id(),$qte)->stock();
 

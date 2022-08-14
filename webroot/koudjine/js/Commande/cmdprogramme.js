@@ -143,8 +143,20 @@ function enregistrer_commande_programme() {
 
             var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
 
+            var compteur_bd = parseInt($('#fournisseur_commande').attr("data"));
+            var codebarre1 = id + "" + codefournisseur + "" + today ;
+            var compteur = 0;
+            var compteurtotal = 0;
 
-            var codebarre = id + "" + codefournisseur + "" + today + "" + $('#fournisseur_commande').attr("data");
+            $('#tab_commande_programme  tr').each(function (i) {
+                var id1 = $(this).attr("id");
+                var id_traiter  = id1.slice(0,-1);
+                if(id_traiter == codebarre1){
+                    compteur++;
+                }
+            });
+            compteurtotal = compteur_bd + compteur;
+            var codebarre = id + "" + codefournisseur + "" + today + "" + compteurtotal;
 
             var data = {
                 nom: nom,
