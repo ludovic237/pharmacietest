@@ -19,10 +19,10 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
-	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/html2canvas.js"></script>
-	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
-	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/jspdf.js"></script>
-	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/base64.js"></script> 
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/html2canvas.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/jspdf.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/base64.js"></script> 
 <script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>';
 

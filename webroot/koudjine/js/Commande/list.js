@@ -245,7 +245,7 @@ function showAllPrintCmdList(tableNew) {
     var compteur_total = 0;
     var qtetotal = 0;
     for (var i = 0; i < tableNew.length; i++) {
-        qtetotal = (tableNew[i].qte + tableNew[i].unit) + qtetotal;
+        qtetotal = parseInt(tableNew[i].quantite) + qtetotal;
     }
     for (var i = 0; i < tableNew.length; i++) {
         (function (ind) {
@@ -253,7 +253,7 @@ function showAllPrintCmdList(tableNew) {
                 $('#qrcode').empty();
                 var id = tableNew[ind].id;
                 var nom = tableNew[ind].nom;
-                var qte = tableNew[ind].quantite;
+                var qte = parseInt(tableNew[ind].quantite);
                 compteur_total = compteur_total + qte;
                 var datePerem = tableNew[ind].datePeremption;
                 var prix = tableNew[ind].prixVente;
@@ -310,6 +310,7 @@ function showAllPrintCmdList(tableNew) {
                     if (ind === tableNew.length - 1) {
                         console.log(compteur);
                         console.log(compteur_total);
+                        console.log(qtetotal);
                         $.unblockUI();
                         doc.save(nom + '.pdf');
                     }
