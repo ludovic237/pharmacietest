@@ -122,7 +122,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <th width="100">Prix Public</th>
                             <th width="100">Date de perremption</th>
                             <th width="100">Réduction</th>
-                            <th width="100">QrCode</th>
                             <th width="100">Action</th>
                         </tr>
                         </thead>

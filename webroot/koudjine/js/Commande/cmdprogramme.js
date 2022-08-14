@@ -2,6 +2,8 @@ $(document).ready(function () {
     $('#closemodal').click(function () {
         $('#message-alert-prod').modal('hide');
     });
+    $('#recherche_commande_prog').focus();
+    $('#recherche_commande_prog').select();
     //$("#div_inventaire").hide();
     $("#tab_BCrecherche").hide();
     $("#tab_GCrecherche").hide();
@@ -101,9 +103,11 @@ function load_produit(id, nom, prixachat, prixvente, reduction, nbre_cmd) {
     $('#nom_cmdprogramme').val(nom);
     $('#reduction_max').val(reduction);
     $('#recherche_commande_prog').val('');
+    $('#qte_cmdprogramme').val("1");
     $('#prixachat_cmdprogramme').val(prixachat);
     $('#prixpublic_cmdprogramme').val(prixvente);
     $('#id_xr').attr("data", id);
+    $('#qte_cmdprogramme').select();
     $("#iconPreviewForm").modal("show");
     $("#fournisseur_commande").attr("data", nbre_cmd);
 }
@@ -176,7 +180,6 @@ function enregistrer_commande_programme() {
                 + '<td class="prixpublic">' + prixpublic + '</td>'
                 + '<td class="date">' + date + '</td>'
                 + '<td class="reduction">' + reduction + '</td>'
-                + '<td class="mycodeBar">' + reduction + '</td>'
                 + '<td>'
                 + '<button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row_commande(' + codebarre + ')" ><span class="fa fa-times"></span></button>'
                 + '<button class="btn btn-primary btn-rounded btn-sm" onClick="printOneTicket(' + codebarre + ');" >Imprimer Ticket</span></button>'
@@ -216,18 +219,14 @@ function enregistrer_commande_programme() {
             $("#iconPreviewForm").modal("hide");
             $('#qte_cmdprogramme').val('');
             $('#date_cmdprogramme').val('');
-            console.log($('#' + codebarre + ' .mycodeBar'));
-            qrcode = new QRCode($('#' + codebarre + ' tr .mycodeBar'), {
-                width: 30,
-                height: 30
-            });
-            qrcode.clear()
-            qrcode.makeCode(codebarre);
         }
         //alert(id);
 
 
     }
+    $('#recherche_commande_prog').focus();
+    $('#recherche_commande_prog').select();
+    console.log('pass')
 
 }
 
