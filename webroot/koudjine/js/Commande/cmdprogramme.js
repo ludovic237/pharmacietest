@@ -670,9 +670,18 @@ function printOneTicket(id) {
             doc.setFontSize(4);
             doc.text(19, 10, today);
             doc.text(19, 12, datePerem);
-            doc.text(19, 16, nom);
-            doc.cellAddPage([30, 20], "l");
-
+            doc.setFontSize(3);
+            var line1 = nom.substring(0, 16);
+            var line2 = nom.substring(16, 32);
+            var line3 = nom.substring(32, 48);
+            var line4 = nom.substring(48, 64);
+            doc.text(19, 16, line1);
+            doc.text(19, 17, line2);
+            doc.text(19, 18, line3);
+            doc.text(19, 19, line4);
+            if (i < qte - 1) {
+                doc.cellAddPage([30, 20], "l");
+            }
         }
         doc.save(nom + '.pdf');
     }, 2500);
@@ -741,13 +750,21 @@ function showAllPrintCmdProgramme(tableNew) {
                         doc.setFontSize(4);
                         doc.text(19, 10, today);
                         doc.text(19, 12, datePerem);
-                        doc.text(19, 16, nom);
+                        doc.setFontSize(3);
+                        var line1 = nom.substring(0, 16);
+                        var line2 = nom.substring(16, 32);
+                        var line3 = nom.substring(32, 48);
+                        var line4 = nom.substring(48, 64);
+                        doc.text(19, 16, line1);
+                        doc.text(19, 17, line2);
+                        doc.text(19, 18, line3);
+                        doc.text(19, 19, line4);
                         console.log(compteur + " - " + compteur_total)
                         /*if (i != qte - 1 && ind != tableNew.length - 1) {
                             doc.cellAddPage([30, 20], "l");
                             compteur++;
                         }*/
-                        if (compteur < qtetotal-1) {
+                        if (compteur < qtetotal - 1) {
                             doc.cellAddPage([30, 20], "l");
                             compteur++;
                         }
@@ -787,7 +804,15 @@ function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
     doc.setFontSize(4);
     doc.text(19, 10, today);
     doc.text(19, 12, datePerem);
-    doc.text(19, 16, nom);
+    doc.setFontSize(3);
+    var line1 = nom.substring(0, 16);
+    var line2 = nom.substring(16, 32);
+    var line3 = nom.substring(32, 48);
+    var line4 = nom.substring(48, 64);
+    doc.text(19, 16, line1);
+    doc.text(19, 17, line2);
+    doc.text(19, 18, line3);
+    doc.text(19, 19, line4);
     doc.cellAddPage([30, 20], "l");
     doc.save('hello.pdf');
     //doc.print('hello');
