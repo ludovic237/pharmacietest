@@ -144,7 +144,7 @@ function enregistrer_commande_programme() {
             var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
 
 
-            var codebarre = id + "" + codefournisseur + "" + today+ "" + $('#fournisseur_commande').attr("data");
+            var codebarre = id + "" + codefournisseur + "" + today + "" + $('#fournisseur_commande').attr("data");
 
             var data = {
                 nom: nom,
@@ -321,6 +321,19 @@ function delete_row_commande(id) {
 }
 
 function valider_commande(imprimer) {
+    $.blockUI({
+        css: {
+            backgroundColor: 'transparent',
+            border: 'none'
+        },
+        message: '<div class="spinner-border m-2" role="status"><span class="sr-only">Loading...</span></div>',
+        baseZ: 1500,
+        overlayCSS: {
+            backgroundColor: '#FFFFFF',
+            opacity: 0.7,
+            cursor: 'wait'
+        }
+    });
     var prixTotal, idc, ref;
     var prix, qte, ug, prixPublic, reduction, datep, nomP, count = 0, rec = 0;
     var h = 1, total = 0, nbre = 0;
@@ -351,6 +364,7 @@ function valider_commande(imprimer) {
             },
             dataType: 'json',
             success: function (data) {
+
                 //alert(data);
                 //alert('tpasse');
                 //alert(data.erreur);
@@ -426,7 +440,7 @@ function valider_commande(imprimer) {
                                 reduction: reduction
                             },
                             success: function (server_responce) {
-                                alert(server_responce);
+                                //alert(server_responce);
                                 //alert(idc);
                                 //alert("OK");
                                 rec++;
@@ -533,8 +547,8 @@ function imprimer_bloc(titre, objet) {
     doc.setFontSize(5);
     doc.text(19, 8, etiquetteNomF);
     doc.setFontSize(4);
-    doc.text(19, 10, etiquetteDatel );
-    doc.text(19, 12,  etiquetteDatep);
+    doc.text(19, 10, etiquetteDatel);
+    doc.text(19, 12, etiquetteDatep);
     doc.text(19, 16, etiquetteNomP);
     doc.cellAddPage([30, 20], "l");
 
@@ -632,8 +646,8 @@ function printOneTicket(id) {
         height: 30
     });
     // qrcode.clear()
-    qrcode.makeCode(""+id);
-    console.log(""+id);
+    qrcode.makeCode("" + id);
+    console.log("" + id);
     /*console.log(tableNew[ind]);
     console.log($('#qrcode img').attr('src'));
     console.log("ind: "+ind);*/
@@ -654,13 +668,22 @@ function printOneTicket(id) {
             doc.setFontSize(5);
             doc.text(19, 8, codefournisseur);
             doc.setFontSize(4);
-            doc.text(19, 10, today );
-            doc.text(19, 12,  datePerem);
-            doc.text(19, 16, nom);
-            doc.cellAddPage([30, 20], "l");
-
+            doc.text(19, 10, today);
+            doc.text(19, 12, datePerem);
+            doc.setFontSize(3);
+            var line1 = nom.substring(0, 16);
+            var line2 = nom.substring(16, 32);
+            var line3 = nom.substring(32, 48);
+            var line4 = nom.substring(48, 64);
+            doc.text(19, 16, line1);
+            doc.text(19, 17, line2);
+            doc.text(19, 18, line3);
+            doc.text(19, 19, line4);
+            if (i < qte - 1) {
+                doc.cellAddPage([30, 20], "l");
+            }
         }
-        doc.save(nom+'.pdf');
+        doc.save(nom + '.pdf');
     }, 2500);
 
 }
@@ -671,6 +694,12 @@ function showAllPrintCmdProgramme(tableNew) {
         orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
     });
+    var compteur = 0;
+    var compteur_total = 0;
+    var qtetotal = 0;
+    for (var i = 0; i < tableNew.length; i++) {
+        qtetotal = (tableNew[i].qte + tableNew[i].unit) + qtetotal;
+    }
     for (var i = 0; i < tableNew.length; i++) {
         (function (ind) {
             setTimeout(function () {
@@ -680,6 +709,7 @@ function showAllPrintCmdProgramme(tableNew) {
                 var nom = tableNew[ind].name;
                 $('#productNameId').html(ind + " - " + nom);
                 var qte = (tableNew[ind].qte + tableNew[ind].unit)
+                compteur_total = compteur_total + qte;
                 var datePerem = tableNew[ind].date;
                 var prix = tableNew[ind].prixp;
 
@@ -708,6 +738,7 @@ function showAllPrintCmdProgramme(tableNew) {
 
                         console.log(base64Image);
 
+
                         //var doc = new jsPDF('l', 'mm', [30, 15]);
                         doc.cell(0, 0, 30, 20, ' ', 1, "center");
                         doc.setFontSize(2);
@@ -717,15 +748,33 @@ function showAllPrintCmdProgramme(tableNew) {
                         doc.setFontSize(5);
                         doc.text(19, 8, codefournisseur);
                         doc.setFontSize(4);
-                        doc.text(19, 10, today );
-                        doc.text(19, 12,  datePerem);
-                        doc.text(19, 16, nom);
-                        if(i != qte-1)
-                        doc.cellAddPage([30, 20], "l");
+                        doc.text(19, 10, today);
+                        doc.text(19, 12, datePerem);
+                        doc.setFontSize(3);
+                        var line1 = nom.substring(0, 16);
+                        var line2 = nom.substring(16, 32);
+                        var line3 = nom.substring(32, 48);
+                        var line4 = nom.substring(48, 64);
+                        doc.text(19, 16, line1);
+                        doc.text(19, 17, line2);
+                        doc.text(19, 18, line3);
+                        doc.text(19, 19, line4);
+                        console.log(compteur + " - " + compteur_total)
+                        /*if (i != qte - 1 && ind != tableNew.length - 1) {
+                            doc.cellAddPage([30, 20], "l");
+                            compteur++;
+                        }*/
+                        if (compteur < qtetotal - 1) {
+                            doc.cellAddPage([30, 20], "l");
+                            compteur++;
+                        }
 
                     }
                     if (ind === tableNew.length - 1) {
-                        doc.save(nom+'.pdf');
+                        console.log(compteur);
+                        console.log(compteur_total);
+                        $.unblockUI();
+                        doc.save(nom + '.pdf');
                         var link = '/pharmacietest/bouwou/commande/cmdprogramme';
                         window.location.href = link;
                     }
@@ -753,9 +802,17 @@ function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
     doc.setFontSize(5);
     doc.text(19, 8, codefournisseur);
     doc.setFontSize(4);
-    doc.text(19, 10, today );
-    doc.text(19, 12,  datePerem);
-    doc.text(19, 16, nom);
+    doc.text(19, 10, today);
+    doc.text(19, 12, datePerem);
+    doc.setFontSize(3);
+    var line1 = nom.substring(0, 16);
+    var line2 = nom.substring(16, 32);
+    var line3 = nom.substring(32, 48);
+    var line4 = nom.substring(48, 64);
+    doc.text(19, 16, line1);
+    doc.text(19, 17, line2);
+    doc.text(19, 18, line3);
+    doc.text(19, 19, line4);
     doc.cellAddPage([30, 20], "l");
     doc.save('hello.pdf');
     //doc.print('hello');

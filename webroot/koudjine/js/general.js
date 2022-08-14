@@ -11,7 +11,7 @@ $(document).ready(function(){ 	// le document est charg鍊   $("a").click(functi
 
         var state =  $(this).attr('checked');
         if(state == 'checked'){
-            alert('reussi');
+            //alert('reussi');
         }
         else alert('eteint');
 
@@ -37,14 +37,14 @@ $(document).ready(function(){ 	// le document est charg鍊   $("a").click(functi
 		recherche = $.trim(recherche);
 		var data = 'motclef=' + recherche;
 		if (recherche.length > 1) {
-			alert('yes');
+			//alert('yes');
 			$.ajax({
 				type: "GET",
 				url: "/pharmacietest/koudjine/inc/result.php",
 				data: data,
 				success: function (server_responce) {
 					$("#resultat ul").html(server_responce).show();
-					alert('yes');
+					//alert('yes');
 				}
 			})
 		} else {

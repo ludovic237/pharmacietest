@@ -14,7 +14,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/cmdprogramme.js"></script>
-<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>';
+<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>';
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -29,7 +30,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <option value="0">Sélectionner Fournisseur</option>
                         <?php
                         foreach ($fournisseur as $k => $v) : ?>
-                            <option <?php if (isset($fournisseur_id)) if ($v->id == $fournisseur_id) echo "selected=\"selected\""; ?>
+<!--                            <option --><?php //if (isset($fournisseur_id)) if ($v->id == $fournisseur_id) echo "selected=\"selected\""; ?>
+                            <option <?php if ($v->id == 13) echo "selected=\"selected\""; ?>
                                     value="<?php echo $v->id; ?>"
                                     data="<?php echo $v->code; ?>"><?php echo $v->nom; ?></option>
                         <?php
@@ -45,7 +47,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Numéro bon de livraison:</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
                     <input type="text" class="form-control col-md-4" name="numero_bon_livraison"
-                           id="numero_bon_livraison" value="" placeholder="">
+                           id="numero_bon_livraison" value="00" placeholder="">
                 </div>
                 <div style="width: 150px;">
                 </div>

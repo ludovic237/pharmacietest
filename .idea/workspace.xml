@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="incrementation nbre commande par fournisseur">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
       <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
