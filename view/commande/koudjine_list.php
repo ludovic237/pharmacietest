@@ -16,10 +16,15 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/tableExport.js"></script>
 	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jquery.base64.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
 	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/html2canvas.js"></script>
 	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
 	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/jspdf.js"></script>
-	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/base64.js"></script>    ';
+	<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/base64.js"></script> 
+<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>';
 
 ?> -->
 
@@ -201,9 +206,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         Charger
                                     </button>
                                     <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
-                                            data-placement="top"
-                                            onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
+                                            data-placement="top">
                                         Supprimer
+                                    </button>
+                                    <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
+                                            data-placement="top"
+                                            onclick="charger_all_ticket_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>','<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $datel; ?>')">
+                                        print
                                     </button>
                                 </td>
                             </tr>
@@ -218,7 +227,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
     </div>
 </div>
 <!-- END RESPONSIVE TABLES -->
-
+<div id="qrcode" style="display: none"></div>
 <div class="row">
     <div class="col-md-8">
         <div class="panel panel-default">
