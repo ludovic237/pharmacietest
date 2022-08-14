@@ -388,7 +388,7 @@ function enregistrer_produit(option, id) {
                 if (data == 'ok') {
                     noty({text: 'Ajout effectué', layout: 'topRight', type: 'success'});
                     setTimeout(() => {
-                        var link = '/pharmacietest/bouwou/catalogue/produit';
+                        var link = '/pharmacietest/bouwou/catalogue/produitadd';
                         window.location.href = link;
                     }, 5000);
 
@@ -435,7 +435,7 @@ function enregistrer_produit(option, id) {
                     noty({text: 'Modification effectué', layout: 'topRight', type: 'success'});
                     setTimeout(() => {
                         //var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
-                        var link = '/pharmacietest/bouwou/catalogue/produit';
+                        var link = '/pharmacietest/bouwou/catalogue/produitadd';
                         window.location.href = link;
                     }, 5000);
                 } else {
