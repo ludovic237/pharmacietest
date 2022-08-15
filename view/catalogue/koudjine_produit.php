@@ -67,6 +67,9 @@
                                         <div>
                                             <a class="btn btn-warning btn-rounded btn-sm" href="<?php echo Router::url('bouwou/catalogue/produitdetail/?id=' .  $v->idp); ?>" style="margin-right: 20px">Detail</a>
                                         </div>
+                                        <div>
+                                            <a class="btn btn-warning btn-rounded btn-sm" onclick="init_rayon(<?php echo $v->idp; ?>)" style="margin-right: 20px">Initialiser rayon</a>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

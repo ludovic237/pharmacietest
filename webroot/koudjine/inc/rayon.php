@@ -1,6 +1,13 @@
 <?php
 require_once('database.php');
 require_once('../Class/rayon.php');
+require_once('../Class/produit.php');
+require_once('../Class/categorie.php');
+require_once('../Class/forme.php');
+require_once('../Class/fabriquant.php');
+require_once('../Class/magasin.php');
+require_once('../Class/fournisseur1.php');
+require_once('../Class/en_rayon.php');
 
 $id;
 $nom;
@@ -8,7 +15,12 @@ $code;
 global $pdo;
 
 $manager = new RayonManager($pdo);
-
+$managerProduit = new ProduitManager($pdo);
+$managerCategorie = new CategorieManager($pdo);
+$managerFabriquant = new FabriquantManager($pdo);
+$managerForme = new FormeManager($pdo);
+$managerMagasin = new MagasinManager($pdo);
+$managerEn = new En_rayonManager($pdo);
 
 if (isset($_POST['id']) && isset($_POST['nom']) && isset($_POST['code'])) {
 
@@ -42,6 +54,31 @@ if (isset($_POST['id']) && isset($_POST['nom']) && isset($_POST['code'])) {
 
     //$sql = "UPDATE departement set NOM='".$nom."',SIGLE='".$sigle."',code='".$code."' WHERE DEPARTEMENT_ID = '".$id."'";
     //$req = $pdo->exec($sql);
+} elseif (isset($_POST['id'])) {
+
+    $id = $_POST['id'];
+    if ($managerEn->existsproduit_id($id)) {
+        echo 'Ce produit est deja en rayon';
+    }
+    else{
+        $prd = $managerProduit->get($id);
+        $Date_Du_Jour = date("Ymd");
+        $ide = $prd->id().'00'.$Date_Du_Jour;
+        $en_rayon = new En_rayon(array(
+            'id' => $ide,
+            'produit_id' => $id,
+            'fournisseur_id' => null,
+            'commande_id' => null,
+            'prixAchat' => 0,
+            'prixVente' => 0,
+            'quantite' => 0,
+            'quantiteRestante' => 0,
+            'datePeremption' => null,
+        ));
+        $managerEn->add($en_rayon);
+        echo 'ok';
+    }
+
 } else {
     if (isset($_POST['nom']) && isset($_POST['code'])) {
 

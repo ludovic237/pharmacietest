@@ -458,6 +458,23 @@ function update_row_produit(id) {
     window.location.href = link;
 }
 
+function init_rayon(id) {
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/rayon.php',
+        data: {
+            id: id
+        },
+        success: function (data) {
+            if (data == 'ok') {
+                noty({text: 'Modification effectué', layout: 'topRight', type: 'success'});
+            } else {
+                noty({text: data, layout: 'topRight', type: 'error'});
+            }
+        }
+    });
+}
+
 
 function enregistrer_assureur(option, id) {
     // Informations université
@@ -2120,7 +2137,7 @@ function load_produit_detail(id, nomp) {
 
 }
 
-function modifier_commande(id,produitCmdId){
+function modifier_commande(id, produitCmdId) {
     $("#iconPreviewDetailPdtCmdModif").modal('show');
     $("#" + produitCmdId + " td").each(function (j) {
         ////alert($(this).html());
@@ -2138,7 +2155,7 @@ function modifier_commande(id,produitCmdId){
     });
 }
 
-function save_commande(){
+function save_commande() {
     var id = $('#idPdtCmd').html();
     //alert(id);
     var pdtCmdprixachat = $('#pdtCmdprixachat').val();
@@ -2311,7 +2328,7 @@ function imprimer_bloc(titre, objet) {
                 doc.text(19, 10, etiquetteDatel);
                 doc.text(19, 12, etiquetteDatep);
                 doc.text(19, 16, etiquetteNomP);
-                if (i < qte-1) {
+                if (i < qte - 1) {
                     doc.cellAddPage([30, 20], "l");
                 }
             }
