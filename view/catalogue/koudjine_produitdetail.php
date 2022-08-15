@@ -570,6 +570,53 @@ var test = "' . $id . '"
 <!-- END MODAL ICON PREVIEW -->
 
 <!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewDetailPdtCmdModif" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                <h4 class="modal-title">Detail</h4> <span id="idPdtCmd"></span>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="panel-body">
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Prix d'achat:</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control erprixachat" name="pdtCmdprixachat"
+                                           id="pdtCmdprixachat" value="" placeholder=""/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Prix de vente:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control erprixvente" name="pdtCmdprixvente"
+                                           id="pdtCmdprixvente" value="" placeholder=""/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label champ1">Quantite Recu:</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control pdtCmdquantite" id="pdtCmdquantite" value=""
+                                           placeholder=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" onclick="save_commande()">Sauvegarder</a>
+                <a class="btn btn-primary" data-dismiss="modal">Annuler</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+
+<!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreviewEntree" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

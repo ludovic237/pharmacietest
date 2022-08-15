@@ -147,7 +147,7 @@ $(document).ready(function () {
                                     if (!data) {
                                         return '<span class="text-muted" style="font-size:90%">NA</span>';
                                     } else {
-                                        return '<a class="btn btn-success btn-rounded btn-sm "  onclick="modifier_commande(' + data + ',' + row.totalEncaisse + ')"><span class="">Modifier</span></a>' +
+                                        return '<a class="btn btn-success btn-rounded btn-sm "  onclick="modifier_commande(' + data + ',' + row + ')"><span class="">Modifier</span></a>' +
                                             '<a class="btn btn-primary btn-rounded btn-sm " onclick="delete_row_commande(' + data + ')"  ><span class="">Supprimer</span></a>';
                                         ;
                                     }
@@ -1995,7 +1995,7 @@ function load_produit_detail(id, nomp) {
                                 if (!data) {
                                     return '<span class="text-muted" style="font-size:90%">NA</span>';
                                 } else {
-                                    return '<a class="btn btn-success btn-rounded btn-sm "  onclick="modifier_commande(' + data + ',' + row.totalEncaisse + ')"><span class="">Modifier</span></a>' +
+                                    return '<a class="btn btn-success btn-rounded btn-sm "  onclick="modifier_commande(' + data + ',' + row.produit_cmd_id + ')"><span class="">Modifier</span></a>' +
                                         '<a class="btn btn-primary btn-rounded btn-sm " onclick="delete_row_commande(' + data + ')"  ><span class="">Supprimer</span></a>';
                                     ;
                                 }
@@ -2118,6 +2118,50 @@ function load_produit_detail(id, nomp) {
 
     }
 
+}
+
+function modifier_commande(id,produitCmdId){
+    $("#iconPreviewDetailPdtCmdModif").modal('show');
+    $("#" + produitCmdId + " td").each(function (j) {
+        ////alert($(this).html());
+        $("#idPdtCmd").html(produitCmdId);
+        if (j === 4) {
+            $("#pdtCmdprixachat").val(parseInt($(this).html()));
+            qte = parseInt($(this).html());
+        }
+        if (j === 5) {
+            $("#pdtCmdprixvente").val(parseInt($(this).html()));
+        }
+        if (j === 7) {
+            $("#pdtCmdquantite").val(parseInt($(this).html()));
+        }
+    });
+}
+
+function save_commande(){
+    var id = $('#idPdtCmd').html();
+    //alert(id);
+    var pdtCmdprixachat = $('#pdtCmdprixachat').val();
+    var pdtCmdprixvente = $('#pdtCmdprixvente').val();
+    var pdtCmdquantite = $('#pdtCmdquantite').val();
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/produit_commande.php',
+        data: {
+            id: id,
+            prixachat: pdtCmdprixachat,
+            prixvente: pdtCmdprixvente,
+            quantite: pdtCmdquantite,
+        },
+        success: function (data) {
+            noty({text: 'Enregistrement effectué' + data, layout: 'topRight', type: 'success'});
+            load_produit_detail(_idprod, _nameprod);
+            setTimeout(function () {
+                $("#iconPreviewDetailPdtCmdModif").modal('hide');
+            }, 3000);
+        }
+    });
+    //$("#iconPreviewDetailPdtCmdModif").modal('hide');
 }
 
 function save_produit_detail() {

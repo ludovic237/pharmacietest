@@ -125,7 +125,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <label class="col-md-3 control-label">Quantité max en stock:</label>
                                 <div class="col-md-9">
                                     <input type="number" class="form-control" name="stockmax" id="stockmax"
-                                           value="<?php if ($position == 'Modifier') echo $produit->stockMax; ?>"
+                                           value="<?php if ($position == 'Modifier') echo $produit->stockMax;
+                                           else echo 10;?>"
                                            placeholder=""/>
                                     <span class="help-block">exemple: 40 - Champ requis</span>
                                 </div>
@@ -134,7 +135,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <label class="col-md-3 control-label">Quantité min en stock:</label>
                                 <div class="col-md-9">
                                     <input type="number" class="form-control"
-                                           value="<?php if ($position == 'Modifier') echo $produit->stockMin; ?>"
+                                           value="<?php if ($position == 'Modifier') echo $produit->stockMin;else echo 2; ?>"
                                            name="stockmin" id="stockmin" placeholder=""/>
                                     <span class="help-block">Champ requis - Champ requis</span>
                                 </div>

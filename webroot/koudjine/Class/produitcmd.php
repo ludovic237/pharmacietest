@@ -263,6 +263,14 @@ class Produit_cmdManager
         return new Produit_cmd($donnees);
 
     }
+    public function getId($idpc)
+    {
+
+        $q = $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND id = '.$idpc);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Produit_cmd($donnees);
+
+    }
     public function getLastCmdId($idp)
     {
 

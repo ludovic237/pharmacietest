@@ -61,7 +61,9 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
             $_prixCommandeCmdTotal = $_prixCommandeCmdTotal + ($c->qtiteRecu()*$c->puCmd());
 
             $datas[] = array(
+                "DT_RowId" => $c->id(),
                 'date' => $v->dateCreation(),
+                'produit_cmd_id' => $c->id(),
                 'produit_id' => $id,
                 'commande_id' => $commandeid,
                 'fournisseur' => $fournisseur->nom(),
