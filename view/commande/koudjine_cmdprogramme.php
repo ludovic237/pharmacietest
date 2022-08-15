@@ -545,13 +545,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <label class="col-md-3 control-label">Prix d'achat:</label>
                             <div class="col-md-9">
                                 <input type="number" class="form-control champ champ3" data="4"
-                                       id="prixachat_cmdprogramme" value="" placeholder=""/>
+                                       id="prixachat_cmdprogramme" value="1" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Prix public:</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control champ champ4" data="5" value=""
+                                <input type="number" class="form-control champ champ4" data="5" value="1"
                                        id="prixpublic_cmdprogramme" placeholder=""/>
                             </div>
                         </div>
