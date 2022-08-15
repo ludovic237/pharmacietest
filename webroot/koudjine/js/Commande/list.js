@@ -287,11 +287,11 @@ function showAllPrintCmdList(tableNew) {
                         doc.setFontSize(4);
                         doc.text(19, 10, today);
                         doc.text(19, 12, datePerem);
-                        doc.setFontSize(3);
-                        var line1 = nom.substring(0, 16);
-                        var line2 = nom.substring(16, 32);
-                        var line3 = nom.substring(32, 48);
-                        var line4 = nom.substring(48, 64);
+                        doc.setFontSize(4);
+                        var line1 = nom.substring(0, 14);
+                        var line2 = nom.substring(14, 28);
+                        var line3 = nom.substring(28, 42);
+                        var line4 = nom.substring(42, 56);
                         doc.text(19, 16, line1);
                         doc.text(19, 17, line2);
                         doc.text(19, 18, line3);
