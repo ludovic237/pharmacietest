@@ -355,6 +355,18 @@ class CatalogueController extends Controller
             'order' => 'nomp-ASC',
             'conditions' => array('produit.categorie_id' => 'categorie.id', 'produit.rayon_id' => 'rayon.id', 'produit.supprimer' => 0)
         ));
+        $d['en_rayons'] = $this->Catalogue->find(array(
+            'fields' => 'produit_id as idp',
+            'table' => 'en_rayon',
+            'conditions' => array('supprimer' => 0)
+        ));
+        $dataArray = [];
+        foreach($d['en_rayons'] as $key => $value){
+
+            // push the new object to the array
+            $dataArray[] = $value->idp;
+        }
+        $d['en_rayons'] = $dataArray;
         //die($d);
         if (empty($d['catalogue'])) {
             $this->e404('Page introuvable');

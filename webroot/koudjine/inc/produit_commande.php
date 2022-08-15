@@ -25,6 +25,44 @@ if (isset($_POST['id']) && isset($_POST['prixachat']) && isset($_POST['prixvente
     $pdtCmd->setpuCmd($prixachat);
     $managerPo->update($pdtCmd);
 
+    $cmd = $manager->get($pdtCmd->commande_id());
+    $listEn_rayon = $managerEn->getListByCommande($pdtCmd->commande_id());
+    $countEn_rayon = $managerEn->countListByCommande($pdtCmd->commande_id());
+    if($countEn_rayon == 1){
+        $en_ray = $managerEn->getByCommande($pdtCmd->commande_id());
+        $vente = $en_ray->quantite() - $en_ray->quantiteRestante();
+        $en_ray->setquantite($quantite);
+        $en_ray->setquantiteRestante($quantite-$vente);
+        $en_ray->setprixAchat($prixachat);
+        $managerEn->update($en_ray);
+    }else{
+        $pdtCmdss = $managerPo->getList($pdtCmd->commande_id());
+        $i = 0;
+        foreach ($pdtCmdss as $k => $c) :
+            if($c->id() == $id){
+                break;
+            }else{
+                $i++;
+            }
+        endforeach;
+            $j=0;
+        foreach ($listEn_rayon as $k => $c) :
+            if($j == $i){
+                $en_ray = $c;
+                $vente = $en_ray->quantite() - $en_ray->quantiteRestante();
+                $en_ray->setquantite($quantite);
+                $en_ray->setquantiteRestante($quantite-$vente);
+                $en_ray->setprixAchat($prixachat);
+                $managerEn->update($en_ray);
+                break;
+            }else{
+                $j++;
+            }
+        endforeach;
+    }
+    $donnees = array('count' => $j);
+    echo json_encode($donnees);
+
 
 
 } elseif (isset($_POST['ide'])) {

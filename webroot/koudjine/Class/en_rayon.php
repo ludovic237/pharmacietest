@@ -176,6 +176,10 @@ class En_rayonManager
     {
         return $this->_db->query('SELECT COUNT(*) FROM en_rayon WHERE SUPPRIMER = 0 ')->fetchColumn();
     }
+    public function countListByCommande($info)
+    {
+        return $this->_db->query('SELECT COUNT(*) FROM en_rayon WHERE SUPPRIMER = 0 AND commande_id = ' . $info . ' ORDER BY dateLivraison ASC')->fetchColumn();
+    }
     public function delete(En_rayon $en_rayon)
     {
         $this->_db->exec('DELETE FROM en_rayon WHERE id = ' . $en_rayon->id());
@@ -211,6 +215,14 @@ class En_rayonManager
     {
 
         $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND id = ' . $info);
+        $q->execute();
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new en_rayon($donnees);
+    }
+    public function getByCommande($info)
+    {
+
+        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND commande_id = ' . $info);
         $q->execute();
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new en_rayon($donnees);

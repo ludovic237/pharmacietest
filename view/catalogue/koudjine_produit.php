@@ -14,8 +14,6 @@
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Catalogue/functions.js"></script>';
         ?> -->
 
-
-
 <!-- START RESPONSIVE TABLES -->
 <div class="row">
     <div class="col-md-12">
@@ -67,9 +65,11 @@
                                         <div>
                                             <a class="btn btn-warning btn-rounded btn-sm" href="<?php echo Router::url('bouwou/catalogue/produitdetail/?id=' .  $v->idp); ?>" style="margin-right: 20px">Detail</a>
                                         </div>
+                                        <?php if(!in_array($v->idp, $en_rayons)){ ?>
                                         <div>
-                                            <a class="btn btn-warning btn-rounded btn-sm" onclick="init_rayon(<?php echo $v->idp; ?>)" style="margin-right: 20px">Initialiser rayon</a>
+                                            <a class="btn btn-success btn-rounded btn-sm" onclick="init_rayon(<?php echo $v->idp; ?>)" style="margin-right: 20px">Initialiser rayon</a>
                                         </div>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

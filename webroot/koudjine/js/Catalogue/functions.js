@@ -2170,7 +2170,9 @@ function save_commande() {
             prixvente: pdtCmdprixvente,
             quantite: pdtCmdquantite,
         },
+        dataType:'json',
         success: function (data) {
+            console.log('count:'+data.count)
             noty({text: 'Enregistrement effectué' + data, layout: 'topRight', type: 'success'});
             load_produit_detail(_idprod, _nameprod);
             setTimeout(function () {

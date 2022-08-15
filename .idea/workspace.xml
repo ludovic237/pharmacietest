@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" afterDir="false" />
+    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="positionner bien le focus au chargement des composantes de cmd express">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/CatalogueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CatalogueController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/catalogue/koudjine_produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogue/koudjine_produit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/commande.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/en_rayon.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/en_rayon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/produit_commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/produit_commande.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Catalogue/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Catalogue/functions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
