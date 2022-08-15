@@ -101,7 +101,7 @@ function load_produit(id, nom, prixachat, prixvente, reduction, nbre_cmd) {
     $("#tab_BCrecherche").empty();
     $("#tab_GCrecherche").hide();
     $('#nom_cmdprogramme').val(nom);
-    $('#reduction_max').val(reduction);
+    $('#reduction_max').val(10);
     $('#recherche_commande_prog').val('');
     $('#qte_cmdprogramme').val("1");
     $('#prixachat_cmdprogramme').val(prixachat);
