@@ -2303,6 +2303,7 @@ function info_row_entree(row) {
 }
 
 function imprimer_bloc(titre, objet) {
+    $('#qrcode').empty();
     var qte = parseInt($("#qte_etiquette_table").val());
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20

@@ -66,6 +66,7 @@ function info_row_entree(row) {
 }
 
 function imprimer_bloc(titre, objet) {
+    $('#qrcode').empty();
     /*// Définition de la zone à imprimer
     var zone = document.getElementById(objet).innerHTML;
     //alert("Hello");
@@ -92,16 +93,17 @@ function imprimer_bloc(titre, objet) {
     var doc = new jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: [30, 21
         ]});
     //var doc = new jsPDF('l', 'mm', [30, 15]);
-    doc.cell(0, 0, 30, 21, ' ', 1, "center");
-    doc.setFontSize(4);
-    doc.text(1, 3, etiquetteNomP);
+    doc.cell(0, 0, 30, 20, ' ', 1, "center");
+    doc.setFontSize(2);
     doc.setFontSize(7);
-    doc.text(1, 7, etiquettePrix+' FCFA');
-    doc.addImage(base64Image, "JPEG", 20, 6, 9, 9);
+    doc.text(19, 6, etiquettePrix + ' F');
+    doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
     doc.setFontSize(5);
-    doc.text(2, 12, etiquetteNomF);
+    doc.text(19, 8, etiquetteNomF);
     doc.setFontSize(4);
-    doc.text(2, 14, etiquetteDatel + ' / ' + etiquetteDatep);
+    doc.text(19, 10, etiquetteDatel);
+    doc.text(19, 12, etiquetteDatep);
+    doc.text(19, 16, etiquetteNomP);
     doc.save('hello1.pdf');
     //doc.print('hello');
     return true;
