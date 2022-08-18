@@ -149,14 +149,14 @@ function enregistrer_commande_programme() {
             var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
 
             var compteur_bd = parseInt($('#fournisseur_commande').attr("data"));
-            var codebarre1 = id + "" + codefournisseur + "" + today ;
+            var codebarre1 = id + "" + codefournisseur + "" + today;
             var compteur = 0;
             var compteurtotal = 0;
 
             $('#tab_commande_programme  tr').each(function (i) {
                 var id1 = $(this).attr("id");
-                var id_traiter  = id1.slice(0,-1);
-                if(id_traiter == codebarre1){
+                var id_traiter = id1.slice(0, -1);
+                if (id_traiter == codebarre1) {
                     compteur++;
                 }
             });
@@ -311,21 +311,22 @@ function imprimer_recu(titre, objet) {
 function delete_row_commande(id) {
     var total;
     $("#" + id).remove();
-
-    var prixTotal = 0, qte;
+    console.log("hello11");
+    var prixTotal = 0, qte=0;
     $('#tab_commande_programme  tr').each(function (i) {
         var id1 = $(this).attr("id");
-
+        console.log("hello "+i);
         $("#" + id1 + " td").each(function (j) {
             ////alert($(this).html());
             if (j == 1) {
                 qte = parseInt($(this).html());
             }
-            if (j == 2) {
+            if (j == 3) {
                 total = (qte * parseInt($(this).html()));
                 prixTotal = prixTotal + total;
             }
-
+            console.log(j+" - "+$(this).html());
+            console.log(prixTotal + " = " + prixTotal + "+" + total);
         });
 
     });
@@ -542,6 +543,7 @@ function showPrintCmdProgramme(id) {
 }
 
 function imprimer_bloc(titre, objet) {
+
     let base64Image = $('#qrcode img').attr('src');
     console.log(base64Image);
     console.log(base64Image);
