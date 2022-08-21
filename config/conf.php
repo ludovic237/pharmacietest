@@ -1,111 +1,111 @@
 <?php
+
 class Conf
 {
 
     static $debug = 1;
     static $database = array(
         'default' => array(
-            'host'      => 'localhost',
-            'database'  => 'pharmanet1',
-            'login'     => 'root',
-            'password'  => ''
+            'host' => 'localhost',
+            'database' => 'pharmanet1',
+            'login' => 'root',
+            'password' => ''
         ),
         'front' => array(
-            'host'      => 'localhost',
-            'database'  => 'conseil_d_orientation',
-            'login'     => 'root',
-            'password'  => ''
+            'host' => 'localhost',
+            'database' => 'conseil_d_orientation',
+            'login' => 'root',
+            'password' => ''
         )
     );
     static $acces = array(
         'universites' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur'
         ),
         'facultes' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur'
         ),
         'types' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur'
         ),
         'formations' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur',
-            '2'  => 'Universitaire'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur',
+            '2' => 'Universitaire'
         ),
         'orientation' => array(
-            '0'      => 'Administrateur',
+            '0' => 'Administrateur',
         ),
         'medias' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur',
-            '2'  => 'Universitaire'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur',
+            '2' => 'Universitaire'
         ),
         'concours' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur',
-            '2'  => 'Universitaire',
-            '3'  => 'Informateur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur',
+            '2' => 'Universitaire',
+            '3' => 'Informateur'
         ),
         'catalogue' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur',
-            '2'  => 'Universitaire',
-            '3'  => 'Informateur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur',
+            '2' => 'Universitaire',
+            '3' => 'Informateur'
         ),
         'vente' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Caissier',
-            '2'  => 'Gestionnaire',
-            '3'  => 'Informateur'
+            '0' => 'Administrateur',
+            '1' => 'Caissier',
+            '2' => 'Gestionnaire',
+            '3' => 'Informateur'
         ),
         'geonetliste' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur',
-            '2'  => 'Universitaire',
-            '3'  => 'Informateur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur',
+            '2' => 'Universitaire',
+            '3' => 'Informateur'
         ),
         'pharmanet' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur',
-            '2'  => 'Universitaire',
-            '3'  => 'Informateur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur',
+            '2' => 'Universitaire',
+            '3' => 'Informateur'
         ),
         'commande' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur',
-            '2'  => 'Universitaire',
-            '3'  => 'Informateur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur',
+            '2' => 'Universitaire',
+            '3' => 'Informateur'
         ),
         'stock' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Caissier',
-            '2'  => 'Gestionnaire',
-            '3'  => 'Informateur'
+            '0' => 'Administrateur',
+            '2' => 'Gestionnaire',
+            '3' => 'Informateur'
         ),
         'comptabilite' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Caissier',
-            '2'  => 'Gestionnaire',
-            '3'  => 'Informateur'
+            '0' => 'Administrateur',
+            '1' => 'Caissier',
+            '2' => 'Gestionnaire',
+            '3' => 'Informateur'
         ),
         'statistique' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur',
-            '2'  => 'Universitaire',
-            '3'  => 'Informateur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur',
+            '2' => 'Universitaire',
+            '3' => 'Informateur'
         ),
         'users' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur'
         ),
         'home' => array(
-            '0'      => 'Administrateur',
-            '1'  => 'Superviseur',
-            '2'  => 'Universitaire',
-            '3'  => 'Informateur'
+            '0' => 'Administrateur',
+            '1' => 'Superviseur',
+            '2' => 'Universitaire',
+            '3' => 'Informateur'
         )
     );
 }
