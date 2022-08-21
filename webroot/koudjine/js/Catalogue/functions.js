@@ -468,6 +468,12 @@ function init_rayon(id) {
         success: function (data) {
             if (data == 'ok') {
                 noty({text: 'Modification effectué', layout: 'topRight', type: 'success'});
+               /* setTimeout(function () {
+                    var link = '/pharmacietest/bouwou/catalogue/produit/';
+                    window.location.href = link;
+                }, 3000);*/
+                $('#' + id + ' .btn-success').css('display','none');
+
             } else {
                 noty({text: data, layout: 'topRight', type: 'error'});
             }
@@ -2170,9 +2176,9 @@ function save_commande() {
             prixvente: pdtCmdprixvente,
             quantite: pdtCmdquantite,
         },
-        dataType:'json',
+        dataType: 'json',
         success: function (data) {
-            console.log('count:'+data.count)
+            console.log('count:' + data.count)
             noty({text: 'Enregistrement effectué' + data, layout: 'topRight', type: 'success'});
             load_produit_detail(_idprod, _nameprod);
             setTimeout(function () {
