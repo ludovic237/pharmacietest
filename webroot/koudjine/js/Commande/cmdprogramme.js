@@ -93,13 +93,50 @@ $(document).ready(function () {
         }
     })
 
+    //Enregistrement EAN 13
+    $("#ean_cmdprogramme").keyup(function (event) {
+        if (event.keyCode == 13) {
+            var recherche = $(this).val();
+            recherche = $.trim(recherche);
+            //var data = 'motclef=' + recherche;
+            if (recherche.length > 1) {
+                //alert('yes');
+                $.ajax({
+                    type: "POST",
+                    url: "/pharmacietest/koudjine/inc/update_ean13_cmd.php",
+                    data: {
+                        ean: recherche,
+                        idp: $('#id_xr').attr('data'),
+                    },
+                    //dataType: 'json',
+                    success: function (data) {
+                        if (data == 'ok') {
+                            noty({text: 'EAN 13 enregistré avec succes', layout: 'topRight', type: 'success'});
+
+                        } else {
+                            $('#message-box-danger p').html(data);
+                            $("#message-box-danger").modal("show");
+                            setTimeout(function () {
+                                $("#message-box-danger").modal("hide");
+                            }, 13000);
+                        }
+                    }
+                })
+            } else {
+                $("#tab_BCrecherche").empty();
+                $("#tab_GCrecherche").hide();
+            }
+        }
+    })
+
 });
 
-function load_produit(id, nom, prixachat, prixvente, reduction, nbre_cmd) {
+function load_produit(id, nom, prixachat, prixvente, reduction, nbre_cmd, ean13) {
     nbre_cmd = parseInt(nbre_cmd) + 1;
     $("#tab_BCrecherche").hide();
     $("#tab_BCrecherche").empty();
     $("#tab_GCrecherche").hide();
+    $('#ean_cmdprogramme').val(ean13);
     $('#nom_cmdprogramme').val(nom);
     $('#reduction_max').val(10);
     $('#recherche_commande_prog').val('');
@@ -321,7 +358,7 @@ function delete_row_commande(id) {
             if (j == 1) {
                 qte = parseInt($(this).html());
             }
-            if (j == 2) {
+            if (j == 3) {
                 total = (qte * parseInt($(this).html()));
                 prixTotal = prixTotal + total;
             }

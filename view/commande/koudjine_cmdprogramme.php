@@ -514,6 +514,13 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                 <div class="form-horizontal">
                     <div class="panel-body">
                         <div class="form-group">
+                            <label class="col-md-3 control-label">EAN 13:</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" value="" id="ean_cmdprogramme"
+                                       placeholder=""/>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-md-3 control-label">Nom:</label>
                             <div class="col-md-9">
                                 <input type="text" disabled="true" class="form-control" value="" id="nom_cmdprogramme"

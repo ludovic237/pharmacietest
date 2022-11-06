@@ -12,7 +12,7 @@ if (isset($_GET["motclef1"])) {
     $idf = $_GET["idf"];
     $q = array('motclef' => $motclef . '%');
     $sth = $pdo->prepare("
-              SELECT p.nom, r.quantite, r.reduction, p.reductionMax, r.prixAchat, r.prixVente, r.id as id, r.dateLivraison, p.id as idp 
+              SELECT p.nom, p.ean13, r.quantite, r.reduction, p.reductionMax, r.prixAchat, r.prixVente, r.id as id, r.dateLivraison, p.id as idp 
               FROM produit p, en_rayon r
               WHERE p.nom like :motclef AND p.id = r.produit_id AND p.supprimer = 0 AND r.dateLivraison IN (select max(dateLivraison) from en_rayon e where r.produit_id = e.produit_id )
               
@@ -27,7 +27,7 @@ if (isset($_GET["motclef1"])) {
                                             <td class='nom'><strong>" . $result->nom . "</strong></td>
 
                                             <td>
-                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit('" . $result->idp . "','" . $result->nom . "','" . $result->prixAchat . "','" . $result->prixVente . "','" . $result->reductionMax . "', '" . $nbre_cmd . "')\"><span class=\"\">Charger</span></button>
+                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit('" . $result->idp . "','" . $result->nom . "','" . $result->prixAchat . "','" . $result->prixVente . "','" . $result->reductionMax . "', '" . $nbre_cmd . "', '" . $result->ean13 . "')\"><span class=\"\">Charger</span></button>
                                             </td>
                                         </tr>";
             //echo "<li  style=\"background-color: #fff; list-style-type: none; margin: 0; padding: 0;\"><tr><a href=\"update/".$result->id."\" style=\"display:block; height: 25px; color: #000; text-decoration: none;\"><td>$result->nom</td></a><td>$result->stock</td><tr>$result->reductionMax</tr></li>";
