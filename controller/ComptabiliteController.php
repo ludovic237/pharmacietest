@@ -1,4 +1,5 @@
 <?php
+
 class ComptabiliteController extends Controller
 {
 
@@ -15,7 +16,6 @@ class ComptabiliteController extends Controller
         $d['page'] = ceil($d['total'] / $perPage);
         $this->set($d);
     }*/
-
 
 
     /**
@@ -49,7 +49,6 @@ class ComptabiliteController extends Controller
             ));
 
 
-
             if (empty($d['concours'])) {
                 $this->e404('Page introuvable');
             }
@@ -75,18 +74,18 @@ class ComptabiliteController extends Controller
         $d['caisseCheck'] = $this->Comptabilite->findFirst(array(
             //'fields' => 'produit.nom as nom',
             'table' => 'caisse',
-            'conditions' => "supprimer = 0 AND etat = \"En cours\" AND user_id =".$_SESSION["Users"]->id
+            'conditions' => "supprimer = 0 AND etat = \"En cours\" AND user_id =" . $_SESSION["Users"]->id
         ));
         $check = $this->Comptabilite->findFirst(array(
             //'fields' => 'produit.nom as nom',
             'table' => 'caisse',
-            'conditions' => "supprimer = 0 AND etat = \"En cours1\" AND user_id =".$_SESSION["Users"]->id
+            'conditions' => "supprimer = 0 AND etat = \"En cours1\" AND user_id =" . $_SESSION["Users"]->id
         ));
-        if(!empty($check)){
+        if (!empty($check)) {
             $d['caisseCheck'] = $this->Comptabilite->findFirst(array(
                 //'fields' => 'produit.nom as nom',
                 'table' => 'caisse',
-                'conditions' => "supprimer = 0 AND etat = \"En cours1\" AND user_id =".$_SESSION["Users"]->id
+                'conditions' => "supprimer = 0 AND etat = \"En cours1\" AND user_id =" . $_SESSION["Users"]->id
             ));
         }
         if (empty($d['caisseCheck'])) {
@@ -108,8 +107,7 @@ class ComptabiliteController extends Controller
                     'conditions' => array('employe.id' => $d['caisse']->user_id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
                 ));
 
-            }
-            else{
+            } else {
                 $d['employe'] = $this->Comptabilite->findFirst(array(
                     'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
                     'table' => 'employe, user',
@@ -117,8 +115,7 @@ class ComptabiliteController extends Controller
                 ));
             }
 
-        }
-        else{
+        } else {
             $d['employe'] = $this->Comptabilite->findFirst(array(
                 'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
                 'table' => 'employe, user',
@@ -129,128 +126,119 @@ class ComptabiliteController extends Controller
         $this->set($d);
     }
 
-    function koudjine_entre($id_prod=null,$stock=null,$perime=null)
+    function koudjine_entre($id_prod = null, $stock = null, $perime = null)
     {
         $this->loadModel('Comptabilite');
-        if($id_prod == 0){
+        if ($id_prod == 0) {
             $id_prod = null;
-        }
-        else{
+        } else {
             $d['produit'] = $this->Comptabilite->findFirst(array(
                 //'fields' => 'produit.nom as nom',
                 'table' => 'produit',
-                'conditions' => "id=".$id_prod." AND supprimer = 0"
+                'conditions' => "id=" . $id_prod . " AND supprimer = 0"
             ));
         }
-        if($stock == 0){
+        if ($stock == 0) {
             $stock = null;
         }
         $d['id_prod'] = $id_prod;
         $d['stock'] = $stock;
         $d['perime'] = $perime;
-        
-        if($id_prod != null){
 
-            if($stock != null){
-                if($perime == null) {
-                    if($stock == 1){
+        if ($id_prod != null) {
+
+            if ($stock != null) {
+                if ($perime == null) {
+                    if ($stock == 1) {
                         $d['catalogue'] = $this->Comptabilite->find(array(
                             'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
-                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
+                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=" . $id_prod . " AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
                         ));
-                    }
-                    else{
+                    } else {
                         $d['catalogue'] = $this->Comptabilite->find(array(
                             'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
-                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
+                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=" . $id_prod . " AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
                         ));
                     }
-                }
-                else{
-                    if($perime == 1){
-                        if($stock == 1){
+                } else {
+                    if ($perime == 1) {
+                        if ($stock == 1) {
                             $d['catalogue'] = $this->Comptabilite->find(array(
                                 'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
-                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
+                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=" . $id_prod . " AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
+                            ));
+                        } else {
+                            $d['catalogue'] = $this->Comptabilite->find(array(
+                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
+                                'table' => 'en_rayon,produit,fournisseur',
+                                'order' => 'dateLivraison-ASC',
+                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=" . $id_prod . " AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
                             ));
                         }
-                        else{
+                    } else {
+                        if ($stock == 1) {
                             $d['catalogue'] = $this->Comptabilite->find(array(
                                 'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
-                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
+                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=" . $id_prod . " AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL " . $perime . " DAY)"
                             ));
-                        }
-                    }
-                    else{
-                        if($stock == 1){
+                        } else {
                             $d['catalogue'] = $this->Comptabilite->find(array(
                                 'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
-                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
-                            ));
-                        }
-                        else{
-                            $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
-                                'table' => 'en_rayon,produit,fournisseur',
-                                'order' => 'dateLivraison-ASC',
-                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
+                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=" . $id_prod . " AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL " . $perime . " DAY)"
                             ));
                         }
                     }
 
                 }
-            }else{
-                if($perime == null) {
+            } else {
+                if ($perime == null) {
                     $d['catalogue'] = $this->Comptabilite->find(array(
                         'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                         'table' => 'en_rayon,produit,fournisseur',
                         'order' => 'dateLivraison-ASC',
-                        'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
+                        'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=" . $id_prod . " AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
                     ));
-                }else{
-                    if($perime == 1){
-                            $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
-                                'table' => 'en_rayon,produit,fournisseur',
-                                'order' => 'dateLivraison-ASC',
-                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
-                            ));
-                    }
-                    else{
-                            $d['catalogue'] = $this->Comptabilite->find(array(
-                                'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
-                                'table' => 'en_rayon,produit,fournisseur',
-                                'order' => 'dateLivraison-ASC',
-                                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=".$id_prod." AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
-                            ));
+                } else {
+                    if ($perime == 1) {
+                        $d['catalogue'] = $this->Comptabilite->find(array(
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
+                            'table' => 'en_rayon,produit,fournisseur',
+                            'order' => 'dateLivraison-ASC',
+                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=" . $id_prod . " AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
+                        ));
+                    } else {
+                        $d['catalogue'] = $this->Comptabilite->find(array(
+                            'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
+                            'table' => 'en_rayon,produit,fournisseur',
+                            'order' => 'dateLivraison-ASC',
+                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.produit_id=" . $id_prod . " AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL " . $perime . " DAY)"
+                        ));
                     }
                 }
 
             }
-        }
-        else {
+        } else {
 
-            if($stock != null){
-                if($perime == null) {
-                    if($stock == 1){
+            if ($stock != null) {
+                if ($perime == null) {
+                    if ($stock == 1) {
                         $d['catalogue'] = $this->Comptabilite->find(array(
                             'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
                             'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
                         ));
-                    }
-                    else{
+                    } else {
                         $d['catalogue'] = $this->Comptabilite->find(array(
                             'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
@@ -258,18 +246,16 @@ class ComptabiliteController extends Controller
                             'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
                         ));
                     }
-                }
-                else{
-                    if($perime == 1){
-                        if($stock == 1){
+                } else {
+                    if ($perime == 1) {
+                        if ($stock == 1) {
                             $d['catalogue'] = $this->Comptabilite->find(array(
                                 'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
                                 'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
                             ));
-                        }
-                        else{
+                        } else {
                             $d['catalogue'] = $this->Comptabilite->find(array(
                                 'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
@@ -277,50 +263,47 @@ class ComptabiliteController extends Controller
                                 'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
                             ));
                         }
-                    }
-                    else{
-                        if($stock == 1){
+                    } else {
+                        if ($stock == 1) {
                             $d['catalogue'] = $this->Comptabilite->find(array(
                                 'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
-                                'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
+                                'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante <> 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL " . $perime . " DAY)"
                             ));
-                        }
-                        else{
+                        } else {
                             $d['catalogue'] = $this->Comptabilite->find(array(
                                 'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                                 'table' => 'en_rayon,produit,fournisseur',
                                 'order' => 'dateLivraison-ASC',
-                                'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
+                                'conditions' => "en_rayon.produit_id = produit.id AND quantiteRestante = 0 AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL " . $perime . " DAY)"
                             ));
                         }
                     }
 
                 }
-            }else{
-                if($perime == null) {
+            } else {
+                if ($perime == null) {
                     $d['catalogue'] = $this->Comptabilite->find(array(
                         'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                         'table' => 'en_rayon,produit,fournisseur',
                         'order' => 'dateLivraison-ASC',
                         'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
                     ));
-                }else{
-                    if($perime == 1){
+                } else {
+                    if ($perime == 1) {
                         $d['catalogue'] = $this->Comptabilite->find(array(
                             'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
                             'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption <= NOW()"
                         ));
-                    }
-                    else{
+                    } else {
                         $d['catalogue'] = $this->Comptabilite->find(array(
                             'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                             'table' => 'en_rayon,produit,fournisseur',
                             'order' => 'dateLivraison-ASC',
-                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL ".$perime." DAY)"
+                            'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0 AND en_rayon.datePeremption BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL " . $perime . " DAY)"
                         ));
                     }
                 }
@@ -332,7 +315,7 @@ class ComptabiliteController extends Controller
         $this->set($d);
     }
 
-    function koudjine_sortie($id=null)
+    function koudjine_sortie($id = null)
     {
         $this->loadModel('Comptabilite');
         $d['sorties'] = $this->Comptabilite->find(array(
@@ -341,15 +324,15 @@ class ComptabiliteController extends Controller
             //'order' => 'dateLivraison-ASC',
             'conditions' => "supprimer = 0 "
         ));
-        if(!empty($d['sorties'])){
+        if (!empty($d['sorties'])) {
             $i = 0;
             foreach ($d['sorties'] as $k => $v):
                 $d['produit_rayon'][$i] = $this->Comptabilite->findFirst(array(
                     'fields' => 'p.nom as nomp, p.id as idp, e.id as ide, f.nom as nomf, e.dateLivraison',
                     'table' => 'produit p, en_rayon e, forme f',
-                    'conditions' => array('e.id' => $v->en_rayon_id, 'p.forme_id' =>'f.id', 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
+                    'conditions' => array('e.id' => $v->en_rayon_id, 'p.forme_id' => 'f.id', 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
                 ));
-                if($v->detail_id != '' && $v->detail_id != null){
+                if ($v->detail_id != '' && $v->detail_id != null) {
                     $d['produit_detail'][$i] = $this->Comptabilite->findFirst(array(
                         //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
                         'table' => 'produit p, en_rayon e',
@@ -357,7 +340,7 @@ class ComptabiliteController extends Controller
                     ));
                     $d['produit_detail'][$i] = $d['produit_detail'][$i]->nom;
                     $d['operation'][$i] = 'Détail';
-                }else{
+                } else {
                     $d['produit_detail'][$i] = $v->detail_id;
                     $d['operation'][$i] = 'Périmé';
                 }
@@ -366,16 +349,16 @@ class ComptabiliteController extends Controller
             endforeach;
         }
 
-        if(isset($id)){
+        if (isset($id)) {
             $d['entree'] = $this->Comptabilite->findFirst(array(
                 'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                 'table' => 'en_rayon,produit',
                 //'order' => 'dateLivraison-ASC',
-                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.supprimer = 0 AND en_rayon.id = ".$id
+                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.supprimer = 0 AND en_rayon.id = " . $id
             ));
-            if($d['entree']->grossiste_id != '' || $d['entree']->grossiste_id != null){
+            if ($d['entree']->grossiste_id != '' || $d['entree']->grossiste_id != null) {
                 $grossistes = $d['entree']->grossiste_id;
-                $texto  = explode('-', $grossistes);
+                $texto = explode('-', $grossistes);
                 $i = 0;
                 foreach ($texto as $k => $v):
                     $d['produits'][$i] = $this->Comptabilite->findFirst(array(
@@ -386,18 +369,18 @@ class ComptabiliteController extends Controller
                     $d['entrees'][$i] = $this->Comptabilite->find(array(
                         //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
                         'table' => 'produit p, en_rayon e',
-                        'conditions' => array('p.id' => $d['produits'][$i]->id, 'e.supprimer' => 0, 'p.supprimer' => 0,'e.produit_id' => 'p.id')
+                        'conditions' => array('p.id' => $d['produits'][$i]->id, 'e.supprimer' => 0, 'p.supprimer' => 0, 'e.produit_id' => 'p.id')
                     ));
                     $i++;
                 endforeach;
             }
 
         }
-          $this->set($d);
-        
+        $this->set($d);
+
     }
 
-    function koudjine_sortieautre($id=null)
+    function koudjine_sortieautre($id = null)
     {
         $this->loadModel('Comptabilite');
         $d['sorties'] = $this->Comptabilite->find(array(
@@ -412,15 +395,15 @@ class ComptabiliteController extends Controller
             //'order' => 'dateLivraison-ASC',
             'conditions' => "supprimer = 0 "
         ));
-        if(!empty($d['sorties'])){
+        if (!empty($d['sorties'])) {
             $i = 0;
             foreach ($d['sorties'] as $k => $v):
                 $d['produit_rayon'][$i] = $this->Comptabilite->findFirst(array(
                     'fields' => 'p.nom as nomp, p.id as idp, e.id as ide, f.nom as nomf, e.dateLivraison',
                     'table' => 'produit p, en_rayon e, forme f',
-                    'conditions' => array('e.id' => $v->en_rayon_id, 'p.forme_id' =>'f.id', 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
+                    'conditions' => array('e.id' => $v->en_rayon_id, 'p.forme_id' => 'f.id', 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
                 ));
-                if($v->detail_id != '' && $v->detail_id != null){
+                if ($v->detail_id != '' && $v->detail_id != null) {
                     $d['produit_detail'][$i] = $this->Comptabilite->findFirst(array(
                         //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
                         'table' => 'produit p, en_rayon e',
@@ -428,7 +411,7 @@ class ComptabiliteController extends Controller
                     ));
                     $d['produit_detail'][$i] = $d['produit_detail'][$i]->nom;
                     $d['operation'][$i] = $v->nom;
-                }else{
+                } else {
                     $d['produit_detail'][$i] = $v->detail_id;
                     $d['operation'][$i] = $v->nom;
                 }
@@ -437,16 +420,16 @@ class ComptabiliteController extends Controller
             endforeach;
         }
 
-        if(isset($id)){
+        if (isset($id)) {
             $d['entree'] = $this->Comptabilite->findFirst(array(
                 'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                 'table' => 'en_rayon,produit',
                 //'order' => 'dateLivraison-ASC',
-                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.supprimer = 0 AND en_rayon.id = ".$id
+                'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.supprimer = 0 AND en_rayon.id = " . $id
             ));
-            if($d['entree']->grossiste_id != '' || $d['entree']->grossiste_id != null){
+            if ($d['entree']->grossiste_id != '' || $d['entree']->grossiste_id != null) {
                 $grossistes = $d['entree']->grossiste_id;
-                $texto  = explode('-', $grossistes);
+                $texto = explode('-', $grossistes);
                 $i = 0;
                 foreach ($texto as $k => $v):
                     $d['produits'][$i] = $this->Comptabilite->findFirst(array(
@@ -459,8 +442,8 @@ class ComptabiliteController extends Controller
             }
 
         }
-          $this->set($d);
-        
+        $this->set($d);
+
     }
 
     function koudjine_consultation()
@@ -521,10 +504,10 @@ class ComptabiliteController extends Controller
     function koudjine_caisse_fermer()
     {
         $this->loadModel('Comptabilite');
-       
+
     }
 
-    function koudjine_caisse_rapport($id=null)
+    function koudjine_caisse_rapport($id = null)
     {
         $this->loadModel('Comptabilite');
 
@@ -534,20 +517,20 @@ class ComptabiliteController extends Controller
             //'conditions' => "supprimer = 0 AND etat != \"Clot\""
             'conditions' => "supprimer = 0 AND etat = \"Ouvert\""
         ));
-        if($id != null){
+        if ($id != null) {
             $d['id'] = $id;
             $d['check'] = $this->Comptabilite->findFirst(array(
                 //'fields' => 'produit.nom as nom',
                 'table' => 'caisse',
-                'conditions' => "supprimer = 0 AND id = ".$id
+                'conditions' => "supprimer = 0 AND id = " . $id
             ));
             $d['session'] = $d['check']->session;
             $d['dateOuvert'] = $d['check']->dateOuvert;
             $d['dateFerme'] = $d['check']->dateFerme;
             $d['etat'] = $d['check']->etat;
-        }else{
-            if(!empty($d['check']))
-            $d['id'] = $d['check']->id;
+        } else {
+            if (!empty($d['check']))
+                $d['id'] = $d['check']->id;
             $d['session'] = $d['check']->session;
             $d['dateOuvert'] = $d['check']->dateOuvert;
             $d['dateFerme'] = $d['check']->dateFerme;
@@ -557,11 +540,11 @@ class ComptabiliteController extends Controller
         $d['employe'] = $this->Comptabilite->findFirst(array(
             //'fields' => 'produit.nom as nom',
             'table' => 'employe',
-            'conditions' => "supprimer = 0 AND id = ".$d['check']->user_id
+            'conditions' => "supprimer = 0 AND id = " . $d['check']->user_id
         ));
 
         $this->set($d);
-       
+
     }
 
 }

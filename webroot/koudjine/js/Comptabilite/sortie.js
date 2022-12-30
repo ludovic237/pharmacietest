@@ -1,13 +1,13 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $("#tab_Grecherche").hide();
     $("#tab_SGrecherche").hide();
     $(".contenu").show();
 
     $("#parent").change(function () {
 
-        if($("#parent option:selected").val() != 0){
+        if ($("#parent option:selected").val() != 0) {
             $("#contenu").val($("#parent option:selected").attr("data"));
-        }else{
+        } else {
             //$("#tab_Bsortie").empty();
             $("#contenu").val('');
         }
@@ -38,14 +38,18 @@ $(document).ready(function(){
                                     action = 1;
                                     $("#" + id1 + " td").each(function (j) {
                                         ////alert($(this).html());
-                                        if (j == 1) { qte = parseInt($(this).html()) + 1; }
+                                        if (j == 1) {
+                                            qte = parseInt($(this).html()) + 1;
+                                        }
                                         if (j == 3) {
                                             var stock = parseInt($(this).html());
                                             if (stock == 0) {
                                                 //  alert("Quantité en stock pas suffisante pour cette opération ");
                                             } else {
                                                 $("#" + id1 + " td").each(function (k) {
-                                                    if (k == 1) { $(this).html(qte); }
+                                                    if (k == 1) {
+                                                        $(this).html(qte);
+                                                    }
 
                                                 });
                                                 $(this).html((stock - 1));
@@ -92,8 +96,12 @@ $(document).ready(function(){
                             ////alert(id1);
                             $("#" + id1 + " td").each(function (j) {
                                 ////alert($(this).html());
-                                if (j == 1) { qte = parseInt($(this).html()); }
-                                if (j == 2) { contenu = parseInt($(this).html()); }
+                                if (j == 1) {
+                                    qte = parseInt($(this).html());
+                                }
+                                if (j == 2) {
+                                    contenu = parseInt($(this).html());
+                                }
 
                             });
                             total = total + (qte * contenu);
@@ -112,10 +120,9 @@ $(document).ready(function(){
         if (event.keyCode == 13) {
             var recherche = $(this).val();
             recherche = $.trim(recherche);
-            var link = '/pharmacietest/bouwou/comptabilite/sortie/'+recherche;
+            var link = '/pharmacietest/bouwou/comptabilite/sortie/' + recherche;
             window.location.href = link;
-        }
-        else {
+        } else {
             var recherche = $(this).val();
             recherche = $.trim(recherche);
             var data = 'motclef1=' + recherche;
@@ -129,10 +136,10 @@ $(document).ready(function(){
                         action: $(this).attr("data1")
                     },
                     success: function (server_responce) {
-                        if($("#recherche").attr("data1") == 'sortie'){
+                        if ($("#recherche").attr("data1") == 'sortie') {
                             $("#tab_SGrecherche").show();
                             $("#tab_SBrecherche").html(server_responce).show();
-                        }else{
+                        } else {
                             $("#tab_Grecherche").show();
                             $("#tab_Brecherche").html(server_responce).show();
                         }
@@ -150,13 +157,14 @@ $(document).ready(function(){
 
 
 });
+
 function valider_produit_sortie() {
     $('#tab_Bsortie  tr').each(function (i) {
         var id1 = $(this).attr("id");
         var qte = parseInt($("#" + id1 + " .qte").html());
         var contenu = parseInt($("#" + id1 + " .contenu").html());
         ////alert(qte);
-        if(qte != 0){
+        if (qte != 0) {
             $.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/enregistrer_sortie_stock.php',
@@ -164,7 +172,7 @@ function valider_produit_sortie() {
                     id: id1,
                     qte: qte,
                     contenu: contenu,
-                    detail_id:$("#recherche").attr('data')
+                    detail_id: $("#recherche").attr('data')
                 },
                 success: function (server_responce) {
                     //alert(server_responce);
@@ -181,10 +189,11 @@ function valider_produit_sortie() {
 
     });
 }
+
 function valider_sortie() {
 
     //alert(qteT);
-    if($("#recherche").attr('data1')=='autre' && $("#qte_sortie").val()== ''){
+    if ($("#recherche").attr('data1') == 'autre' && $("#qte_sortie").val() == '') {
         $('#message-box-danger p').html('Veuillez Entrer une quantité valide !!!');
         $("#message-box-danger").modal("show");
         setTimeout(function () {
@@ -192,7 +201,7 @@ function valider_sortie() {
         }, 6000);
     } else {
         var qteT = parseInt($("#qte_sortie").val());
-        if($("#recherche").attr('data1')=='sortie'){
+        if ($("#recherche").attr('data1') == 'sortie') {
             var qte_total = 0, statut = 1;
             $('#tab_Bsortie  tr').each(function (i) {
                 var id1 = $(this).attr("id");
@@ -209,13 +218,13 @@ function valider_sortie() {
                 }
                 qte_total = qte_total + qte;
             })
-            if(qte_total == qteT && statut == 1 && $('#contenu').val() != ''){
+            if (qte_total == qteT && statut == 1 && $('#contenu').val() != '') {
                 $('#tab_Bsortie  tr').each(function (i) {
                     var id1 = $(this).attr("id");
                     var qte = parseInt($("#" + id1 + " .qte").val());
                     var contenu = parseInt($("#" + id1 + " .contenu").html());
                     ////alert(qte);
-                    if(qte != 0){
+                    if (qte != 0) {
                         $.ajax({
                             type: "POST",
                             url: '/pharmacietest/koudjine/inc/enregistrer_sortie_stock.php',
@@ -223,7 +232,7 @@ function valider_sortie() {
                                 id: id1,
                                 qte: qte,
                                 contenu: contenu,
-                                detail_id:$("#recherche").attr('data')
+                                detail_id: $("#recherche").attr('data')
                             },
                             success: function (server_responce) {
                                 //alert(server_responce);
@@ -239,14 +248,14 @@ function valider_sortie() {
 
 
                 });
-            }else{
+            } else {
                 $('#message-box-danger p').html("Veuillez vérifier que la quantité saisie et les quantités du tableau correspondent \n Vérifier aussi que 'Contenu' n'est pas vide !!!");
                 $("#message-box-danger").modal("show");
                 setTimeout(function () {
                     $("#message-box-danger").modal("hide");
                 }, 6000);
             }
-        }else{
+        } else {
             $.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/enregistrer_sortie_stock.php',
@@ -254,7 +263,7 @@ function valider_sortie() {
                     id: $("#recherche").attr('data'),
                     qte: qteT,
                     type_sortie_id: $("#choix").val(),
-                    detail_id:null
+                    detail_id: null
                 },
                 success: function (server_responce) {
                     //alert(server_responce);
@@ -266,34 +275,36 @@ function valider_sortie() {
         }
     }
 }
+
 function load_produit(id, action) {
     //alert(id)
 
-        $.ajax({
-            type: "POST",
-            url: '/pharmacietest/koudjine/inc/load_produit_sortie.php',
-            data: {
-                id: id,
-                action: $("#recherche").attr('data1')
-            },
-            success: function (server_responce) {
-                
-                $('#tab_Bload_produit').html(server_responce);
-                //$("#code").barcode(data.codebarre);
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/load_produit_sortie.php',
+        data: {
+            id: id,
+            action: action
+        },
+        success: function (server_responce) {
+
+            $('#tab_Bload_produit').html(server_responce);
+            //$("#code").barcode(data.codebarre);
 
 
-            }
+        }
 
 
-        })
-        $("#iconPreviewVente").modal("show");
+    })
+    $("#iconPreviewVente").modal("show");
 
 }
+
 function load_produit_parent() {
     //alert(id)
-    if($("#qte_sortie").val() == '' || $("#parent option:selected").val() == 0){
+    if ($("#qte_sortie").val() == '' || $("#parent option:selected").val() == 0) {
         alert('Veuillez entrer la quantité ou sélectionner une parent !!!');
-    }else{
+    } else {
         var id = $("#parent option:selected").val();
 
         $.ajax({
@@ -317,106 +328,121 @@ function load_produit_parent() {
 
 
 }
+
 function valider_stock_detail(id) {
     //alert('passe');
     $("#iconPreviewSortie").modal("hide");
 
-        $.ajax({
-            type: "POST",
-            url: '/pharmacietest/koudjine/inc/charger_sortie_produit.php',
-            data: {
-                id: id,
-                qte: $("#qte_sortie").val()
-            },
-            dataType: 'json',
-            success: function (data) {
-                //$("#tab_Bsortie").empty();
-                //alert(data);
-                var total = 0;
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_sortie_produit.php',
+        data: {
+            id: id,
+            qte: $("#qte_sortie").val()
+        },
+        dataType: 'json',
+        success: function (data) {
+            //$("#tab_Bsortie").empty();
+            //alert(data);
+            var total = 0;
+            var qte = 0;
 
-                if (data.erreur == 'non') {
-                    var action = 0;
-                    $('#tab_Bsortie  tr').each(function (i) {
-                        var id1 = $(this).attr("id");
-                        var qte;
-                        if (id1 == id) {
-                            action = 1;
-                            $("#" + id1 + " td").each(function (j) {
-                                ////alert($(this).html());
-                                if (j == 1) { qte = parseInt($(this).html()) + parseInt($("#qte_sortie").val()); }
-                                if (j == 3) {
-                                    var stock = parseInt($(this).html());
-                                    if (stock == 0) {
-                                        //  alert("Quantité en stock pas suffisante pour cette opération ");
-                                    } else {
-                                        $("#" + id1 + " td").each(function (k) {
-                                            if (k == 1) { $(this).html(qte); }
+            if (data.erreur == 'non') {
+                var action = 0;
+                $('#tab_Bsortie  tr').each(function (i) {
+                    var id1 = $(this).attr("id");
 
-                                        });
-                                        $(this).html((stock - parseInt($("#qte_sortie").val())));
-                                    }
+                    if (id1 == id) {
+                        action = 1;
+                        $("#" + id1 + " td").each(function (j) {
+                            ////alert($(this).html());
+                            if (j == 1) {
+                                qte = parseInt($(this).html()) + parseInt($("#qte_sortie").val());
+                            }
+                            if (j == 3) {
+                                var stock = parseInt($(this).html());
+                                if (stock == 0 || (stock - parseInt($("#qte_sortie").val())) < 0) {
+                                    $('#message-box-danger p').html("La quantité a détaillé est supérieur au stock en rayon !!!");
+                                    $("#message-box-danger").modal("show");
+                                    setTimeout(function () {
+                                        $("#message-box-danger").modal("hide");
+                                    }, 3000);
+                                } else {
+                                    $("#" + id1 + " td").each(function (k) {
+                                        if (k == 1) {
+                                            $(this).html(qte);
+                                        }
+
+                                    });
+                                    $(this).html((stock - parseInt($("#qte_sortie").val())));
                                 }
+                            }
 
-                            });
-                        }
-
-                    });
-                    if (action == 0 && $("#qte_sortie").val() < data.stock) {
-                        var cat = '<tr id="' + id + '">'
-                            + ' <td><strong>' + data.nom + '</strong></td>'
-                            + '<td class="qte">' + parseInt($("#qte_sortie").val()) + '</td>'
-                            + '<td class="contenu">' + data.contenu + '</td>'
-                            + '<td>' + data.stock + '</td>'
-                            + '<td>' + data.datel + '</td>'
-                            + '<td>'
-                            + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + id + '\');"><span class="fa fa-times"></span></button>'
-                            + '</td>'
-                            + '</tr>';
-                        $('#tab_Bsortie').prepend(cat);
-                        /*total = total + (parseInt($("#qte_sortie").val()) * data.contenu);
-                        $("#stock_detail").val((total + parseInt($("#stock_detail").attr("data"))));*/
-                    }else if($("#qte_sortie").val() > data.stock){
-                        $('#message-box-danger p').html("La quantité a détaillé est supérieur au stock en rayon !!!");
-                        $("#message-box-danger").modal("show");
-                        setTimeout(function () {
-                            $("#message-box-danger").modal("hide");
-                        }, 3000);
+                        });
                     }
 
-                } /*else if (data.find == 'non') {
-                            load_produit(data.id);
-                            $('#recherche').val("");
-                            $("#tab_Grecherche").hide();
-                        }*/
-                else {
-                    $('#message-box-danger p').html(data.erreur);
+                });
+                if (action == 0 && $("#qte_sortie").val() <= data.stock) {
+                    qte = parseInt($("#qte_sortie").val());
+                    var cat = '<tr id="' + id + '">'
+                        + ' <td><strong>' + data.nom + '</strong></td>'
+                        + '<td class="qte">' + qte + '</td>'
+                        + '<td class="contenu">' + data.contenu + '</td>'
+                        + '<td>' + (data.stock - qte) + '</td>'
+                        + '<td>' + data.datel + '</td>'
+                        + '<td>'
+                        + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + id + '\');"><span class="fa fa-times"></span></button>'
+                        + '</td>'
+                        + '</tr>';
+                    $('#tab_Bsortie').prepend(cat);
+                    /*total = total + (parseInt($("#qte_sortie").val()) * data.contenu);
+                    $("#stock_detail").val((total + parseInt($("#stock_detail").attr("data"))));*/
+                } else if ($("#qte_sortie").val() > data.stock) {
+                    $('#message-box-danger p').html("La quantité a détaillé est supérieur au stock en rayon !!!");
                     $("#message-box-danger").modal("show");
                     setTimeout(function () {
                         $("#message-box-danger").modal("hide");
                     }, 3000);
-                    $('#recherche').val("");
-                    $("#tab_Grecherche").hide();
                 }
-                /*$('#recherche_parent').val("");
-                $("#tab_Bsortie").prepend(data);*/
-                $("#contenu").val('');
-                $("#qte_sortie").val('');
-                $('#parent option[value="0"]').prop('selected', true);
-                //$("#parent").setSelected(0);
-                $('#tab_Bsortie  tr').each(function (i) {
-                    var id1 = $(this).attr("id");
-                    var contenu, qte, total = 0;
-                    ////alert(id1);
-                    $("#" + id1 + " td").each(function (j) {
-                        ////alert($(this).html());
-                        if (j == 1) { qte = parseInt($(this).html()); }
-                        if (j == 2) { contenu = parseInt($(this).html()); }
 
-                    });
-                    total = total + (qte * contenu);
-                    $("#stock_detail").val((total + parseInt($("#stock_detail").attr("data"))));
-                });
+            } /*else if (data.find == 'non') {
+                            load_produit(data.id);
+                            $('#recherche').val("");
+                            $("#tab_Grecherche").hide();
+                        }*/
+            else {
+                $('#message-box-danger p').html(data.erreur);
+                $("#message-box-danger").modal("show");
+                setTimeout(function () {
+                    $("#message-box-danger").modal("hide");
+                }, 3000);
+                $('#recherche').val("");
+                $("#tab_Grecherche").hide();
             }
-        })
+            /*$('#recherche_parent').val("");
+            $("#tab_Bsortie").prepend(data);*/
+            $("#contenu").val('');
+            $("#qte_sortie").val('');
+            $('#parent option[value="0"]').prop('selected', true);
+            //$("#parent").setSelected(0);
+            $('#tab_Bsortie  tr').each(function (i) {
+                var id1 = $(this).attr("id");
+                var contenu, qte, total = 0;
+                ////alert(id1);
+                $("#" + id1 + " td").each(function (j) {
+                    ////alert($(this).html());
+                    if (j == 1) {
+                        qte = parseInt($(this).html());
+                    }
+                    if (j == 2) {
+                        contenu = parseInt($(this).html());
+                    }
+
+                });
+                total = total + (qte * contenu);
+                $("#stock_detail").val((total + parseInt($("#stock_detail").attr("data"))));
+            });
+        }
+    })
 }
 

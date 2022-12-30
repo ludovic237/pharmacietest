@@ -40,8 +40,10 @@ if(isset($_POST['contenu'])){
 
         $ent1->setquantiteRestante(($ent1->quantiteRestante()+ ($qte * $contenu)));
         $managerEn->update($ent1);
+        $prod1 = $managerPr->get($ent1->produit_id());
+        $prod1->setstock(($prod1->stock()+$qte));
+        $managerPr->update($prod1);
     }
-
 
     $donnees = array('erreur' =>'ok');
     echo json_encode($donnees);

@@ -274,6 +274,17 @@ class En_rayonManager
         return $enrayon;
     }
 
+    public function getListByCommandeAndProduitId($info,$produitId)
+    {
+        $enrayon = array();
+        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND produit_id = '.$produitId.' AND commande_id = ' . $info . ' ORDER BY dateLivraison ASC');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $enrayon[] = new En_rayon($donnees);
+        }
+        return $enrayon;
+    }
+
     public function getListSortie($info)
     {
         $enrayon = array();
@@ -335,6 +346,19 @@ class En_rayonManager
         $q->bindValue(':datePeremption', $datePeremption);
         $q->bindValue(':prixv', $prixVente);
         $q->bindValue(':prixa', $prixAchat);
+        $q->bindValue(':quantite', $quantite);
+        $q->execute();
+    }
+
+
+    public function updateProduitCmdEnrayon($prixAchat, $quantiteRestante, $quantite, $id)
+    {
+
+        // UPDATE `en_rayon` SET `datePeremption` = '2021-04-23', `prixAchat` = '420', `prixVente` = '105', `quantite` = '102', `quantiteRestante` = '74' WHERE `en_rayon`.`id` = '10010120171115';
+        $q = $this->_db->prepare('UPDATE en_rayon SET quantiteRestante = :quantiteRestante, prixAchat = :prixa, quantite = :quantite WHERE `en_rayon`.`id` = :id');
+        $q->bindValue(':id', $id, PDO::PARAM_INT);
+        $q->bindValue(':prixa', $prixAchat);
+        $q->bindValue(':quantiteRestante', $quantiteRestante);
         $q->bindValue(':quantite', $quantite);
         $q->execute();
     }

@@ -147,7 +147,7 @@ $(document).ready(function () {
                                     if (!data) {
                                         return '<span class="text-muted" style="font-size:90%">NA</span>';
                                     } else {
-                                        return '<a class="btn btn-success btn-rounded btn-sm "  onclick="modifier_commande(' + data + ',' + row + ')"><span class="">Modifier</span></a>' +
+                                        return '<a class="btn btn-success btn-rounded btn-sm "  onclick="modifier_commande(' + data + ',' + row.produit_cmd_id + ')"><span class="">Modifier</span></a>' +
                                             '<a class="btn btn-primary btn-rounded btn-sm " onclick="delete_row_commande(' + data + ')"  ><span class="">Supprimer</span></a>';
                                         ;
                                     }

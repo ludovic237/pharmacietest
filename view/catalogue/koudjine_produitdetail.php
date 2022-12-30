@@ -366,7 +366,7 @@ var test = "' . $id . '"
                                                 <div class="panel-body panel-body-table">
 
                                                     <div class="panel-body">
-                                                        <h1>Total comma,dé :
+                                                        <h1>Total commandé :
                                                             <span id="tab_produit_stock_detail_total">
                                                             </span>
                                                         </h1>
