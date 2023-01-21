@@ -1072,7 +1072,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                 </div>
                                 <a class="btn btn-circle blue"
                                    style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
-                                   onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print"
+                                   onClick="imprimer_bloc('ticketCaisse','ticketCaisse')"><i class="fa fa-print"
                                                                                            style="font-size:10px"></i>&nbsp;Imprimer</a>
                             </div>
                         </div>
