@@ -948,7 +948,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         <div class="col-md-4">
                             <div class="icon-preview">
                                 <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;"
-                                     class="ticketfacture" id="ticketListe">
+                                     class="ticketfacture" id="ticketCaisse">
 
                                     <div style="display: flex;flex-direction:column;text-align: left;">
                                         <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
