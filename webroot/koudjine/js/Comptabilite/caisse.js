@@ -839,6 +839,26 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
         } else {
             console.log("autre");
             console.log(copytypePaiement);
+            switch (copytypePaiement) {
+                case "Espèce":
+                    montant_espece = montantPercu;
+                    $('#montantespece').html(montantPercu);
+                    $('#montantticket').html(0);
+                    $('#montantelectronique').html(0);
+                    break;
+                case "Electronique":
+                    montant_electronique = montantPercu;
+                    $('#montantespece').html(0);
+                    $('#montantticket').html(0);
+                    $('#montantelectronique').html(montantPercu);
+                    break;
+                case "Ticketcaisse":
+                    montant_ticket = montantPercu;
+                    $('#montantespece').html(0);
+                    $('#montantticket').html(montantPercu);
+                    $('#montantelectronique').html(0);
+                    break;
+            }
             $.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/valider_facture.php',
