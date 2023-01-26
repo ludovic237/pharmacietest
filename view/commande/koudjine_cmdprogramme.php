@@ -8,6 +8,7 @@ $title_for_layout = ' Admin -' . 'Commande';
 $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Commande express</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
@@ -517,6 +518,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <label class="col-md-3 control-label">EAN 13:</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" value="" id="ean_cmdprogramme"
+                                       placeholder=""/>
+                                <input type="hidden" class="form-control" value="" id="reference_cmdprogramme" hidden
                                        placeholder=""/>
                             </div>
                         </div>

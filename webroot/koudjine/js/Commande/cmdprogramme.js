@@ -45,7 +45,7 @@ $(document).ready(function () {
                     dataType: 'json',
                     success: function (data) {
                         if (data.erreur == "non") {
-                            load_produit(data.id, data.nom, data.prixA, data.prixV, data.reduction, data.nbre_cmd);
+                            load_produit(data.id, data.reference, data.nom, data.prixA, data.prixV, data.reduction, data.nbre_cmd);
                             //alert(data.nbre_cmd)
                             $('#fournisseur_commande').attr("data", data.nbre_cmd);
                             $('#recherche').val("");
@@ -131,12 +131,13 @@ $(document).ready(function () {
 
 });
 
-function load_produit(id, nom, prixachat, prixvente, reduction, nbre_cmd, ean13) {
+function load_produit(id, reference, nom, prixachat, prixvente, reduction, nbre_cmd, ean13) {
     nbre_cmd = parseInt(nbre_cmd) + 1;
     $("#tab_BCrecherche").hide();
     $("#tab_BCrecherche").empty();
     $("#tab_GCrecherche").hide();
     $('#ean_cmdprogramme').val(ean13);
+    $('#ean_cmdprogramme').val(reference);
     $('#nom_cmdprogramme').val(nom);
     $('#reduction_max').val(10);
     $('#recherche_commande_prog').val('');
@@ -165,6 +166,7 @@ function enregistrer_commande_programme() {
     } else {
         var id = $('#id_xr').attr("data");
         var nom = $('#nom_cmdprogramme').val();
+        var reference = $('#reference_cmdprogramme').val();
         var ug, qte = $('#qte_cmdprogramme').val();
         if ($('#ug_cmdprogramme').val() != '')
             ug = $('#ug_cmdprogramme').val();
@@ -202,6 +204,7 @@ function enregistrer_commande_programme() {
 
             var data = {
                 nom: nom,
+                reference: reference,
                 qte: qte,
                 ug: ug,
                 prixachat: prixachat,
@@ -213,6 +216,7 @@ function enregistrer_commande_programme() {
             var cat = '<tr id=' + codebarre + ' >'
                 + ' <td class="nom" data="' + id + '" ><strong>' + nom + '</strong></td>'
                 + '<td class="qte">' + qte + '</td>'
+                + '<td class="reference" hidden>' + reference + '</td>'
                 + '<td class="ug">' + ug + '</td>'
                 + '<td class="prixachat">' + prixachat + '</td>'
                 + '<td class="prixpublic">' + prixpublic + '</td>'
@@ -349,10 +353,10 @@ function delete_row_commande(id) {
     var total;
     $("#" + id).remove();
     console.log("hello11");
-    var prixTotal = 0, qte=0;
+    var prixTotal = 0, qte = 0;
     $('#tab_commande_programme  tr').each(function (i) {
         var id1 = $(this).attr("id");
-        console.log("hello "+i);
+        console.log("hello " + i);
         $("#" + id1 + " td").each(function (j) {
             ////alert($(this).html());
             if (j == 1) {
@@ -362,7 +366,7 @@ function delete_row_commande(id) {
                 total = (qte * parseInt($(this).html()));
                 prixTotal = prixTotal + total;
             }
-            console.log(j+" - "+$(this).html());
+            console.log(j + " - " + $(this).html());
             console.log(prixTotal + " = " + prixTotal + "+" + total);
         });
 
@@ -646,18 +650,21 @@ function printAllTicket() {
                         line.qte = parseInt(cellVal);
                         break;
                     case 2:
-                        line.unit = parseInt(cellVal);
+                        line.reference = parseInt(cellVal);
                         break;
                     case 3:
-                        line.prixa = parseInt(cellVal);
+                        line.unit = parseInt(cellVal);
                         break;
                     case 4:
-                        line.prixp = parseInt(cellVal);
+                        line.prixa = parseInt(cellVal);
                         break;
                     case 5:
-                        line.date = "" + cellVal;
+                        line.prixp = parseInt(cellVal);
                         break;
                     case 6:
+                        line.date = "" + cellVal;
+                        break;
+                    case 7:
                         line.red = cellVal;
                         break;
                 }
@@ -681,6 +688,7 @@ function printOneTicket(id) {
     $('#productNameId').empty();
 
     var nom = $("#" + id + " .nom strong").html();
+    var reference = $("#" + id + " .reference").html();
     var qte = parseInt($("#" + id + " .qte").html()) + parseInt($("#" + id + " .ug").html());
     var datePerem = $("#" + id + " .date").html();
     var prix = $("#" + id + " .prixpublic").html();
@@ -717,19 +725,19 @@ function printOneTicket(id) {
             doc.text(19, 6, prix + ' F');
             doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
             doc.setFontSize(5);
-            doc.text(19, 8, codefournisseur);
+            doc.text(19, 8, reference + "(" + codefournisseur + ")");
             doc.setFontSize(4);
             doc.text(19, 10, today);
-            doc.text(19, 12, datePerem);
-            doc.setFontSize(4);
+            doc.text(19, 12, moment(datePerem).format("DD-MM-YYYY"));
+            doc.setFontSize(3);
             var line1 = nom.substring(0, 14);
             var line2 = nom.substring(14, 28);
             var line3 = nom.substring(28, 42);
             var line4 = nom.substring(42, 56);
-            doc.text(19, 16, line1);
-            doc.text(19, 17, line2);
-            doc.text(19, 18, line3);
-            doc.text(19, 19, line4);
+            doc.text(19, 15, line1);
+            doc.text(19, 16, line2);
+            doc.text(19, 17, line3);
+            doc.text(19, 18, line4);
             if (i < qte - 1) {
                 doc.cellAddPage([30, 20], "l");
             }
@@ -758,6 +766,7 @@ function showAllPrintCmdProgramme(tableNew) {
                 $('#productNameId').empty();
                 var id = tableNew[ind].id;
                 var nom = tableNew[ind].name;
+                var reference = tableNew[ind].reference;
                 $('#productNameId').html(ind + " - " + nom);
                 var qte = (tableNew[ind].qte + tableNew[ind].unit)
                 compteur_total = compteur_total + qte;
@@ -800,16 +809,16 @@ function showAllPrintCmdProgramme(tableNew) {
                         doc.text(19, 8, codefournisseur);
                         doc.setFontSize(4);
                         doc.text(19, 10, today);
-                        doc.text(19, 12, datePerem);
+                        doc.text(19, 12, moment(datePerem).format("DD-MM-YYYY"));
                         doc.setFontSize(4);
                         var line1 = nom.substring(0, 14);
                         var line2 = nom.substring(14, 28);
                         var line3 = nom.substring(28, 42);
                         var line4 = nom.substring(42, 56);
-                        doc.text(19, 16, line1);
-                        doc.text(19, 17, line2);
-                        doc.text(19, 18, line3);
-                        doc.text(19, 19, line4);
+                        doc.text(19, 15, line1);
+                        doc.text(19, 16, line2);
+                        doc.text(19, 17, line3);
+                        doc.text(19, 18, line4);
                         console.log(compteur + " - " + compteur_total)
                         /*if (i != qte - 1 && ind != tableNew.length - 1) {
                             doc.cellAddPage([30, 20], "l");
