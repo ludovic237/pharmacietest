@@ -1283,7 +1283,7 @@ function liste_caisse(id) {
         },
         dataType: 'json',
         success: function (data) {
-            console.log(data.vente);
+            //console.log(data.vente);
             $('#listeVenteId').dataTable({
                 destroy: true,
                 searching: true,
