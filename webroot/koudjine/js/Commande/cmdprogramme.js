@@ -365,7 +365,7 @@ function delete_row_commande(id) {
             if (j == 1) {
                 qte = parseInt($(this).html());
             }
-            if (j == 3) {
+            if (j == 4) {
                 total = (qte * parseInt($(this).html()));
                 prixTotal = prixTotal + total;
             }
@@ -450,19 +450,19 @@ function valider_commande(imprimer) {
                             if (j == 1) {
                                 qte = parseInt($(this).html());
                             }
-                            if (j == 2) {
+                            if (j == 3) {
                                 ug = parseInt($(this).html());
                             }
-                            if (j == 3) {
+                            if (j == 4) {
                                 prix = parseInt($(this).html());
                             }
-                            if (j == 4) {
+                            if (j == 5) {
                                 prixPublic = parseInt($(this).html());
                             }
-                            if (j == 5) {
+                            if (j == 6) {
                                 datep = $(this).html();
                             }
-                            if (j == 6) {
+                            if (j == 7) {
                                 reduction = $(this).html();
                             }
 
