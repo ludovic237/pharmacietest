@@ -766,7 +766,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                         caisse_id: parseInt(caisse_id)
                     },
                     success: function (server_responce) {
-                        //alert(server_responce);
+                        alert(server_responce);
                         if (typePaiement == 'Mixte Espèce' || typePaiement == 'Mixte Electronique' || typePaiement == 'Mixte Ticketcaisse') {
                             console.log('payement mixte');
                         } else {

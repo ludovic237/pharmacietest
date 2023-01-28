@@ -686,12 +686,15 @@ function printOneTicket(id) {
     });
     $('#qrcode').empty();
     $('#productNameId').empty();
+    //alert(id)
 
     var nom = $("#" + id + " .nom strong").html();
     var reference = $("#" + id + " .reference").html();
     var qte = parseInt($("#" + id + " .qte").html()) + parseInt($("#" + id + " .ug").html());
     var datePerem = $("#" + id + " .date").html();
     var prix = $("#" + id + " .prixpublic").html();
+    var numcmd = id+'';
+    var numcmd = numcmd.slice(-1);
 
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -725,7 +728,7 @@ function printOneTicket(id) {
             doc.text(19, 6, prix + ' F');
             doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
             doc.setFontSize(5);
-            doc.text(19, 8, reference + "(" + codefournisseur + ")");
+            doc.text(19, 8, reference + "(" + codefournisseur + ")" + numcmd);
             doc.setFontSize(4);
             doc.text(19, 10, today);
             doc.text(19, 12, moment(datePerem).format("DD-MM-YYYY"));
