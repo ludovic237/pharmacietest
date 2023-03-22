@@ -680,6 +680,8 @@ function printAllTicket() {
 }
 
 function printOneTicket(id) {
+    $.blockUI();
+    $('#loading-img').attr('display','yes')
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
@@ -745,12 +747,15 @@ function printOneTicket(id) {
                 doc.cellAddPage([30, 20], "l");
             }
         }
+        $.unblockUI();
+        $('#loading-img').attr('display','no')
         doc.save(nom + '.pdf');
     }, 2500);
 
 }
 
 function showAllPrintCmdProgramme(tableNew) {
+    $('#loading-img').attr('display','yes')
     console.log(tableNew);
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20
@@ -836,7 +841,7 @@ function showAllPrintCmdProgramme(tableNew) {
                     if (ind === tableNew.length - 1) {
                         console.log(compteur);
                         console.log(compteur_total);
-                        $.unblockUI();
+                        $('#loading-img').attr('display','no')
                         doc.save(nom + '.pdf');
                         var link = '/pharmacietest/bouwou/commande/cmdprogramme';
                         window.location.href = link;
