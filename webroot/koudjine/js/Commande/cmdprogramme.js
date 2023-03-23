@@ -228,6 +228,7 @@ function enregistrer_commande_programme() {
                 + '</td>'
                 + '</tr>';
             $('#tab_commande_programme').prepend(cat);
+            console.log('prixTotal')
             var total, prixTotal = 0, qteTotal = 0, ugTotal = 0;
             qte = 0;
             ug = 0;
@@ -235,7 +236,7 @@ function enregistrer_commande_programme() {
                 var id1 = $(this).attr("id");
 
                 $("#" + id1 + " td").each(function (j) {
-                    ////alert($(this).html());
+                    //alert($(this).html());
                     if (j == 1) {
                         qte = parseInt($(this).html());
                         qteTotal = qteTotal + qte;
@@ -245,14 +246,16 @@ function enregistrer_commande_programme() {
                         ugTotal = ugTotal + ug;
                         //alert(ugTotal);
                     }
-                    if (j == 3) {
+                    if (j == 4) {
                         total = (qte * parseInt($(this).html()));
                         prixTotal = prixTotal + total;
+                        console.log(total)
                     }
 
                 });
 
             });
+            console.log(prixTotal)
             $('#prixTotal').html(prixTotal);
             $('#prixTotal').attr("data", qteTotal);
             $('#prixTotal').attr("data1", ugTotal);
@@ -362,7 +365,7 @@ function delete_row_commande(id) {
             if (j == 1) {
                 qte = parseInt($(this).html());
             }
-            if (j == 3) {
+            if (j == 4) {
                 total = (qte * parseInt($(this).html()));
                 prixTotal = prixTotal + total;
             }
@@ -447,19 +450,19 @@ function valider_commande(imprimer) {
                             if (j == 1) {
                                 qte = parseInt($(this).html());
                             }
-                            if (j == 2) {
+                            if (j == 3) {
                                 ug = parseInt($(this).html());
                             }
-                            if (j == 3) {
+                            if (j == 4) {
                                 prix = parseInt($(this).html());
                             }
-                            if (j == 4) {
+                            if (j == 5) {
                                 prixPublic = parseInt($(this).html());
                             }
-                            if (j == 5) {
+                            if (j == 6) {
                                 datep = $(this).html();
                             }
-                            if (j == 6) {
+                            if (j == 7) {
                                 reduction = $(this).html();
                             }
 

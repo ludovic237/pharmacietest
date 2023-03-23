@@ -30,6 +30,12 @@ $id = $_POST['id'];
 if (isset($_POST['id'])) {
     $ventes = $manager->getListCaisseComplete($id);
     $count = 0;
+    $reste=0;
+    $typefacturation = "No exist";
+    $montantfactureEspece = 0;
+    $montantfactureElectronique = 0;
+    $montantfactureTicket = 0;
+    //$dataAll[] = null;
 
     foreach ($ventes as $k => $v) :
         //echo $v->en_rayon_id();
@@ -85,8 +91,11 @@ if (isset($_POST['id'])) {
 
         $count++;
     endforeach;
-    $donnees = array('vente' => $dataAll);
-    echo json_encode($donnees);
+    if(isset($dataAll)){
+        $donnees = array('vente' => $dataAll);
+        echo json_encode($donnees);
+    }
+
 }
 
 
