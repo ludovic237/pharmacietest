@@ -472,6 +472,6 @@ class CatalogueController extends Controller
     {
         $this->loadModel('Catalogue');
         $this->Catalogue->delete($id, $table, 'id');
-        //$this->redirect('koudjine/universites/index');
+        //$this->redirect('koudjine/catalogue/produitdetail');
     }
 }

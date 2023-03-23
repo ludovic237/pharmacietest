@@ -2060,7 +2060,8 @@ function load_produit_detail(id, nomp) {
                                 } else {
                                     return '<a class="btn btn-success btn-rounded btn-sm"  onclick="show_modif_enrayon(' + data + ')"><span class="">Modifier</span></a>' +
                                         '<a class="btn btn-primary btn-rounded btn-sm "   onclick="show_modif_sortie(' + data + ')"><span class="">Périmé & Stock détail</span></a>' +
-                                        '<a class="btn btn-primary btn-rounded btn-sm "   onclick="info_row_entree(' + data + ')"><span class="">Imprimer etiquette</span></a>';
+                                        '<a class="btn btn-primary btn-rounded btn-sm "   onclick="info_row_entree(' + data + ')"><span class="">Imprimer etiquette</span></a>'+
+                                        '<a class="btn btn-danger btn-rounded btn-sm "   onclick="delete_row(\'' + data + '\',\'catalogue\',\'en_rayon\',false)"><span class="">Supprimer</span></a>';
                                 }
                             }
                         },

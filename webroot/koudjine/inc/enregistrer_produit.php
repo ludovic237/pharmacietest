@@ -39,6 +39,21 @@ if (isset($_POST['id'])){
     //$prod = new Departement();
     if ($manager->existsNom($nom)) {
         $prod = $manager->getNom($nom);
+        if($prod->grossiste_id() != null || $prod->grossiste_id() != ""){
+            if($prod->reference() != "" && mb_substr($prod->reference(), 0, 1) != "D"){
+                $lastprdtdetail = $manager->getLastReferenceDetail();
+                $reference1 = substr($lastprdtdetail->reference(), 1);
+                $num_reference = (int) $reference1;
+                $reference2 = str_pad($num_reference, 3, '0', STR_PAD_LEFT);
+                $reference="D".$reference2;
+            }elseif ($prod->reference() == "" || $prod->reference() == null){
+                $lastprdtdetail = $manager->getLastReferenceDetail();
+                $reference1 = substr($lastprdtdetail->reference(), 1);
+                $num_reference = (int) $reference1;
+                $reference2 = str_pad($num_reference, 3, '0', STR_PAD_LEFT);
+                $reference="D".$reference2;
+            }
+        }
         //echo "Ce departement existe";
         if($prod->id() == $id){
             $prod->setcategorie_id($cat);
@@ -72,6 +87,21 @@ if (isset($_POST['id'])){
     }
     else{
         $prod = $manager->get($id);
+        if($prod->grossiste_id() != null || $prod->grossiste_id() != ""){
+            if($prod->reference() != "" && mb_substr($prod->reference(), 0, 1) != "D"){
+                $lastprdtdetail = $manager->getLastReferenceDetail();
+                $reference1 = substr($lastprdtdetail->reference(), 1);
+                $num_reference = (int) $reference1;
+                $reference2 = str_pad($num_reference, 3, '0', STR_PAD_LEFT);
+                $reference="D".$reference2;
+            }elseif ($prod->reference() == "" || $prod->reference() == null){
+                $lastprdtdetail = $manager->getLastReferenceDetail();
+                $reference1 = substr($lastprdtdetail->reference(), 1);
+                $num_reference = (int) $reference1;
+                $reference2 = str_pad($num_reference, 3, '0', STR_PAD_LEFT);
+                $reference="D".$reference2;
+            }
+        }
         $prod->setcategorie_id($cat); 
         $prod->setforme_id($forme);
         $prod->setrayon_id($ray);
@@ -143,6 +173,14 @@ else{
     $contenu=$_POST['contenu'];
     $prix=$_POST['prix'];
     $parrain=$_POST['parrain'];
+
+    if($parrain != null || $parrain != ""){
+            $lastprdtdetail = $manager->getLastReferenceDetail();
+            $reference1 = substr($lastprdtdetail->reference(), 1);
+            $num_reference = (int) $reference1;
+            $reference2 = str_pad($num_reference, 3, '0', STR_PAD_LEFT);
+            $reference="D".$reference2;
+    }
 
     if(!$manager->existsNom($nom)){
         //$date = genererID();

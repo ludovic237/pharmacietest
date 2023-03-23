@@ -27,7 +27,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
             <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;margin-bottom:0px">
                 <label class="control-label" style="margin-right: 30px;width: 150px;">Ajouter un médicament:</label>
                 <div style="display: flex;flex:1;margin-right: 30px;">
-                    <input type="text" class="form-control col-md-4" name="nom" id="recherche" value="" placeholder="Médicaments">
+                    <input type="text" class="form-control col-md-4" name="nom" id="recherche" value="" autocomplete="off" placeholder="Médicaments">
                 </div>
                 <div style="width: 150px;">
                 </div>

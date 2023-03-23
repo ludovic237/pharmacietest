@@ -376,6 +376,14 @@ class ProduitManager
         return new produit($donnees);
 
     }
+    public function getLastReferenceDetail()
+    {
+
+        $q = $this->_db->query('SELECT * FROM produit WHERE grossiste_id IS NOT NULL and grossiste_id != "" and reference IS NOT NULL and reference != "" and supprimer = 0 order by id desc limit 1');
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new produit($donnees);
+
+    }
     public function getStock($id, $info)
     {
 

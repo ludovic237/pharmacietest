@@ -7,6 +7,12 @@ echo $dateDerniere;
 
 $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Commande express</li>';
 $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/tableExport.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jquery.base64.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/html2canvas.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/jspdf.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/base64.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/daterangepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
@@ -14,7 +20,9 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/listcommande.js"></script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/listcommande.js"></script> 
+<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>';
 if (isset($datetime)) {
     $script_for_layout = $script_for_layout . '<script type="text/javascript"> $(document).ready(function () {getListCommande("' . $dateDerniere . '","' . $datetime . '")}) </script>';
 }
@@ -63,70 +71,88 @@ if (isset($datetime)) {
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-title-box">
-                    <h3>Tableau de commande par vente</h3>
-                </div>
-                <ul class="panel-controls panel-controls-title">
-                    <li>
-                        <div id="reportrange" class="dtrange">
-                            <span></span><b class="caret"></b>
-                        </div>
-                    </li>
-                    <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
-                </ul>
 
-            </div>
             <div class="panel-body panel-body-table">
-
-                <div class="panel-body">
-                    <table class="table datatable table table-bordered table-striped table-actions" id="list_commande_tables">
-                        <thead>
-                        <tr>
-                            <th>Ref</th>
-                            <th>Montant Total</th>
-                            <th>Montant percu</th>
-                            <th>Nom caissier</th>
-                            <th>Date de vente</th>
-                            <th>Etat</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
+                <div class="panel-heading">
+                    <h3 class="panel-title">Export Default Table</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-danger toggle" data-toggle="exportTable"><i
+                                    class="fa fa-bars"></i> Export Data
+                        </button>
+                    </div>
                 </div>
-
-            </div>
-        </div>
-
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-title-box">
-                    <h3>Tableau de commande par produit</h3>
-                </div>
-                <ul class="panel-controls panel-controls-title">
-                    <li>
-                        <div id="reportrange" class="dtrange">
-                            <span></span><b class="caret"></b>
+                <div class="panel-body" id="exportTable" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="list-group border-bottom">
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'json',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/json.png "' ?>
+                                            width="24"/> JSON</a>
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/json.png "' ?>
+                                            width="24"/> JSON (ignoreColumn)</a>
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'json',escape:'true'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/json.png "' ?>
+                                            width="24"/> JSON (with Escape)</a>
+                            </div>
                         </div>
-                    </li>
-                    <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
-                </ul>
-
-            </div>
-            <div class="panel-body panel-body-table">
-
+                        <div class="col-md-2">
+                            <div class="list-group border-bottom">
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'xml',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/xml.png "' ?>
+                                            width="24"/> XML</a>
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'sql'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/sql.png "' ?>
+                                            width="24"/> SQL</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="list-group border-bottom">
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'csv',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/csv.png "' ?>
+                                            width="24"/> CSV</a>
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'txt',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/txt.png "' ?>
+                                            width="24"/> TXT</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="list-group border-bottom">
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'excel',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/xls.png "' ?>
+                                            width="24"/> XLS</a>
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'doc',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/word.png "' ?>
+                                            width="24"/> Word</a>
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'powerpoint',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/ppt.png "' ?>
+                                            width="24"/> PowerPoint</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="list-group border-bottom">
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'png',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/png.png "' ?>
+                                            width="24"/> PNG</a>
+                                <a href="#" class="list-group-item"
+                                   onClick="$('#customers').tableExport({type:'pdf',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/pdf.png "' ?>
+                                            width="24"/> PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel-body">
                     <table class="table datatable table table-bordered table-striped table-actions" id="list_commande_tables_1">
                         <thead>
                         <tr>
+                            <th>N°</th>
                             <th>Produit</th>
-                            <th>Quantite vendues</th>
+                            <th>Quantites à commander</th>
+                            <th>Quantites en stock</th>
+                            <th>Date de derniere commande</th>
+                            <th>Dernier Fournisseur</th>
                         </tr>
                         </thead>
                         <tbody>

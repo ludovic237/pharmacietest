@@ -24,9 +24,15 @@ $managerEnRayon = new En_rayonManager($pdo);
 if (isset($_POST['id']))
     $id = $_POST['id'];
 
-$enrayon = $managerEnRayon->getList($id);
+
 $produit = $managerProduit->get($id);
 $nom = $produit->nom();
+if(strpos($nom, 'D ') === 0 || $produit->grossiste_id() != ""){
+    $enrayon = $managerEnRayon->getListDetail($id);
+}else{
+    $enrayon = $managerEnRayon->getList($id);
+}
+
 
 $datas = [];
 $stockTotal = 0;
