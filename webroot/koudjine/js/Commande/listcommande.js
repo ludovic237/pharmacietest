@@ -158,6 +158,21 @@ function getListCommande(start, end) {
             console.log(data);
 
             $('#list_commande_tables').dataTable({
+                buttons:[
+                    {extend:'copyHtml5',className: 'btn btn-success'},
+                    {extend:'excelHtml5',className: 'btn btn-success'},
+                    {extend:'csvHtml5',className: 'btn btn-success'},
+                    {extend:'pdfHtml5',className: 'btn btn-success'}
+                ],
+                // exportOptions: {
+                //     modifier : {
+                //         order : 'index', // 'current', 'applied','index', 'original'
+                //         page : 'all', // 'all', 'current'
+                //         search : 'none' // 'none', 'applied', 'removed'
+                //     },
+                //     columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                // },
+                dom:'Bfrtip',
                 destroy: true,
                 searching: true,
                 dFilter: false,
