@@ -85,71 +85,6 @@ if (isset($datetime)) {
             <div class="panel-body panel-body-table">
                 <div class="panel-heading">
                     <h3 class="panel-title">Export Default Table</h3>
-                    <div class="pull-right">
-                        <button class="btn btn-danger toggle" data-toggle="exportTable"><i
-                                    class="fa fa-bars"></i> Export Data
-                        </button>
-                    </div>
-                </div>
-                <div class="panel-body" id="exportTable" style="display: none;">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="list-group border-bottom">
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'json',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/json.png "' ?>
-                                            width="24"/> JSON</a>
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/json.png "' ?>
-                                            width="24"/> JSON (ignoreColumn)</a>
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'json',escape:'true'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/json.png "' ?>
-                                            width="24"/> JSON (with Escape)</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="list-group border-bottom">
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'xml',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/xml.png "' ?>
-                                            width="24"/> XML</a>
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'sql'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/sql.png "' ?>
-                                            width="24"/> SQL</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="list-group border-bottom">
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'csv',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/csv.png "' ?>
-                                            width="24"/> CSV</a>
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'txt',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/txt.png "' ?>
-                                            width="24"/> TXT</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="list-group border-bottom">
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'excel',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/xls.png "' ?>
-                                            width="24"/> XLS</a>
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'doc',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/word.png "' ?>
-                                            width="24"/> Word</a>
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'powerpoint',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/ppt.png "' ?>
-                                            width="24"/> PowerPoint</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="list-group border-bottom">
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'png',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/png.png "' ?>
-                                            width="24"/> PNG</a>
-                                <a href="#" class="list-group-item"
-                                   onClick="$('#customers').tableExport({type:'pdf',escape:'false'});"><img <?php echo 'src="' . BASE_URL . '/koudjine/img/icons/pdf.png "' ?>
-                                            width="24"/> PDF</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="panel-body">
                     <table class="table datatable table table-bordered table-striped table-actions" id="list_commande_tables_1">
@@ -199,11 +134,12 @@ if (isset($datetime)) {
                     <table class="table datatable table table-bordered table-striped table-actions" id="new_list_commande_date">
                         <thead>
                         <tr>
-                            <th>Numero</th>
-                            <th>Type</th>
-                            <th>Date debut</th>
-                            <th>Date fin</th>
-                            <th>Action</th>
+                            <th>N°</th>
+                            <th>Produit</th>
+                            <th>Quantites à commander</th>
+                            <th>Quantites en stock</th>
+                            <th>Date de derniere commande</th>
+                            <th>Dernier Fournisseur</th>
                         </tr>
                         </thead>
                         <tbody>

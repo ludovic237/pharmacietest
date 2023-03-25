@@ -341,6 +341,44 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
     </div>
 </div>
 <!-- END MODAL ICON PREVIEW -->
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewVenteAugmenterQuantite" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width: 85%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Augmenter quantite</h4>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="panel panel-default">
+
+                            <div class="panel-body panel-body-table">
+
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Quantité:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" disabled="true" class="form-control" value="" id="detail_info" placeholder="" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="ajouter_produit();">Valider</button>
+                <button type="button" class="btn btn-danger"  data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
 
 <!-- START MODAL ICON PREVIEW -->
 <div class="modal fade" id="iconPreviewFormVenteDetail" tabindex="-1" role="dialog" aria-hidden="true">

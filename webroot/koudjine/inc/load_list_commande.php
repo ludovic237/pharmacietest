@@ -1,39 +1,39 @@
 <?php
 require_once('database.php');
 require_once('../Class/ligne_commande.php');
+require_once('../Class/viewproduitcmd.php');
 
 global $pdo;
-global $conndb;
-$manager = new LigneCommandeManager($pdo);
+$data = [];
+$datas = [];
+$totalEncaisse = 0;
+$total = 0;
 
-$list = $manager->getListType('ListeCommande');
-$i = 0;
-foreach ($list as $k => $c) :
-    if($i == 0){
-        $dateDebut = '';
-        $lastDate[$i] = $c->dateDerniere();
-    }else{
-        $lastDate[$i] = $c->dateDerniere();
-        $dateDebut = $lastDate[$i-1];
-    }
+$managerPrCmdView = new ProduitcmdViewManager($pdo);
 
+//$start = $_POST['start'];
+//$end = $_POST['end'];
+
+$ProduitCmdView = $managerPrCmdView->getAll();
+
+$prds = array();
+$qte = 0;
+foreach ($ProduitCmdView as $key => $v) {
     $data[] = array(
-        "id" =>$c->id(),
-        "type" =>$c->type(),
-        "dateDerniere" =>$c->dateDerniere(),
-        "dateDebut" =>$dateDebut
+        "nom"=>$v->nom(),
+        "ean13"=>$v->ean13(),
+        "puCmd"=>$v->puCmd(),
+        "ptCmd"=>$v->ptCmd(),
+        "qtiteCmd"=>$v->qtiteCmd(),
+        "etat"=>$v->etat(),
+        "ref"=>$v->ref(),
+        "montantCmd"=>$v->montantCmd(),
+        "montantRecu"=>$v->montantRecu(),
+        "dateCreation"=>$v->dateCreation(),
+        "dateLivraison"=>$v->dateLivraison(),
+        "fournisseurName"=>$v->fournisseurName(),
     );
-    $i++;
-endforeach;
-$data[] = array(
-    "id" =>'En cours',
-    "type" =>'LigneCommande',
-    "dateDerniere" =>'',
-    "dateDebut" =>$lastDate[$i-1]
-);
-$datas = array('data' => $data);
+}
+$datas = array('data' => $data,'totalEncaisse' => $total);
 echo json_encode($datas);
-
-
-
 

@@ -8,6 +8,11 @@ $('#pharmanet_tab_vente').hide();
 
 $(document).ready(function () {
 
+    $('#iconPreviewVenteAugmenterQuantite').on('hidden.bs.modal', function () {
+        // do something…
+        $('#iconPreviewVente').modal('toggle');
+    })
+
     $('#customers2').DataTable( {
         "order": [[ 5, "desc" ]]
     } );
@@ -1105,9 +1110,30 @@ function delete_row_vente(id) {
 
 }
 function gerer_detail(en_rayon_id) {
-    var link = '/pharmacietest/bouwou/comptabilite/sortie/'+en_rayon_id;
-    window.location.href = link;
+    $('#iconPreviewVenteAugmenterQuantite').modal('toggle');
+    $('#iconPreviewVente').modal('hide');
 }
+
+function addNewDetail() {
+    var  info  = $('#detail_info').val();
+    $.ajax({
+        type: "GET",
+        url: "/pharmacietest/koudjine/inc/result1.php",
+        data: {
+            motclef: $(this).val()
+        },
+        dataType: 'json',
+        success: function (data) {
+            $('#iconPreviewVente').modal('toggle');
+            $('#iconPreviewVenteAugmenterQuantite').modal('hide');
+        }
+    })
+
+
+    $('#iconPreviewVente').modal('toggle');
+    $('#iconPreviewVenteAugmenterQuantite').modal('hide');
+}
+
 function change_input_vente(option, id, max) {
     if (option == 'plus') {
         if ($("#" + id).val() == '' || $("#" + id).val() == null)

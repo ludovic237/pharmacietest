@@ -8,6 +8,7 @@ require_once('../Class/user.php');
 require_once('../Class/concerner.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/produit.php');
+require_once('../Class/viewproduitcmd.php');
 
 global $pdo;
 
@@ -16,69 +17,30 @@ $datas = [];
 $totalEncaisse = 0;
 $total = 0;
 
-$manager = new VenteManager($pdo);
-$managerCa = new CaisseManager($pdo);
-$managerFa = new FacturationManager($pdo);
-
-
-$managerEn = new EmployeManager($pdo);
-$managerUser = new UserManager($pdo);
-$managerCo = new ConcernerManager($pdo);
-$managerPr = new ProduitManager($pdo);
-$managerEnr = new En_rayonManager($pdo);
-
+$managerPrCmdView = new ProduitcmdViewManager($pdo);
 
 $start = $_POST['start'];
 $end = $_POST['end'];
 
-if($start == ''){
-    $VenteCaisse = $manager->getDateVenteRangeBegin($end);
-}elseif ($end == ''){
-    $VenteCaisse = $manager->getDateVenteRangeEnd($start);
-}else{
-    $VenteCaisse = $manager->getDateVenteRange($start, $end);
-}
+$ProduitCmdView = $managerPrCmdView->getAllLast();
 
 $prds = array();
 $qte = 0;
-foreach ($VenteCaisse as $key => $v) {
-    $employeName = $managerUser->get(($managerEn->get($v->employe_id()))->user_id());
-    $produits = $managerCo->getList($v->id());
-    $nameProduit = "";
-    foreach ($produits as $k => $c) :
-        //echo $v->en_rayon_id();
-        $qte = $qte + $c->quantite();
-        $nom = $managerPr->get($managerEnr->get($c->en_rayon_id())->produit_id())->nom();
-        $prd = $managerPr->get($managerEnr->get($c->en_rayon_id())->produit_id())->id();
-        if (array_key_exists($nom,$prds))
-        {
-            $prds[$nom] = $prds[$nom] + $c->quantite();
-        }
-        else
-        {
-            $prds[$nom] = $c->quantite();
-        }
-        $nameProduit = $nom.'['.$prds[$nom].']'. "," . $nameProduit;
-    endforeach;
-
-    if ($managerFa->existsvente_id($v->id())) {
-        $fact = $managerFa->getVente($v->id());
-        $typePaiement = $fact->typePaiement();
-    } else {
-        $typePaiement = 'Inachevée';
-    }
-
-}
-
-//echo  " Voici la qte".$qte."\n";
-//print_r($prds);
-foreach($prds as $key => $value) {
-
+foreach ($ProduitCmdView as $key => $v) {
     $data[] = array(
-        "produit" => $key,
-        "qte" => $value
+        "nom"=>$v->nom(),
+        "ean13"=>$v->ean13(),
+        "puCmd"=>$v->puCmd(),
+        "ptCmd"=>$v->ptCmd(),
+        "qtiteCmd"=>$v->qtiteCmd(),
+        "etat"=>$v->etat(),
+        "ref"=>$v->ref(),
+        "montantCmd"=>$v->montantCmd(),
+        "montantRecu"=>$v->montantRecu(),
+        "dateCreation"=>$v->dateCreation(),
+        "dateLivraison"=>$v->dateLivraison(),
+        "fournisseurName"=>$v->fournisseurName(),
     );
-
 }
-$datas = array('data' => $data, 'totalEncaisse' => $total);
+$datas = array('data' => $data,'totalEncaisse' => $total);
 echo json_encode($datas);

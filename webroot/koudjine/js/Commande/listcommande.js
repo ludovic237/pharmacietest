@@ -3,33 +3,33 @@ $(document).ready(function () {
     var new_list_commande_date = $('#new_list_commande_date').dataTable();
     charger_list_commande()
 
-    if ($("#reportrange").length > 0) {
-        $("#reportrange").daterangepicker({
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            },
-            opens: 'left',
-            buttonClasses: ['btn btn-default'],
-            applyClass: 'btn-small btn-primary',
-            cancelClass: 'btn-small',
-            format: 'MM.DD.YYYY',
-            separator: ' to ',
-            startDate: moment().subtract('days', 29),
-            endDate: moment()
-        }, function (start, end) {
-            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-            getListCommande(start.format('YYYY-MM-DD HH:mm:ss'), end.format('YYYY-MM-DD HH:mm:ss'));
-        });
-
-
-        $("#reportrange span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-        getListCommande(moment().subtract('days', 29).format('MMMM D, YYYY'), moment().format('MMMM D, YYYY'));
-    }
+    // if ($("#reportrange").length > 0) {
+    //     $("#reportrange").daterangepicker({
+    //         ranges: {
+    //             'Today': [moment(), moment()],
+    //             'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+    //             'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+    //             'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+    //             'This Month': [moment().startOf('month'), moment().endOf('month')],
+    //             'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    //         },
+    //         opens: 'left',
+    //         buttonClasses: ['btn btn-default'],
+    //         applyClass: 'btn-small btn-primary',
+    //         cancelClass: 'btn-small',
+    //         format: 'MM.DD.YYYY',
+    //         separator: ' to ',
+    //         startDate: moment().subtract('days', 29),
+    //         endDate: moment()
+    //     }, function (start, end) {
+    //         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    //         getListCommande(start.format('YYYY-MM-DD HH:mm:ss'), end.format('YYYY-MM-DD HH:mm:ss'));
+    //     });
+    //
+    //
+    //     $("#reportrange span").html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+    //     getListCommande(moment().subtract('days', 29).format('MMMM D, YYYY'), moment().format('MMMM D, YYYY'));
+    // }
 
 
 });
@@ -78,16 +78,23 @@ function charger_list_commande() {
         success: function (data) {
             console.log(data);
             $('#new_list_commande_date').dataTable({
+                buttons:[
+                    {extend:'copyHtml5',className: 'btn btn-success'},
+                    {extend:'excelHtml5',className: 'btn btn-success'},
+                    {extend:'csvHtml5',className: 'btn btn-success'},
+                    {extend:'pdfHtml5',className: 'btn btn-success'}
+                ],
+                dom:'Bfrtip',
                 destroy: true,
-                searching: false,
+                searching: true,
                 dFilter: false,
                 bInfo: false,
-                bPaginate: false,
+                bPaginate: true,
                 data: data.data,
                 order: [[1, "desc"]],
                 columns: [
                     {
-                        data: "id", "render": function (data, type, row) {
+                        data: "ref", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%">NA</span>';
                             } else {
@@ -96,7 +103,7 @@ function charger_list_commande() {
                         }
                     },
                     {
-                        data: "type", "render": function (data, type, row) {
+                        data: "nom", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%"></span>';
                             } else {
@@ -105,7 +112,7 @@ function charger_list_commande() {
                         }
                     },
                     {
-                        data: "dateDebut", "render": function (data, type, row) {
+                        data: "qtiteCmd", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%"></span>';
                             } else {
@@ -114,7 +121,7 @@ function charger_list_commande() {
                         }
                     },
                     {
-                        data: "dateDerniere", "render": function (data, type, row) {
+                        data: "qtiteCmd", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%"></span>';
                             } else {
@@ -123,10 +130,23 @@ function charger_list_commande() {
                         }
                     },
                     {
-                        data: "id", "render": function (data, type, row) {
-                            return '<button class="btn btn-success" onclick="recherche_list_commande(\'' + row.dateDebut + '\',\'' + row.dateDerniere + '\')" >Charger</button>';
+                        data: "dateLivraison", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%"></span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
                         }
-                    }
+                    },
+                    {
+                        data: "fournisseurName", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%"></span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
                 ]
             });
             //alert(data)
@@ -249,6 +269,13 @@ function getListCommande(start, end) {
             console.log(data);
 
             $('#list_commande_tables_1').dataTable({
+                buttons:[
+                    {extend:'copyHtml5',className: 'btn btn-success'},
+                    {extend:'excelHtml5',className: 'btn btn-success'},
+                    {extend:'csvHtml5',className: 'btn btn-success'},
+                    {extend:'pdfHtml5',className: 'btn btn-success'}
+                ],
+                dom:'Bfrtip',
                 destroy: true,
                 searching: true,
                 dFilter: false,
@@ -257,8 +284,12 @@ function getListCommande(start, end) {
                 data: data.data,
                 order: [[1, "desc"]],
                 columns: [
-                    {data: "produit"},
-                    {data: "qte"},
+                    {data: "ref"},
+                    {data: "nom"},
+                    {data: "qtiteCmd"},
+                    {data: "qtiteCmd"},
+                    {data: "dateLivraison"},
+                    {data: "fournisseurName"},
                 ]
             });
         }
