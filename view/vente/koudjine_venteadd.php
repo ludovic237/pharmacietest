@@ -212,7 +212,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Taux:</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" readonly name="<?php echo $_SESSION['Users']->faireReductionMax; ?>" id="taux" value="5" />
+                                    <input type="text" class="form-control" readonly name="<?php echo $_SESSION['Users']->faireReductionMax; ?>" id="taux" value="10" />
                                 </div>
                             </div>
                         </div>
