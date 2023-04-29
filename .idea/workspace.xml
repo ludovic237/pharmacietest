@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="modif init rayon - modif gestion commande">
-      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/update_ean13_cmd.php" afterDir="false" />
+    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="merge">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_windows.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/rafraichir_vente_windows.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/koudjine/inc/vente_windows.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0234ccc1-fa2f-4ece-b337-ce9d3bad9f76/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/commande/koudjine_cmdprogramme.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/commande/koudjine_cmdprogramme.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/result_commande_prog.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/result_commande_prog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmanet1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/pharmanet1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view.sql" beforeDir="false" afterPath="$PROJECT_DIR$/view.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/layout/koudjine.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/layout/koudjine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/produitcmd.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/produitcmd.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_detail_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/load_produit_detail_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/update_ean13_cmd.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Commande/cmdprogramme.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,6 +76,11 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="alsa.1.1" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -204,11 +221,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunConfigurationTargetLRU" value="6a7eb967-f153-437c-b70a-5dcebeecb180" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="header&#9;null&#9;null&#10;json&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/webroot/koudjine/inc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -219,27 +239,21 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\pharmacietest" />
+      <recent name="C:\xampp\htdocs\pharmacietest\webroot\koudjine\inc" />
+      <recent name="C:\xampp\htdocs\pharmacietest\webroot\koudjine\Class" />
+      <recent name="C:\xampp\htdocs\pharmacietest\webroot\koudjine\js\plugins" />
       <recent name="C:\laragon\www\pharmacietest\webroot\koudjine\inc" />
-      <recent name="C:\xampp\htdocs\Site\view\formations" />
-      <recent name="C:\xampp\htdocs\Site\view" />
-      <recent name="C:\xampp\htdocs\Site\model" />
-      <recent name="C:\xampp\htdocs\Site\controller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Site\webroot\koudjine\js" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
-      <BehatRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Database Script.view.sql">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -251,6 +265,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration name="view.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/view.sql" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
+    </configuration>
+    <configuration name="wms_vente_view.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="/3cd9832f/6a7eb967-f153-437c-b70a-5dcebeecb180/schema/pharmanet1/view/wms_vente_view.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="6a7eb967-f153-437c-b70a-5dcebeecb180" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -260,6 +288,14 @@
       <envs />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Database Script.wms_vente_view.sql" />
+        <item itemvalue="Database Script.view.sql" />
+        <item itemvalue="Database Script.view.sql" />
+        <item itemvalue="Database Script.wms_vente_view.sql" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -297,6 +333,47 @@
       <workItem from="1659984759235" duration="20793000" />
       <workItem from="1667745793963" duration="6000" />
       <workItem from="1667745822025" duration="3772000" />
+      <workItem from="1674583296353" duration="3250000" />
+      <workItem from="1674703967173" duration="5310000" />
+      <workItem from="1674814408984" duration="365000" />
+      <workItem from="1674815146948" duration="461000" />
+      <workItem from="1675119280180" duration="135000" />
+      <workItem from="1677237114150" duration="1559000" />
+      <workItem from="1677695870574" duration="619000" />
+      <workItem from="1677867118922" duration="239000" />
+      <workItem from="1678823050731" duration="5838000" />
+      <workItem from="1679274400865" duration="766000" />
+      <workItem from="1679298348252" duration="4450000" />
+      <workItem from="1679340917333" duration="989000" />
+      <workItem from="1679474314058" duration="7416000" />
+      <workItem from="1679516432467" duration="3584000" />
+      <workItem from="1679576074079" duration="10528000" />
+      <workItem from="1679731250302" duration="12861000" />
+      <workItem from="1679782396864" duration="1864000" />
+      <workItem from="1679844083012" duration="1348000" />
+      <workItem from="1680010176751" duration="848000" />
+      <workItem from="1680103951371" duration="245000" />
+      <workItem from="1680257271426" duration="15177000" />
+      <workItem from="1680511544147" duration="707000" />
+      <workItem from="1680537067704" duration="7201000" />
+      <workItem from="1680735171371" duration="808000" />
+      <workItem from="1681159201984" duration="7171000" />
+      <workItem from="1681415808068" duration="10254000" />
+      <workItem from="1681462936128" duration="591000" />
+      <workItem from="1681469009672" duration="605000" />
+      <workItem from="1681622978287" duration="4247000" />
+      <workItem from="1681641828630" duration="313000" />
+      <workItem from="1681850332910" duration="5609000" />
+      <workItem from="1681927764451" duration="4236000" />
+      <workItem from="1681939093964" duration="446000" />
+      <workItem from="1681945368096" duration="1002000" />
+      <workItem from="1681968247576" duration="21000" />
+      <workItem from="1681997448436" duration="18892000" />
+      <workItem from="1682322769317" duration="2842000" />
+      <workItem from="1682529882360" duration="215000" />
+      <workItem from="1682659981015" duration="1252000" />
+      <workItem from="1682683760626" duration="2676000" />
+      <workItem from="1682704112943" duration="5090000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1646899402949</created>
@@ -333,7 +410,49 @@
       <option name="project" value="LOCAL" />
       <updated>1660336718299</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="change id ticketListe to ticketCaisse">
+      <created>1674335200825</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1674335200825</updated>
+    </task>
+    <task id="LOCAL-00007" summary="change id ticketListe to ticketCaisse (fix 2)">
+      <created>1674335464035</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1674335464035</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix valider_facture error and resolve other price on bill">
+      <created>1674586213532</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1674586213532</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix etiquette">
+      <created>1674708771678</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1674708771678</updated>
+    </task>
+    <task id="LOCAL-00010" summary="export  data">
+      <created>1679476218333</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1679476218333</updated>
+    </task>
+    <task id="LOCAL-00011" summary="merge">
+      <created>1679747924662</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1679747924662</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -401,6 +520,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -459,9 +588,30 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merge" />
     <MESSAGE value="incrementation nbre commande par fournisseur" />
-    <option name="LAST_COMMIT_MESSAGE" value="incrementation nbre commande par fournisseur" />
+    <MESSAGE value="change id ticketListe to ticketCaisse" />
+    <MESSAGE value="change id ticketListe to ticketCaisse (fix 2)" />
+    <MESSAGE value="fix valider_facture error and resolve other price on bill" />
+    <MESSAGE value="fix etiquette" />
+    <MESSAGE value="export  data" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/view/formations/koudjine_categorie.php</url>
+          <line>90</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/view/formations/koudjine_edit.php</url>
+          <line>28</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/question_categorie.php">

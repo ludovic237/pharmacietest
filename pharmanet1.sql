@@ -20,7 +20,7 @@ CREATE TABLE `assureur` (
 
 
 DROP TABLE IF EXISTS `bon_caisse`;
-CREATE TABLE `bon_caisse` (
+'CREATE TABLE `bon_caisse` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `caisse_id` int(11) DEFAULT NULL,
   `caisse_id_encaisser` int(11) DEFAULT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `bon_caisse` (
   PRIMARY KEY (`id`),
   KEY `caisse_id` (`caisse_id`),
   CONSTRAINT `bon_caisse_ibfk_1` FOREIGN KEY (`caisse_id`) REFERENCES `caisse` (`id`) ON DELETE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;'
 
 
 DROP TABLE IF EXISTS `budget`;

@@ -56,7 +56,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
 
     foreach ($vente as $k => $v) :
         $venteid = $v->id();
-        $employe =  $managerEmploye->get(6);
+        $employe =  $managerEmploye->get(7);
 
         if ($v->user_id()!=NULL){
             $user =  $managerUser->get($v->user_id());

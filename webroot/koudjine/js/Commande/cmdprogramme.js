@@ -188,17 +188,21 @@ function enregistrer_commande_programme() {
             var codefournisseur = $('#fournisseur_commande option:selected').attr("data");
 
             var compteur_bd = parseInt($('#fournisseur_commande').attr("data"));
+            console.log(id + "/" + codefournisseur + "/" + today + "/" + compteur_bd);
             var codebarre1 = id + "" + codefournisseur + "" + today;
             var compteur = 0;
             var compteurtotal = 0;
 
             $('#tab_commande_programme  tr').each(function (i) {
                 var id1 = $(this).attr("id");
+                console.log("id1 : " + id1);
                 var id_traiter = id1.slice(0, -1);
+                console.log("id_traiter : " + id_traiter);
                 if (id_traiter == codebarre1) {
                     compteur++;
                 }
             });
+            console.log("" + compteur_bd + "" + compteur)
             compteurtotal = compteur_bd + compteur;
             var codebarre = id + "" + codefournisseur + "" + today + "" + compteurtotal;
 
@@ -684,7 +688,7 @@ function printAllTicket() {
 
 function printOneTicket(id) {
     $.blockUI();
-    $('#loading-img').attr('display','yes')
+    $('#loading-img').attr('display', 'yes')
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
@@ -698,7 +702,7 @@ function printOneTicket(id) {
     var qte = parseInt($("#" + id + " .qte").html()) + parseInt($("#" + id + " .ug").html());
     var datePerem = $("#" + id + " .date").html();
     var prix = $("#" + id + " .prixpublic").html();
-    var numcmd = id+'';
+    var numcmd = id + '';
     var numcmd = numcmd.slice(-1);
 
     var today = new Date();
@@ -751,14 +755,14 @@ function printOneTicket(id) {
             }
         }
         $.unblockUI();
-        $('#loading-img').attr('display','no')
+        $('#loading-img').attr('display', 'no')
         doc.save(nom + '.pdf');
     }, 2500);
 
 }
 
 function showAllPrintCmdProgramme(tableNew) {
-    $('#loading-img').attr('display','yes')
+    $('#loading-img').attr('display', 'yes')
     console.log(tableNew);
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20
@@ -844,7 +848,7 @@ function showAllPrintCmdProgramme(tableNew) {
                     if (ind === tableNew.length - 1) {
                         console.log(compteur);
                         console.log(compteur_total);
-                        $('#loading-img').attr('display','no')
+                        $('#loading-img').attr('display', 'no')
                         doc.save(nom + '.pdf');
                         var link = '/pharmacietest/bouwou/commande/cmdprogramme';
                         window.location.href = link;

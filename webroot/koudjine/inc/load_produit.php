@@ -16,19 +16,17 @@ $managerEnRayon = new En_rayonManager($pdo);
 if (isset($_POST['id']))
     $id = $_POST['id'];
 $produit = $managerProduit->get($id);
-if($produit->grossiste_id() != ''){
+if ($produit->grossiste_id() != '') {
     $enrayon = $managerEnRayon->getListDetail($id);
-}else{
+} else {
     $enrayon = $managerEnRayon->getList($id);
 }
-
 
 
 $datas = [];
 
 
 if (isset($_POST['id']) || isset($_GET['id'])) {
-
 
 
     foreach ($enrayon as $k => $v) :
@@ -45,7 +43,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
                                         ";
         else $bouton = "";
         $datas[] = array(
-            "DT_RowId"  => $v->id(),
+            "DT_RowId" => $v->id(),
             'nom' => "<span ><strong class='nom'>" . $produit->nom() . "</strong></span>",
             //'nom' => "<span ><strong class='nom'>" . $produit->nom() . "</strong></span>",
             'prixUnitaire' => "<p class='prix'>
@@ -99,7 +97,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
             'stockq' => "<p class='qterest'>
          " . $v->quantiteRestante() . "
      </p>",
-            'stockg' =>  "<p class='stock'>
+            'stockg' => "<p class='stock'>
          " . $produit->stock() . "
      </p>",
             'reduction' => "<p class='reduction'>
@@ -118,8 +116,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
 if ($datas == null) {
     $donnees = array('data' => []);
     echo json_encode($donnees);
-}
-else{
+} else {
     $donnees = array('data' => $datas);
     echo json_encode($donnees);
 }

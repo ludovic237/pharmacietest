@@ -80,7 +80,7 @@
                 <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['catalogue'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'catalogue') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-book"></span> <span class="xn-text">Catalogue</span></a>
                     <ul>
-                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit' || $this->request->controller == 'catalogue' && $this->request->action == 'produitadd' || $this->request->controller == 'catalogue' && $this->request->action == 'produitdetail') { ?>active <?php } ?>">
+                                <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit' || $this->request->controller == 'catalogue' && $this->request->action == 'produitadd' || $this->request->controller == 'catalogue' && $this->request->action == 'produitdetail') { ?>active <?php } ?>">
                             <a href="#"><span class="fa lettre">E</span> Produit</a>
                             <ul>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit') { ?>class="active" <?php } ?>>
@@ -98,7 +98,7 @@
                         <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'categorie') { ?>class="active" <?php } ?>>
                             <a href="<?php echo Router::url('bouwou/catalogue/categorie'); ?>"><span class="fa lettre">C</span> Categorie</a>
                         </li>
-                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'prescripteur' || $this->request->controller == 'catalogue' && $this->request->action == 'prescripteuradd') { ?>active <?php } ?>">
+                                <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'prescripteur' || $this->request->controller == 'catalogue' && $this->request->action == 'prescripteuradd') { ?>active <?php } ?>">
                             <a href="#"><span class="fa lettre">P</span> Prescripteur</a>
                             <ul>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'prescripteur') { ?>class="active" <?php } ?>>
@@ -109,7 +109,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'assureur' || $this->request->controller == 'catalogue' && $this->request->action == 'assureuradd') { ?>active <?php } ?>">
+                                <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'assureur' || $this->request->controller == 'catalogue' && $this->request->action == 'assureuradd') { ?>active <?php } ?>">
                             <a href="#"><span class="fa lettre">A</span> Assureur</a>
                             <ul>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'assureur') { ?>class="active" <?php } ?>>
@@ -120,7 +120,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'client' || $this->request->controller == 'catalogue' && $this->request->action == 'clientadd') { ?>active <?php } ?>">
+                                <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'client' || $this->request->controller == 'catalogue' && $this->request->action == 'clientadd') { ?>active <?php } ?>">
                             <a href="#"><span class="fa lettre">C</span> Client</a>
                             <ul>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'client') { ?>class="active" <?php } ?>>
@@ -132,7 +132,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabriquant' || $this->request->controller == 'catalogue' && $this->request->action == 'fabriquantadd') { ?>active <?php } ?>">
+                                <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabriquant' || $this->request->controller == 'catalogue' && $this->request->action == 'fabriquantadd') { ?>active <?php } ?>">
                             <a href="#"><span class="fa lettre">F</span> Fabriquant</a>
                             <ul>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fabriquant') { ?>class="active" <?php } ?>>
@@ -143,7 +143,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fournisseur' || $this->request->controller == 'catalogue' && $this->request->action == 'fournisseuradd') { ?>active <?php } ?>">
+                                <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fournisseur' || $this->request->controller == 'catalogue' && $this->request->action == 'fournisseuradd') { ?>active <?php } ?>">
                             <a href="#"><span class="fa lettre">F</span> Fournisseur</a>
                             <ul>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'fournisseur') { ?>class="active" <?php } ?>>

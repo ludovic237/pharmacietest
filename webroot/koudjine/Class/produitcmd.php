@@ -261,8 +261,16 @@ class Produit_cmdManager
         $q = $this->_db->query('SELECT * FROM produit_cmd WHERE supprimer = 0 AND produit_id = '.$idp.' AND commande_id ='.$idc);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Produit_cmd($donnees);
-
     }
+
+    public function getAll($idp, $idc)
+    {
+
+        $q = $this->_db->query('SELECT * FROM pharma_produit_commande_view WHERE supprimer = 0 AND produit_id = '.$idp.' AND commande_id ='.$idc);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Produit_cmd($donnees);
+    }
+
     public function getId($idpc)
     {
 
