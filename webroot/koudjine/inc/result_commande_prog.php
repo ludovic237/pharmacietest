@@ -14,7 +14,7 @@ if (isset($_GET["motclef1"])) {
     $sth = $pdo->prepare("
               SELECT p.nom, p.ean13, r.quantite, r.reduction, p.reductionMax, r.prixAchat, p.reference, r.prixVente, r.id as id, r.dateLivraison, p.id as idp 
               FROM produit p, en_rayon r
-              WHERE p.nom like :motclef AND p.grossiste_id is not null AND p.grossiste_id <> '' AND p.id = r.produit_id AND p.supprimer = 0 AND r.dateLivraison IN (select max(dateLivraison) from en_rayon e where r.produit_id = e.produit_id )
+              WHERE p.nom like :motclef AND p.grossiste_id = '' AND p.id = r.produit_id AND p.supprimer = 0 AND r.dateLivraison IN (select max(dateLivraison) from en_rayon e where r.produit_id = e.produit_id )
               
             ");
     $sth->execute($q);
