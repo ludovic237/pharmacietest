@@ -27,7 +27,7 @@ if (isset($_POST['id']))
 
 $produit = $managerProduit->get($id);
 $nom = $produit->nom();
-if(strpos($nom, 'D ') === 0 || $produit->grossiste_id() != ""){
+if(strpos($nom, 'd ') === 0 || $produit->grossiste_id() != ""){
     $enrayon = $managerEnRayon->getListDetail($id);
 }else{
     $enrayon = $managerEnRayon->getList($id);

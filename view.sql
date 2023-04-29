@@ -147,3 +147,17 @@ from (`pharmanet1`.`produit` `pdt`
 where `enray`.`datePeremption` in (select max(`enray`.`datePeremption`))
 group by `pdt`.`id`
 order by `pdt`.`id`;
+create definer = root@localhost view pharma_produit_en_rayon_view as
+select distinct `pdt`.`id`                 AS `id`,
+                `pdt`.`nom`                AS `nom`,
+                `pdt`.`ean13`              AS `ean13`,
+                `enray`.`prixVente`        AS `prixVente`,
+                `enray`.`prixAchat`        AS `prixAchat`,
+                `enray`.`quantiteRestante` AS `quantiteRestante`,
+                `enray`.`reduction`        AS `reduction`,
+                `enray`.`datePeremption`   AS `datePeremption`
+from (`pharmanet1`.`produit` `pdt`
+         join `pharmanet1`.`en_rayon` `enray` on (`pdt`.`id` = `enray`.`produit_id`))
+where `enray`.`datePeremption` in (select max(`enray`.`datePeremption`))
+group by `pdt`.`id`
+order by `pdt`.`id`;
