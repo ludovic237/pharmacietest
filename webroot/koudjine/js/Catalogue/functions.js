@@ -2376,19 +2376,26 @@ function charger_select_produit() {
             nom: nom
         },
         success: function (data) {
-            $('ul.dropdown-menu ').append(data);
-            $.ajax({
+
+            $('ul.dropdown-menu ')
+                .find('option')
+                .remove()
+                .end()
+                .append(data)
+            ;
+            /*$.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/charger_select_produit1.php',
                 data: {
                     nom: nom
                 },
                 success: function (data) {
+                    $('#produits').empty();
                     $('#produits').append(data);
-                    //alert(data);
+                    console.log(data);
 
                 }
-            })
+            })*/
 
         }
     })

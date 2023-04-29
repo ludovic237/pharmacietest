@@ -8,7 +8,12 @@ global $conndb;
 $nom = $_POST["nom"];
 if (isset($_POST["nom"])) {
     $list = explode(' ', trim($nom));
-    $motclef = '%' . $list[0] . '%';
+    if($list[0] == 'D'){
+        $motclef = '%' . $list[1] . '%';
+    }else{
+        $motclef = '%' . $list[0] . '%';
+    }
+    echo $list[1];
     $q = array('motclef' => $motclef );
     $sth = $pdo->prepare("
               SELECT *

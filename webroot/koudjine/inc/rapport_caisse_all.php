@@ -79,7 +79,7 @@ foreach ($ventes as $k => $v) {
         }
         // On calcule le total des produits detailles
         $produit = $managerPr->get($en_rayon->produit_id());
-        if ($produit->grossiste_id() != '') {
+        if ($produit->grossiste_id() != '' || $produit->grossiste_id() != null) {
             $prixTotalProduitDetail = $prixTotalConcerne + $prixTotalProduitDetail;
             //echo 'passe';
         }

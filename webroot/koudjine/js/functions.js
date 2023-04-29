@@ -361,7 +361,7 @@ function modify_depense_row(id) {
     window.location.href = link;
 }
 
-function charger_select_produit() {
+function charger_select_produit1() {
     var nom = $('#nom').val();
     //alert('pass')
     $.ajax({
