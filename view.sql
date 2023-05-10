@@ -117,21 +117,22 @@ from ((((`pharmanet1`.`produit` `pdt`
          join pharmanet1.forme form on (form.id = pdt.forme_id));
 
 
-create definer = root@localhost view pharma_produit_commande_view as
-select `pdt`.`nom`           AS `nom`,
+create or replace definer = root@localhost view pharma_produit_commande_view as
+select GROUP_CONCAT(`pdt`.`nom`)           AS `nom`,
        `pdt`.`ean13`         AS `ean13`,
-       `pdt_cmd`.`puCmd`     AS `puCmd`,
-       `pdt_cmd`.`ptCmd`     AS `ptCmd`,
-       `pdt_cmd`.`qtiteCmd`  AS `qtiteCmd`,
-       `pdt_cmd`.`etat`      AS `etat`,
+       GROUP_CONCAT(`pdt_cmd`.`puCmd`)     AS `puCmd`,
+       GROUP_CONCAT(`pdt_cmd`.`ptCmd`)     AS `ptCmd`,
+       GROUP_CONCAT(`pdt_cmd`.`qtiteCmd`)  AS `qtiteCmd`,
+       GROUP_CONCAT(`pdt_cmd`.`etat`)      AS `etat`,
        `cmd`.`ref`           AS `ref`,
        `four`.`nom`          AS `fournisseurName`,
-       `cmd`.`montantCmd`    AS `montantCmd`,
-       `cmd`.`montantRecu`   AS `montantRecu`,
+       GROUP_CONCAT(`cmd`.`montantCmd`)    AS `montantCmd`,
+       GROUP_CONCAT(`cmd`.`montantRecu`)   AS `montantRecu`,
        `cmd`.`dateCreation`  AS `dateCreation`,
        `cmd`.`dateLivraison` AS `dateLivraison`
 from (((`pharmanet1`.`produit_cmd` `pdt_cmd` join `pharmanet1`.`commande` `cmd` on (`pdt_cmd`.`commande_id` = `cmd`.`id`)) join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `pdt_cmd`.`produit_id`))
-         join `pharmanet1`.`fournisseur` `four` on (`four`.`id` = `cmd`.`fournisseur_id`));
+    join `pharmanet1`.`fournisseur` `four` on (`four`.`id` = `cmd`.`fournisseur_id`)) INNER JOIN commande as d ON d.ref = cmd.ref  GROUP BY d.ref;
+
 
 create definer = root@localhost view pharma_produit_en_rayon_view as
 select distinct `pdt`.`id`                 AS `id`,
