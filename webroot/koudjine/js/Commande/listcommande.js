@@ -116,7 +116,12 @@ function charger_list_commande() {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%"></span>';
                             } else {
-                                return '<strong>' + data + '</strong>';
+                                var list = data.split(',');
+                                var  total = 0;
+                                for (let i = 0; i < list.length; i++) {
+                                    total+=parseInt(list[i]);
+                                }
+                                return '<strong>' + total + '</strong>';
                             }
                         }
                     },
@@ -125,7 +130,12 @@ function charger_list_commande() {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%"></span>';
                             } else {
-                                return '<strong>' + data + '</strong>';
+                                var list = data.split(',');
+                                var  total = 0;
+                                for (let i = 0; i < list.length; i++) {
+                                    total+=parseInt(list[i]);
+                                }
+                                return '<strong>' + total + '</strong>';
                             }
                         }
                     },
