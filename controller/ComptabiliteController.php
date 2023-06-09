@@ -284,12 +284,12 @@ class ComptabiliteController extends Controller
                 }
             } else {
                 if ($perime == null) {
-                    $d['catalogue'] = $this->Comptabilite->find(array(
+                    $d['catalogue'] = null;/*$this->Comptabilite->find(array(
                         'fields' => 'produit.id as idp,produit.nom as nomp,fournisseur.nom as nomf,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                         'table' => 'en_rayon,produit,fournisseur',
                         'order' => 'dateLivraison-ASC',
                         'conditions' => "en_rayon.produit_id = produit.id AND en_rayon.fournisseur_id = fournisseur.id AND en_rayon.supprimer = 0"
-                    ));
+                    ));*/
                 } else {
                     if ($perime == 1) {
                         $d['catalogue'] = $this->Comptabilite->find(array(
