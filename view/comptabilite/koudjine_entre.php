@@ -20,7 +20,13 @@ $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jszip.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/pdfmake.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/vfs_fonts.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/buttons.html5.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/buttons.print.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/functions.js"></script>
@@ -100,7 +106,7 @@ $script_for_layout = '
             <div class="panel-body">
 
                 <div class="table-responsive">
-                    <table class="table datatable table-bordered table-striped table-actions">
+                    <table class="table datatable table-bordered table-striped table-actions" id="DataTables_Table_0">
                         <thead>
                             <tr>
                                 <th>Nom</th>
@@ -116,24 +122,7 @@ $script_for_layout = '
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if($catalogue != null) foreach ($catalogue as $k => $v) : ?>
-                            <tr id="<?php echo $v->ide; ?>">
-                                <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $v->idp; ?>"><?php echo $v->nomp; ?></a></strong></td>
-                                <td><?php echo $v->nomf; ?></td>
-                                <td><?php echo $v->dateLivraison; ?></td>
-                                <td><?php echo $v->datePeremption; ?></td>
-                                <td><?php echo $v->prixAchat; ?></td>
-                                <td><?php echo $v->prixVente; ?></td>
-                                <td><?php echo $v->quantite; ?></td>
-                                <td><?php echo $v->quantiteRestante; ?></td>
-                                <td><?php echo $v->reduction; ?></td>
-                                <td>
-                                    <button class="btn btn-info btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Info" onclick="info_row_entree(<?php echo $v->ide; ?>)"><span class="fa fa-info"></span></button>
-                                    <button class="btn btn-default btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Modifier" onclick="update_row_produit(<?php echo $v->ide; ?>)"><span class="fa fa-pencil"></span></button>
-                                    <button class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->ide; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+
                         </tbody>
                     </table>
                 </div>

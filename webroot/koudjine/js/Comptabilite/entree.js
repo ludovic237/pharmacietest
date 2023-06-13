@@ -5,8 +5,129 @@ var idemploye = null
 ;
 var idfulldepense;
 
+
 $(document).ready(function () {
     console.log(catalogue)
+    catalogue.forEach(function (item) {
+        item.rowId=item.ide;
+    });
+    var data = catalogue
+    $('#DataTables_Table_0').dataTable({
+        buttons:[
+            {extend:'copyHtml5',
+                className: 'btn btn-success',
+                messageTop:"hello"},
+            {extend:'excelHtml5',className: 'btn btn-success', messageTop:"hello"},
+            {extend:'csvHtml5',className: 'btn btn-success', messageTop:"hello"},
+            {extend:'pdfHtml5',
+                className: 'btn btn-success',
+                messageTop:"hello",
+                title:"Commande Numero",
+                text:'<div>Export Pdf</div>',
+                titleAttr:"Export excel"
+            },
+        ],
+        dom:'Bfrtip',
+        destroy: true,
+        searching: true,
+        dFilter: false,
+        bInfo: false,
+        bPaginate: true,
+        data: data,
+        order: [[1, "desc"]],
+        columns: [
+            {
+                data: "nomp", "render": function (data, type, row) {
+                    if (!data) {
+                        return '<span class="text-muted" style="font-size:90%">NA</span>';
+                    } else {
+                        return '<strong>' + data + '</strong>';
+                    }
+                }
+            },
+            {
+                data: "nomf", "render": function (data, type, row) {
+                    if (!data) {
+                        return '<span class="text-muted" style="font-size:90%"></span>';
+                    } else {
+                        return '<strong>' + data + '</strong>';
+                    }
+                }
+            },
+            {
+                data: "dateLivraison", "render": function (data, type, row) {
+                    if (!data) {
+                        return '<span class="text-muted" style="font-size:90%"></span>';
+                    } else {
+                        return '<strong>' + data + '</strong>';
+                    }
+                }
+            },
+            {
+                data: "datePeremption", "render": function (data, type, row) {
+                    if (!data) {
+                        return '<span class="text-muted" style="font-size:90%"></span>';
+                    } else {
+                        return '<strong>' + data + '</strong>';
+                    }
+                }
+            },
+            {
+                data: "prixAchat", "render": function (data, type, row) {
+                    if (!data) {
+                        return '<span class="text-muted" style="font-size:90%"></span>';
+                    } else {
+                        return '<strong>' + data + '</strong>';
+                    }
+                }
+            },
+            {
+                data: "prixVente", "render": function (data, type, row) {
+                    if (!data) {
+                        return '<span class="text-muted" style="font-size:90%"></span>';
+                    } else {
+                        return '<strong>' + data + '</strong>';
+                    }
+                }
+            },
+            {
+                data: "quantite", "render": function (data, type, row) {
+                    if (!data) {
+                        return '<span class="text-muted" style="font-size:90%"></span>';
+                    } else {
+                        return '<strong>' + data + '</strong>';
+                    }
+                }
+            },
+            {
+                data: "quantiteRestante", "render": function (data, type, row) {
+                    if (!data) {
+                        return '<span class="text-muted" style="font-size:90%"></span>';
+                    } else {
+                        return '<strong>' + data + '</strong>';
+                    }
+                }
+            },
+            {
+                data: "reduction", "render": function (data, type, row) {
+                    if (!data) {
+                        return '<span class="text-muted" style="font-size:90%"></span>';
+                    } else {
+                        return '<strong>' + data + '</strong>';
+                    }
+                }
+            },
+            {
+                data: "reduction", "render": function (data, type, row) {
+                    if (!data) {
+                        return '<span class="text-muted" style="font-size:90%"></span>';
+                    } else {
+                        return '<strong>' + data + '</strong>';
+                    }
+                }
+            },
+        ]
+    });
 });
 
 
