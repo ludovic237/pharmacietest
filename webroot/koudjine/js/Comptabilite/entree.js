@@ -6,7 +6,7 @@ var idemploye = null
 var idfulldepense;
 
 $(document).ready(function () {
-
+    console.log(catalogue)
 });
 
 

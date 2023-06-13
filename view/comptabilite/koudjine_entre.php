@@ -4,6 +4,11 @@ $title_for_layout = ' Admin -' . 'Comptabilité';
 $page_for_layout = 'Entrées Stock';
 $action_for_layout = 'Ajouter';
 
+
+/*if (isset($_POST['callFunc1']) && isset($catalogue)) {
+    echo $catalogue;
+}*/
+
 if ($this->request->action == "entre") {
     $position = "Entrées Stock";
 }
@@ -22,17 +27,15 @@ $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/entree.js"></script>
 
 <script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
-<script>
-/*var qrcode = new QRCode(document.getElementById("qrcode"), {
-     width: 30,
-     height: 30
- });*/
-                                    </script>
+
 
 ';
 ?>
 
+<script type="text/javascript">
 
+     catalogue = <?php echo json_encode($catalogue); ?>;
+</script>
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-body">
