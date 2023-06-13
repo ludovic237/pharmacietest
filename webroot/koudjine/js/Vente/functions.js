@@ -618,7 +618,6 @@ function valider_vente(type, etat) {
 
         $.ajax({
             type: "POST",
-            url: "/pharmacietest/koudjine/inc/vente.php",
             data: {
                 idc: idClient,
                 idp: idPrescripteur,
@@ -629,6 +628,7 @@ function valider_vente(type, etat) {
                 prixr: prixr,
                 etat: etat
             },
+            url: "/pharmacietest/koudjine/inc/vente.php",
             dataType: 'json',
             success: function (data) {
                 //alert(server_responce);

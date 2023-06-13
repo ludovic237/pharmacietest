@@ -159,10 +159,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <tbody>
                         <?php foreach ($commande as $k => $v) : ?>
                             <tr id="<?php echo $v->id; ?>">
-                                <td><strong><?php
-                                        $date = DateTime::createFromFormat('Y-m-d H:i:s', $v->dateLivraison);
-                                        $datel = $date->format('d-m-Y');
-                                        echo $v->dateCreation; ?></strong></td>
+                                <td><strong></strong></td>
                                 <td><?php echo $v->dateLivraison; ?></td>
                                 <!-- <td><?php echo $v->note; ?></td> -->
                                 <td>

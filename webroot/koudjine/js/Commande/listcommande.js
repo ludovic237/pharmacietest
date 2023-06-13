@@ -79,10 +79,18 @@ function charger_list_commande() {
             console.log(data);
             $('#new_list_commande_date').dataTable({
                 buttons:[
-                    {extend:'copyHtml5',className: 'btn btn-success'},
-                    {extend:'excelHtml5',className: 'btn btn-success'},
-                    {extend:'csvHtml5',className: 'btn btn-success'},
-                    {extend:'pdfHtml5',className: 'btn btn-success'}
+                    {extend:'copyHtml5',
+                        className: 'btn btn-success',
+                        messageTop:"hello"},
+                    {extend:'excelHtml5',className: 'btn btn-success', messageTop:"hello"},
+                    {extend:'csvHtml5',className: 'btn btn-success', messageTop:"hello"},
+                    {extend:'pdfHtml5',
+                        className: 'btn btn-success',
+                        messageTop:"hello",
+                        title:"Commande Numero",
+                        text:'<div>Export Pdf</div>',
+                        titleAttr:"Export excel"
+                    },
                 ],
                 dom:'Bfrtip',
                 destroy: true,
@@ -189,9 +197,9 @@ function getListCommande(start, end) {
 
             $('#list_commande_tables').dataTable({
                 buttons:[
-                    {extend:'copyHtml5',className: 'btn btn-success'},
-                    {extend:'excelHtml5',className: 'btn btn-success'},
-                    {extend:'csvHtml5',className: 'btn btn-success'},
+                    {extend:'copyHtml5',className: 'btn btn-success', messageTop:"hello"},
+                    {extend:'excelHtml5',className: 'btn btn-success', messageTop:"hello"},
+                    {extend:'csvHtml5',className: 'btn btn-success', messageTop:"hello"},
                     {extend:'pdfHtml5',className: 'btn btn-success'}
                 ],
                 // exportOptions: {
@@ -280,10 +288,10 @@ function getListCommande(start, end) {
 
             $('#list_commande_tables_1').dataTable({
                 buttons:[
-                    {extend:'copyHtml5',className: 'btn btn-success'},
-                    {extend:'excelHtml5',className: 'btn btn-success'},
-                    {extend:'csvHtml5',className: 'btn btn-success'},
-                    {extend:'pdfHtml5',className: 'btn btn-success'}
+                    {extend:'copyHtml5',className: 'btn btn-success', messageTop:"hello"},
+                    {extend:'excelHtml5',className: 'btn btn-success', messageTop:"hello"},
+                    {extend:'csvHtml5',className: 'btn btn-success', messageTop:"hello"},
+                    {extend:'pdfHtml5',className: 'btn btn-success', messageTop:"hello"},
                 ],
                 dom:'Bfrtip',
                 destroy: true,

@@ -16748,6 +16748,7 @@ CREATE TABLE `ligne_commande` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(50) DEFAULT NULL,
   `dateDerniere` datetime DEFAULT NULL,
+  `datePremiere` datetime DEFAULT NULL,
   `supprimer` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
