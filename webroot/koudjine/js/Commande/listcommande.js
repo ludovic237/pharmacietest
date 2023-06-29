@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var table_list_commande = $('#list_commande_table').dataTable();
     var new_list_commande_date = $('#new_list_commande_date').dataTable();
-    charger_list_commande()
+    charger_list_commande('','')
 
     // if ($("#reportrange").length > 0) {
     //     $("#reportrange").daterangepicker({
