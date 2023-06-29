@@ -56,7 +56,7 @@ function enregistrer_list_commande(dateDerniere) {
         url: "/pharmacietest/koudjine/inc/enregistrer_list_commande.php",
         data: {
             type: "ListeCommande",
-            date: dateDerniere
+            date: moment().format("YYYY-MM-DD HH:mm:ss")
         },
         //dataType: 'json',
         success: function (data) {
