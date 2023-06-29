@@ -108,6 +108,110 @@ class Concerner_view
         return $this->_venteDateVente;
     }
 
+    // SETTERS
+    public function setventeId($value)
+    {
+
+        $this->_venteId = $value;
+
+    }
+    public function setconcernerId($value)
+    {
+
+        $this->_concernerId = $value;
+
+    }
+    public function setconcernerQuantite($value)
+    {
+
+        $this->_concernerQuantite = $value;
+
+    }
+    public function setconcernerPrixUnit($value)
+    {
+
+        $this->_concernerPrixUnit = $value;
+
+    }
+    public function setconcernerReduction($value)
+    {
+
+        $this->_concernerReduction = $value;
+
+    }
+    public function setventeReference($value)
+    {
+
+        $this->_venteReference = $value;
+
+    }
+    public function setventePrixPercu($value)
+    {
+
+        $this->_ventePrixPercu = $value;
+
+    }
+    public function setventePrixTotal($value)
+    {
+
+        $this->_ventePrixTotal = $value;
+
+    }
+    public function setenrayPrixAchat($value)
+    {
+
+        $this->_enrayPrixAchat = $value;
+
+    }
+    public function setenrayPrixVente($value)
+    {
+
+        $this->_enrayPrixVente = $value;
+
+    }
+    public function setenrayDateLivraison($value)
+    {
+
+        $this->_enrayDateLivraison = $value;
+
+    }
+    public function setenrayDatePeremption($value)
+    {
+
+        $this->_enrayDatePeremption = $value;
+
+    }
+    public function setenrayQuantiteRayon($value)
+    {
+
+        $this->_enrayQuantiteRayon = $value;
+
+    }
+    public function setenrayQuantiteRestante($value)
+    {
+
+        $this->_enrayQuantiteRestante = $value;
+
+    }
+    public function setnom($value)
+    {
+
+        $this->_nom = $value;
+
+    }
+    public function setproduitId($value)
+    {
+
+        $this->_produitId = $value;
+
+    }
+    public function setventeDateVente($value)
+    {
+
+        $this->_venteDateVente = $value;
+
+    }
+
 }
 
 class ConcernerViewManager
