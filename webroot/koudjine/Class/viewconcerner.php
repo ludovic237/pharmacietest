@@ -243,7 +243,19 @@ class ConcernerViewManager
     public function getAllByDate($start,$end)
     {
         $produits = array();
-        $q = $this->_db->prepare('SELECT * FROM pharma_concerner_view where venteDateVente between '.$start.' and '.$end.' ');
+        $q = $this->_db->prepare("SELECT * FROM pharma_concerner_view where venteDateVente BETWEEN DATE_SUB( '".$start."',INTERVAL 0  MONTH) AND DATE_SUB( '".$end."',INTERVAL 0  MONTH )");
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $produits[] = new Concerner_view($donnees);
+        }
+        return $produits;
+    }
+
+    public function getAllByDateEnd($start)
+    {
+        $produits = array();
+        $q = $this->_db->prepare("SELECT * FROM pharma_concerner_view where venteDateVente > DATE_SUB( '".$start."',INTERVAL 0  MONTH )");
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
