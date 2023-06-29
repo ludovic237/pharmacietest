@@ -53,30 +53,32 @@ foreach ($ProduitCmdView as $key => $v) {
     }
 }
 
+if(!empty($list)){
+    foreach ($list as $k => $c) {
+        if ($i == 0) {
+            $dateDebut = '';
+            $lastDate[$i] = $c->dateDerniere();
+        } else {
+            $lastDate[$i] = $c->dateDerniere();
+            $dateDebut = $lastDate[$i - 1];
+        }
 
-foreach ($list as $k => $c) {
-    if ($i == 0) {
-        $dateDebut = '';
-        $lastDate[$i] = $c->dateDerniere();
-    } else {
-        $lastDate[$i] = $c->dateDerniere();
-        $dateDebut = $lastDate[$i - 1];
+        $line[] = array(
+            "id" => $c->id(),
+            "type" => $c->type(),
+            "dateDerniere" => $c->dateDerniere(),
+            "dateDebut" => $dateDebut
+        );
+        $i++;
     }
-
     $line[] = array(
-        "id" => $c->id(),
-        "type" => $c->type(),
-        "dateDerniere" => $c->dateDerniere(),
-        "dateDebut" => $dateDebut
+        "id" =>'En cours',
+        "type" =>'LigneCommande',
+        "dateDerniere" =>'',
+        "dateDebut" =>$lastDate[$i-1]
     );
-    $i++;
 }
-$dataNew[] = array(
-    "id" =>'En cours',
-    "type" =>'LigneCommande',
-    "dateDerniere" =>'',
-//    "dateDebut" =>$lastDate[$i-1]
-);
+
 
 $datas = array('data' => $data, 'totalEncaisse' => $total, 'ligne' => $line,);
 echo json_encode($datas);
