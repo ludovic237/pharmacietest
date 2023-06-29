@@ -19,20 +19,24 @@ $ProduitCmdView = $managerPrCmdView->getAll();
 $prds = array();
 $qte = 0;
 foreach ($ProduitCmdView as $key => $v) {
-    $data[] = array(
-        "nom"=>$v->nom(),
-        "ean13"=>$v->ean13(),
-        "puCmd"=>$v->puCmd(),
-        "ptCmd"=>$v->ptCmd(),
-        "qtiteCmd"=>$v->qtiteCmd(),
-        "etat"=>$v->etat(),
-        "ref"=>$v->ref(),
-        "montantCmd"=>$v->montantCmd(),
-        "montantRecu"=>$v->montantRecu(),
-        "dateCreation"=>$v->dateCreation(),
-        "dateLivraison"=>$v->dateLivraison(),
-        "fournisseurName"=>$v->fournisseurName(),
-    );
+    if(in_array($v->id(), $data)){
+        $data[$v->id()]["qtiteCmd"] = $data[$v->id()]["qtiteCmd"] + $v->qtiteCmd();
+    }else{
+        $data[$v->id()] = array(
+            "nom"=>$v->nom(),
+            "ean13"=>$v->ean13(),
+            "puCmd"=>$v->puCmd(),
+            "ptCmd"=>$v->ptCmd(),
+            "qtiteCmd"=>$v->qtiteCmd(),
+            "etat"=>$v->etat(),
+            "ref"=>$v->ref(),
+            "montantCmd"=>$v->montantCmd(),
+            "montantRecu"=>$v->montantRecu(),
+            "dateCreation"=>$v->dateCreation(),
+            "dateLivraison"=>$v->dateLivraison(),
+            "fournisseurName"=>$v->fournisseurName(),
+        );
+    }
 }
 $datas = array('data' => $data,'totalEncaisse' => $total);
 echo json_encode($datas);
