@@ -217,6 +217,11 @@ function charger_list_commande() {
                             }
                         }
                     },
+                    {
+                        data: "dateDerniere", "render": function (data, type, row) {
+                                return '<button class="dt-button buttons-copy buttons-html5 btn btn-success" onclick="charger_list_commande()" tabindex="0" type="button"><span>Charger</span></button>';
+                        }
+                    },
                 ]
             });
             //alert(data)

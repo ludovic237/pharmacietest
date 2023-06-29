@@ -150,7 +150,7 @@ if (isset($datetime)) {
                             <th>Type</th>
                             <th>Date debut</th>
                             <th>Date fin</th>
-<!--                            <th>Action</th>-->
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
