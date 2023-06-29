@@ -21,7 +21,7 @@ $i = 0;
 $start = $_POST['start'];
 $end = $_POST['end'];
 
-if($start=='' && $end==''){
+if ($start == '' && $end == '') {
     $ProduitCmdView = $managerPrCmdView->getAll();
 
     $prds = array();
@@ -54,7 +54,7 @@ if($start=='' && $end==''){
         }
     }
 
-    if(!empty($list)){
+    if (!empty($list)) {
         foreach ($list as $k => $c) {
             if ($i == 0) {
                 $dateDebut = '';
@@ -73,18 +73,20 @@ if($start=='' && $end==''){
             $i++;
         }
         $line[] = array(
-            "id" =>'En cours',
-            "type" =>'LigneCommande',
-            "dateDerniere" =>'',
-            "dateDebut" =>$lastDate[$i-1]
+            "id" => 'En cours',
+            "type" => 'LigneCommande',
+            "dateDerniere" => '',
+            "dateDebut" => $lastDate[$i - 1]
         );
     }
 
 
     $datas = array('data' => $data, 'totalEncaisse' => $total, 'ligne' => $line,);
     echo json_encode($datas);
-}else{
-    $ProduitCmdView = $managerPrCmdView->getAll();
+} else {
+
+    $ProduitCmdView = $managerPrCmdView->getAllByDate($start, $end);
+
 
     $prds = array();
     $qte = 0;
@@ -116,7 +118,7 @@ if($start=='' && $end==''){
         }
     }
 
-    if(!empty($list)){
+    if (!empty($list)) {
         foreach ($list as $k => $c) {
             if ($i == 0) {
                 $dateDebut = '';
@@ -135,10 +137,10 @@ if($start=='' && $end==''){
             $i++;
         }
         $line[] = array(
-            "id" =>'En cours',
-            "type" =>'LigneCommande',
-            "dateDerniere" =>'',
-            "dateDebut" =>$lastDate[$i-1]
+            "id" => 'En cours',
+            "type" => 'LigneCommande',
+            "dateDerniere" => '',
+            "dateDebut" => $lastDate[$i - 1]
         );
     }
 

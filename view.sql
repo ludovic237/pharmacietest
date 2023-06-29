@@ -66,7 +66,6 @@ from (((`pharmanet1`.`concerner` `conc` join `pharmanet1`.`vente` `ven` on (`con
 
 
 
-
 create definer = root@localhost view pharma_concerner_without_return_view as
 select `ven`.`id`                AS `venteId`,
        `conc`.`id`               AS `concernerId`,
@@ -88,8 +87,6 @@ select `ven`.`id`                AS `venteId`,
 from (((`pharmanet1`.`concerner` `conc` join `pharmanet1`.`vente` `ven` on (`conc`.`vente_id` = `ven`.`id`)) join `pharmanet1`.`en_rayon` `en_r` on (`conc`.`en_rayon_id` = `en_r`.`id`))
          join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `en_r`.`produit_id`))
 where !(`conc`.`vente_id` in (select `pharmanet1`.`retour_produit`.`vente_id` from `pharmanet1`.`retour_produit`));
-
-
 
 
 
@@ -165,7 +162,6 @@ from (((`pharmanet1`.`produit_cmd` `pdt_cmd` join `pharmanet1`.`commande` `cmd` 
 
 
 
-
 create definer = root@localhost view pharma_produit_en_rayon_view as
 select distinct `pdt`.`id`                 AS `id`,
                 `pdt`.`nom`                AS `nom`,
@@ -218,7 +214,6 @@ select `pdt`.`id`                 AS `id`,
        `enray`.`datePeremption`   AS `rayonDatePeremption`
 from ((`pharmanet1`.`en_rayon` `enray` left join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `enray`.`produit_id`))
          left join `pharmanet1`.`fournisseur` `four` on (`four`.`id` = `enray`.`fournisseur_id`));
-
 
 
 
@@ -386,3 +381,23 @@ from (`pharmanet1`.`produit` `pdt`
 where `enray`.`datePeremption` in (select max(`enray`.`datePeremption`))
 group by `pdt`.`id`
 order by `pdt`.`id`;
+
+create definer = root@localhost view pharma_sortie_stock_view as
+select `sort`.`quantite`         AS `sortQuantite`,
+       `sort`.`dateSortie`       AS `sortDateSortie`,
+       `sort`.`detail_id`        AS `sortDetail_id`,
+       `tp`.`nom`                AS `tpNom`,
+       `tp`.`description`        AS `tpDescription`,
+       `en_r`.`prixAchat`        AS `prixAchat`,
+       `en_r`.`prixVente`        AS `prixVente`,
+       `en_r`.`dateLivraison`    AS `dateLivraison`,
+       `en_r`.`datePeremption`   AS `datePeremption`,
+       `en_r`.`quantite`         AS `quantite_rayon`,
+       `en_r`.`quantiteRestante` AS `quantiteRestante`,
+       `pdt`.`id`                AS `produitId`,
+       `pdt`.`nom`               AS `nom`
+from (((`pharmanet1`.`sortie_stock` `sort`
+    join `pharmanet1`.`en_rayon` `en_r` on (`sort`.`en_rayon_id` = `en_r`.`id`)
+    join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `en_r`.`produit_id`))
+    join `pharmanet1`.`type_sortie` `tp` on (`tp`.`id` = `sort`.`type_sortie_id`))
+         join `pharmanet1`.`forme` `form` on (`pdt`.`forme_id` = `form`.`id`));
