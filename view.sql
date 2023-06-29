@@ -1,11 +1,17 @@
-create definer = root@localhost view wms_vente_view as
-select `ven`.`id`          AS `venteId`,
-       `ven`.`prixTotal`   AS `prixTotal`,
-       `emp`.`identifiant` AS `identifiant`,
-       `ven`.`prixPercu`   AS `prixPercu`,
-       `ven`.`reference`   AS `reference`,
-       `cai`.`session`     AS `session`,
-       `ven`.`dateVente`   AS `dateVente`
+create definer = root@localhost view pharma_vente_view as
+select `ven`.`id`           AS `venteId`,
+       `ven`.`prixTotal`    AS `prixTotal`,
+       `emp`.`identifiant`  AS `identifiant`,
+       `ven`.`prixPercu`    AS `prixPercu`,
+       `ven`.`reference`    AS `reference`,
+       `ven`.`reduction`    AS `reduction`,
+       `ven`.`nouveau_info` AS `nouveau_info`,
+       `ven`.`commentaire`  AS `commentaire`,
+       `ven`.`etat`         AS `etat`,
+       `cai`.`session`      AS `session`,
+       `cai`.`id`           AS `caisseId`,
+       `cai`.`user_id`      AS `caisseUserId`,
+       `ven`.`dateVente`    AS `dateVente`
 from ((`pharmanet1`.`vente` `ven` join `pharmanet1`.`employe` `emp` on (`ven`.`employe_id` = `emp`.`id`))
          join `pharmanet1`.`caisse` `cai` on (`ven`.`caisse_id` = `cai`.`id`));
 
@@ -37,28 +43,33 @@ select `en_r`.`prixAchat`        AS `prixAchat`,
 from ((`pharmanet1`.`en_rayon` `en_r` join `pharmanet1`.`produit` `pd` on (`en_r`.`produit_id` = `pd`.`id`))
          join `pharmanet1`.`commande` `cmd` on (`en_r`.`commande_id` = `cmd`.`id`));
 
-
-create view pharma_concerner_view as
+create definer = root@localhost view pharma_concerner_view as
 select `ven`.`id`                AS `venteId`,
-       `conc`.`quantite`         AS `quantite`,
-       `conc`.`prixUnit`         AS `prixUnit`,
-       `conc`.`reduction`        AS `reduction`,
-       `ven`.`reference`         AS `reference`,
-       `ven`.`prixPercu`         AS `prixPercu`,
-       `ven`.`prixTotal`         AS `prixTotal`,
-       `en_r`.`prixAchat`        AS `prixAchat`,
-       `en_r`.`prixVente`        AS `prixVente`,
-       `en_r`.`dateLivraison`    AS `dateLivraison`,
-       `en_r`.`datePeremption`   AS `datePeremption`,
-       `en_r`.`quantite`         AS `quantiteRayon`,
-       `en_r`.`quantiteRestante` AS `quantiteRestante`,
+       `conc`.`id`               AS `concernerId`,
+       `conc`.`quantite`         AS `concernerQuantite`,
+       `conc`.`prixUnit`         AS `concernerPrixUnit`,
+       `conc`.`reduction`        AS `concernerReduction`,
+       `ven`.`reference`         AS `venteReference`,
+       `ven`.`prixPercu`         AS `ventePrixPercu`,
+       `ven`.`prixTotal`         AS `ventePrixTotal`,
+       `en_r`.`prixAchat`        AS `enrayPrixAchat`,
+       `en_r`.`prixVente`        AS `enrayPrixVente`,
+       `en_r`.`dateLivraison`    AS `enrayDateLivraison`,
+       `en_r`.`datePeremption`   AS `enrayDatePeremption`,
+       `en_r`.`quantite`         AS `enrayQuantiteRayon`,
+       `en_r`.`quantiteRestante` AS `enrayQuantiteRestante`,
        `pdt`.`nom`               AS `nom`,
-       `ven`.`dateVente`         AS `dateVente`
+       `pdt`.`id`                AS `produitId`,
+       `ven`.`dateVente`         AS `venteDateVente`
 from (((`pharmanet1`.`concerner` `conc` join `pharmanet1`.`vente` `ven` on (`conc`.`vente_id` = `ven`.`id`)) join `pharmanet1`.`en_rayon` `en_r` on (`conc`.`en_rayon_id` = `en_r`.`id`))
          join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `en_r`.`produit_id`));
 
-create view pharma_concerner_without_return_view as
+
+
+
+create definer = root@localhost view pharma_concerner_without_return_view as
 select `ven`.`id`                AS `venteId`,
+       `conc`.`id`               AS `concernerId`,
        `conc`.`quantite`         AS `quantite`,
        `conc`.`prixUnit`         AS `prixUnit`,
        `conc`.`reduction`        AS `reduction`,
@@ -68,6 +79,7 @@ select `ven`.`id`                AS `venteId`,
        `en_r`.`prixAchat`        AS `prixAchat`,
        `en_r`.`prixVente`        AS `prixVente`,
        `en_r`.`dateLivraison`    AS `dateLivraison`,
+       `en_r`.`id`               AS `rayonId`,
        `en_r`.`datePeremption`   AS `datePeremption`,
        `en_r`.`quantite`         AS `quantiteRayon`,
        `en_r`.`quantiteRestante` AS `quantiteRestante`,
@@ -76,6 +88,8 @@ select `ven`.`id`                AS `venteId`,
 from (((`pharmanet1`.`concerner` `conc` join `pharmanet1`.`vente` `ven` on (`conc`.`vente_id` = `ven`.`id`)) join `pharmanet1`.`en_rayon` `en_r` on (`conc`.`en_rayon_id` = `en_r`.`id`))
          join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `en_r`.`produit_id`))
 where !(`conc`.`vente_id` in (select `pharmanet1`.`retour_produit`.`vente_id` from `pharmanet1`.`retour_produit`));
+
+
 
 
 
@@ -110,7 +124,7 @@ from ((((`pharmanet1`.`produit` `pdt`
          join pharmanet1.forme form on (form.id = pdt.forme_id));
 
 
-create or replace definer = root@localhost view pharma_produit_commande_view as
+/*create or replace definer = root@localhost view pharma_produit_commande_view as
 select GROUP_CONCAT(`pdt`.`nom`)          AS `nom`,
        `pdt`.`ean13`                      AS `ean13`,
        GROUP_CONCAT(`pdt_cmd`.`puCmd`)    AS `puCmd`,
@@ -126,7 +140,30 @@ select GROUP_CONCAT(`pdt`.`nom`)          AS `nom`,
 from (((`pharmanet1`.`produit_cmd` `pdt_cmd` join `pharmanet1`.`commande` `cmd` on (`pdt_cmd`.`commande_id` = `cmd`.`id`)) join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `pdt_cmd`.`produit_id`))
     join `pharmanet1`.`fournisseur` `four` on (`four`.`id` = `cmd`.`fournisseur_id`))
          INNER JOIN commande as d ON d.ref = cmd.ref
-GROUP BY d.ref;
+GROUP BY d.ref;*/
+create definer = root@localhost view pharma_produit_commande_view as
+select `pdt`.`nom`            AS `nom`,
+       `pdt`.`id`             AS `produitId`,
+       `pdt`.`ean13`          AS `ean13`,
+       `pdt_cmd`.`id`         AS `produitCmdId`,
+       `pdt_cmd`.`puCmd`      AS `produitCmdPuCmd`,
+       `pdt_cmd`.`prixPublic` AS `produitCmdPrixPublic`,
+       `pdt_cmd`.`qtiteCmd`   AS `produitCmdQtiteCmd`,
+       `pdt_cmd`.`qtiteRecu`  AS `produitCmdQtiteRecu`,
+       `pdt_cmd`.`etat`       AS `produitCmdEtat`,
+       `cmd`.`ref`            AS `ref`,
+       `four`.`nom`           AS `fournisseurName`,
+       `cmd`.`id`             AS `commandeId`,
+       `cmd`.`montantCmd`     AS `montantCmd`,
+       `cmd`.`montantRecu`    AS `montantRecu`,
+       `cmd`.`qtiteCmd`       AS `qtiteCmd`,
+       `cmd`.`qtiteRecu`      AS `qtiteRecu`,
+       `cmd`.`dateCreation`   AS `dateCreation`,
+       `cmd`.`dateLivraison`  AS `dateLivraison`
+from (((`pharmanet1`.`produit_cmd` `pdt_cmd` join `pharmanet1`.`commande` `cmd` on (`pdt_cmd`.`commande_id` = `cmd`.`id`)) join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `pdt_cmd`.`produit_id`))
+         join `pharmanet1`.`fournisseur` `four` on (`four`.`id` = `cmd`.`fournisseur_id`));
+
+
 
 
 create definer = root@localhost view pharma_produit_en_rayon_view as
@@ -163,6 +200,45 @@ from ((`pharmanet1`.`en_rayon` `enray` left join `pharmanet1`.`produit` `pdt` on
 where `enray`.`datePeremption` in (select max(`enray`.`datePeremption`))
 group by `pdt`.`id`
 order by `pdt`.`id`;
+
+create definer = root@localhost view pharma_produit_en_rayon_all_view as
+select `pdt`.`id`                 AS `id`,
+       `pdt`.`nom`                AS `nom`,
+       `pdt`.`ean13`              AS `ean13`,
+       `four`.`id`                AS `fourId`,
+       `four`.`nom`               AS `fourName`,
+       `enray`.`id`               AS `rayonId`,
+       `enray`.`prixVente`        AS `rayonPrixVente`,
+       `enray`.`prixAchat`        AS `rayonPrixAchat`,
+       `enray`.`quantiteRestante` AS `rayonQuantiteRestante`,
+       `enray`.`quantite`         AS `rayonQuantite`,
+       `enray`.`reduction`        AS `rayonReduction`,
+       `pdt`.`stock`              AS `produitStock`,
+       `enray`.`dateLivraison`    AS `rayonDateLivraison`,
+       `enray`.`datePeremption`   AS `rayonDatePeremption`
+from ((`pharmanet1`.`en_rayon` `enray` left join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `enray`.`produit_id`))
+         left join `pharmanet1`.`fournisseur` `four` on (`four`.`id` = `enray`.`fournisseur_id`));
+
+
+
+
+create view pharma_produit_sortie_view as
+select `pdt`.`id`                 AS `id`,
+       `pdt`.`nom`                AS `nom`,
+       `pdt`.`ean13`              AS `ean13`,
+       `sort`.`id`                AS `sortieId`,
+       `sort`.`dateSortie`        AS `sortieDate`,
+       `enray`.`id`               AS `id_rayon`,
+       `sort`.`quantite`          AS `sortieQuantite`,
+       `enray`.`prixAchat`        AS `enRayonPrixAchat`,
+       `enray`.`quantiteRestante` AS `quantiteRestante`,
+       `enray`.`quantite`         AS `quantite`,
+       `pdt`.`stock`              AS `stock`,
+       `enray`.`dateLivraison`    AS `dateLivraison`,
+       `enray`.`datePeremption`   AS `datePeremption`
+from ((`pharmanet1`.`sortie_stock` `sort` left join `pharmanet1`.`en_rayon` `enray` on (`sort`.`en_rayon_id` = `enray`.`id`))
+         left join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `enray`.`produit_id`));
+
 
 /*
 create definer = root@localhost view pharma_produit_en_rayon_view as
@@ -267,8 +343,14 @@ where `p`.`id` = `r`.`produit_id`
       (select max(`e`.`dateLivraison`) from `pharmanet1`.`en_rayon` `e` where `r`.`produit_id` = `e`.`produit_id`);
 
 
-update commande set etat='Commandé' where montantRecu IS NULL and qtiteRecu is null;
-update commande set etat='Livré' where montantRecu>0 and qtiteRecu >0;
+update commande
+set etat='Commandé'
+where montantRecu IS NULL
+  and qtiteRecu is null;
+update commande
+set etat='Livré'
+where montantRecu > 0
+  and qtiteRecu > 0;
 
 create definer = root@localhost view pharma_produit_cmd_view as
 select `pd_cm`.`puCmd`         AS `puCmd`,
