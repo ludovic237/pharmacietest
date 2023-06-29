@@ -60,8 +60,10 @@ select `ven`.`id`                AS `venteId`,
        `en_r`.`quantiteRestante` AS `enrayQuantiteRestante`,
        `pdt`.`nom`               AS `nom`,
        `pdt`.`id`                AS `produitId`,
+       `fr`.`id`                 AS `fournisseurId`,
+       `fr`.`nom`                AS `fournisseurNom`,
        `ven`.`dateVente`         AS `venteDateVente`
-from (((`pharmanet1`.`concerner` `conc` join `pharmanet1`.`vente` `ven` on (`conc`.`vente_id` = `ven`.`id`)) join `pharmanet1`.`en_rayon` `en_r` on (`conc`.`en_rayon_id` = `en_r`.`id`))
+from ((((`pharmanet1`.`concerner` `conc` join `pharmanet1`.`vente` `ven` on (`conc`.`vente_id` = `ven`.`id`)) join `pharmanet1`.`en_rayon` `en_r` on (`conc`.`en_rayon_id` = `en_r`.`id`)) join `pharmanet1`.`fournisseur` `fr` on (`fr`.`id` = `en_r`.`fournisseur_id`))
          join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `en_r`.`produit_id`));
 
 

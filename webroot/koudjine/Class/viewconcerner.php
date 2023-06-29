@@ -18,7 +18,9 @@ class Concerner_view
         $_enrayQuantiteRestante,
         $_nom,
         $_produitId,
-        $_venteDateVente;
+        $_venteDateVente,
+        $_fournisseurId,
+        $_fournisseurNom;
 
     // CONSRUCTEUR
     public function __construct(array $donnees)
@@ -39,6 +41,14 @@ class Concerner_view
     }
 
     // GETTERS
+    public function fournisseurId()
+    {
+        return $this->_fournisseurId;
+    }
+    public function fournisseurNom()
+    {
+        return $this->_fournisseurNom;
+    }
     public function venteId()
     {
         return $this->_venteId;
@@ -211,6 +221,18 @@ class Concerner_view
         $this->_venteDateVente = $value;
 
     }
+    public function setfournisseurId($value)
+    {
+
+        $this->_fournisseurId = $value;
+
+    }
+    public function setfournisseurNom($value)
+    {
+
+        $this->_fournisseurNom = $value;
+
+    }
 
 }
 
@@ -231,7 +253,7 @@ class ConcernerViewManager
     public function getAll()
     {
         $produits = array();
-        $q = $this->_db->prepare('SELECT * FROM pharma_concerner_view');
+        $q = $this->_db->prepare('SELECT * FROM pharma_concerner_view order by enrayDateLivraison DESC');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {

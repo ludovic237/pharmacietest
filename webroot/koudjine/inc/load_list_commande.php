@@ -114,6 +114,8 @@ if ($start == '' && $end == '') {
                 "enrayQuantiteRestante" => $v->enrayQuantiteRestante(),
                 "nom" => $v->nom(),
                 "produitId" => $v->produitId(),
+                "fournisseurId" => $v->fournisseurId(),
+                "fournisseurNom" => $v->fournisseurNom(),
                 "venteDateVente" => $v->venteDateVente(),
             );
         }
