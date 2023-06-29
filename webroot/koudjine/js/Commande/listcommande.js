@@ -70,10 +70,14 @@ function enregistrer_list_commande(dateDerniere) {
     })
 }
 
-function charger_list_commande() {
+function charger_list_commande(start, end) {
     $.ajax({
         type: "POST",
         url: "/pharmacietest/koudjine/inc/load_list_commande.php",
+        data: {
+            start: start,
+            end: end
+        },
         dataType: 'json',
         success: function (data) {
             console.log(data);
