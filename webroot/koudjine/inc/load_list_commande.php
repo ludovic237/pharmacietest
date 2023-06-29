@@ -19,9 +19,10 @@ $ProduitCmdView = $managerPrCmdView->getAll();
 $prds = array();
 $qte = 0;
 foreach ($ProduitCmdView as $key => $v) {
-    $pos = array_search($v->produitId(),$data);
-    if($pos!==false){
-        $data[$pos]["concernerQuantite"] = $data[$pos]["concernerQuantite"] + $v->concernerQuantite();
+    //$pos = array_search($v->nom(),$data);
+    $index = array_search( $v->produitId(), array_column( $data, 'produitId') );
+    if($index !== false){
+        $data[$index]["concernerQuantite"] = $data[$index]["concernerQuantite"] + $v->concernerQuantite();
     }else{
         $data[] = array(
             "venteId"=>$v->venteId(),
