@@ -22,7 +22,8 @@ $start = $_POST['start'];
 $end = $_POST['end'];
 
 if ($start == '' && $end == '') {
-    $ProduitCmdView = $managerPrCmdView->getAll();
+    $derniereligne = $manager->getLastId();
+    $ProduitCmdView = $managerPrCmdView->getAllByDateEnd($derniereligne->dateDerniere());
 
     $prds = array();
     $qte = 0;
