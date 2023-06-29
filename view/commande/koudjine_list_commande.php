@@ -81,39 +81,6 @@ if (isset($datetime)) {
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-
-            <div class="panel-body panel-body-table">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Export Default Table</h3>
-                </div>
-                <div class="panel-body">
-                    <table class="table datatable table table-bordered table-striped table-actions" id="list_commande_tables_1">
-                        <thead>
-                        <tr>
-                            <th>N°</th>
-                            <th>Produit</th>
-                            <th>Quantites à commander</th>
-                            <th>Quantites en stock</th>
-                            <th>Date de derniere commande</th>
-                            <th>Dernier Fournisseur</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title-box">
                     <h3>Tableau de commande</h3>
@@ -154,4 +121,51 @@ if (isset($datetime)) {
     </div>
 
 </div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title-box">
+                    <h3>Tableau de ligne</h3>
+                </div>
+                <ul class="panel-controls panel-controls-title">
+                    <li>
+                        <div id="reportrange" class="dtrange">
+                            <span></span><b class="caret"></b>
+                        </div>
+                    </li>
+                    <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
+                </ul>
+
+            </div>
+            <div class="panel-body panel-body-table">
+
+                <div class="panel-body">
+                    <table class="table datatable table table-bordered table-striped table-actions" id="new_list_commande_ligne">
+                        <thead>
+                        <tr>
+                            <th>Numero</th>
+                            <th>Type</th>
+                            <th>Date debut</th>
+                            <th>Date fin</th>
+<!--                            <th>Action</th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
 

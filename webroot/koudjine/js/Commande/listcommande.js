@@ -102,7 +102,7 @@ function charger_list_commande() {
                 order: [[1, "desc"]],
                 columns: [
                     {
-                        data: "ref", "render": function (data, type, row) {
+                        data: "venteId", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%">NA</span>';
                             } else {
@@ -120,35 +120,7 @@ function charger_list_commande() {
                         }
                     },
                     {
-                        data: "qtiteCmd", "render": function (data, type, row) {
-                            if (!data) {
-                                return '<span class="text-muted" style="font-size:90%"></span>';
-                            } else {
-                                var list = data.split(',');
-                                var  total = 0;
-                                for (let i = 0; i < list.length; i++) {
-                                    total+=parseInt(list[i]);
-                                }
-                                return '<strong>' + total + '</strong>';
-                            }
-                        }
-                    },
-                    {
-                        data: "qtiteCmd", "render": function (data, type, row) {
-                            if (!data) {
-                                return '<span class="text-muted" style="font-size:90%"></span>';
-                            } else {
-                                var list = data.split(',');
-                                var  total = 0;
-                                for (let i = 0; i < list.length; i++) {
-                                    total+=parseInt(list[i]);
-                                }
-                                return '<strong>' + total + '</strong>';
-                            }
-                        }
-                    },
-                    {
-                        data: "dateLivraison", "render": function (data, type, row) {
+                        data: "concernerQuantite", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%"></span>';
                             } else {
@@ -157,7 +129,87 @@ function charger_list_commande() {
                         }
                     },
                     {
-                        data: "fournisseurName", "render": function (data, type, row) {
+                        data: "enrayQuantiteRayon", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%"></span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
+                    {
+                        data: "enrayDateLivraison", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%"></span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
+                    {
+                        data: "venteReference", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%"></span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
+                ]
+            });
+            $('#new_list_commande_ligne').dataTable({
+                buttons:[
+                    {extend:'copyHtml5',
+                        className: 'btn btn-success',
+                        messageTop:"hello"},
+                    {extend:'excelHtml5',className: 'btn btn-success', messageTop:"hello"},
+                    {extend:'csvHtml5',className: 'btn btn-success', messageTop:"hello"},
+                    {extend:'pdfHtml5',
+                        className: 'btn btn-success',
+                        messageTop:"hello",
+                        title:"Commande Numero",
+                        text:'<div>Export Pdf</div>',
+                        titleAttr:"Export excel"
+                    },
+                ],
+                dom:'Bfrtip',
+                destroy: true,
+                searching: true,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: true,
+                data: data.ligne,
+                order: [[1, "desc"]],
+                columns: [
+                    {
+                        data: "id", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%">NA</span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
+                    {
+                        data: "type", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%"></span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
+                    {
+                        data: "dateDerniere", "render": function (data, type, row) {
+                            if (!data) {
+                                return '<span class="text-muted" style="font-size:90%"></span>';
+                            } else {
+                                return '<strong>' + data + '</strong>';
+                            }
+                        }
+                    },
+                    {
+                        data: "dateDebut", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%"></span>';
                             } else {
