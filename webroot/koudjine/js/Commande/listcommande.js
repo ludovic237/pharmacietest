@@ -200,7 +200,7 @@ function charger_list_commande() {
                         }
                     },
                     {
-                        data: "dateDerniere", "render": function (data, type, row) {
+                        data: "dateDebut", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%"></span>';
                             } else {
@@ -209,7 +209,7 @@ function charger_list_commande() {
                         }
                     },
                     {
-                        data: "dateDebut", "render": function (data, type, row) {
+                        data: "dateDerniere", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%"></span>';
                             } else {
