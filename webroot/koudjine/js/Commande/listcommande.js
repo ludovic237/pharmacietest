@@ -151,7 +151,7 @@ function charger_list_commande(start, end) {
                         }
                     },
                     {
-                        data: "venteReference", "render": function (data, type, row) {
+                        data: "fournisseurNom", "render": function (data, type, row) {
                             if (!data) {
                                 return '<span class="text-muted" style="font-size:90%"></span>';
                             } else {

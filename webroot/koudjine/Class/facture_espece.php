@@ -47,26 +47,16 @@ class FactureEspece
     public function setid($id)
     {
 
-        if ($id > 0)
-        {
-            $this->_id = $id;
-        }
+        $this->_id = $id;
     }
     public function setfacturation_id($id)
     {
 
-        if ($id > 0)
-        {
-            $this->_facturation_id = $id;
-        }
+        $this->_facturation_id = $id;
     }
     public function setmontant($id)
     {
-
-        if ($id > 0)
-        {
-            $this->_montant = $id;
-        }
+        $this->_montant = $id;
     }
     public function setsupprimer($value)
     {
@@ -128,11 +118,14 @@ class FactureEspeceManager
 
     public function getFacture($info)
     {
-
-        $q = $this->_db->query('SELECT * FROM facture_espece WHERE supprimer = 0 AND facturation_id = '.$info);
-        $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new FactureEspece($donnees);
-
+        $facturation = array();
+        $q = $this->_db->prepare('SELECT * FROM facture_espece WHERE supprimer = 0 AND facturation_id = '.$info);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $facturation[] = new FactureEspece($donnees);
+        }
+        return $facturation;
     }
     public function getList($info)
     {

@@ -137,10 +137,14 @@ class FactureTicketManager
     }
     public function getFacture($info)
     {
-
+        $facturation = array();
         $q = $this->_db->query('SELECT * FROM facture_ticket WHERE supprimer = 0 AND facturation_id = '.$info);
-        $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new FactureTicket($donnees);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $facturation[] = new FactureTicket($donnees);
+        }
+        return $facturation;
 
     }
     public function getList($info)
