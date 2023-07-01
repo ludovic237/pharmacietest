@@ -1,7 +1,5 @@
 <?php
-if(isset($check))
-print_r($check);
-echo $id;
+
 $title_for_layout = ' ALSAS -' . 'Comptabilite';
 //$page_for_layout = 'Rapport : ' . $employe->nom;
 //$action_fermeture = (isset($caisse)) ? $caisse : $caisseCheck;
@@ -20,7 +18,7 @@ if (isset($id)) {
     $script_for_layout = $script_for_layout . '<script type="text/javascript"> $(document).ready(function () {showRapportTest(' . $id . ')}) </script>';
 }
 
-?> -->
+?>
 
 
 <div class="row">

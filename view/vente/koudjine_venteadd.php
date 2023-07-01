@@ -358,9 +358,9 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
 
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Quantité:</label>
+                                        <label class="col-md-3 control-label">Scan produit:</label>
                                         <div class="col-md-9">
-                                            <input type="text" disabled="true" class="form-control" value="" id="detail_info" placeholder="" />
+                                            <input type="text" class="form-control" value="" id="detail_info" data-detail_id="" placeholder="" />
                                         </div>
                                     </div>
                                 </div>

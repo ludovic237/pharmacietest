@@ -2,11 +2,13 @@
 require_once('database.php');
 require_once('../Class/rayon.php');
 require_once('../Class/en_rayon.php');
+require_once('../Class/produit.php');
 
 global $pdo;
 
 
 $manager = new En_rayonManager($pdo);
+$managerPr = new ProduitManager($pdo);
 
 $prixAchat;
 $prixVente;
@@ -45,6 +47,15 @@ if ($prixAchat == 0) {
         $manager->myupdate2($datePeremption, $prixAchat, $prixVente, $id,$quantiteRestante,$reduction);
         echo 'ok';
     }
+    $stock = 0;
+    $en_rayon = $manager->get($id);
+    $en_rayons = $manager->getList($en_rayon->produit_id());
+    foreach ($en_rayons as $k => $v) :
+        $stock = $stock + ($v->quantiteRestante());
+    endforeach;
+    $prd = $managerPr->get($en_rayon->produit_id());
+    $prd->setstock($stock);
+    $managerPr->update($prd);
 }
 
 

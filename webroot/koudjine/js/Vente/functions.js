@@ -175,6 +175,47 @@ $(document).ready(function () {
 
     });
 
+    $("#detail_info").keyup(function (event) {
+        if (event.keyCode == 13) {
+            var recherche = $(this).val();
+            var detail = $("#detail_info").attr('data-detail_id');
+            console.log(recherche);
+            console.log(detail);
+            //$("#resultat ul").empty();
+            recherche = $.trim(recherche);
+            if (recherche.length > 1) {
+                ////alert('yes');va
+                $.ajax({
+                    type: "POST",
+                    url: "/pharmacietest/koudjine/inc/enregistrer_sortie_stock1.php",
+                    data: {
+                        id: recherche,
+                        detail_id: detail,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data.erreur);
+                        if (data.erreur != 'ok') {
+                            alert(data.erreur);
+                        }else{
+                            var qte_old = parseInt($("#" + detail + " .qterest").html());
+                            var qte = qte_old + parseInt(data.qte);
+                            console.log(qte);
+                            $("#" + detail + " .qterest").html(qte);
+                            $('#iconPreviewVenteAugmenterQuantite').modal('hide');
+                        }
+
+                        //var link = '/pharmacietest/bouwou/comptabilite/sortie';
+                        //window.location.href = link;
+                    }
+                })
+            } else {
+                //$("#resultat ul").empty();
+            }
+        }
+
+    });
+
 
     $(".charger_info_employe").on("click", function () {
         var idemploye = $('#dataEmploye option:selected').val();
@@ -1112,6 +1153,7 @@ function delete_row_vente(id) {
 function gerer_detail(en_rayon_id) {
     $('#iconPreviewVenteAugmenterQuantite').modal('toggle');
     $('#iconPreviewVente').modal('hide');
+    $('#detail_info').attr('data-detail_id', en_rayon_id);
 }
 
 function addNewDetail() {
