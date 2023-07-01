@@ -5,6 +5,7 @@ require_once('../Class/caisse.php');
 require_once('../Class/employe.php');
 require_once('../Class/bon_caisse.php');
 require_once('../Class/vente.php');
+require_once('../Class/viewrapportvente.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/depense.php');
 require_once('../Class/concerner.php');
@@ -29,6 +30,7 @@ $managerEm = new EmployeManager($pdo);
 $managerUs = new UserManager($pdo);
 $managerDepense = new DepenseManager($pdo);
 $managerVente = new VenteManager($pdo);
+$managerVenteView = new VenteviewViewManager($pdo);
 $managerEn = new En_rayonManager($pdo);
 $managerCo = new ConcernerManager($pdo);
 $managerPr = new ProduitManager($pdo);
@@ -48,6 +50,7 @@ $dataBoncaisseEncaisser = [];
 $dataProduitRetour = [];
 $datas = [];
 $dataVenteACredit = [];
+$dataVenteACredit1 = [];
 $grandTotalCaisse = 0;
 
 if (isset($_POST['id'])) {
@@ -133,23 +136,27 @@ $totalfacturationElectronique = 0;
 $totalfacturationTicket = 0;
 foreach ($facturation as $k => $v) :
     if ($managerFes->existsfacturation_id($v->id())) {
-        $facturaEspece = $managerFes->getFacture($v->id());
+        $facturaEspece = $managerFes->getFacture(($v->id()));
+//        echo '- '.($managerFes->existsfacturation_id($v->id()));
+//        echo json_encode($facturaEspece);
         foreach ($facturaEspece as $a => $b) :
-            $totalfacturationEspece = $totalfacturationEspece + ($b->montantTtc());
+//            echo json_encode($facturaEspece);
+            $totalfacturationEspece = $totalfacturationEspece + ($b->montant());
         endforeach;
+//        echo ''.$totalfacturationEspece;
     }
 
     if ($managerFel->existsfacturation_id($v->id())) {
         $facturaElectronique = $managerFel->getFacture($v->id());
         foreach ($facturaElectronique as $a => $b):
-            $totalfacturationElectronique = $totalfacturationElectronique + ($b->montantTtc());
+            $totalfacturationElectronique = $totalfacturationElectronique + ($b->montant());
         endforeach;
     }
 
     if ($managerFtk->existsfacturation_id($v->id())) {
         $facturaTicket = $managerFtk->getFacture($v->id());
         foreach ($facturaTicket as $a => $b)  :
-            $totalfacturationTicket = $totalfacturationTicket + ($b->montantTtc());
+            $totalfacturationTicket = $totalfacturationTicket + ($b->montant());
         endforeach;
     }
 
@@ -206,17 +213,18 @@ foreach ($ventesCreditFacture as $k => $v) :
 endforeach;
 
 //encaissement facture credit
-$ventesCreditFacture1 = $managerVente->getListCaisseCompleteByEtat_3($id, "Crédit");
+$ventesCreditFacture1 = $managerVenteView->getListCaisseCompleteByEtat_3($id, "Crédit");
 $totalVenteCreditFacture1 = 0;
+//echo json_decode($ventesCreditFacture1);
 foreach ($ventesCreditFacture1 as $k => $v) :
-
-    if ($v['user_id'] != NULL) {
+//echo json_decode($v);
+    if ($v->venteUser_id() != NULL) {
         //$user1 = $managerUs->get($v->user_id()) ;
-        $client1 = $v['nom'] . ' ' . $v['prenom'];
+        $client1 = $v->userNom() . ' ' . $v->userPrenom();
     } else {
         $client1 = 'Client pas enregistré';
     }
-    $concernce = $managerCo->getList($v['id']);
+    $concernce = $managerCo->getList($v->venteId());
     foreach ($concernce as $a => $b) {
 
         $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite()) - $b->reduction();
@@ -236,17 +244,17 @@ foreach ($ventesCreditFacture1 as $k => $v) :
         }
     }
     $dataVenteACredit1[] = array(
-        "DT_RowId" => $v['id'],
-        "id" => $v['id'],
-        "reference" => $v['reference'],
-        "prixPercu" => $v['prixPercu'],
+        "DT_RowId" => $v->venteId(),
+        "id" => $v->venteId(),
+        "reference" => $v->venteReference(),
+        "prixPercu" => $v->ventePrixPercu(),
         "client" => $client1,
-        'dateVente' => $v['dateVente']
+        'dateVente' => $v->venteDateVente()
     );
-    $totalVenteCreditFacture1 = $v['prixPercu'] + $totalVenteCreditFacture1;
+    $totalVenteCreditFacture1 = $v->ventePrixPercu() + $totalVenteCreditFacture1;
 endforeach;
 
-if (!isset($dataVenteACredit1)) $dataVenteACredit1 = 0;
+//if (!isset($dataVenteACredit1)) $dataVenteACredit1 = 0;
 
 $totalVentFournisseur = $prixGrossite + $prixDetaillant;
 
@@ -360,7 +368,7 @@ $donnees = array(
     'ev_boncaisse' => $totalfacturationTicket,
     'ev_total' => $totalEncaissementVente,
     'efc_espece' => $dataVenteACredit1,
-    'efc_total' => $totalVenteCredit1,
+    'efc_total' => $totalVenteCreditFacture1,
     'bc_genere' => $dataBoncaisseGenerer,
     'bc_total' => $totalboncaisseGenerer,
     'bc_encaisse' => $dataBoncaisseEncaisser,

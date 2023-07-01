@@ -209,9 +209,12 @@ class ConcernerManager
     }
     public function get($info)
     {
-
-        $q = $this->_db->query('SELECT * FROM concerner WHERE supprimer = 0 AND id = ' . $info);
-        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        if ($info!=null){
+            $q = $this->_db->query('SELECT * FROM concerner WHERE supprimer = 0 AND id = ' . $info);
+            $donnees = $q->fetch(PDO::FETCH_ASSOC);
+            return new Concerner($donnees);
+        }
+        $donnees=array();
         return new Concerner($donnees);
     }
     public function getList($id)

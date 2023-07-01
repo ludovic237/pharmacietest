@@ -484,7 +484,7 @@ class VenteManager
     public function getListCaisseCompleteByEtat($id,$type)
     {
         $ventes = array();
-        $q = $this->_db->prepare("SELECT v.id as id, c.id as idc, v.dateVente, v.prixTotal, v.prixPercu, v.supprimer, v.reference, v.etat, c.dateOuvert, c.dateFerme, c.user_id FROM vente v, caisse c WHERE v.supprimer = 0  AND c.id = ".$id." AND v.etat = '".$type."' AND v.dateVente between c.dateOuvert and c.dateFerme ORDER BY v.dateVente DESC");
+        $q = $this->_db->prepare("SELECT v.id as id, c.id as idc, v.dateVente, v.prixTotal, v.prixPercu, v.supprimer, v.reference, v.etat, c.dateOuvert, c.dateFerme, c.user_id FROM vente v, caisse c WHERE v.supprimer = 0  AND c.id = ".$id." AND v.etat = '".$type."' AND v.dateVente BETWEEN DATE_SUB( c.dateOuvert,INTERVAL 0  MONTH) AND DATE_SUB( c.dateFerme,INTERVAL 0  MONTH ) ORDER BY v.dateVente DESC");
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
@@ -496,12 +496,13 @@ class VenteManager
     public function getListCaisseCompleteByEtatOuvert($id,$type)
     {
         $ventes = array();
-        $q = $this->_db->prepare("SELECT v.id as id, c.id as idc, v.dateVente, v.prixTotal, v.prixPercu, v.supprimer, v.reference, v.etat, c.dateOuvert, c.dateFerme, c.user_id FROM vente v, caisse c WHERE v.supprimer = 0  AND c.id = ".$id." AND v.etat = '".$type."' AND v.dateVente > c.dateOuvert ORDER BY v.dateVente DESC");
+        $q = $this->_db->prepare("SELECT v.id as id, c.id as idc, v.dateVente, v.prixTotal, v.prixPercu, v.supprimer, v.reference, v.etat, c.dateOuvert, c.dateFerme, c.user_id FROM vente v, caisse c WHERE v.supprimer = 0  AND c.id = ".$id." AND v.etat = '".$type."' AND v.dateVente BETWEEN DATE_SUB( c.dateOuvert,INTERVAL 0  MONTH) AND DATE_SUB( NOW(),INTERVAL 0  MONTH ) ORDER BY v.dateVente DESC");
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
             $ventes[] = new Vente($donnees);
         }
+
         return $ventes;
     }
 
@@ -514,18 +515,23 @@ class VenteManager
         {
             $ventes[] = new Vente($donnees);
         }
+//        echo json_decode($ventes);
         return $ventes;
     }
 
     public function getListCaisseCompleteByEtat_3($id,$type)
     {
+//        echo $id;
+//        echo $type;
         $ventes = array();
         $q = $this->_db->prepare("SELECT v.id as id, c.id as idc, v.dateVente, v.prixPercu, v.supprimer, v.reference, v.etat, c.dateOuvert, c.dateFerme, c.user_id, u.nom, u.prenom FROM vente v, caisse c, user u WHERE v.supprimer = 0  AND v.caisse_id = c.id AND v.user_id = u.id AND c.id = ".$id." AND v.etat = '".$type."' AND v.prixPercu <> 0 ORDER BY v.dateVente DESC");
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $ventes[] = $donnees;
+            $ventes[] = new Vente($donnees);
         }
+//        echo json_decode($ventes);
+//        echo ' 1235 ';
         return $ventes;
     }
 

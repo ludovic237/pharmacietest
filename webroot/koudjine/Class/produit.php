@@ -354,11 +354,13 @@ class ProduitManager
     }
     public function get($info)
     {
-
-        $q = $this->_db->query('SELECT * FROM produit WHERE supprimer = 0 AND id = '.$info);
-        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        if ($info!=null){
+            $q = $this->_db->query('SELECT * FROM produit WHERE supprimer = 0 AND id = '.$info);
+            $donnees = $q->fetch(PDO::FETCH_ASSOC);
+            return new produit($donnees);
+        }
+        $donnees=array();
         return new produit($donnees);
-
     }
     public function getNom($info)
     {
