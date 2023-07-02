@@ -54,18 +54,17 @@ if (isset($_POST['id']) && isset($_POST['nom']) && isset($_POST['code'])) {
 
     //$sql = "UPDATE departement set NOM='".$nom."',SIGLE='".$sigle."',code='".$code."' WHERE DEPARTEMENT_ID = '".$id."'";
     //$req = $pdo->exec($sql);
-} elseif (isset($_POST['id'])) {
+} elseif (isset($_POST['id']) && isset($_POST['code'])) {
 
     $id = $_POST['id'];
+    $code = $_POST['code'];
     if ($managerEn->existsproduit_id($id)) {
         echo 'Ce produit est deja en rayon';
     }
     else{
-        $prd = $managerProduit->get($id);
-        $Date_Du_Jour = date("Ymd");
-        $ide = $prd->id().'00'.$Date_Du_Jour;
+
         $en_rayon = new En_rayon(array(
-            'id' => $ide,
+            'id' => $code,
             'produit_id' => $id,
             'fournisseur_id' => null,
             'commande_id' => null,
