@@ -179,7 +179,7 @@ else{
             $reference1 = substr($lastprdtdetail->reference(), 1);
             $num_reference = (int) $reference1;
             $reference2 = str_pad($num_reference, 3, '0', STR_PAD_LEFT);
-            $reference="D".$reference2;
+            $reference="d".$reference2;
     }
 
     if(!$manager->existsNom($nom)){
@@ -209,12 +209,12 @@ else{
         $manager->add($produit);
         $prd = $manager->getLast();
         $Date_Du_Jour = date("Ymd");
-        $ide = $prd->id().'00'.$Date_Du_Jour;
+        $ide = $prd->id().'12'.$Date_Du_Jour;
         //echo $ide;
         $en_rayon = new En_rayon(array(
             'id' => $ide,
             'produit_id' => $prd->id(),
-            'fournisseur_id' => null,
+            'fournisseur_id' => 12,
             'commande_id' => null,
             'prixAchat' => 0,
             'prixVente' => 0,

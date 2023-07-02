@@ -85,30 +85,30 @@ class En_rayon
     public function setid($id)
     {
 
-        if ($id > 0) {
+
             $this->_id = $id;
-        }
+
     }
     public function setproduit_id($id)
     {
 
-        if ($id > 0) {
+
             $this->_produit_id = $id;
-        }
+
     }
     public function setfournisseur_id($id)
     {
 
-        if ($id > 0) {
+
             $this->_fournisseur_id = $id;
-        }
+
     }
     public function setcommaande_id($id)
     {
 
-        if ($id > 0) {
+
             $this->_commande_id = $id;
-        }
+
     }
     public function setdateLivraison($id)
     {
