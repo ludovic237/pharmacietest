@@ -6,18 +6,16 @@ echo $dateDerniere;
 //$position = $this->request->action;
 
 $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Commande express</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/tableExport.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jquery.base64.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/html2canvas.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/jspdf.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/tableexport/jspdf/libs/base64.js"></script>
+$script_for_layout = '
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/daterangepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery-3.5.1.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jszip.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/pdfmake.min.js"></script>
@@ -25,12 +23,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/buttons.html5.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/buttons.print.min.js"></script>
 
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/listcommande.js"></script> 
-<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>';
+<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>';
 if (isset($datetime)) {
     $script_for_layout = $script_for_layout . '<script type="text/javascript"> $(document).ready(function () {getListCommande("' . $dateDerniere . '","' . $datetime . '")}) </script>';
 }

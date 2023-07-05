@@ -459,11 +459,18 @@ function update_row_produit(id) {
 }
 
 function init_rayon(id) {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = yyyy + mm + dd;
+    var codebarre = id + "" + "12" + "" + today + "" + "1";
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/rayon.php',
         data: {
-            id: id
+            id: id,
+            code: codebarre
         },
         success: function (data) {
             if (data == 'ok') {
@@ -2038,6 +2045,7 @@ function load_produit_detail(id, nomp) {
             dataType: 'json',
             success: function (responce) {
                 var datas = responce;
+                alert(datas.grossiste_id)
                 $('#tab_produit_stock_detail_total').html(datas.stockTotal);
                 $('#tab_produit_stock_detail_restant').html(datas.stockRestant);
                 $('#produit_stock_detail_b').dataTable({

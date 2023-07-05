@@ -16,13 +16,13 @@ $id=$_POST['id'];
 $detail_id=$_POST['detail_id'];
 
 if($detail_id !='' && $detail_id != null){
-    if($id !='' && is_numeric($id) ){
+    if($managerEn->existsId($id) ){
         $ent = $managerEn->get($id);
         $ent1 = $managerEn->get($detail_id);
         $prod = $managerPr->get($ent->produit_id());
         $prod_det = $managerPr->get($ent1->produit_id());
         $string_id = strval($ent->produit_id());
-        if(strpos($prod_det->grossiste_id(), $string_id) !== false){
+        if(strpos($prod_det->grossiste_id(), $string_id) !== false && $ent->quantiteRestante() > 0){
             $conc = new SortieStock(array(
                 'en_rayon_id' => $id,
                 'quantite' => 1,
@@ -47,8 +47,14 @@ if($detail_id !='' && $detail_id != null){
             echo json_encode($donnees);
         }
         else{
-            $donnees = array('erreur' =>"Ce produit n'est pas defini comme grossiste de l'autre");
-            echo json_encode($donnees);
+            if($ent->quantiteRestante() <= 0){
+                $donnees = array('erreur' =>" la quantite en stock est nulle");
+                echo json_encode($donnees);
+            }else{
+                $donnees = array('erreur' =>"Ce produit n'est pas defini comme grossiste de l'autre");
+                echo json_encode($donnees);
+            }
+
         }
     }else{
         $donnees = array('erreur' =>'Veuillez verifier le code parent!!!');
