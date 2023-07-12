@@ -692,7 +692,13 @@
 
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins.js'; ?>"></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/actions.js'; ?>"></script>
+    <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/caisse.js'; ?>"></script>
    <!-- <script type=" text/javascript" src="<?php /*echo BASE_URL . '/koudjine/js/settings.js'; */?>"></script>-->
+    <script>
+        function close_caisse_row() {
+            $("#iconPreviewCaisseFermer").modal("show");
+        }
+    </script>
     <!-- END TEMPLATE -->
     <!-- END SCRIPTS -->
 </body>

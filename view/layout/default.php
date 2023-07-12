@@ -349,6 +349,7 @@
     <script type=" text/javascript" src="<?php echo BASE_URL . '/js/plugins/tableexport/jspdf/jspdf.js'; ?>""></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/js/plugins/tableexport/jspdf/libs/base64.js'; ?>""></script>
 
+    <script type=" text/javascript" src="<?php echo BASE_URL . '/js/plugins/jquery-3.5.1.js'; ?>"></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/js/plugins.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo BASE_URL . '/js/actions.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo BASE_URL . '/js/script.js'; ?>"></script>

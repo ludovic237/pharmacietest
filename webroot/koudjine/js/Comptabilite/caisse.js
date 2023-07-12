@@ -1148,7 +1148,7 @@ function valider_fermeture(caisse_id) {
             success: function (server_responce) {
 
                 //alert(server_responce);
-                var link = '/pharmacietest/users/logout';
+                var link = '/pharmacietest/bouwou/comptabilite/caisse_rapport';
                 window.location.href = link;
 
             }
@@ -1181,77 +1181,7 @@ function open_rapport(id) {
         caisse_id = id;
     }
     //alert(caisse_id)
-    $.ajax({
-        type: "POST",
-        url: '/pharmacietest/koudjine/inc/liste_depense.php',
-        data: {
-            id: caisse_id
-        },
-        success: function (server_responce) {
-            //alert(server_responce);
-
-            $('#tab_RapportDepense').empty();
-            $('#tab_RapportDepense').html(server_responce);
-
-        }
-
-
-    })
-
-    $.ajax({
-        type: "POST",
-        url: '/pharmacietest/koudjine/inc/liste_bon_caisse.php',
-        data: {
-            id: caisse_id
-        },
-        success: function (server_responce) {
-            //alert(server_responce);
-
-            $('#tab_RapportBon').empty();
-            $('#tab_RapportBon').html(server_responce);
-
-        }
-
-
-    })
-    $.ajax({
-        type: "POST",
-        url: '/pharmacietest/koudjine/inc/rapport_caisse.php',
-        data: {
-            id: caisse_id
-        },
-        dataType: 'json',
-        success: function (data) {
-            //alert(data);
-
-            if (data.erreur == 'non') {
-                //alert('passe');
-                $("#espece_caisse_rapport").html(data.espece_caisse);
-                $("#electronique_rapport").html(data.electronique);
-                $("#total_entree_rapport_caisse").html((parseInt(data.electronique) + parseInt(data.espece_caisse)));
-
-                // Charger tableau recapitulatif
-                $("#total_entree_caisse").html((parseInt(data.electronique) + parseInt(data.espece_caisse) + parseInt($("#total_entree_rapport_bon").html())));
-                $("#total_sortie_caisse").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
-                $("#total_tout_caisse").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_sortie_caisse").html())));
-
-                //Système
-                $("#total_entree_syst").html((parseInt(data.electronique) + parseInt(data.espece_syst) + parseInt($("#total_entree_rapport_bon").html())));
-                $("#total_sortie_syst").html((parseInt($("#total_rapport_depense").html()) + parseInt($("#total_sortie_rapport_bon").html())));
-                $("#total_tout_syst").html((parseInt($("#total_entree_syst").html()) - parseInt($("#total_sortie_syst").html())));
-
-                //Difference
-                $("#diff_entree").html((parseInt($("#total_entree_caisse").html()) - parseInt($("#total_entree_syst").html())));
-                $("#diff_sortie").html((parseInt($("#total_sortie_caisse").html()) - parseInt($("#total_sortie_syst").html())));
-                $("#diff_total").html((parseInt($("#total_tout_caisse").html()) - parseInt($("#total_tout_syst").html())));
-
-
-            }
-
-        }
-
-
-    })
+    showRapportTest(caisse_id);
     $("#iconPreviewRapport").modal("show");
 }
 
@@ -1464,7 +1394,6 @@ function close_caisse_row_valide(user_id) {
 
 function close_caisse_row() {
     $("#iconPreviewCaisseFermer").modal("show");
-
 }
 
 

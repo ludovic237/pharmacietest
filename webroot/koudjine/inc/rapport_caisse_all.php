@@ -97,7 +97,9 @@ else
     $ventesComptant = $managerVente->getListCaisseCompleteByEtatOuvert($id, "Comptant");
 $totalVenteComptant = 0;
 foreach ($ventesComptant as $k => $v) :
-    $totalVenteComptant = $totalVenteComptant + ($v->prixPercu());
+    if ($v->prixPercu()>0){
+        $totalVenteComptant = $totalVenteComptant + ($v->prixTotal());
+    }
 endforeach;
 
 if ($caisse->etat() != 'Ouvert')

@@ -45,10 +45,15 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
         $enrayonid = $e->id();
         $stockTotal = $stockTotal + $e->quantite();
         $stockRestant = $stockRestant + $e->quantiteRestante();
+        if($e->fournisseur_id() == '' || $e->fournisseur_id() ==  null){
+            $fournisseur = '';
+    }else{
+            $fournisseur = $managerFournisseur->get($e->fournisseur_id())->nom();
+        }
         $datas[] = array(
             "DT_RowId" => $e->id(),
             'nom' => $nom,
-            'fournisseur' => $managerFournisseur->get($e->fournisseur_id())->nom(),
+            'fournisseur' => $fournisseur,
             'dateLivraison' => $e->dateLivraison(),
             'datePeremption' => $e->datePeremption(),
             'prixAchat' => $e->prixAchat(),

@@ -354,3 +354,25 @@ from ((`pharmanet1`.`sortie_stock` `sort`
     left join `pharmanet1`.`en_rayon` `enray` on (`sort`.`en_rayon_id` = `enray`.`id`))
          left join `pharmanet1`.`produit` `pdt` on (`pdt`.`id` = `enray`.`produit_id`)) where sort.supprimer=0;
 
+
+create definer = root@localhost view pharma_retour_vente_view as
+select `pdt`.`nom`              AS `nom`,
+       `pdt`.`prixDetail`       AS `prixDetail`,
+       `pdt`.`codeUbipharm`     AS `codeUbipharm`,
+       `enray`.`dateLivraison`  AS `dateLivraison`,
+       `enray`.`datePeremption` AS `datePeremption`,
+       `ven`.`id`               AS `venteId`,
+       `ven`.`prixTotal`        AS `prixTotal`,
+       `ven`.`prixPercu`        AS `prixPercu`,
+       `ven`.`reference`        AS `reference`,
+       `retourpdt`.`dateRetour` AS `dateRetour`,
+       `pdtret`.`quantite`      AS `quantite`,
+       `con`.`prixUnit`         AS `prixUnit`,
+       `con`.`id`               AS `concernerId`,
+       `ven`.`dateVente`        AS `dateVente`
+from (((((`pharmanet1`.`retour_produit` `retourpdt`
+    join `pharmanet1`.`vente` `ven` on (`retourpdt`.`vente_id` = `ven`.`id`))
+    join `pharmanet1`.`produit_retour` `pdtret` on (`pdtret`.`retour_produit_id` = `retourpdt`.`id`))
+    join `pharmanet1`.`concerner` `con` on (`con`.`id` = `pdtret`.`concerner_id`))
+    join `pharmanet1`.`en_rayon` `enray` on (`con`.`en_rayon_id` = `enray`.`id`))
+         join `pharmanet1`.`produit` `pdt` on (`enray`.`produit_id` = `pdt`.`id`));
