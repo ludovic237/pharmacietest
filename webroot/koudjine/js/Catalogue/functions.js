@@ -2,10 +2,10 @@ var test = 0;
 var startDate;
 var endDate;
 var endDate;
-var _startDetailVente = moment().subtract('days', 29).format("YYYY-MM-DD HH:mm:ss");
+/*var _startDetailVente = moment().subtract('days', 29).format("YYYY-MM-DD HH:mm:ss");
 var _endDetailVente = moment().format("YYYY-MM-DD HH:mm:ss");
 var _startDetailCommande = moment().subtract('days', 29).format("YYYY-MM-DD HH:mm:ss");
-var _endDetailCommande = moment().format("YYYY-MM-DD HH:mm:ss");
+var _endDetailCommande = moment().format("YYYY-MM-DD HH:mm:ss");*/
 var idemploye = null
 ;
 var idfulldepense;
@@ -2376,12 +2376,13 @@ function charger_select_produit() {
             nom: nom
         },
         success: function (data) {
-
+            console.log(data);
             $('ul.dropdown-menu ')
-                .find('option')
+                .find('li')
                 .remove()
                 .end()
                 .append(data)
+
             ;
             /*$.ajax({
                 type: "POST",
