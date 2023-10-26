@@ -56,15 +56,15 @@ if (isset($_POST['id'])) {
             $typefacturation = $facture->typePaiement();
             if ($managerFactureEspece->existsfacturation_id($facture->id())) {
                 $factureEspece = $managerFactureEspece->getFacture($facture->id());
-                $montantfactureEspece = $factureEspece->montant();
+                $montantfactureEspece = $factureEspece[0]->montant();
             }
             if ($managerFactureElectronique->existsfacturation_id($facture->id())) {
                 $factureElectronique = $managerFactureElectronique->getFacture($facture->id());
-                $montantfactureElectronique = $factureElectronique->montant();
+                $montantfactureElectronique = $factureElectronique[0]->montant();
             }
             if ($managerFactureTicket->existsfacturation_id($facture->id())) {
                 $factureTicket = $managerFactureTicket->getFacture($facture->id());
-                $montantfactureTicket = $factureTicket->montant();
+                $montantfactureTicket = $factureTicket[0]->montant();
             }
         } else {
             $reste=0;

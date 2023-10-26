@@ -70,7 +70,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-actions">
+                        <table id="add_vente" class="table table-bordered table-striped table-actions">
                             <thead>
                                 <tr>
                                     <th width="200">Nom</th>
@@ -372,7 +372,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="ajouter_produit();">Valider</button>
+                <button type="button"     class="btn btn-success" onclick="augmenterDetail()">Valider</button>
                 <button type="button" class="btn btn-danger"  data-dismiss="modal">Close</button>
             </div>
         </div>

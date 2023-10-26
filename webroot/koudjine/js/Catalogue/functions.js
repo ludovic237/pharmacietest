@@ -1858,7 +1858,8 @@ function load_produit_detail(id, nomp) {
     var stock = parseInt($("#R" + id + " .stock").html());
     if (qte > stock) {
         //  alert("Quantité en stock pas suffisante pour cette opération ");
-    } else {
+    }
+    else {
         $("#detailTab").show();
         $.ajax({
             type: "POST",
@@ -2045,7 +2046,6 @@ function load_produit_detail(id, nomp) {
             dataType: 'json',
             success: function (responce) {
                 var datas = responce;
-                alert(datas.grossiste_id)
                 $('#tab_produit_stock_detail_total').html(datas.stockTotal);
                 $('#tab_produit_stock_detail_restant').html(datas.stockRestant);
                 $('#produit_stock_detail_b').dataTable({
@@ -2199,7 +2199,7 @@ function save_commande() {
 }
 
 function save_produit_detail() {
-    var id = $('#id').val();
+    var id = _idprod;
     //alert(id);
     var erprixachat = $('#erprixachat').val();
     var erprixvente = $('#erprixvente').val();

@@ -178,7 +178,7 @@ class En_rayonManager
     }
     public function countListByCommande($info)
     {
-        return $this->_db->query('SELECT COUNT(*) FROM en_rayon WHERE SUPPRIMER = 0 AND commande_id = ' . $info . ' ORDER BY dateLivraison ASC')->fetchColumn();
+        return $this->_db->query("SELECT COUNT(*) FROM en_rayon WHERE SUPPRIMER = 0 AND commande_id = '".$info."'" . ' ORDER BY dateLivraison ASC')->fetchColumn();
     }
     public function delete(En_rayon $en_rayon)
     {
@@ -187,7 +187,7 @@ class En_rayonManager
     public function existsId($info)
     {
 
-        return (bool) $this->_db->query('SELECT COUNT(*) FROM en_rayon WHERE supprimer = 0 AND id = ' . $info)->fetchColumn();
+        return (bool) $this->_db->query("SELECT COUNT(*) FROM en_rayon WHERE supprimer = 0 AND id = '".$info."'")->fetchColumn();
     }
 
     public function existsproduit_id($info)
@@ -214,7 +214,7 @@ class En_rayonManager
     public function get($info)
     {
         if ($info!=null){
-            $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND id = ' . $info);
+            $q = $this->_db->prepare("SELECT * FROM en_rayon WHERE supprimer = 0 AND id = '".$info."'");
             $q->execute();
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
             return new en_rayon($donnees);
@@ -225,7 +225,7 @@ class En_rayonManager
     public function getByCommande($info)
     {
 
-        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND commande_id = ' . $info);
+        $q = $this->_db->prepare("SELECT * FROM en_rayon WHERE supprimer = 0 AND commande_id = '".$info."'");
         $q->execute();
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new en_rayon($donnees);
@@ -233,7 +233,7 @@ class En_rayonManager
     public function gets($info)
     {
 
-        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND id = ' . $info);
+        $q = $this->_db->prepare("SELECT * FROM en_rayon WHERE supprimer = 0 AND id = '".$info."'");
         $q->execute();
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return $donnees;
@@ -248,7 +248,7 @@ class En_rayonManager
     public function getList($info)
     {
         $enrayon = array();
-        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND quantiteRestante > 0 AND produit_id = ' . $info . ' ORDER BY dateLivraison ASC');
+        $q = $this->_db->prepare("SELECT * FROM en_rayon WHERE supprimer = 0 AND quantiteRestante > 0 AND produit_id = '".$info."'" . ' ORDER BY dateLivraison ASC');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $enrayon[] = new En_rayon($donnees);
@@ -258,7 +258,7 @@ class En_rayonManager
     public function getListDetail($info)
     {
         $enrayon = array();
-        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND produit_id = ' . $info . ' ORDER BY dateLivraison ASC');
+        $q = $this->_db->prepare("SELECT * FROM en_rayon WHERE supprimer = 0 AND produit_id = '".$info."'" . ' ORDER BY dateLivraison ASC');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $enrayon[] = new En_rayon($donnees);
@@ -269,7 +269,7 @@ class En_rayonManager
     public function getListByCommande($info)
     {
         $enrayon = array();
-        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND commande_id = ' . $info . ' ORDER BY dateLivraison ASC');
+        $q = $this->_db->prepare("SELECT * FROM en_rayon WHERE supprimer = 0 AND commande_id = '".$info."'" . ' ORDER BY dateLivraison ASC');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $enrayon[] = new En_rayon($donnees);
@@ -280,7 +280,7 @@ class En_rayonManager
     public function getListByCommandeAndProduitId($info,$produitId)
     {
         $enrayon = array();
-        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND produit_id = '.$produitId.' AND commande_id = ' . $info . ' ORDER BY dateLivraison ASC');
+        $q = $this->_db->prepare("SELECT * FROM en_rayon WHERE supprimer = 0 AND produit_id = '.$produitId.' AND commande_id = '".$info."'" . ' ORDER BY dateLivraison ASC');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $enrayon[] = new En_rayon($donnees);
@@ -291,7 +291,7 @@ class En_rayonManager
     public function getListSortie($info)
     {
         $enrayon = array();
-        $q = $this->_db->prepare('SELECT * FROM en_rayon WHERE supprimer = 0 AND produit_id = ' . $info . ' ORDER BY dateLivraison ASC');
+        $q = $this->_db->prepare("SELECT * FROM en_rayon WHERE supprimer = 0 AND produit_id = '".$info."'" . ' ORDER BY dateLivraison ASC');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $enrayon[] = new En_rayon($donnees);

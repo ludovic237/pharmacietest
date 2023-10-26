@@ -18,11 +18,9 @@ class SortieStock
 
     public function hydrate(array $donnees)
     {
-        foreach ($donnees as $key => $value)
-        {
-            $method = 'set'.($key);
-            if (method_exists($this, $method))
-            {
+        foreach ($donnees as $key => $value) {
+            $method = 'set' . ($key);
+            if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
@@ -33,26 +31,32 @@ class SortieStock
     {
         return $this->_id;
     }
+
     public function en_rayon_id()
     {
         return $this->_en_rayon_id;
     }
+
     public function type_sortie_id()
     {
         return $this->_type_sortie_id;
     }
+
     public function quantite()
     {
         return $this->_quantite;
     }
+
     public function dateSortie()
     {
         return $this->_dateSortie;
     }
+
     public function detail_id()
     {
         return $this->_detail_id;
     }
+
     public function supprimer()
     {
         return $this->_supprimer;
@@ -62,41 +66,46 @@ class SortieStock
     public function setid($id)
     {
 
-        if ($id > 0)
-        {
+        if ($id > 0) {
             $this->_id = $id;
         }
     }
+
     public function seten_rayon_id($id)
     {
 
         $this->_en_rayon_id = $id;
 
     }
+
     public function settype_sortie_id($id)
     {
 
         $this->_type_sortie_id = $id;
 
     }
+
     public function setquantite($id)
     {
 
         $this->_quantite = $id;
 
     }
+
     public function setdateSortie($id)
     {
 
         $this->_dateSortie = $id;
 
     }
+
     public function setdetail_id($id)
     {
 
         $this->_detail_id = $id;
 
     }
+
     public function setsupprimer($value)
     {
 
@@ -114,6 +123,7 @@ class SortieStockManager
     {
         $this->setDb($db);
     }
+
     public function add(SortieStock $sortie_stock)
     {
         $q = $this->_db->prepare('INSERT INTO sortie_stock SET id = :id, en_rayon_id = :en_rayon_id, type_sortie_id = :type_sortie_id, quantite = :quantite, dateSortie = now(), detail_id = :detail_id, supprimer=0');
@@ -124,55 +134,63 @@ class SortieStockManager
         $q->bindValue(':detail_id', $sortie_stock->detail_id());
         $q->execute();
     }
+
     public function count()
     {
-        return $this->_db->query('SELECT COUNT(*) FROM sortie_stock WHERE SUPPRIMER = 0 ')->fetchColumn();
+        return $this->_db->query("SELECT COUNT(*) FROM sortie_stock WHERE SUPPRIMER = 0 ")->fetchColumn();
     }
+
     public function delete(SortieStock $sortie_stock)
     {
-        $this->_db->exec('DELETE FROM sortie_stock WHERE id = '.$sortie_stock->id());
+        $this->_db->exec('DELETE FROM sortie_stock WHERE id = ' . $sortie_stock->id());
     }
+
     public function existsEn_rayon_id($info)
     {
 
-        return (bool) $this->_db->query('SELECT COUNT(*) FROM sortie_stock WHERE supprimer = 0 AND en_rayon_id = '.$info)->fetchColumn();
+        return (bool)$this->_db->query("SELECT COUNT(*) FROM sortie_stock WHERE supprimer = 0 AND en_rayon_id = '".$info."'")->fetchColumn();
 
     }
+
     public function existsDetail_id($info)
     {
 
-        return (bool) $this->_db->query('SELECT COUNT(*) FROM sortie_stock WHERE supprimer = 0 AND detail_id = '.$info)->fetchColumn();
+        return (bool)$this->_db->query("SELECT COUNT(*) FROM sortie_stock WHERE supprimer = 0 AND detail_id = '".$info."'")->fetchColumn();
 
     }
+
     public function existsdateSortie($info)
     {
 
         $q = $this->_db->prepare('SELECT COUNT(*) FROM sortie_stock WHERE supprimer = 0 AND dateSortie = :info');
         $q->execute(array(':info' => $info));
-        return (bool) $q->fetchColumn();
+        return (bool)$q->fetchColumn();
 
 
     }
+
     public function get($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM sortie_stock WHERE supprimer = 0 AND id = '.$info);
+        $q = $this->_db->query("SELECT * FROM sortie_stock WHERE supprimer = 0 AND id = '".$info."'");
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new SortieStock($donnees);
 
     }
+
     public function getEn_rayon_id($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM sortie_stock WHERE supprimer = 0 AND en_rayon_id = '.$info);
+        $q = $this->_db->query("SELECT * FROM sortie_stock WHERE supprimer = 0 AND en_rayon_id = '".$info."'");
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new SortieStock($donnees);
 
     }
+
     public function getDetail_id($info)
     {
 
-        $q = $this->_db->query('SELECT * FROM sortie_stock WHERE supprimer = 0 AND detail_id = '.$info);
+        $q = $this->_db->query("SELECT * FROM sortie_stock WHERE supprimer = 0 AND detail_id = '".$info."'");
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new SortieStock($donnees);
 
@@ -181,26 +199,29 @@ class SortieStockManager
     public function getListId($info)
     {
         $stocks = array();
-        $q = $this->_db->prepare('SELECT * FROM sortie_stock WHERE supprimer = 0 AND en_rayon_id = '.$info);
-        $q->execute();
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-        {
-            $stocks[] = new SortieStock($donnees);
+        try {
+            $q = $this->_db->prepare("SELECT * FROM sortie_stock WHERE supprimer = 0 AND en_rayon_id = '".$info."'");
+            $q->execute();
+            while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+                $stocks[] = new SortieStock($donnees);
+            }
+            return $stocks;
+        } catch (PDOException $e) {
+            return $stocks;
         }
-        return $stocks;
-
     }
+
     public function getList()
     {
         $produits = array();
         $q = $this->_db->prepare('SELECT * FROM sortie_stock WHERE supprimer = 0 ORDER BY dateSortie');
         $q->execute();
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-        {
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $produits[] = new SortieStock($donnees);
         }
         return $produits;
     }
+
     public function update(SortieStock $sortie_stock)
     {
         $q = $this->_db->prepare('UPDATE sortie_stock SET en_rayon_id = :en_rayon_id,  type_sortie_id = :type_sortie_id, quantite = :quantite, dateSortie = now(), detail_id = :detail_id WHERE id = :id');
@@ -211,6 +232,7 @@ class SortieStockManager
         $q->bindValue(':detail_id', $sortie_stock->detail_id());
         $q->execute();
     }
+
     public function setDb(PDO $db)
     {
         $this->_db = $db;
