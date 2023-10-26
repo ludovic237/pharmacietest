@@ -473,6 +473,7 @@ function init_rayon(id) {
             code: codebarre
         },
         success: function (data) {
+            console.log(data)
             if (data == 'ok') {
                 noty({text: 'Modification effectué', layout: 'topRight', type: 'success'});
                /* setTimeout(function () {
@@ -2384,12 +2385,13 @@ function charger_select_produit() {
             nom: nom
         },
         success: function (data) {
-
+            console.log(data);
             $('ul.dropdown-menu ')
-                .find('option')
+                .find('li')
                 .remove()
                 .end()
                 .append(data)
+
             ;
             /*$.ajax({
                 type: "POST",

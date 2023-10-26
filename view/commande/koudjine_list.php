@@ -194,12 +194,12 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     </button>
                                     <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
                                             data-placement="top"
-                                            onclick="imprimer_com_recu(<?php echo $v->id; ?>,'<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $datel; ?>','<?php echo $v->note; ?>')">
+                                            onclick="imprimer_com_recu(<?php echo $v->id; ?>,'<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $v->dateLivraison; ?>','<?php echo $v->note; ?>')">
                                         Imprimer Reçu
                                     </button>
                                     <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
                                             data-placement="top"
-                                            onclick="charger_produit_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>','<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $datel; ?>')">
+                                            onclick="charger_produit_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>','<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $v->dateLivraison; ?>')">
                                         Charger
                                     </button>
                                     <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
@@ -208,7 +208,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     </button>
                                     <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
                                             data-placement="top"
-                                            onclick="charger_all_ticket_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>','<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $datel; ?>')">
+                                            onclick="charger_all_ticket_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>','<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $v->dateLivraison; ?>')">
                                         print
                                     </button>
                                 </td>

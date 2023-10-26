@@ -327,11 +327,17 @@ class CatalogueController extends Controller
                 'conditions' => array('id' => $id)
             ));
 
-            $list = explode(' ', trim($d['produit']->nom));
+            $list = explode('d ', trim($d['produit']->nom));
+            if($list[0] == ''){
+                $motclef =  $list[1];
+            }else{
+                $motclef = $d['produit']->nom;
+            }
+            $list1 = explode(' ', $motclef);
             $d['produits'] = $this->Catalogue->find(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'produit',
-                'conditions' => 'nom like "%'.$list[0].'%" AND supprimer = 0 AND id <> '.$id
+                'conditions' => 'nom like "%'.$list1[0].'%" AND supprimer = 0 AND id <> '.$id
             ));
             //print_r($d['produits']);
 

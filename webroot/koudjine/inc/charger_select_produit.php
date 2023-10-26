@@ -7,12 +7,14 @@ global $conndb;
 //On sélectionne tous les users dont le nom = Pierre
 $nom = $_POST["nom"];
 if (isset($_POST["nom"])) {
-    $list = explode(' ', trim($nom));
-    if($list[0] == 'D'){
-        $motclef = '%' . $list[1] . '%';
+    $list = explode('D ', trim($nom));
+    if($list[0] == ''){
+        $motclef1 = $list[1];
     }else{
-        $motclef = '%' . $list[0] . '%';
+        $motclef1 = $nom;
     }
+    $list1 = explode(' ', $motclef1);
+    $motclef = '%' . $list1[0] . '%';
     $q = array('motclef' => $motclef );
     $sth = $pdo->prepare("
               SELECT *
