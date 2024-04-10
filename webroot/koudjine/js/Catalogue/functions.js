@@ -1847,6 +1847,7 @@ function info_row(row) {
 }
 
 var _idprod;
+var idProdDetail;
 var _nameprod;
 
 function load_produit_detail(id, nomp) {
@@ -2200,7 +2201,7 @@ function save_commande() {
 }
 
 function save_produit_detail() {
-    var id = _idprod;
+    var id = idProdDetail;
     //alert(id);
     var erprixachat = $('#erprixachat').val();
     var erprixvente = $('#erprixvente').val();
@@ -2239,6 +2240,7 @@ function show_modif_sortie(id) {
 }
 
 function show_modif_enrayon(id) {
+    idProdDetail = id;
     $("#iconPreviewDetailModif").modal('show');
     $.ajax({
         type: "POST",
