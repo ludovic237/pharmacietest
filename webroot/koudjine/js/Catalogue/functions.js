@@ -16,6 +16,18 @@ $(document).ready(function () {
 
     $("#detailTab").hide();
 
+    // script pour transferer les prodduits details de la table produit pour la table
+    // produit_detail
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/script_produit_detail.php',
+        //dataType: 'json',
+        success: function (responce) {
+            alert(responce);
+
+        }
+    });
+
     if ($("#reportRangeDateVente").length > 0) {
         $("#reportRangeDateVente").daterangepicker({
             ranges: {

@@ -428,6 +428,17 @@ class ProduitManager
         }
         return $produits;
     }
+    public function getOldListGrossiste()
+    {
+        $produits = array();
+        $q = $this->_db->prepare('SELECT * FROM produit WHERE grossiste_id IS NOT NULL and grossiste_id != "" AND supprimer = 0 ORDER BY nom');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $produits[] = new Produit($donnees);
+        }
+        return $produits;
+    }
     public function getListEtat()
     {
         $produits = array();
@@ -442,7 +453,7 @@ class ProduitManager
     public function update(Produit $produit)
     {
 
-        $q = $this->_db->prepare('UPDATE produit SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, grossiste_id = :grossiste, detail_id = :detail, nom = :nom, reference = :reference, ean13 = :ean13, etat = :etat, etagere = :etagere, contenuDetail = :contenuDetail, prixDetail = :prixDetail, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, grossiste_id = :grossiste, detail_id = :detail, nom = :nom, reference = :reference, ean13 = :ean13, etat = :etat, etagere = :etagere, contenuDetail = :contenuDetail, prixDetail = :prixDetail, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction, supprimer = :supprimer WHERE id = :id');
         $q->bindValue(':id', $produit->id(), PDO::PARAM_INT);
         $q->bindValue(':cat', $produit->categorie_id(), PDO::PARAM_INT);
         $q->bindValue(':forme', $produit->forme_id(), PDO::PARAM_INT);
@@ -464,6 +475,7 @@ class ProduitManager
         $q->bindValue(':etagere', $produit->etagere());
         $q->bindValue(':contenuDetail', $produit->contenuDetail());
         $q->bindValue(':prixDetail', $produit->prixDetail());
+        $q->bindValue(':supprimer', $produit->supprimer());
         $q->execute();
     }
     public function setDb(PDO $db)
