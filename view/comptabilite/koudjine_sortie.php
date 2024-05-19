@@ -22,11 +22,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <div class="form-group">
                             <label class="col-md-3 control-label">Entrée Produit:</label>
                             <div class="col-md-5">
-                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->ide . '"'; ?> <?php if (isset($entree)) echo 'data2 = "' . $entree->idp . '"'; ?> data1="sortie" class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
+                                <input type="text" <?php if (isset($produit_detail)) echo 'disabled'; ?> <?php if (isset($produit_detail)) echo 'data = "' . $produit_detail->id . '"'; ?> <?php if (isset($produit_detail)) echo 'data2 = "' . $produit_detail->id . '"'; ?> data1="sortie" class="form-control" name="nom" id="recherche" value="<?php if (isset($produit_detail)) echo $produit_detail->nom . '[' . $produit_detail->stock . ']'; ?>" placeholder="Nom" />
                             </div>
                             <label class="col-md-2 control-label">Stock:</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="nom" id="stock_detail" data="<?php if (isset($entree)) echo $entree->quantiteRestante; ?>" value="<?php if (isset($entree)) echo $entree->quantiteRestante; ?>" disabled />
+                                <input type="text" class="form-control" name="nom" id="stock_detail" data="<?php if (isset($produit_detail)) echo $produit_detail->stock; ?>" value="<?php if (isset($produit_detail)) echo $produit_detail->stock; ?>" disabled />
                             </div>
                         </div>
                         <div class="row">
@@ -72,7 +72,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                             </div>
                         </div> -->
-                        <?php if (isset($entree)) { ?>
+                        <?php if (isset($produit_detail)) { ?>
                             <div class="row" style="margin-top: 15px">
                                 <div class="col-md-4 control-label">
                                     <div class="form-group">
@@ -80,8 +80,8 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <div class="col-md-9">
                                             <select class="form-control question selectpicker" name="question" id="parent">
                                                 <option value="0">Veuillez selectionner</option>
-                                                <?php if (isset($produits))
-                                                    foreach ($produits as $k => $v) : ?>
+                                                <?php if (isset($grossistes))
+                                                    foreach ($grossistes as $k => $v) : ?>
                                                         <option data="<?php echo $v->contenuDetail; ?>" value="<?php echo $v->id; ?>"><?php echo $v->nom; ?> &nbsp;&nbsp <?php echo '[' . $v->contenuDetail . ']'; ?>
                                                         </option>
                                                     <?php
@@ -95,7 +95,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Contenu:</label>
                                         <div class="col-md-5">
-                                            <input width="200px" class="form-control" type="text" disabled value="<?php //if (isset($entree)) echo $produits[0]->contenuDetail; ?>" id="contenu">
+                                            <input width="200px" class="form-control" type="text" disabled value="<?php //if (isset($produit_detail)) echo $produits[0]->contenuDetail; ?>" id="contenu">
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Contenu:</label>
                                         <div class="col-md-9">
-                                            <input class="form-control" type="text" disabled value="<?php if (isset($entree)) echo $entree->contenuDetail; ?>" id="contenu">
+                                            <input class="form-control" type="text" disabled value="<?php //if (isset($produit_detail)) echo $produit_detail->contenuDetail; ?>" id="contenu">
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <tr id="<?php echo $v->id; ?>">
                                 <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $produit_rayon[$i]->idp; ?>"><?php echo $produit_rayon[$i]->nomp . '[' . $produit_rayon[$i]->dateLivraison . ']'; ?></a></strong></td>
                                 <td><?php echo $v->quantite; ?></td>
-                                <td><strong><?php echo $produit_detail[$i]; ?></strong></td>
+                                <td><strong><?php echo $produit_dtl[$i]; ?></strong></td>
                                 <td><strong><?php echo $produit_rayon[$i]->nomf; ?></strong></td>
                                 <td><?php echo $v->dateSortie; ?></td>
                                 <td><?php echo $operation[$i]; ?></td>
@@ -282,7 +282,6 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <tr>
                                     <th width="200">Nom</th>
                                     <th width="100">Prix Unitaire</th>
-                                    <th width="100">Quantité</th>
                                     <th width="100">Quantité en Stock</th>
                                     <th width="100">Reduction(%)</th>
                                     <th width="200">Date de Livraison</th>

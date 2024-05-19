@@ -333,15 +333,22 @@ class ComptabiliteController extends Controller
                     'conditions' => array('e.id' => $v->en_rayon_id, 'p.forme_id' => 'f.id', 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
                 ));
                 if ($v->detail_id != '' && $v->detail_id != null) {
-                    $d['produit_detail'][$i] = $this->Comptabilite->findFirst(array(
+                    $d['produit_dtl'][$i] = $this->Comptabilite->findFirst(array(
                         //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
                         'table' => 'produit p, en_rayon e',
                         'conditions' => array('e.id' => $v->detail_id, 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
                     ));
-                    $d['produit_detail'][$i] = $d['produit_detail'][$i]->nom;
+                    if (empty($d['produit_dtl'][$i])){
+                        $d['produit_dtl'][$i] = $this->Comptabilite->findFirst(array(
+                            //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
+                            'table' => 'produit_detail p',
+                            'conditions' => array('p.id' => $v->detail_id, 'p.supprimer' => 0)
+                        ));
+                    }
+                    $d['produit_dtl'][$i] = $d['produit_dtl'][$i]->nom;
                     $d['operation'][$i] = 'Détail';
                 } else {
-                    $d['produit_detail'][$i] = $v->detail_id;
+                    $d['produit_dtl'][$i] = $v->detail_id;
                     $d['operation'][$i] = 'Périmé';
                 }
 
@@ -350,7 +357,7 @@ class ComptabiliteController extends Controller
         }
 
         if (isset($id)) {
-            $d['entree'] = $this->Comptabilite->findFirst(array(
+            /*$d['entree'] = $this->Comptabilite->findFirst(array(
                 'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
                 'table' => 'en_rayon,produit',
                 //'order' => 'dateLivraison-ASC',
@@ -373,7 +380,19 @@ class ComptabiliteController extends Controller
                     ));
                     $i++;
                 endforeach;
-            }
+            }*/
+            $d['produit_detail'] = $this->Comptabilite->findFirst(array(
+                //'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
+                'table' => 'produit_detail',
+                //'order' => 'dateLivraison-ASC',
+                'conditions' => "supprimer = 0 AND id = " . $id
+            ));
+            $d['grossistes'] = $this->Comptabilite->find(array(
+                //'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
+                'table' => 'produit',
+                //'order' => 'dateLivraison-ASC',
+                'conditions' => "supprimer = 0 AND detail_id = " . $id
+            ));
 
         }
         $this->set($d);
@@ -404,15 +423,15 @@ class ComptabiliteController extends Controller
                     'conditions' => array('e.id' => $v->en_rayon_id, 'p.forme_id' => 'f.id', 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
                 ));
                 if ($v->detail_id != '' && $v->detail_id != null) {
-                    $d['produit_detail'][$i] = $this->Comptabilite->findFirst(array(
+                    $d['produit_dtl'][$i] = $this->Comptabilite->findFirst(array(
                         //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
                         'table' => 'produit p, en_rayon e',
                         'conditions' => array('e.id' => $v->detail_id, 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
                     ));
-                    $d['produit_detail'][$i] = $d['produit_detail'][$i]->nom;
+                    $d['produit_dtl'][$i] = $d['produit_dtl'][$i]->nom;
                     $d['operation'][$i] = $v->nom;
                 } else {
-                    $d['produit_detail'][$i] = $v->detail_id;
+                    $d['produit_dtl'][$i] = $v->detail_id;
                     $d['operation'][$i] = $v->nom;
                 }
 

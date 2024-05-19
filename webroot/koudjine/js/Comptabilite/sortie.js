@@ -68,7 +68,7 @@ $(document).ready(function () {
                                     + '<td>' + data.stock + '</td>'
                                     + '<td>' + data.datel + '</td>'
                                     + '<td>'
-                                    + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + recherche + '\');"><span class="fa fa-times"></span></button>'
+                                    + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_sortie(\'' + recherche + '\');"><span class="fa fa-times"></span></button>'
                                     + '</td>'
                                     + '</tr>';
                                 $('#tab_Bsortie').prepend(cat);
@@ -174,10 +174,25 @@ function valider_produit_sortie() {
                     contenu: contenu,
                     detail_id: $("#recherche").attr('data')
                 },
-                success: function (server_responce) {
-                    //alert(server_responce);
-                    var link = '/pharmacietest/bouwou/comptabilite/sortie';
-                    window.location.href = link;
+                dataType: 'json',
+                success: function (data) {
+                    //alert(data);
+                    if (data.erreur == 'ok') {
+                        delete_row_sortie(id1);
+                    }else{
+                        $('#message-box-danger p').html(data.erreur);
+                        $("#message-box-danger").modal("show");
+                        setTimeout(function () {
+                            $("#message-box-danger").modal("hide");
+                        }, 6000);
+                    }
+
+                    if ($('#tab_Bsortie tr').length == 0) {
+                        var link = '/pharmacietest/bouwou/comptabilite/sortie';
+                        window.location.href = link;
+                    }
+
+
 
 
                 }
@@ -279,7 +294,10 @@ function valider_sortie() {
 function load_produit(id, action) {
     //alert(id)
 
-    $.ajax({
+    var link = '/pharmacietest/bouwou/comptabilite/sortie/' + id;
+    window.location.href = link;
+
+    /*$.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/load_produit_sortie.php',
         data: {
@@ -296,7 +314,7 @@ function load_produit(id, action) {
 
 
     })
-    $("#iconPreviewVente").modal("show");
+    $("#iconPreviewVente").modal("show");*/
 
 }
 
@@ -304,7 +322,10 @@ function load_produit_parent() {
     //alert(id)
     if ($("#qte_sortie").val() == '' || $("#parent option:selected").val() == 0) {
         alert('Veuillez entrer la quantité ou sélectionner une parent !!!');
-    } else {
+    } else if($("#contenu").val() == ''){
+        alert('Veuillez configurer le contenu du parent d\'abord !!!');
+    }
+    else{
         var id = $("#parent option:selected").val();
 
         $.ajax({
@@ -325,6 +346,25 @@ function load_produit_parent() {
         })
         $("#iconPreviewSortie").modal("show");
     }
+
+
+}
+
+function delete_row_sortie(id) {
+    var stock = parseInt($('#stock_detail').val());
+    var qte;
+    var contenu;
+
+
+    $("#" + id + " td").each(function (i) {
+        ////alert(i);
+        if (i == 1) { qte = parseInt($(this).html()); }
+        if (i == 2) { contenu = parseInt($(this).html()); }
+
+    });
+    $('#stock_detail').val(stock - (qte*contenu));
+    $("#" + id).remove();
+
 
 
 }
@@ -356,18 +396,39 @@ function valider_stock_detail(id) {
                         action = 1;
                         $("#" + id1 + " td").each(function (j) {
                             ////alert($(this).html());
-                            if (j == 1) {
-                                qte = parseInt($(this).html()) + parseInt($("#qte_sortie").val());
-                            }
+                            if (j == 1) { qte = parseInt($(this).html()) + parseInt($("#qte_sortie").val()); }
                             if (j == 3) {
                                 var stock = parseInt($(this).html());
-                                if (stock == 0 || (stock - parseInt($("#qte_sortie").val())) < 0) {
-                                    $('#message-box-danger p').html("La quantité a détaillé est supérieur au stock en rayon !!!");
-                                    $("#message-box-danger").modal("show");
-                                    setTimeout(function () {
-                                        $("#message-box-danger").modal("hide");
-                                    }, 3000);
+                                if (/*stock == 0 ||*/ $("#qte_sortie").val() > data.stock_en_rayon) {
+                                    //  alert("Quantité en stock pas suffisante pour cette opération ");
                                 } else {
+                                    $("#" + id1 + " td").each(function (k) {
+                                        if (k == 1) { $(this).html(qte); }
+
+                                    });
+                                    $(this).html((stock - parseInt($("#qte_sortie").val())));
+                                }
+                            }
+
+                        });
+
+                    }
+
+                });
+                /*$("#R" + id + " td").each(function (j) {
+                    ////alert($(this).html());
+                    if (j == 1) {
+                        qte = parseInt($(this).html()) + parseInt($("#qte_sortie").val());
+                    }
+                    if (j == 2) {
+                        var stock = parseInt($(this).html());
+                        if (stock == 0 || (stock - parseInt($("#qte_sortie").val())) < 0) {
+                            $('#message-box-danger p').html("La quantité a détaillé est supérieur au stock en rayon !!!");
+                            $("#message-box-danger").modal("show");
+                            setTimeout(function () {
+                                $("#message-box-danger").modal("hide");
+                            }, 3000);
+                        } else {
                                     $("#" + id1 + " td").each(function (k) {
                                         if (k == 1) {
                                             $(this).html(qte);
@@ -376,13 +437,10 @@ function valider_stock_detail(id) {
                                     });
                                     $(this).html((stock - parseInt($("#qte_sortie").val())));
                                 }
-                            }
-
-                        });
                     }
 
-                });
-                if (action == 0 && $("#qte_sortie").val() <= data.stock) {
+                });*/
+                if ( action == 0 && $("#qte_sortie").val() <= data.stock_en_rayon) {
                     qte = parseInt($("#qte_sortie").val());
                     var cat = '<tr id="' + id + '">'
                         + ' <td><strong>' + data.nom + '</strong></td>'
@@ -391,7 +449,7 @@ function valider_stock_detail(id) {
                         + '<td>' + (data.stock - qte) + '</td>'
                         + '<td>' + data.datel + '</td>'
                         + '<td>'
-                        + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + id + '\');"><span class="fa fa-times"></span></button>'
+                        + '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_sortie(\'' + id + '\');"><span class="fa fa-times"></span></button>'
                         + '</td>'
                         + '</tr>';
                     $('#tab_Bsortie').prepend(cat);

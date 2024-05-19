@@ -172,6 +172,7 @@ function load_produit(id) {
 
     var qte = parseInt($("#R" + id + " .qte").val());
     var stock = parseInt($("#R" + id + " .stock").html());
+    console.log(id);
     if (qte > stock) {
         //  alert("Quantité en stock pas suffisante pour cette opération ");
     }

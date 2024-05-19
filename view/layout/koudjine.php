@@ -80,17 +80,23 @@
                 <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['catalogue'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'catalogue') { ?>active<?php } ?>">
                     <a href="#"><span class="fa fa-book"></span> <span class="xn-text">Catalogue</span></a>
                     <ul>
-                                <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit' || $this->request->controller == 'catalogue' && $this->request->action == 'produitadd' || $this->request->controller == 'catalogue' && $this->request->action == 'produitdetail') { ?>active <?php } ?>">
+                                <li class="xn-openable <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit' || $this->request->controller == 'catalogue' && $this->request->action == 'produitadd' || $this->request->controller == 'catalogue' && $this->request->action == 'produitdetail' || $this->request->controller == 'catalogue' && $this->request->action == 'produitdddetail' || $this->request->controller == 'catalogue' && $this->request->action == 'listdetail') { ?>active <?php } ?>">
                             <a href="#"><span class="fa lettre">E</span> Produit</a>
                             <ul>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produit') { ?>class="active" <?php } ?>>
                                     <a href="<?php echo Router::url('bouwou/catalogue/produit'); ?>"><span class="fa lettre">L</span> Lister</a>
                                 </li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'listdetail') { ?>class="active" <?php } ?>>
+                                    <a href="<?php echo Router::url('bouwou/catalogue/listdetail'); ?>"><span class="fa lettre">LD</span> Lister detail</a>
+                                </li>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitdetail') { ?>class="active" <?php } ?>>
-                                    <a href="<?php echo Router::url('bouwou/catalogue/produitdetail'); ?>"><span class="fa lettre">L</span> Lister detail</a>
+                                    <a href="<?php echo Router::url('bouwou/catalogue/produitdetail'); ?>"><span class="fa lettre">P</span> Produit detail</a>
                                 </li>
                                 <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitadd') { ?>class="active" <?php } ?>>
                                     <a href="<?php echo Router::url('bouwou/catalogue/produitadd'); ?>"><span class="fa lettre">A</span> Ajouter</a>
+                                </li>
+                                <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitadddetail') { ?>class="active" <?php } ?>>
+                                    <a href="<?php echo Router::url('bouwou/catalogue/produitadddetail'); ?>"><span class="fa lettre">AD</span> Ajouter Detail</a>
                                 </li>
                                 <!-- <li <?php if ($this->request->controller == 'catalogue' && $this->request->action == 'produitimpression') { ?>class="active" <?php } ?>><a href="<?php echo Router::url('bouwou/catalogue/produitimpression'); ?>"><span class="fa lettre">I</span> Impression code</a></li> -->
                             </ul>

@@ -1192,68 +1192,134 @@ function load_produit(id) {
 
     var qte = parseInt($("#R" + id + " .qte").val());
     var stock = parseInt($("#R" + id + " .stock").html());
+    console.log($(this).attr("data"))
     if (qte > stock) {
         //  alert("Quantité en stock pas suffisante pour cette opération ");
     } else {
-
-        if ($.fn.dataTable.isDataTable('#tab_load_produit')) {
-            $('#tab_load_produit').dataTable({
-                destroy: true,
-                // searching: false,
-                // retrieve: true,
-                // "processing": true,
-                // "serverSide": true,
-                //dom: "Bfrtip",
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit.php',
-                    data: {
-                        id: id
+        var test = $(this).attr("data");
+        if(id < 1000){
+            if ($.fn.dataTable.isDataTable('#tab_load_produit')) {
+                $('#tab_load_produit').dataTable({
+                    destroy: true,
+                    // searching: false,
+                    // retrieve: true,
+                    // "processing": true,
+                    // "serverSide": true,
+                    //dom: "Bfrtip",
+                    ajax: {
+                        type: "POST",
+                        url: '/pharmacietest/koudjine/inc/load_produit.php',
+                        data: {
+                            id: id,
+                            option: 'detail'
+                        },
+                        dataType: 'json',
                     },
-                    dataType: 'json',
-                },
-                columns: [
-                    {data: "nom"},
-                    {data: "prixUnitaire"},
-                    {data: "quantite"},
-                    {data: "stockq"},
-                    {data: "stockg"},
-                    {data: "reduction"},
-                    {data: "date"},
-                    {data: "action"},
-                ]
-            });
+                    columns: [
+                        {data: "nom"},
+                        {data: "prixUnitaire"},
+                        {data: "quantite"},
+                        {data: "stockq"},
+                        {data: "stockg"},
+                        {data: "reduction"},
+                        {data: "date"},
+                        {data: "action"},
+                    ]
+                });
 
-        } else {
-            $('#tab_load_produit').dataTable({
-                destroy: true,
-                // paging: false,
-                // searching: false,
-                // retrieve: true,
-                // "processing": true,
-                // "serverSide": true,
-                //dom: "Bfrtip",
-                ajax: {
-                    type: "POST",
-                    url: '/pharmacietest/koudjine/inc/load_produit.php',
-                    data: {
-                        id: id
+            } else {
+                $('#tab_load_produit').dataTable({
+                    destroy: true,
+                    // paging: false,
+                    // searching: false,
+                    // retrieve: true,
+                    // "processing": true,
+                    // "serverSide": true,
+                    //dom: "Bfrtip",
+                    ajax: {
+                        type: "POST",
+                        url: '/pharmacietest/koudjine/inc/load_produit.php',
+                        data: {
+                            id: id,
+                            option: 'detail'
+                        },
+                        dataType: 'json',
                     },
-                    dataType: 'json',
-                },
-                columns: [
-                    {data: "nom"},
-                    {data: "prixUnitaire"},
-                    {data: "quantite"},
-                    {data: "stockq"},
-                    {data: "stockg"},
-                    {data: "reduction"},
-                    {data: "date"},
-                    {data: "action"},
-                ]
-            });
+                    columns: [
+                        {data: "nom"},
+                        {data: "prixUnitaire"},
+                        {data: "quantite"},
+                        {data: "stockq"},
+                        {data: "stockg"},
+                        {data: "reduction"},
+                        {data: "date"},
+                        {data: "action"},
+                    ]
+                });
 
+            }
+        }else{
+            if ($.fn.dataTable.isDataTable('#tab_load_produit')) {
+                $('#tab_load_produit').dataTable({
+                    destroy: true,
+                    // searching: false,
+                    // retrieve: true,
+                    // "processing": true,
+                    // "serverSide": true,
+                    //dom: "Bfrtip",
+                    ajax: {
+                        type: "POST",
+                        url: '/pharmacietest/koudjine/inc/load_produit.php',
+                        data: {
+                            id: id
+                        },
+                        dataType: 'json',
+                    },
+                    columns: [
+                        {data: "nom"},
+                        {data: "prixUnitaire"},
+                        {data: "quantite"},
+                        {data: "stockq"},
+                        {data: "stockg"},
+                        {data: "reduction"},
+                        {data: "date"},
+                        {data: "action"},
+                    ]
+                });
+
+            } else {
+                $('#tab_load_produit').dataTable({
+                    destroy: true,
+                    // paging: false,
+                    // searching: false,
+                    // retrieve: true,
+                    // "processing": true,
+                    // "serverSide": true,
+                    //dom: "Bfrtip",
+                    ajax: {
+                        type: "POST",
+                        url: '/pharmacietest/koudjine/inc/load_produit.php',
+                        data: {
+                            id: id
+                        },
+                        dataType: 'json',
+                    },
+                    columns: [
+                        {data: "nom"},
+                        {data: "prixUnitaire"},
+                        {data: "quantite"},
+                        {data: "stockq"},
+                        {data: "stockg"},
+                        {data: "reduction"},
+                        {data: "date"},
+                        {data: "action"},
+                    ]
+                });
+
+            }
         }
+
+
 
         // var icon_preview = $("<i></i>").addClass(iClass);
         $("#iconPreviewVente").modal("show");
@@ -1460,6 +1526,7 @@ function augmenterDetail(){
                     var qte = qte_old + parseInt(data.qte);
                     console.log(qte);
                     $("#" + detail + " .qterest").html(qte);
+                    $("#" + detail + " .stock").html(qte);
                     $('#iconPreviewVenteAugmenterQuantite').modal('hide');
                 }
 

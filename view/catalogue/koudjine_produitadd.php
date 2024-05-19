@@ -1,7 +1,7 @@
 <?php
 
 $title_for_layout = ' Admin -' . 'Catalogue';
-$page_for_layout = ($position == 'Ajouter') ? 'Ajouter une produit' : 'Modifier un produit';
+$page_for_layout = ($position == 'Ajouter') ? 'Ajouter un produit' : 'Modifier un produit';
 
 
 if ($this->request->action == "index") {
@@ -275,38 +275,19 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </div>
                         <div style="background: white;" class="panel-body">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Produit:</label>
-                                <!--
-                                <?php
-                                $text = $produit->grossiste_id;
-                                echo $text;
-                                $texto = explode('-', $text);
-                                print_r($texto);
-                                ?> -->
-
+                                <label class="col-md-3 control-label">Produit detail:</label>
                                 <div class="col-md-9">
-                                    <select multiple class="selectpicker form-control input-xlarge " name="produits"
-                                            id="produits">
-                                        <option value="0">Choisir:</option>
-                                        <?php if (isset($produits))
-                                            foreach ($produits as $k => $v) : ?>
-                                                <option <?php if ($position == 'Modifier')
-
-                                                    if (in_array($v->id, $texto)) echo "selected=\"selected\""; ?>
-                                                        value="<?php echo $v->id; ?>"><?php echo $v->nom; ?>
-                                                </option>
-                                            <?php
-                                            endforeach;
-                                        ?>
-                                    </select>
-                                    <span class="help-block">Choix multiple</span>
+                                    <input type="text" disabled class="form-control"
+                                           value="<?php if ($position == 'Modifier' && isset($produit_detail)) echo $produit_detail->nom; ?>" name="produit_detail"
+                                           id="produit_detail" placeholder=""/>
+                                    <span class="help-block">Champ requis</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Prix detail:</label>
                                 <div class="col-md-9">
-                                    <input type="number" class="form-control"
-                                           value="<?php if ($position == 'Modifier') echo $produit->prixDetail;
+                                    <input type="number" disabled class="form-control"
+                                           value="<?php if ($position == 'Modifier' && isset($produit_detail)) echo $produit_detail->prix;
                                            else echo 0; ?>" name="prixDetail" id="prixDetail" placeholder=""/>
 
                                 </div>

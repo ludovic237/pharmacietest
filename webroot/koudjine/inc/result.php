@@ -17,22 +17,45 @@ if (isset($_GET["motclef1"])) {
     $sth->execute($q);
     $count = $sth->rowCount();
 
-    if ($count) {
-        while ($result = $sth->fetch(PDO::FETCH_OBJ)) {
-            $datelivraison = $result->dateLivraison; 
-            $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
-            $datel = $date->format('d-m-Y');
-            //   </p><div class='input-group' style='display:-webkit-inline-box;'>
-            if ($result->reduction > $result->reductionMax) $reduction = $result->reduction;
-            else $reduction = $result->reductionMax;
-            echo "<tr id=\"R" . $result->idp . "\">
+    $sth1 = $pdo->prepare("
+              SELECT *
+              FROM produit_detail p
+              WHERE p.nom like :motclef AND  p.supprimer = 0 
+            ");
+    $sth1->execute($q);
+    $count1 = $sth1->rowCount();
+
+    if ($count || $count1) {
+        if ($count) {
+            while ($result = $sth->fetch(PDO::FETCH_OBJ)) {
+                $datelivraison = $result->dateLivraison;
+                $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
+                $datel = $date->format('d-m-Y');
+                //   </p><div class='input-group' style='display:-webkit-inline-box;'>
+                if ($result->reduction > $result->reductionMax) $reduction = $result->reduction;
+                else $reduction = $result->reductionMax;
+                echo "<tr id=\"R" . $result->idp . "\">
                                             <td class='nom'><strong>" . $result->nom . "</strong></td>
 
                                             <td>
                                                 <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit('" . $result->idp . "')\"><span class=\"\">Charger</span></button>
                                             </td>
                                         </tr>";
-            //echo "<li  style=\"background-color: #fff; list-style-type: none; margin: 0; padding: 0;\"><tr><a href=\"update/".$result->id."\" style=\"display:block; height: 25px; color: #000; text-decoration: none;\"><td>$result->nom</td></a><td>$result->stock</td><tr>$result->reductionMax</tr></li>";
+                //echo "<li  style=\"background-color: #fff; list-style-type: none; margin: 0; padding: 0;\"><tr><a href=\"update/".$result->id."\" style=\"display:block; height: 25px; color: #000; text-decoration: none;\"><td>$result->nom</td></a><td>$result->stock</td><tr>$result->reductionMax</tr></li>";
+            }
+        }
+        if ($count1) {
+            while ($result1 = $sth1->fetch(PDO::FETCH_OBJ)) {
+
+                echo "<tr id=\"R" . $result1->id . "\">
+                                            <td class='nom'><strong>" . $result1->nom . "</strong></td>
+
+                                            <td>
+                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data='detail' data-placement=\"top\" onclick=\"load_produit('" . $result1->id . "')\"><span class=\"\">Charger</span></button>
+                                            </td>
+                                        </tr>";
+                //echo "<li  style=\"background-color: #fff; list-style-type: none; margin: 0; padding: 0;\"><tr><a href=\"update/".$result->id."\" style=\"display:block; height: 25px; color: #000; text-decoration: none;\"><td>$result->nom</td></a><td>$result->stock</td><tr>$result->reductionMax</tr></li>";
+            }
         }
     } else {
         echo "Aucun résultat pour le mot : " . $_GET["motclef1"];

@@ -11,14 +11,14 @@ if (isset($_GET["motclef"])) {
     $idp_parent = substr($motclef, 0, 4);
     //echo $idp_parent;
 
-    $sth = $pdo->prepare("
+    /*$sth = $pdo->prepare("
               SELECT *
               FROM produit
               WHERE id = :id_detail AND grossiste_id like '%".$idp_parent."%'
             ");
     //echo $sth;
-    $sth->bindValue('id_detail', $id_detail);
-    $sth->execute();
+    $sth->bindValue('id_detail', $id_detail);*/
+   /* $sth->execute();
     $count = $sth->rowCount();
     //echo $count;
     if($count){
@@ -40,6 +40,35 @@ if (isset($_GET["motclef"])) {
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
             $datel = $date->format('d-m-Y');
             $donnees = array('erreur' =>'non', 'find' => 'oui','nom' => $result->nom, 'datel' => $datel, 'contenu' => $result->contenuDetail, 'stock' => $result->stock-1);
+            echo json_encode($donnees);
+        }
+
+    }
+    else{
+        //echo "Aucun résultat pour l'id: ".$motclef;
+        $donnees = array('erreur' =>"Pas de grossiste trouvé pour l'id: ".$motclef, 'find' => 'non');
+        echo json_encode($donnees);
+
+    }*/
+
+    // nouvelle version
+    $sth1 = $pdo->prepare("
+              SELECT *
+              FROM en_rayon, produit
+              WHERE produit.id = en_rayon.produit_id AND en_rayon.id = :motclef AND produit.supprimer = 0 AND produit.detail_id = :id
+            ");
+    //echo $sth;
+    $sth1->bindValue('motclef', $motclef);
+    $sth1->bindValue('id', $id_detail);
+    $sth1->execute();
+    $count1 = $sth1->rowCount();
+    if ($count1) {
+
+        while ($result = $sth1->fetch(PDO::FETCH_OBJ)) {
+            $datelivraison = $result->dateLivraison;
+            $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
+            $datel = $date->format('d-m-Y');
+            $donnees = array('erreur' =>'non', 'find' => 'oui','nom' => $result->nom, 'datel' => $datel, 'contenu' => $result->contenuDetail, 'stock' => $result->stock-1, 'stock_en_rayon' => $result->quantiteRestante);
             echo json_encode($donnees);
         }
 

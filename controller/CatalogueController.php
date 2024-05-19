@@ -326,20 +326,44 @@ class CatalogueController extends Controller
                 'table' => 'produit',
                 'conditions' => array('id' => $id)
             ));
+            if ($d['produit']->detail_id != null )
+            $d['produit_detail'] = $this->Catalogue->findFirst(array(
+                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+                'table' => 'produit_detail',
+                'conditions' => array('id' => $id)
+            ));
 
-            $list = explode('d ', trim($d['produit']->nom));
-            if($list[0] == ''){
-                $motclef =  $list[1];
-            }else{
-                $motclef = $d['produit']->nom;
+            if (empty($d['produit'])) {
+                $this->e404('Page introuvable');
             }
-            $list1 = explode(' ', $motclef);
-            $d['produits'] = $this->Catalogue->find(array(
+        } else {
+            $d['position'] = 'Ajouter';
+        }
+        $this->set($d);
+    }
+
+    function koudjine_produitadddetail($id = null)
+    {
+        $this->loadModel('Catalogue');
+
+        if ($id != null) {
+            //die('pass');
+            $d['position'] = 'Modifier';
+
+            $d['produit'] = $this->Catalogue->findFirst(array(
+                //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+                'table' => 'produit_detail',
+                'conditions' => array('id' => $id)
+            ));
+            $d['grossiste'] = $this->Catalogue->find(array(
                 //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
                 'table' => 'produit',
-                'conditions' => 'nom like "%'.$list1[0].'%" AND supprimer = 0 AND id <> '.$id
+                'conditions' => array('detail_id' => $id)
             ));
             //print_r($d['produits']);
+            /*if (!empty($grossiste)) {
+                $d['grossiste'] = $grossiste;
+            }*/
 
             if (empty($d['produit'])) {
                 $this->e404('Page introuvable');
@@ -374,6 +398,33 @@ class CatalogueController extends Controller
         }
         $d['en_rayons'] = $dataArray;
         //die($d);
+        if (empty($d['catalogue'])) {
+            $this->e404('Page introuvable');
+        }
+        $this->set($d);
+    }
+
+    function koudjine_listdetail()
+    {
+        $this->loadModel('Catalogue');
+
+        $d['catalogue'] = $this->Catalogue->find(array(
+            //'fields' => 'universite.UNIVERSITE_ID as id,universite.NOM as nom,universite.VILLE as ville,universite.STATUT as statut',
+            'table' => 'produit_detail',
+            'conditions' => array('supprimer' => 0)
+        ));
+
+        $i = 0;
+        foreach ($d['catalogue'] as $k => $v):
+            $d['produit_list'][$i] = $this->Catalogue->find(array(
+                //'fields' => 'p.nom as nomp, p.id as idp, e.id as ide, f.nom as nomf, e.dateLivraison',
+                'table' => 'produit p',
+                'conditions' => array('p.detail_id' => $v->id, 'p.supprimer' => 0)
+            ));
+
+            $i++;
+        endforeach;
+
         if (empty($d['catalogue'])) {
             $this->e404('Page introuvable');
         }

@@ -15,6 +15,7 @@ $(document).ready(function () {
 
 
     $("#detailTab").hide();
+
     if ($("#reportRangeDateVente").length > 0) {
         $("#reportRangeDateVente").daterangepicker({
             ranges: {
@@ -196,6 +197,7 @@ $(document).ready(function () {
         //console.log("id exist");
         load_produit_detail(test, null);
     }
+
 
 });
 
@@ -454,6 +456,11 @@ function enregistrer_produit(option, id) {
 
 function update_row_produit(id) {
     var link = '/pharmacietest/bouwou/catalogue/produitadd/' + id;
+    //alert(link);
+    window.location.href = link;
+}
+function update_row_produitDet(id) {
+    var link = '/pharmacietest/bouwou/catalogue/produitadddetail/' + id;
     //alert(link);
     window.location.href = link;
 }

@@ -10,10 +10,16 @@ if (isset($_GET["motclef1"]) && $_GET["action"] == "sortie") {
     $action = $_GET["action"];
     //echo $action;
     $q = array('motclef' => $motclef . '%');
-    $sth = $pdo->prepare("
-              SELECT p.nom, p.id as idp 
+    /*$sth = $pdo->prepare("
+              SELECT p.nom, p.id as idp
               FROM produit p
-              WHERE p.grossiste_id <> '' and p.supprimer = 0 and p.nom like :motclef 
+              WHERE p.grossiste_id <> '' and p.supprimer = 0 and p.nom like :motclef
+
+            ");*/
+    $sth = $pdo->prepare("
+              SELECT *
+              FROM produit_detail p
+              WHERE p.supprimer = 0 and p.nom like :motclef 
               
             ");
     $sth->execute($q);
@@ -22,10 +28,10 @@ if (isset($_GET["motclef1"]) && $_GET["action"] == "sortie") {
     if ($count) {
         while ($result = $sth->fetch(PDO::FETCH_OBJ)) {
 
-            echo "<tr id=\"R".$result->idp."\">
+            echo "<tr id=\"R".$result->id."\">
                                             <td class='nom'><strong>".$result->nom."</strong></td>
                                             <td>
-                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit('" . $result->idp . "','".$action."')\"><span class=\"\">Charger</span></button>
+                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit('" . $result->id . "','".$action."')\"><span class=\"\">Charger</span></button>
                                             </td>
                                         </tr>";
             //echo "<li  style=\"background-color: #fff; list-style-type: none; margin: 0; padding: 0;\"><tr><a href=\"update/".$result->id."\" style=\"display:block; height: 25px; color: #000; text-decoration: none;\"><td>$result->nom</td></a><td>$result->stock</td><tr>$result->reductionMax</tr></li>";

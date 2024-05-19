@@ -25,7 +25,8 @@ if (isset($_POST['id'])||isset($_GET['id'])){
     $datelivraison = $enrayon->dateLivraison();
     $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
     $datel = $date->format('Y-m-d');
-    $donnees = array('erreur' =>'non', 'find' => 'oui','nom' => $produit->nom(), 'datel' => $datel, 'contenu' => $produit->contenuDetail(), 'stock' => $produit->stock());
+    $donnees = array('erreur' =>'non', 'find' => 'oui','nom' => $produit->nom(), 'datel' => $datel, 'contenu' => $produit->contenuDetail(), 'stock' => $produit->stock(), 'stock_en_rayon' => $enrayon->quantiteRestante());
+    //$donnees = array('erreur' =>'non', 'find' => 'oui','nom' => $produit->nom(), 'datel' => $datel, 'contenu' => $produit->contenuDetail(), 'stock' => $enrayon->quantiteRestante());
     echo json_encode($donnees);
     /*echo "<tr id=\"".$enrayon->id()."\">
                                             <td ><strong class='nom'>".$produit->nom()."</strong></td>

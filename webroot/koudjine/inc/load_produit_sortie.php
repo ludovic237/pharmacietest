@@ -38,9 +38,6 @@ if (isset($_POST['id'])&& $action == 'sortie'){
                                             <td class='prix'>
                                                 ".$v->prixVente()."
                                             </td>
-                                            <td class=''>
-                                                <input class='qte' style=\"width: 50px;\" id=\"qte_vente\" type=\"number\" value='0'>
-                                            </td>
                                             <td class='qterest'>
                                                 ".$v->quantiteRestante()."
                                             </td>
@@ -66,9 +63,6 @@ if (isset($_POST['id'])&& $action == 'sortie'){
                                             <td class='prix'>
                                                 " . $v->prixVente() . "
                                             </td>
-                                            <td class=''>
-                                                <input class='qte' style=\"width: 50px;\" id=\"qte_vente\" type=\"number\" value='0'>
-                                            </td>
                                             <td class='qterest'>
                                                 " . $v->quantiteRestante() . "
                                             </td>
@@ -90,9 +84,6 @@ if (isset($_POST['id'])&& $action == 'sortie'){
                                             <td ><strong class='nom'>" . $produit->nom() . "</strong></td>
                                             <td class='prix'>
                                                 " . $v->prixVente() . "
-                                            </td>
-                                            <td class=''>
-                                                <input class='qte' style=\"width: 50px;\" id=\"qte_vente\" type=\"number\" value='0'>
                                             </td>
                                             <td class='qterest'>
                                                 " . $v->quantiteRestante() . "

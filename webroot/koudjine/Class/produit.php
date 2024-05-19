@@ -9,6 +9,7 @@ class Produit
         $_fabriquant_id,
         $_magasin_id,
         $_grossiste_id,
+        $_detail_id,
         $_nom,
         $_ean13,
         $_reference,
@@ -66,6 +67,10 @@ class Produit
     public function grossiste_id()
     {
         return $this->_grossiste_id;
+    }
+    public function detail_id()
+    {
+        return $this->_detail_id;
     }
     public function fabriquant_id()
     {
@@ -181,6 +186,12 @@ class Produit
     {
 
         $this->_grossiste_id = $value;
+
+    }
+    public function setdetail_id($value)
+    {
+
+        $this->_detail_id = $value;
 
     }
     public function setnom($value)
@@ -406,6 +417,17 @@ class ProduitManager
         }
         return $produits;
     }
+    public function getListGrossiste($info)
+    {
+        $produits = array();
+        $q = $this->_db->prepare('SELECT * FROM produit WHERE detail_id = '.$info.' AND supprimer = 0 ORDER BY nom');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $produits[] = new Produit($donnees);
+        }
+        return $produits;
+    }
     public function getListEtat()
     {
         $produits = array();
@@ -420,7 +442,7 @@ class ProduitManager
     public function update(Produit $produit)
     {
 
-        $q = $this->_db->prepare('UPDATE produit SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, grossiste_id = :grossiste, nom = :nom, reference = :reference, ean13 = :ean13, etat = :etat, etagere = :etagere, contenuDetail = :contenuDetail, prixDetail = :prixDetail, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit SET categorie_id = :cat, forme_id = :forme, rayon_id = :ray, fabriquant_id = :fab, magasin_id = :mag, grossiste_id = :grossiste, detail_id = :detail, nom = :nom, reference = :reference, ean13 = :ean13, etat = :etat, etagere = :etagere, contenuDetail = :contenuDetail, prixDetail = :prixDetail, codeLaborex = :laborex, codeUbipharm = :ubipharm, stock = :stock, stockMin = :stockmin, stockMax = :stockmax, reductionMax = :reduction WHERE id = :id');
         $q->bindValue(':id', $produit->id(), PDO::PARAM_INT);
         $q->bindValue(':cat', $produit->categorie_id(), PDO::PARAM_INT);
         $q->bindValue(':forme', $produit->forme_id(), PDO::PARAM_INT);
@@ -429,6 +451,7 @@ class ProduitManager
         $q->bindValue(':mag', $produit->magasin_id(), PDO::PARAM_INT);
         $q->bindValue(':nom', $produit->nom());
         $q->bindValue(':grossiste', $produit->grossiste_id());
+        $q->bindValue(':detail', $produit->detail_id());
         $q->bindValue(':reference', $produit->reference());
         $q->bindValue(':ean13', $produit->ean13());
         $q->bindValue(':laborex', $produit->codeLaborex());
