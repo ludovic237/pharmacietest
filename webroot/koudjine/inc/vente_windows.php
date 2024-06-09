@@ -8,6 +8,7 @@ require_once('../Class/user.php');
 require_once('../Class/concerner.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/produit.php');
+require_once('../Class/produit_detail.php');
 
 global $pdo;
 
@@ -19,7 +20,7 @@ $total = 0;
 $manager = new VenteManager($pdo);
 $managerCa = new CaisseManager($pdo);
 $managerFa = new FacturationManager($pdo);
-
+$managerPrDetail = new Produit_detailManager($pdo);
 
 
 $managerEn = new EmployeManager($pdo);
@@ -37,7 +38,13 @@ if (isset($_POST['idCaisse'])) {
         $nameProduit = "";
         foreach ($produits as $k => $c) :
             //echo $v->en_rayon_id();
-            $nom = $managerPr->get($managerEnr->get($c->en_rayon_id())->produit_id())->nom();
+
+            if ($c->type() == "detail"){
+                $nom = $managerPrDetail->get($c->en_rayon_id())->nom();
+            }
+            else {
+                $nom = $managerPr->get($managerEnr->get($c->en_rayon_id())->produit_id())->nom();
+            }
             $nameProduit = $nom.",".$nameProduit;
         endforeach;
         if($managerFa->existsvente_id($v->id())){

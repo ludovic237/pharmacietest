@@ -39,7 +39,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                     <div class="panel-body panel-body-table" style="width: 100%;" >
 
                         <div class="table-responsive">
-                            <table id="tab_Grecherche" style="display: block;max-height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                            <table id="tab_Grecherche" style="border-width: 2px;border-style: groove;display: block;max-height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
                                 <thead>
                                     <tr>
                                         <th style="width: 100%;">Nom</th>
@@ -80,6 +80,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <th width="100">Prix Total</th>
                                     <th width="100">Reduction</th>
                                     <th width="200">Date de Livraison</th>
+                                    <th width="200">Type</th>
                                     <th width="100">Stock total</th>
                                     <th width="100">Action</th>
                                 </tr>

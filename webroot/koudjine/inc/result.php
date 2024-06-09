@@ -22,6 +22,7 @@ if (isset($_GET["motclef1"])) {
               FROM produit_detail p
               WHERE p.nom like :motclef AND  p.supprimer = 0 
             ");
+
     $sth1->execute($q);
     $count1 = $sth1->rowCount();
 
@@ -39,7 +40,7 @@ if (isset($_GET["motclef1"])) {
                                             <td class='type'>En rayon</td>
 
                                             <td>
-                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit('" . $result->idp . "')\"><span class=\"\">Charger</span></button>
+                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit('" . $result->idp . "','en rayon')\"><span class=\"\">Charger</span></button>
                                             </td>
                                         </tr>";
                 //echo "<li  style=\"background-color: #fff; list-style-type: none; margin: 0; padding: 0;\"><tr><a href=\"update/".$result->id."\" style=\"display:block; height: 25px; color: #000; text-decoration: none;\"><td>$result->nom</td></a><td>$result->stock</td><tr>$result->reductionMax</tr></li>";
@@ -52,7 +53,7 @@ if (isset($_GET["motclef1"])) {
                                             <td class='nom'><strong>" . $result1->nom . "</strong></td>
                                             <td class='type'>Detail</td>
                                             <td>
-                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data='detail' data-placement=\"top\" onclick=\"load_produit('" . $result1->id . "')\"><span class=\"\">Charger</span></button>
+                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data='detail' data-placement=\"top\" onclick=\"load_produit('" . $result1->id . "','detail')\"><span class=\"\">Charger</span></button>
                                             </td>
                                         </tr>";
                 //echo "<li  style=\"background-color: #fff; list-style-type: none; margin: 0; padding: 0;\"><tr><a href=\"update/".$result->id."\" style=\"display:block; height: 25px; color: #000; text-decoration: none;\"><td>$result->nom</td></a><td>$result->stock</td><tr>$result->reductionMax</tr></li>";

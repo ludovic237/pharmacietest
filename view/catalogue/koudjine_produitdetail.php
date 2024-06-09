@@ -58,7 +58,7 @@ var test = "' . $id . '"
                     <div class="panel-body panel-body-table" style="width: 100%;">
 
                         <div class="table-responsive">
-                            <table id="tab_produit_detail" style="display: block;max-height: 200px;overflow: auto;"
+                            <table id="tab_produit_detail" style="border-width: 2px;border-style: groove;display: block;max-height: 200px;overflow: auto;"
                                    class="table table-bordered table-striped table-actions">
                                 <thead>
                                 <tr>

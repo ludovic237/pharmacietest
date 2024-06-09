@@ -43,7 +43,10 @@ $script_for_layout = '
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Vente/functions.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>
+<link rel="stylesheet" href="' . BASE_URL . '/koudjine/css/material-components-web.min.css">
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/material-components-web.min.js"></script>';
+
 if (isset($caisse) && $caisse == null) {
     //$employe = $caisse;
     //print_r($caisse);
