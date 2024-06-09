@@ -10,6 +10,7 @@ $manager = new Produit_detailManager($pdo);
 $managerPr = new ProduitManager($pdo);
 
 $produit_grossiste = $managerPr->getOldListGrossiste();
+echo 'ok';
 foreach ($produit_grossiste as $k => $v) :
     //$stock = $stock + ($v->quantiteRestante());
 
@@ -45,7 +46,7 @@ foreach ($produit_grossiste as $k => $v) :
 
             $i = 0;
             foreach ($texto as $a => $b):
-                if(!$managerPr->existsId($b)){
+                if($managerPr->existsId($b)){
                     $prd = $managerPr->get($b);
                     $prd->setdetail_id($prd_det->id());
                     $managerPr->update($prd);
@@ -53,7 +54,7 @@ foreach ($produit_grossiste as $k => $v) :
             endforeach;
 
         }
-        if(!$managerPr->existsId($v->id())){
+        if($managerPr->existsId($v->id())){
             $prd1 = $managerPr->get($v->id());
             $prd1->setsupprimer(1);
             $managerPr->update($prd1);

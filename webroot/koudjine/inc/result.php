@@ -36,6 +36,7 @@ if (isset($_GET["motclef1"])) {
                 else $reduction = $result->reductionMax;
                 echo "<tr id=\"R" . $result->idp . "\">
                                             <td class='nom'><strong>" . $result->nom . "</strong></td>
+                                            <td class='type'>En rayon</td>
 
                                             <td>
                                                 <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit('" . $result->idp . "')\"><span class=\"\">Charger</span></button>
@@ -49,7 +50,7 @@ if (isset($_GET["motclef1"])) {
 
                 echo "<tr id=\"R" . $result1->id . "\">
                                             <td class='nom'><strong>" . $result1->nom . "</strong></td>
-
+                                            <td class='type'>Detail</td>
                                             <td>
                                                 <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data='detail' data-placement=\"top\" onclick=\"load_produit('" . $result1->id . "')\"><span class=\"\">Charger</span></button>
                                             </td>

@@ -43,6 +43,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <thead>
                                     <tr>
                                         <th style="width: 100%;">Nom</th>
+                                        <th>Type</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
