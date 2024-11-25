@@ -1088,6 +1088,27 @@ function rafraichir_vente(id) {
 
 }
 
+
+function rafraichir_vente_data(id) {
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/rafraichir_vente_windows.php',
+        data: {
+            id: id
+        },
+        success: function (server_responce) {
+            $('#tab_caisse').empty();
+            $('#tab_caisse').html(server_responce);
+
+        }
+
+
+    })
+
+
+}
+
 function charger_vente(id) {
     $(".caisse").val('');
     $("#facture_caisse").html($("#" + id + " .prixtotal").html());
@@ -1392,8 +1413,31 @@ function close_caisse_row_valide(user_id) {
 }
 
 
-function close_caisse_row() {
-    $("#iconPreviewCaisseFermer").modal("show");
+function close_caisse_row(id) {
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/rafraichir_vente_windows.php',
+        data: {
+            id: id
+        },
+        success: function (server_responce) {
+            server_responce = JSON.parse(server_responce);
+            console.log("server_responce");
+            console.log(server_responce);
+            if (server_responce.data.length==0){
+                $("#iconPreviewCaisseFermer").modal("show");
+            }
+            else {
+                $('#message-box-danger p').html('Des ventes n ont pas encore ete encaiisser');
+                $("#message-box-danger").modal("show");
+                setTimeout(function () {
+                    $("#message-box-danger").modal("hide");
+                }, 3000);
+            }
+
+        }
+    })
 }
 
 

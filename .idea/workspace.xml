@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="update produit detail">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="desactivation de la fonction qui affiche la  fenetre  modal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/comptabilite/koudjine_caisse.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/comptabilite/koudjine_caisse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/layout/koudjine.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/layout/koudjine.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/caisse.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/caisse.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +62,11 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="ludovic ngono &lt;lg.ngono@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="alsa.1.1" />
@@ -445,7 +447,7 @@
       <workItem from="1718316257882" duration="356000" />
       <workItem from="1732455009751" duration="1676000" />
       <workItem from="1732456741101" duration="151000" />
-      <workItem from="1732560357343" duration="664000" />
+      <workItem from="1732560357343" duration="2540000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1646899402949</created>
@@ -545,7 +547,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717944915282</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="desactivation de la fonction qui affiche la  fenetre  modal">
+      <created>1732561219731</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1732561219731</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -690,7 +699,8 @@
     <MESSAGE value="merge" />
     <MESSAGE value="udpate pharma_produit_commande_view" />
     <MESSAGE value="update produit detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="update produit detail" />
+    <MESSAGE value="desactivation de la fonction qui affiche la  fenetre  modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="desactivation de la fonction qui affiche la  fenetre  modal" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/question_categorie.php">
