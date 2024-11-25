@@ -928,7 +928,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         <button type="button" class="btn btn-success" style="margin-right: 20px; "
                                 onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Valider
                         </button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <button onclick="close_modal_caisse_row()" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

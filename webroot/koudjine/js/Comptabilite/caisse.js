@@ -234,9 +234,9 @@ $(document).ready(function () {
         $("#iconPreviewCaisse").modal("show");
     })
 
-    $('#iconPreviewCaisseFermer').on('hidden.bs.modal', function () {
-        $("#iconPreviewCaisseFermer").modal("show");
-    })
+    // $('#iconPreviewCaisseFermer').on('hidden.bs.modal', function () {
+    //     $("#iconPreviewCaisseFermer").modal("show");
+    // })
 
     $('#iconPreviewRapport').on('hidden.bs.modal', function () {
         $("#iconPreviewRapport").modal("show");
@@ -1396,6 +1396,10 @@ function close_caisse_row() {
     $("#iconPreviewCaisseFermer").modal("show");
 }
 
+
+function close_modal_caisse_row() {
+    $("#iconPreviewCaisseFermer").modal("hide");
+}
 
 function showRapportTest(id) {
     console.log("YO");
