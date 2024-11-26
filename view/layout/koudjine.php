@@ -195,12 +195,14 @@
                             <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse') { ?>class="active" <?php } ?>>
                                 <a href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>"><span class="fa lettre">O</span> Ouvert</a>
                             </li>
-                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_rapport') { ?>class="active" <?php } ?>>
-                                <a href="<?php echo Router::url('bouwou/comptabilite/caisse_rapport'); ?>"><span class="fa lettre">R</span> Rapport</a>
-                            </li>
-                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_fermer') { ?>class="active" <?php } ?>>
-                                <a href="#" onclick="close_caisse_row('<?php echo $caisse->id; ?>')"><span class="fa lettre">F</span> Fermer</a>
-                            </li>
+                            <?php if (!empty($caisse->id)) { ?>
+                                <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_rapport') { ?>class="active" <?php } ?>>
+                                    <a href="<?php echo Router::url('bouwou/comptabilite/caisse_rapport'); ?>"><span class="fa lettre">R</span> Rapport</a>
+                                </li>
+                                <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_fermer') { ?>class="active" <?php } ?>>
+                                    <a href="#" onclick="close_caisse_row('<?php echo $caisse->id; ?>')"><span class="fa lettre">F</span> Fermer</a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </li>
                     <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'consultation') { ?>class="active" <?php } ?>>
@@ -711,10 +713,10 @@
                     id: id
                 },
                 success: function (server_responce) {
-                    server_responce = JSON.parse(server_responce);
                     console.log("server_responce");
                     console.log(server_responce);
                     console.log(server_responce.data);
+                    server_responce = JSON.parse(server_responce);
                     if (server_responce.data.length==0){
                         $("#iconPreviewCaisseFermer").modal("show");
                     }

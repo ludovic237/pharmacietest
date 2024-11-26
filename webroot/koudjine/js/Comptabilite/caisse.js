@@ -230,9 +230,9 @@ $(document).ready(function () {
     });
 
 
-    $('#iconPreviewCaisse').on('hidden.bs.modal', function () {
-        $("#iconPreviewCaisse").modal("show");
-    })
+    // $('#iconPreviewCaisse').on('hidden.bs.modal', function () {
+    //     $("#iconPreviewCaisse").modal("show");
+    // })
 
     // $('#iconPreviewCaisseFermer').on('hidden.bs.modal', function () {
     //     $("#iconPreviewCaisseFermer").modal("show");
@@ -1422,9 +1422,9 @@ function close_caisse_row(id) {
             id: id
         },
         success: function (server_responce) {
-            server_responce = JSON.parse(server_responce);
             console.log("server_responce");
             console.log(server_responce);
+            server_responce = JSON.parse(server_responce);
             if (server_responce.data.length==0){
                 $("#iconPreviewCaisseFermer").modal("show");
             }
@@ -1443,6 +1443,15 @@ function close_caisse_row(id) {
 
 function close_modal_caisse_row() {
     $("#iconPreviewCaisseFermer").modal("hide");
+}
+
+
+function show_modal_caisse_open_row() {
+    $("#iconPreviewCaisse").modal("show");
+}
+
+function close_modal_caisse_open_row() {
+    $("#iconPreviewCaisse").modal("hide");
 }
 
 function showRapportTest(id) {

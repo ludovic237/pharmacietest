@@ -1,7 +1,13 @@
 <!-- <?php
 
 $title_for_layout = ' ALSAS -' . 'Comptabilite';
-$page_for_layout = 'Caisse ouverte par : ' . $employe->nom . ' ' . $employe->prenom;
+//$page_for_layout = 'Caisse ouverte par : ' . $employe->nom . ' ' . $employe->prenom;
+if (!empty($caisse->id)){
+    $page_for_layout = 'Caisse ouverte par : ' . $employe->nom . ' ' . $employe->prenom;
+}
+else {
+    $page_for_layout = 'Caisse ouverte par : ';
+}
 $action_fermeture = (isset($caisse)) ? $caisse : $caisseCheck;
 //if(isset($employe)) echo 'passe';
 
@@ -84,21 +90,28 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
 
                             </button> -->
 
-                        <button class="btn btn-primary  pull-left" data="" id=""
-                                onclick="open_bon_caisse()">Bon de caisse
-                        </button>
+
                         <!--                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_rapport('<?php //echo $action_fermeture->id;
                         ?>//')">Rapport</button>-->
                         <button class="btn btn-primary  pull-left" data="" id=""
-                                onclick="open_depense('<?php echo $action_fermeture->id; ?>')">Entrez dépense
+                                onclick="show_modal_caisse_open_row()">Ouvrir la caisse
                         </button>
-
-                        <button class="btn btn-primary  pull-right" data="" id=""
-                                onclick="rafraichir_vente('<?php echo $caisse->id; ?>')">Rafraichir
-                        </button>
-                        <button class="btn btn-primary btn-rounded  pull-right" data="" id=""
-                                onclick="liste_caisse('<?php echo $caisse->id; ?>')">Afficher vente
-                        </button>
+                        <?php if (!empty($action_fermeture->id)) { ?>
+                            <button class="btn btn-primary  pull-left" data="" id=""
+                                    onclick="open_bon_caisse()">Bon de caisse
+                            </button>
+                            <button class="btn btn-primary  pull-left" data="" id=""
+                                    onclick="open_depense('<?php echo $action_fermeture->id; ?>')">Entrez dépense
+                            </button>
+                        <?php } ?>
+                        <?php if (!empty($caisse->id)) { ?>
+                            <button class="btn btn-primary  pull-right" data="" id=""
+                                    onclick="rafraichir_vente('<?php echo $caisse->id; ?>')">Rafraichir
+                            </button>
+                            <button class="btn btn-primary btn-rounded  pull-right" data="" id=""
+                                    onclick="liste_caisse('<?php echo $caisse->id; ?>')">Afficher vente
+                            </button>
+                        <?php } ?>
                     </div>
                     <div class="table-responsive">
                         <table class="table   table-bordered table-striped table-actions" id="">
@@ -226,14 +239,16 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         <div class="btn-group">
                                             <a class="btn btn-primary" style="margin-right: 20px"
                                                href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>">Annuler</a>
-                                            <button class="btn btn-success" style="margin-right: 20px"
-                                                    onclick="valider_facture('Espèce','tab1', '<?php echo $action_fermeture->id; ?>', false)">
-                                                Valider
-                                            </button>
-                                            <button class="btn btn-success"
-                                                    onclick="valider_facture('Espèce','tab1','<?php echo $action_fermeture->id; ?>', true)">
-                                                Imprimer
-                                            </button>
+                                            <?php if (!empty($action_fermeture->id)) { ?>
+                                                <button class="btn btn-success" style="margin-right: 20px"
+                                                        onclick="valider_facture('Espèce','tab1', '<?php echo $action_fermeture->id; ?>', false)">
+                                                    Valider
+                                                </button>
+                                                <button class="btn btn-success"
+                                                        onclick="valider_facture('Espèce','tab1','<?php echo $action_fermeture->id; ?>', true)">
+                                                    Imprimer
+                                                </button>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <!-- END JQUERY VALIDATION PLUGIN -->
@@ -274,6 +289,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         <div class="btn-group pull-right">
                                             <a class="btn btn-primary" style="margin-right: 20px"
                                                href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>">Annuler</a>
+                                            <?php if (!empty($action_fermeture->id)) { ?>
                                             <button class="btn btn-success"
                                                     onclick="valider_facture('Electronique','tab2','<?php echo $action_fermeture->id; ?>', false)"
                                                     style="margin-right: 20px">Valider
@@ -282,6 +298,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     onclick="valider_facture('Electronique','tab2','<?php echo $action_fermeture->id; ?>', true)">
                                                 Imprimer
                                             </button>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <!-- END JQUERY VALIDATION PLUGIN -->
@@ -319,6 +336,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         <div class="btn-group pull-right">
                                             <a class="btn btn-primary" style="margin-right: 20px"
                                                href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>">Annuler</a>
+                                            <?php if (!empty($action_fermeture->id)) { ?>
                                             <button class="btn btn-success" type="submit" style="margin-right: 20px"
                                                     onclick="valider_facture('Ticketcaisse','tab3', '<?php echo $action_fermeture->id; ?>', false)">
                                                 Valider
@@ -327,6 +345,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     onclick="valider_facture('Ticketcaisse','tab3', '<?php echo $action_fermeture->id; ?>', true)">
                                                 Imprimer
                                             </button>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -430,6 +449,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             <div class="btn-group pull-right">
                                                 <a class="btn btn-primary" style="margin-right: 20px"
                                                    href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>">Annuler</a>
+                                                <?php if (!empty($action_fermeture->id)) { ?>
                                                 <button class="btn btn-success" type="submit"
                                                         onclick="valider_facture('Mixte','tab4', '<?php echo $action_fermeture->id; ?>', false)"
                                                         style="margin-right: 20px">Valider
@@ -438,6 +458,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                         onclick="valider_facture('Mixte','tab4', '<?php echo $action_fermeture->id; ?>', true)">
                                                     Imprimer
                                                 </button>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                         </idv>
@@ -485,11 +506,13 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     <?php echo $v->dateVente; ?>
                                                 </td>
                                                 <td>
+                                                    <?php if (isset($action_fermeture)  && !empty($action_fermeture->id)) { ?>
                                                     <button class="btn btn-primary btn-rounded btn-sm"
                                                             data-toggle="tooltip" data-placement="top"
                                                             onclick="envoyer_en_caisse(<?php echo $v->id; ?>,<?php echo $action_fermeture->id; ?>)">
                                                         Envoyer en caisse
                                                     </button>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach;
@@ -517,7 +540,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                 <div class="modal-header bg-success">
                     <button type="button" class="close" data-dismiss="modal"><span
                                 aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="">Ouvrir Caisse</h4>
+                    <h4 class="modal-title" id="" style="color: white">Ouvrir Caisse</h4>
                 </div>
                 <div class="modal-body" style="padding: 0px;">
                     <div class="row">
@@ -673,9 +696,11 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <?php if (!empty($_SESSION["Users"]->id)) { ?>
                     <button type="button" class="btn btn-success" style="margin-right: 20px;"
                             onclick="close_caisse_row_valide('<?php echo $_SESSION["Users"]->id; ?>')">Valider
                     </button>
+                    <?php } ?>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -691,7 +716,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                     <div class="modal-header bg-danger">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                                     class="sr-only">Close</span></button>
-                        <h4 class="modal-title">Fermer Caisse</h4>
+                        <h4 class="modal-title " style="color: white">Fermer Caisse</h4>
                     </div>
                     <div class="modal-body" style="padding: 0px;">
                         <div class="panel panel-default tabs">
@@ -925,10 +950,14 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <?php if (!empty($action_fermeture->id)) { ?>
                         <button type="button" class="btn btn-success" style="margin-right: 20px; "
                                 onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Valider
                         </button>
-                        <button onclick="close_modal_caisse_row()" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <?php } ?>
+                        <button onclick="close_modal_caisse_row()" type="button" class="btn btn-primary"
+                                data-dismiss="modal">Close
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1076,7 +1105,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                 <a class="btn btn-circle blue"
                                    style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
                                    onClick="imprimer_bloc('ticketCaisse','ticketCaisse')"><i class="fa fa-print"
-                                                                                           style="font-size:10px"></i>&nbsp;Imprimer</a>
+                                                                                             style="font-size:10px"></i>&nbsp;Imprimer</a>
                             </div>
                         </div>
 
@@ -1441,7 +1470,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                 </div>
                                 <div class="panel-body panel-body-table">
                                     <div class="table-responsive">
-                                        <table  id="rapport_retour" class="table table-bordered table-striped">
+                                        <table id="rapport_retour" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
                                                 <th>Quantité</th>
@@ -1625,11 +1654,13 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <?php if (!empty($action_fermeture->id)) { ?>
                     <button type="button" id='savedepenseid' class="btn btn-success"
                             onclick="valider_depense('<?php echo $action_fermeture->id; ?>')"
                             style="margin-right: 20px; ">
                         Enregistrer
                     </button>
+                    <?php }?>
                     <button type="button" class="btn btn-primary" onclick="close_depense()">Ferler</button>
                 </div>
             </div>
@@ -1957,7 +1988,8 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                             ?>
                                                         </td>
 
-                                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
+                                                        <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong>
+                                                        </td>
                                                         <td class="prixp"><?php echo $v->prixPercu; ?></td>
                                                         <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
                                                         <td class="seller"><?php echo $v->identifiant; ?></td>
@@ -1968,9 +2000,11 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                             <?php echo $v->etat; ?>
                                                         </td>
                                                         <td>
-                                                            <a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip"
+                                                            <a class="btn btn-success btn-rounded btn-sm"
+                                                               data-toggle="tooltip"
                                                                data-placement="top" title="Modifier"
-                                                               onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer ticket</a>
+                                                               onclick="reimprime_ticket(<?php echo $v->id; ?>)">Imprimer
+                                                                ticket</a>
                                                             <!-- <a class="btn btn-danger btn-rounded btn-sm" data-toggle="tooltip" data-placement="top" title="Supprimer" onClick="delete_row('<?php echo $v->CONCOURS_ID; ?>','<?php echo $this->request->controller; ?>');"><span class="fa fa-times"></span></a> -->
                                                         </td>
                                                         <p></p>
