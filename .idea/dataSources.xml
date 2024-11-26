@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="xampp - pharmanet1" uuid="6a7eb967-f153-437c-b70a-5dcebeecb180">
+    <data-source source="LOCAL" name="MySQL - pharmanet1@localhost [2]" uuid="6a7eb967-f153-437c-b70a-5dcebeecb180">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
@@ -12,7 +12,7 @@
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:81/pharmanet1</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/pharmanet1</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

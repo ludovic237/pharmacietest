@@ -187,6 +187,9 @@ class UserManager
 
         $q = $this->_db->query('SELECT * FROM user WHERE supprimer = 0 AND id = ' . $info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        if (!$donnees) {
+            return null; // Ou une autre action comme lancer une exception
+        }
         return new User($donnees);
     }
     public function getList()

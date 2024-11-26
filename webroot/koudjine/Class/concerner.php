@@ -236,7 +236,7 @@ class ConcernerManager
         $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND vente_id =' . $id);
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
-            $concerners[] = new Concerner($donnees);
+            $concerners[] =new Concerner($donnees) ;
         }
         return $concerners;
     }

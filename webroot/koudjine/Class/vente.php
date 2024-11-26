@@ -1,6 +1,6 @@
 <?php
 
-class vente
+class Vente
 {
     private $_id,
         $_employe_id,
@@ -488,7 +488,7 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $ventes[] = new Vente($donnees);
+            $ventes[] = $donnees;
         }
         return $ventes;
     }
@@ -496,11 +496,11 @@ class VenteManager
     public function getListCaisseCompleteByEtatOuvert($id,$type)
     {
         $ventes = array();
-        $q = $this->_db->prepare("SELECT v.id as id, c.id as idc, v.dateVente, v.prixTotal, v.prixPercu, v.supprimer, v.reference, v.etat, c.dateOuvert, c.dateFerme, c.user_id FROM vente v, caisse c WHERE v.supprimer = 0  AND c.id = ".$id." AND v.etat = '".$type."' AND v.dateVente BETWEEN DATE_SUB( c.dateOuvert,INTERVAL 0  MONTH) AND DATE_SUB( NOW(),INTERVAL 0  MONTH ) ORDER BY v.dateVente DESC");
+        $q = $this->_db->prepare("SELECT v.id as id, c.id as idc, v.dateVente, v.prixTotal, v.prixPercu as prixPercu , v.supprimer, v.reference, v.etat, c.dateOuvert, c.dateFerme, c.user_id FROM vente v, caisse c WHERE v.supprimer = 0  AND c.id = ".$id." AND v.etat = '".$type."' AND v.dateVente BETWEEN DATE_SUB( c.dateOuvert,INTERVAL 0  MONTH) AND DATE_SUB( NOW(),INTERVAL 0  MONTH ) ORDER BY v.dateVente DESC");
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $ventes[] = new Vente($donnees);
+            $ventes[] = $donnees;
         }
 
         return $ventes;
@@ -509,11 +509,11 @@ class VenteManager
     public function getListCaisseCompleteByEtat_2($id,$type)
     {
         $ventes = array();
-        $q = $this->_db->prepare("SELECT v.id as id, c.id as idc, v.dateVente, v.prixPercu, v.supprimer, v.reference, v.etat, c.dateOuvert, c.dateFerme, c.user_id FROM vente v, caisse c WHERE v.supprimer = 0  AND v.caisse_id = c.id AND c.id = ".$id." AND v.etat = '".$type."' AND v.prixPercu <> 0 ORDER BY v.dateVente DESC");
+        $q = $this->_db->prepare("SELECT v.id as id, c.id as idc, v.dateVente, v.prixTotal, v.prixPercu, v.supprimer, v.reference, v.etat, c.dateOuvert, c.dateFerme, c.user_id FROM vente v, caisse c WHERE v.supprimer = 0  AND v.caisse_id = c.id AND c.id = ".$id." AND v.etat = '".$type."' AND v.prixPercu <> 0 ORDER BY v.dateVente DESC");
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $ventes[] = new Vente($donnees);
+            $ventes[] = $donnees;
         }
 //        echo json_decode($ventes);
         return $ventes;

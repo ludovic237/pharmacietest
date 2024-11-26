@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="desactivation de la fonction qui affiche la  fenetre  modal">
+    <list default="true" id="27e3cccf-8572-42d5-a8bf-4bc061dd2b6b" name="Default" comment="affiichage d'un  message lorsque les ventes ne sont pas totalement encaisser">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/layout/koudjine.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/layout/koudjine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/caisse.js" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/js/Comptabilite/caisse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/concerner.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/concerner.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/vente.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/vente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/Class/viewrapportvente.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/Class/viewrapportvente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webroot/koudjine/inc/rapport_caisse_all.php" beforeDir="false" afterPath="$PROJECT_DIR$/webroot/koudjine/inc/rapport_caisse_all.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,11 +307,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Database Script.view.sql" />
         <item itemvalue="Database Script.update.sql" />
+        <item itemvalue="Database Script.pharmanet1.sql" />
         <item itemvalue="Database Script.pharmanet1(7).sql" />
         <item itemvalue="Database Script.pharm.sql" />
-        <item itemvalue="Database Script.pharmanet1.sql" />
-        <item itemvalue="Database Script.view.sql" />
       </list>
     </recent_temporary>
   </component>
@@ -447,7 +452,8 @@
       <workItem from="1718316257882" duration="356000" />
       <workItem from="1732455009751" duration="1676000" />
       <workItem from="1732456741101" duration="151000" />
-      <workItem from="1732560357343" duration="2540000" />
+      <workItem from="1732560357343" duration="12189000" />
+      <workItem from="1732587179806" duration="11844000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1646899402949</created>
@@ -554,7 +560,28 @@
       <option name="project" value="LOCAL" />
       <updated>1732561219731</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="affiichage d'un  message lorsque les ventes ne sont pas totalement encaisser">
+      <created>1732563021819</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1732563021819</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fermer caisse et ouvrir caisse couleur arriere plan">
+      <created>1732570406384</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1732570406384</updated>
+    </task>
+    <task id="LOCAL-00018" summary="resolution des erreurs d'affichage et gestion d'ouverture et fermeture caisse">
+      <created>1732579861471</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1732579861471</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -700,7 +727,10 @@
     <MESSAGE value="udpate pharma_produit_commande_view" />
     <MESSAGE value="update produit detail" />
     <MESSAGE value="desactivation de la fonction qui affiche la  fenetre  modal" />
-    <option name="LAST_COMMIT_MESSAGE" value="desactivation de la fonction qui affiche la  fenetre  modal" />
+    <MESSAGE value="affiichage d'un  message lorsque les ventes ne sont pas totalement encaisser" />
+    <MESSAGE value="fermer caisse et ouvrir caisse couleur arriere plan" />
+    <MESSAGE value="resolution des erreurs d'affichage et gestion d'ouverture et fermeture caisse" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolution des erreurs d'affichage et gestion d'ouverture et fermeture caisse" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/webroot/koudjine/inc/question_categorie.php">
