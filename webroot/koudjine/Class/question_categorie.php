@@ -109,6 +109,9 @@ class QuestionCategorieManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $questions[] = new QuestionCategorie($donnees);
         }
         return $questions;

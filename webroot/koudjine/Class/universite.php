@@ -220,6 +220,9 @@ class UniversiteManager
 
             $q = $this->_db->query('SELECT * FROM universite WHERE SUPPRIMER = 0 AND UNIVERSITE_ID = '.$info);
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
+            if ($donnees === false) {
+                $donnees = [];
+            }
             return new Universite($donnees);
 
     }
@@ -230,6 +233,9 @@ class UniversiteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $universites[] = new Universite($donnees);
         }
         return $universites;

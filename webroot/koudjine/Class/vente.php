@@ -292,6 +292,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -303,6 +306,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -314,6 +320,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -325,6 +334,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -337,6 +349,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -349,6 +364,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -361,6 +379,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -394,6 +415,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -410,6 +434,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -426,6 +453,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -440,6 +470,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -452,6 +485,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -464,6 +500,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -476,6 +515,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
         return $ventes;
@@ -488,7 +530,10 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $ventes[] = $donnees;
+            if ($donnees === false) {
+                $donnees = [];
+            }
+            $ventes[] = new Vente($donnees);
         }
         return $ventes;
     }
@@ -500,7 +545,10 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $ventes[] = $donnees;
+            if ($donnees === false) {
+                $donnees = [];
+            }
+            $ventes[] = new Vente($donnees);
         }
 
         return $ventes;
@@ -513,7 +561,10 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $ventes[] = $donnees;
+            if ($donnees === false) {
+                $donnees = [];
+            }
+            $ventes[] = new Vente($donnees);
         }
 //        echo json_decode($ventes);
         return $ventes;
@@ -528,6 +579,9 @@ class VenteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $ventes[] = new Vente($donnees);
         }
 //        echo json_decode($ventes);

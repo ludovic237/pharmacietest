@@ -148,6 +148,9 @@ class MagasinManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $magasins[] = new Magasin($donnees);
         }
         return $magasins;

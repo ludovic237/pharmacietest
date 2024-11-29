@@ -237,6 +237,9 @@ class FournisseurManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = $donnees;
         }
         return $produits;
@@ -249,6 +252,9 @@ class FournisseurManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $fournisseurs[] = $donnees;
         }
         return $fournisseurs;
@@ -261,6 +267,9 @@ class FournisseurManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $fournisseurs[] = $donnees;
         }
         return $fournisseurs;

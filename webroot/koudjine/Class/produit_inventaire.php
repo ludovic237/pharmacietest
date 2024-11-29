@@ -188,6 +188,9 @@ class Produit_inventaireManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produit_inventaires[] = new Produit_inventaire($donnees);
         }
         return $produit_inventaires;

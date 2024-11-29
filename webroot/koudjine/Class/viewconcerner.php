@@ -257,6 +257,9 @@ class ConcernerViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new Concerner_view($donnees);
         }
         return $produits;
@@ -269,6 +272,9 @@ class ConcernerViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new Concerner_view($donnees);
         }
         return $produits;
@@ -281,6 +287,9 @@ class ConcernerViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new Concerner_view($donnees);
         }
         return $produits;
@@ -294,6 +303,9 @@ class ConcernerViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new Concerner_view($donnees);
         }
         return $produits;

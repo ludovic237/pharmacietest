@@ -38,7 +38,7 @@ if (isset($_POST['idCaisse'])) {
         $nameProduit = "";
         foreach ($produits as $k => $c) :
             //echo $v->en_rayon_id();
-            if ($v->type() == "detail"){
+            if ($v->etat() == "detail"){
                 $nom = $managerPrDetail->get($c->en_rayon_id())->nom();
             }
             else {

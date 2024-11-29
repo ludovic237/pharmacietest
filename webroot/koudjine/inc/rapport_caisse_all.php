@@ -4,7 +4,7 @@ require_once('../Class/facturation.php');
 require_once('../Class/caisse.php');
 require_once('../Class/employe.php');
 require_once('../Class/bon_caisse.php');
-
+require_once('../Class/vente.php');
 require_once('../Class/viewrapportvente.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/depense.php');
@@ -18,7 +18,6 @@ require_once('../Class/facture_ticket.php');
 
 require_once('../Class/retour_produit.php');
 require_once('../Class/produit_retour.php');
-require_once('../Class/vente.php');
 
 global $pdo;
 
@@ -100,8 +99,8 @@ else
     $ventesComptant = $managerVente->getListCaisseCompleteByEtatOuvert($id, "Comptant");
 $totalVenteComptant = 0;
 foreach ($ventesComptant as $k => $v) :
-    if ($v['prixPercu'] >= 0) {
-        $totalVenteComptant = $totalVenteComptant + ($v['prixTotal']);
+    if ($v->prixPercu()>0){
+        $totalVenteComptant = $totalVenteComptant + ($v->prixTotal());
     }
 endforeach;
 
@@ -111,14 +110,14 @@ else
     $ventesCredit = $managerVente->getListCaisseCompleteByEtatOuvert($id, "Crédit");
 $totalVenteCredit = 0;
 foreach ($ventesCredit as $k => $v) :
-    $totalVenteCredit = $totalVenteCredit + ($v['prixTotal']);
+    $totalVenteCredit = $totalVenteCredit + ($v->prixTotal());
 endforeach;
 
 $ventesCreditFact = $managerVente->getListCaisseCompleteByEtat_2($id, "Crédit");
 
 $totalVenteCredit1 = 0;
 foreach ($ventesCreditFact as $k => $v) :
-    $totalVenteCredit1 = $totalVenteCredit1 + ($v['prixTotal']);
+    $totalVenteCredit1 = $totalVenteCredit1 + ($v->prixTotal());
 endforeach;
 
 if ($caisse->etat() != 'Ouvert')
@@ -127,7 +126,7 @@ else
     $ventesAssurance = $managerVente->getListCaisseCompleteByEtat($id, "Assurance");
 $totalVenteAssurance = 0;
 foreach ($ventesAssurance as $k => $v) :
-    $totalVenteAssurance = $totalVenteAssurance + ($v['prixTotal']);
+    $totalVenteAssurance = $totalVenteAssurance + ($v->prixTotal());
 endforeach;
 
 $totalVenteTypeVente = $totalVenteAssurance + $totalVenteComptant + $totalVenteCredit;

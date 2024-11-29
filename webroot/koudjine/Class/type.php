@@ -145,6 +145,9 @@ class TypeManager
     {
             $q = $this->_db->query('SELECT * FROM type WHERE SUPPRIMER = 0 AND TYPE_ID = '.$info);
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
+            if ($donnees === false) {
+                $donnees = [];
+            }
             return new Type($donnees);
 
 
@@ -156,6 +159,9 @@ class TypeManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $Types[] = new Type($donnees);
         }
         return $Types;

@@ -167,6 +167,9 @@ class RetourProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $stocks[] = new RetourProduit($donnees);
         }
         return $stocks;
@@ -179,6 +182,9 @@ class RetourProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $stocks[] = new RetourProduit($donnees);
         }
         return $stocks;
@@ -191,6 +197,9 @@ class RetourProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new RetourProduit($donnees);
         }
         return $produits;

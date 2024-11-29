@@ -225,6 +225,9 @@ class ConcernerManager
         if ($info!=null){
             $q = $this->_db->query('SELECT * FROM concerner WHERE supprimer = 0 AND id = ' . $info);
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
+            if ($donnees === false) {
+                $donnees = [];
+            }
             return new Concerner($donnees);
         }
         $donnees=array();

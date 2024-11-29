@@ -239,6 +239,9 @@ class CaisseManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $caisses[] = new Caisse($donnees);
         }
         return $caisses;
@@ -251,6 +254,9 @@ class CaisseManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $caisses[] = new Caisse($donnees);
         }
         return $caisses;
@@ -263,6 +269,9 @@ class CaisseManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $caisses[] = new Caisse($donnees);
         }
         return $caisses;
@@ -288,6 +297,9 @@ class CaisseManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $caisses[] = new Caisse($donnees);
         }
         return $caisses;

@@ -195,6 +195,9 @@ class ProduitcmdViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new Produit_cmd_view($donnees);
         }
         return $produits;
@@ -208,6 +211,9 @@ class ProduitcmdViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new Produit_cmd_view($donnees);
         }
         return $produits;

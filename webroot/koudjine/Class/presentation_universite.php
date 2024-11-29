@@ -142,6 +142,9 @@ class PresentationUniversiteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $Presentations[] = new PresentationUniversite($donnees);
         }
         return $Presentations;

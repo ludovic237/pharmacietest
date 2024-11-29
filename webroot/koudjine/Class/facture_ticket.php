@@ -142,6 +142,9 @@ class FactureTicketManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $facturation[] = new FactureTicket($donnees);
         }
         return $facturation;
@@ -154,6 +157,9 @@ class FactureTicketManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $facturation[] = new FactureTicket($donnees);
         }
         return $facturation;

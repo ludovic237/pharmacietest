@@ -172,6 +172,9 @@ class PrescripteurManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $prescripteurs[] = new Prescripteur($donnees);
         }
         return $prescripteurs;

@@ -368,17 +368,20 @@ class ProduitManager
         if ($info!=null){
             $q = $this->_db->query('SELECT * FROM produit WHERE supprimer = 0 AND id = '.$info);
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
-            return new produit($donnees);
+            if ($donnees === false) {
+                $donnees = [];
+            }
+            return new Produit($donnees);
         }
         $donnees=array();
-        return new produit($donnees);
+        return new Produit($donnees);
     }
     public function getNom($info)
     {
 
         $q = $this->_db->query('SELECT * FROM produit WHERE supprimer = 0 AND nom = "'.$info.'"');
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new produit($donnees);
+        return new Produit($donnees);
 
     }
     public function getLast()
@@ -386,7 +389,7 @@ class ProduitManager
 
         $q = $this->_db->query('SELECT * FROM produit WHERE supprimer = 0 order by id desc limit 1');
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new produit($donnees);
+        return new Produit($donnees);
 
     }
     public function getLastReferenceDetail()
@@ -394,7 +397,7 @@ class ProduitManager
 
         $q = $this->_db->query('SELECT * FROM produit WHERE grossiste_id IS NOT NULL and grossiste_id != "" and reference IS NOT NULL and reference != "" and supprimer = 0 order by id desc limit 1');
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new produit($donnees);
+        return new Produit($donnees);
 
     }
     public function getStock($id, $info)
@@ -402,7 +405,7 @@ class ProduitManager
 
         $q = $this->_db->query('SELECT * FROM produit WHERE supprimer = 0 AND stock >= '.$info.' AND id = '.$id);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new produit($donnees);
+        return new Produit($donnees);
 
 
     }
@@ -413,6 +416,9 @@ class ProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new Produit($donnees);
         }
         return $produits;
@@ -424,6 +430,9 @@ class ProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new Produit($donnees);
         }
         return $produits;
@@ -435,6 +444,9 @@ class ProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new Produit($donnees);
         }
         return $produits;
@@ -446,6 +458,9 @@ class ProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produits[] = new Produit($donnees);
         }
         return $produits;

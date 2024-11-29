@@ -195,6 +195,9 @@ class DepartementManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $Departements[] = new Departement($donnees);
         }
         return $Departements;

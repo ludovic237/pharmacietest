@@ -88,6 +88,9 @@ class TypeUniversiteManager
         $q->execute(array(':id' => $univid));
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $TypeUniversites[] = new TypeUniversite($donnees);
         }
         return $TypeUniversites;

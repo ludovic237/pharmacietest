@@ -132,6 +132,9 @@ class TypeSortieManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $Types[] = new TypeSortie($donnees);
         }
         return $Types;

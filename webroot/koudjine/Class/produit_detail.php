@@ -206,6 +206,9 @@ class Produit_detailManager
         if ($info!=null){
             $q = $this->_db->query('SELECT * FROM produit_detail WHERE supprimer = 0 AND id = '.$info);
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
+            if ($donnees === false) {
+                $donnees = [];
+            }
             return new produit_detail($donnees);
         }
         $donnees=array();
@@ -243,6 +246,9 @@ class Produit_detailManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $produit_details[] = new produit_detail($donnees);
         }
         return $produit_details;

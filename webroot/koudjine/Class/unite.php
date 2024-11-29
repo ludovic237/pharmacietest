@@ -148,6 +148,9 @@ class UniteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
+            if ($donnees === false) {
+                $donnees = [];
+            }
             $unites[] = new Unite($donnees);
         }
         return $unites;

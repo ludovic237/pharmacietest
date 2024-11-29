@@ -577,7 +577,7 @@ function imprimer_bloc(titre, objet) {
     return true;
 }
 
-function showVenteCaisse(id, total) {
+function showVenteCaisse(id, total, session) {
     $("#totalEncaissement").html(total);
     $.ajax({
         type: "POST",
