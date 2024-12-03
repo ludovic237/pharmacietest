@@ -233,9 +233,6 @@ class UniversiteManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $universites[] = new Universite($donnees);
         }
         return $universites;

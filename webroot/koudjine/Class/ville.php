@@ -148,9 +148,6 @@ class VilleManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $villes[] = new Ville($donnees);
         }
         return $villes;

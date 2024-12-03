@@ -148,9 +148,6 @@ class RayonManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $rayons[] = new Rayon($donnees);
         }
         return $rayons;

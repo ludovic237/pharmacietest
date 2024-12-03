@@ -241,9 +241,6 @@ class LignecaisseManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $lignecaisses[] = new Lignecaisse($donnees);
         }
         return $lignecaisses;

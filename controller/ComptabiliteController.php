@@ -62,9 +62,11 @@ class ComptabiliteController extends Controller
     {
         $this->loadModel('Comptabilite');
         $d['vente_credit'] = $this->Comptabilite->find(array(
-            //'fields' => 'produit.nom as nom',
-            'table' => 'vente',
-            'conditions' => "supprimer = 0 AND prixPercu = 0 AND etat = \"Crédit\" AND ISNULL(caisse_id) = 1"
+            'fields' => 'vente.id as id, client.nom as cnom, client.prenom as cprenom, vendeur.nom as vnom, vendeur.prenom as vprenom, prixTotal, dateVente, reference, vente.etat as etat, vente.supprimer as supprimer',
+            //'fields' => 'produit.nom',
+            'table' => 'vente,employe,user as client,user as vendeur',
+            'order' => 'dateVente-ASC',
+            'conditions' => "vente.employe_id = employe.id AND employe.user_id = vendeur.id AND vente.user_id = client.id AND vente.supprimer = 0 AND vente.prixPercu = 0 AND vente.etat = \"Crédit\" AND ISNULL(caisse_id) = 1"
         ));
         $d['bon_caisse'] = $this->Comptabilite->find(array(
             'fields' => 'b.id as idb, nom_client, identifiant, montant, dateGenerer',

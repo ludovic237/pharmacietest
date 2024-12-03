@@ -193,9 +193,6 @@ class ClientManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $clients[] = new Client($donnees);
         }
         return $clients;

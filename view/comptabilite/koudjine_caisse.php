@@ -93,10 +93,16 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
 
                         <!--                              <button class="btn btn-primary  pull-left" data="" id="" onclick="open_rapport('<?php //echo $action_fermeture->id;
                         ?>//')">Rapport</button>-->
-                        <button class="btn btn-primary  pull-left" data="" id=""
-                                onclick="show_modal_caisse_open_row()">Ouvrir la caisse
-                        </button>
+
+                        <?php if (empty($action_fermeture->id)) { ?>
+                            <button class="btn btn-primary  pull-left" data="" id=""
+                                    onclick="show_modal_caisse_open_row()">Ouvrir la caisse
+                            </button>
+                        <?php } ?>
                         <?php if (!empty($action_fermeture->id)) { ?>
+                            <button class="btn btn-primary  pull-left" data="" id=""
+                                    onclick="close_caisse_row('<?php echo $caisse->id; ?>')">Fermer la caisse
+                            </button>
                             <button class="btn btn-primary  pull-left" data="" id=""
                                     onclick="open_bon_caisse()">Bon de caisse
                             </button>
@@ -491,6 +497,8 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         <th>Prix Total</th>
                                         <th>Etat</th>
                                         <th>Réference</th>
+                                        <th>Vendeur</th>
+                                        <th>Client</th>
                                         <th>Date vente</th>
                                         <th>Actions</th>
                                     </tr>
@@ -502,6 +510,24 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 <td><strong class='prixtotal'><?php echo $v->prixTotal; ?></strong></td>
                                                 <td class="etat"><?php echo $v->etat; ?></td>
                                                 <td><?php echo $v->reference; ?></td>
+                                                <td>
+                                                    <?php echo !empty($v->vnom) && !empty($v->vprenom)
+                                                        ? $v->vnom . ' ' . $v->vprenom
+                                                        : (!empty($v->vnom)
+                                                            ? $v->vnom
+                                                            : (!empty($v->vprenom)
+                                                                ? $v->vprenom
+                                                                : 'NaN')); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo !empty($v->cnom) && !empty($v->cprenom)
+                                                        ? $v->cnom . ' ' . $v->cprenom
+                                                        : (!empty($v->cnom)
+                                                            ? $v->cnom
+                                                            : (!empty($v->cprenom)
+                                                                ? $v->cprenom
+                                                                : 'NaN')); ?>
+                                                </td>
                                                 <td>
                                                     <?php echo $v->dateVente; ?>
                                                 </td>
@@ -956,7 +982,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         </button>
                         <?php } ?>
                         <button onclick="close_modal_caisse_row()" type="button" class="btn btn-primary"
-                                data-dismiss="modal">Close
+                                data-dismiss="modal">Annuler
                         </button>
                     </div>
                 </div>

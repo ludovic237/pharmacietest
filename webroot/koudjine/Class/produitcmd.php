@@ -295,9 +295,6 @@ class Produit_cmdManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $produitcmd[] = new Produit_cmd($donnees);
         }
         return $produitcmd;
@@ -310,9 +307,6 @@ class Produit_cmdManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $produitcmd[] = new Produit_cmd($donnees);
         }
         return $produitcmd;
@@ -325,9 +319,6 @@ class Produit_cmdManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $Produit_cmds[] = new Produit_cmd($donnees);
         }
         return $Produit_cmds;

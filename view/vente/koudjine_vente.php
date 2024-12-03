@@ -162,12 +162,17 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                             <td class="prixp"><?php echo $v->prixPercu; ?></td>
                                             <td class="client">
                                                 <?php
-                                                if (isset($user)) {
-                                                    echo $user[$i];
-                                                } else {
-                                                    echo "Noooo";
+                                                if (isset($user) && is_array($user)) { // Vérifie si $user est défini et est un tableau
+                                                    if (isset($user[$i])) { // Vérifie si l'index $i existe dans le tableau $user
+                                                        echo $user[$i]; // Affiche la valeur correspondante
+                                                    } else {
+                                                        echo "N/A"; // Erreur d'index non défini
+                                                    }
+                                                } elseif (isset($user)) { // Si $user est défini mais pas un tableau
+                                                    echo "'user' n'est pas un tableau. Type : " . gettype($user);
+                                                } else { // Si $user n'est pas défini
+                                                    echo "N/A";
                                                 }
-
                                                 ?></td>
                                             <td class="seller"><?php echo $v->identifiant; ?></td>
                                             <td class="datevte">
@@ -229,7 +234,19 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
                                             <td><strong class="prixt"><?php echo $v->prixTotal; ?></strong></td>
                                             <td class="prixp"><?php echo $v->prixPercu; ?></td>
-                                            <td class="client"><?php if (isset($user)) echo $user[$i]; ?></td>
+                                            <td class="client"><?php
+                                                if (isset($user) && is_array($user)) { // Vérifie si $user est défini et est un tableau
+                                                    if (isset($user[$i])) { // Vérifie si l'index $i existe dans le tableau $user
+                                                        echo $user[$i]; // Affiche la valeur correspondante
+                                                    } else {
+                                                        echo "N/A"; // Erreur d'index non défini
+                                                    }
+                                                } elseif (isset($user)) { // Si $user est défini mais pas un tableau
+                                                    echo "'user' n'est pas un tableau. Type : " . gettype($user);
+                                                } else { // Si $user n'est pas défini
+                                                    echo "N/A";
+                                                }
+                                                ?></td>
                                             <td class="seller"><?php echo $v->identifiant; ?></td>
                                             <td class="datevte">
                                                 <?php echo $v->dateVente; ?>

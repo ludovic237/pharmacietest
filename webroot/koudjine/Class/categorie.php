@@ -146,9 +146,6 @@ class CategorieManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $categories[] = new Categorie($donnees);
         }
         return $categories;

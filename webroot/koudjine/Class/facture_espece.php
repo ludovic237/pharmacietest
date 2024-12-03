@@ -123,9 +123,6 @@ class FactureEspeceManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $facturation[] = new FactureEspece($donnees);
         }
         return $facturation;
@@ -137,9 +134,6 @@ class FactureEspeceManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $facturation[] = new FactureEspece($donnees);
         }
         return $facturation;

@@ -416,9 +416,6 @@ class ProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $produits[] = new Produit($donnees);
         }
         return $produits;
@@ -430,9 +427,6 @@ class ProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $produits[] = new Produit($donnees);
         }
         return $produits;
@@ -444,9 +438,6 @@ class ProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $produits[] = new Produit($donnees);
         }
         return $produits;
@@ -458,9 +449,6 @@ class ProduitManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $produits[] = new Produit($donnees);
         }
         return $produits;

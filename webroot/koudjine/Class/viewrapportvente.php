@@ -75,9 +75,6 @@ class VenteviewViewManager
 //        echo json_encode($q->fetch(PDO::FETCH_ASSOC));
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
 //        echo json_encode($ventes);
@@ -109,9 +106,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -123,9 +117,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -137,9 +128,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -151,9 +139,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -166,9 +151,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -181,9 +163,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -196,9 +175,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -232,9 +208,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -251,9 +224,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -270,9 +240,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -287,9 +254,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -302,9 +266,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -317,9 +278,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -332,9 +290,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -347,9 +302,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -362,9 +314,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;
@@ -377,9 +326,6 @@ class VenteviewViewManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $ventes[] = new Venteview($donnees);
         }
         return $ventes;

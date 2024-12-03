@@ -158,9 +158,6 @@ class ContactManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $Contacts[] = new Contact($donnees);
         }
         return $Contacts;

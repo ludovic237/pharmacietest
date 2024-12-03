@@ -193,9 +193,6 @@ class FabriquantManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $fabriquants[] = new Fabriquant($donnees);
         }
         return $fabriquants;

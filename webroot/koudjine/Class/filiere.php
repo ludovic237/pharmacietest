@@ -225,9 +225,6 @@ class FiliereManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $Filieres[] = new Filiere($donnees);
         }
         return $Filieres;

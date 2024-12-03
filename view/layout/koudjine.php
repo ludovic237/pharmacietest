@@ -193,14 +193,11 @@
                         <a href="#"><span class="fa lettre">C</span>Caisse</a>
                         <ul>
                             <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse') { ?>class="active" <?php } ?>>
-                                <a href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>"><span class="fa lettre">O</span> Ouvert</a>
+                                <a href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>"><span class="fa lettre">O</span> Gestion</a>
                             </li>
                             <?php if (!empty($caisse->id)) { ?>
                                 <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_rapport') { ?>class="active" <?php } ?>>
                                     <a href="<?php echo Router::url('bouwou/comptabilite/caisse_rapport'); ?>"><span class="fa lettre">R</span> Rapport</a>
-                                </li>
-                                <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_fermer') { ?>class="active" <?php } ?>>
-                                    <a href="#" onclick="close_caisse_row('<?php echo $caisse->id; ?>')"><span class="fa lettre">F</span> Fermer</a>
                                 </li>
                             <?php } ?>
                         </ul>

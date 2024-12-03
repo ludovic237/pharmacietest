@@ -159,9 +159,6 @@ class TypeManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $Types[] = new Type($donnees);
         }
         return $Types;

@@ -24,15 +24,12 @@ if (isset($_POST['id'])){
     $produits = $managerCo->getList($id);
 
     foreach ($produits as $k => $v) :
-        echo 'Ok';
-        echo $v->en_rayon_id();
-        echo ''.$v->type();
-        if ($v->type() == "detail"){
-            $nom = $managerPrDetail->get($v->en_rayon_id())->nom();
-        }
-        else {
+//        if ($v->type() == "detail"){
+//            $nom = $managerPrDetail->get($v->en_rayon_id())->nom();
+//        }
+//        else {
             $nom = $managerPr->get($managerEn->get($v->en_rayon_id())->produit_id())->nom();
-        }
+//        }
 //        $nom = $managerPr->get($managerEn->get($v->en_rayon_id())->produit_id())->nom();
 
         echo "<tr class='ligne_facture' id=\"".$v->en_rayon_id()."\">

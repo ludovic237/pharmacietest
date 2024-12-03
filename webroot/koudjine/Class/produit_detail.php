@@ -246,9 +246,6 @@ class Produit_detailManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            if ($donnees === false) {
-                $donnees = [];
-            }
             $produit_details[] = new produit_detail($donnees);
         }
         return $produit_details;
