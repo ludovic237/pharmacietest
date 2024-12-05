@@ -44,7 +44,12 @@ class VenteController extends Controller
             //'fields' => 'vente.id as id,vente.montantRegle as montantRegle,reelPercu',
             'table' => 'user',
             'order' => 'nom-ASC',
-            //'conditions' => array('vente.categorie_id' => 'categorie.id','vente.rayon_id' => 'rayon.id')
+            'conditions' => array('supprimer' => 0)
+        ));
+        $d['employe'] = $this->Vente->find(array(
+            'fields' => 'user_id as id',
+            'table' => 'employe',
+            'conditions' => array('supprimer' => 0)
         ));
         $d['prescripteur'] = $this->Vente->find(array(
             //'fields' => 'vente.id as id,vente.montantRegle as montantRegle,reelPercu',

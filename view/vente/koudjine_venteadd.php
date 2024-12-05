@@ -1,5 +1,9 @@
 <?php
 
+foreach ($employe as $k => $v) :
+    $employes[] = $v->id;
+endforeach;
+//print_r($employes) ;
 $title_for_layout = ' ALSAS -' . 'Vente';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter en Vente' : 'Modifier un assureur';
 // $action_for_layout = 'Ajouter';
@@ -134,7 +138,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         <option value="0">Sélectionner Client</option>
                                         <?php
                                         foreach ($client as $k => $v) : ?>
-                                            <option <?php if ($position == 'Modifier') if ($v->id == $vente->user_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" name="<?php echo $v->reduction; ?>" data="<?php echo $v->reductionMax; ?>"><?php echo $v->nom; ?></option>
+                                            <option <?php if ($position == 'Modifier') if ($v->id == $vente->user_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" name="<?php echo $v->reduction; ?>" data="<?php echo $v->reductionMax; ?>" credit="<?php if (in_array($v->id, $employes)) echo "1"; else echo "0"; ?>"><?php echo $v->nom; ?></option>
                                         <?php
                                         endforeach;
                                         ?>

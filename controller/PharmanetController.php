@@ -117,6 +117,17 @@ class PharmanetController extends Controller
                 'table' => 'user',
                 'conditions' => array('id' => $id, 'supprimer' => 0)
             ));
+            $d['reduction'] = $this->Pharmanet->findFirst(array(
+                'fields' => 'vente.reduction as reduction',
+                'table' => 'user, vente',
+                'conditions' => array('user.id' => $id, 'user.supprimer' => 0, 'vente.user_id' => 'user.id', 'vente.supprimer' => 0)
+            ));
+            $total = 0;
+            foreach ($d['reduction'] as $k => $v) :
+                $total = $total + $v;
+            endforeach;
+
+            $d['reductionFaite'] = $total;
 
 
             if (empty($d['user'])) {

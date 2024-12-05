@@ -161,7 +161,7 @@ $(document).ready(function () {
                                         if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
                                             reduction = 0;
                                         } else {
-                                            if ($("#select_vente_client option:selected").attr("name") >= reduction) {
+                                            if (parseInt($("#select_vente_client option:selected").attr("name")) >= reduction) {
                                                 //reduction = reduction;
 
                                             } else {
@@ -344,11 +344,11 @@ $(document).ready(function () {
                     prixTotal = prixTotal + (prix * qte);
                 }
                 if (j == 4) {
-                    var reduction = parseInt($(this).attr("data"));
+                    var reduction = parseInt($(this).html());
                     if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
                         reduction = 0;
                     } else {
-                        if ($("#select_vente_client option:selected").attr("name") >= reduction) {
+                        if (parseInt($("#select_vente_client option:selected").attr("name")) >= reduction) {
                             //reduction = reduction;
 
                         } else {
@@ -387,7 +387,7 @@ $(document).ready(function () {
         var firstData = reductionData.substr(0, reductionData.length - 2).toString();
         var lastData = "";
         var finalReductionTotal = 0;
-        if (reductionData.length >= 3) {
+        if (reductionData.length >= 2) {
             var second = parseInt(reductionData.substr(reductionData.length - 2));
             if (second < 100 && second >= 75) {
                 lastData = "75";
@@ -400,6 +400,7 @@ $(document).ready(function () {
             }
             finalReductionTotal = parseInt(firstData + lastData);
         }
+        console.log(finalReductionTotal);
         prixReduit = (finalReductionTotal);
         var finalNetTotal = (-finalReductionTotal + prixTotal);
 
@@ -447,7 +448,7 @@ $(document).ready(function () {
                             prixTotal = prixTotal + (prix * qte);
                         }
                         if (j == 4) {
-                            var reduction = parseInt($(this).attr("data"));
+                            var reduction = parseInt($(this).html());
 
                             if (parseInt($('#taux').val()) >= reduction) {
                                 //reduction = reduction;
@@ -788,7 +789,7 @@ function valider_vente(type, etat) {
                                 if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
                                     reduction = 0;
                                 } else {
-                                    if ($("#select_vente_client option:selected").attr("name") >= reduction) {
+                                    if (parseInt($("#select_vente_client option:selected").attr("name")) >= reduction) {
                                         //reduction = 0;
 
                                     } else {
@@ -824,7 +825,7 @@ function valider_vente(type, etat) {
                                 prixu: prix,
                                 qte: qte,
                                 type: type,
-                                reduction: prixReduit
+                                reduction: prixr
                             },
                             success: function (server_responce) {
                                 console.log(server_responce);
@@ -1119,7 +1120,7 @@ function ajouter_produit() {
                 if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
                     reduction = 0;
                 } else {
-                    if ($("#select_vente_client option:selected").attr("name") >= reduction) {
+                    if (parseInt($("#select_vente_client option:selected").attr("name")) >= reduction) {
                         reduction = reduction;
                     } else {
                         reduction = parseInt($("#select_vente_client option:selected").attr("name"));
@@ -1392,7 +1393,7 @@ function delete_row_vente(id) {
                     if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
                         reduction = 0;
                     } else {
-                        if ($("#select_vente_client option:selected").attr("name") >= reduction) {
+                        if (parseInt($("#select_vente_client option:selected").attr("name")) >= reduction) {
                             //reduction = reduction;
 
                         } else {
