@@ -1015,7 +1015,7 @@ function ajouter_produit() {
                 }
             ],
             createdRow: function (row,data,index){
-                $(row).attr('data',data.reduction)
+                $('td',row).eq(4).attr('data',data.reduction)
             }
         });
 
