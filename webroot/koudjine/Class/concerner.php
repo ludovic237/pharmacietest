@@ -9,7 +9,7 @@ class Concerner
         $_prixUnit,
         $_quantite,
         $_reduction,
-//        $_type,
+        $_type,
         $_supprimer;
 
     // CONSRUCTEUR
@@ -61,10 +61,10 @@ class Concerner
     {
         return $this->_supprimer;
     }
-//    public function type()
-//    {
-//        return $this->_type;
-//    }
+    public function type()
+    {
+        return $this->_type;
+    }
 
     // SETTERS
     public function setid($id)
@@ -116,13 +116,13 @@ class Concerner
             $this->_reduction = $id;
         }
     }
-//    public function settype($id)
-//    {
-//
-//        if ($id >= 0) {
-//            $this->_type = $id;
-//        }
-//    }
+    public function settype($id)
+    {
+
+        if ($id >= 0) {
+            $this->_type = $id;
+        }
+    }
     public function setsupprimer($value)
     {
 
@@ -140,15 +140,14 @@ class ConcernerManager
     }
     public function add(Concerner $concerner)
     {
-        $q = $this->_db->prepare('INSERT INTO concerner SET id = :id, vente_id = :vente_id, produit_id = :produit_id, en_rayon_id = :en_rayon_id, prixUnit = :prixUnit, quantite = :quantite, reduction = :reduction, supprimer=0');
-//        $q = $this->_db->prepare('INSERT INTO concerner SET id = :id, vente_id = :vente_id, produit_id = :produit_id, en_rayon_id = :en_rayon_id, prixUnit = :prixUnit, quantite = :quantite, reduction = :reduction, type = :type, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO concerner SET id = :id, vente_id = :vente_id, produit_id = :produit_id, en_rayon_id = :en_rayon_id, prixUnit = :prixUnit, quantite = :quantite, reduction = :reduction, type = :type, supprimer=0');
         $q->bindValue(':id', $concerner->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $concerner->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $concerner->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':en_rayon_id', $concerner->en_rayon_id(), PDO::PARAM_INT);
         $q->bindValue(':prixUnit', $concerner->prixUnit());
         $q->bindValue(':quantite', $concerner->quantite());
-//        $q->bindValue(':type', $concerner->type());
+        $q->bindValue(':type', $concerner->type());
         $q->bindValue(':reduction', $concerner->reduction());
         $q->execute();
     }
@@ -297,7 +296,7 @@ class ConcernerManager
         }
         return $concerners;
     }
-    
+
 
     public function getListSameRayonId2()
     {
@@ -318,15 +317,14 @@ class ConcernerManager
     public function update(Concerner $concerner)
     {
 
-        $q = $this->_db->prepare('UPDATE concerncer SET vente_id = :vente_id,produit_id = :produit_id, en_rayon_id = :en_rayon_id,prixUnit = :prixUnit, quantite = :quantite, reduction = :reduction WHERE id = :id');
-//        $q = $this->_db->prepare('UPDATE concerncer SET vente_id = :vente_id,produit_id = :produit_id, en_rayon_id = :en_rayon_id,prixUnit = :prixUnit, type = :type, quantite = :quantite, reduction = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE concerncer SET vente_id = :vente_id,produit_id = :produit_id, en_rayon_id = :en_rayon_id,prixUnit = :prixUnit, type = :type, quantite = :quantite, reduction = :reduction WHERE id = :id');
         $q->bindValue(':id', $concerner->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $concerner->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $concerner->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':en_rayon_id', $concerner->en_rayon_id(), PDO::PARAM_INT);
         $q->bindValue(':prixUnit', $concerner->prixUnit());
         $q->bindValue(':quantite', $concerner->quantite());
-//        $q->bindValue(':type', $concerner->type());
+        $q->bindValue(':type', $concerner->type());
         $q->bindValue(':reduction', $concerner->reduction());
         $q->execute();
     }

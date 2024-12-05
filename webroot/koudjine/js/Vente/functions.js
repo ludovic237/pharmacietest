@@ -1013,7 +1013,10 @@ function ajouter_produit() {
                         return '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + data + '\');"><span class="fa fa-times"></span></button>';
                     }
                 }
-            ]
+            ],
+            createdRow: function (row,data,index){
+                $(row).attr('data',data.reduction)
+            }
         });
 
         // if (qte > qterest || qte == 0) {
