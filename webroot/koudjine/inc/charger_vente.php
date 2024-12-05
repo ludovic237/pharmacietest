@@ -15,46 +15,43 @@ $managerCo = new ConcernerManager($pdo);
 $managerPr = new ProduitManager($pdo);
 $managerPrDetail = new Produit_detailManager($pdo);
 
-$id=$_POST['id'];
+$id = $_POST['id'];
 
 //echo $id;
 
 
-if (isset($_POST['id'])){
+if (isset($_POST['id'])) {
     $produits = $managerCo->getList($id);
 
     foreach ($produits as $k => $v) :
-//        if ($v->type() == "detail"){
-//            $nom = $managerPrDetail->get($v->en_rayon_id())->nom();
-//        }
-//        else {
+        if ($v->type() == "detail") {
+            $nom = $managerPrDetail->get($v->en_rayon_id())->nom();
+        } else {
             $nom = $managerPr->get($managerEn->get($v->en_rayon_id())->produit_id())->nom();
-//        }
-//        $nom = $managerPr->get($managerEn->get($v->en_rayon_id())->produit_id())->nom();
+        }
 
-        echo "<tr class='ligne_facture' id=\"".$v->en_rayon_id()."\">
-                                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>".$nom."</strong></td>
+        echo "<tr class='ligne_facture' id=\"" . $v->en_rayon_id() . "\">
+                                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>" . $nom . "</strong></td>
                                             <td style='background-color: white;font-family: monospace;font-size: 12px;text-align: start;'class='prix'>
-                                                ".$v->prixUnit()."
+                                                " . $v->prixUnit() . "
                                             </td>
                                             <td style='background-color: white;font-family: monospace;font-size: 12px;text-align: start;'class='qte'>
-                                                ".$v->quantite()."
+                                                " . $v->quantite() . "
                                             </td>
                                             <td style='background-color: white;font-family: monospace;font-size: 12px;text-align: start;'class='prixt'>
-                                                ".($v->prixUnit()*$v->quantite())."
+                                                " . ($v->prixUnit() * $v->quantite()) . "
                                             </td>
                                             <td style='background-color: white;font-family: monospace;font-size: 12px;text-align: start;'class='reduction'>
-                                                ".$v->reduction()."
+                                                " . $v->reduction() . "
                                             </td>
                                         </tr>";
     endforeach;
 
-}
-else{
+} else {
 
 
     //on verifie qu'il existe deja la vente dans la BD et on verifie aussi si la ligne à enregistrer n'a pas deja été faite
-    if($manager->existsId($idv) && !$managerCo->existsEn_rayonId($idv, $ide)){
+    if ($manager->existsId($idv) && !$managerCo->existsEn_rayonId($idv, $ide)) {
         echo "passe \n";
         //echo $managerPr->getStock($managerEn->get($ide)->produit_id(),$qte)->stock();
 
@@ -70,22 +67,18 @@ else{
         $managerCo->add($conc);
 
 
-        $donnees = array('erreur' =>'ok');
+        $donnees = array('erreur' => 'ok');
+        echo json_encode($donnees);
+    } else {
+        $donnees = array('erreur' => 'Veuillez vérifier vos quantités et d\'autres paramètres liés à la vente !!!');
         echo json_encode($donnees);
     }
-    else{
-        $donnees = array('erreur' =>'Veuillez vérifier vos quantités et d\'autres paramètres liés à la vente !!!');
-        echo json_encode($donnees);
-    }
-
 
 
 }
 
 
 // D'abord, on se connecte ?ySQL
-
-
 
 
 ?>

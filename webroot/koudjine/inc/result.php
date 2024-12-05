@@ -18,9 +18,9 @@ if (isset($_GET["motclef1"])) {
     $count = $sth->rowCount();
 
     $sth1 = $pdo->prepare("
-             SELECT p.nom, r.quantite, r.reduction, p.reductionMax, r.prixAchat, r.id as id, r.dateLivraison, p.id as idp 
-              FROM produit p, en_rayon r
-              WHERE p.nom like :motclef AND p.nom like '%detail%' AND p.id = r.produit_id AND p.supprimer = 0 AND r.dateLivraison IN (select min(dateLivraison) from en_rayon e where r.produit_id = e.produit_id )
+              SELECT *
+              FROM produit_detail p
+              WHERE p.nom like :motclef AND  p.supprimer = 0 
             ");
 
     $sth1->execute($q);

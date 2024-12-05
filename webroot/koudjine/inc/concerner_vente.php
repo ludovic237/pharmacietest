@@ -44,7 +44,7 @@ else{
             'produit_id' => null,
             'prixUnit' => $prixu,
             'quantite' => $qte,
-//            'type' => $type,
+            'type' => $type,
             'reduction' => $reduction,
             'supprimer' => 0
         ));

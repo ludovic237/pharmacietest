@@ -1,5 +1,312 @@
 <?php
 
+class venteview
+{
+    private $_venteId,
+        $_userNom,
+        $_userPrenom,
+        $_ventePrixTotal,
+        $_ventePrixPercu,
+        $_venteDateVente,
+        $_venteCommentaire,
+        $_venteMalade_id,
+        $_venteEtat,
+        $_venteReference,
+        $_venteNouveau_info,
+        $_venteUser_id,
+        $_ventePrescripteur_id,
+        $_venteEmploye_id,
+        $_venteReduction,
+        $_venteCaisseId,
+        $_caisseId,
+        $_caisseEtat,
+        $_conVenteview_id,
+        $_conProduit_id,
+        $_conEn_rayon_id,
+        $_conPrixUnit,
+        $_conQuantite,
+        $_conReduction,
+        $_enrayId,
+        $_fourNom,
+        $_fourStatut,
+        $_pdtNom,
+        $_pdtStock,
+        $_pdtGrossisteId,
+        $_pdtEtat;
+
+    // CONSRUCTEUR
+    public function __construct(array $donnees)
+    {
+        $this->hydrate($donnees);
+    }
+
+    public function hydrate(array $donnees)
+    {
+        foreach ($donnees as $key => $value)
+        {
+            $method = 'set'.($key);
+            if (method_exists($this, $method))
+            {
+                $this->$method($value);
+            }
+        }
+    }
+
+    // GETTERS
+    public function venteId()
+    {
+        return $this->_venteId;
+    }
+    public function userNom()
+    {
+        return $this->_userNom;
+    }
+    public function userPrenom()
+    {
+        return $this->_userPrenom;
+    }
+    public function ventePrixTotal()
+    {
+        return $this->_ventePrixTotal;
+    }
+    public function ventePrixPercu()
+    {
+        return $this->_ventePrixPercu;
+    }
+    public function venteDateVente()
+    {
+        return $this->_venteDateVente;
+    }
+    public function venteCommentaire()
+    {
+        return $this->_venteCommentaire;
+    }
+    public function venteMalade_id()
+    {
+        return $this->_venteMalade_id;
+    }
+    public function venteEtat()
+    {
+        return $this->_venteEtat;
+    }
+    public function venteReference()
+    {
+        return $this->_venteReference;
+    }
+    public function venteNouveau_info()
+    {
+        return $this->_venteNouveau_info;
+    }
+    public function venteUser_id()
+    {
+        return $this->_venteUser_id;
+    }
+    public function ventePrescripteur_id()
+    {
+        return $this->_ventePrescripteur_id;
+    }
+    public function venteEmploye_id()
+    {
+        return $this->_venteEmploye_id;
+    }
+    public function venteReduction()
+    {
+        return $this->_venteReduction;
+    }
+    public function venteCaisseId()
+    {
+        return $this->_venteCaisseId;
+    }
+    public function caisseId()
+    {
+        return $this->_caisseId;
+    }
+    public function caisseEtat()
+    {
+        return $this->_caisseEtat;
+    }
+    public function conVenteview_id()
+    {
+        return $this->_conVenteview_id;
+    }
+    public function conProduit_id()
+    {
+        return $this->_conProduit_id;
+    }
+    public function conEn_rayon_id()
+    {
+        return $this->_conEn_rayon_id;
+    }
+    public function conPrixUnit()
+    {
+        return $this->_conPrixUnit;
+    }
+    public function conQuantite()
+    {
+        return $this->_conQuantite;
+    }
+    public function conReduction()
+    {
+        return $this->_conReduction;
+    }
+    public function enrayId()
+    {
+        return $this->_enrayId;
+    }
+    public function fourNom()
+    {
+        return $this->_fourNom;
+    }
+    public function fourStatut()
+    {
+        return $this->_fourStatut;
+    }
+    public function pdtNom()
+    {
+        return $this->_pdtNom;
+    }
+    public function pdtStock()
+    {
+        return $this->_pdtStock;
+    }
+    public function pdtGrossisteId()
+    {
+        return $this->_pdtGrossisteId;
+    }
+    public function pdtEtat()
+    {
+        return $this->_pdtEtat;
+    }
+
+
+    // SETTERS
+    public function setventeId($id)
+    {
+        $this->_venteId = $id;
+    }
+    public function setuserNom($id)
+    {
+        $this->_userNom = $id;
+    }
+    public function setuserPrenom($id)
+    {
+        $this->_userPrenom = $id;
+    }
+    public function setventePrixTotal($id)
+    {
+        $this->_ventePrixTotal = $id;
+    }
+    public function setventePrixPercu($id)
+    {
+        $this->_ventePrixPercu = $id;
+    }
+    public function setventeDateVente($id)
+    {
+        $this->_venteDateVente = $id;
+    }
+    public function setventeCommentaire($id)
+    {
+        $this->_venteCommentaire = $id;
+    }
+    public function setventeMalade_id($id)
+    {
+        $this->_venteMalade_id = $id;
+    }
+    public function setventeEtat($id)
+    {
+        $this->_venteEtat = $id;
+    }
+    public function setventeReference($id)
+    {
+        $this->_venteReference = $id;
+    }
+    public function setventeNouveau_info($id)
+    {
+        $this->_venteNouveau_info = $id;
+    }
+    public function setventeUser_id($id)
+    {
+        $this->_venteUser_id = $id;
+    }
+    public function setventePrescripteur_id($id)
+    {
+        $this->_ventePrescripteur_id = $id;
+    }
+    public function setventeEmploye_id($id)
+    {
+        $this->_venteEmploye_id = $id;
+    }
+    public function setventeReduction($id)
+    {
+        $this->_venteReduction = $id;
+    }
+    public function setventeCaisseId($id)
+    {
+        $this->_venteCaisseId = $id;
+    }
+    public function setcaisseId($id)
+    {
+        $this->_caisseId = $id;
+    }
+    public function setcaisseEtat($id)
+    {
+        $this->_caisseEtat = $id;
+    }
+    public function setconVenteview_id($id)
+    {
+        $this->_conVenteview_id = $id;
+    }
+    public function setconProduit_id($id)
+    {
+        $this->_conProduit_id = $id;
+    }
+    public function setconEn_rayon_id($id)
+    {
+        $this->_conEn_rayon_id = $id;
+    }
+    public function setconPrixUnit($id)
+    {
+        $this->_conPrixUnit = $id;
+    }
+    public function setconQuantite($id)
+    {
+        $this->_conQuantite = $id;
+    }
+    public function setconReduction($id)
+    {
+        $this->_conReduction = $id;
+    }
+    public function setenrayId($id)
+    {
+        $this->_enrayId = $id;
+    }
+    public function setfourNom($id)
+    {
+        $this->_fourNom = $id;
+    }
+    public function setfourStatut($id)
+    {
+        $this->_fourStatut = $id;
+    }
+    public function setpdtNom($id)
+    {
+        $this->_pdtNom = $id;
+    }
+    public function setpdtStock($id)
+    {
+        $this->_pdtStock = $id;
+    }
+    public function setpdtGrossisteId($id)
+    {
+        $this->_pdtGrossisteId = $id;
+    }
+    public function setpdtEtat($id)
+    {
+        $this->_pdtEtat = $id;
+    }
+
+
+}
 
 class VenteviewViewManager
 {
