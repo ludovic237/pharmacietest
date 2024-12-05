@@ -9,6 +9,13 @@ $('#pharmanet_tab_vente').hide();
 
 $(document).ready(function () {
 
+    /* SAVE BD START */
+    $(".savethebd").on("click", function(e){
+        e.preventDefault();
+        alert('pass')
+    });
+    /* END SAVE BD */
+
     $("#detail_info").keyup(function (event) {
         if (event.keyCode == 13) {
             var recherche = $(this).val();

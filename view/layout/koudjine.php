@@ -53,6 +53,9 @@
                 <li <?php if ($this->request->controller == 'home') { ?>class="active" <?php } ?>>
                     <a href="<?php echo Router::url('bouwou/home'); ?>"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
                 </li>
+                <li >
+                    <a href="#" id="savebd"><span class="fa fa-save"></span> <span class="xn-text savethebd">Sauvegarde BD</span></a>
+                </li>
                 <!-- <li class="xn-title">Etudes</li> -->
 
                 <li <?php if (!in_array($this->Session->user('type'), Conf::$acces['vente'])) { ?>style="display: none" <?php } ?> class="xn-openable <?php if ($this->request->controller == 'vente') { ?>active<?php } ?>">
@@ -680,6 +683,25 @@
                 ]
             })
         }
+        $("#savebd").on("click", function(e){
+            e.preventDefault();
+            //alert('pass')
+            $.ajax({
+                type: "GET",
+                url: "/pharmacietest/koudjine/inc/cron.php",
+                data: {
+                    token: 'aaa'
+                },
+                success: function (data) {
+                    alert(data)
+                    /*if(data == 'success'){
+                        noty({text: 'Sauvegarde effectuée', layout: 'topRight', type: 'success'});
+                    }else {
+                        noty({text: 'Sauvegarde incomplete', layout: 'topRight', type: 'error'});
+                    }*/
+                }
+            })
+        });
     </script>
     <!-- THIS PAGE PLUGINS -->
     <?php echo $script_for_layout; ?>

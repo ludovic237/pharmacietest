@@ -111,4 +111,8 @@ $this->render('index');
         }
         $this->set($d);
     }
+    function koudjine_save()
+    {
+        $this->loadModel('Home');
+    }
 }

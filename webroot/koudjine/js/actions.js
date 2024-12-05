@@ -8,8 +8,14 @@ $(document).ready(function(){
     
     $("html").on("click", function(){
         if(html_click_avail)
-            $(".x-navigation-horizontal li,.x-navigation-minimized li").removeClass('active');        
-    });        
+            $(".x-navigation-horizontal li,.x-navigation-minimized li").removeClass('active');
+    });
+    /* SAVE BD START */
+    $(".savethebd").on("click", function(e){
+        e.preventDefault();
+        alert('pass')
+    });
+    /* END SAVE BD */
     
     $(".x-navigation-horizontal .panel").on("click",function(e){
         e.stopPropagation();
@@ -906,6 +912,8 @@ function lister_formations(){
 
 
 }
+
+
 
 function charger_stock(){
 
