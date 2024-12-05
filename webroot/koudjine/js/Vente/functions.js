@@ -1,6 +1,7 @@
 var test = 0;
 var startDate;
 var endDate;
+var typeProduitVente="en rayon";
 var idemploye = null
 ;
 var idfulldepense;
@@ -128,6 +129,7 @@ $(document).ready(function () {
                                     {data: "prixTotal"},
                                     {data: "reduction"},
                                     {data: "dateLivraison"},
+                                    {data: "type"},
                                     {data: "stockGeneral"},
                                     {
                                         "data": "produitId", "bSortable": false, "render": function (data, type, row) {
@@ -582,7 +584,7 @@ function imprimer_bloc(titre, objet) {
     return true;
 }
 
-function showVenteCaisse(id, total) {
+function showVenteCaisse(id, total, session) {
     $("#totalEncaissement").html(total);
     $.ajax({
         type: "POST",
@@ -693,7 +695,7 @@ function valider_vente(type, etat) {
     var idClient;
     var idPrescripteur;
     var idv, reference;
-    var prix, qte, prixReduit, id1, count = 0, rec = 0;
+    var prix, type, qte, prixReduit, id1, count = 0, rec = 0;
 
     /**/
     // vérifier si le prix est > à 0
@@ -777,6 +779,9 @@ function valider_vente(type, etat) {
                             if (j == 2) {
                                 qte = parseInt($(this).html());
                             }
+                            if (j == 6) {
+                                type = $(this).html();
+                            }
                             if (j == 4) {
                                 var reduction = parseInt($(this).attr("data"));
                                 //alert(reduction);
@@ -807,9 +812,9 @@ function valider_vente(type, etat) {
 
                             }
 
-
                         });
                         console.log(prix + '-' + qte + '-' + prixReduit);
+                        console.log(type);
                         $.ajax({
                             type: "POST",
                             url: "/pharmacietest/koudjine/inc/concerner_vente.php",
@@ -818,6 +823,7 @@ function valider_vente(type, etat) {
                                 ide: id1,
                                 prixu: prix,
                                 qte: qte,
+                                type: type,
                                 reduction: prixReduit
                             },
                             success: function (server_responce) {
@@ -880,6 +886,7 @@ function valider_vente(type, etat) {
                                                         {data: "prixTotal"},
                                                         {data: "reduction"},
                                                         {data: "dateLivraison"},
+                                                        {data: "type"},
                                                         {data: "stockGeneral"},
                                                         {
                                                             "data": "produitId", "bSortable": false, "render": function (data, type, row) {
@@ -972,13 +979,15 @@ function ajouter_produit() {
                     nom: nom,
                     prixTotal: (qte * prix),
                     prix: prix,
+                    type: typeProduitVente,
                     quantite: qte,
                     reduction: reduction,
                     stockGeneral: stockg,
                     dateLivraison: datel,
                 })
             }
-        } else if (qte >= qterest) {
+        }
+        else if (qte >= qterest) {
             noty({text: 'Quantite insuffisante', layout: 'topRight', type: 'error'});
         }
         console.log("dataVenteLoad");
@@ -997,6 +1006,7 @@ function ajouter_produit() {
                 {data: "prixTotal"},
                 {data: "reduction"},
                 {data: "dateLivraison"},
+                {data: "type"},
                 {data: "stockGeneral"},
                 {
                     "data": "produitId", "bSortable": false, "render": function (data, type, row) {
@@ -1195,8 +1205,10 @@ function reimprime_ticket_caisse(id) {
 
 }
 
-function load_produit(id) {
-
+function load_produit(id,type) {
+    typeProduitVente = type;
+    console.log("type");
+    console.log(typeProduitVente);
     var qte = parseInt($("#R" + id + " .qte").val());
     var stock = parseInt($("#R" + id + " .stock").html());
     console.log($(this).attr("data"))
@@ -1421,6 +1433,7 @@ function delete_row_vente(id) {
                 {data: "prixTotal"},
                 {data: "reduction"},
                 {data: "dateLivraison"},
+                {data: "type"},
                 {data: "stockGeneral"},
                 {
                     "data": "produitId", "bSortable": false, "render": function (data, type, row) {

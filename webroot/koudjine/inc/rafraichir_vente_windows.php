@@ -55,7 +55,8 @@ if (isset($_POST['id'])||isset($_GET['id'])){
         );
     endforeach;
 
-    if ($datas == null) {
+//    if ($datas == null ) {
+    if (empty($datas ) ) {
         $donnees = array('data' => []);
         echo json_encode($donnees);
     } else {

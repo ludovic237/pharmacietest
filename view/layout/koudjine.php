@@ -196,14 +196,13 @@
                         <a href="#"><span class="fa lettre">C</span>Caisse</a>
                         <ul>
                             <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse') { ?>class="active" <?php } ?>>
-                                <a href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>"><span class="fa lettre">O</span> Ouvert</a>
+                                <a href="<?php echo Router::url('bouwou/comptabilite/caisse'); ?>"><span class="fa lettre">O</span> Gestion</a>
                             </li>
-                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_rapport') { ?>class="active" <?php } ?>>
-                                <a href="<?php echo Router::url('bouwou/comptabilite/caisse_rapport'); ?>"><span class="fa lettre">R</span> Rapport</a>
-                            </li>
-                            <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_fermer') { ?>class="active" <?php } ?>>
-                                <a href="#" onclick="close_caisse_row()"><span class="fa lettre">F</span> Fermer</a>
-                            </li>
+                            <?php if (!empty($caisse->id)) { ?>
+                                <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'caisse_rapport') { ?>class="active" <?php } ?>>
+                                    <a href="<?php echo Router::url('bouwou/comptabilite/caisse_rapport'); ?>"><span class="fa lettre">R</span> Rapport</a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </li>
                     <li <?php if ($this->request->controller == 'comptabilite' && $this->request->action == 'consultation') { ?>class="active" <?php } ?>>
@@ -723,9 +722,35 @@
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/caisse.js'; ?>"></script>
    <!-- <script type=" text/javascript" src="<?php /*echo BASE_URL . '/koudjine/js/settings.js'; */?>"></script>-->
     <script>
-        function close_caisse_row() {
-            $("#iconPreviewCaisseFermer").modal("show");
+
+        function close_caisse_row(id) {
+
+            $.ajax({
+                type: "POST",
+                url: '/pharmacietest/koudjine/inc/rafraichir_vente_windows.php',
+                data: {
+                    id: id
+                },
+                success: function (server_responce) {
+                    console.log("server_responce");
+                    console.log(server_responce);
+                    console.log(server_responce.data);
+                    server_responce = JSON.parse(server_responce);
+                    if (server_responce.data.length==0){
+                        $("#iconPreviewCaisseFermer").modal("show");
+                    }
+                    else {
+                        $('#message-box-danger p').html(server_responce.data.length+' ventes n ont pas encore ete encaiisser');
+                        $("#message-box-danger").modal("show");
+                        setTimeout(function () {
+                            $("#message-box-danger").modal("hide");
+                        }, 3000);
+                    }
+
+                }
+            })
         }
+
     </script>
     <!-- END TEMPLATE -->
     <!-- END SCRIPTS -->

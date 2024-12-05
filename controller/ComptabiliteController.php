@@ -62,9 +62,11 @@ class ComptabiliteController extends Controller
     {
         $this->loadModel('Comptabilite');
         $d['vente_credit'] = $this->Comptabilite->find(array(
-            //'fields' => 'produit.nom as nom',
-            'table' => 'vente',
-            'conditions' => "supprimer = 0 AND prixPercu = 0 AND etat = \"Crédit\" AND ISNULL(caisse_id) = 1"
+            'fields' => 'vente.id as id, client.nom as cnom, client.prenom as cprenom, vendeur.nom as vnom, vendeur.prenom as vprenom, prixTotal, dateVente, reference, vente.etat as etat, vente.supprimer as supprimer',
+            //'fields' => 'produit.nom',
+            'table' => 'vente,employe,user as client,user as vendeur',
+            'order' => 'dateVente-ASC',
+            'conditions' => "vente.employe_id = employe.id AND employe.user_id = vendeur.id AND vente.user_id = client.id AND vente.supprimer = 0 AND vente.prixPercu = 0 AND vente.etat = \"Crédit\" AND ISNULL(caisse_id) = 1"
         ));
         $d['bon_caisse'] = $this->Comptabilite->find(array(
             'fields' => 'b.id as idb, nom_client, identifiant, montant, dateGenerer',
@@ -562,6 +564,57 @@ class ComptabiliteController extends Controller
             'conditions' => "supprimer = 0 AND id = " . $d['check']->user_id
         ));
 
+        $d['caisseCheck'] = $this->Comptabilite->findFirst(array(
+            //'fields' => 'produit.nom as nom',
+            'table' => 'caisse',
+            'conditions' => "supprimer = 0 AND etat = \"En cours\" AND user_id =" . $_SESSION["Users"]->id
+        ));
+        $check = $this->Comptabilite->findFirst(array(
+            //'fields' => 'produit.nom as nom',
+            'table' => 'caisse',
+            'conditions' => "supprimer = 0 AND etat = \"En cours1\" AND user_id =" . $_SESSION["Users"]->id
+        ));
+        if (!empty($check)) {
+            $d['caisseCheck'] = $this->Comptabilite->findFirst(array(
+                //'fields' => 'produit.nom as nom',
+                'table' => 'caisse',
+                'conditions' => "supprimer = 0 AND etat = \"En cours1\" AND user_id =" . $_SESSION["Users"]->id
+            ));
+        }
+        if (empty($d['caisseCheck'])) {
+            $d['caisse'] = $this->Comptabilite->findFirst(array(
+                //'fields' => 'produit.nom as nom',
+                'table' => 'caisse',
+                'conditions' => "supprimer = 0 AND etat = \"Ouvert\""
+            ));
+            if (!empty($d['caisse'])) {
+                $d['ventes'] = $this->Comptabilite->find(array(
+                    //'fields' => 'produit.nom as nom',
+                    'table' => 'vente',
+                    'conditions' => array('caisse_id' => $d['caisse']->id, 'supprimer' => 0, 'prixPercu' => 0)
+                ));
+                //print_r($d['caisse']);
+                $d['employe'] = $this->Comptabilite->findFirst(array(
+                    'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+                    'table' => 'employe, user',
+                    'conditions' => array('employe.id' => $d['caisse']->user_id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+                ));
+
+            } else {
+                $d['employe'] = $this->Comptabilite->findFirst(array(
+                    'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+                    'table' => 'employe, user',
+                    'conditions' => array('employe.id' => $_SESSION["Users"]->id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+                ));
+            }
+
+        } else {
+            $d['employe'] = $this->Comptabilite->findFirst(array(
+                'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+                'table' => 'employe, user',
+                'conditions' => array('employe.id' => $d['caisseCheck']->user_id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+            ));
+        }
         $this->set($d);
 
     }

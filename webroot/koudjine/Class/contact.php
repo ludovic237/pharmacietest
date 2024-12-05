@@ -145,6 +145,9 @@ class ContactManager
         {*/
             $q = $this->_db->query('SELECT * FROM contacts WHERE CONTACT_ID = '.$info);
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
+            if ($donnees === false) {
+                $donnees = [];
+            }
             return new Contact($donnees);
         //}
     }

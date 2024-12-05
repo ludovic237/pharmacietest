@@ -239,7 +239,9 @@ class CaisseManager
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
-            $caisses[] = new Caisse($donnees);
+            if ($donnees === true) {
+                $caisses[] = new Caisse($donnees);
+            }
         }
         return $caisses;
 

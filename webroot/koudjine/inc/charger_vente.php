@@ -4,6 +4,7 @@ require_once('../Class/vente.php');
 require_once('../Class/concerner.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/produit.php');
+require_once('../Class/produit_detail.php');
 
 global $pdo;
 
@@ -12,6 +13,7 @@ $manager = new VenteManager($pdo);
 $managerEn = new En_rayonManager($pdo);
 $managerCo = new ConcernerManager($pdo);
 $managerPr = new ProduitManager($pdo);
+$managerPrDetail = new Produit_detailManager($pdo);
 
 $id=$_POST['id'];
 
@@ -22,8 +24,13 @@ if (isset($_POST['id'])){
     $produits = $managerCo->getList($id);
 
     foreach ($produits as $k => $v) :
-        //echo $v->en_rayon_id();
-        $nom = $managerPr->get($managerEn->get($v->en_rayon_id())->produit_id())->nom();
+//        if ($v->type() == "detail"){
+//            $nom = $managerPrDetail->get($v->en_rayon_id())->nom();
+//        }
+//        else {
+            $nom = $managerPr->get($managerEn->get($v->en_rayon_id())->produit_id())->nom();
+//        }
+//        $nom = $managerPr->get($managerEn->get($v->en_rayon_id())->produit_id())->nom();
 
         echo "<tr class='ligne_facture' id=\"".$v->en_rayon_id()."\">
                                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>".$nom."</strong></td>

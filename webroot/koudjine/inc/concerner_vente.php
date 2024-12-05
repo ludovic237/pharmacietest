@@ -17,6 +17,7 @@ $managerPr = new ProduitManager($pdo);
 $ide = $_POST['ide'];
 $idv=$_POST['idv'];
 $qte=$_POST['qte'];
+$type=$_POST['type'];
 $reduction=$_POST['reduction'];
 $prixu=$_POST['prixu'];
 
@@ -36,13 +37,14 @@ else{
     if($manager->existsId($idv) && !$managerCo->existsEn_rayonId($idv, $ide)){
         echo "passe \n";
         //echo $managerPr->getStock($managerEn->get($ide)->produit_id(),$qte)->stock();
-
+//        $type = "en rayon";
         $conc = new Concerner(array(
             'vente_id' => $idv,
             'en_rayon_id' => $ide,
             'produit_id' => null,
             'prixUnit' => $prixu,
             'quantite' => $qte,
+//            'type' => $type,
             'reduction' => $reduction,
             'supprimer' => 0
         ));

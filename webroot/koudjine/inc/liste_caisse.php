@@ -9,6 +9,7 @@ require_once('../Class/facturation.php');
 require_once('../Class/facture_ticket.php');
 require_once('../Class/facture_electronique.php');
 require_once('../Class/facture_espece.php');
+require_once('../Class/produit_detail.php');
 
 global $pdo;
 
@@ -22,6 +23,7 @@ $managerFacturation = new FacturationManager($pdo);
 $managerFactureEspece = new FactureEspeceManager($pdo);
 $managerFactureElectronique = new FactureElectroniqueManager($pdo);
 $managerFactureTicket = new FactureTicketManager($pdo);
+$managerPrDetail = new Produit_detailManager($pdo);
 
 $id = $_POST['id'];
 //echo $id;
@@ -44,6 +46,12 @@ if (isset($_POST['id'])) {
         $nom = "";
         foreach ($produits as $p => $q) :
             $produit = $managerPr->get($managerEn->get($q->en_rayon_id())->produit_id())->nom();
+            if ($q->type() == "detail"){
+                $produit = $managerPrDetail->get($q->en_rayon_id())->nom();
+            }
+            else {
+                $produit = $managerPr->get($managerEn->get($q->en_rayon_id())->produit_id())->nom();
+            }
             if ($nom == "") {
                 $nom = $nom . $produit;
             } else {

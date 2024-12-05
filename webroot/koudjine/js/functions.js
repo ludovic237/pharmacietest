@@ -82,8 +82,8 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     $("#credit").hover(function () {
         netpayer = $("#netTotal").html();
         reduc = $("#prixReduit").html();
-        $("#netTotal").html($("#prixTotal").html());
-        $("#prixReduit").html(0);
+        // $("#netTotal").html($("#prixTotal").html());
+        // $("#prixReduit").html(0);
     }, function () {
         $("#netTotal").html(netpayer);
         $("#prixReduit").html(reduc);

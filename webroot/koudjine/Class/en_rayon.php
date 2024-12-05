@@ -217,6 +217,9 @@ class En_rayonManager
             $q = $this->_db->prepare("SELECT * FROM en_rayon WHERE supprimer = 0 AND id = '".$info."'");
             $q->execute();
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
+            if ($donnees === false) {
+                $donnees = [];
+            }
             return new en_rayon($donnees);
         }
         $donnees=array();

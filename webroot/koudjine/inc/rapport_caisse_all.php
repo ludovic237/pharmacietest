@@ -66,8 +66,10 @@ $prixGrossite = 0;
 $prixDetaillant = 0;
 $prixTotalConcerne = 0;
 $prixTotalProduitDetail = 0;
+
+//echo json_encode($ventes);
 //Recap vente fournisseur
-foreach ($ventes as $k => $v) {
+foreach ($ventes as $key => $v) {
     $concernce = $managerCo->getList($v->id());
     foreach ($concernce as $a => $b) {
 
@@ -215,18 +217,26 @@ foreach ($ventesCreditFacture as $k => $v) :
 endforeach;
 
 //encaissement facture credit
-$ventesCreditFacture1 = $managerVenteView->getListCaisseCompleteByEtat_3($id, "Crédit");
+$ventesCreditFacture1 = $managerVente->getListCaisseCompleteByEtat_3($id, "Crédit");
 $totalVenteCreditFacture1 = 0;
+//echo '$ventesCreditFacture1';
+//print_r($ventesCreditFacture1);
+//echo '$ventesCreditFacture2';
+//echo json_encode([]);
+//echo '$ventesCreditFacture3';
 //echo json_decode($ventesCreditFacture1);
 foreach ($ventesCreditFacture1 as $k => $v) :
-//echo json_decode($v);
-    if ($v->venteUser_id() != NULL) {
-        //$user1 = $managerUs->get($v->user_id()) ;
-        $client1 = $v->userNom() . ' ' . $v->userPrenom();
+    if ($v->user_id() != NULL) {
+        $user1 = $managerUs->get($v->user_id());
+        if ($user1 == null) {
+            $client1 = ' NAN';
+        } else {
+            $client1 = $user1->nom() . ' ' . $user1->prenom();
+        }
     } else {
         $client1 = 'Client pas enregistré';
     }
-    $concernce = $managerCo->getList($v->venteId());
+    $concernce = $managerCo->getList($v->id());
     foreach ($concernce as $a => $b) {
 
         $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite()) - $b->reduction();
@@ -246,14 +256,14 @@ foreach ($ventesCreditFacture1 as $k => $v) :
         }
     }
     $dataVenteACredit1[] = array(
-        "DT_RowId" => $v->venteId(),
-        "id" => $v->venteId(),
-        "reference" => $v->venteReference(),
-        "prixPercu" => $v->ventePrixPercu(),
+        "DT_RowId" => $v->id(),
+        "id" => $v->id(),
+        "reference" => $v->reference(),
+        "prixPercu" => $v->prixPercu(),
         "client" => $client1,
-        'dateVente' => $v->venteDateVente()
+        'dateVente' => $v->dateVente()
     );
-    $totalVenteCreditFacture1 = $v->ventePrixPercu() + $totalVenteCreditFacture1;
+    $totalVenteCreditFacture1 = $v->prixPercu() + $totalVenteCreditFacture1;
 endforeach;
 
 //if (!isset($dataVenteACredit1)) $dataVenteACredit1 = 0;

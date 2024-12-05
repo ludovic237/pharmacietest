@@ -188,7 +188,7 @@ class FournisseurManager
 
         $q = $this->_db->query('SELECT * FROM fournisseur WHERE supprimer = 0 AND id = '.$info);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        return new fournisseur($donnees);
+        return new Fournisseur($donnees);
 
     }
     public function getList()
