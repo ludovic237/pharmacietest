@@ -391,7 +391,10 @@ $donnees = array(
     'ec_solde_system' => $montantSystem,
     'ec_difference' => $differnce,
     'tf_retourproduit' => $dataProduitRetour,
-    'tf_retourtotal' => $prixTotalRetourProduit
+    'tf_retourtotal' => $prixTotalRetourProduit,
+    'date_ouverture' => $caisse->dateOuvert(),
+    'date_fermeture' => $caisse->dateFerme(),
+    'etat' => $caisse->etat(),
 
 );
 echo json_encode($donnees);

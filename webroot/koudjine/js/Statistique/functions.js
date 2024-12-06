@@ -721,8 +721,8 @@ function showVenteCaisse(id, total, session) {
         },
         success: function (server_responce) {
             var datas = JSON.parse(server_responce);
-            $('#dateOuvertRapportVente').html(moment(datas.data.dateOuvert).format("DD/MMM/YYYY"));
-            $('#dateFermeRapportVente').html(moment(datas.data.dateFerme).format("DD/MMM/YYYY"));
+            $('#dateOuvertRapportVente').html(datas.dateOuverture);
+            $('#dateFermeRapportVente').html(datas.dateFermeture);
             $('#nameRapportVente').html(datas.employe);
             $('#sessionRapportVente').html(session);
             $('#etatRapportVente').html(datas.data.etat);
@@ -880,22 +880,7 @@ function showVenteCaisse(id, total, session) {
 }
 
 function showRapportCaisse(id,session) {
-    $.ajax({
-        type: "POST",
-        url: '/pharmacietest/koudjine/inc/rapport_caisse.php',
-        data: {
-            id: id
-        },
-        success: function (server_responce) {
-            var datas = JSON.parse(server_responce);
-            $('#datesRapport').html(moment(datas.data.dateFerme).format("DD/MMM/YYYY"));
-            $('#heuresRapport').html(moment(datas.data.dateFerme).format("hh:mm"));
-            $('#nameRapport').html(datas.employe);
-            $('#sessionRapport').html(session);
-            $('#etatRapport').html(datas.data.etat);
-        }
-    })
-
+    $('#sessionRapport').html(session);
     showRapportTest(id);
     // var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
     // if(id != null){
@@ -1007,7 +992,9 @@ function reimprime_ticket_caisse(id) {
         data: {
             id: id
         },
+        dataType: 'json',
         success: function (server_responce) {
+            let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer2  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
@@ -1015,7 +1002,18 @@ function reimprime_ticket_caisse(id) {
                     $(this).remove();
                 }
             });
-            $('#tab_BfactureImprimer2').prepend(server_responce);
+            for (i in ventes) {
+                
+                $('#tab_BfactureImprimer2').prepend(`
+                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                        </tr>
+                    `);
+            };
             $('#iconPreviewFacture2').modal("show");
 
 
@@ -1144,8 +1142,60 @@ function showRapportTest(id) {
             $("#rapport_ec_solde_reel").html(data.ec_solde_reel);
             $("#rapport_ec_solde_system").html(data.ec_solde_system);
             $("#rapport_ec_difference").html(data.ec_difference);
+            if (data.etat == "Clot") {
+                $("#etatRapport").removeClass("label-warning");
+                $("#etatRapport").addClass("label-success");
+                $("#etatRapport").html(data.etat);
+            } else {
+                if (data.etat == "Ouvert") {
+                    $("#etatRapport").addClass("label-warning");
+                    $("#etatRapport").removeClass("label-success");
+                    $("#etatRapport").html(data.etat);
+                } else {
+                    return '<strong >' + data.etat + '</strong>';
+                }
+            }
+            $("#etatRapport").html(data.etat);
+            if (data.date_ouverture != null && data.date_fermeture !=null){
+                $('#datesRapport').html(data.date_ouverture+" au "+data.date_fermeture);
+            }
+            else if (data.date_ouverture == null && data.date_fermeture==null){
+                $('#datesRapport').html('Indisponible');
+            }
+            else if (data.date_ouverture == null && data.date_fermeture!=null){
+                $('#datesRapport').html('Indisponible');
+            }
+            else if (data.date_ouverture != null && data.date_fermeture==null){
+                $('#datesRapport').html(data.date_ouverture+" au N/A");
+            }
         }
     });
     $("#iconPreviewRapportTest").modal("show");
 
 }
+
+
+function imprimer_bloc(titre, objet) {
+    // Définition de la zone à imprimer
+    var zone = document.getElementById(objet).innerHTML;
+    //alert("Hello");
+    // Ouverture du popup,
+    var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
+
+    // style du popup
+    fen.document.body.style.color = '#000000';
+    fen.document.body.style.backgroundColor = '#FFFFFF';
+    fen.document.body.style.padding = "0px";
+
+    // Ajout des données a imprimer
+    fen.document.title = titre;
+    fen.document.body.innerHTML += " " + zone + " ";
+
+    // Impression du popup
+    fen.window.print();
+
+    //Fermeture du popup
+    fen.window.close();
+    return true;
+}
+

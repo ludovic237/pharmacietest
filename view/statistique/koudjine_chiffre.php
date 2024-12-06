@@ -19,6 +19,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="' . BASE_URL . '/koudjine/js/plugins/jspdf/dist/jspdf.umd.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Statistique/functions.js"></script>';
 ?>
 
@@ -365,7 +366,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         NoCT /P058512700488Z</p>
                                 </div>
                             </div>
-                            <a class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</a>
+                            <a class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticketListe2','ticketListe2')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</a>
                         </div>
                     </div>
 
@@ -577,7 +578,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         <div class="modal-content">
             <div class="modal-header">
                 <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>
-                <h4 class="modal-title">Rapport caisse de <span style="font-weight: bolder" id="nameRapport"></span> du : <span id="datesRapport" style="font-weight: bolder"></span> à <span style="font-weight: bolder" id="heuresRapport"></span> </h4>
+                <h4 class="modal-title">Rapport caisse de <span style="font-weight: bolder" id="nameRapport"></span> du : <span id="datesRapport" style="font-weight: bolder"></span>  </h4>
                 <div style="display: flex;justify-content: space-between">
                     <h4 class="modal-title">Session : <span style="font-weight: bolder" id="sessionRapport"></span> </h4>
                     <h4 class="modal-title"><span id="etatRapport" class="label label-success">' + data + '</span> </h4>

@@ -478,7 +478,9 @@ function reimprime_ticket_caisse(id) {
         data: {
             id: id
         },
+        dataType: 'json',
         success: function (server_responce) {
+            let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer2  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
@@ -486,7 +488,18 @@ function reimprime_ticket_caisse(id) {
                     $(this).remove();
                 }
             });
-            $('#tab_BfactureImprimer2').prepend(server_responce);
+            for (i in ventes) {
+                
+                $('#tab_BfactureImprimer2').prepend(`
+                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                        </tr>
+                    `);
+            };
             $('#iconPreviewFacture2').modal("show");
 
 
@@ -1133,7 +1146,9 @@ function charger_vente(id) {
         data: {
             id: id
         },
+        dataType: 'json',
         success: function (server_responce) {
+            let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_GGBfactureImprimer  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
@@ -1143,6 +1158,27 @@ function charger_vente(id) {
             });
             $('#tab_vente_caisse').html(server_responce);
             $('#tab_BfactureImprimer').prepend(server_responce);
+            for (i in ventes) {
+                
+                $('#tab_vente_caisse').prepend(`
+                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                        </tr>
+                    `);
+                $('#tab_BfactureImprimer').prepend(`
+                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                        </tr>
+                    `);
+            };
             $('.Espècecaisse1').focus();
 
 
@@ -1350,8 +1386,9 @@ function imprime_ticket(id, montantespece,
         data: {
             id: id
         },
+        dataType: 'json',
         success: function (server_responce) {
-
+            let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
@@ -1360,7 +1397,18 @@ function imprime_ticket(id, montantespece,
                 }
             });
             //$('#tab_vente_caisse').html(server_responce);
-            $('#tab_BfactureImprimer').prepend(server_responce);
+            for (i in ventes) {
+                
+                $('#tab_BfactureImprimer').prepend(`
+                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                        </tr>
+                    `);
+            };
             $("#iconPreviewListeCaisse").modal('hide');
             $('#iconPreviewFacture').modal("show");
 
@@ -1575,6 +1623,7 @@ function showRapportTest(id) {
             $("#rapport_ec_solde_reel").html(data.ec_solde_reel);
             $("#rapport_ec_solde_system").html(data.ec_solde_system);
             $("#rapport_ec_difference").html(data.ec_difference);
+            $('#datesRapport').html(moment(data.date_ouverture).format("DD/MMM/YYYY hh:mm")+" au "+moment(data.date_fermeture).format("DD/MMM/YYYY hh:mm"));
         }
     });
 

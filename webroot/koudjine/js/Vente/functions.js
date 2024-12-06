@@ -669,9 +669,15 @@ function reimprime_ticket(id, montantespece,
         data: {
             id: id
         },
-        success: function (server_responce) {
+        dataType: 'json',
+        success: function (server_response) {
 
             $('#tab_vente_caisse').empty();
+
+            let ventes = server_response.data;
+            console.log("ventes");
+            console.log(ventes);
+
             $('#tab_BfactureImprimer  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
                     //alert("passe");
@@ -679,10 +685,22 @@ function reimprime_ticket(id, montantespece,
                 }
             });
             //$('#tab_vente_caisse').html(server_responce);
-            $('#tab_BfactureImprimer').prepend(server_responce);
+            for (i in ventes) {
+                
+                $('#tab_BfactureImprimer').prepend(`
+                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                        </tr>
+                    `);
+            };
+            $('#montantespece').html(server_response.montantfactureEspece);
+            $('#montantelectronique').html(server_response.montantfactureElectronique);
+            $('#montantticket').html(server_response.montantfactureTicket);
             $('#iconPreviewFacture').modal("show");
-
-
         }
 
 
@@ -866,8 +884,9 @@ function valider_vente(type, etat) {
                                             data: {
                                                 id: idv
                                             },
+                                            dataType: 'json',
                                             success: function (server_responce) {
-                                                ////alert(server_responce);
+                                                let ventes = server_responce.data;
                                                 //$("#iconPreview .icon-preview").html(icon_preview);
                                                 $('#prixTotal').html(0);
                                                 $('#prixReduit').html(0);
@@ -897,6 +916,18 @@ function valider_vente(type, etat) {
                                                     ]
                                                 });
                                                 $('#tab_BfactureImprimer').prepend(server_responce);
+                                                for (i in ventes) {
+                                                    
+                                                    $('#tab_BfactureImprimer').prepend(`
+                                                        <tr class="ligne_facture">
+                                                            <td>${ventes[i].nom}</td>
+                                                            <td>${ventes[i].prixUnit}</td>
+                                                            <td>${ventes[i].quantite}</td>
+                                                            <td>${ventes[i].total}</td>
+                                                            <td>${ventes[i].reduction}</td>
+                                                        </tr>
+                                                    `);
+                                                };
                                                 //$("#iconPreviewFacture").modal('show');
                                                 imprimer_bloc('ticketVente', 'ticketVente');
 
@@ -1188,7 +1219,9 @@ function reimprime_ticket_caisse(id) {
         data: {
             id: id
         },
+        dataType: 'json',
         success: function (server_responce) {
+            let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer2  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
@@ -1197,7 +1230,18 @@ function reimprime_ticket_caisse(id) {
                 }
             });
             //$('#tab_vente_caisse').html(server_responce);
-            $('#tab_BfactureImprimer2').prepend(server_responce);
+            for (i in ventes) {
+                
+                $('#tab_BfactureImprimer2').prepend(`
+                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                        </tr>
+                    `);
+            };
             $('#iconPreviewFacture2').modal("show");
 
 

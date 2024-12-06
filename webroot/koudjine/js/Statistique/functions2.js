@@ -1006,7 +1006,9 @@ function reimprime_ticket_caisse(id) {
         data: {
             id: id
         },
+        dataType: 'json',
         success: function (server_responce) {
+            let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer2  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
@@ -1014,7 +1016,18 @@ function reimprime_ticket_caisse(id) {
                     $(this).remove();
                 }
             });
-            $('#tab_BfactureImprimer2').prepend(server_responce);
+            for (i in ventes) {
+                
+                $('#tab_BfactureImprimer2').prepend(`
+                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                        </tr>
+                    `);
+            };
             $('#iconPreviewFacture2').modal("show");
 
 
