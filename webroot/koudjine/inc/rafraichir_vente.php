@@ -4,6 +4,10 @@ require_once('../Class/vente.php');
 require_once('../Class/caisse.php');
 require_once('../Class/employe.php');
 require_once('../Class/user.php');
+require_once('../Class/concerner.php');
+require_once('../Class/en_rayon.php');
+require_once('../Class/produit.php');
+require_once('../Class/produit_detail.php');
 
 $id;
 
@@ -13,6 +17,11 @@ $managerVente = new VenteManager($pdo);
 $managerCaisse = new CaisseManager($pdo);
 $managerUser = new UserManager($pdo);
 $managerEmploye = new EmployeManager($pdo);
+$managerPrDetail = new Produit_detailManager($pdo);
+
+$managerEn = new En_rayonManager($pdo);
+$managerCo = new ConcernerManager($pdo);
+$managerPr = new ProduitManager($pdo);
 
 if (isset($_POST['id']))
     $id=$_POST['id'];
@@ -43,11 +52,43 @@ if (isset($_POST['id'])||isset($_GET['id'])){
         $date = DateTime::createFromFormat('Y-m-d H:i:s', $datevente);
         $datev = $date->format('d-m-Y');
         $heurev = $date->format('H:i');
+
+        $produits = $managerCo->getList($v->id());
+        $typefacturation = "No exist";
+        $montantfactureEspece = 0;
+        $montantfactureElectronique = 0;
+        $montantfactureTicket = 0;
+        $data = [];
+        foreach ($produits as $a => $b) :
+            if ($b->type() == "detail") {
+                $nom = $managerPrDetail->get($b->en_rayon_id())->nom();
+            } else {
+                $nom = $managerPr->get($managerEn->get($b->en_rayon_id())->produit_id())->nom();
+            }
+
+            $data[] = array(
+                "nom" => $nom,
+            );
+
+
+
+        endforeach;
+        $nomString = "Le tableau est vide.";
+        if (!empty($data)) {
+            // Concaténation des valeurs de la clé "nom"
+            $nomString = implode(", ", array_column($data, "nom"));
+            echo $nomString; // Résultat : Jean, Paul, Marie
+        } else {
+            echo "Le tableau est vide.";
+        }
         echo "<tr id=\"".$v->id()."\">
                                             <td ><strong class='prixtotal'>".$v->prixTotal()."</strong></td>
                                             <td class='reduction'>".$v->reduction()."</td>
                                             <td class='reference'>
-                                                ".$v->reference()."
+                                                <p style='font-size: 14px;'>".$v->reference()."</p>
+                                             
+                                                <p style='font-size: 8px;font-weight: bold;margin-bottom: 0px;'>".$nomString."</p>
+                                                
                                             </td>
                                             <td class='client'>
                                                 ".$client."

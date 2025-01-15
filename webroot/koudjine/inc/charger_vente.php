@@ -5,6 +5,8 @@ require_once('../Class/concerner.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/produit.php');
 require_once('../Class/produit_detail.php');
+require_once('../Class/employe.php');
+require_once('../Class/user.php');
 
 require_once('../Class/facturation.php');
 require_once('../Class/facture_ticket.php');
@@ -20,6 +22,9 @@ $managerCo = new ConcernerManager($pdo);
 $managerPr = new ProduitManager($pdo);
 $managerPrDetail = new Produit_detailManager($pdo);
 
+$managerUser = new UserManager($pdo);
+$managerEmploye = new EmployeManager($pdo);
+
 $managerFacturation = new FacturationManager($pdo);
 $managerFactureEspece = new FactureEspeceManager($pdo);
 $managerFactureElectronique = new FactureElectroniqueManager($pdo);
@@ -31,6 +36,7 @@ $id = $_POST['id'];
 $data = [];
 
 if (isset($_POST['id'])) {
+    $ventes = $manager->get($id);
     $produits = $managerCo->getList($id);
     $typefacturation = "No exist";
     $montantfactureEspece = 0;
@@ -81,12 +87,38 @@ if (isset($_POST['id'])) {
         $montantfactureTicket = 0;
     }
 
+    $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $ventes->dateVente());
+    $date = $dateTime->format('d-m-Y'); // Extrait uniquement la date (format : Année-Mois-Jour)
+    $time = $dateTime->format('H:i'); // Extrait uniquement l'heure (format : Heures:Minutes:Secondes)
+
+    if($ventes->user_id()!= null){
+        //$client1 = $managerUser->get($v->user_id());
+        $client = $managerUser->get($ventes->user_id())->nom();
+    }else{
+        $client = $ventes->nouveau_info();
+    }
+    if($ventes->employe_id() != null){
+        $employ = $managerEmploye->get($ventes->employe_id());
+        $employe = $managerUser->get($employ->user_id())->nom();
+    }else{
+        $employe = null;
+    }
+
     $donnees = array(
         'data' => $data,
         "type_paiement" => $typefacturation,
         'montantfactureEspece' => $montantfactureEspece,
         'montantfactureElectronique' => $montantfactureElectronique,
         'montantfactureTicket' => $montantfactureTicket,
+        'reference' => $ventes->reference(),
+        'datevente' => $date,
+        'heurevente' => $time,
+        'vendeur' => $employe,
+        'acheteur' => $client,
+        'montanttotal' => $ventes->prixPercu(),
+        'netapayer' => $ventes->prixTotal(),
+        'montantrendu' => -( $ventes->prixTotal()- $ventes->prixPercu()),
+        'remise' => -( $ventes->prixTotal()- $ventes->prixPercu()),
     );
     echo json_encode($donnees);
 } else {

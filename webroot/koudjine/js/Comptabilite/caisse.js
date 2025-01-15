@@ -1332,15 +1332,7 @@ function imprime_ticket(id, montantespece,
     var date = yo.substr(0, 10);
     var heure = yo.substr(12, 8);
     //var tab = explode(" ", datevte);
-    $('#ticketListe .reference').html($("#" + id + " .reference").html());
-    $('#ticketListe .datevente').html(date);
-    $('#ticketListe .heurevente').html(heure);
-    $('#ticketListe .vendeur').html($("#" + id + " .seller").html());
-    $('#ticketListe .acheteur').html($("#" + id + " .client").html());
-    $('#ticketListe .netapayer').html($("#" + id + " .prixp").html());
-    $('#ticketListe .montanttotal').html($("#" + id + " .prixt").html());
-    $('#ticketListe .montantrendu').html(reste);
-    $('#ticketListe .remise').html(parseInt($("#" + id + " .prixt").html()) - parseInt($("#" + id + " .prixp").html()));
+
     var typePaiement = $("#" + id + " .typePaiement").html();
     console.log(typePaiement);
     console.log(montantespece);
@@ -1389,7 +1381,20 @@ function imprime_ticket(id, montantespece,
         dataType: 'json',
         success: function (server_responce) {
             let ventes = server_responce.data;
-            $('#tab_vente_caisse').empty();
+            console.log("server_responce");
+            console.log(server_responce);
+            $('#iconPreviewFacture .reference').html(server_responce.reference+'');
+            $('#iconPreviewFacture .datevente').html(server_responce.datevente+'');
+            $('#iconPreviewFacture .heurevente').html(server_responce.heurevente+'');
+            $('#iconPreviewFacture .vendeur').html(server_responce.vendeur+'');
+            $('#iconPreviewFacture .acheteur').html(server_responce.acheteur+'');
+            $('#iconPreviewFacture .netapayer').html(server_responce.netapayer+'');
+            $('#iconPreviewFacture .montanttotal').html(server_responce.montanttotal+'');
+            $('#iconPreviewFacture .montantrendu').html(server_responce.montantrendu+'');
+            $('#iconPreviewFacture .remise').html(server_responce.remise+'');
+
+
+         $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
                     //alert("passe");
