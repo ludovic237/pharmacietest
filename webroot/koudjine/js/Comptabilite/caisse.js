@@ -795,7 +795,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                 $("#" + id1 + " td").each(function (j) {
                                     ////alert($(this).html());
                                     if (j == 2) {
-                                        qte = parseInt($(this).html());
+                                        qte = parseInt($(this).text().trim());
                                     }
 
                                 });
@@ -906,8 +906,12 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
 
                             $("#" + id1 + " td").each(function (j) {
                                 ////alert($(this).html());
+
+
                                 if (j == 2) {
-                                    qte = parseInt($(this).html());
+                                    console.log($(this).html());
+                                    console.log($(this).text().trim());
+                                    qte = parseInt($(this).text().trim());
                                 }
 
 
