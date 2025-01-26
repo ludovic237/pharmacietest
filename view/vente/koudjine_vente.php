@@ -13,6 +13,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/jquery/jquery-ui.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery.fittext.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-barcode.min.js"></script>
 <!-- END PLUGINS -->
 
 <!-- START THIS PAGE PLUGINS-->
@@ -409,17 +414,25 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         </tbody>
                                     </table>
                                 </div>
-                                <div style="display: flex;flex-direction:column;text-align: left;">
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Payer en espece : <span class="montantpercu"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Montant rendu : <span class="montantrendu"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Ce ticket vaut facture</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Merci et bonne santé</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        NoCT /P058512700488Z</p>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; flex-direction: column; text-align: left;">
+                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                                Payer en espece : <span class="montantpercu"></span>
+                                            </p>
+                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                                Montant rendu : <span class="montantrendu"></span>
+                                            </p>
+                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                                Ce ticket vaut facture
+                                            </p>
+                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                                Merci et bonne santé
+                                            </p>
+                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                                NoCT /P058512700488Z
+                                            </p>
+                                        </div>
+                                        <p id="qrcodeTicket" alt="Image à droite" style="height: auto;">
                                 </div>
                             </div>
                             <a class="btn btn-circle blue"
@@ -619,18 +632,27 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                         </tbody>
                                     </table>
                                 </div>
-                                <div style="display: flex;flex-direction:column;text-align: left;">
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Payer en espece : <span class="montantpercu"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Montant rendu : <span class="montantrendu"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Ce ticket vaut facture</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Merci et bonne santé</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        NoCT /P058512700488Z</p>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; flex-direction: column; text-align: left;">
+                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            Payer en espece : <span class="montantpercu"></span>
+                                        </p>
+                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            Montant rendu : <span class="montantrendu"></span>
+                                        </p>
+                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            Ce ticket vaut facture
+                                        </p>
+                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            Merci et bonne santé
+                                        </p>
+                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            NoCT /P058512700488Z
+                                        </p>
+                                    </div>
+                                    <p id="qrcodeTicket" alt="Image à droite" style="height: auto;">
                                 </div>
+
                             </div>
                             <a class="btn btn-circle blue"
                                style="text-align:center; float: left; font-size:10px; margin-top: 20px;"

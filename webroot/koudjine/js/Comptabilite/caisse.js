@@ -4,6 +4,7 @@ var endDate;
 var idemploye = null
 ;
 var idfulldepense;
+var qrcode;
 
 var id_boncaisse_encaissement;
 
@@ -645,6 +646,13 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
     console.log($('#' + onglet + ' .numero').val());
     // Traitement Mixte
     var typePaiementFinal = 'Mixtes';
+
+    qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+        width: 90,
+        height: 90
+    });
+    qrcode.clear();
+    qrcode.makeCode(vente_id);
     if (typePaiement == 'Mixte') {
 
         if (parseInt($('#' + onglet + ' .montant_espece').val()) > 0 && parseInt($('#' + onglet + ' .montant_electronique').val()) > 0
@@ -1143,6 +1151,12 @@ function charger_vente(id) {
     $('#ticketCaisse .remise').html($("#" + id + " .reduction").html());
     $('#ticketCaisse .montanttotal').html(parseInt($("#" + id + " .reduction").html()) + parseInt($("#" + id + " .prixtotal").html()));
 
+   /* qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+        width: 90,
+        height: 90
+    });
+    qrcode.clear();
+    qrcode.makeCode(id);*/
 
     $.ajax({
         type: "POST",
@@ -1397,6 +1411,12 @@ function imprime_ticket(id, montantespece,
             $('#iconPreviewFacture .montantrendu').html(server_responce.montantrendu+'');
             $('#iconPreviewFacture .remise').html(server_responce.remise+'');
 
+            qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+                width: 90,
+                height: 90
+            });
+            qrcode.clear();
+            qrcode.makeCode(id);
 
          $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer  tr').each(function (i) {

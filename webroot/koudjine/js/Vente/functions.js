@@ -2,9 +2,11 @@ var test = 0;
 var startDate;
 var endDate;
 var typeProduitVente="en rayon";
-var idemploye = null
-;
+var idemploye = null;
 var idfulldepense;
+
+var qrcode;
+
 $('#pharmanet_tab_vente').hide();
 
 
@@ -671,6 +673,12 @@ function reimprime_ticket(id, montantespece,
         },
         dataType: 'json',
         success: function (server_response) {
+            qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+                width: 90,
+                height: 90
+            });
+            qrcode.clear();
+            qrcode.makeCode(id);
 
             $('#tab_vente_caisse').empty();
 
@@ -1222,6 +1230,13 @@ function reimprime_ticket_caisse(id) {
         dataType: 'json',
         success: function (server_responce) {
             let ventes = server_responce.data;
+            qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+                width: 90,
+                height: 90
+            });
+            qrcode.clear();
+            qrcode.makeCode(id);
+
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer2  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
