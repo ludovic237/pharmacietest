@@ -787,10 +787,11 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                         caisse_id: parseInt(caisse_id)
                     },
                     success: function (server_responce) {
-                        alert(server_responce);
+                        // alert(server_responce);
                         if (typePaiement == 'Mixte Espèce' || typePaiement == 'Mixte Electronique' || typePaiement == 'Mixte Ticketcaisse') {
                             console.log('payement mixte');
-                        } else {
+                        }
+                        else {
                             $('#tab_vente_caisse  tr').each(function (i) {
                                 count++;
                             });
@@ -827,16 +828,34 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                         if (imprimer && rec == count) {
                                             imprimer_bloc('ticketCaisse', 'ticketCaisse', typePaiement);
                                             $('#tab_vente_caisse').empty();
+                                            $('#Mixtecaisse1').val();
+                                            $('#Mixtecaisse2').val();
+                                            $('#Mixtecaisse3').val();
+                                            $('#Mixtecaisse4').val();
                                         } else {
                                             $('#tab_vente_caisse').empty();
+                                            $('#Mixtecaisse1').val();
+                                            $('#Mixtecaisse2').val();
+                                            $('#Mixtecaisse3').val();
+                                            $('#Mixtecaisse4').val();
                                         }
+
                                     }
                                 })
 
                             });
                         }
+                        $('.nav-tabs li').removeClass('active');  // Supprime la classe active de tous les onglets
+                        $('.tab-content .tab-pane').removeClass('active in');  // Désactive toutes les sections
 
+                        // Réactiver tab1
+                        $('.nav-tabs li:first-child').addClass('active');
+                        $('#tab1').addClass('active in');
 
+                        $('#Mixtecaisse1').val("");
+                        $('#Mixtecaisse2').val("");
+                        $('#Mixtecaisse3').val("");
+                        $('#Mixtecaisse4').val("");
                     }
 
 
@@ -902,7 +921,8 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                     //alert(server_responce);
                     if (typePaiement == 'Mixte Espèce' || typePaiement == 'Mixte Electronique' || typePaiement == 'Mixte Ticketcaisse') {
                         console.log('payement mixte');
-                    } else {
+                    }
+                    else {
                         $('#tab_vente_caisse  tr').each(function (i) {
                             count++;
                         });
@@ -954,6 +974,16 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                         });
                     }
 
+                    $('.nav-tabs li').removeClass('active');  // Supprime la classe active de tous les onglets
+                    $('.tab-content .tab-pane').removeClass('active in');  // Désactive toutes les sections
+
+                    // Réactiver tab1
+                    $('.nav-tabs li:first-child').addClass('active');
+                    $('#tab1').addClass('active in');
+                    $('#Mixtecaisse1').val("");
+                    $('#Mixtecaisse2').val("");
+                    $('#Mixtecaisse3').val("");
+                    $('#Mixtecaisse4').val("");
 
                 }
 
