@@ -8,7 +8,9 @@ $page_for_layout = 'Retour produits';
 //echo $_SESSION['Users']->identifiant;
 
 $position_for_layout = '<li><a href="#">Vente</a></li><li class="active">Retouner produits</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
+$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/myFunction.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
@@ -172,3 +174,109 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
 
     </div>
 </div>
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewRetourProduit" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Detail retour</h4>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="icon-preview">
+                            <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;"
+                                 class="ticketfacture" id="ticketCaisse">
+
+                                <div style="display: flex;flex-direction:column;text-align: left;">
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Pharmacie ALSAS</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Dr GAMWO Sandrine</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        BP 38 FOUMBOT</p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Tel :(+237) 233 267 487</p>
+                                    <div style="display: flex;justify-content:space-between">
+                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            Ticket N°: <span class="reference"></span></p>
+                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            <span class="datevente"></span> à <span class="heurevente"></span>
+                                        </p>
+                                    </div>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Client: <span class="client"></span></p>
+                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Employe: <span class="employe"></span></p>
+                                </div>
+                                <div>
+                                    <table class="table table-bordered table-striped table-actions table-responsive"
+                                           id="tab_GGBfactureImprimer">
+                                        <thead>
+                                        <tr>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                width="200">Libelle
+                                            </th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                width="150">Prix U.
+                                            </th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                width="100">Qte
+                                            </th>
+                                            <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                width="100">Total
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tab_BfactureImprimer">
+
+                                        <tr>
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Total
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span class="montanttotal"></span> FCFA
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; flex-direction: column; text-align: left;">
+
+                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            Ce ticket vaut facture
+                                        </p>
+                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            Merci et bonne santé
+                                        </p>
+                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            NoCT /P058512700488Z
+                                        </p>
+                                    </div>
+                                    <p id="qrcodeTicket" alt="Image à droite" style="height: auto;">
+                                </div>
+                            </div>
+                            <a class="btn btn-circle blue"
+                               style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
+                               onClick="imprimer_bloc('ticketCaisse','ticketCaisse')"><i class="fa fa-print"
+                                                                                         style="font-size:10px"></i>&nbsp;Imprimer</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="backToModalListVente()">Retour</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
