@@ -75,6 +75,10 @@ foreach ($ventes as $key => $v) {
 
         $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite()) - $b->reduction();
         $en_rayon = $managerEn->get($b->en_rayon_id());
+        if (!$en_rayon->fournisseur_id() || $en_rayon->fournisseur_id()==false) {
+//            echo "Erreur : Aucun produit trouvé pour l'ID en rayon " . $b->en_rayon_id() . "<br>";
+            continue; // Passe à l'itération suivante pour éviter les erreurs
+        }
         $fournisseur = $managerFournisseur->get($en_rayon->fournisseur_id());
 
         if ($fournisseur->statut() == "Grossiste") {
