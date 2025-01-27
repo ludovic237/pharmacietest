@@ -6,7 +6,9 @@ $title_for_layout = ' Admin -' . 'Commande';
 //$position = $this->request->action;
 
 $position_for_layout = '<li><a href="#">Commande</a></li><li class="active">Commande particulière</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
+$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/myFunction.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Commande/simplereappro.js"></script>';
 ?>

@@ -9,7 +9,9 @@ if($this->request->action == "index"){
     $position = $this->request->action;
 }
 $position_for_layout = '<li><a href="#">Universités</a></li><li class="active">'.$position.'</li>';
-$script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/js/plugins/mixitup/jquery.mixitup.js"></script>
+$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/myFunction.js"></script>
+<script type="text/javascript" src="'.BASE_URL.'/js/plugins/mixitup/jquery.mixitup.js"></script>
 <script type="text/javascript" src="'.BASE_URL.'/js/plugins/appear/jquery.appear.js"></script>
 <script type="text/javascript" src="'.BASE_URL.'/js/plugins/knob/jquery.knob.min.js"></script>
     <script type="text/javascript" src="'.BASE_URL.'/js/plugins/owl/owl.carousel.min.js"></script>

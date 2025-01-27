@@ -718,6 +718,7 @@ function reimprime_ticket(id, montantespece,
 }
 
 function valider_vente(type, etat) {
+    loader(true);
     var nouveau = "";
     var idClient;
     var idPrescripteur;
@@ -972,6 +973,7 @@ function valider_vente(type, etat) {
 
                 } else {
                     //alert('3 - '+data.erreur);
+                    loader(false);
                     $('#alertCaisse').modal("show");
                 }
 

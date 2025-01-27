@@ -137,6 +137,7 @@ function change_input(option, id, max) {
 
 function valider_retour(employe_id) {
     //alert($("#search-reference-produit").attr("data"));
+    loader(true);
     $.ajax({
         type: "POST",
         url: "/pharmacietest/koudjine/inc/enregistrer_retour.php",
@@ -167,6 +168,7 @@ function valider_retour(employe_id) {
 
                     }
                 })
+                loader(false);
             })
 
         }
@@ -204,4 +206,78 @@ function loadListProduitRetour() {
 
         }
     })
+}
+
+function imprime_retour_produit(id) {
+    var datevte = $("#" + id + " .datevte").html();
+    var yo = datevte;
+    var date = yo.substr(0, 10);
+    var heure = yo.substr(12, 8);
+    //var tab = explode(" ", datevte);
+
+    var typePaiement = $("#" + id + " .typePaiement").html();
+    console.log(typePaiement);
+    console.log(montantespece);
+    console.log(montantelectronique);
+    console.log(montantticket);
+
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_vente.php',
+        data: {
+            id: id
+        },
+        dataType: 'json',
+        success: function (server_responce) {
+            let ventes = server_responce.data;
+            console.log("server_responce");
+            console.log(server_responce);
+            $('#iconPreviewRetourProduit .reference').html(server_responce.reference+'');
+            $('#iconPreviewRetourProduit .datevente').html(server_responce.datevente+'');
+            $('#iconPreviewRetourProduit .heurevente').html(server_responce.heurevente+'');
+            $('#iconPreviewRetourProduit .client').html(server_responce.client+'');
+            $('#iconPreviewRetourProduit .employe').html(server_responce.employe+'');
+            $('#iconPreviewRetourProduit .netapayer').html(server_responce.netapayer+'');
+            $('#iconPreviewRetourProduit .montanttotal').html(server_responce.montanttotal+'');
+            $('#iconPreviewRetourProduit .montantrendu').html(server_responce.montantrendu+'');
+            $('#iconPreviewRetourProduit .remise').html(server_responce.remise+'');
+
+            qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+                width: 90,
+                height: 90
+            });
+            qrcode.clear();
+            qrcode.makeCode(id);
+
+            $('#tab_vente_caisse').empty();
+            $('#tab_BfactureImprimer  tr').each(function (i) {
+                if ($(this).attr("class") == 'ligne_facture') {
+                    //alert("passe");
+                    $(this).remove();
+                }
+            });
+            //$('#tab_vente_caisse').html(server_responce);
+            for (i in ventes) {
+
+                $('#tab_BfactureImprimer').prepend(`
+                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+              
+                        </tr>
+                    `);
+            };
+            $("#iconPreviewListeCaisse").modal('hide');
+            $('#iconPreviewRetourProduit').modal("show");
+
+
+        }
+
+
+    })
+
+
 }

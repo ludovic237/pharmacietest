@@ -38,7 +38,9 @@ if($this->request->action == "index"){
     $position = $this->request->action;
 }
 $position_for_layout = '<li><a href="#">Recherche</a>';
-$script_for_layout = '<script type="text/javascript" src="'.BASE_URL.'/js/plugins/bootstrap/bootstrap-select.js"></script>
+$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/myFunction.js"></script>
+<script type="text/javascript" src="'.BASE_URL.'/js/plugins/bootstrap/bootstrap-select.js"></script>
 <script type="text/javascript" src="'.BASE_URL.'/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="'.BASE_URL.'/js/setting/plugins.js"></script>
 <script type="text/javascript" src="'.BASE_URL.'/js/script.js"></script>
