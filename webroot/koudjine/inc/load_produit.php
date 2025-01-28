@@ -33,6 +33,11 @@ if (!isset($_POST['option'])){
 
 
         foreach ($enrayon as $k => $v) :
+            $dateActuelle = new DateTime();
+            $statut = "";
+            $perime = new DateTime( $v->datePeremption());
+            $interval = $dateActuelle->diff($perime);
+
             $datelivraison = $v->dateLivraison();
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
             $datel = $date->format('d-m-Y');
@@ -42,12 +47,23 @@ if (!isset($_POST['option'])){
             else $action = '';
             if ($produit->grossiste_id() != '')
                 $bouton = "
-                                             <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"gerer_detail('" . $v->id() . "')\"><span class=\"\">Augmenter quantité</span></button>
-                                        ";
+                            <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"gerer_detail('" . $v->id() . "')\"><span class=\"\">Augmenter quantité</span></button>
+                           ";
             else $bouton = "";
+
+            if ($dateActuelle > $perime) {
+                // Si la date de péremption est passée
+                $statut = '<span class="badge badge-danger badge-pill ml-2" style="font-size:90%">Périmé</span>';
+            } elseif ($interval->days <= 30 && $dateActuelle < $perime) {
+                // Si la date de péremption est dans 1 mois ou moins
+                $statut = '<span class="badge badge-warning badge-pill ml-2" style="font-size:90%">Expire dans ' . $interval->days . ' jour(s)</span>';
+            } else {
+                // Si la date de péremption est encore dans le futur (plus d'un mois)
+                $statut = '<span class="badge badge-success badge-pill ml-2" style="font-size:90%">Encore valide</span>';
+            }
             $datas[] = array(
                 "DT_RowId" => $v->id(),
-                'nom' => "<span ><strong class='nom'>" . $produit->nom() . "</strong></span>",
+                'nom' => "<span ><strong class='nom'>" . $produit->nom() . " " . $statut . "</strong></span>",
                 //'nom' => "<span ><strong class='nom'>" . $produit->nom() . "</strong></span>",
                 'prixUnitaire' => "<p class='prix'>
                                                 
