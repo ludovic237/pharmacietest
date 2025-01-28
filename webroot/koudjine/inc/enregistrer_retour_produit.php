@@ -34,19 +34,19 @@ $vente = $managerVente->get($concerner->vente_id());
 $en_rayon= $managerEnRayon->get($concerner->en_rayon_id());
 $produitr= $managerProduit->get($en_rayon->produit_id());
 
-$qteTotalVente=$concerner->quantite()+$qte;
-$reductionParProduit=$concerner->reduction()/$qteTotalVente;
+//$qteTotalVente=$concerner->quantite()+$qte;
+$reductionParProduit=$concerner->reduction()/$concerner->quantite();
 
-$concerner->setquantite($concerner->quantite()-$qte);
+$concerner->setquantite_retourner($qte);
 echo "- concerne qte : ".$concerner->quantite();
 $managerConcerner->update($concerner);
 
 
-$vente->setprixTotal($vente->prixTotal()-(($en_rayon->prixVente()-$reductionParProduit)*$qte));
-$managerVente->update($vente);
+//$vente->setprixTotal($vente->prixTotal()-(($en_rayon->prixVente()-$reductionParProduit)*$qte));
+//$managerVente->update($vente);
 
-$en_rayon->setquantite($en_rayon->quantite()+$qte);
-echo "- rayon qte : ".$en_rayon->quantite();
+//$en_rayon->setquantite($en_rayon->quantite()+$qte);
+//echo "- rayon qte : ".$en_rayon->quantite();
 $en_rayon->setquantiteRestante($en_rayon->quantiteRestante()+$qte);
 echo "- rayon qte res: ".$en_rayon->quantiteRestante();
 $managerEnRayon->update($en_rayon);

@@ -9,6 +9,7 @@ class Concerner
         $_prixUnit,
         $_quantite,
         $_reduction,
+        $_quantite_retourner,
         $_type,
         $_supprimer;
 
@@ -56,6 +57,10 @@ class Concerner
     public function reduction()
     {
         return $this->_reduction;
+    }
+    public function quantite_retourner()
+    {
+        return $this->_quantite_retourner;
     }
     public function supprimer()
     {
@@ -116,6 +121,13 @@ class Concerner
             $this->_reduction = $id;
         }
     }
+    public function setquantite_retourner ($id)
+    {
+
+        if ($id >= 0) {
+            $this->_quantite_retourner = $id;
+        }
+    }
     public function settype($id)
     {
 
@@ -140,7 +152,7 @@ class ConcernerManager
     }
     public function add(Concerner $concerner)
     {
-        $q = $this->_db->prepare('INSERT INTO concerner SET id = :id, vente_id = :vente_id, produit_id = :produit_id, en_rayon_id = :en_rayon_id, prixUnit = :prixUnit, quantite = :quantite, reduction = :reduction, type = :type, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO concerner SET id = :id, vente_id = :vente_id, produit_id = :produit_id, en_rayon_id = :en_rayon_id, prixUnit = :prixUnit, quantite = :quantite, reduction = :reduction, quantite_retourner = :quantite_retourner, type = :type, supprimer=0');
         $q->bindValue(':id', $concerner->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $concerner->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $concerner->produit_id(), PDO::PARAM_INT);
@@ -149,6 +161,7 @@ class ConcernerManager
         $q->bindValue(':quantite', $concerner->quantite());
         $q->bindValue(':type', $concerner->type());
         $q->bindValue(':reduction', $concerner->reduction());
+        $q->bindValue(':quantite_retourner', $concerner->quantite_retourner());
         $q->execute();
     }
     public function count()
@@ -317,7 +330,7 @@ class ConcernerManager
     public function update(Concerner $concerner)
     {
 
-        $q = $this->_db->prepare('UPDATE concerncer SET vente_id = :vente_id,produit_id = :produit_id, en_rayon_id = :en_rayon_id,prixUnit = :prixUnit, type = :type, quantite = :quantite, reduction = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE concerncer SET vente_id = :vente_id,produit_id = :produit_id, en_rayon_id = :en_rayon_id,prixUnit = :prixUnit, type = :type, quantite = :quantite, reduction = :reduction, quantite_retourner = :quantite_retourner WHERE id = :id');
         $q->bindValue(':id', $concerner->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $concerner->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $concerner->produit_id(), PDO::PARAM_INT);
@@ -326,6 +339,7 @@ class ConcernerManager
         $q->bindValue(':quantite', $concerner->quantite());
         $q->bindValue(':type', $concerner->type());
         $q->bindValue(':reduction', $concerner->reduction());
+        $q->bindValue(':quantite_retourner', $concerner->quantite_retourner());
         $q->execute();
     }
     public function setDb(PDO $db)

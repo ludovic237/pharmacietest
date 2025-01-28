@@ -4,6 +4,7 @@ class Commande
 {
     private $_id,
         $_fournisseur_id,
+        $_employe_id,
         $_dateCreation,
         $_dateLivraison,
         $_note,
@@ -51,6 +52,10 @@ class Commande
     public function fournisseur_id()
     {
         return $this->_fournisseur_id;
+    }
+    public function employe_id()
+    {
+        return $this->_employe_id;
     }
 
     public function note()
@@ -112,6 +117,14 @@ class Commande
 
         if ($id > 0) {
             $this->_fournisseur_id = $id;
+        }
+    }
+
+    public function setemploye_id($id)
+    {
+
+        if ($id > 0) {
+            $this->_employe_id = $id;
         }
     }
 
@@ -212,9 +225,10 @@ class CommandeManager
 
     public function add(Commande $commande)
     {
-        $q = $this->_db->prepare('INSERT INTO commande SET id = :id, dateLivraison = :datelivraison, dateCreation = now(), fournisseur_id = :fournisseur_id, note = :note, qtiteCmd = :qtitecmd, qtiteRecu = :qtiteRecu, montantCmd = :montant, montantRecu = :montantRecu, etat = "Commandé", ref = :ref, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO commande SET id = :id, dateLivraison = :datelivraison, dateCreation = now(), fournisseur_id = :fournisseur_id, employe_id = :employe_id, note = :note, qtiteCmd = :qtitecmd, qtiteRecu = :qtiteRecu, montantCmd = :montant, montantRecu = :montantRecu, etat = "Commandé", ref = :ref, supprimer=0');
         $q->bindValue(':id', $commande->id(), PDO::PARAM_INT);
         $q->bindValue(':fournisseur_id', $commande->fournisseur_id(), PDO::PARAM_INT);
+        $q->bindValue(':employe_id', $commande->employe_id(), PDO::PARAM_INT);
         $q->bindValue(':datelivraison', $commande->dateLivraison());
         $q->bindValue(':note', $commande->note());
         $q->bindValue(':qtitecmd', $commande->qtiteCmd());
@@ -328,9 +342,10 @@ class CommandeManager
     function update(Commande $commande)
     {
 
-        $q = $this->_db->prepare('UPDATE commande SET fournisseur_id = :fournisseur_id, note = :note, qtiteCmd = :qtitecmd, dateLivraison = :datelivraison, dateCreation = :dateCreation, qtiteRecu = :qtiteRecu, montantCmd = :montant, montantRecu = :montantRecu, etat = :etat, ref = :ref WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE commande SET fournisseur_id = :fournisseur_id, employe_id = :employe_id, note = :note, qtiteCmd = :qtitecmd, dateLivraison = :datelivraison, dateCreation = :dateCreation, qtiteRecu = :qtiteRecu, montantCmd = :montant, montantRecu = :montantRecu, etat = :etat, ref = :ref WHERE id = :id');
         $q->bindValue(':id', $commande->id(), PDO::PARAM_INT);
         $q->bindValue(':fournisseur_id', $commande->fournisseur_id(), PDO::PARAM_INT);
+        $q->bindValue(':employe_id', $commande->employe_id(), PDO::PARAM_INT);
         $q->bindValue(':dateCreation', $commande->dateCreation());
         $q->bindValue(':datelivraison', $commande->dateLivraison());
         $q->bindValue(':note', $commande->note());

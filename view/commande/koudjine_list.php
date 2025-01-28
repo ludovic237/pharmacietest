@@ -146,7 +146,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         <tr>
                             <th width="200">Date de creation</th>
                             <th width="200">Date de livraison</th>
-                            <!-- <th width="200">Note</th> -->
+                            <th width="200">Employe</th>
                             <th width="200">Fournisseur</th>
                             <th width="100">Quantite commande</th>
                             <th width="100">Quantite recu</th>
@@ -159,11 +159,68 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                         </tr>
                         </thead>
                         <tbody>
+                        <?php foreach ($commande1 as $k => $v) : ?>
+                            <tr id="<?php echo $v->id; ?>">
+                                <td><strong></strong></td>
+                                <td><?php echo $v->dateLivraison; ?></td>
+                                <td><?php echo $v->nomu; ?></td>
+                                <td>
+                                    <?php echo $v->nom; ?>
+                                </td>
+                                <td>
+                                    <?php echo $v->qtiteCmd; ?>
+                                </td>
+                                <td>
+                                    <?php echo $v->qtiteRecu; ?>
+                                </td>
+                                <td>
+                                    <?php echo $v->uniteGratuite; ?>
+                                </td>
+                                <td>
+                                    <?php echo $v->montantCmd; ?>
+                                </td>
+                                <td>
+                                    <?php echo $v->montantRecu; ?>
+                                </td>
+                                <td>
+                                    <?php echo $v->etat; ?>
+                                </td>
+                                <td>
+                                    <?php echo $v->ref; ?>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
+                                            data-placement="top"
+                                            onclick="imprimer_com(<?php echo $v->id; ?>,'<?php echo $v->ref; ?>','<?php echo $v->nom; ?>')">
+                                        Imprimer
+                                    </button>
+                                    <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
+                                            data-placement="top"
+                                            onclick="imprimer_com_recu(<?php echo $v->id; ?>,'<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $v->dateLivraison; ?>','<?php echo $v->note; ?>')">
+                                        Imprimer Reçu
+                                    </button>
+                                    <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
+                                            data-placement="top"
+                                            onclick="charger_produit_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>','<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $v->dateLivraison; ?>')">
+                                        Charger
+                                    </button>
+                                    <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
+                                            data-placement="top">
+                                        Supprimer
+                                    </button>
+                                    <button class="btn btn-primary btn-rounded btn-sm" data-toggle="tooltip"
+                                            data-placement="top"
+                                            onclick="charger_all_ticket_commande(<?php echo $v->id; ?>,'<?php echo $v->etat; ?>','<?php echo $v->montantRecu; ?>','<?php echo $v->ref; ?>','<?php echo $v->nom; ?>','<?php echo $v->dateLivraison; ?>')">
+                                        print
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                         <?php foreach ($commande as $k => $v) : ?>
                             <tr id="<?php echo $v->id; ?>">
                                 <td><strong></strong></td>
                                 <td><?php echo $v->dateLivraison; ?></td>
-                                <!-- <td><?php echo $v->note; ?></td> -->
+                                <td></td>
                                 <td>
                                     <?php echo $v->nom; ?>
                                 </td>

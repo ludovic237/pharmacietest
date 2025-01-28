@@ -176,8 +176,14 @@ function enregistrer_commande_programme() {
         var prixpublic = $('#prixpublic_cmdprogramme').val();
         var reduction = $('#reduction_max').val();
         var date = $('#date_cmdprogramme').val();
-        if (date == '' || qte == '') {
+        const selectedDate = new Date(date);
+        const today1 = new Date();
+        today1.setHours(0, 0, 0, 0);
+        if (date == '' || qte == '' ) {
             alert("Vérifier les champs Quantité et Date !!!");
+        }
+        else if(selectedDate <= today1){
+            alert("Vérifier la date de perremption !!!");
         } else {
             var today = new Date();
             var dd = String(today.getDate()).padStart(2, '0');
@@ -382,23 +388,13 @@ function delete_row_commande(id) {
 }
 
 function valider_commande(imprimer) {
-    $.blockUI({
-        css: {
-            backgroundColor: 'transparent',
-            border: 'none'
-        },
-        message: '<div class="spinner-border m-2" role="status"><span class="sr-only">Loading...</span></div>',
-        baseZ: 1500,
-        overlayCSS: {
-            backgroundColor: '#FFFFFF',
-            opacity: 0.7,
-            cursor: 'wait'
-        }
-    });
-    var prixTotal, idc, ref;
+    loader(true)
+    var prixTotal, idc, ref, ide;
     var prix, qte, ug, prixPublic, reduction, datep, nomP, count = 0, rec = 0;
     var h = 1, total = 0, nbre = 0;
     prixTotal = parseInt($('#prixTotal').html());
+    ide = parseInt($('#prixTotal').attr("data-id"));
+    //alert(ide);
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -409,14 +405,17 @@ function valider_commande(imprimer) {
     $("#date").html(today);
     if (prixTotal == 0) {
         alert('Veuillez sélectionner des produits !!!');
+        loader(false);
     } else if ($("#fournisseur_commande").val() == 0) {
         alert('Veuillez sélectionner un fournisseur!!!');
+        loader(false);
     } else {
         $.ajax({
             type: "POST",
             url: "/pharmacietest/koudjine/inc/enregistrer_commande.php",
             data: {
                 idf: parseInt($("#fournisseur_commande").val()),
+                ide: ide,
                 numLivraison: $("#numero_bon_livraison").val(),
                 montant: prixTotal,
                 datel: today,

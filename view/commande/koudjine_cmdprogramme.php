@@ -1,5 +1,6 @@
 <?php
-
+//echo $employe->nom;
+//print_r($employe);
 $title_for_layout = ' Admin -' . 'Commande';
 // $action_for_layout = 'Ajouter';
 
@@ -154,7 +155,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
         </div> -->
         <div style="display: flex;padding-top: 12px;flex-direction: row;width: 100%;justify-content: space-between;">
             <p style="font-weight: 200;">Total : </p>
-            <h6 style="font-weight: bold;font-size: large;"><span id="prixTotal" data="">0</span> FCFA</h6>
+            <h6 style="font-weight: bold;font-size: large;"><span id="prixTotal" data-id="<?php echo $_SESSION["Users"]->id; ?>">0</span> FCFA</h6>
         </div>
 
         <div style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">

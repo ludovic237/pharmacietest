@@ -118,7 +118,7 @@ class Model{
         return $res->count;
     }
 
-    public function delete ($id,$table = null,$nom_id){
+    public function delete ($id,$table,$nom_id){
         $sql = 'UPDATE '.$table.' SET supprimer = 1 WHERE '.$nom_id.' =  "'.$id.'"';
         //die($sql);
         $pre = $this->db->prepare($sql);

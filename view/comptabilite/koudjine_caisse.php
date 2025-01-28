@@ -211,7 +211,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                     </div>
                     <div class="panel panel-default tabs">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Espèce</a>
+                            <li class="active" id="tab_espece"><a href="#tab1" data-toggle="tab" aria-expanded="true">Espèce</a>
                             </li>
                             <li class=""><a href="#tab2" data-toggle="tab" aria-expanded="false">Electronique</a>
                             </li>

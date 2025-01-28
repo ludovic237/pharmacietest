@@ -46,6 +46,12 @@ class CommandeController extends Controller
             $id = null;
         }
 
+        $d['employe'] = $this->Commande->findFirst(array(
+            'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+            'table' => 'employe, user',
+            'conditions' => array('employe.id' => $_SESSION["Users"]->id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+        ));
+
         $d['fournisseur'] = $this->Commande->find(array(
             //'fields' => 'nom',
             'table' => 'fournisseur',
@@ -94,6 +100,11 @@ dateVente between DATE_ADD(now(), INTERVAL -' . $jour . ' day) and now()  AND e.
             'order' => 'nom-ASC',
             'conditions' => array('supprimer' => 0)
         ));
+        $d['employe'] = $this->Commande->findFirst(array(
+            'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+            'table' => 'employe, user',
+            'conditions' => array('employe.id' => $_SESSION["Users"]->id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+        ));
         $this->set($d);
     }
 
@@ -106,6 +117,11 @@ dateVente between DATE_ADD(now(), INTERVAL -' . $jour . ' day) and now()  AND e.
             'order' => 'nom-ASC',
             'conditions' => array('supprimer' => 0)
         ));
+        $d['employe'] = $this->Commande->findFirst(array(
+            'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+            'table' => 'employe, user',
+            'conditions' => array('employe.id' => $_SESSION["Users"]->id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
+        ));
         $this->set($d);
     }
 
@@ -117,6 +133,11 @@ dateVente between DATE_ADD(now(), INTERVAL -' . $jour . ' day) and now()  AND e.
             'table' => 'ligne_commande',
             'order' => 'id-DESC',
             'limit' => (1)
+        ));
+        $d['employe'] = $this->Commande->findFirst(array(
+            'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+            'table' => 'employe, user',
+            'conditions' => array('employe.id' => $_SESSION["Users"]->id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
         ));
         if (empty($d['com'])) {
 
@@ -133,11 +154,22 @@ dateVente between DATE_ADD(now(), INTERVAL -' . $jour . ' day) and now()  AND e.
     function koudjine_list($id = null)
     {
         $this->loadModel('Commande');
+        $d['commande1'] = $this->Commande->find(array(
+            'fields' => 'c.id as id,u.nom as nomu,dateCreation,dateLivraison,f.nom as nom,fournisseur_id,qtiteCmd,qtiteRecu,uniteGratuite,montantCmd,montantRecu,c.etat as etat,ref,note',
+            'table' => 'commande c, fournisseur f, employe e, user u',
+            'order' => 'c.id-DESC',
+            'conditions' => 'c.fournisseur_id = f.id and c.employe_id = e.id and e.user_id = u.id and c.supprimer = 0 and  f.supprimer = 0 and c.etat <> "Livré" '
+        ));
         $d['commande'] = $this->Commande->find(array(
-            'fields' => 'c.id as id,dateCreation,dateLivraison,nom,fournisseur_id,qtiteCmd,qtiteRecu,uniteGratuite,montantCmd,montantRecu,etat,ref,note',
+            'fields' => 'c.id as id,dateCreation,dateLivraison,f.nom as nom,fournisseur_id,qtiteCmd,qtiteRecu,uniteGratuite,montantCmd,montantRecu,c.etat as etat,ref,note',
             'table' => 'commande c, fournisseur f',
             'order' => 'c.id-DESC',
-            'conditions' => 'c.fournisseur_id = f.id and c.supprimer = 0 and  f.supprimer = 0 and c.etat <> "Livré" '
+            'conditions' => 'c.fournisseur_id = f.id and c.employe_id is NULL and c.supprimer = 0 and  f.supprimer = 0 and c.etat <> "Livré" '
+        ));
+        $d['employe'] = $this->Commande->findFirst(array(
+            'fields' => 'user.nom as nom, user.prenom as prenom, identifiant, type',
+            'table' => 'employe, user',
+            'conditions' => array('employe.id' => $_SESSION["Users"]->id, 'employe.supprimer' => 0, 'employe.user_id' => 'user.id')
         ));
         if ($id != null) {
             $d['com'] = $this->Commande->findFirst(array(

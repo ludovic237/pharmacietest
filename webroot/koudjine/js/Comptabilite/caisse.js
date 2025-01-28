@@ -1366,8 +1366,11 @@ function liste_caisse(id) {
                                 '                                                   onclick="imprime_ticket(' + row.DT_RowId + ',\'' + row.montantfactureEspece + '\',\'' + row.montantfactureElectronique + '\',\'' + row.montantfactureTicket + '\',\'' + row.reste + '\')">Imprimer ticket</a>';
                         }
                     }
-                ]
-            });
+                ],
+                    order:[[2,'desc']]
+            }
+            );
+            //$('#listeVenteId').dataTable().order([3,'desc']).draw();
             $("#iconPreviewListeCaisse").modal('show');
             $('#iconPreviewFacture').modal("hide");
         }
