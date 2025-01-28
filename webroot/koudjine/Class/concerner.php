@@ -321,7 +321,7 @@ class ConcernerManager
         $q->bindValue(':id', $concerner->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $concerner->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $concerner->produit_id(), PDO::PARAM_INT);
-        $q->bindValue(':en_rayon_id', $concerner->en_rayon_id(), PDO::PARAM_INT);
+        $q->bindValue(':en_rayon_id', $concerner->en_rayon_id());
         $q->bindValue(':prixUnit', $concerner->prixUnit());
         $q->bindValue(':quantite', $concerner->quantite());
         $q->bindValue(':type', $concerner->type());
