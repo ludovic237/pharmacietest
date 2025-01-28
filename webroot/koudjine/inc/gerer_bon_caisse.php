@@ -26,6 +26,7 @@ if (isset($_POST['id'])){
 }
 else{
     $new_id = $_POST['new_id'];
+    $codebarre_id = $_POST['codebarre_id'];
     $caisse_id = $_POST['caisse_id'];
     $nom = $_POST['nom'];
     $montant = $_POST['montant'];
@@ -37,7 +38,7 @@ else{
             'caisse_id' => $caisse_id,
             'montant' => $montant,
             'type' => 'Générer',
-            'codebarre_id' => genererCodebarreID(),
+            'codebarre_id' => $codebarre_id,
         ));
         $manager->add($bon);
     }else{
@@ -55,6 +56,7 @@ else{
             "id" => $v->id(),
             "nom_client" => $v->nom_client(),
             "montant" => $v->montant(),
+            "codebarre_id" => $v->codebarre_id(),
             "date_creation" => $v->dateGenerer(),
             "caisse" => $managerEm->get($managerCa->getId($v->caisse_id())->user_id())->identifiant(),
         );

@@ -3,7 +3,7 @@
 foreach ($employe as $k => $v) :
     $employes[] = $v->id;
 endforeach;
-//print_r($employes) ;
+//print_r($reductionFaite) ;
 $title_for_layout = ' ALSAS -' . 'Vente';
 $page_for_layout = ($position == 'Ajouter') ? 'Ajouter en Vente' : 'Modifier un assureur';
 // $action_for_layout = 'Ajouter';
@@ -139,9 +139,11 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                     <select class="form-control selectpicker" id="select_vente_client">
                                         <option value="0">Sélectionner Client</option>
                                         <?php
+                                        $i = 0;
                                         foreach ($client as $k => $v) : ?>
-                                            <option <?php if ($position == 'Modifier') if ($v->id == $vente->user_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" name="<?php echo $v->reduction; ?>" data="<?php echo $v->reductionMax; ?>" credit="<?php if (in_array($v->id, $employes)) echo "1"; else echo "0"; ?>"><?php echo $v->nom; ?></option>
+                                            <option <?php if ($position == 'Modifier') if ($v->id == $vente->user_id) echo "selected=\"selected\""; ?> value="<?php echo $v->id; ?>" name="<?php echo $v->reduction; ?>" data-reduction-faite="<?php echo $reductionFaite[$i]; ?>" data="<?php echo ($v->reductionMax - $reductionFaite[$i]); ?>" credit="<?php if (in_array($v->id, $employes)) echo "1"; else echo "0"; ?>"><?php echo $v->nom; ?></option>
                                         <?php
+                                            $i++;
                                         endforeach;
                                         ?>
                                     </select>

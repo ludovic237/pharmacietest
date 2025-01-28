@@ -382,33 +382,39 @@ function newDate() {
 
 function gerer_bon_caisse() {
     $('#tab_GBonCaisse  tr').each(function (i) {
-        var dateEncaisser, id1 = $(this).attr("id");
+        var dateEncaisser, datecode, id1 = $(this).attr("id");
+        dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
+        datecode = moment().format("YYMMDDHHmmss");
+        //alert(dateEncaisser);
+        //alert(datecode);
         if (parseInt(id1) == 0 && $("#" + id1 + " .montant").val() != "") {
-            dateEncaisser = '';
+            //dateEncaisser = '';
             $('#nomclientimp').html($("#" + id1 + " .nom").val());
             $('#montantimp').html($("#" + id1 + " .montant").val());
-            $('#dateimp').html(moment().format("YYYY-MM-DD HH:mm:ss"));
+            $('#dateimp').html(dateEncaisser);
             //qrcode.makeCode(moment().format("YYMMDDHHmmss"));
             $("#codebarreimp").barcode(
-                moment().format("YYMMDDHHmmss"), // Value barcode (dependent on the type of barcode)
+                datecode, // Value barcode (dependent on the type of barcode)
                 "code128" // type (string)
 
             );
 
-            $('#codebarrenulimp').html(moment().format("YYMMDDHHmmss"));
+            $('#codebarrenulimp').html(datecode);
 
             $("#previewImprimerBonCaisse").modal("show");
         } else {
-            dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
+
         }
         if (parseInt(id1) == 0 && $("#" + id1 + " .montant").val() == "") {
             alert("Veuillez entrer le montant");
-        } else {
+        }
+        else {
             $.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/gerer_bon_caisse.php',
                 data: {
                     new_id: parseInt(id1),
+                    codebarre_id: datecode,
                     caisse_id: $("#tab_GBonCaisse").attr("data"),
                     nom: $("#" + id1 + " .nom").val(),
                     montant: parseInt($("#" + id1 + " .montant").val()),
@@ -416,7 +422,7 @@ function gerer_bon_caisse() {
                 },
                 dataType: 'json',
                 success: function (data) {
-                    //alert(data)
+                    console.log(data);
                     //$('#list_bon_caisse').empty();
                     //Bon de caisse généré
                     $('#list_bon_caisse').dataTable({
@@ -433,6 +439,7 @@ function gerer_bon_caisse() {
                         },
                         columns: [
                             {data: "nom_client"},
+                            {data: "codebarre_id"},
                             {data: "montant"},
                             {data: "date_creation"},
                             {data: "caisse"},

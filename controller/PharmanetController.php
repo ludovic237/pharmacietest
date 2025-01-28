@@ -117,14 +117,14 @@ class PharmanetController extends Controller
                 'table' => 'user',
                 'conditions' => array('id' => $id, 'supprimer' => 0)
             ));
-            $d['reduction'] = $this->Pharmanet->findFirst(array(
+            $d['reduction'] = $this->Pharmanet->find(array(
                 'fields' => 'vente.reduction as reduction',
                 'table' => 'user, vente',
-                'conditions' => array('user.id' => $id, 'user.supprimer' => 0, 'vente.user_id' => 'user.id', 'vente.supprimer' => 0)
+                'conditions' => 'user.id = '.$id.' AND user.supprimer = 0 AND vente.user_id = user.id AND vente.supprimer = 0 AND DATE_FORMAT(dateVente, "%Y-%m") = DATE_FORMAT(CURDATE(), "%Y-%m");)'
             ));
             $total = 0;
             foreach ($d['reduction'] as $k => $v) :
-                $total = $total + $v;
+                $total = $total + $v->reduction;
             endforeach;
 
             $d['reductionFaite'] = $total;

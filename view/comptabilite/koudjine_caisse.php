@@ -1606,6 +1606,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             <thead>
                                             <tr>
                                                 <th>Nom client</th>
+                                                <th>Code barre</th>
                                                 <th>Montant</th>
                                                 <th>Date creation</th>
                                                 <th>Caisse</th>
@@ -1616,6 +1617,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             <?php foreach ($bon_caisse as $k => $v) : ?>
                                                 <tr id="bon<?php echo $v->idb; ?>">
                                                     <td><?php echo $v->nom_client; ?></td>
+                                                    <td><?php echo $v->codebarre_id; ?></td>
                                                     <td><?php echo $v->montant; ?></td>
                                                     <td><?php echo $v->dateGenerer; ?></td>
                                                     <td><?php echo $v->identifiant; ?></td>

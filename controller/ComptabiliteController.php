@@ -69,7 +69,7 @@ class ComptabiliteController extends Controller
             'conditions' => "vente.employe_id = employe.id AND employe.user_id = vendeur.id AND vente.user_id = client.id AND vente.supprimer = 0 AND vente.prixPercu = 0 AND vente.etat = \"Crédit\" AND ISNULL(caisse_id) = 1"
         ));
         $d['bon_caisse'] = $this->Comptabilite->find(array(
-            'fields' => 'b.id as idb, nom_client, identifiant, montant, dateGenerer',
+            'fields' => 'b.id as idb, nom_client, b.codebarre_id as codebarre_id, identifiant, montant, dateGenerer',
             'table' => 'bon_caisse b, caisse c, employe e',
             'conditions' => "b.supprimer = 0 AND b.caisse_id = c.id AND c.user_id = e.id AND b.type = \"Générer\""
         ));

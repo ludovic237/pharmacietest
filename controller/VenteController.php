@@ -46,6 +46,19 @@ class VenteController extends Controller
             'order' => 'nom-ASC',
             'conditions' => array('supprimer' => 0)
         ));
+        foreach ($d['client'] as $k => $v) :
+            $d['reduction'] = $this->Vente->find(array(
+                'fields' => 'vente.reduction as reduction',
+                'table' => 'user, vente',
+                'conditions' => 'user.id = '.$v->id.' AND user.supprimer = 0 AND vente.user_id = user.id AND vente.supprimer = 0 AND DATE_FORMAT(dateVente, "%Y-%m") = DATE_FORMAT(CURDATE(), "%Y-%m");)'
+            ));
+            $total = 0;
+            foreach ($d['reduction'] as $a => $b) :
+                $total = $total + $b->reduction;
+            endforeach;
+            $d['reductionFaite'][] = $total;
+        endforeach;
+
         $d['employe'] = $this->Vente->find(array(
             'fields' => 'user_id as id',
             'table' => 'employe',
