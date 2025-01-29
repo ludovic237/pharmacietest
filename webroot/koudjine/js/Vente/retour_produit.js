@@ -25,6 +25,9 @@ $(document).ready(function () {
                         $('#tab_RetourProduit_Retourne').empty();
                         $("#tab_RetourProduit_Achete").empty();
                         $('#search-reference-produit').val('');
+                        $("#prixTotal").html("0");
+                        $("#prixReduit").html("0");
+                        $("#netTotal").html("0");
                         $("#tab_RetourProduit_Achete").html(data).show();
                     }
                 })
@@ -177,6 +180,7 @@ function valider_retour(employe_id) {
                         $("#prixTotal").html("0");
                         $("#prixReduit").html("0");
                         $("#netTotal").html("0");
+                        loadListProduitRetour();
 
                     }
                 })
@@ -193,7 +197,7 @@ function loadListProduitRetour() {
         type: "POST",
         url: "/pharmacietest/koudjine/inc/list_retour_produit.php",
         data: {
-            id: 18
+            //id: 18
         },
         dataType: "json",
        error: function (e) {
@@ -211,12 +215,14 @@ function loadListProduitRetour() {
                 data: datas.data,
                 columns: [
                     {data: "employe_id"},
+                    {data: "vente_id"},
                     {data: "dateRetour"},
                     {data: "caisse_id"},
                     {data: "list"},
                     {data: "quantite_total_produitRetour"},
                     {data: "prix"},
-                ]
+                ],
+                order:[[2,'desc']]
             });
 
         }
