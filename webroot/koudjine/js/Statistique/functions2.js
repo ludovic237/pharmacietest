@@ -734,7 +734,10 @@ function showVenteCaisse(id, total, session) {
         data: {
             idCaisse: id
         },
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
 
             var datas = JSON.parse(data);
             dataVentes = datas.data;
@@ -941,7 +944,10 @@ function showRapportCaisse(id,session) {
             id: caisse_id
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             //alert(data);
 
             if (data.erreur == 'non') {

@@ -117,7 +117,10 @@
                                         //dept_id:iddef
                                     },
                                     dataType: 'json',
-                                    success: function (data) {
+                                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                                         noty({ text: 'Ajout effectué', layout: 'topRight', type: 'success' });
                                         if (data.erreur == 'non') {
                                             var cat = '<tr id="' + data.id + '">'
@@ -213,7 +216,10 @@
                                         id: lien
                                     },
                                     dataType: 'json',
-                                    success: function (data) {
+                                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                                         noty({ text: 'Modification effectué', layout: 'topRight', type: 'success' });
                             
                                         if (data.erreur == 'non') {

@@ -43,6 +43,9 @@ $(document).ready(function () {
                         idf: $('#fournisseur_commande').val(),
                     },
                     dataType: 'json',
+                    error: function (e) {
+                        loader(false);
+                    },
                     success: function (data) {
                         if (data.erreur == "non") {
                             load_produit(data.id, data.reference, data.nom, data.prixA, data.prixV, data.reduction, data.nbre_cmd);
@@ -109,6 +112,9 @@ $(document).ready(function () {
                         idp: $('#id_xr').attr('data'),
                     },
                     //dataType: 'json',
+                    error: function (e) {
+                        loader(false);
+                    },
                     success: function (data) {
                         if (data == 'ok') {
                             noty({text: 'EAN 13 enregistré avec succes', layout: 'topRight', type: 'success'});
@@ -179,10 +185,9 @@ function enregistrer_commande_programme() {
         const selectedDate = new Date(date);
         const today1 = new Date();
         today1.setHours(0, 0, 0, 0);
-        if (date == '' || qte == '' ) {
+        if (date == '' || qte == '') {
             alert("Vérifier les champs Quantité et Date !!!");
-        }
-        else if(selectedDate <= today1){
+        } else if (selectedDate <= today1) {
             alert("Vérifier la date de perremption !!!");
         } else {
             var today = new Date();
@@ -423,6 +428,9 @@ function valider_commande(imprimer) {
                 ug: parseInt($("#prixTotal").attr("data1"))
             },
             dataType: 'json',
+            error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 //alert(data);
@@ -529,7 +537,7 @@ function valider_commande(imprimer) {
 
                 }
                 loader(false);
-            }
+            },
         })
     }
 }

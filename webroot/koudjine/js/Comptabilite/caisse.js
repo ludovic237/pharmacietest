@@ -100,7 +100,10 @@ $(document).ready(function () {
                         code: $("#" + id).val()
                     },
                     dataType: 'json',
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         console.log(data.data);
                         var montantTtc = parseInt($('#facture_caisse').html());
                         if (data.etat != 'Encaisser') {
@@ -192,7 +195,10 @@ $(document).ready(function () {
                         id: recherche
                     },
                     dataType: 'json',
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         //alert(data);
                         if (data.erreur == 'non') {
                             if (data.dateE != null) {
@@ -421,7 +427,10 @@ function gerer_bon_caisse() {
                     dateEncaisser: dateEncaisser
                 },
                 dataType: 'json',
-                success: function (data) {
+               error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                     console.log(data);
                     //$('#list_bon_caisse').empty();
                     //Bon de caisse généré
@@ -1324,7 +1333,10 @@ function liste_caisse(id) {
             id: id
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             //console.log(data.vente);
             $('#listeVenteId').dataTable({
                 destroy: true,
@@ -1584,7 +1596,10 @@ function showRapportTest(id) {
             id: caisse_id,
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             //alert(data)
             //recap vente par fournisseur
             $("#rapport_vente_fournisseur_grossiste").html(data.vente_fg);

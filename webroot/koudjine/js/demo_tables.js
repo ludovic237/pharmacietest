@@ -65,7 +65,10 @@ function delete_row_filiere(row, action) {
 
                 url: link,
 
-                success: function (data) {
+               error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                     ////alert(data);
                     //$("#iconPreview .icon-preview").html(icon_preview);
                     $(this).remove();

@@ -233,7 +233,10 @@ function delete_row(row, controller, table, confirmation) {
 
                     url: link,
 
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         //alert(data);
                         //$("#iconPreview .icon-preview").html(icon_preview);
                         $(this).remove();
@@ -268,6 +271,9 @@ function enregistrer_fabriquant(option, id) {
                 telephone: telephone,
                 email: email
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -299,6 +305,9 @@ function enregistrer_fabriquant(option, id) {
                 telephone: telephone,
                 email: email,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -397,6 +406,9 @@ function enregistrer_produit(option, id) {
                 parrain: prod,
                 mag: mag
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -441,6 +453,9 @@ function enregistrer_produit(option, id) {
                 mag: mag,
                 parrain: prod,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -491,7 +506,10 @@ function init_rayon(id) {
             id: id,
             code: codebarre
         },
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             console.log(data)
             if (data == 'ok') {
                 noty({text: 'Modification effectué', layout: 'topRight', type: 'success'});
@@ -526,6 +544,9 @@ function enregistrer_assureur(option, id) {
                 CodePostal_id: CodePostal_id,
                 telephone: telephone
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -555,6 +576,9 @@ function enregistrer_assureur(option, id) {
                 taux: taux,
                 CodePostal_id: CodePostal_id,
                 telephone: telephone,
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -596,6 +620,9 @@ function enregistrer_categorie(option, id) {
             data: {
                 nom: nom,
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -622,6 +649,9 @@ function enregistrer_categorie(option, id) {
             data: {
                 nom: nom,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -691,6 +721,9 @@ function enregistrer_commande(option, id) {
                 etat: etat,
                 ref: ref,
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -725,6 +758,9 @@ function enregistrer_commande(option, id) {
                 etat: etat,
                 ref: ref,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -770,6 +806,9 @@ function enregistrer_client(option, id) {
                 assureur_id: assureur_id,
                 CodePostal_id: CodePostal_id
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -803,6 +842,9 @@ function enregistrer_client(option, id) {
                 assureur_id: assureur_id,
                 CodePostal_id: CodePostal_id,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -846,6 +888,9 @@ function enregistrer_codepostal(option, id) {
                 nom: nom,
                 code: code
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -873,6 +918,9 @@ function enregistrer_codepostal(option, id) {
                 nom: nom,
                 code: code,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -916,6 +964,9 @@ function enregistrer_forme(option, id) {
                 nom: nom,
                 code: code
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -943,6 +994,9 @@ function enregistrer_forme(option, id) {
                 nom: nom,
                 code: code,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -1012,6 +1066,9 @@ function enregistrer_fournisseur(option, id) {
                 telephone: telephone,
                 email: email,
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -1044,6 +1101,9 @@ function enregistrer_fournisseur(option, id) {
                 telephone: telephone,
                 email: email,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -1087,6 +1147,9 @@ function enregistrer_magasin(option, id) {
                 nom: nom,
                 code: code,
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -1113,6 +1176,9 @@ function enregistrer_magasin(option, id) {
             data: {
                 nom: nom,
                 code: code,
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -1176,6 +1242,9 @@ function enregistrer_prescripteur(option, id) {
                 Adresse: adresse,
                 Telephone: telephone
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -1205,6 +1274,9 @@ function enregistrer_prescripteur(option, id) {
                 Adresse: adresse,
                 Telephone: telephone,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -1247,6 +1319,9 @@ function enregistrer_ville(option, id) {
                 nom: nom,
                 code: code
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -1273,6 +1348,9 @@ function enregistrer_ville(option, id) {
             data: {
                 nom: nom,
                 code: code
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -1334,6 +1412,9 @@ function enregistrer_unite(option, id) {
                 nom: nom,
                 libelle: libelle
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -1361,6 +1442,9 @@ function enregistrer_unite(option, id) {
                 nom: nom,
                 libelle: libelle,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -1427,6 +1511,9 @@ function enregistrer_rayon(option, id) {
                 nom: nom,
                 code: code
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -1454,6 +1541,9 @@ function enregistrer_rayon(option, id) {
                 nom: nom,
                 code: code,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
 
@@ -1531,6 +1621,9 @@ function enregistrer_en_rayon(option, id) {
                 quantite: quantite,
                 quantiteRestante: quantiteRestante
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -1565,6 +1658,9 @@ function enregistrer_en_rayon(option, id) {
                 quantite: quantite,
                 quantiteRestante: quantiteRestante,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
 
@@ -1637,6 +1733,9 @@ function enregistrer_utilisateur(option, id) {
                 site: site,
                 option: option
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
                 if (data == 'ok') {
                     var link = '/Site/bouwou/users';
@@ -1671,6 +1770,9 @@ function enregistrer_utilisateur(option, id) {
                 site: site,
                 option: option,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 if (data == 'ok') {
@@ -1711,6 +1813,9 @@ function enregistrer_utilisateur(option, id) {
                 option: option,
                 id: id,
                 data: form_data
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 if (data == 'ok') {
@@ -1765,6 +1870,9 @@ function enregistrer_employe(option, id) {
                 codebarre_id: codebarre_id,
                 faireReductionMax: faireReductionMax,
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -1797,6 +1905,9 @@ function enregistrer_employe(option, id) {
                 codebarre_id: codebarre_id,
                 faireReductionMax: faireReductionMax,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -1835,7 +1946,10 @@ function info_row(row) {
             id: row
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             $('#iconPreview .ean13p').html(data.ean13A);
             $('#iconPreview .referencep').html(data.referenceA);
             $('#iconPreview .nomp').html(data.nomA);
@@ -2207,7 +2321,10 @@ function save_commande() {
             quantite: pdtCmdquantite,
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             console.log('count:' + data.count)
             noty({text: 'Enregistrement effectué' + data, layout: 'topRight', type: 'success'});
             load_produit_detail(_idprod, _nameprod);
@@ -2242,7 +2359,10 @@ function save_produit_detail() {
             reduction: erreduction,
             //quantite: erquantitecm
         },
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             noty({text: 'Enregistrement effectué' + data, layout: 'topRight', type: 'success'});
             load_produit_detail(_idprod, _nameprod);
             setTimeout(function () {
@@ -2274,7 +2394,10 @@ function show_modif_enrayon(id) {
             quantiteRestante: 0
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             $("#id").val(data.data.id);
             $("#erprixachat").val(data.data.prixAchat);
             $("#erprixvente").val(data.data.prixVente);
@@ -2307,7 +2430,10 @@ function info_row_entree(row) {
             id: row
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             $('#qrcode').empty();
             etiquetteNomP = data.nomP;
             etiquetteNomF = data.code;
@@ -2405,7 +2531,10 @@ function charger_select_produit() {
         data: {
             nom: nom
         },
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             console.log(data);
             $('ul.dropdown-menu ')
                 .find('li')
@@ -2420,7 +2549,10 @@ function charger_select_produit() {
                 data: {
                     nom: nom
                 },
-                success: function (data) {
+               error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                     $('#produits').empty();
                     $('#produits').append(data);
                     console.log(data);

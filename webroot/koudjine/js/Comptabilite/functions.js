@@ -23,7 +23,10 @@ $(document).ready(function () {
                         motclef: $(this).val()
                     },
                     dataType: 'json',
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         ////alert(data);
                         if (data.erreur == 'non') {
                             var action = 0;
@@ -243,7 +246,10 @@ function load_depense_info(id) {
             type: "modify"
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             //alert(data.depense_objet);
             $('#depense_type').val(data.depense_type);
             $('#depense_quantite').val(data.depense_quantite);

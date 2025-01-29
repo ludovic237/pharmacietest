@@ -13,7 +13,10 @@ $(document).ready(function(){
                         motclef: $(this).val()
                     },
                     dataType: 'json',
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         ////alert(data);
                         if (data.erreur == 'non') {
                             var action = 0;

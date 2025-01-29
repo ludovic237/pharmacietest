@@ -37,7 +37,10 @@ $(document).ready(function () {
                         detail_id: detail,
                     },
                     dataType: 'json',
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         console.log(data.erreur);
                         if (data.erreur != 'ok') {
                             alert(data.erreur);
@@ -91,7 +94,10 @@ $(document).ready(function () {
                         motclef: $(this).val()
                     },
                     dataType: 'json',
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         ////alert(data);
                         if (data.erreur == 'non') {
                             var action = 0;
@@ -543,6 +549,9 @@ $(document).ready(function () {
             beforeSend: function () {
                 $("#search-reference-produit").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
                 //alert(data);
                 $("#suggesstion-reference-produit-block").show();
@@ -595,7 +604,10 @@ function showVenteCaisse(id, total, session) {
         data: {
             idCaisse: id
         },
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             //alert(data);
             $("#iconPreviewListVenteCaisse").modal('show');
             $('#tab_list_vente_cais' +
@@ -785,6 +797,9 @@ function valider_vente(type, etat) {
             },
             url: "/pharmacietest/koudjine/inc/vente.php",
             dataType: 'json',
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
                 //alert(server_responce);
                 //alert(data);
@@ -1553,7 +1568,10 @@ function addNewDetail() {
             motclef: $(this).val()
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             $('#iconPreviewVente').modal('toggle');
             $('#iconPreviewVenteAugmenterQuantite').modal('hide');
         }
@@ -1602,6 +1620,9 @@ function augmenterDetail(){
                 detail_id: detail,
             },
             dataType: 'json',
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
                 console.log(data.erreur);
                 if (data.erreur != 'ok') {

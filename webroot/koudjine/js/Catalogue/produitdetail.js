@@ -122,6 +122,9 @@ function enregistrer_produit_detail(option, id) {
                 reduction: reduction,
                 parrain: prod
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -155,6 +158,9 @@ function enregistrer_produit_detail(option, id) {
                 reduction: reduction,
                 parrain: prod,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);

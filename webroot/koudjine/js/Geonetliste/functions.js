@@ -32,7 +32,10 @@ function delete_row(row, controller, table, confirmation) {
 
                     url: link,
 
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         $(this).remove();
                     }
 
@@ -57,6 +60,9 @@ function enregistrer_codepostal(option, id) {
             data: {
                 nom: nom,
                 code: code
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
 
@@ -87,6 +93,9 @@ function enregistrer_codepostal(option, id) {
                 nom: nom,
                 code: code,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -131,6 +140,9 @@ function enregistrer_forme(option, id) {
                 nom: nom,
                 code: code
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -160,6 +172,9 @@ function enregistrer_forme(option, id) {
                 nom: nom,
                 code: code,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -220,6 +235,9 @@ function enregistrer_magasin(option, id) {
                 nom: nom,
                 code: code,
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -248,6 +266,9 @@ function enregistrer_magasin(option, id) {
             data: {
                 nom: nom,
                 code: code,
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -308,6 +329,9 @@ function enregistrer_ville(option, id) {
                 nom: nom,
                 code: code
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -336,6 +360,9 @@ function enregistrer_ville(option, id) {
             data: {
                 nom: nom,
                 code: code
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -398,6 +425,9 @@ function enregistrer_unite(option, id) {
                 nom: nom,
                 libelle: libelle
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -427,6 +457,9 @@ function enregistrer_unite(option, id) {
                 nom: nom,
                 libelle: libelle,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -491,6 +524,9 @@ function enregistrer_rayon(option, id) {
                 nom: nom,
                 code: code
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -520,6 +556,9 @@ function enregistrer_rayon(option, id) {
                 nom: nom,
                 code: code,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
 

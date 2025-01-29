@@ -17,7 +17,10 @@ $(document).ready(function () {
                     data: {
                         motclef: recherche
                     },
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         //alert(data);
                         $('#tab_RetourProduit_Retourne').empty();
                         $("#tab_RetourProduit_Achete").empty();
@@ -36,7 +39,10 @@ $(document).ready(function () {
                 beforeSend: function () {
                     $("#search-reference-produit").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
                 },
-                success: function (data) {
+               error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                     //alert(data);
                     $("#suggesstion-reference-produit-block").show();
                     $("#suggesstion-reference-produit").html(data).show();
@@ -145,7 +151,10 @@ function valider_retour(employe_id) {
             idVente: $("#search-reference-produit").attr("data"),
             idEmp: employe_id
         },
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             //alert(data);
             $('#tab_RetourProduit_Retourne  tr').each(function (i) {
                 var id1 = $(this).attr("id");
@@ -157,7 +166,10 @@ function valider_retour(employe_id) {
                         id: id1,
                         qte: parseInt($("#inputQte" + id1).val())
                     },
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         //alert(data);
                         $('#tab_RetourProduit_Retourne').empty();
                         $("#tab_RetourProduit_Achete").empty();
@@ -184,7 +196,10 @@ function loadListProduitRetour() {
             id: 18
         },
         dataType: "json",
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             //alert(data);
             var datas = data;
             $('#tabRetourProduit').dataTable({

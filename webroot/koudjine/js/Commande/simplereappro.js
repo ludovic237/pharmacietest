@@ -105,6 +105,9 @@ function valider_commande(imprimer) {
                 qte: parseInt($("#prixTotal").attr("data"))
             },
             dataType: 'json',
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
                 if (data.erreur == 'ok') {
                     idc = data.id;

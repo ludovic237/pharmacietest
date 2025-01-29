@@ -46,6 +46,9 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
             beforeSend: function () {
                 $("#search-employe-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) { 
                 //alert(data);
                 $("#suggesstion-employe-box-block").show();
@@ -174,6 +177,9 @@ function enregistrer_client(option, id) {
                 assureur_id: assureur_id,
                 CodePostal_id: CodePostal_id
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -207,6 +213,9 @@ function enregistrer_client(option, id) {
                 assureur_id: assureur_id,
                 CodePostal_id: CodePostal_id,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -266,6 +275,9 @@ function enregistrer_employe(option, id) {
                 codebarre_id: codebarre_id,
                 faireReductionMax: faireReductionMax,
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -298,6 +310,9 @@ function enregistrer_employe(option, id) {
                 codebarre_id: codebarre_id,
                 faireReductionMax: faireReductionMax,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);
@@ -347,6 +362,9 @@ function enregistrer_user(option, id) {
                 reduction: reduction,
                 reductionMax: reductionMax
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -381,6 +399,9 @@ function enregistrer_user(option, id) {
                 reduction: reduction,
                 reductionMax: reductionMax,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 ////alert(data.erreur);

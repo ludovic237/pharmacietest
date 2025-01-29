@@ -22,6 +22,9 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
             beforeSend: function () {
                 $("#search-caisse-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
                 //alert(data);
                 $("#suggesstion-caisse-box-block").show();
@@ -120,7 +123,10 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                         motclef: $(this).val()
                     },
                     dataType: 'json',
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         ////alert(data);
                         if (data.erreur == 'non') {
                             var action = 0;
@@ -374,7 +380,10 @@ function charger_select_produit1() {
         data: {
             nom: nom
         },
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             $('ul.dropdown-menu ').append(data);
             $.ajax({
                 type: "POST",
@@ -382,7 +391,10 @@ function charger_select_produit1() {
                 data: {
                     nom: nom
                 },
-                success: function (data) {
+               error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                     $('#produits').append(data);
                     //alert(data);
 
@@ -539,7 +551,10 @@ function getListVente() {
         type: "POST",
         url: '/pharmacietest/koudjine/inc/list_vente.php',
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             console.log(data.venteActifCaisse);
             var venteActifCaisse = data.venteActifCaisse;
             var venteAll = data.venteAll;

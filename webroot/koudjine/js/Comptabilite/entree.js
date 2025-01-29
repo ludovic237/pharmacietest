@@ -148,7 +148,10 @@ function info_row_entree(row) {
             id: row
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
 
             etiquetteNomP = data.nomP;
             etiquetteCode = data.codeP+'(1)'+data.code;
@@ -259,6 +262,9 @@ function enregistrer_en_rayon(option, id) {
                 quantite: quantite,
                 quantiteRestante: quantiteRestante
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -293,6 +299,9 @@ function enregistrer_en_rayon(option, id) {
                 quantite: quantite,
                 quantiteRestante: quantiteRestante,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
 

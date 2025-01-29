@@ -27,7 +27,10 @@ $(document).ready(function () {
                         id_detail: $("#recherche").attr("data2")
                     },
                     dataType: 'json',
-                    success: function (data) {
+                   error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                         ////alert(data);
                         if (data.erreur == 'non') {
                             var action = 0;
@@ -175,7 +178,10 @@ function valider_produit_sortie() {
                     detail_id: $("#recherche").attr('data')
                 },
                 dataType: 'json',
-                success: function (data) {
+               error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
                     //alert(data);
                     if (data.erreur == 'ok') {
                         delete_row_sortie(id1);
@@ -381,7 +387,10 @@ function valider_stock_detail(id) {
             qte: $("#qte_sortie").val()
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             //$("#tab_Bsortie").empty();
             //alert(data);
             var total = 0;

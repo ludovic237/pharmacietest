@@ -423,6 +423,9 @@ $(document).ready(function(){
                 depense_date: depense_date,
                 depense_cni: depense_cni,
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
                 panel_refresh(panel);
                 link = '/pharmacietest/bouwou/pharmanet/list';

@@ -59,7 +59,10 @@ function enregistrer_list_commande(dateDerniere) {
             date: moment().format("YYYY-MM-DD HH:mm:ss")
         },
         //dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             //alert(data)
             noty({text: 'Enregistrement effectué' + data, layout: 'topRight', type: 'success'});
             load_produit_detail(_idprod, _nameprod);
@@ -79,7 +82,10 @@ function charger_list_commande(start, end) {
             end: end
         },
         dataType: 'json',
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             console.log(data);
             $('#new_list_commande_date').dataTable({
                 buttons:[
@@ -260,7 +266,10 @@ function getListCommande(start, end) {
             start: start
         },
         dataType: "json",
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             console.log(data);
 
             $('#list_commande_tables').dataTable({
@@ -351,7 +360,10 @@ function getListCommande(start, end) {
             start: start
         },
         dataType: "json",
-        success: function (data) {
+       error: function (e) {
+                loader(false);
+            },
+            success: function (data) {
             console.log(data);
 
             $('#list_commande_tables_1').dataTable({

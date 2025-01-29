@@ -40,6 +40,9 @@ function enregistrer_depense(option, id) {
                 beneficiaire: beneficiaire,
                 lieu: lieu
             },
+           error: function (e) {
+                loader(false);
+            },
             success: function (data) {
 
                 if (data == 'ok') {
@@ -77,6 +80,9 @@ function enregistrer_depense(option, id) {
                 beneficiaire: beneficiaire,
                 lieu: lieu,
                 id: id
+            },
+           error: function (e) {
+                loader(false);
             },
             success: function (data) {
                 alert(data);

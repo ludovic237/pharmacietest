@@ -692,7 +692,10 @@
                     //         end:end
                     //     },
                     //     dataType: 'json',
-                    //     success: function (data) {
+                    //    error: function (e) {
+            //     loader(false);
+            // },
+            // success: function (data) {
                     //         console.log(data);
                     //         $('#nbrVente').html(data.nbrVente);
                     //         $('#nbrProduit').html(data.nbrProduit);
