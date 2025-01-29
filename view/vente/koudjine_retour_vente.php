@@ -126,6 +126,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                             <thead>
                             <tr>
                                 <th width="100">Nom employe</th>
+                                <th width="100">Reference vente</th>
                                 <th width="100">Date</th>
                                 <th width="100">Caisse</th>
                                 <th width="100">Produits</th>
