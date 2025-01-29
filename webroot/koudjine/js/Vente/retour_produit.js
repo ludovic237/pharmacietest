@@ -280,7 +280,6 @@ function imprime_retour_produit(id) {
             });
             //$('#tab_vente_caisse').html(server_responce);
             for (i in retour_produits) {
-
                 $('#tab_BfactureImprimer').prepend(`
                         <tr class="ligne_facture" id="${retour_produits[i].DT_RowId}">
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${retour_produits[i].produit}</strong></td>
@@ -293,12 +292,6 @@ function imprime_retour_produit(id) {
             };
             $("#iconPreviewListeCaisse").modal('hide');
             $('#iconPreviewRetourProduit').modal("show");
-
-
         }
-
-
     })
-
-
 }

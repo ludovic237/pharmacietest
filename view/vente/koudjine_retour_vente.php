@@ -195,25 +195,25 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                  class="ticketfacture" id="ticketCaisse">
 
                                 <div style="display: flex;flex-direction:column;text-align: left;">
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Pharmacie ALSAS</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Dr GAMWO Sandrine</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        BP 38 FOUMBOT</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Tel :(+237) 233 267 487</p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Pharmacie ALSAS</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Dr GAMWO Sandrine</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        BP 38 FOUMBOT</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Tel :(+237) 233 267 487</strong>
                                     <div style="display: flex;justify-content:space-between">
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Ticket N°: <span class="reference"></span></p>
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            Ticket N°: <span class="reference"></span></strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                             <span class="datevente"></span> à <span class="heurevente"></span>
-                                        </p>
+                                        </strong>
                                     </div>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Caissier: <span class="caissier"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Employe: <span class="employe"></span></p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Caissier: <span class="caissier"></span></strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Employe: <span class="employe"></span></strong>
                                 </div>
                                 <div>
                                     <table class="table table-bordered table-striped table-actions table-responsive"
@@ -252,15 +252,15 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div style="display: flex; flex-direction: column; text-align: left;">
 
-                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                        <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                             Ce ticket vaut facture
-                                        </p>
-                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                        </strong>
+                                        <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                             Merci et bonne santé
-                                        </p>
-                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                        </strong>
+                                        <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                             NoCT /P058512700488Z
-                                        </p>
+                                        </strong>
                                     </div>
                                     <p id="qrcodeTicket" alt="Image à droite" style="height: auto;">
                                 </div>

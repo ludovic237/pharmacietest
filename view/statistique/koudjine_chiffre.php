@@ -294,25 +294,25 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                             <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture2" id="ticketListe2">
 
                                 <div style="display: flex;flex-direction:column;text-align: left;">
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Pharmacie ALSAS</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Dr GAMWO Sandrine</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        BP 38 FOUMBOT</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Tel :(+237) 233 267 487</p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Pharmacie ALSAS</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Dr GAMWO Sandrine</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        BP 38 FOUMBOT</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Tel :(+237) 233 267 487</strong>
                                     <div style="display: flex;justify-content:space-between">
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Ticket N°: <span class="reference"></span></p>
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            Ticket N°: <span class="reference"></span></strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                             <span class="datevente"></span> à <span class="heurevente"></span>
-                                        </p>
+                                        </strong>
                                     </div>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Vendeur: <span class="vendeur"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Acheteur: <span class="acheteur"></span></p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Vendeur: <span class="vendeur"></span></strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Acheteur: <span class="acheteur"></span></strong>
                                 </div>
                                 <div>
                                     <table class="table table-bordered table-striped table-actions table-responsive" id="tab_GGBfactureImprimer">
@@ -357,16 +357,16 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                     </table>
                                 </div>
                                 <div style="display: flex;flex-direction:column;text-align: left;">
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Payer en espece : <span class="montantpercu"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Montant rendu : <span class="montantrendu"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Ce ticket vaut facture</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Merci et bonne santé</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        NoCT /P058512700488Z</p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Payer en espece : <span class="montantpercu"></span></strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Montant rendu : <span class="montantrendu"></span></strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Ce ticket vaut facture</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Merci et bonne santé</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        NoCT /P058512700488Z</strong>
                                 </div>
                             </div>
                             <a class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticketListe2','ticketListe2')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</a>

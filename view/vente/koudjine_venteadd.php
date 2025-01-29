@@ -463,16 +463,16 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                             <div style="width: 80mm;display:block;font-size: 10px;flex-direction: column;" class="ticketfacture" id="ticketVente">
 
                                 <div style="display: flex;flex-direction:column;text-align: left;">
-                                    <p style="margin: 0px; color: black;font-weight: 400;">Pharmacie ALSAS</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;">Dr GAMWO Sandrine</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;">BP 38 FOUMBOT</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 267 487</p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">Pharmacie ALSAS</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">Dr GAMWO Sandrine</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">BP 38 FOUMBOT</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">Tel :(+237) 233 267 487</strong>
                                     <div style="display: flex;justify-content:space-between">
-                                        <p style="margin: 0px; color: black;font-weight: 400;">Ticket N°: <span class="reference"></span></p>
-                                        <p style="margin: 0px; color: black;font-weight: 400;"><span class="datevente"></span> à <span class="heurevente"></span> </p>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;">Ticket N°: <span class="reference"></span></strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;"><span class="datevente"></span> à <span class="heurevente"></span> </strong>
                                     </div>
-                                    <p style="margin: 0px; color: black;font-weight: 400;">Vendeur: <span class="vendeur"></span> </p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">Vendeur: <span class="vendeur"></span> </strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">Acheteur: <span class="acheteur"></span> </strong>
                                 </div>
                                 <div>
                                     <table class="table table-inverse table-responsive">
@@ -503,11 +503,11 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                     </table>
                                 </div>
                                 <div style="display: flex;flex-direction:column;text-align: left;">
-                                    <p style="margin: 0px; color: black;font-weight: 400;">Payer en espece : <span class="montantpercu"></span> </p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;">Montant rendu : <span class="montantrendu"></span> </p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;">Ce ticket vaut facture</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;">Merci et bonne santé</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;">NoCT /rtdrstrdsy</p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">Payer en espece : <span class="montantpercu"></span> </strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">Montant rendu : <span class="montantrendu"></span> </strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">Ce ticket vaut facture</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">Merci et bonne santé</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">NoCT /rtdrstrdsy</strong>
                                 </div>
                             </div>
                             <button type="button" class="btn btn-circle blue" style="text-align:center; float: left; font-size:10px; margin-top: 20px;" onClick="imprimer_bloc('ticket','ticket')"><i class="fa fa-print" style="font-size:10px"></i>&nbsp;Imprimer</button>

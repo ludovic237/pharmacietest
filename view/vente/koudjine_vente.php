@@ -311,25 +311,25 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                  class="ticketfacture" id="ticketListe">
 
                                 <div style="display: flex;flex-direction:column;text-align: left;">
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Pharmacie ALSAS</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Dr GAMWO Sandrine</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        BP 38 FOUMBOT</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Tel :(+237) 233 267 487</p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Pharmacie ALSAS</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Dr GAMWO Sandrine</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        BP 38 FOUMBOT</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Tel :(+237) 233 267 487</strong>
                                     <div style="display: flex;justify-content:space-between">
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Ticket N°: <span class="reference"></span></p>
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            Ticket N°: <span class="reference"></span></strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                             <span class="datevente"></span> à <span class="heurevente"></span>
-                                        </p>
+                                        </strong>
                                     </div>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Vendeur: <span class="vendeur"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Acheteur: <span class="acheteur"></span></p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Vendeur: <span class="vendeur"></span></strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Acheteur: <span class="acheteur"></span></strong>
                                 </div>
                                 <div>
                                     <table class="table table-bordered table-striped table-actions table-responsive"
@@ -354,36 +354,6 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                         </tr>
                                         </thead>
                                         <tbody id="tab_BfactureImprimer">
-                                        <tr type="hidden" id="rowmontantespece">
-                                            <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                scope="row">Montant Espece
-                                            </td>
-                                            <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                <span id="montantespece"></span> FCFA
-                                            </td>
-                                        </tr>
-                                        <tr type="hidden" id="rowmontantelectronique">
-                                            <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                scope="row">Montant Electronique
-                                            </td>
-                                            <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                <span id="montantelectronique"></span> FCFA
-                                            </td>
-                                        </tr>
-                                        <tr type="hidden" id="rowmontantticket">
-                                            <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                scope="row">Montant Ticket
-                                            </td>
-                                            <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                <span id="montantticket"></span> FCFA
-                                            </td>
-                                        </tr>
                                         <tr>
                                             <td colspan="1"
                                                 style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
@@ -414,26 +384,57 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                                 <span class="netapayer"></span> FCFA
                                             </td>
                                         </tr>
+                                        <tr type="hidden" id="rowmontantespece">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Espece
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantespece"></span> FCFA
+                                            </td>
+                                        </tr>
+                                        <tr type="hidden" id="rowmontantelectronique">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Electronique
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantelectronique"></span> FCFA
+                                            </td>
+                                        </tr>
+                                        <tr type="hidden" id="rowmontantticket">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Ticket
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantticket"></span> FCFA
+                                            </td>
+                                        </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div style="display: flex; flex-direction: column; text-align: left;">
-                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 Payer en espece : <span class="montantpercu"></span>
-                                            </p>
-                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            </strong>
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 Montant rendu : <span class="montantrendu"></span>
-                                            </p>
-                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            </strong>
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 Ce ticket vaut facture
-                                            </p>
-                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            </strong>
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 Merci et bonne santé
-                                            </p>
-                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            </strong>
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 NoCT /P058512700488Z
-                                            </p>
+                                            </strong>
                                         </div>
                                         <p id="qrcodeTicket" alt="Image à droite" style="height: auto;">
                                 </div>
@@ -529,25 +530,25 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                  class="ticketfacture2" id="ticketListe2">
 
                                 <div style="display: flex;flex-direction:column;text-align: left;">
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Pharmacie ALSAS</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Dr GAMWO Sandrine</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        BP 38 FOUMBOT</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Tel :(+237) 233 267 487</p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Pharmacie ALSAS</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Dr GAMWO Sandrine</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        BP 38 FOUMBOT</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Tel :(+237) 233 267 487</strong>
                                     <div style="display: flex;justify-content:space-between">
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Ticket N°: <span class="reference"></span></p>
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            Ticket N°: <span class="reference"></span></strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                             <span class="datevente"></span> à <span class="heurevente"></span>
-                                        </p>
+                                        </strong>
                                     </div>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Vendeur: <span class="vendeur"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Acheteur: <span class="acheteur"></span></p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Vendeur: <span class="vendeur"></span></strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Acheteur: <span class="acheteur"></span></strong>
                                 </div>
                                 <div>
                                     <table class="table table-bordered table-striped table-actions table-responsive"
@@ -572,36 +573,6 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                         </tr>
                                         </thead>
                                         <tbody id="tab_BfactureImprimer">
-                                        <tr type="hidden" id="rowmontantespece">
-                                            <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                scope="row">Montant Espece
-                                            </td>
-                                            <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                <span id="montantespece"></span> FCFA
-                                            </td>
-                                        </tr>
-                                        <tr type="hidden" id="rowmontantelectronique">
-                                            <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                scope="row">Montant Electronique
-                                            </td>
-                                            <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                <span id="montantelectronique"></span> FCFA
-                                            </td>
-                                        </tr>
-                                        <tr type="hidden" id="rowmontantticket">
-                                            <td colspan="1"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                scope="row">Montant Ticket
-                                            </td>
-                                            <td colspan="4"
-                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                <span id="montantticket"></span> FCFA
-                                            </td>
-                                        </tr>
                                         <tr>
                                             <td colspan="1"
                                                 style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
@@ -632,26 +603,57 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                                 <span class="netapayer"></span> FCFA
                                             </td>
                                         </tr>
+                                        <tr type="hidden" id="rowmontantespece">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Espece
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantespece"></span> FCFA
+                                            </td>
+                                        </tr>
+                                        <tr type="hidden" id="rowmontantelectronique">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Electronique
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantelectronique"></span> FCFA
+                                            </td>
+                                        </tr>
+                                        <tr type="hidden" id="rowmontantticket">
+                                            <td colspan="1"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                scope="row">Montant Ticket
+                                            </td>
+                                            <td colspan="4"
+                                                style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                <span id="montantticket"></span> FCFA
+                                            </td>
+                                        </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div style="display: flex; flex-direction: column; text-align: left;">
-                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                        <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                             Payer en espece : <span class="montantpercu"></span>
-                                        </p>
-                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                        </strong>
+                                        <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                             Montant rendu : <span class="montantrendu"></span>
-                                        </p>
-                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                        </strong>
+                                        <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                             Ce ticket vaut facture
-                                        </p>
-                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                        </strong>
+                                        <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                             Merci et bonne santé
-                                        </p>
-                                        <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                        </strong>
+                                        <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                             NoCT /P058512700488Z
-                                        </p>
+                                        </strong>
                                     </div>
                                     <p id="qrcodeTicket" alt="Image à droite" style="height: auto;">
                                 </div>

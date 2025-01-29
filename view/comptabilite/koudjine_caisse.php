@@ -1012,25 +1012,25 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                      class="ticketfacture" id="ticketCaisse">
 
                                     <div style="display: flex;flex-direction:column;text-align: left;">
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Pharmacie ALSAS</p>
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Dr GAMWO Sandrine</p>
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            BP 38 FOUMBOT</p>
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Tel :(+237) 233 267 487</p>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            Pharmacie ALSAS</strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            Dr GAMWO Sandrine</strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            BP 38 FOUMBOT</strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            Tel :(+237) 233 267 487</strong>
                                         <div style="display: flex;justify-content:space-between">
-                                            <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                                Ticket N°: <span class="reference"></span></p>
-                                            <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                                Ticket N°: <span class="reference"></span></strong>
+                                            <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                                 <span class="datevente"></span> à <span class="heurevente"></span>
-                                            </p>
+                                            </strong>
                                         </div>
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Vendeur: <span class="vendeur"></span></p>
-                                        <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Acheteur: <span class="acheteur"></span></p>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            Vendeur: <span class="vendeur"></span></strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            Acheteur: <span class="acheteur"></span></strong>
                                     </div>
                                     <div>
                                         <table class="table table-bordered table-striped table-actions table-responsive"
@@ -1054,6 +1054,36 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 </th>
                                             </tr>
                                             </thead>
+                                            <tr>
+                                                <td colspan="1"
+                                                    style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
+                                                    scope="row">Montant Total
+                                                </td>
+                                                <td colspan="4"
+                                                    style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
+                                                    <span class="montanttotal"></span> FCFA
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1"
+                                                    style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: start;"
+                                                    scope="row">Remise
+                                                </td>
+                                                <td colspan="4"
+                                                    style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
+                                                    <span class="remise"></span> FCFA
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1"
+                                                    style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: start;"
+                                                    scope="row">Net à payer
+                                                </td>
+                                                <td colspan="4"
+                                                    style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
+                                                    <span class="netapayer"></span> FCFA
+                                                </td>
+                                            </tr>
                                             <tbody id="tab_BfactureImprimer">
                                             <tr type="hidden" id="rowmontantespece">
                                                 <td colspan="1"
@@ -1085,56 +1115,26 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     <span id="montantticket"></span> FCFA
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td colspan="1"
-                                                    style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    scope="row">Montant Total
-                                                </td>
-                                                <td colspan="4"
-                                                    style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                    <span class="montanttotal"></span> FCFA
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="1"
-                                                    style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: start;"
-                                                    scope="row">Remise
-                                                </td>
-                                                <td colspan="4"
-                                                    style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
-                                                    <span class="remise"></span> FCFA
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="1"
-                                                    style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: start;"
-                                                    scope="row">Net à payer
-                                                </td>
-                                                <td colspan="4"
-                                                    style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
-                                                    <span class="netapayer"></span> FCFA
-                                                </td>
-                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center;">
                                         <div style="display: flex; flex-direction: column; text-align: left;">
-                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 Payer en espece : <span class="montantpercu"></span>
-                                            </p>
-                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            </strong>
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 Montant rendu : <span class="montantrendu"></span>
-                                            </p>
-                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            </strong>
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 Ce ticket vaut facture
-                                            </p>
-                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            </strong>
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 Merci et bonne santé
-                                            </p>
-                                            <p style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                            </strong>
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 NoCT /P058512700488Z
-                                            </p>
+                                            </strong>
                                         </div>
                                         <p id="qrcodeTicket" alt="Image à droite" style="height: auto;">
                                     </div>
@@ -1789,43 +1789,43 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             <div class="icon-preview">
                                 <div style="width: 80mm;display:flex;flex-direction: column;text-align: left;"
                                      id="ticket">
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Pharmacie ALSAS</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Dr GAMWO Sandrine</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        BP 38 FOUMBOT</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Tel :(+237) 233 267 487</p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Pharmacie ALSAS</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Dr GAMWO Sandrine</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        BP 38 FOUMBOT</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Tel :(+237) 233 267 487</strong>
                                     <h3 style="padding: 10px;text-align: center;margin-bottom: 0px;">
                                         Bon de caisse</h3>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Bon N° xxxxx</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Bon N° xxxxx</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         <span id="dateimp"></span>
-                                    </p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Caissier : <span id="caissierimp"> <?php echo $employe->nom; ?> </span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Client : <span id="nomclientimp"></span></p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Montant : <span id="montantimp"></span> FCFA</p>
+                                    </strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Caissier : <span id="caissierimp"> <?php echo $employe->nom; ?> </span></strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Client : <span id="nomclientimp"></span></strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Montant : <span id="montantimp"></span> FCFA</strong>
                                     </p>
                                     <div style="justify-content: left; display: flex;flex-direction: column;align-items: center;">
                                         <div style="height: 10mm;justify-content: center;align-items: center;display: flex;width: 35mm;padding-right: 2px;">
 
-                                            <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
-                                               id="codebarreimp"></p>
+                                            <strong style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
+                                               id="codebarreimp"></strong>
                                         </div>
-                                        <p style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
-                                           id="codebarrenulimp"></p>
+                                        <strong style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
+                                           id="codebarrenulimp"></strong>
                                     </div>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Bon à retourner</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Merci et bonne santé</p>
-                                    <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        NoCT /P058512700488Z</p>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Bon à retourner</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Merci et bonne santé</strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        NoCT /P058512700488Z</strong>
 
                                     <!--<table style="table-layout: fixed; width: 80mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
                                     <tbody>
