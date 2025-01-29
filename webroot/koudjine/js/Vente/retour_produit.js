@@ -216,11 +216,20 @@ function loadListProduitRetour() {
                 columns: [
                     {data: "employe_id"},
                     {data: "vente_id"},
-                    {data: "dateRetour"},
+                    {
+                        "data": "dateRetour", "bSortable": false, "render": function (data, type, row) {
+                            return '<strong class="datevte">' + data + '</strong>';
+                        }
+                    },
                     {data: "caisse_id"},
                     {data: "list"},
                     {data: "quantite_total_produitRetour"},
                     {data: "prix"},
+                    {
+                        data: "id", "bSortable": false, "render": function (data) {
+                            return '   <button class="btn btn-primary btn-rounded btn-sm" onClick="imprime_retour_produit(' + data + ');">Imprimer</button>  ';
+                        }
+                    }
                 ],
                 order:[[2,'desc']]
             });
@@ -235,34 +244,25 @@ function imprime_retour_produit(id) {
     var date = yo.substr(0, 10);
     var heure = yo.substr(12, 8);
     //var tab = explode(" ", datevte);
-
-    var typePaiement = $("#" + id + " .typePaiement").html();
-    console.log(typePaiement);
-    console.log(montantespece);
-    console.log(montantelectronique);
-    console.log(montantticket);
-
-
     $.ajax({
         type: "POST",
-        url: '/pharmacietest/koudjine/inc/charger_vente.php',
+        url: '/pharmacietest/koudjine/inc/charger_produit_retour.php',
         data: {
             id: id
         },
         dataType: 'json',
         success: function (server_responce) {
-            let ventes = server_responce.data;
+            let retour_produits = server_responce.data;
             console.log("server_responce");
             console.log(server_responce);
             $('#iconPreviewRetourProduit .reference').html(server_responce.reference+'');
-            $('#iconPreviewRetourProduit .datevente').html(server_responce.datevente+'');
+            $('#iconPreviewRetourProduit .datevente').html(server_responce.date_retour+'');
             $('#iconPreviewRetourProduit .heurevente').html(server_responce.heurevente+'');
-            $('#iconPreviewRetourProduit .client').html(server_responce.client+'');
+            $('#iconPreviewRetourProduit .caissier').html(server_responce.caisse_user+'');
             $('#iconPreviewRetourProduit .employe').html(server_responce.employe+'');
-            $('#iconPreviewRetourProduit .netapayer').html(server_responce.netapayer+'');
-            $('#iconPreviewRetourProduit .montanttotal').html(server_responce.montanttotal+'');
-            $('#iconPreviewRetourProduit .montantrendu').html(server_responce.montantrendu+'');
-            $('#iconPreviewRetourProduit .remise').html(server_responce.remise+'');
+
+            $('#iconPreviewRetourProduit .montanttotal').html(server_responce.montant+'');
+
 
             qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
                 width: 90,
@@ -279,14 +279,14 @@ function imprime_retour_produit(id) {
                 }
             });
             //$('#tab_vente_caisse').html(server_responce);
-            for (i in ventes) {
+            for (i in retour_produits) {
 
                 $('#tab_BfactureImprimer').prepend(`
-                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
-                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
-                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
-                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
-                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+                        <tr class="ligne_facture" id="${retour_produits[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${retour_produits[i].produit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${retour_produits[i].prix}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${retour_produits[i].quantite_total_produitRetour}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${retour_produits[i].total}</strong></td>
               
                         </tr>
                     `);

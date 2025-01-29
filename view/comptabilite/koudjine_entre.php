@@ -13,7 +13,8 @@ if ($this->request->action == "entre") {
     $position = "Entrées Stock";
 }
 $position_for_layout = '<li><a href="#">Comptabilité</a></li><li class="active">' . $position . '</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
+$script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/myFunction.js"></script>
 
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>

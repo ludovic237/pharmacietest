@@ -8,7 +8,8 @@ $page_for_layout = 'Retour produits';
 //echo $_SESSION['Users']->identifiant;
 
 $position_for_layout = '<li><a href="#">Vente</a></li><li class="active">Retouner produits</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
+$script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/myFunction.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/bootstrap/bootstrap-select.js"></script>
@@ -132,6 +133,7 @@ $script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudj
                                 <th width="100">Produits</th>
                                 <th width="100">Quantite</th>
                                 <th width="100">Prix total</th>
+                                <th width="100">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -209,7 +211,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                         </p>
                                     </div>
                                     <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Client: <span class="client"></span></p>
+                                        Caissier: <span class="caissier"></span></p>
                                     <p style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Employe: <span class="employe"></span></p>
                                 </div>

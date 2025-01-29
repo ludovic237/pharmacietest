@@ -9,7 +9,8 @@ if($this->request->action == "index"){
     $position = $concours->nom;
 }
 $position_for_layout = '<li><a href="#">Concours</a></li><li class="active">'.$position.'</li>';
-$script_for_layout = '<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
+$script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/qrcode.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/myFunction.js"></script>
 <script type="text/javascript" src="'.BASE_URL.'/js/plugins/knob/jquery.knob.min.js"></script>
     <script type="text/javascript" src="'.BASE_URL.'/js/plugins/mixitup/jquery.mixitup.js"></script>
