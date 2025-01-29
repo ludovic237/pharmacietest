@@ -25,7 +25,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                         <div class="form-group">
                             <label class="col-md-3 control-label">Entrée Produit:</label>
                             <div class="col-md-9">
-                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->ide . '"'; ?> data1="autre" class="form-control" name="nom" id="recherche" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
+                                <input type="text" <?php if (isset($entree)) echo 'disabled'; ?> <?php if (isset($entree)) echo 'data = "' . $entree->ide . '"'; ?> data1="autre" class="form-control" name="nom" id="recherche_sortieautre" value="<?php if (isset($entree)) echo $entree->nomp . '[' . $entree->datePeremption . ']' . '[' . $entree->quantiteRestante . ']'; ?>" placeholder="Nom" />
                             </div>
                         </div>
                         <div class="row">
@@ -88,7 +88,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Quantité:</label>
                                         <div class="col-md-9">
-                                            <input class="form-control" type="text" value="" id="qte_sortie">
+                                            <input class="form-control" type="text" value="" data-qterest="<?php if (isset($entree)) echo $entree->quantiteRestante; ?>" id="qte_sortie">
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +148,6 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                         <tr>
                             <th width="200">Nom</th>
                             <th width="100">Quantité</th>
-                            <th width="100">Nom produit détail</th>
                             <th width="100">Forme</th>
                             <th width="100">Date Opération</th>
                             <th width="100">Opération</th>
@@ -161,7 +160,6 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                             <tr id="<?php echo $v->id; ?>">
                                 <td><strong><a href="<?php echo Router::url('bouwou/comptabilite/entre/') . $produit_rayon[$i]->idp; ?>"><?php echo $produit_rayon[$i]->nomp . '[' . $produit_rayon[$i]->dateLivraison . ']'; ?></a></strong></td>
                                 <td><?php echo $v->quantite; ?></td>
-                                <td><strong><?php echo $produit_detail[$i]; ?></strong></td>
                                 <td><strong><?php echo $produit_rayon[$i]->nomf; ?></strong></td>
                                 <td><?php echo $v->dateSortie; ?></td>
                                 <td><?php echo $operation[$i]; ?></td>
@@ -204,6 +202,45 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                     </tr>
                                 </thead>
                                 <tbody id="tab_Bload_produit">
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewSortie" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width: 90%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="table-responsive">
+                            <table id="tab_load_produit" class="table datatable table-bordered table-striped table-actions">
+                                <thead>
+                                <tr>
+                                    <th width="200">Nom</th>
+                                    <th width="100">Prix Unitaire</th>
+                                    <th width="100">Quantité en Stock</th>
+                                    <th width="100">Reduction(%)</th>
+                                    <th width="200">Date de Livraison</th>
+                                    <th width="100">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tab_Bload_produit_sortie">
 
                                 </tbody>
                             </table>

@@ -158,6 +158,45 @@ $(document).ready(function () {
 
     });
 
+    $("#recherche_sortieautre").keyup(function (event) {
+        if (event.keyCode == 13) {
+            var recherche = $(this).val();
+            recherche = $.trim(recherche);
+            var link = '/pharmacietest/bouwou/comptabilite/sortie/' + recherche;
+            window.location.href = link;
+        } else {
+            var recherche = $(this).val();
+            recherche = $.trim(recherche);
+            var data = 'motclef1=' + recherche;
+            if (recherche.length > 1) {
+                //alert($(this).attr("data1"));
+                $.ajax({
+                    type: "GET",
+                    url: "/pharmacietest/koudjine/inc/result_sortie.php",
+                    data: {
+                        motclef1: recherche,
+                        action: $(this).attr("data1")
+                    },
+                    success: function (server_responce) {
+                        if ($("#recherche").attr("data1") == 'sortie') {
+                            $("#tab_SGrecherche").show();
+                            $("#tab_SBrecherche").html(server_responce).show();
+                        } else {
+                            $("#tab_Grecherche").show();
+                            $("#tab_Brecherche").html(server_responce).show();
+                        }
+
+                        ////alert(server_responce);
+                    }
+                })
+            } else {
+                $("#tab_Grecherche").hide();
+                $("#tab_SGrecherche").hide();
+            }
+        }
+
+    });
+
 
 });
 
@@ -220,9 +259,15 @@ function valider_sortie() {
         setTimeout(function () {
             $("#message-box-danger").modal("hide");
         }, 6000);
+    }else if(parseInt($("#qte_sortie").val()) > parseInt($("#qte_sortie").attr("data-qterest")) ){
+        $('#message-box-danger p').html('La quantite entree est superieur a la quantite en stock !!!');
+        $("#message-box-danger").modal("show");
+        setTimeout(function () {
+            $("#message-box-danger").modal("hide");
+        }, 6000);
     } else {
         var qteT = parseInt($("#qte_sortie").val());
-        if ($("#recherche").attr('data1') == 'sortie') {
+        /*if ($("#recherche").attr('data1') == 'sortie') {
             var qte_total = 0, statut = 1;
             $('#tab_Bsortie  tr').each(function (i) {
                 var id1 = $(this).attr("id");
@@ -276,12 +321,12 @@ function valider_sortie() {
                     $("#message-box-danger").modal("hide");
                 }, 6000);
             }
-        } else {
+        } else {*/
             $.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/enregistrer_sortie_stock.php',
                 data: {
-                    id: $("#recherche").attr('data'),
+                    id: $("#recherche_sortieautre").attr('data'),
                     qte: qteT,
                     type_sortie_id: $("#choix").val(),
                     detail_id: null
@@ -293,15 +338,19 @@ function valider_sortie() {
 
                 }
             })
-        }
+        //}
     }
 }
 
 function load_produit(id, action) {
     //alert(id)
-
-    var link = '/pharmacietest/bouwou/comptabilite/sortie/' + id;
-    window.location.href = link;
+    if(action == 'autre'){
+        var link = '/pharmacietest/bouwou/comptabilite/sortieautre/' + id;
+        window.location.href = link;
+    }else {
+        var link = '/pharmacietest/bouwou/comptabilite/sortie/' + id;
+        window.location.href = link;
+    }
 
     /*$.ajax({
         type: "POST",
@@ -353,6 +402,27 @@ function load_produit_parent() {
         $("#iconPreviewSortie").modal("show");
     }
 
+
+}
+
+function load_produit_rayon(id) {
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/load_produit_sortie.php',
+        data: {
+            id: id,
+            action: 'autre'
+        },
+        success: function (server_responce) {
+
+            $('#tab_Bload_produit_sortie').html(server_responce);
+            //$("#code").barcode(data.codebarre);
+
+        }
+
+
+    })
+    $("#iconPreviewSortie").modal("show");
 
 }
 
