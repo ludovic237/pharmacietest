@@ -73,7 +73,7 @@ foreach ($ventes as $key => $v) {
     $concernce = $managerCo->getList($v->id());
     foreach ($concernce as $a => $b) {
 
-        $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite()) - $b->reduction();
+        $prixTotalConcerne = ($b->prixUnit() * $b->quantite()) - $b->reduction();
         $en_rayon = $managerEn->get($b->en_rayon_id());
         if (!$en_rayon->fournisseur_id() || $en_rayon->fournisseur_id()==false) {
 //            echo "Erreur : Aucun produit trouvé pour l'ID en rayon " . $b->en_rayon_id() . "<br>";
@@ -263,11 +263,11 @@ foreach ($ventesCreditFacture1 as $k => $v) :
         "DT_RowId" => $v->id(),
         "id" => $v->id(),
         "reference" => $v->reference(),
-        "prixPercu" => $v->prixPercu(),
+        "prixPercu" => $v->prixTotal(),
         "client" => $client1,
         'dateVente' => $v->dateVente()
     );
-    $totalVenteCreditFacture1 = $v->prixPercu() + $totalVenteCreditFacture1;
+    $totalVenteCreditFacture1 = $v->prixTotal() + $totalVenteCreditFacture1;
 endforeach;
 
 //if (!isset($dataVenteACredit1)) $dataVenteACredit1 = 0;
@@ -282,7 +282,7 @@ foreach ($boncaisseGenerer as $k => $v) :
     $totalboncaisseGenerer = $totalboncaisseGenerer + ($v->montant());
     $dataBoncaisseGenerer[] = array(
         "DT_RowId" => $v->id(),
-        "id" => $v->id(),
+        "id" => $v->codebarre_id(),
         "nom_client" => $v->nom_client(),
         "montant" => $v->montant(),
         "dateGenerer" => $v->dateGenerer(),
@@ -296,7 +296,7 @@ foreach ($boncaisseEncaisser as $k => $v) :
     $totalboncaisseEncaisser = $totalboncaisseEncaisser + ($v->montant());
     $dataBoncaisseEncaisser[] = array(
         "DT_RowId" => $v->id(),
-        "id" => $v->id(),
+        "id" => $v->codebarre_id(),
         "nom_client" => $v->nom_client(),
         "montant" => $v->montant(),
         "dateGenerer" => $v->dateGenerer(),
@@ -345,22 +345,35 @@ foreach ($retourproduit as $k => $v) :
         $concerner_produitId = $managerCo->get($c->concerner_id())->en_rayon_id();
         $en_rayon_produitId = $managerEn->get($concerner_produitId)->produit_id();
         $produit_nom = $managerPr->get($en_rayon_produitId)->nom();
-        $List_produitRetour = $List_produitRetour . " " . $produit_nom . " " . $c->quantite() . " - ";
+        $List_produitRetour = $List_produitRetour . " " . $produit_nom . " " . $c->quantite() . "";
         $prixTotal = $prixTotal + ($c->quantite() * $managerEn->get($concerner_produitId)->prixVente());
+        $reference = $managerVente->get($v->vente_id())->reference();
+        $dataProduitRetour[] = array(
+            "DT_RowId" => $v->id(),
+            "id" => $v->id(),
+            "vente_id" => $v->vente_id(),
+            "reference" => $reference,
+            "employe_id" => $user_nom . ' ' . $user_prenom,
+            "dateRetour" => $v->dateRetour(),
+            "caisse_id" => $v->caisse_id(),
+            "quantite_total_produitRetour" => $c->quantite(),
+            "produit" => $List_produitRetour,
+            "prix" => $prixTotal,
+        );
     }
     $quantite_total_produitRetour = $quantite_produitRetour;
     $prixTotalRetourProduit = $prixTotal + $prixTotalRetourProduit;
-    $dataProduitRetour[] = array(
-        "DT_RowId" => $v->id(),
-        "id" => $v->id(),
-        "vente_id" => $v->vente_id(),
-        "employe_id" => $user_nom . ' ' . $user_prenom,
-        "dateRetour" => $v->dateRetour(),
-        "caisse_id" => $v->caisse_id(),
-        "quantite_total_produitRetour" => $quantite_total_produitRetour,
-        "list" => $List_produitRetour,
-        "prix" => $prixTotal,
-    );
+//    $dataProduitRetour[] = array(
+//        "DT_RowId" => $v->id(),
+//        "id" => $v->id(),
+//        "vente_id" => $v->vente_id(),
+//        "employe_id" => $user_nom . ' ' . $user_prenom,
+//        "dateRetour" => $v->dateRetour(),
+//        "caisse_id" => $v->caisse_id(),
+//        "quantite_total_produitRetour" => $quantite_total_produitRetour,
+//        "list" => $List_produitRetour,
+//        "prix" => $prixTotal,
+//    );
 endforeach;
 
 //etat de la caisse

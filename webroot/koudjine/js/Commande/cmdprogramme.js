@@ -528,8 +528,7 @@ function valider_commande(imprimer) {
                     });
 
                 }
-
-
+                loader(false);
             }
         })
     }

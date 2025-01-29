@@ -1682,6 +1682,8 @@ function showRapportTest(id) {
                 bPaginate: false,
                 data: data.tf_retourproduit,
                 columns: [
+                    {data: "reference"},
+                    {data: "produit"},
                     {data: "quantite_total_produitRetour"},
                     {data: "prix"},
                 ]
