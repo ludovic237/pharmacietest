@@ -293,7 +293,7 @@ if (isset($id)) {
                                 </div>
                             </div>
                             <div class="row divine">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="panel panel-default">
 
                                         <div class="panel-heading" style="background: #333;">
@@ -332,8 +332,6 @@ if (isset($id)) {
                                     </div>
 
                                 </div>
-                            </div>
-                            <div class="row divine">
                                 <div class="col-md-6">
                                     <div class="panel panel-default">
 
@@ -371,7 +369,9 @@ if (isset($id)) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="row divine">
+                                <div class="col-md-12">
                                     <div class="panel panel-default">
 
                                         <div class="panel-heading" style="background: #333;">
@@ -385,6 +385,8 @@ if (isset($id)) {
                                                 <table  id="rapport_retour" class="table table-bordered table-striped">
                                                     <thead>
                                                     <tr>
+                                                        <th>Reference</th>
+                                                        <th>Produit</th>
                                                         <th>Quantité</th>
                                                         <th>Total</th>
                                                     </tr>
