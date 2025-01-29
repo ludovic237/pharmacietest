@@ -228,19 +228,14 @@ $totalVenteCreditFacture1 = 0;
 //echo '$ventesCreditFacture2';
 //echo json_encode([]);
 //echo '$ventesCreditFacture3';
-//echo json_decode($ventesCreditFacture1);
+//echo json_encode($ventesCreditFacture1);
 foreach ($ventesCreditFacture1 as $k => $v) :
-    if ($v->user_id() != NULL) {
-        $user1 = $managerUs->get($v->user_id());
-        if ($user1 == null) {
-            $client1 = ' NAN';
-        } else {
-            $client1 = $user1->nom() . ' ' . $user1->prenom();
-        }
+    if ($v['nom'] != NULL || $v['prenom'] != NULL) {
+        $client1 = $v['nom'] . ' ' . $v['prenom'];
     } else {
         $client1 = 'Client pas enregistré';
     }
-    $concernce = $managerCo->getList($v->id());
+    $concernce = $managerCo->getList($v['id']);
     foreach ($concernce as $a => $b) {
 
         $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite()) - $b->reduction();
@@ -259,15 +254,17 @@ foreach ($ventesCreditFacture1 as $k => $v) :
             //echo 'passe';
         }
     }
+
     $dataVenteACredit1[] = array(
-        "DT_RowId" => $v->id(),
-        "id" => $v->id(),
-        "reference" => $v->reference(),
-        "prixPercu" => $v->prixTotal(),
+        "DT_RowId" => $v['id'],
+        "id" => $v['id'],
+        "reference" => $v['reference'],
+        "prixPercu" => $v['prixPercu'],
+        "prixTotal" => $v['prixTotal'],
         "client" => $client1,
-        'dateVente' => $v->dateVente()
+        'dateVente' => $v['dateVente']
     );
-    $totalVenteCreditFacture1 = $v->prixTotal() + $totalVenteCreditFacture1;
+    $totalVenteCreditFacture1 = $v['prixTotal'] + $totalVenteCreditFacture1;
 endforeach;
 
 //if (!isset($dataVenteACredit1)) $dataVenteACredit1 = 0;

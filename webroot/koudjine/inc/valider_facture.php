@@ -37,6 +37,8 @@ $montant_electronique = $_POST['montant_electronique'];
 $montant_ticket = $_POST['montant_ticket'];
 $ticket_id = $_POST['ticket_id'];
 
+$montant_espece=$montant_espece-$reste;
+
 $idGen = genererID();
 $tab_type = explode(" ", $typePaiement);
 
@@ -54,16 +56,15 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         'reste' => $reste
     ));
     $managerFa->add($facture);
+    $vente = $manager->get($vente_id);
+    $vente->setprixPercu($montantPercu);
+    $manager->update($vente);
     if (stripos($typePaiement, "Espèce") !== false) {
         $espece = new FactureEspece(array(
             'facturation_id' => $idGen,
             'montant' => $montant_espece
         ));
         $managerFes->add($espece);
-        $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_espece+$vente->prixPercu());
-        $manager->update($vente);
-
         if ($reduction != 0) {
             if ($vente->user_id() == null) {
                 $employe = $managerEm->get($vente->employe_id());
@@ -84,9 +85,6 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
             'montant' => $montant_electronique
         ));
         $managerFel->add($electronique);
-        $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_electronique+$vente->prixPercu());
-        $manager->update($vente);
         if ($reduction != 0) {
             if ($vente->user_id() == null) {
                 $employe = $managerEm->get($vente->employe_id());
@@ -116,10 +114,6 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         $bon->setdateEncaisser($dateEncaisser);
         $bon->settype('Encaisser');
         $managerBo->update($bon);
-
-        $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_ticket+$vente->prixPercu());
-        $manager->update($vente);
         if ($reduction != 0) {
             if ($vente->user_id() == null) {
                 $employe = $managerEm->get($vente->employe_id());

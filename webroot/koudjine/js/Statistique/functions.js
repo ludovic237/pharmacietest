@@ -931,9 +931,9 @@ function showRapportCaisse(id,session) {
     //     },
     //     dataType: 'json',
     //    error: function (e) {
-                loader(false);
-            },
-            success: function (data) {
+    //             loader(false);
+    //         },
+    //         success: function (data) {
     //         //alert(data);
 
     //         if (data.erreur == 'non') {
@@ -1076,7 +1076,7 @@ function showRapportTest(id) {
                 columns: [
                     {data: "reference"},
                     {data: "client"},
-                    {data: "prixPercu"},
+                    {data: "prixTotal"},
                 ]
             });
             $("#rapport_efc_total").html(data.efc_total);

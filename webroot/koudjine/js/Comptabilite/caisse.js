@@ -1632,7 +1632,7 @@ function showRapportTest(id) {
                     columns: [
                         {data: "reference"},
                         {data: "client"},
-                        {data: "prixPercu"},
+                        {data: "prixTotal"},
                     ]
                 });
             $("#rapport_efc_total").html(data.efc_total);
