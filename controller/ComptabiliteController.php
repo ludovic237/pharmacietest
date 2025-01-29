@@ -323,7 +323,7 @@ class ComptabiliteController extends Controller
         $d['sorties'] = $this->Comptabilite->find(array(
             //'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
             'table' => 'sortie_stock',
-            //'order' => 'dateLivraison-ASC',
+            'order' => 'dateSortie-DESC',
             'conditions' => "supprimer = 0 "
         ));
         if (!empty($d['sorties'])) {
@@ -407,7 +407,7 @@ class ComptabiliteController extends Controller
         $d['sorties'] = $this->Comptabilite->find(array(
             //'fields' => 'produit.id as idp,produit.nom as nomp,contenuDetail,grossiste_id,dateLivraison,datePeremption,quantite,quantiteRestante,prixAchat,prixVente,reduction, en_rayon.id as ide',
             'table' => 'sortie_stock s, type_sortie t',
-            //'order' => 'dateLivraison-ASC',
+            'order' => 'dateSortie-DESC',
             'conditions' => "s.supprimer = 0 AND s.type_sortie_id = t.id "
         ));
         $d['type_sortie'] = $this->Comptabilite->find(array(
@@ -424,18 +424,7 @@ class ComptabiliteController extends Controller
                     'table' => 'produit p, en_rayon e, forme f',
                     'conditions' => array('e.id' => $v->en_rayon_id, 'p.forme_id' => 'f.id', 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
                 ));
-                if ($v->detail_id != '' && $v->detail_id != null) {
-                    $d['produit_dtl'][$i] = $this->Comptabilite->findFirst(array(
-                        //'fields' => 'vente.id as id,prixTotal,prixPercu,commentaire,dateVente,etat,reference',
-                        'table' => 'produit p, en_rayon e',
-                        'conditions' => array('e.id' => $v->detail_id, 'e.supprimer' => 0, 'p.id' => 'e.produit_id')
-                    ));
-                    $d['produit_dtl'][$i] = $d['produit_dtl'][$i]->nom;
-                    $d['operation'][$i] = $v->nom;
-                } else {
-                    $d['produit_dtl'][$i] = $v->detail_id;
-                    $d['operation'][$i] = $v->nom;
-                }
+                $d['operation'][$i] = $v->nom;
 
                 $i++;
             endforeach;
