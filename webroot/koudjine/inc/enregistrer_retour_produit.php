@@ -37,9 +37,9 @@ $produitr= $managerProduit->get($en_rayon->produit_id());
 //$qteTotalVente=$concerner->quantite()+$qte;
 $reductionParProduit=$concerner->reduction()/$concerner->quantite();
 
-$concerner->setquantite_retourner($qte);
-echo "- concerne qte : ".$concerner->quantite();
-$managerConcerner->update($concerner);
+//$concerner->setquantite_retourner($qte);
+//echo "- concerne qte : ".$concerner->quantite();
+//$managerConcerner->update($concerner);
 
 
 //$vente->setprixTotal($vente->prixTotal()-(($en_rayon->prixVente()-$reductionParProduit)*$qte));
