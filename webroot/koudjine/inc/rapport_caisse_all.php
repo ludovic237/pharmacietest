@@ -98,7 +98,6 @@ foreach ($ventes as $key => $v) {
             $produit = $managerPr->get($en_rayon->produit_id());
         }
     }
-//    echo $prixTotalProduitDetail."\n";
     if ($reduction>0){
         if ($managerRetourProduit->existsVente_id($v->id())==true){
             $retourProduit = $managerRetourProduit->getVente_id($v->id());
@@ -228,11 +227,11 @@ foreach ($ventesCreditFacture as $k => $v) :
         $en_rayon = $managerEn->get($b->en_rayon_id());
         $fournisseur = $managerFournisseur->get($en_rayon->fournisseur_id());
 
-        if ($fournisseur->statut() == "Grossiste") {
-            $prixGrossite = $prixTotalConcerne + $prixGrossite;
-        } else if ($fournisseur->statut() == "Detaillant") {
-            $prixDetaillant = $prixTotalConcerne + $prixDetaillant;
-        }
+//        if ($fournisseur->statut() == "Grossiste") {
+////            $prixGrossite = $prixTotalConcerne + $prixGrossite;
+////        } else if ($fournisseur->statut() == "Detaillant") {
+////            $prixDetaillant = $prixTotalConcerne + $prixDetaillant;
+////        }
         // On calcule le total des produits detailles
         $produit = $managerPr->get($en_rayon->produit_id());
         if ($produit->grossiste_id() != '') {
@@ -240,6 +239,7 @@ foreach ($ventesCreditFacture as $k => $v) :
             //echo 'passe';
         }
     }
+
     $dataVenteACredit[] = array(
         "DT_RowId" => $v->id(),
         "id" => $v->id(),
@@ -276,11 +276,11 @@ foreach ($ventesCreditFacture1 as $k => $v) :
             $en_rayon = $managerEn->get($b->en_rayon_id());
             $fournisseur = $managerFournisseur->get($en_rayon->fournisseur_id());
 
-            if ($fournisseur->statut() == "Grossiste") {
-                $prixGrossite = $prixTotalConcerne - $prixGrossite;
-            } else if ($fournisseur->statut() == "Detaillant") {
-                $prixDetaillant = $prixTotalConcerne - $prixDetaillant;
-            }
+//            if ($fournisseur->statut() == "Grossiste") {
+//                $prixGrossite = $prixTotalConcerne - $prixGrossite;
+//            } else if ($fournisseur->statut() == "Detaillant") {
+//                $prixDetaillant = $prixTotalConcerne - $prixDetaillant;
+//            }
             // On calcule le total des produits detailles
             $produit = $managerPr->get($en_rayon->produit_id());
             if ($produit->grossiste_id() != '') {
@@ -305,7 +305,6 @@ endforeach;
 //if (!isset($dataVenteACredit1)) $dataVenteACredit1 = 0;
 
 $totalVentFournisseur = $prixGrossite + $prixDetaillant+$prixTotalProduitDetail;
-
 
 // bon caisse genere
 $totalboncaisseGenerer = 0;
