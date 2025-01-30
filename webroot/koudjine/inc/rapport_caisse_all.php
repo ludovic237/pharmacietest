@@ -53,6 +53,9 @@ $dataVenteACredit = [];
 $dataVenteACredit1 = [];
 $grandTotalCaisse = 0;
 
+$dataListReduction = [];
+$totalReduction = 0;
+
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
 } else {
@@ -70,6 +73,7 @@ $prixTotalProduitDetail = 0;
 //echo json_encode($ventes);
 //Recap vente fournisseur
 foreach ($ventes as $key => $v) {
+    $reduction= $v->reduction();
     $concernce = $managerCo->getList($v->id());
     foreach ($concernce as $a => $b) {
 
@@ -93,6 +97,32 @@ foreach ($ventes as $key => $v) {
             //echo 'passe';
         }
     }
+
+    if ($reduction>0){
+        if ($managerRetourProduit->existsVente_id($v->id())==true){
+            $retourProduit = $managerRetourProduit->getVente_id($v->id());
+            $produitRetourList = $managerPrRetour->getListRetourProduitId($retourProduit->id());
+            foreach ($produitRetourList as $c => $d) {
+                $concerner = $managerCo->get($d->concerner_id());
+                $singleReduction = $concerner->reduction()/$concerner->quantite();
+                if ($singleReduction>0){
+                    $reduction = $reduction - $singleReduction*$d->quantite();
+                }
+            }
+
+        }
+
+        $dataListReduction[] = array(
+            "DT_RowId" => $v->id(),
+            "id" => $v->id(),
+            "reference" => $v->reference(),
+            "prixPercu" => $v->prixTotal(),
+            "reduction" => $reduction,
+            'dateVente' => $v->dateVente()
+        );
+        $totalReduction = $totalReduction + $reduction;
+    }
+
 }
 
 $caisse = $managerCa->getId($id);
@@ -389,6 +419,8 @@ $donnees = array(
     'vente_credit' => $totalVenteCredit,
     'vente_assurance' => $totalVenteAssurance,
     'vente_total' => $totalVenteTypeVente,
+    'reduction_list' => $dataListReduction,
+    'reduction_total' => $totalReduction,
     'ev_espece' => $totalfacturationEspece,
     'ev_electronique' => $totalfacturationElectronique,
     'ev_boncaisse' => $totalfacturationTicket,

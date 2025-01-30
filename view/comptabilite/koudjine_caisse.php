@@ -1346,7 +1346,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         </div>
                     </div>
                     <div class="row divine">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="panel panel-default">
 
                                 <div class="panel-heading" style="background: #333;">
@@ -1381,7 +1381,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             </div>
 
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="panel panel-default">
 
                                 <div class="panel-heading" style="background: #333;">
@@ -1409,6 +1409,41 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         </table>
                                         <div style="display:flex;padding: 5px">
                                             <p style="margin: 0px">Total: <span id="rapport_bc_total_genere"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+
+                                <div class="panel-heading" style="background: #333;">
+                                    <div class="panel-title-box" style="color: aquamarine;">
+                                        <h3 style="color: white;">Reduction</h3>
+                                        <!-- <span>Projects activity</span> -->
+                                    </div>
+                                </div>
+                                <div class="panel-body panel-body-table">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped" id="reduction_list">
+                                            <thead>
+                                            <tr>
+                                                <th>Reference</th>
+                                                <th>Montant</th>
+                                                <th>Date</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <div style="display:flex;padding: 5px">
+                                            <p style="margin: 0px">Total: <span id="reduction_total"></span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -2322,7 +2357,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             </div>
                         </div>
                         <div class="row divine">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="panel panel-default">
 
                                     <div class="panel-heading" style="background: #333;">
@@ -2357,7 +2392,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                 </div>
 
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="panel panel-default">
 
                                     <div class="panel-heading" style="background: #333;">
@@ -2385,6 +2420,41 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             </table>
                                             <div style="display:flex;padding: 5px">
                                                 <p style="margin: 0px">Total: <span id="rapport_bc_total_genere"></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+
+                                    <div class="panel-heading" style="background: #333;">
+                                        <div class="panel-title-box" style="color: aquamarine;">
+                                            <h3 style="color: white;">Reduction</h3>
+                                            <!-- <span>Projects activity</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="panel-body panel-body-table">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped" id="reduction_list">
+                                                <thead>
+                                                <tr>
+                                                    <th>Reference</th>
+                                                    <th>Montant</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <div style="display:flex;padding: 5px">
+                                                <p style="margin: 0px">Total: <span id="reduction_total"></span></p>
                                             </div>
                                         </div>
                                     </div>

@@ -1677,6 +1677,22 @@ function showRapportTest(id) {
             });
             $("#rapport_bc_total_genere").html(data.bc_total_genere);
 
+            //Bon de caisse encaissé
+            $('#reduction_list').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.reduction_list,
+                columns: [
+                    {data: "reference"},
+                    {data: "reduction"},
+                    {data: "dateVente"},
+                ]
+            });
+            $("#reduction_total").html(data.reduction_total);
+
             //Dépense
             $('#rapport_depense').dataTable({
                 destroy: true,
