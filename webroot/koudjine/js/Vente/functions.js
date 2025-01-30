@@ -867,7 +867,8 @@ function valider_vente(type, etat) {
                                 prixu: prix,
                                 qte: qte,
                                 type: type,
-                                reduction: prixr
+                                reduction: prixr,
+                                etat: etat
                             },
                             success: function (server_responce) {
                                 console.log(server_responce);

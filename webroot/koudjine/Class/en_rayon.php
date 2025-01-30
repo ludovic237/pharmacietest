@@ -328,8 +328,8 @@ class En_rayonManager
     {
 
         // UPDATE `en_rayon` SET `datePeremption` = '2021-04-23', `prixAchat` = '420', `prixVente` = '105', `quantite` = '102', `quantiteRestante` = '74' WHERE `en_rayon`.`id` = '10010120171115'; 
-        $q = $this->_db->prepare('UPDATE en_rayon SET produit_id = :produit_id, fournisseur_id = :fournisseur_id, commande_id = :commande_id, dateLivraison = :dateLivraison, datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prixa, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = :reduction WHERE id = :id');
-        $q->bindValue(':id', $en_rayon->id(), PDO::PARAM_INT);
+        $q = $this->_db->prepare('UPDATE en_rayon SET produit_id = :produit_id, fournisseur_id = :fournisseur_id, commande_id = :commande_id, dateLivraison = :dateLivraison, datePeremption = :datePeremption, prixVente = :prixv, prixAchat = :prixa, quantite = :quantite, quantiteRestante = :quantiteRestante, reduction = :reduction WHERE id = :id and supprimer = 0');
+        $q->bindValue(':id', $en_rayon->id());
         $q->bindValue(':produit_id', $en_rayon->produit_id(), PDO::PARAM_INT);
         $q->bindValue(':fournisseur_id', $en_rayon->fournisseur_id(), PDO::PARAM_INT);
         $q->bindValue(':commande_id', $en_rayon->commande_id(), PDO::PARAM_INT);

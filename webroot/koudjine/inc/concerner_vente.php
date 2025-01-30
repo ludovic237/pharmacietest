@@ -20,8 +20,10 @@ $qte=$_POST['qte'];
 $type=$_POST['type'];
 $reduction=$_POST['reduction'];
 $prixu=$_POST['prixu'];
+$etat=$_POST['etat'];
 
-echo $ide;
+echo $ide.'\n';
+echo $etat;
 
 if (isset($_POST['id'])){
 
@@ -49,6 +51,21 @@ else{
             'supprimer' => 0
         ));
         $managerCo->add($conc);
+
+        $vente = $manager->get($idv);
+        print_r($vente);
+        if($vente->etat() != 'Comptant' || $etat != 'Comptant'){
+            $en_rayon = $managerEn->get($ide);
+            print_r($en_rayon);
+            $en_rayon->setquantiteRestante(($en_rayon->quantiteRestante()-$qte));
+            $managerEn->update($en_rayon);
+            print_r($en_rayon);
+
+            $produit = $managerPr->get($en_rayon->produit_id());
+            $produit->setstock(($produit->stock() - $qte));
+            $managerPr->update($produit);
+        }
+
 
 
         $donnees = array('erreur' =>'ok');

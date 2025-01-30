@@ -737,7 +737,8 @@
                     console.log(server_responce.data);
                     server_responce = JSON.parse(server_responce);
                     if (server_responce.data.length==0){
-                        $("#iconPreviewCaisseFermer").modal("show");
+                        $("#fermeture-caisse-confirmation").modal("show");
+                        //$("#iconPreviewCaisseFermer").modal("show");
                     }
                     else {
                         $('#message-box-danger p').html(server_responce.data.length+' ventes n ont pas encore ete encaiisser');

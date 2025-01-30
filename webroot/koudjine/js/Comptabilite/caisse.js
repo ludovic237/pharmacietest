@@ -830,10 +830,11 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                     url: "/pharmacietest/koudjine/inc/facture_modifier_quantite_vendu.php",
                                     data: {
                                         id: id1,
+                                        vente_id: vente_id,
                                         qte: qte
                                     },
                                     success: function (server_responce) {
-                                        //alert(server_responce);
+                                        console.log(server_responce);
                                         rec++;
                                         rafraichir_vente(caisse_id);
                                         $('#' + onglet + ' .montant').val('');
@@ -966,9 +967,11 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                 url: "/pharmacietest/koudjine/inc/facture_modifier_quantite_vendu.php",
                                 data: {
                                     id: id1,
+                                    vente_id: vente_id,
                                     qte: qte
                                 },
                                 success: function (server_responce) {
+                                    console.log(server_responce);
                                     rec++;
                                     rafraichir_vente(caisse_id);
                                     $('#' + onglet + ' .montant').val('');
@@ -1555,7 +1558,9 @@ function close_caisse_row(id) {
             console.log(server_responce);
             server_responce = JSON.parse(server_responce);
             if (server_responce.data.length==0){
-                $("#iconPreviewCaisseFermer").modal("show");
+                console.log('passe');
+                $("#fermeture-caisse-confirmation").modal("show");
+                //$("#iconPreviewCaisseFermer").modal("show");
             }
             else {
                 $('#message-box-danger p').html('Des ventes n ont pas encore ete encaiisser');

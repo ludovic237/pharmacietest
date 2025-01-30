@@ -1,5 +1,5 @@
 <?php
-
+echo  $_SESSION["Users"]->id;
 foreach ($employe as $k => $v) :
     $employes[] = $v->id;
 endforeach;

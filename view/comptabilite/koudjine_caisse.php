@@ -1,5 +1,6 @@
 <!-- <?php
-
+//print_r($caisseCheck);
+//echo  $_SESSION["Users"]->id;
 $title_for_layout = ' ALSAS -' . 'Comptabilite';
 //$page_for_layout = 'Caisse ouverte par : ' . $employe->nom . ' ' . $employe->prenom;
 if (!empty($caisse->id)){
@@ -70,6 +71,7 @@ if (isset($caisseCheck) && $caisseCheck != null) {
         $script_for_layout = $script_for_layout . '<script type="text/javascript">  $(document).ready(open_rapport());</script>';
     }
 }
+echo  $_SESSION["Users"]->id;
 
 
 ?> -->
@@ -2502,3 +2504,20 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
         </div>
     </div>
     <!-- END MESSAGE BOX-->
+    <div class="message-box animated fadeIn" data-sound="alert" id="fermeture-caisse-confirmation" data="">
+        <div class="mb-container">
+            <div class="mb-middle">
+                <div class="mb-title"><span class="fa fa-sign-out"></span> Confirmation <strong>Fermeture</strong> ?</div>
+                <div class="mb-content">
+                    <p>Voulez vous vraiment fermer la caisse?</p>
+                    <p>Cliquez sur oui si vous le voulez ou sur non pour pas maintenant.</p>
+                </div>
+                <div class="mb-footer">
+                    <div class="pull-right">
+                        <a class="btn btn-success btn-lg" onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Oui</a>
+                        <button class="btn btn-default btn-lg mb-control-close" >Non</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -13,6 +13,7 @@ class Vente
         $_prixPercu,
         $_nouveau_info,
         $_dateVente,
+        $_dateEncaissement,
         $_commentaire,
         $_reduction,
         $_etat,
@@ -80,6 +81,10 @@ class Vente
     public function dateVente()
     {
         return $this->_dateVente;
+    }
+    public function dateEncaissement()
+    {
+        return $this->_dateEncaissement;
     }
     public function commentaire()
     {
@@ -179,6 +184,12 @@ class Vente
         $this->_dateVente = $value;
 
     }
+    public function setdateEncaissement($value)
+    {
+
+        $this->_dateEncaissement = $value;
+
+    }
     public function setcommentaire($value)
     {
 
@@ -216,7 +227,7 @@ class VenteManager
     }
     public function add(Vente $vente)
     {
-        $q = $this->_db->prepare('INSERT INTO vente SET id = :id, employe_id = :employe, malade_id = :malade, user_id = :user1, prescripteur_id = :prescripteur, prixTotal = :prixTotal, prixPercu = :montant, nouveau_info = :nouveau_info, reference = :reference, dateVente = now(), commentaire = :commentaire, reduction = :reduction, etat = :etat, caisse_id = :caisse, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO vente SET id = :id, employe_id = :employe, malade_id = :malade, user_id = :user1, prescripteur_id = :prescripteur, prixTotal = :prixTotal, prixPercu = :montant, nouveau_info = :nouveau_info, reference = :reference, dateVente = now(), dateEncaissement = :dateEncaissement, commentaire = :commentaire, reduction = :reduction, etat = :etat, caisse_id = :caisse, supprimer=0');
         $q->bindValue(':id', $vente->id(), PDO::PARAM_INT);
         $q->bindValue(':employe', $vente->employe_id(), PDO::PARAM_INT);
         $q->bindValue(':caisse', $vente->caisse_id(), PDO::PARAM_INT);
@@ -228,6 +239,7 @@ class VenteManager
         $q->bindValue(':nouveau_info', $vente->nouveau_info());
         $q->bindValue(':reference', $vente->reference());
         $q->bindValue(':commentaire', $vente->commentaire());
+        $q->bindValue(':dateEncaissement', $vente->dateEncaissement());
         $q->bindValue(':reduction', $vente->reduction());
         $q->bindValue(':etat', $vente->etat());
         $q->execute();
@@ -538,7 +550,7 @@ class VenteManager
     public function update(Vente $vente)
     {
 
-        $q = $this->_db->prepare('UPDATE vente SET employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, malade_id = :malade, caisse_id = :caisse, prixTotal = :prixTotal, prixPercu = :montant, nouveau_info = :nouveau_info, dateVente = :dateVente, commentaire = :commentaire, reduction = :reduction, etat = :etat WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE vente SET employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, malade_id = :malade, caisse_id = :caisse, prixTotal = :prixTotal, prixPercu = :montant, nouveau_info = :nouveau_info, dateVente = :dateVente, dateEncaissement = :dateEncaissement, commentaire = :commentaire, reduction = :reduction, etat = :etat WHERE id = :id');
         $q->bindValue(':id', $vente->id(), PDO::PARAM_INT);
         $q->bindValue(':employe', $vente->employe_id(), PDO::PARAM_INT);
         $q->bindValue(':caisse', $vente->caisse_id(), PDO::PARAM_INT);
@@ -549,6 +561,7 @@ class VenteManager
         $q->bindValue(':montant', $vente->prixPercu(), PDO::PARAM_INT);
         $q->bindValue(':nouveau_info', $vente->nouveau_info());
         $q->bindValue(':dateVente', $vente->dateVente());
+        $q->bindValue(':dateEncaissement', $vente->dateEncaissement());
         $q->bindValue(':commentaire', $vente->commentaire());
         $q->bindValue(':reduction', $vente->reduction());
         $q->bindValue(':etat', $vente->etat());
