@@ -74,6 +74,11 @@ if (isset($_POST['id'])||isset($_GET['id'])){
 
         endforeach;
         $nomString = "Le tableau est vide.";
+        if($v->etat() == 'Comptant'){
+            $bouton = "<button class=\"btn btn-default btn-rounded btn-sm \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"delete_row_caisse('".$v->id()."', event)\"><span class='fa fa-times'></span></button>";
+        }else{
+            $bouton = "";
+        }
         if (!empty($data)) {
             // Concaténation des valeurs de la clé "nom"
             $nomString = implode(", ", array_column($data, "nom"));
@@ -104,6 +109,7 @@ if (isset($_POST['id'])||isset($_GET['id'])){
                                             </td>
                                             <td>
                                                 <button class=\"btn btn-default btn-rounded btn-sm \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"charger_vente('".$v->id()."')\"><span class=\"\">Charger</span></button>
+                                                ".$bouton."
                                             </td>
                                         </tr>";
     endforeach;

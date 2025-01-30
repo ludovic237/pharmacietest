@@ -1190,6 +1190,30 @@ function rafraichir_vente_data(id) {
 
 }
 
+function delete_row_caisse(row, e){
+    e.preventDefault();
+    var box = $("#mb-remove-row");
+    box.addClass("open");
+
+    box.find(".mb-control-yes").on("click",function(){
+        box.removeClass("open");
+        $.ajax({
+            type: "POST",
+            url: "/pharmacietest/koudjine/inc/supprimer_vente.php",
+            data: {
+                id: row
+            },
+            success: function (server_responce) {
+                console.log(server_responce);
+                $("#"+row).hide("slow",function(){
+                    $(this).remove();
+                });
+            }
+        })
+    });
+
+}
+
 function charger_vente(id) {
     $(".caisse").val('');
     $("#facture_caisse").html($("#" + id + " .prixtotal").html());
@@ -1279,7 +1303,7 @@ function valider_fermeture(caisse_id) {
             success: function (server_responce) {
 
                 //alert(server_responce);
-                var link = '/pharmacietest/bouwou/comptabilite/caisse_rapport';
+                var link = '/pharmacietest/users/logout';
                 window.location.href = link;
 
             }

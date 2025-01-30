@@ -327,7 +327,7 @@ class ConcernerManager
     public function update(Concerner $concerner)
     {
 
-        $q = $this->_db->prepare('UPDATE concerncer SET vente_id = :vente_id,produit_id = :produit_id, en_rayon_id = :en_rayon_id,prixUnit = :prixUnit, type = :type, quantite = :quantite, reduction = :reduction WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE concerncer SET vente_id = :vente_id,produit_id = :produit_id, en_rayon_id = :en_rayon_id,prixUnit = :prixUnit, type = :type, quantite = :quantite, reduction = :reduction, supprimer = :supprimer WHERE id = :id');
         $q->bindValue(':id', $concerner->id(), PDO::PARAM_INT);
         $q->bindValue(':vente_id', $concerner->vente_id(), PDO::PARAM_INT);
         $q->bindValue(':produit_id', $concerner->produit_id(), PDO::PARAM_INT);
@@ -336,6 +336,14 @@ class ConcernerManager
         $q->bindValue(':quantite', $concerner->quantite());
         $q->bindValue(':type', $concerner->type());
         $q->bindValue(':reduction', $concerner->reduction());
+        $q->bindValue(':supprimer', $concerner->supprimer());
+        $q->execute();
+    }
+    public function update_delete(Concerner $vente)
+    {
+
+        $q = $this->_db->prepare('UPDATE Concerner SET supprimer = 1 WHERE id = :id');
+        $q->bindValue(':id', $vente->id(), PDO::PARAM_INT);
         $q->execute();
     }
     public function setDb(PDO $db)
