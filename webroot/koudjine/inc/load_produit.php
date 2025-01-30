@@ -17,7 +17,7 @@ $managerEnRayon = new En_rayonManager($pdo);
 
 if (isset($_POST['id']))
     $id = $_POST['id'];
-if (!isset($_POST['option'])){
+if (!isset($_POST['option'])) {
     $produit = $managerProduit->get($id);
     if ($produit->grossiste_id() != '') {
         $enrayon = $managerEnRayon->getListDetail($id);
@@ -35,7 +35,7 @@ if (!isset($_POST['option'])){
         foreach ($enrayon as $k => $v) :
             $dateActuelle = new DateTime();
             $statut = "";
-            $perime = new DateTime( $v->datePeremption());
+            $perime = new DateTime($v->datePeremption());
             $interval = $dateActuelle->diff($perime);
 
             $datelivraison = $v->dateLivraison();
@@ -127,13 +127,17 @@ if (!isset($_POST['option'])){
                                                  " . $datel . "
                                              </p>
          ",
+                'peremption' => "
+         <p class='datePeremption'>
+                                                 " . $v->datePeremption() . "
+                                             </p>
+         ",
                 'action' => $bouton
             );
         endforeach;
     }
-}else{
+} else {
     $produitdet = $managerProduitDet->get($id);
-
 
 
     $datas = [];
@@ -144,7 +148,7 @@ if (!isset($_POST['option'])){
 
         if ($produitdet->stock() <= $produitdet->stockMin()) $action = 'style="background: #ff18008a;color: #fff"';
         else $action = '';
-            $bouton = "
+        $bouton = "
                                              <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"gerer_detail('" . $produitdet->id() . "')\"><span class=\"\">Augmenter quantité</span></button>
                                         ";
         $datas[] = array(
@@ -213,6 +217,12 @@ if (!isset($_POST['option'])){
                                                  
                                              </p>
          ",
+            'peremption' => "
+         <p class='datePeremption'>
+                                                 
+                                             </p>
+         ",
+
             'action' => $bouton
         );
     }
