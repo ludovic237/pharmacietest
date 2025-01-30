@@ -561,3 +561,21 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
         </div>
     </div>
 </div>
+
+<div class="message-box animated fadeIn" data-sound="alert" id="confirmation-vente-perime" data="">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-sign-out"></span> Confirmation <strong>Vente Perime</strong> ?</div>
+            <div class="mb-content">
+                <p>Voulez vous vraiment ajouter ce produit perime a la caisse?</p>
+                <p>Cliquez sur oui si vous le voulez ou sur non pour pas maintenant.</p>
+            </div>
+            <div class="mb-footer">
+                <div class="pull-right">
+                    <a class="btn btn-success btn-lg" onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Oui</a>
+                    <button class="btn btn-default btn-lg mb-control-close" onclick="close_caisse_alert()" >Non</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

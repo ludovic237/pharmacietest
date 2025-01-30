@@ -53,7 +53,7 @@ if (!isset($_POST['option'])) {
 
             if ($dateActuelle > $perime) {
                 // Si la date de péremption est passée
-                $statut = '<span class="badge badge-danger badge-pill ml-2" style="font-size:90%">Périmé</span>';
+                $statut = '<span class="badge badge-danger badge-pill ml-2 perime" style="font-size:90%">Périmé</span>';
             } elseif ($interval->days <= 30 && $dateActuelle < $perime) {
                 // Si la date de péremption est dans 1 mois ou moins
                 $statut = '<span class="badge badge-warning badge-pill ml-2" style="font-size:90%">Expire dans ' . $interval->days . ' jour(s)</span>';

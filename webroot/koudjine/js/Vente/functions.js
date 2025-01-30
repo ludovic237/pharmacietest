@@ -99,136 +99,279 @@ $(document).ready(function () {
             },
             success: function (data) {
                         ////alert(data);
-                        if (data.erreur == 'non') {
-                            var action = 0;
-                            if (dataVenteLoad.find((e) => e.produitId == code)) {
-                                if ((dataVenteLoad.find((e) => e.produitId == code).quantite + 1) > (dataVenteLoad.find((e) => e.produitId == code).qteRestante)) {
-                                    noty({text: 'Quantite insuffisante', layout: 'topRight', type: 'error'});
-                                } else {
-                                    dataVenteLoad.find((e) => e.produitId == code).quantite = (dataVenteLoad.find((e) => e.produitId == code).quantite + 1)
-                                    dataVenteLoad.find((e) => e.produitId == code).prixTotal = (dataVenteLoad.find((e) => e.produitId == code).quantite * data.prix);
-                                }
-                            } else {
-                                dataVenteLoad.push({
-                                    DT_RowId: code,
-                                    produitId: code,
-                                    qteRestante: data.quantiteRestante,
-                                    nom: data.nom,
-                                    prixTotal: (1 * data.prix),
-                                    prix: data.prix,
-                                    quantite: 1,
-                                    reduction: data.reduction,
-                                    stockGeneral: data.stock,
-                                    dateLivraison: data.datel,
-                                })
-                            }
-                            console.log(dataVenteLoad);
-                            $('#add_vente').dataTable({
-                                destroy: true,
-                                searching: true,
-                                dFilter: true,
-                                bInfo: true,
-                                bPaginate: true,
-                                data: dataVenteLoad,
-                                columns: [
-                                    {data: "nom"},
-                                    {data: "prix"},
-                                    {data: "quantite"},
-                                    {data: "prixTotal"},
-                                    {data: "reduction"},
-                                    {data: "dateLivraison"},
-                                    {data: "type"},
-                                    {data: "stockGeneral"},
-                                    {
-                                        "data": "produitId", "bSortable": false, "render": function (data, type, row) {
-                                            return '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + data + '\');"><span class="fa fa-times"></span></button>';
-                                        }
-                                    }
-                                ]
-                            });
+                        if (data.statut_perime == 'oui') {
+                            var box = $("#mb-remove-row");
+                            box.addClass("open");
 
-                            prixTotal = 0;
-                            var prixReduit = 0;
-
-                            $('#tab_vente  tr').each(function (i) {
-                                var id1 = $(this).attr("id");
-                                var prix, qte;
-                                ////alert(id1);
-
-                                $("#" + id1 + " td").each(function (j) {
-                                    ////alert($(this).html());
-                                    if (j == 1) {
-                                        prix = parseInt($(this).html());
-                                    }
-                                    if (j == 2) {
-                                        qte = parseInt($(this).html());
-                                        prixTotal = prixTotal + (prix * qte);
-                                    }
-                                    if (j == 4) {
-                                        var reduction = parseInt($(this).attr("data"));
-                                        if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
-                                            reduction = 0;
+                            box.find(".mb-control-yes").on("click",function(){
+                                box.removeClass("open");
+                                if (data.erreur == 'non') {
+                                    var action = 0;
+                                    if (dataVenteLoad.find((e) => e.produitId == code)) {
+                                        if ((dataVenteLoad.find((e) => e.produitId == code).quantite + 1) > (dataVenteLoad.find((e) => e.produitId == code).qteRestante)) {
+                                            noty({text: 'Quantite insuffisante', layout: 'topRight', type: 'error'});
                                         } else {
-                                            if (parseInt($("#select_vente_client option:selected").attr("name")) >= reduction) {
-                                                //reduction = reduction;
+                                            dataVenteLoad.find((e) => e.produitId == code).quantite = (dataVenteLoad.find((e) => e.produitId == code).quantite + 1)
+                                            dataVenteLoad.find((e) => e.produitId == code).prixTotal = (dataVenteLoad.find((e) => e.produitId == code).quantite * data.prix);
+                                        }
+                                    } else {
+                                        dataVenteLoad.push({
+                                            DT_RowId: code,
+                                            produitId: code,
+                                            qteRestante: data.quantiteRestante,
+                                            nom: data.nom,
+                                            prixTotal: (1 * data.prix),
+                                            prix: data.prix,
+                                            quantite: 1,
+                                            reduction: data.reduction,
+                                            stockGeneral: data.stock,
+                                            type: data.type,
+                                            dateLivraison: data.datel,
+                                        })
+                                    }
+                                    console.log(dataVenteLoad);
+                                    $('#add_vente').dataTable({
+                                        destroy: true,
+                                        searching: true,
+                                        dFilter: true,
+                                        bInfo: true,
+                                        bPaginate: true,
+                                        data: dataVenteLoad,
+                                        columns: [
+                                            {data: "nom"},
+                                            {data: "prix"},
+                                            {data: "quantite"},
+                                            {data: "prixTotal"},
+                                            {data: "reduction"},
+                                            {data: "dateLivraison"},
+                                            {data: "type"},
+                                            {data: "stockGeneral"},
+                                            {
+                                                "data": "produitId", "bSortable": false, "render": function (data, type, row) {
+                                                    return '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + data + '\');"><span class="fa fa-times"></span></button>';
+                                                }
+                                            }
+                                        ]
+                                    });
 
-                                            } else {
-                                                reduction = parseInt($("#select_vente_client option:selected").attr("name"));
+                                    prixTotal = 0;
+                                    var prixReduit = 0;
+
+                                    $('#tab_vente  tr').each(function (i) {
+                                        var id1 = $(this).attr("id");
+                                        var prix, qte;
+                                        ////alert(id1);
+
+                                        $("#" + id1 + " td").each(function (j) {
+                                            ////alert($(this).html());
+                                            if (j == 1) {
+                                                prix = parseInt($(this).html());
+                                            }
+                                            if (j == 2) {
+                                                qte = parseInt($(this).html());
+                                                prixTotal = prixTotal + (prix * qte);
+                                            }
+                                            if (j == 4) {
+                                                var reduction = parseInt($(this).attr("data"));
+                                                if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
+                                                    reduction = 0;
+                                                } else {
+                                                    if (parseInt($("#select_vente_client option:selected").attr("name")) >= reduction) {
+                                                        //reduction = reduction;
+
+                                                    } else {
+                                                        reduction = parseInt($("#select_vente_client option:selected").attr("name"));
+                                                    }
+                                                }
+
+                                                prixReduit = prixReduit + ((prix * qte) * reduction / 100);
+                                            }
+
+                                        });
+
+                                    });
+                                    $('#recherche').val("");
+                                    $("#tab_Grecherche").hide();
+                                    $("#tab_Brecherche").empty();
+
+                                    var reductionData = Math.ceil((prixReduit / 5) * 5) + "";
+                                    var firstData = reductionData.substr(0, reductionData.length - 2).toString();
+                                    var lastData = "";
+                                    var finalReductionTotal = 0;
+                                    if (reductionData.length >= 3) {
+                                        var second = parseInt(reductionData.substr(reductionData.length - 2));
+                                        if (second < 100 && second >= 75) {
+                                            lastData = "75";
+                                        } else if (second < 75 && second >= 50) {
+                                            lastData = "50";
+                                        } else if (second < 50 && second >= 25) {
+                                            lastData = "25";
+                                        } else if (second < 25 && second >= 0) {
+                                            lastData = "00";
+                                        }
+                                        finalReductionTotal = parseInt(firstData + lastData);
+                                    }
+                                    prixReduit = (finalReductionTotal);
+                                    var finalNetTotal = (-finalReductionTotal + prixTotal);
+
+                                    $('#prixTotal').html(prixTotal);
+                                    $('#prixReduit').html(prixReduit);
+                                    $('#netTotal').html(finalNetTotal);
+
+                                    // on verifie si le taux est coché, si oui on le décoche en chargeant le prix réduit des produits
+                                    if ($("#check_reductionGenerale").is(":checked")) {
+                                        $('#check_reductionGenerale').prop("checked", false);
+                                    }
+
+                                }
+                                else if (data.find == 'non') {
+                                    load_produit(data.id);
+                                    $('#recherche').val("");
+                                    $("#tab_Grecherche").hide();
+                                } else {
+                                    $('#message-box-danger p').html(data.erreur);
+                                    $("#message-box-danger").modal("show");
+                                    setTimeout(function () {
+                                        $("#message-box-danger").modal("hide");
+                                    }, 3000);
+                                    $('#recherche').val("");
+                                    $("#tab_Grecherche").hide();
+                                }
+                            });
+                        }else{
+                            if (data.erreur == 'non') {
+                                var action = 0;
+                                if (dataVenteLoad.find((e) => e.produitId == code)) {
+                                    if ((dataVenteLoad.find((e) => e.produitId == code).quantite + 1) > (dataVenteLoad.find((e) => e.produitId == code).qteRestante)) {
+                                        noty({text: 'Quantite insuffisante', layout: 'topRight', type: 'error'});
+                                    } else {
+                                        dataVenteLoad.find((e) => e.produitId == code).quantite = (dataVenteLoad.find((e) => e.produitId == code).quantite + 1)
+                                        dataVenteLoad.find((e) => e.produitId == code).prixTotal = (dataVenteLoad.find((e) => e.produitId == code).quantite * data.prix);
+                                    }
+                                } else {
+                                    dataVenteLoad.push({
+                                        DT_RowId: code,
+                                        produitId: code,
+                                        qteRestante: data.quantiteRestante,
+                                        nom: data.nom,
+                                        prixTotal: (1 * data.prix),
+                                        prix: data.prix,
+                                        quantite: 1,
+                                        reduction: data.reduction,
+                                        stockGeneral: data.stock,
+                                        type: data.type,
+                                        dateLivraison: data.datel,
+                                    })
+                                }
+                                console.log(dataVenteLoad);
+                                $('#add_vente').dataTable({
+                                    destroy: true,
+                                    searching: true,
+                                    dFilter: true,
+                                    bInfo: true,
+                                    bPaginate: true,
+                                    data: dataVenteLoad,
+                                    columns: [
+                                        {data: "nom"},
+                                        {data: "prix"},
+                                        {data: "quantite"},
+                                        {data: "prixTotal"},
+                                        {data: "reduction"},
+                                        {data: "dateLivraison"},
+                                        {data: "type"},
+                                        {data: "stockGeneral"},
+                                        {
+                                            "data": "produitId", "bSortable": false, "render": function (data, type, row) {
+                                                return '<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row_vente(\'' + data + '\');"><span class="fa fa-times"></span></button>';
                                             }
                                         }
-
-                                        prixReduit = prixReduit + ((prix * qte) * reduction / 100);
-                                    }
-
+                                    ]
                                 });
 
-                            });
-                            $('#recherche').val("");
-                            $("#tab_Grecherche").hide();
-                            $("#tab_Brecherche").empty();
+                                prixTotal = 0;
+                                var prixReduit = 0;
 
-                            var reductionData = Math.ceil((prixReduit / 5) * 5) + "";
-                            var firstData = reductionData.substr(0, reductionData.length - 2).toString();
-                            var lastData = "";
-                            var finalReductionTotal = 0;
-                            if (reductionData.length >= 3) {
-                                var second = parseInt(reductionData.substr(reductionData.length - 2));
-                                if (second < 100 && second >= 75) {
-                                    lastData = "75";
-                                } else if (second < 75 && second >= 50) {
-                                    lastData = "50";
-                                } else if (second < 50 && second >= 25) {
-                                    lastData = "25";
-                                } else if (second < 25 && second >= 0) {
-                                    lastData = "00";
+                                $('#tab_vente  tr').each(function (i) {
+                                    var id1 = $(this).attr("id");
+                                    var prix, qte;
+                                    ////alert(id1);
+
+                                    $("#" + id1 + " td").each(function (j) {
+                                        ////alert($(this).html());
+                                        if (j == 1) {
+                                            prix = parseInt($(this).html());
+                                        }
+                                        if (j == 2) {
+                                            qte = parseInt($(this).html());
+                                            prixTotal = prixTotal + (prix * qte);
+                                        }
+                                        if (j == 4) {
+                                            var reduction = parseInt($(this).attr("data"));
+                                            if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
+                                                reduction = 0;
+                                            } else {
+                                                if (parseInt($("#select_vente_client option:selected").attr("name")) >= reduction) {
+                                                    //reduction = reduction;
+
+                                                } else {
+                                                    reduction = parseInt($("#select_vente_client option:selected").attr("name"));
+                                                }
+                                            }
+
+                                            prixReduit = prixReduit + ((prix * qte) * reduction / 100);
+                                        }
+
+                                    });
+
+                                });
+                                $('#recherche').val("");
+                                $("#tab_Grecherche").hide();
+                                $("#tab_Brecherche").empty();
+
+                                var reductionData = Math.ceil((prixReduit / 5) * 5) + "";
+                                var firstData = reductionData.substr(0, reductionData.length - 2).toString();
+                                var lastData = "";
+                                var finalReductionTotal = 0;
+                                if (reductionData.length >= 3) {
+                                    var second = parseInt(reductionData.substr(reductionData.length - 2));
+                                    if (second < 100 && second >= 75) {
+                                        lastData = "75";
+                                    } else if (second < 75 && second >= 50) {
+                                        lastData = "50";
+                                    } else if (second < 50 && second >= 25) {
+                                        lastData = "25";
+                                    } else if (second < 25 && second >= 0) {
+                                        lastData = "00";
+                                    }
+                                    finalReductionTotal = parseInt(firstData + lastData);
                                 }
-                                finalReductionTotal = parseInt(firstData + lastData);
+                                prixReduit = (finalReductionTotal);
+                                var finalNetTotal = (-finalReductionTotal + prixTotal);
+
+                                $('#prixTotal').html(prixTotal);
+                                $('#prixReduit').html(prixReduit);
+                                $('#netTotal').html(finalNetTotal);
+
+                                // on verifie si le taux est coché, si oui on le décoche en chargeant le prix réduit des produits
+                                if ($("#check_reductionGenerale").is(":checked")) {
+                                    $('#check_reductionGenerale').prop("checked", false);
+                                }
+
+                            } else if (data.find == 'non') {
+                                load_produit(data.id);
+                                $('#recherche').val("");
+                                $("#tab_Grecherche").hide();
+                            } else {
+                                $('#message-box-danger p').html(data.erreur);
+                                $("#message-box-danger").modal("show");
+                                setTimeout(function () {
+                                    $("#message-box-danger").modal("hide");
+                                }, 3000);
+                                $('#recherche').val("");
+                                $("#tab_Grecherche").hide();
                             }
-                            prixReduit = (finalReductionTotal);
-                            var finalNetTotal = (-finalReductionTotal + prixTotal);
-
-                            $('#prixTotal').html(prixTotal);
-                            $('#prixReduit').html(prixReduit);
-                            $('#netTotal').html(finalNetTotal);
-
-                            // on verifie si le taux est coché, si oui on le décoche en chargeant le prix réduit des produits
-                            if ($("#check_reductionGenerale").is(":checked")) {
-                                $('#check_reductionGenerale').prop("checked", false);
-                            }
-
-                        } else if (data.find == 'non') {
-                            load_produit(data.id);
-                            $('#recherche').val("");
-                            $("#tab_Grecherche").hide();
-                        } else {
-                            $('#message-box-danger p').html(data.erreur);
-                            $("#message-box-danger").modal("show");
-                            setTimeout(function () {
-                                $("#message-box-danger").modal("hide");
-                            }, 3000);
-                            $('#recherche').val("");
-                            $("#tab_Grecherche").hide();
                         }
+
 
 
                     }
