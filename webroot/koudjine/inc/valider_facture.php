@@ -173,7 +173,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
     $managerFes->add($espece);
     if ($typePaiement != "Mixte Espèce") {
         $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_espece);
+        $vente->setprixPercu($montantPercu);
         $vente->setdateEncaissement($dateEncaisser);
         $manager->update($vente);
         if ($reduction != 0) {
