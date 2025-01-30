@@ -162,7 +162,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         'caisse_id' => $caisse_id,
         'typePaiement' => $typePaiement,
         'MontantPercu' => $montantPercu,
-        'montantTtc' => $montant-$reste,
+        'montantTtc' => $montant_espece,
         'reste' => $reste
     ));
     $managerFa->add($facture);
@@ -173,7 +173,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
     $managerFes->add($espece);
     if ($typePaiement != "Mixte Espèce") {
         $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_espece);
+        $vente->setprixPercu($montantPercu);
         $vente->setdateEncaissement($dateEncaisser);
         $manager->update($vente);
         if ($reduction != 0) {
@@ -198,7 +198,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         'caisse_id' => $caisse_id,
         'typePaiement' => $typePaiement,
         'MontantPercu' => $montantPercu,
-        'montantTtc' => $montant-$reste,
+        'montantTtc' => $montant_electronique,
         'reste' => $reste
     ));
     $managerFa->add($facture);
@@ -235,7 +235,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         'caisse_id' => $caisse_id,
         'typePaiement' => $typePaiement,
         'MontantPercu' => $montantPercu,
-        'montantTtc' => $montant-$reste,
+        'montantTtc' => $montant_ticket,
         'reste' => $reste
     ));
     $managerFa->add($facture);

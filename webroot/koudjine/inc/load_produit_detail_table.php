@@ -80,7 +80,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
                 $reduction = $prixTotal * $c->reduction();
                 $reductionTotal = $c->reduction() + $reductionTotal;
 
-                $prixVente = $prixTotal - $reduction;
+                $prixVente = $prixTotal - $c->reduction();
                 $venteTotal = $prixVente + $venteTotal;
 
                 $_reductionVenteTotal = $_reductionVenteTotal + $reductionTotal;
