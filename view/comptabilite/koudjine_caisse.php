@@ -1814,7 +1814,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         Montant : <span id="montantimp"></span> FCFA</strong>
                                     </p>
                                     <div style="justify-content: left; display: flex;flex-direction: column;align-items: center;">
-                                        <div style="height: 10mm;justify-content: center;align-items: center;display: flex;width: 35mm;padding-right: 2px;">
+                                        <div style="height: 20mm;justify-content: center;align-items: center;display: flex;width: 35mm;padding-right: 2px;">
 
                                             <strong style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
                                                id="codebarreimp"></strong>

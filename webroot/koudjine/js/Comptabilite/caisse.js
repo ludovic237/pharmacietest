@@ -399,11 +399,18 @@ function gerer_bon_caisse() {
             $('#montantimp').html($("#" + id1 + " .montant").val());
             $('#dateimp').html(dateEncaisser);
             //qrcode.makeCode(moment().format("YYMMDDHHmmss"));
-            $("#codebarreimp").barcode(
-                datecode, // Value barcode (dependent on the type of barcode)
-                "code128" // type (string)
+            // $("#codebarreimp").barcode(
+            //     datecode, // Value barcode (dependent on the type of barcode)
+            //     "code128" // type (string)
+            //
+            // );
 
-            );
+            qrcode = new QRCode(document.getElementById("codebarreimp"), {
+                width: 80,
+                height: 80
+            });
+            qrcode.clear();
+            qrcode.makeCode(datecode);
 
             $('#codebarrenulimp').html(datecode);
 
