@@ -63,7 +63,7 @@ if (isset($_POST['id'])) {
 }
 
 
-$ventes = $managerVente->getListCaisseComplete($id);
+$ventes = $managerVente->getListCaisseCompleteLast($id);
 
 $prixGrossite = 0;
 $prixDetaillant = 0;
