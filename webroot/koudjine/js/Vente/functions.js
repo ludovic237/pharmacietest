@@ -628,11 +628,14 @@ $(document).ready(function () {
 
 
                 var reductionData = Math.ceil((prixReduit / 5) * 5) + "";
+                //console.log(reductionData)
                 var firstData = reductionData.substr(0, reductionData.length - 2).toString();
+                //console.log(firstData)
                 var lastData = "";
                 var finalReductionTotal = 0;
-                if (reductionData.length >= 3) {
+                if (reductionData.length >= 2) {
                     var second = parseInt(reductionData.substr(reductionData.length - 2));
+                    //console.log(second)
                     if (second < 100 && second >= 75) {
                         lastData = "75";
                     } else if (second < 75 && second >= 50) {
