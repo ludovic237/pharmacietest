@@ -891,6 +891,7 @@ function valider_vente(type, etat) {
         $("#message-box-danger").modal("show");
         setTimeout(function () {
             $("#message-box-danger").modal("hide");
+            loader(false);
         }, 3000);
     } else if ($('.select_client option:selected').text() == "Client Existant" && $("#select_vente_client option:selected").val() == 0) {
 
@@ -898,6 +899,7 @@ function valider_vente(type, etat) {
         $("#message-box-danger").modal("show");
         setTimeout(function () {
             $("#message-box-danger").modal("hide");
+            loader(false);
         }, 6000);
 
     } else if ($('.select_prescripteur option:selected').text() == "Prescripteur Existant" && $("#select_vente_prescripteur option:selected").val() == 0) {
@@ -906,6 +908,7 @@ function valider_vente(type, etat) {
         $("#message-box-danger").modal("show");
         setTimeout(function () {
             $("#message-box-danger").modal("hide");
+            loader(false);
         }, 6000);
     } else {
         //alert("test4");
