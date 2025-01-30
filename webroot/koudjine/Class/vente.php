@@ -550,7 +550,7 @@ class VenteManager
     public function update(Vente $vente)
     {
 
-        $q = $this->_db->prepare('UPDATE vente SET employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, malade_id = :malade, caisse_id = :caisse, prixTotal = :prixTotal, prixPercu = :montant, nouveau_info = :nouveau_info, dateVente = :dateVente, dateEncaissement = :dateEncaissement, commentaire = :commentaire, reduction = :reduction, etat = :etat WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE vente SET employe_id = :employe, user_id = :user, prescripteur_id = :prescripteur, malade_id = :malade, caisse_id = :caisse, prixTotal = :prixTotal, prixPercu = :montant, nouveau_info = :nouveau_info, dateVente = :dateVente, dateEncaissement = :dateEncaissement, commentaire = :commentaire, reduction = :reduction, etat = :etat, supprimer = :supprimer WHERE id = :id');
         $q->bindValue(':id', $vente->id(), PDO::PARAM_INT);
         $q->bindValue(':employe', $vente->employe_id(), PDO::PARAM_INT);
         $q->bindValue(':caisse', $vente->caisse_id(), PDO::PARAM_INT);
@@ -565,6 +565,15 @@ class VenteManager
         $q->bindValue(':commentaire', $vente->commentaire());
         $q->bindValue(':reduction', $vente->reduction());
         $q->bindValue(':etat', $vente->etat());
+        $q->bindValue(':supprimer', $vente->supprimer());
+        $q->execute();
+    }
+
+    public function update_delete(Vente $vente)
+    {
+
+        $q = $this->_db->prepare('UPDATE vente SET supprimer = 1 WHERE id = :id');
+        $q->bindValue(':id', $vente->id(), PDO::PARAM_INT);
         $q->execute();
     }
     public function setDb(PDO $db)

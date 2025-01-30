@@ -1,5 +1,5 @@
 <!-- <?php
-//print_r($caisseCheck);
+print_r($caisse);
 //echo  $_SESSION["Users"]->id;
 $title_for_layout = ' ALSAS -' . 'Comptabilite';
 //$page_for_layout = 'Caisse ouverte par : ' . $employe->nom . ' ' . $employe->prenom;
@@ -106,7 +106,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         <?php } ?>
                         <?php if (!empty($action_fermeture->id)) { ?>
                             <button class="btn btn-primary  pull-left" data-box="#fermeture-caisse-confirmation" id=""
-                                    onclick="close_caisse_row('<?php echo $caisse->id; ?>')">Fermer la caisse
+                                    onclick="<?php if(isset($caisse))  { ?> close_caisse_row('<?php echo $caisse->id; ?>'<?php } ?>) ">Fermer la caisse
                             </button>
                             <button class="btn btn-primary  pull-left" data="" id=""
                                     onclick="open_bon_caisse()">Bon de caisse
@@ -128,7 +128,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         <table class="table   table-bordered table-striped table-actions" id="">
                             <thead>
                             <tr>
-                                <th width="100">Prix Total</th>
+                                <th width="100">Net a payer</th>
                                 <th width="100">Reduction</th>
                                 <th width="100">Réference</th>
                                 <th>Info Clients</th>
