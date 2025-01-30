@@ -37,22 +37,21 @@ $montant_electronique = $_POST['montant_electronique'];
 $montant_ticket = $_POST['montant_ticket'];
 $ticket_id = $_POST['ticket_id'];
 
-$montant_espece=$montant_espece-$reste;
-
 $idGen = genererID();
 $tab_type = explode(" ", $typePaiement);
 
 if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement == "Mixte Espèce Electronique" || $typePaiement == "Mixte Electronique Ticketcaisse"
     || $typePaiement == "Mixte Espèce Ticketcaisse" || $typePaiement == "Mixte Espèce"
     || $typePaiement == "Mixte Electronique"
-    || $typePaiement == "Mixte Ticketcaisse" || $typePaiement == "Espèce" || $typePaiement == "Electronique" || $typePaiement == "Ticketcaisse" || in_array("Mixtes", $tab_type)) {
+    || $typePaiement == "Mixte Ticketcaisse" || in_array("Mixtes", $tab_type)) {
+    $montant_espece=$montant_espece-$reste;
     $facture = new Facturation(array(
         'id' => $idGen,
         'vente_id' => $vente_id,
         'caisse_id' => $caisse_id,
         'typePaiement' => $typePaiement,
         'MontantPercu' => $montantPercu,
-        'montantTtc' => $montant,
+        'montantTtc' => $montant-$reste,
         'reste' => $reste
     ));
     $managerFa->add($facture);
@@ -66,7 +65,6 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         ));
         $managerFes->add($espece);
         $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_espece+$vente->prixPercu());
         $vente->setdateEncaissement($dateEncaisser);
         $manager->update($vente);
 
@@ -91,7 +89,6 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         ));
         $managerFel->add($electronique);
         $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_electronique+$vente->prixPercu());
         $vente->setdateEncaissement($dateEncaisser);
         $manager->update($vente);
         if ($reduction != 0) {
@@ -125,7 +122,6 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
         $managerBo->update($bon);
 
         $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_ticket+$vente->prixPercu());
         $vente->setdateEncaissement($dateEncaisser);
         $manager->update($vente);
         if ($reduction != 0) {
@@ -159,7 +155,17 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
     echo "ok";
 
 } elseif ($typePaiement == "Espèce" || $typePaiement == "Mixte Espèce") {
-
+    $montant_espece=$montant_espece-$reste;
+    $facture = new Facturation(array(
+        'id' => $idGen,
+        'vente_id' => $vente_id,
+        'caisse_id' => $caisse_id,
+        'typePaiement' => $typePaiement,
+        'MontantPercu' => $montantPercu,
+        'montantTtc' => $montant-$reste,
+        'reste' => $reste
+    ));
+    $managerFa->add($facture);
     $espece = new FactureEspece(array(
         'facturation_id' => $idGen,
         'montant' => $montant_espece
@@ -182,10 +188,20 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
             }
         }
     }
-    echo "ok".$typePaiement;
+    echo "ok1".$typePaiement;
 
 } elseif ($typePaiement == "Electronique" || $typePaiement == "Mixte Electronique" ) {
-
+    $montant_electronique=$montant_electronique-$reste;
+    $facture = new Facturation(array(
+        'id' => $idGen,
+        'vente_id' => $vente_id,
+        'caisse_id' => $caisse_id,
+        'typePaiement' => $typePaiement,
+        'MontantPercu' => $montantPercu,
+        'montantTtc' => $montant-$reste,
+        'reste' => $reste
+    ));
+    $managerFa->add($facture);
     $electronique = new FactureElectronique(array(
         'facturation_id' => $idGen,
         'numeroTelephone' => $telephone,
@@ -194,7 +210,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
     $managerFel->add($electronique);
     if ($typePaiement != "Mixte Electronique") {
         $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_electronique);
+        $vente->setprixPercu($montantPercu);
         $vente->setdateEncaissement($dateEncaisser);
         $manager->update($vente);
         if ($reduction != 0) {
@@ -209,10 +225,20 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
             }
         }
     }
-    echo "ok".$typePaiement;
+    echo "ok3".$typePaiement;
 
 } elseif ($typePaiement == "Ticketcaisse" || $typePaiement == "Mixte Ticketcaisse") {
-
+    $montant_ticket=$montant_ticket-$reste;
+    $facture = new Facturation(array(
+        'id' => $idGen,
+        'vente_id' => $vente_id,
+        'caisse_id' => $caisse_id,
+        'typePaiement' => $typePaiement,
+        'MontantPercu' => $montantPercu,
+        'montantTtc' => $montant-$reste,
+        'reste' => $reste
+    ));
+    $managerFa->add($facture);
     // Enregistrement facture ticket
     $ticket_id = $_POST['ticket_id'];
     $bon = $managerBo->getCodebarre_id($ticket_id);
@@ -230,7 +256,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
     $managerBo->update($bon);
     if ($typePaiement != "Mixte Ticketcaisse") {
         $vente = $manager->get($vente_id);
-        $vente->setprixPercu($montant_ticket);
+        $vente->setprixPercu($montantPercu);
         $vente->setdateEncaissement($dateEncaisser);
         $manager->update($vente);
         if ($reduction != 0) {
@@ -245,11 +271,11 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
             }
         }
     }
-    echo "ok".$typePaiement;
+    echo "ok4".$typePaiement;
 
 } else {
     $vente = $manager->get($vente_id);
-    $vente->setprixPercu($montant);
+    $vente->setprixPercu($montantPercu);
     $vente->setdateEncaissement($dateEncaisser);
     $manager->update($vente);
     if ($reduction != 0) {
@@ -263,7 +289,7 @@ if ($typePaiement == "Mixte Espèce Electronique Ticketcaisse" || $typePaiement 
             $managerUs->update($user);
         }
     }
-    echo "ok2".$typePaiement;
+    echo "ok5".$typePaiement;
 }
 
 

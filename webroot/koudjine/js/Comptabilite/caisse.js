@@ -1208,6 +1208,7 @@ function delete_row_caisse(row, e){
                 $("#"+row).hide("slow",function(){
                     $(this).remove();
                 });
+                $('#tab_vente_caisse').empty();
             }
         })
     });
