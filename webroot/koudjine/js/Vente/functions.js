@@ -1471,7 +1471,8 @@ function load_produit(id,type) {
                         {data: "date"},
                         { data: "peremption" },
                         {data: "action"},
-                    ]
+                    ],
+                    order:[[6,'asc']]
                 });
 
             } else {
@@ -1502,7 +1503,8 @@ function load_produit(id,type) {
                         {data: "date"},
                         { data: "peremption" },
                         {data: "action"},
-                    ]
+                    ],
+                    order:[[6,'asc']]
                 });
 
             }
@@ -1533,7 +1535,8 @@ function load_produit(id,type) {
                         {data: "date"},
                         { data: "peremption" },
                         {data: "action"},
-                    ]
+                    ],
+                    order:[[6,'asc']]
                 });
 
             } else {
@@ -1563,7 +1566,8 @@ function load_produit(id,type) {
                         {data: "date"},
                         { data: "peremption" },
                         {data: "action"},
-                    ]
+                    ],
+                    order:[[6,'asc']]
                 });
 
             }

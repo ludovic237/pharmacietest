@@ -55,6 +55,10 @@ $grandTotalCaisse = 0;
 
 $dataListReduction = [];
 $totalReduction = 0;
+$totalVenteComptant = 0;
+$totalVenteCredit = 0;
+$totalVenteAssurance = 0;
+$totalVenteEncaissementCredit = 0;
 
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
@@ -77,7 +81,7 @@ foreach ($ventes as $key => $v) {
     $concernce = $managerCo->getList($v->id());
     foreach ($concernce as $a => $b) {
         if ($b->type()=="detail"){
-            $prixTotalProduitDetail = ((int)$b->prixUnit()*(int)$b->quantite()) + $prixTotalProduitDetail;
+            $prixTotalProduitDetail = ((int)$b->prixUnit()*(int)$b->quantite() - $b->reduction()) + $prixTotalProduitDetail;
         }
         else {
             $prixTotalConcerne = ($b->prixUnit() * $b->quantite()) - $b->reduction();
@@ -92,6 +96,8 @@ foreach ($ventes as $key => $v) {
                 $prixGrossite = $prixTotalConcerne + $prixGrossite;
             } else if ($fournisseur->statut() == "Detaillant") {
                 $prixDetaillant = $prixTotalConcerne + $prixDetaillant;
+            }else{
+                $prixTotalProduitDetail = $prixTotalConcerne + $prixTotalProduitDetail;
             }
 
             // On calcule le total des produits detailles
@@ -127,40 +133,26 @@ foreach ($ventes as $key => $v) {
 
 $caisse = $managerCa->getId($id);
 //recap vente par type de vente
-if ($caisse->etat() != 'Ouvert')
-    $ventesComptant = $managerVente->getListCaisseCompleteByEtat($id, "Comptant");
-else
-    $ventesComptant = $managerVente->getListCaisseCompleteByEtatOuvert($id, "Comptant");
-$totalVenteComptant = 0;
+// vente Comptant
+$ventesComptant = $managerVente->getListCaisseCompleteComptant($id);
 foreach ($ventesComptant as $k => $v) :
-    if ($v->prixPercu()>0){
+    //if ($v->prixPercu()>0){
         $totalVenteComptant = $totalVenteComptant + ($v->prixTotal());
-    }
+    //}
 endforeach;
 
-if ($caisse->etat() != 'Ouvert')
-    $ventesCredit = $managerVente->getListCaisseCompleteByEtat($id, "Crédit");
-else
-    $ventesCredit = $managerVente->getListCaisseCompleteByEtatOuvert($id, "Crédit");
-$totalVenteCredit = 0;
+$ventesCredit = $managerVente->getListCaisseCompleteCredit($id);
 foreach ($ventesCredit as $k => $v) :
+    //if ($v->prixPercu()>0){
     $totalVenteCredit = $totalVenteCredit + ($v->prixTotal());
+    //}
 endforeach;
 
-$ventesCreditFact = $managerVente->getListCaisseCompleteByEtat_2($id, "Crédit");
-
-$totalVenteCredit1 = 0;
-foreach ($ventesCreditFact as $k => $v) :
-    $totalVenteCredit1 = $totalVenteCredit1 + ($v->prixTotal());
-endforeach;
-
-if ($caisse->etat() != 'Ouvert')
-    $ventesAssurance = $managerVente->getListCaisseCompleteByEtat($id, "Assurance");
-else
-    $ventesAssurance = $managerVente->getListCaisseCompleteByEtat($id, "Assurance");
-$totalVenteAssurance = 0;
+$ventesAssurance = $managerVente->getListCaisseCompleteAssurance($id);
 foreach ($ventesAssurance as $k => $v) :
+    //if ($v->prixPercu()>0){
     $totalVenteAssurance = $totalVenteAssurance + ($v->prixTotal());
+    //}
 endforeach;
 
 $totalVenteTypeVente = $totalVenteAssurance + $totalVenteComptant + $totalVenteCredit;
@@ -206,12 +198,30 @@ $totalEncaissementVente = $totalfacturationTicket + $totalfacturationElectroniqu
 
 //encaissement vente credit
 
-if ($caisse->etat() != 'Ouvert')
-    $ventesCreditFacture = $managerVente->getListCaisseCompleteByEtat($id, "Crédit");
-else
-    $ventesCreditFacture = $managerVente->getListCaisseCompleteByEtatOuvert($id, "Crédit");
-$totalVenteCreditFacture = 0;
-foreach ($ventesCreditFacture as $k => $v) :
+$ventesEncaissementCredit = $managerVente->getListCaisseCompleteEncaissementCredit($id);
+foreach ($ventesEncaissementCredit as $k => $v) :
+    //if ($v->prixPercu()>0){
+    $totalVenteEncaissementCredit = $totalVenteEncaissementCredit + ($v->prixTotal());
+    //}
+    if ($v->user_id() != NULL) {
+        $user = $managerUs->get($managerEm->get($v->user_id())->user_id());
+        $client = $user->nom() . ' ' . $user->prenom();
+    } else {
+        $client = 'Client pas enregistré';
+    }
+    $dataVenteACredit[] = array(
+        "DT_RowId" => $v->id(),
+        "id" => $v->id(),
+        "reference" => $v->reference(),
+        "prixPercu" => $v->prixTotal(),
+        "client" => $client,
+        'dateVente' => $v->dateVente()
+    );
+endforeach;
+
+$totalVenteCreditFacture = $totalVenteEncaissementCredit;
+
+/*foreach ($ventesCreditFacture as $k => $v) :
     //print_r($v);
 
     if ($v->user_id() != NULL) {
@@ -249,7 +259,7 @@ foreach ($ventesCreditFacture as $k => $v) :
         'dateVente' => $v->dateVente()
     );
     $totalVenteCreditFacture = $v->prixTotal() + $totalVenteCreditFacture;
-endforeach;
+endforeach;*/
 
 //encaissement facture credit
 $ventesCreditFacture1 = $managerVente->getListCaisseCompleteByEtat_3($id, "Crédit");
@@ -260,7 +270,7 @@ $totalVenteCreditFacture1 = 0;
 //echo json_encode([]);
 //echo '$ventesCreditFacture3';
 //echo json_encode($ventesCreditFacture1);
-foreach ($ventesCreditFacture1 as $k => $v) :
+/*foreach ($ventesCreditFacture1 as $k => $v) :
     if ($v['nom'] != NULL || $v['prenom'] != NULL) {
         $client1 = $v['nom'] . ' ' . $v['prenom'];
     } else {
@@ -300,7 +310,7 @@ foreach ($ventesCreditFacture1 as $k => $v) :
         'dateVente' => $v['dateVente']
     );
     $totalVenteCreditFacture1 = $v['prixTotal'] + $totalVenteCreditFacture1;
-endforeach;
+endforeach;*/
 
 //if (!isset($dataVenteACredit1)) $dataVenteACredit1 = 0;
 
@@ -429,8 +439,8 @@ $donnees = array(
     'ev_electronique' => $totalfacturationElectronique,
     'ev_boncaisse' => $totalfacturationTicket,
     'ev_total' => $totalEncaissementVente,
-    'efc_espece' => $dataVenteACredit1,
-    'efc_total' => $totalVenteCreditFacture1,
+    'efc_espece' => $dataVenteACredit,
+    'efc_total' => $totalVenteCreditFacture,
     'bc_genere' => $dataBoncaisseGenerer,
     'bc_total' => $totalboncaisseGenerer,
     'bc_encaisse' => $dataBoncaisseEncaisser,
