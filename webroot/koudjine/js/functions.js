@@ -12,7 +12,7 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
     var reduc;
     var stock;
 
-    getListVente();
+    // getListVente();
 
     $('#search-caisse-box').keyup(function () {
         $.ajax({

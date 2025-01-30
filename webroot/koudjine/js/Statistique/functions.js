@@ -250,7 +250,7 @@ $(document).ready(function () {
                             // "serverSide": true,
                             //dom: "Bfrtip",
                             data: datas.data,
-                            "order": [[ 7, "desc" ]],
+                            "order": [[7, "desc"]],
                             columns: [
                                 {data: "id"},
                                 {
@@ -304,7 +304,7 @@ $(document).ready(function () {
                             // "serverSide": true,
                             //dom: "Bfrtip",
                             data: datas.data,
-                            "order": [[ 7, "desc" ]],
+                            "order": [[7, "desc"]],
                             columns: [
                                 {data: "id"},
                                 {
@@ -382,7 +382,7 @@ $(document).ready(function () {
                         // "processing": true,
                         // "serverSide": true,
                         //dom: "Bfrtip",
-                        "order": [[ 7, "desc" ]],
+                        "order": [[7, "desc"]],
                         data: datas.data,
                         columns: [
                             {data: "id"},
@@ -436,7 +436,7 @@ $(document).ready(function () {
                         // "processing": true,
                         // "serverSide": true,
                         //dom: "Bfrtip",
-                        "order": [[ 7, "desc" ]],
+                        "order": [[7, "desc"]],
                         data: datas.data,
                         columns: [
                             {data: "id"},
@@ -604,7 +604,7 @@ function getGroupStatistiqueCaisse() {
                     // "serverSide": true,
                     //dom: "Bfrtip",
                     data: datas.data,
-                    "order": [[ 7, "desc" ]],
+                    "order": [[7, "desc"]],
                     columns: [
                         {data: "id"},
                         {
@@ -658,7 +658,7 @@ function getGroupStatistiqueCaisse() {
                     // "serverSide": true,
                     //dom: "Bfrtip",
                     data: datas.data,
-                    "order": [[ 7, "desc" ]],
+                    "order": [[7, "desc"]],
                     columns: [
                         {data: "id"},
                         {
@@ -734,10 +734,10 @@ function showVenteCaisse(id, total, session) {
         data: {
             idCaisse: id
         },
-       error: function (e) {
-                loader(false);
-            },
-            success: function (data) {
+        error: function (e) {
+            loader(false);
+        },
+        success: function (data) {
 
             var datas = JSON.parse(data);
             dataVentes = datas.data;
@@ -755,15 +755,15 @@ function showVenteCaisse(id, total, session) {
                     //"scrollY":"300px",
                     //"scrollCollapse":true,
                     //'paging':false,
-                    "order": [[ 4, "desc" ]],
+                    "order": [[4, "desc"]],
                     columns: [
                         {
                             data: "reference", "render": function (data, type, row) {
                                 if (!data) {
                                     return '<span class="text-muted" style="font-size:90%">NA</span>';
                                 } else {
-                                    return '<p>'+data+'</p>' +
-                                        '<strong>'+row.nameProduit+'</strong>';
+                                    return '<p>' + data + '</p>' +
+                                        '<strong>' + row.nameProduit + '</strong>';
                                     ;
                                 }
                             }
@@ -777,8 +777,8 @@ function showVenteCaisse(id, total, session) {
                                 if (!data) {
                                     return '<span class="text-muted" style="font-size:90%">NA</span>';
                                 } else {
-                                    return '<p>'+data+' </p>' +
-                                        '<strong>'+row.prenom+'</strong>';
+                                    return '<p>' + data + ' </p>' +
+                                        '<strong>' + row.prenom + '</strong>';
                                     ;
                                 }
                             }
@@ -789,8 +789,8 @@ function showVenteCaisse(id, total, session) {
                                 if (!data) {
                                     return '<span class="text-muted" style="font-size:90%">NA</span>';
                                 } else {
-                                    return '<p>'+data+'/</p>' +
-                                        '<strong>'+row.typePaiement+'</strong>';
+                                    return '<p>' + data + '/</p>' +
+                                        '<strong>' + row.typePaiement + '</strong>';
                                     ;
                                 }
                             }
@@ -800,7 +800,7 @@ function showVenteCaisse(id, total, session) {
                                 if (!data) {
                                     return '<span class="text-muted" style="font-size:90%">NA</span>';
                                 } else {
-                                    return '<a class="btn btn-success btn-rounded btn-sm " data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket_caisse('+data+')">Imprimer ticket</a>';
+                                    return '<a class="btn btn-success btn-rounded btn-sm " data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket_caisse(' + data + ')">Imprimer ticket</a>';
                                     ;
                                 }
                             }
@@ -820,7 +820,7 @@ function showVenteCaisse(id, total, session) {
                     //"scrollY":"300px",
                     //"scrollCollapse":true,
                     //'paging':false,
-                    "order": [[ 4, "desc" ]],
+                    "order": [[4, "desc"]],
                     columns: [
                         {
                             data: "reference", "render": function (data, type, row) {
@@ -865,7 +865,7 @@ function showVenteCaisse(id, total, session) {
                                 if (!data) {
                                     return '<span class="text-muted" style="font-size:90%">NA</span>';
                                 } else {
-                                    return '<a class="btn btn-success btn-rounded btn-sm " data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket_caisse('+data+')">Imprimer ticket</a>';
+                                    return '<a class="btn btn-success btn-rounded btn-sm " data-toggle="tooltip" data-placement="top" title="Modifier" onclick="reimprime_ticket_caisse(' + data + ')">Imprimer ticket</a>';
                                     ;
                                 }
                             }
@@ -882,7 +882,7 @@ function showVenteCaisse(id, total, session) {
     return false;
 }
 
-function showRapportCaisse(id,session) {
+function showRapportCaisse(id, session) {
     $('#sessionRapport').html(session);
     showRapportTest(id);
     // var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
@@ -931,9 +931,9 @@ function showRapportCaisse(id,session) {
     //     },
     //     dataType: 'json',
     //    error: function (e) {
-                loader(false);
-            },
-            success: function (data) {
+    //             loader(false);
+    //         },
+    //         success: function (data) {
     //         //alert(data);
 
     //         if (data.erreur == 'non') {
@@ -958,8 +958,6 @@ function showRapportCaisse(id,session) {
     //             $("#diff_total").html((parseInt($("#total_tout_caisse").html()) - parseInt($("#total_tout_syst").html())));
 
 
-
-
     //         }
 
     //     }
@@ -973,7 +971,7 @@ function showRapportCaisse(id,session) {
 function reimprime_ticket_caisse(id) {
     var dataVente_info = [];
     for (var i = 0; i < dataVentes.length; i++) {
-        if (dataVentes[i].id == id){
+        if (dataVentes[i].id == id) {
             dataVente_info = dataVentes[i];
         }
     }
@@ -989,7 +987,6 @@ function reimprime_ticket_caisse(id) {
     $('#ticketListe2 .netapayer').html(dataVente_info.prixPercu);
     $('#ticketListe2 .montanttotal').html(dataVente_info.prixTotal);
     $('#ticketListe2 .remise').html(parseInt(dataVente_info.prixTotal) - parseInt(dataVente_info.prixPercu));
-
 
 
     $.ajax({
@@ -1009,7 +1006,7 @@ function reimprime_ticket_caisse(id) {
                 }
             });
             for (i in ventes) {
-                
+
                 $('#tab_BfactureImprimer2').prepend(`
                         <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
@@ -1019,7 +1016,8 @@ function reimprime_ticket_caisse(id) {
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
                         </tr>
                     `);
-            };
+            }
+            ;
             $('#iconPreviewFacture2').modal("show");
 
 
@@ -1043,14 +1041,16 @@ function showRapportTest(id) {
             id: caisse_id,
         },
         dataType: 'json',
-       error: function (e) {
-                loader(false);
-            },
-            success: function (data) {
+        error: function (e) {
+            loader(false);
+        },
+        success: function (data) {
 
+            //alert(data)
             //recap vente par fournisseur
             $("#rapport_vente_fournisseur_grossiste").html(data.vente_fg);
             $("#rapport_vente_fournisseur_detaillant").html(data.vente_fd);
+            $("#rapport_vente_produit_detaille").html(data.vente_fpd);
             $("#rapport_vente_fournisseur_total").html(data.vente_ft);
 
             //recap vente par type vente
@@ -1066,19 +1066,21 @@ function showRapportTest(id) {
             $("#rapport_ev_total").html(data.ev_total);
 
             //Encaissement facture à credit
-            $('#rapport_efc_espece').dataTable({
-                destroy: true,
-                searching: false,
-                dFilter: false,
-                bInfo: false,
-                bPaginate: false,
-                data: data.efc_espece,
-                columns: [
-                    {data: "reference"},
-                    {data: "client"},
-                    {data: "prixPercu"},
-                ]
-            });
+            //alert(data.efc_espece)
+            if (data.efc_espece != 0)
+                $('#rapport_efc_espece').dataTable({
+                    destroy: true,
+                    searching: false,
+                    dFilter: false,
+                    bInfo: false,
+                    bPaginate: false,
+                    data: data.efc_espece,
+                    columns: [
+                        {data: "reference"},
+                        {data: "client"},
+                        {data: "prixTotal"},
+                    ]
+                });
             $("#rapport_efc_total").html(data.efc_total);
 
 
@@ -1114,6 +1116,22 @@ function showRapportTest(id) {
             });
             $("#rapport_bc_total_genere").html(data.bc_total_genere);
 
+            //Bon de caisse encaissé
+            $('#reduction_list').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.reduction_list,
+                columns: [
+                    {data: "reference"},
+                    {data: "reduction"},
+                    {data: "dateVente"},
+                ]
+            });
+            $("#reduction_total").html(data.reduction_total);
+
             //Dépense
             $('#rapport_depense').dataTable({
                 destroy: true,
@@ -1132,7 +1150,6 @@ function showRapportTest(id) {
             });
             $("#rapport_total_depense").html(data.total_depense);
 
-
             //retour produit
             $('#rapport_retour').dataTable({
                 destroy: true,
@@ -1140,13 +1157,16 @@ function showRapportTest(id) {
                 dFilter: false,
                 bInfo: false,
                 bPaginate: false,
-                data: data.tf_retourproduit	,
+                data: data.tf_retourproduit,
                 columns: [
+                    {data: "reference"},
+                    {data: "produit"},
                     {data: "quantite_total_produitRetour"},
                     {data: "prix"},
                 ]
             });
             $("#rapport_retour_total").html(data.tf_retourtotal);
+
             // Etat caisse
             $("#rapport_ec_solde_reel").html(data.ec_solde_reel);
             $("#rapport_ec_solde_system").html(data.ec_solde_system);
@@ -1165,17 +1185,14 @@ function showRapportTest(id) {
                 }
             }
             $("#etatRapport").html(data.etat);
-            if (data.date_ouverture != null && data.date_fermeture !=null){
-                $('#datesRapport').html(data.date_ouverture+" au "+data.date_fermeture);
-            }
-            else if (data.date_ouverture == null && data.date_fermeture==null){
+            if (data.date_ouverture != null && data.date_fermeture != null) {
+                $('#datesRapport').html(data.date_ouverture + " au " + data.date_fermeture);
+            } else if (data.date_ouverture == null && data.date_fermeture == null) {
                 $('#datesRapport').html('Indisponible');
-            }
-            else if (data.date_ouverture == null && data.date_fermeture!=null){
+            } else if (data.date_ouverture == null && data.date_fermeture != null) {
                 $('#datesRapport').html('Indisponible');
-            }
-            else if (data.date_ouverture != null && data.date_fermeture==null){
-                $('#datesRapport').html(data.date_ouverture+" au N/A");
+            } else if (data.date_ouverture != null && data.date_fermeture == null) {
+                $('#datesRapport').html(data.date_ouverture + " au N/A");
             }
         }
     });

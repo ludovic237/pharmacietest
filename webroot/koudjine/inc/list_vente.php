@@ -30,6 +30,10 @@ $venteAll = $manager->getList();
 
 $dataAll = [];
 $produitName = '';
+
+$montantfactureEspece=0;
+$montantfactureElectronique=0;
+$montantfactureTicket=0;
 foreach ($venteAll as $k => $c) {
     /*$facture = new Facturation();*/
     if ($managerFacturation->existsvente_id($c->id())) {
@@ -37,15 +41,15 @@ foreach ($venteAll as $k => $c) {
         $reste = $facture->reste();
         $typefacturation = $facture->typePaiement();
         if ($managerFactureEspece->existsfacturation_id($facture->id())) {
-            $factureEspece = $managerFactureEspece->getFacture($facture->id());
+            $factureEspece = $managerFactureEspece->getByFacturationId($facture->id());
             $montantfactureEspece = $factureEspece->montant();
         }
         if ($managerFactureElectronique->existsfacturation_id($facture->id())) {
-            $factureElectronique = $managerFactureElectronique->getFacture($facture->id());
+            $factureElectronique = $managerFactureElectronique->getByFacturationId($facture->id());
             $montantfactureElectronique = $factureElectronique->montant();
         }
         if ($managerFactureTicket->existsfacturation_id($facture->id())) {
-            $factureTicket = $managerFactureTicket->getFacture($facture->id());
+            $factureTicket = $managerFactureTicket->getByFacturationId($facture->id());
             $montantfactureTicket = $factureTicket->montant();
         }
     } else {

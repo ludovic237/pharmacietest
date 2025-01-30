@@ -399,11 +399,18 @@ function gerer_bon_caisse() {
             $('#montantimp').html($("#" + id1 + " .montant").val());
             $('#dateimp').html(dateEncaisser);
             //qrcode.makeCode(moment().format("YYMMDDHHmmss"));
-            $("#codebarreimp").barcode(
-                datecode, // Value barcode (dependent on the type of barcode)
-                "code128" // type (string)
+            // $("#codebarreimp").barcode(
+            //     datecode, // Value barcode (dependent on the type of barcode)
+            //     "code128" // type (string)
+            //
+            // );
 
-            );
+            qrcode = new QRCode(document.getElementById("codebarreimp"), {
+                width: 80,
+                height: 80
+            });
+            qrcode.clear();
+            qrcode.makeCode(datecode);
 
             $('#codebarrenulimp').html(datecode);
 
@@ -1637,7 +1644,7 @@ function showRapportTest(id) {
                     columns: [
                         {data: "reference"},
                         {data: "client"},
-                        {data: "prixPercu"},
+                        {data: "prixTotal"},
                     ]
                 });
             $("#rapport_efc_total").html(data.efc_total);
@@ -1674,6 +1681,22 @@ function showRapportTest(id) {
                 ]
             });
             $("#rapport_bc_total_genere").html(data.bc_total_genere);
+
+            //Bon de caisse encaissé
+            $('#reduction_list').dataTable({
+                destroy: true,
+                searching: false,
+                dFilter: false,
+                bInfo: false,
+                bPaginate: false,
+                data: data.reduction_list,
+                columns: [
+                    {data: "reference"},
+                    {data: "reduction"},
+                    {data: "dateVente"},
+                ]
+            });
+            $("#reduction_total").html(data.reduction_total);
 
             //Dépense
             $('#rapport_depense').dataTable({

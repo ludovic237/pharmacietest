@@ -1323,6 +1323,7 @@ function load_produit(id,type) {
                         {data: "stockg"},
                         {data: "reduction"},
                         {data: "date"},
+                        { data: "peremption" },
                         {data: "action"},
                     ]
                 });
@@ -1353,6 +1354,7 @@ function load_produit(id,type) {
                         {data: "stockg"},
                         {data: "reduction"},
                         {data: "date"},
+                        { data: "peremption" },
                         {data: "action"},
                     ]
                 });
@@ -1383,6 +1385,7 @@ function load_produit(id,type) {
                         {data: "stockg"},
                         {data: "reduction"},
                         {data: "date"},
+                        { data: "peremption" },
                         {data: "action"},
                     ]
                 });
@@ -1412,6 +1415,7 @@ function load_produit(id,type) {
                         {data: "stockg"},
                         {data: "reduction"},
                         {data: "date"},
+                        { data: "peremption" },
                         {data: "action"},
                     ]
                 });

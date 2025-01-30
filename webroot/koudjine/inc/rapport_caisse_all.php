@@ -53,6 +53,9 @@ $dataVenteACredit = [];
 $dataVenteACredit1 = [];
 $grandTotalCaisse = 0;
 
+$dataListReduction = [];
+$totalReduction = 0;
+
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
 } else {
@@ -70,29 +73,57 @@ $prixTotalProduitDetail = 0;
 //echo json_encode($ventes);
 //Recap vente fournisseur
 foreach ($ventes as $key => $v) {
+    $reduction= $v->reduction();
     $concernce = $managerCo->getList($v->id());
     foreach ($concernce as $a => $b) {
-
-        $prixTotalConcerne = ($b->prixUnit() * $b->quantite()) - $b->reduction();
-        $en_rayon = $managerEn->get($b->en_rayon_id());
-        if (!$en_rayon->fournisseur_id() || $en_rayon->fournisseur_id()==false) {
+        if ($b->type()=="detail"){
+            $prixTotalProduitDetail = ((int)$b->prixUnit()*(int)$b->quantite()) + $prixTotalProduitDetail;
+        }
+        else {
+            $prixTotalConcerne = ($b->prixUnit() * $b->quantite()) - $b->reduction();
+            $en_rayon = $managerEn->get($b->en_rayon_id());
+            if (!$en_rayon->fournisseur_id() || $en_rayon->fournisseur_id()==false) {
 //            echo "Erreur : Aucun produit trouvé pour l'ID en rayon " . $b->en_rayon_id() . "<br>";
-            continue; // Passe à l'itération suivante pour éviter les erreurs
-        }
-        $fournisseur = $managerFournisseur->get($en_rayon->fournisseur_id());
+                continue; // Passe à l'itération suivante pour éviter les erreurs
+            }
+            $fournisseur = $managerFournisseur->get($en_rayon->fournisseur_id());
 
-        if ($fournisseur->statut() == "Grossiste") {
-            $prixGrossite = $prixTotalConcerne + $prixGrossite;
-        } else if ($fournisseur->statut() == "Detaillant") {
-            $prixDetaillant = $prixTotalConcerne + $prixDetaillant;
-        }
-        // On calcule le total des produits detailles
-        $produit = $managerPr->get($en_rayon->produit_id());
-        if ($produit->grossiste_id() != '' || $produit->grossiste_id() != null) {
-            $prixTotalProduitDetail = $prixTotalConcerne + $prixTotalProduitDetail;
-            //echo 'passe';
+            if ($fournisseur->statut() == "Grossiste") {
+                $prixGrossite = $prixTotalConcerne + $prixGrossite;
+            } else if ($fournisseur->statut() == "Detaillant") {
+                $prixDetaillant = $prixTotalConcerne + $prixDetaillant;
+            }
+
+            // On calcule le total des produits detailles
+            $produit = $managerPr->get($en_rayon->produit_id());
         }
     }
+//    echo $prixTotalProduitDetail."\n";
+    if ($reduction>0){
+        if ($managerRetourProduit->existsVente_id($v->id())==true){
+            $retourProduit = $managerRetourProduit->getVente_id($v->id());
+            $produitRetourList = $managerPrRetour->getListRetourProduitId($retourProduit->id());
+            foreach ($produitRetourList as $c => $d) {
+                $concerner = $managerCo->get($d->concerner_id());
+                $singleReduction = $concerner->reduction()/$concerner->quantite();
+                if ($singleReduction>0){
+                    $reduction = $reduction - $singleReduction*$d->quantite();
+                }
+            }
+
+        }
+
+        $dataListReduction[] = array(
+            "DT_RowId" => $v->id(),
+            "id" => $v->id(),
+            "reference" => $v->reference(),
+            "prixPercu" => $v->prixTotal(),
+            "reduction" => $reduction,
+            'dateVente' => $v->dateVente()
+        );
+        $totalReduction = $totalReduction + $reduction;
+    }
+
 }
 
 $caisse = $managerCa->getId($id);
@@ -228,51 +259,52 @@ $totalVenteCreditFacture1 = 0;
 //echo '$ventesCreditFacture2';
 //echo json_encode([]);
 //echo '$ventesCreditFacture3';
-//echo json_decode($ventesCreditFacture1);
+//echo json_encode($ventesCreditFacture1);
 foreach ($ventesCreditFacture1 as $k => $v) :
-    if ($v->user_id() != NULL) {
-        $user1 = $managerUs->get($v->user_id());
-        if ($user1 == null) {
-            $client1 = ' NAN';
-        } else {
-            $client1 = $user1->nom() . ' ' . $user1->prenom();
-        }
+    if ($v['nom'] != NULL || $v['prenom'] != NULL) {
+        $client1 = $v['nom'] . ' ' . $v['prenom'];
     } else {
         $client1 = 'Client pas enregistré';
     }
-    $concernce = $managerCo->getList($v->id());
+    $concernce = $managerCo->getList($v['id']);
     foreach ($concernce as $a => $b) {
-
-        $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite()) - $b->reduction();
-        $en_rayon = $managerEn->get($b->en_rayon_id());
-        $fournisseur = $managerFournisseur->get($en_rayon->fournisseur_id());
-
-        if ($fournisseur->statut() == "Grossiste") {
-            $prixGrossite = $prixTotalConcerne - $prixGrossite;
-        } else if ($fournisseur->statut() == "Detaillant") {
-            $prixDetaillant = $prixTotalConcerne - $prixDetaillant;
+        if ($b->type()=="detail"){
+            $prixTotalProduitDetail = ((int)$b->prixUnit()*(int)$b->quantite()) + $prixTotalProduitDetail;
         }
-        // On calcule le total des produits detailles
-        $produit = $managerPr->get($en_rayon->produit_id());
-        if ($produit->grossiste_id() != '') {
-            $prixTotalProduitDetail = $prixTotalConcerne + $prixTotalProduitDetail;
-            //echo 'passe';
+        else {
+            $prixTotalConcerne = ($b->prixUnit()) * ($b->quantite()) - $b->reduction();
+            $en_rayon = $managerEn->get($b->en_rayon_id());
+            $fournisseur = $managerFournisseur->get($en_rayon->fournisseur_id());
+
+            if ($fournisseur->statut() == "Grossiste") {
+                $prixGrossite = $prixTotalConcerne - $prixGrossite;
+            } else if ($fournisseur->statut() == "Detaillant") {
+                $prixDetaillant = $prixTotalConcerne - $prixDetaillant;
+            }
+            // On calcule le total des produits detailles
+            $produit = $managerPr->get($en_rayon->produit_id());
+            if ($produit->grossiste_id() != '') {
+                $prixTotalProduitDetail = $prixTotalConcerne + $prixTotalProduitDetail;
+                //echo 'passe';
+            }
         }
     }
+
     $dataVenteACredit1[] = array(
-        "DT_RowId" => $v->id(),
-        "id" => $v->id(),
-        "reference" => $v->reference(),
-        "prixPercu" => $v->prixTotal(),
+        "DT_RowId" => $v['id'],
+        "id" => $v['id'],
+        "reference" => $v['reference'],
+        "prixPercu" => $v['prixPercu'],
+        "prixTotal" => $v['prixTotal'],
         "client" => $client1,
-        'dateVente' => $v->dateVente()
+        'dateVente' => $v['dateVente']
     );
-    $totalVenteCreditFacture1 = $v->prixTotal() + $totalVenteCreditFacture1;
+    $totalVenteCreditFacture1 = $v['prixTotal'] + $totalVenteCreditFacture1;
 endforeach;
 
 //if (!isset($dataVenteACredit1)) $dataVenteACredit1 = 0;
 
-$totalVentFournisseur = $prixGrossite + $prixDetaillant;
+$totalVentFournisseur = $prixGrossite + $prixDetaillant+$prixTotalProduitDetail;
 
 
 // bon caisse genere
@@ -392,6 +424,8 @@ $donnees = array(
     'vente_credit' => $totalVenteCredit,
     'vente_assurance' => $totalVenteAssurance,
     'vente_total' => $totalVenteTypeVente,
+    'reduction_list' => $dataListReduction,
+    'reduction_total' => $totalReduction,
     'ev_espece' => $totalfacturationEspece,
     'ev_electronique' => $totalfacturationElectronique,
     'ev_boncaisse' => $totalfacturationTicket,
