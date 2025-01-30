@@ -1418,7 +1418,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         </div>
                     </div>
                     <div class="row divine">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="panel panel-default">
 
                                 <div class="panel-heading" style="background: #333;">
@@ -1457,8 +1457,6 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             </div>
 
                         </div>
-                    </div>
-                    <div class="row divine">
                         <div class="col-md-6">
                             <div class="panel panel-default">
 
@@ -1496,7 +1494,9 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             </div>
 
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="row divine">
+                        <div class="col-md-12">
                             <div class="panel panel-default">
 
                                 <div class="panel-heading" style="background: #333;">
@@ -1507,9 +1507,11 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                 </div>
                                 <div class="panel-body panel-body-table">
                                     <div class="table-responsive">
-                                        <table id="rapport_retour" class="table table-bordered table-striped">
+                                        <table  id="rapport_retour" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
+                                                <th>Reference</th>
+                                                <th>Produit</th>
                                                 <th>Quantité</th>
                                                 <th>Total</th>
                                             </tr>
@@ -2171,6 +2173,12 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td>Produits Detailles</td>
+                                                    <td>
+                                                        <span id="rapport_vente_produit_detaille">0</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
                                                     <td>Total</td>
                                                     <td>
                                                         <span id="rapport_vente_fournisseur_total">0</span>
@@ -2304,8 +2312,8 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 </tr>
                                                 </tbody>
                                             </table>
-                                            <div>
-                                                <p>Total: <span id="rapport_efc_total"></span></p>
+                                            <div style="display:flex;padding: 5px">
+                                                <p style="margin: 0px">Total: <span id="rapport_efc_total"></span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -2337,12 +2345,12 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 <tr>
 
                                                 </tr>
-                                                <tr>
-                                                    <td colspan="4">Total</td>
-                                                    <td id="rapport_bc_total">0</td>
-                                                </tr>
+
                                                 </tbody>
                                             </table>
+                                            <div style="display:flex;padding: 5px">
+                                                <p style="margin: 0px">Total: <span id="rapport_bc_total"></span></p>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -2372,12 +2380,12 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 <tr>
 
                                                 </tr>
-                                                <tr>
-                                                    <td colspan="4">Total</td>
-                                                    <td id="rapport_bc_total_genere">0</td>
-                                                </tr>
+
                                                 </tbody>
                                             </table>
+                                            <div style="display:flex;padding: 5px">
+                                                <p style="margin: 0px">Total: <span id="rapport_bc_total_genere"></span></p>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -2386,7 +2394,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             </div>
                         </div>
                         <div class="row divine">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="panel panel-default">
 
                                     <div class="panel-heading" style="background: #333;">
@@ -2425,9 +2433,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="row divine">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="panel panel-default">
 
                                     <div class="panel-heading" style="background: #333;">
@@ -2458,6 +2464,43 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 </tr>
                                                 </tbody>
                                             </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row divine">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+
+                                    <div class="panel-heading" style="background: #333;">
+                                        <div class="panel-title-box" style="color: aquamarine;">
+                                            <h3 style="color: white;">Retour caisse</h3>
+                                            <!-- <span>Projects activity</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="panel-body panel-body-table">
+                                        <div class="table-responsive">
+                                            <table  id="rapport_retour" class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Reference</th>
+                                                    <th>Produit</th>
+                                                    <th>Quantité</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <div style="display:flex;padding: 5px">
+                                                <p style="margin: 0px">Total: <span id="rapport_retour_total"></span></p>
+                                            </div>
                                         </div>
                                     </div>
 
