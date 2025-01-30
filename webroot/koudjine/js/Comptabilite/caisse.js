@@ -1581,6 +1581,10 @@ function close_caisse_row(id) {
     })
 }
 
+function close_caisse_alert() {
+    $("#fermeture-caisse-confirmation").modal("hide");
+}
+
 
 function close_modal_caisse_row() {
     $("#iconPreviewCaisseFermer").modal("hide");
