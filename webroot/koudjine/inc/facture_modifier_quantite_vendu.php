@@ -3,10 +3,14 @@ require_once('database.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/produit.php');
 require_once('../Class/vente.php');
+require_once('../Class/concerner.php');
+require_once('../Class/produit_detail.php');
 
 global $pdo;
 
 
+$managerProduitDetail = new Produit_detailManager($pdo);
+$managerConcerner = new ConcernerManager($pdo);
 $manager = new En_rayonManager($pdo);
 $managerPr = new ProduitManager($pdo);
 $managerVe = new VenteManager($pdo);
@@ -16,17 +20,21 @@ $qte=$_POST['qte'];
 $vente_id=$_POST['vente_id'];
 
 //echo $id;
-echo $qte;
+
 $vente = $managerVe->get($vente_id);
-print_r($vente);
-echo $vente->etat();
+$concerner = $managerConcerner->getByVenteIdAndEnRayonId($vente_id,$id);
 if($vente->etat() == 'Comptant'){
-    if (isset($_POST['id'])){
+    if ($concerner->type()=='detail'){
+        $produitDetail = $managerProduitDetail->get($concerner->en_rayon_id());
+        $produitDetail->setstock(($produitDetail->stock() - $qte));
+        $managerProduitDetail->update($produitDetail);
+        echo "quantité restante ok";
+    }
+    elseif (isset($_POST['id'])){
         $en_rayon = $manager->get($id);
-        print_r($en_rayon);
         $en_rayon->setquantiteRestante(($en_rayon->quantiteRestante()-$qte));
         $manager->update($en_rayon);
-        print_r($en_rayon);
+
         $produit = $managerPr->get($en_rayon->produit_id());
         $produit->setstock(($produit->stock() - $qte));
         $managerPr->update($produit);

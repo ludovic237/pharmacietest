@@ -233,6 +233,7 @@ class En_rayonManager
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new en_rayon($donnees);
     }
+
     public function gets($info)
     {
 

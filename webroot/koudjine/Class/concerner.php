@@ -243,6 +243,16 @@ class ConcernerManager
         }
         return $concerners;
     }
+
+    public function getByVenteIdAndEnRayonId($vente_id,$en_rayon_id)
+    {
+
+        $q = $this->_db->prepare('SELECT * FROM concerner WHERE supprimer = 0 AND vente_id =' . $vente_id.' AND en_rayon_id ='.$en_rayon_id);
+        $q->execute();
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Concerner($donnees);
+    }
+
     public function getListSameRayonId($id)
     {
         $concerners = array();
