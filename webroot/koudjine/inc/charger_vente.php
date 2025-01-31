@@ -36,7 +36,7 @@ $id = $_POST['id'];
 $data = [];
 
 if (isset($_POST['id'])) {
-    $ventes = $manager->get($id);
+
     $produits = $managerCo->getList($id);
     $typefacturation = "No exist";
     $montantfactureEspece = 0;
@@ -87,9 +87,28 @@ if (isset($_POST['id'])) {
         $montantfactureTicket = 0;
     }
 
-    $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $ventes->dateVente());
-    $date = $dateTime->format('d-m-Y'); // Extrait uniquement la date (format : Année-Mois-Jour)
-    $time = $dateTime->format('H:i'); // Extrait uniquement l'heure (format : Heures:Minutes:Secondes)
+    $ventes = $manager->get($id);
+    if ( $ventes->dateEncaissement()){
+        $dateTimeEncaisse = DateTime::createFromFormat('Y-m-d H:i:s', $ventes->dateEncaissement());
+        $dateEncaisse = $dateTimeEncaisse->format('d-m-Y'); // Extrait uniquement la date (format : Année-Mois-Jour)
+        $timeEncaisse = $dateTimeEncaisse->format('H:i'); // Extrait uniquement l'heure (format : Heures:Minutes:Secondes)
+    }
+    else {
+        $dateEncaisse = null;
+        $timeEncaisse = null;
+    }
+
+    if ($ventes->dateVente()){
+        $dateTimeVente = DateTime::createFromFormat('Y-m-d H:i:s', $ventes->dateVente());
+        $dateVente = $dateTimeVente->format('d-m-Y'); // Extrait uniquement la date (format : Année-Mois-Jour)
+        $timeVente = $dateTimeVente->format('H:i'); // Extrait uniquement l'heure (format : Heures:Minutes:Secondes)
+
+    }
+    else{
+        $dateVente = null;
+        $timeVente = null;
+    }
+
 
     if($ventes->user_id()!= null){
         //$client1 = $managerUser->get($v->user_id());
@@ -111,14 +130,17 @@ if (isset($_POST['id'])) {
         'montantfactureElectronique' => $montantfactureElectronique,
         'montantfactureTicket' => $montantfactureTicket,
         'reference' => $ventes->reference(),
-        'datevente' => $date,
-        'heurevente' => $time,
+        'datevente' => $dateVente,
+        'dateencaisser' => $dateEncaisse,
+        'heureencaisser' => $timeEncaisse,
+        'heurevente' => $timeVente,
         'vendeur' => $employe,
         'acheteur' => $client,
         'montanttotal' => $ventes->prixPercu(),
+        'montanttotalencaisser' => $montantfactureEspece+$montantfactureElectronique+$montantfactureTicket,
         'netapayer' => $ventes->prixTotal(),
         'montantrendu' => -( $ventes->prixTotal()- $ventes->prixPercu()),
-        'remise' => -( $ventes->prixTotal()- $ventes->prixPercu()),
+        'remise' => -( $ventes->reduction()),
     );
     echo json_encode($donnees);
 } else {

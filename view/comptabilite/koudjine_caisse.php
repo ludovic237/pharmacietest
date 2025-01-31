@@ -1015,24 +1015,23 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
 
                                     <div style="display: flex;flex-direction:column;text-align: left;">
                                         <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Pharmacie ALSAS</strong>
+                                            <strong>Pharmacie ALSAS</strong></strong>
                                         <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Dr GAMWO Sandrine</strong>
+                                            <strong>Dr GAMWO Sandrine</strong></strong>
                                         <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            BP 38 FOUMBOT</strong>
+                                            <strong>BP 38 FOUMBOT</strong></strong>
                                         <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Tel :(+237) 233 267 487</strong>
-                                        <div style="display: flex;justify-content:space-between">
-                                            <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                                Ticket N°: <span class="reference"></span></strong>
-                                            <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                                <span class="datevente"></span> à <span class="heurevente"></span>
-                                            </strong>
-                                        </div>
+                                            <strong>Tel :(+237) 233 267 487</strong></strong>
                                         <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Vendeur: <span class="vendeur"></span></strong>
+                                            <strong>Ticket N°: <span class="reference"></span></strong></strong>
                                         <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                            Acheteur: <span class="acheteur"></span></strong>
+                                            <strong>Vendu le : <span class="datevente"></span> à <span class="heurevente"></span></strong></strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            <strong>Encaisser le: <span class="dateencaisser"></span> à <span class="heureencaisser"></span></strong></strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            <strong>Vendeur: <span class="vendeur"></span> et Caissier : <span class="caissier"></span></strong></strong>
+                                        <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                            <strong>Acheteur: <span class="acheteur"></span></strong></strong>
                                     </div>
                                     <div>
                                         <table class="table table-bordered table-striped table-actions table-responsive"
@@ -1040,102 +1039,106 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             <thead>
                                             <tr>
                                                 <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    width="200">Libelle
+                                                    width="200"><strong>Libellé</strong>
                                                 </th>
                                                 <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    width="150">Prix U.
+                                                    width="150"><strong></strong>
                                                 </th>
                                                 <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    width="100">Qte
+                                                    width="100"><strong>Qte</strong>
                                                 </th>
                                                 <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    width="100">Total
+                                                    width="100"><strongg>Total</strongg>
                                                 </th>
                                                 <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    width="50">Rd(%)
+                                                    width="50"><strong>Rd(%)</strong>
                                                 </th>
                                             </tr>
                                             </thead>
+                                            <tbody id="tab_BfactureImprimer">
                                             <tr>
                                                 <td colspan="1"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    scope="row">Montant Total
+                                                    scope="row"><strong>Montant Total</strong>
                                                 </td>
                                                 <td colspan="4"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                    <span class="montanttotal"></span> FCFA
+                                                    <strong><span class="montanttotal"></span> FCFA</strong>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="1"
                                                     style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: start;"
-                                                    scope="row">Remise
+                                                    scope="row"><strong>Remise</strong>
                                                 </td>
                                                 <td colspan="4"
                                                     style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
-                                                    <span class="remise"></span> FCFA
+                                                    <strong><span class="remise"></span> FCFA</strong>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="1"
                                                     style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: start;"
-                                                    scope="row">Net à payer
+                                                    scope="row"><strong>Net à payer</strong>
                                                 </td>
                                                 <td colspan="4"
                                                     style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
-                                                    <span class="netapayer"></span> FCFA
+                                                    <strong><span class="netapayer"></span> FCFA</strong>
                                                 </td>
                                             </tr>
-                                            <tbody id="tab_BfactureImprimer">
                                             <tr type="hidden" id="rowmontantespece">
                                                 <td colspan="1"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    scope="row">Montant Espece
+                                                    scope="row"><strong>Montant Espece</strong>
                                                 </td>
                                                 <td colspan="4"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                    <span id="montantespece"></span> FCFA
+                                                    <strong><span id="montantespece"></span> FCFA</strong>
                                                 </td>
                                             </tr>
                                             <tr type="hidden" id="rowmontantelectronique">
                                                 <td colspan="1"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    scope="row">Montant Electronique
+                                                    scope="row"><strong>Montant Electronique</strong>
                                                 </td>
                                                 <td colspan="4"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                    <span id="montantelectronique"></span> FCFA
+                                                    <strong><span id="montantelectronique"></span> FCFA</strong>
                                                 </td>
                                             </tr>
                                             <tr type="hidden" id="rowmontantticket">
                                                 <td colspan="1"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    scope="row">Montant Ticket
+                                                    scope="row"><strong>Montant Ticket</strong>
                                                 </td>
                                                 <td colspan="4"
                                                     style=" background-color: white;color: black;font-weight: 400;text-align: end;font-family: 'Courier New', Courier, monospace;font-size: 10px;">
-                                                    <span id="montantticket"></span> FCFA
+                                                    <strong><span id="montantticket"></span> FCFA</strong>
                                                 </td>
                                             </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center;">
                                         <div style="display: flex; flex-direction: column; text-align: left;">
                                             <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
-                                                Payer en espece : <span class="montantpercu"></span>
+                                                <strong>Montant total encaissé : <span class="montanttotalencaisser"></span></strong>
                                             </strong>
                                             <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
-                                                Montant rendu : <span class="montantrendu"></span>
+                                                <strong>Total en caisse : <span class="montantpercu"></span></strong>
                                             </strong>
                                             <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
-                                                Ce ticket vaut facture
+                                                <strong>Montant rendu : <span class="montantrendu"></span></strong>
                                             </strong>
                                             <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
-                                                Merci et bonne santé
+                                                <strong>Ce ticket vaut facture</strong>
                                             </strong>
                                             <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
-                                                NoCT /P058512700488Z
+                                                <strong>Merci et bonne santé</strong>
+                                            </strong>
+                                            <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
+                                                <strong>NoCT /P058512700488Z</strong>
                                             </strong>
                                         </div>
                                         <p id="qrcodeTicket" alt="Image à droite" style="height: auto;">

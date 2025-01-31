@@ -831,6 +831,7 @@ function reimprime_ticket(id, montantespece,
         },
         dataType: 'json',
         success: function (server_response) {
+            $('#qrcodeTicket').empty();
             qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
                 width: 90,
                 height: 90
@@ -844,13 +845,26 @@ function reimprime_ticket(id, montantespece,
             console.log("ventes");
             console.log(ventes);
 
+            $('#iconPreviewFacture .reference').html(server_response.reference+'');
+            $('#iconPreviewFacture .datevente').html(server_response.datevente+'');
+            $('#iconPreviewFacture .heurevente').html(server_response.heurevente+'');
+            $('#iconPreviewFacture .dateencaisser').html(server_response.dateencaisser+'');
+            $('#iconPreviewFacture .heureencaisser').html(server_response.heureencaisser+'');
+            $('#iconPreviewFacture .vendeur').html(server_response.vendeur+'');
+            $('#iconPreviewFacture .acheteur').html(server_response.acheteur+'');
+            $('#iconPreviewFacture .netapayer').html(server_response.netapayer+'');
+            $('#iconPreviewFacture .montanttotal').html(server_response.montanttotal+'');
+            $('#iconPreviewFacture .montantrendu').html(server_response.montantrendu+'');
+            $('#iconPreviewFacture .montanttotalencaisser').html(server_response.montanttotalencaisser+'');
+            $('#iconPreviewFacture .remise').html(server_response.remise+'');
+
             $('#tab_BfactureImprimer  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
                     //alert("passe");
                     $(this).remove();
                 }
             });
-            //$('#tab_vente_caisse').html(server_responce);
+            //$('#tab_vente_caisse').html(server_response);
             for (i in ventes) {
                 
                 $('#tab_BfactureImprimer').prepend(`
@@ -1412,7 +1426,7 @@ function reimprime_ticket_caisse(id) {
                     $(this).remove();
                 }
             });
-            //$('#tab_vente_caisse').html(server_responce);
+            //$('#tab_vente_caisse').html(server_response);
             for (i in ventes) {
                 
                 $('#tab_BfactureImprimer2').prepend(`
