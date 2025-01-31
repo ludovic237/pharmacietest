@@ -40,6 +40,23 @@ $managerFes = new FactureEspeceManager($pdo);
 $managerFel = new FactureElectroniqueManager($pdo);
 $managerFtk = new FactureTicketManager($pdo);
 
+function getFinalReduction($reductionRayon) {
+    $reductionData = ceil($reductionRayon / 5) * 5;
+    $lastTwoDigits = $reductionData % 100;
+
+    if ($lastTwoDigits >= 75) {
+        $lastData = 75;
+    } elseif ($lastTwoDigits >= 50) {
+        $lastData = 50;
+    } elseif ($lastTwoDigits >= 25) {
+        $lastData = 25;
+    } else {
+        $lastData = 0;
+    }
+
+    $finalReductionTotal = floor($reductionData / 100) * 100 + $lastData + 25;
+    return $finalReductionTotal;
+}
 
 $data = [];
 $dataDepense = [];
@@ -463,10 +480,13 @@ foreach ($retourproduit as $k => $v) :
     foreach ($produitretour as $k => $c) {
         $quantite_produitRetour = $quantite_produitRetour + $c->quantite();
         $concerner_produitId = $managerCo->get($c->concerner_id())->en_rayon_id();
+        $concerner = $managerCo->get((int)$c->concerner_id());
         $en_rayon_produitId = $managerEn->get($concerner_produitId)->produit_id();
         $produit_nom = $managerPr->get($en_rayon_produitId)->nom();
         $List_produitRetour = $List_produitRetour . " " . $produit_nom . " " . $c->quantite() . "";
-        $prixTotal = $prixTotal + ($c->quantite() * $managerEn->get($concerner_produitId)->prixVente());
+        $reductionRayon = (($c->quantite()*$concerner->prixUnit())*$concerner->reduction()/100);
+        $reductionRayon = getFinalReduction($reductionRayon);
+        $prixTotal = $prixTotal + (($c->quantite()*$concerner->prixUnit()) - $reductionRayon);
         $reference = $managerVente->get($v->vente_id())->reference();
         $dataProduitRetour[] = array(
             "DT_RowId" => $v->id(),

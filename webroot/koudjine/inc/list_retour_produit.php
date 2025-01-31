@@ -25,6 +25,26 @@ $managerProduit = new ProduitManager($pdo);
 $data = [];
 $datas = [];
 
+function getFinalReduction($reductionRayon) {
+    $reductionData = ceil($reductionRayon / 5) * 5;
+    $lastTwoDigits = $reductionData % 100;
+
+    if ($lastTwoDigits >= 75) {
+        $lastData = 75;
+    } elseif ($lastTwoDigits >= 50) {
+        $lastData = 50;
+    } elseif ($lastTwoDigits >= 25) {
+        $lastData = 25;
+    } else {
+        $lastData = 0;
+    }
+
+    $finalReductionTotal = floor($reductionData / 100) * 100 + $lastData + 25;
+    return $finalReductionTotal;
+}
+
+
+
 
 if (isset($_POST['id']))
     $id = $_POST['id'];
@@ -50,7 +70,9 @@ foreach ($retourproduit as $k => $v) :
         $en_rayon_produitId = $managerEn_rayon->get($concerner_produitId)->produit_id();
         $produit_nom = $managerProduit->get($en_rayon_produitId)->nom();
         $List_produitRetour = $List_produitRetour . " " . $produit_nom . " (" . $c->quantite().") <br> ";
-        $prixTotal = $prixTotal + (($c->quantite()*$concerner->prixUnit()) - ($c->quantite()*$concerner->reduction()/$concerner->quantite()));
+        $reductionRayon = (($c->quantite()*$concerner->prixUnit())*$concerner->reduction()/100);
+        $reductionRayon = getFinalReduction($reductionRayon);
+        $prixTotal = $prixTotal + (($c->quantite()*$concerner->prixUnit()) - $reductionRayon);
     }
     $quantite_total_produitRetour = $quantite_produitRetour;
     $data[] = array(
