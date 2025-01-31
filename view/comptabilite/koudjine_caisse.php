@@ -2046,7 +2046,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 <tr>
                                                     <th width="100">Montant</th>
                                                     <th width="200">Montant percu</th>
-                                                    <th width="200">Date de vente</th>
+                                                    <th width="200">Date d'encaissement</th>
                                                     <th width="100">Etat</th>
                                                     <th width="100">Ref</th>
                                                     <th width="100">Actions</th>
