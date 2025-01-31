@@ -81,10 +81,10 @@ foreach ($ventes as $key => $v) {
     $concernce = $managerCo->getList($v->id());
     foreach ($concernce as $a => $b) {
         if ($b->type()=="detail"){
-            $prixTotalProduitDetail = ((int)$b->prixUnit()*(int)$b->quantite() - $b->reduction()) + $prixTotalProduitDetail;
+            $prixTotalProduitDetail = ((int)$b->prixUnit()*(int)$b->quantite() - (($b->prixUnit() * $b->quantite())*$b->reduction()/100)) + $prixTotalProduitDetail;
         }
         else {
-            $prixTotalConcerne = ($b->prixUnit() * $b->quantite()) - $b->reduction();
+            $prixTotalConcerne = ($b->prixUnit() * $b->quantite()) - (($b->prixUnit() * $b->quantite())*$b->reduction()/100);
             $en_rayon = $managerEn->get($b->en_rayon_id());
             if (!$en_rayon->fournisseur_id() || $en_rayon->fournisseur_id()==false) {
 //            echo "Erreur : Aucun produit trouvé pour l'ID en rayon " . $b->en_rayon_id() . "<br>";
@@ -110,7 +110,7 @@ foreach ($ventes as $key => $v) {
             $produitRetourList = $managerPrRetour->getListRetourProduitId($retourProduit->id());
             foreach ($produitRetourList as $c => $d) {
                 $concerner = $managerCo->get($d->concerner_id());
-                $singleReduction = $concerner->reduction()/$concerner->quantite();
+                $singleReduction = (($concerner->prixUnit() * $concerner->quantite())*$concerner->reduction()/100);
                 if ($singleReduction>0){
                     $reduction = $reduction - $singleReduction*$d->quantite();
                 }
@@ -132,6 +132,72 @@ foreach ($ventes as $key => $v) {
 }
 
 $caisse = $managerCa->getId($id);
+
+if($caisse->dateFerme() != null || $caisse->dateFerme() != ''){
+    $ventesCredit = $managerVente->getListCaisseCompleteCreditdateF($caisse->dateOuvert(),$caisse->dateFerme());
+}else{
+    $ventesCredit = $managerVente->getListCaisseCompleteCreditdateNow($caisse->dateOuvert());
+}
+
+foreach ($ventesCredit as $k => $v) :
+    $reduction= $v->reduction();
+    $concernce = $managerCo->getList($v->id());
+    foreach ($concernce as $a => $b) {
+        if ($b->type()=="detail"){
+            $prixTotalProduitDetail = ((int)$b->prixUnit()*(int)$b->quantite() - (($b->prixUnit() * $b->quantite())*$b->reduction()/100)) + $prixTotalProduitDetail;
+        }
+        else {
+            $prixTotalConcerne = ($b->prixUnit() * $b->quantite()) - (($b->prixUnit() * $b->quantite())*$b->reduction()/100);
+            $en_rayon = $managerEn->get($b->en_rayon_id());
+            if (!$en_rayon->fournisseur_id() || $en_rayon->fournisseur_id()==false) {
+//            echo "Erreur : Aucun produit trouvé pour l'ID en rayon " . $b->en_rayon_id() . "<br>";
+                continue; // Passe à l'itération suivante pour éviter les erreurs
+            }
+            $fournisseur = $managerFournisseur->get($en_rayon->fournisseur_id());
+
+            if ($fournisseur->statut() == "Grossiste") {
+                $prixGrossite = $prixTotalConcerne + $prixGrossite;
+            } else if ($fournisseur->statut() == "Detaillant") {
+                $prixDetaillant = $prixTotalConcerne + $prixDetaillant;
+            }else{
+                $prixTotalProduitDetail = $prixTotalConcerne + $prixTotalProduitDetail;
+            }
+
+            // On calcule le total des produits detailles
+            $produit = $managerPr->get($en_rayon->produit_id());
+        }
+    }
+    if ($reduction>0){
+        if ($managerRetourProduit->existsVente_id($v->id())==true){
+            $retourProduit = $managerRetourProduit->getVente_id($v->id());
+            $produitRetourList = $managerPrRetour->getListRetourProduitId($retourProduit->id());
+            foreach ($produitRetourList as $c => $d) {
+                $concerner = $managerCo->get($d->concerner_id());
+                $singleReduction = (($concerner->prixUnit() * $concerner->quantite())*$concerner->reduction()/100);
+                if ($singleReduction>0){
+                    $reduction = $reduction - $singleReduction*$d->quantite();
+                }
+            }
+
+        }
+
+        $dataListReduction[] = array(
+            "DT_RowId" => $v->id(),
+            "id" => $v->id(),
+            "reference" => $v->reference(),
+            "prixPercu" => $v->prixTotal(),
+            "reduction" => $reduction,
+            'dateVente' => $v->dateVente()
+        );
+        $totalReduction = $totalReduction + $reduction;
+    }
+
+    //if ($v->prixPercu()>0){
+    //$totalVenteCredit = $totalVenteCredit + ($v->prixTotal());
+    //}
+endforeach;
+
+
 //recap vente par type de vente
 // vente Comptant
 
