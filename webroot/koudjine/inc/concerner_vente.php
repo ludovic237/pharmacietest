@@ -4,10 +4,11 @@ require_once('../Class/vente.php');
 require_once('../Class/concerner.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/produit.php');
+require_once('../Class/produit_detail.php');
 
 global $pdo;
 
-
+$managerProduitDetail = new Produit_detailManager($pdo);
 $manager = new VenteManager($pdo);
 $managerEn = new En_rayonManager($pdo);
 $managerCo = new ConcernerManager($pdo);
@@ -52,6 +53,7 @@ else{
         ));
         $managerCo->add($conc);
 
+
         $vente = $manager->get($idv);
         print_r($vente);
         if($vente->etat() != 'Comptant' || $etat != 'Comptant'){
@@ -64,6 +66,14 @@ else{
             $produit = $managerPr->get($en_rayon->produit_id());
             $produit->setstock(($produit->stock() - $qte));
             $managerPr->update($produit);
+
+            // destockage des produits details
+            if ($type=='detail'){
+                $produitDetail = $managerProduitDetail->get($ide);
+                $produitDetail->setstock(($produitDetail->stock() - $qte));
+                $managerProduitDetail->update($produitDetail);
+                echo "quantité restante ok";
+            }
         }
 
 
