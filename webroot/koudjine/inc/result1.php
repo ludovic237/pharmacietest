@@ -41,7 +41,25 @@ $managerProduit = new ProduitManager($pdo);
                 else {
                     $type = "detail";
                 }
-                $donnees = array('erreur' =>'non', 'statut_perime' => $statut_perime, 'find' => 'oui','nom' => $result->nom, 'prix' => $result->prixVente, 'reduction' => $result->reduction, 'datel' => $datel, 'stock' => $result->stock-1, 'quantiteRestante' => $result->quantiteRestante, 'type' => $type);
+
+                $dateActuelle = new DateTime();
+                $statut = "";
+                $perime = new DateTime($enRayon->datePeremption());
+                $interval = $dateActuelle->diff($perime);
+
+                if ($dateActuelle > $perime) {
+                    // Si la date de péremption est passée
+                    $statut = '<span class="badge badge-danger badge-pill ml-2 perime" style="font-size:90%">Périmé</span>';
+                } elseif ($interval->days <= 30 && $dateActuelle < $perime) {
+                    // Si la date de péremption est dans 1 mois ou moins
+                    $statut = '<span class="badge badge-warning badge-pill ml-2" style="font-size:90%">Expire dans ' . $interval->days . ' jour(s)</span>';
+                } else {
+                    // Si la date de péremption est encore dans le futur (plus d'un mois)
+                    $statut = '<span class="badge badge-success badge-pill ml-2" style="font-size:90%">Encore valide</span>';
+                }
+                $donnees = array('erreur' =>'non', 'statut_perime' => $statut_perime, 'find' => 'oui',
+                    'nom' => "<span ><strong class='nom'>" . $result->nom . " " . $statut . "</strong></span>",
+                    'prix' => $result->prixVente, 'reduction' => $result->reduction, 'datel' => $datel, 'stock' => $result->stock-1, 'quantiteRestante' => $result->quantiteRestante, 'type' => $type);
                     echo json_encode($donnees);
             }
         }
