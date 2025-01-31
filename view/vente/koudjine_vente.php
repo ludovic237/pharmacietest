@@ -421,7 +421,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div style="display: flex; flex-direction: column; text-align: left;">
                                             <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
-                                                Payer en espece : <span class="montantpercu"></span>
+                                                Total en caisse : <span class="montantpercu"></span>
                                             </strong>
                                             <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                                 Montant rendu : <span class="montantrendu"></span>
@@ -640,7 +640,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div style="display: flex; flex-direction: column; text-align: left;">
                                         <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
-                                            Payer en espece : <span class="montantpercu"></span>
+                                            Total en caisse : <span class="montantpercu"></span>
                                         </strong>
                                         <strong style="margin: 0px; color: black; font-weight: 400; font-family: 'Courier New', Courier, monospace; font-size: 12px;">
                                             Montant rendu : <span class="montantrendu"></span>

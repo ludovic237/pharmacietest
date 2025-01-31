@@ -131,6 +131,12 @@ if (isset($id)) {
                                                             <span id="rapport_vente_total">0</span>
                                                         </td>
                                                     </tr>
+                                                    <tr>
+                                                        <td>Reduction</td>
+                                                        <td>
+                                                            <span id="reduction_total">0</span>
+                                                        </td>
+                                                    </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -222,7 +228,7 @@ if (isset($id)) {
                                 </div>
                             </div>
                             <div class="row divine">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="panel panel-default">
 
                                         <div class="panel-heading" style="background: #333;">
@@ -257,7 +263,7 @@ if (isset($id)) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="panel panel-default">
 
                                         <div class="panel-heading" style="background: #333;">
@@ -292,13 +298,13 @@ if (isset($id)) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-4">
+                                <!--<div class="col-md-4">
                                     <div class="panel panel-default">
 
                                         <div class="panel-heading" style="background: #333;">
                                             <div class="panel-title-box" style="color: aquamarine;">
                                                 <h3 style="color: white;">Reduction</h3>
-                                                <!-- <span>Projects activity</span> -->
+
                                             </div>
                                         </div>
                                         <div class="panel-body panel-body-table">
@@ -326,7 +332,7 @@ if (isset($id)) {
 
                                     </div>
 
-                                </div>
+                                </div>-->
                             </div>
                             <div class="row divine">
                                 <div class="col-md-6">

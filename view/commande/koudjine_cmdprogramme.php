@@ -389,7 +389,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                              </table>
                                         </div>
                                         <div style="display: flex;flex-direction:column;text-align: left;">
-                                             <p style="margin: 0px; color: black;font-weight: 400;">Payer en espece : <span class="montantpercu"></span> </p>
+                                             <p style="margin: 0px; color: black;font-weight: 400;">Total en caisse : <span class="montantpercu"></span> </p>
                                              <p style="margin: 0px; color: black;font-weight: 400;">Montant rendu : <span class="montantrendu"></span> </p>
                                              <p style="margin: 0px; color: black;font-weight: 400;">Ce ticket vaut facture</p>
                                              <p style="margin: 0px; color: black;font-weight: 400;">Merci et bonne santé</p>

@@ -504,7 +504,7 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
                                     </table>
                                 </div>
                                 <div style="display: flex;flex-direction:column;text-align: left;">
-                                    <strong style="margin: 0px; color: black;font-weight: 400;">Payer en espece : <span class="montantpercu"></span> </strong>
+                                    <strong style="margin: 0px; color: black;font-weight: 400;">Total en caisse : <span class="montantpercu"></span> </strong>
                                     <strong style="margin: 0px; color: black;font-weight: 400;">Montant rendu : <span class="montantrendu"></span> </strong>
                                     <strong style="margin: 0px; color: black;font-weight: 400;">Ce ticket vaut facture</strong>
                                     <strong style="margin: 0px; color: black;font-weight: 400;">Merci et bonne santé</strong>
