@@ -138,7 +138,10 @@ $(document).ready(function () {
                         motclef1: recherche,
                         action: $(this).attr("data1")
                     },
-                    success: function (server_responce) {
+                    error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                         if ($("#recherche").attr("data1") == 'sortie') {
                             $("#tab_SGrecherche").show();
                             $("#tab_SBrecherche").html(server_responce).show();
@@ -177,7 +180,10 @@ $(document).ready(function () {
                         motclef1: recherche,
                         action: $(this).attr("data1")
                     },
-                    success: function (server_responce) {
+                    error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                         if ($("#recherche").attr("data1") == 'sortie') {
                             $("#tab_SGrecherche").show();
                             $("#tab_SBrecherche").html(server_responce).show();
@@ -300,7 +306,10 @@ function valider_sortie() {
                                 contenu: contenu,
                                 detail_id: $("#recherche").attr('data')
                             },
-                            success: function (server_responce) {
+                            error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                                 //alert(server_responce);
                                 var link = '/pharmacietest/bouwou/comptabilite/sortie';
                                 window.location.href = link;
@@ -331,7 +340,10 @@ function valider_sortie() {
                     type_sortie_id: $("#choix").val(),
                     detail_id: null
                 },
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     //alert(server_responce);
                     var link = '/pharmacietest/bouwou/comptabilite/sortieautre';
                     window.location.href = link;
@@ -359,7 +371,10 @@ function load_produit(id, action) {
             id: id,
             action: action
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
 
             $('#tab_Bload_produit').html(server_responce);
             //$("#code").barcode(data.codebarre);
@@ -390,6 +405,9 @@ function load_produit_parent() {
                 id: id,
                 action: 'sortie1'
             },
+            error: function (e) {
+                loader(false);
+            },
             success: function (server_responce) {
 
                 $('#tab_Bload_produit_sortie').html(server_responce);
@@ -413,7 +431,10 @@ function load_produit_rayon(id) {
             id: id,
             action: 'autre'
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
 
             $('#tab_Bload_produit_sortie').html(server_responce);
             //$("#code").barcode(data.codebarre);

@@ -181,7 +181,10 @@ $(document).ready(function(){
                     data: {
                         action: 'lancer'
                     },
-                    success: function (server_responce) {
+                    error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                         //alert(server_responce);
                          link = '/pharmacietest/bouwou/stock/inventaire';
                         window.location.href=link;
@@ -196,7 +199,10 @@ $(document).ready(function(){
                     data: {
                         action: 'arreter'
                     },
-                    success: function (server_responce) {
+                    error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                         //alert(server_responce);
                         //alert('repasse');
                          link = '/pharmacietest/bouwou/stock/inventaire';

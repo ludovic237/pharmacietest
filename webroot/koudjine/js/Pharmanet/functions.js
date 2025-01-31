@@ -81,7 +81,10 @@ function pharmanet_recherche_valide() {
             endDate: endDate,
             type: type
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             switch (type) {
                 case "depense":
                     $('#pharmanet_tab_Gdepense').empty();

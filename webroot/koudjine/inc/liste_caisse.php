@@ -30,7 +30,7 @@ $id = $_POST['id'];
 
 
 if (isset($_POST['id'])) {
-    $ventes = $manager->getListCaisseComplete($id);
+    $ventes = $manager->getListCaisseCompleteEncaissement($id);
     $count = 0;
     $reste=0;
     $typefacturation = "No exist";
@@ -87,6 +87,7 @@ if (isset($_POST['id'])) {
             "prixTotal" => $v->prixTotal(),
             "prixPercu" => $v->prixPercu(),
             "dateVente" => $v->dateVente(),
+            "dateEncaissement" => $v->dateEncaissement(),
             "reste"=>$reste,
             "etat" => $v->etat(),
             "reference" =>  $v->reference(),

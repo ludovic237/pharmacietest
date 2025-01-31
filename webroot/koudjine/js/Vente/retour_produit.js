@@ -272,7 +272,10 @@ function imprime_retour_produit(id) {
             id: id
         },
         dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             let retour_produits = server_responce.data;
             console.log("server_responce");
             console.log(server_responce);

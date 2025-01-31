@@ -42,7 +42,10 @@ $(document).ready(function(){ 	// le document est charg鍊   $("a").click(functi
 				type: "GET",
 				url: "/pharmacietest/koudjine/inc/result.php",
 				data: data,
-				success: function (server_responce) {
+				error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
 					$("#resultat ul").html(server_responce).show();
 					//alert('yes');
 				}

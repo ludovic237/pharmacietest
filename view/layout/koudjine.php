@@ -731,7 +731,10 @@
                 data: {
                     id: id
                 },
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     console.log("server_responce");
                     console.log(server_responce);
                     console.log(server_responce.data);
