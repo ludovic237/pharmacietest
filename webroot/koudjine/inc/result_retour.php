@@ -11,7 +11,7 @@ if (isset($_POST["motclef"])) {
     $sth = $pdo->prepare("
               SELECT p.nom, c.quantite, c.prixUnit, c.reduction, v.id as idv, c.id as idc
               FROM concerner c, vente v, en_rayon r, produit p
-              WHERE c.vente_id = v.id AND v.reference = '".$motclef."' AND c.en_rayon_id = r.id AND p.id = r.produit_id 
+              WHERE c.vente_id = v.id AND v.prixPercu <> 0 AND v.reference = '".$motclef."' AND c.en_rayon_id = r.id AND p.id = r.produit_id 
               AND c.vente_id NOT IN (select vente_id from retour_produit where supprimer = 0 )
               
             ");
@@ -39,7 +39,7 @@ if (isset($_POST["motclef"])) {
         }
     }
     else{
-        echo "Facture déjà retourné ou mot incorrect pour : ".$_POST["motclef"];
+        echo "Facture déjà retourné, pas encore encaisse ou mot incorrect pour : ".$_POST["motclef"];
     }
 
 

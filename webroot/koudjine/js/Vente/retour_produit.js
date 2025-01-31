@@ -63,8 +63,29 @@ function load_produit_retour(en_rayon_id, vente_id) {
     var qte = parseInt($("#R" + en_rayon_id + " .stock").html());
     var reduc = parseInt($("#R" + en_rayon_id + " .reduction").html());
     var prix = $("#R" + en_rayon_id + " .prix").html();
-    var prixTotal = 0, prixReduit = 0, nom = $("#R" + en_rayon_id + " .nom").html();
+    var prixTotal = 0, prixReduit = 0, reductionRayon = 0, nom = $("#R" + en_rayon_id + " .nom").html();
     //alert(qte);
+    reductionRayon = ((prix*qte)*reduc/100);
+    var reductionData = Math.ceil((reductionRayon / 5) * 5) + "";
+    //console.log(reductionData)
+    var firstData = reductionData.substr(0, reductionData.length - 2).toString();
+    //console.log(firstData)
+    var lastData = "";
+    var finalReductionTotal = 0;
+    if (reductionData.length >= 2) {
+        var second = parseInt(reductionData.substr(reductionData.length - 2));
+        //console.log(second)
+        if (second < 100 && second >= 75) {
+            lastData = "75";
+        } else if (second < 75 && second >= 50) {
+            lastData = "50";
+        } else if (second < 50 && second >= 25) {
+            lastData = "25";
+        } else if (second < 25 && second >= 0) {
+            lastData = "00";
+        }
+        finalReductionTotal = parseInt(firstData + lastData)+25;
+    }
     var cat = '<tr id="' + en_rayon_id + '">'
         + ' <td><strong>' + nom + '</strong></td>'
         + '<td>' + prix + '</td>'
@@ -89,7 +110,7 @@ function load_produit_retour(en_rayon_id, vente_id) {
         '                                            </div>' +
         '                                            <p></p>' +
         '</td>'
-        + '<td>' + (reduc/qte) + '</td>'
+        + '<td>' + finalReductionTotal + '</td>'
         + '</tr>';
     $('#tab_RetourProduit_Retourne').prepend(cat).show();
     $('#tab_RetourProduit_Retourne  tr').each(function (i) {
