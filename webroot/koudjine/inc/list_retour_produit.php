@@ -25,6 +25,7 @@ $managerProduit = new ProduitManager($pdo);
 $data = [];
 $datas = [];
 
+// Arrondi vers le haut
 function getFinalReduction($reductionRayon) {
     $reductionData = ceil($reductionRayon / 5) * 5;
     $lastTwoDigits = $reductionData % 100;
@@ -42,6 +43,26 @@ function getFinalReduction($reductionRayon) {
     $finalReductionTotal = floor($reductionData / 100) * 100 + $lastData + 25;
     return $finalReductionTotal;
 }
+
+// Arrondi vers le bas
+function getFinalReductionBas($reductionRayon) {
+    $reductionData = floor($reductionRayon / 5) * 5; // Arrondi vers le bas au multiple de 5
+    $lastTwoDigits = $reductionData % 100;
+
+    if ($lastTwoDigits >= 75) {
+        $lastData = 75;
+    } elseif ($lastTwoDigits >= 50) {
+        $lastData = 50;
+    } elseif ($lastTwoDigits >= 25) {
+        $lastData = 25;
+    } else {
+        $lastData = 0;
+    }
+
+    $finalReductionTotal = floor($reductionData / 100) * 100 + $lastData + 25;
+    return $finalReductionTotal;
+}
+
 
 
 
@@ -70,9 +91,13 @@ foreach ($retourproduit as $k => $v) :
         $en_rayon_produitId = $managerEn_rayon->get($concerner_produitId)->produit_id();
         $produit_nom = $managerProduit->get($en_rayon_produitId)->nom();
         $List_produitRetour = $List_produitRetour . " " . $produit_nom . " (" . $c->quantite().") <br> ";
-        $reductionRayon = (($c->quantite()*$concerner->prixUnit())*$concerner->reduction()/100);
-        $reductionRayon = getFinalReduction($reductionRayon);
-        $prixTotal = $prixTotal + (($c->quantite()*$concerner->prixUnit()) - $reductionRayon);
+        if($concerner->reduction() != 0){
+            $reductionRayon = (($concerner->prixUnit())*$concerner->reduction()/100);
+            $reductionRayon = getFinalReduction($reductionRayon);
+            $prixTotal = $prixTotal + (($c->quantite()*$concerner->prixUnit()) - ($c->quantite()*$reductionRayon));
+        }else{
+            $prixTotal = $prixTotal + (($c->quantite()*$concerner->prixUnit()));
+        }
     }
     $quantite_total_produitRetour = $quantite_produitRetour;
     $data[] = array(

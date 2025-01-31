@@ -687,6 +687,127 @@ $(document).ready(function () {
         }
     });
 
+    $("#taux").change(function () {
+        var prixTotal = 0;
+        var prixReduit = 0;
+
+        if ($("#check_reductionGenerale").is(":checked")) {
+
+            if ($("#select_vente_client").val() != 0) {
+
+                $('#message-box-danger p').html("Impossible d'appliquer le taux quand un client est sélectionné !!!");
+                $("#message-box-danger").modal("show");
+                setTimeout(function () {
+                    $("#message-box-danger").modal("hide");
+                }, 3000);
+                if ($("#check_reductionGenerale").is(":checked")) {
+                    $('#check_reductionGenerale').prop("checked", false);
+                }
+
+            } else {
+                $('#tab_vente  tr').each(function (i) {
+                    var id1 = $(this).attr("id");
+                    var prix, qte;
+                    ////alert(id1);
+
+                    $("#" + id1 + " td").each(function (j) {
+                        ////alert($(this).html());
+                        if (j == 1) {
+                            prix = parseInt($(this).html());
+                        }
+                        if (j == 2) {
+                            qte = parseInt($(this).html());
+                            prixTotal = prixTotal + (prix * qte);
+                        }
+                        if (j == 4) {
+                            var reduction = parseInt($(this).html());
+
+                            if (parseInt($('#taux').val()) >= reduction) {
+                                //reduction = reduction;
+
+                            } else {
+                                reduction = parseInt($('#taux').val());
+                            }
+
+                            prixReduit = prixReduit + ((prix * qte) * reduction / 100);
+                        }
+
+                    });
+
+                });
+                if (prixReduit > parseInt($("#taux").attr("name"))) {
+                    $('#message-box-danger p').html('Taux supérieur à la limite de réduction mensuelle du client');
+                    $("#message-box-danger").modal("show");
+                    setTimeout(function () {
+                        $("#message-box-danger").modal("hide");
+                    }, 3000);
+                    prixReduit = 0;
+                    if ($("#check_reductionGenerale").is(":checked")) {
+                        $('#check_reductionGenerale').prop("checked", false);
+                    }
+                }
+
+
+                var reductionData = Math.ceil((prixReduit / 5) * 5) + "";
+                //console.log(reductionData)
+                var firstData = reductionData.substr(0, reductionData.length - 2).toString();
+                //console.log(firstData)
+                var lastData = "";
+                var finalReductionTotal = 0;
+                if (reductionData.length >= 2) {
+                    var second = parseInt(reductionData.substr(reductionData.length - 2));
+                    //console.log(second)
+                    if (second < 100 && second >= 75) {
+                        lastData = "75";
+                    } else if (second < 75 && second >= 50) {
+                        lastData = "50";
+                    } else if (second < 50 && second >= 25) {
+                        lastData = "25";
+                    } else if (second < 25 && second >= 0) {
+                        lastData = "00";
+                    }
+                    finalReductionTotal = parseInt(firstData + lastData);
+                }
+                prixReduit = (finalReductionTotal);
+                var finalNetTotal = (-finalReductionTotal + prixTotal);
+
+                $('#prixTotal').html(prixTotal);
+                $('#prixReduit').html(prixReduit);
+                $('#netTotal').html(finalNetTotal);
+            }
+
+        } else {
+
+            $('#tab_vente  tr').each(function (i) {
+                var id1 = $(this).attr("id");
+                var prix, qte;
+                ////alert(id1);
+
+                $("#" + id1 + " td").each(function (j) {
+                    ////alert($(this).html());
+                    if (j == 1) {
+                        prix = parseInt($(this).html());
+                    }
+                    if (j == 2) {
+                        qte = parseInt($(this).html());
+                        prixTotal = prixTotal + (prix * qte);
+                    }
+                    if (j == 4) {
+                        var reduction = parseInt($(this).attr("data"));
+
+                        prixReduit = prixReduit + ((prix * qte) * reduction / 100);
+                    }
+
+                });
+
+            });
+
+            $('#prixTotal').html(prixTotal);
+            $('#prixReduit').html(0);
+            $('#netTotal').html((prixTotal));
+        }
+    });
+
     $('#search-reference-produit').keyup(function () {
         $.ajax({
             type: "POST",

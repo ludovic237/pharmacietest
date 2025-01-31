@@ -223,7 +223,13 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Taux:</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" readonly name="<?php echo $_SESSION['Users']->faireReductionMax; ?>" id="taux" value="10" />
+                                    <select class="form-control selectpicker" id="taux" name="<?php echo $_SESSION['Users']->faireReductionMax; ?>">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

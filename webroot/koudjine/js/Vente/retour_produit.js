@@ -65,7 +65,7 @@ function load_produit_retour(en_rayon_id, vente_id) {
     var prix = $("#R" + en_rayon_id + " .prix").html();
     var prixTotal = 0, prixReduit = 0, reductionRayon = 0, nom = $("#R" + en_rayon_id + " .nom").html();
     //alert(qte);
-    reductionRayon = ((prix*qte)*reduc/100);
+    reductionRayon = ((prix)*reduc/100);
     var reductionData = Math.ceil((reductionRayon / 5) * 5) + "";
     //console.log(reductionData)
     var firstData = reductionData.substr(0, reductionData.length - 2).toString();
