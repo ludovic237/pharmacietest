@@ -87,6 +87,7 @@ if (isset($_POST['id'])) {
             "prixTotal" => $v->prixTotal(),
             "prixPercu" => $v->prixPercu(),
             "dateVente" => $v->dateVente(),
+            "dateEncaissement" => $v->dateEncaissement(),
             "reste"=>$reste,
             "etat" => $v->etat(),
             "reference" =>  $v->reference(),
