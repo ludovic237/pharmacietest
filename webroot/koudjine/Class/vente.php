@@ -517,10 +517,21 @@ class VenteManager
         return $ventes;
     }
 
-    public function getListCaisseCompleteCredit($id)
+    public function getListCaisseCompleteCreditdateF( $start, $end)
     {
         $ventes = array();
-        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 AND caisse_id = '.$id.' AND etat = "Crédit"  ORDER BY dateVente DESC');
+        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 AND dateVente BETWEEN DATE_SUB( "' . $start . '",INTERVAL 0  MONTH) AND DATE_SUB( "' . $end . '",INTERVAL 0  MONTH ) AND etat = "Crédit"  ORDER BY dateVente DESC');
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $ventes[] = new Vente($donnees);
+        }
+        return $ventes;
+    }
+    public function getListCaisseCompleteCreditdateNow( $start)
+    {
+        $ventes = array();
+        $q = $this->_db->prepare('SELECT * FROM vente WHERE supprimer = 0 AND dateVente BETWEEN DATE_SUB( "' . $start . '",INTERVAL 0  MONTH) AND DATE_SUB( now() ,INTERVAL 0  MONTH ) AND etat = "Crédit"  ORDER BY dateVente DESC');
         $q->execute();
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {

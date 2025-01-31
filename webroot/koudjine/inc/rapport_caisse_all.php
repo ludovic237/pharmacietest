@@ -134,14 +134,19 @@ foreach ($ventes as $key => $v) {
 $caisse = $managerCa->getId($id);
 //recap vente par type de vente
 // vente Comptant
+
 $ventesComptant = $managerVente->getListCaisseCompleteComptant($id);
 foreach ($ventesComptant as $k => $v) :
     //if ($v->prixPercu()>0){
         $totalVenteComptant = $totalVenteComptant + ($v->prixTotal());
     //}
 endforeach;
+if($caisse->dateFerme() != null || $caisse->dateFerme() != ''){
+    $ventesCredit = $managerVente->getListCaisseCompleteCreditdateF($caisse->dateOuvert(),$caisse->dateFerme());
+}else{
+    $ventesCredit = $managerVente->getListCaisseCompleteCreditdateNow($caisse->dateOuvert());
+}
 
-$ventesCredit = $managerVente->getListCaisseCompleteCredit($id);
 foreach ($ventesCredit as $k => $v) :
     //if ($v->prixPercu()>0){
     $totalVenteCredit = $totalVenteCredit + ($v->prixTotal());
