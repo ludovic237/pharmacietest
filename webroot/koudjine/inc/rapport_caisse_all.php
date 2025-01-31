@@ -275,8 +275,15 @@ foreach ($ventesEncaissementCredit as $k => $v) :
     $totalVenteEncaissementCredit = $totalVenteEncaissementCredit + ($v->prixTotal());
     //}
     if ($v->user_id() != NULL) {
-        $user = $managerUs->get($managerEm->get($v->user_id())->user_id());
-        $client = $user->nom() . ' ' . $user->prenom();
+//        if (!$managerEm->get($v->user_id())){
+//            $user = $managerUs->get($managerEm->get($v->user_id())->user_id());
+//            $client = $user->nom() . ' ' . $user->prenom();
+//        }
+//        else{
+            $user = $managerUs->get($v->user_id());
+            $client = $user->nom() . ' ' . $user->prenom();
+//        }
+
     } else {
         $client = 'Client pas enregistré';
     }
@@ -285,6 +292,7 @@ foreach ($ventesEncaissementCredit as $k => $v) :
         "id" => $v->id(),
         "reference" => $v->reference(),
         "prixPercu" => $v->prixTotal(),
+        "prixTotal" => $v->prixTotal(),
         "client" => $client,
         'dateVente' => $v->dateVente()
     );
