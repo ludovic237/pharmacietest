@@ -960,6 +960,7 @@ function valider_vente(type, etat) {
                         count++;
                     });
                     console.log(count);
+                    var reduction;
 
                     $('#tab_vente  tr').each(function (i) {
                         id1 = $(this).attr("id");
@@ -975,7 +976,7 @@ function valider_vente(type, etat) {
                                 type = $(this).html();
                             }
                             if (j == 4) {
-                                var reduction = parseInt($(this).attr("data"));
+                                 reduction = parseInt($(this).attr("data"));
                                 //alert(reduction);
                                 if ($("#select_vente_client").val() == 0 || $(".select_client").val() != 2) {
                                     reduction = 0;
@@ -1016,7 +1017,7 @@ function valider_vente(type, etat) {
                                 prixu: prix,
                                 qte: qte,
                                 type: type,
-                                reduction: prixr,
+                                reduction: reduction,
                                 etat: etat
                             },
                             success: function (server_responce) {
