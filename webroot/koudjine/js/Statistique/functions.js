@@ -918,9 +918,9 @@ function showRapportCaisse(id, session) {
     //         id: caisse_id
     //     },
     //     error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+    //             loader(false);
+    //         },
+            // success: function (server_responce) {
     //         //alert(server_responce);
 
     //         $('#tab_RapportDepense').empty();
@@ -938,9 +938,9 @@ function showRapportCaisse(id, session) {
     //         id: caisse_id
     //     },
     //     error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+    //             loader(false);
+    //         },
+    //         success: function (server_responce) {
     //         //alert(server_responce);
 
     //         $('#tab_RapportBon').empty();
@@ -1078,6 +1078,20 @@ function showRapportTest(id) {
 
             //alert(data)
             //recap vente par fournisseur
+
+            $('#solde_systeme_espece').html(data.solde_systeme_espece + '');
+            $('#solde_systeme_electronique').html(data.solde_systeme_electronique + '');
+            $('#solde_systeme_ticket').html(data.solde_systeme_ticket + '');
+            $('#solde_reel_espece').html(data.solde_reel_espece + '');
+            $('#solde_reel_electronique').html(data.solde_reel_electronique + '');
+            $('#solde_reel_ticket').html(data.solde_reel_ticket + '');
+            $('#solde_diff_espece').html(data.solde_diff_espece + '');
+            $('#solde_diff_electronique').html(data.solde_diff_electronique + '');
+            $('#solde_diff_ticket').html(data.solde_diff_ticket + '');
+            $('#solde_reel_total').html(data.solde_reel_total + '');
+            $('#solde_systeme_total').html(data.solde_systeme_total + '');
+            $('#solde_diff_total').html(data.solde_diff_total + '');
+
             $("#rapport_vente_fournisseur_grossiste").html(data.vente_fg);
             $("#rapport_vente_fournisseur_detaillant").html(data.vente_fd);
             $("#rapport_vente_produit_detaille").html(data.vente_fpd);

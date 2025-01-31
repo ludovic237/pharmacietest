@@ -380,22 +380,82 @@ if (isset($id)) {
                                         </div>
                                         <div class="panel-body panel-body-table">
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped">
+<!--                                                <table class="table table-bordered table-striped">-->
+<!--                                                    <thead>-->
+<!--                                                    <tr>-->
+<!--                                                        <th>Solde réel en caisse</th>-->
+<!--                                                        <th>Solde système</th>-->
+<!--                                                        <th>Différence</th>-->
+<!--                                                    </tr>-->
+<!--                                                    </thead>-->
+<!--                                                    <tbody>-->
+<!--                                                    <tr>-->
+<!--                                                        <td id="rapport_ec_solde_reel">0</td>-->
+<!--                                                        <td id="rapport_ec_solde_system">-->
+<!--                                                            0-->
+<!--                                                        </td>-->
+<!--                                                        <td id="rapport_ec_difference">-->
+<!--                                                            0-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                    </tbody>-->
+<!--                                                </table>-->
+                                                <table border="1" class="table table-bordered table-striped">
                                                     <thead>
                                                     <tr>
-                                                        <th>Solde réel en caisse</th>
+                                                        <th></th>
+                                                        <th>Solde réel</th>
                                                         <th>Solde système</th>
                                                         <th>Différence</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     <tr>
-                                                        <td id="rapport_ec_solde_reel">0</td>
-                                                        <td id="rapport_ec_solde_system">
-                                                            0
+                                                        <td>Espèce</td>
+                                                        <td>
+                                                            <span id="solde_reel_espece">0</span>
                                                         </td>
-                                                        <td id="rapport_ec_difference">
-                                                            0
+                                                        <td >
+                                                             <span id="solde_systeme_espece">0</span>
+                                                        </td>
+                                                        <td >
+                                                             <span id="solde_diff_espece">0</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Electronique</td>
+                                                        <td >
+                                                            <span id="solde_reel_electronique">0</span>
+                                                        </td>
+                                                        <td >
+                                                            <span id="solde_systeme_electronique">0</span>
+                                                        </td>
+                                                        <td >
+                                                            <span id="solde_diff_electronique">0</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>BESC</td>
+                                                        <td >
+                                                            <span id="solde_reel_ticket">0</span>
+                                                        </td>
+                                                        <td >
+                                                            <span id="solde_systeme_ticket">0</span>
+                                                        </td>
+                                                        <td >
+                                                            <span id="solde_diff_ticket">0</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total</td>
+                                                        <td >
+                                                            <span id="solde_reel_total">0</span>
+                                                        </td>
+                                                        <td >
+                                                            <span id="solde_systeme_total">0</span>
+                                                        </td>
+                                                        <td >
+                                                            <span id="solde_diff_total">0</span>
                                                         </td>
                                                     </tr>
                                                     </tbody>

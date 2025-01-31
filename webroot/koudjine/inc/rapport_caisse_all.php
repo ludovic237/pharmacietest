@@ -522,6 +522,18 @@ $montantFermeture = $managerCa->getId($id)->fondCaisseFerme();
 $montantSystem = ($totalfacturationEspece + $totalboncaisseGenerer) - ($totalboncaisseEncaisser + $totalDepense + $prixTotalRetourProduit);
 $differnce = $montantFermeture - $montantSystem;
 
+$solde_reel_espece=0;
+$solde_systeme_espece=$totalfacturationEspece+$totalboncaisseGenerer-($totalDepense+$prixTotalProduitDetail+($totalboncaisseEncaisser-$totalfacturationTicket));
+$solde_diff_espece=0;
+$solde_reel_electronique=0;
+$solde_systeme_electronique=$totalfacturationElectronique;
+$solde_diff_electronique=0;
+$solde_reel_ticket=0;
+$solde_systeme_ticket=$totalboncaisseEncaisser;
+$solde_diff_ticket=0;
+$solde_reel_total=$solde_reel_espece+$solde_reel_electronique+$solde_reel_ticket;
+$solde_systeme_total=$solde_systeme_espece+$solde_systeme_electronique+$solde_systeme_ticket;
+$solde_diff_total=$solde_diff_espece+$solde_diff_electronique+$solde_diff_ticket;
 
 $donnees = array(
     'vente_fg' => $prixGrossite,
@@ -554,6 +566,18 @@ $donnees = array(
     'date_ouverture' => $caisse->dateOuvert(),
     'date_fermeture' => $caisse->dateFerme(),
     'etat' => $caisse->etat(),
+    'solde_systeme_espece' => $solde_systeme_espece,
+    'solde_systeme_electronique' => $solde_systeme_electronique,
+    'solde_systeme_ticket' => $solde_systeme_ticket,
+    'solde_reel_espece' => $solde_reel_espece,
+    'solde_reel_electronique' => $solde_reel_electronique,
+    'solde_reel_ticket' => $solde_reel_ticket,
+    'solde_diff_espece' => $solde_diff_espece,
+    'solde_diff_electronique' => $solde_diff_electronique,
+    'solde_diff_ticket' => $solde_diff_ticket,
+    'solde_reel_total' => $solde_reel_total,
+    'solde_systeme_total' => $solde_systeme_total,
+    'solde_diff_total' => $solde_diff_total,
 
 );
 echo json_encode($donnees);
