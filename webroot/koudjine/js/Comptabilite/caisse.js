@@ -790,7 +790,8 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                     $('#rowmontantespece').show();
                     $('#rowmontantticket').show();
                 }
-                if ($montant_espece==null || $montant_espece==0){
+                console.log()
+                if (!montant_espece ||montant_espece==null || montant_espece==0){
                     $('#message-box-danger p').html('Veuillez entrer un montant en espece!!!');
                     $("#message-box-danger").modal("show");
                     setTimeout(function () {
