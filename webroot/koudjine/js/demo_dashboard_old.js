@@ -30,7 +30,10 @@ $(function () {
                     end:b_
                 },
                 dataType: 'json',
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     console.log(server_responce);
                     console.log(server_responce.venteTotal);
                     // $('#nbrVente').html(server_responce.venteTotal);

@@ -40,7 +40,10 @@ $(document).ready(function () {
                     end: b_
                 },
                 // dataType: 'json',
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     if (server_responce != null) {
                         var datas = JSON.parse(server_responce);
                         var _somme = 0;
@@ -129,6 +132,9 @@ $(document).ready(function () {
                 end: b_
             },
             // dataType: 'json',
+            error: function (e) {
+                loader(false);
+            },
             success: function (server_responce) {
                 if (server_responce != null) {
                     var datas = JSON.parse(server_responce);
@@ -238,7 +244,10 @@ $(document).ready(function () {
                     end: b_
                 },
                 // dataType: 'json',
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     var datas = JSON.parse(server_responce);
                     $('#caisseTotal').html(datas.totalEncaisse);
                     if ($.fn.dataTable.isDataTable('#tableCaisse')) {
@@ -371,6 +380,9 @@ $(document).ready(function () {
                 end: b_
             },
             // dataType: 'json',
+            error: function (e) {
+                loader(false);
+            },
             success: function (server_responce) {
                 var datas = JSON.parse(server_responce);
                 $('#caisseTotal').html(datas.totalEncaisse);
@@ -504,7 +516,10 @@ function getGroupStatistique() {
             end: b_
         },
         // dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             if (server_responce != null) {
                 var datas = JSON.parse(server_responce);
 
@@ -592,7 +607,10 @@ function getGroupStatistiqueCaisse() {
             end: b_
         },
         // dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             var datas = JSON.parse(server_responce);
             $('#caisseTotal').html(datas.totalEncaisse);
             if ($.fn.dataTable.isDataTable('#tableCaisse')) {
@@ -719,7 +737,10 @@ function showVenteCaisse(id, total, session) {
         data: {
             id: id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             var datas = JSON.parse(server_responce);
             $('#dateOuvertRapportVente').html(moment(datas.data.dateOuvert).format("DD/MMM/YYYY"));
             $('#dateFermeRapportVente').html(moment(datas.data.dateFerme).format("DD/MMM/YYYY"));
@@ -889,7 +910,10 @@ function showRapportCaisse(id,session) {
         data: {
             id: id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             var datas = JSON.parse(server_responce);
             $('#datesRapport').html(moment(datas.data.dateFerme).format("DD/MMM/YYYY"));
             $('#heuresRapport').html(moment(datas.data.dateFerme).format("hh:mm"));
@@ -910,7 +934,10 @@ function showRapportCaisse(id,session) {
         data: {
             id: caisse_id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(server_responce);
 
             $('#tab_RapportDepense').empty();
@@ -927,7 +954,10 @@ function showRapportCaisse(id,session) {
         data: {
             id: caisse_id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(server_responce);
 
             $('#tab_RapportBon').empty();
@@ -1013,7 +1043,10 @@ function reimprime_ticket_caisse(id) {
             id: id
         },
         dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer2  tr').each(function (i) {

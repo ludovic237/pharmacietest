@@ -83,7 +83,10 @@ $(document).ready(function () {
                         motclef1: recherche,
                         idf: $('#fournisseur_commande').val(),
                     },
-                    success: function (server_responce) {
+                    error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                         $("#tab_GCrecherche").show();
                         $("#tab_BCrecherche").html(server_responce).show();
                         ////alert(server_responce);
@@ -507,7 +510,10 @@ function valider_commande(imprimer) {
                                 ug: ug,
                                 reduction: reduction
                             },
-                            success: function (server_responce) {
+                            error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                                 //alert(server_responce);
                                 //alert(idc);
                                 //alert("OK");

@@ -263,7 +263,10 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                     type: "GET",
                     url: "/pharmacietest/koudjine/inc/result.php",
                     data: data,
-                    success: function (server_responce) {
+                    error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                         $("#tab_Grecherche").show();
                         $("#tab_Brecherche").html(server_responce).show();
                         ////alert(server_responce);
@@ -287,7 +290,10 @@ $(document).ready(function () { 	// le document est charg鍊   $("a").click(func
                 type: "GET",
                 url: "/pharmacietest/koudjine/inc/result_entre.php",
                 data: data,
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     $("#tab_GrechercheEntre").show();
                     $("#tab_BRechercheEntre").html(server_responce).show();
                     //alert(server_responce);
@@ -346,7 +352,10 @@ function envoyer_en_caisse(vente_id, caisse_id) {
             caisse_id: caisse_id,
             vente_id: vente_id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(server_responce);
             var link = '/pharmacietest/bouwou/comptabilite/caisse';
             window.location.href = link;

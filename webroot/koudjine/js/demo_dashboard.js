@@ -14,7 +14,10 @@ $(document).ready(function () {
             end: b_
         },
         dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             console.log(server_responce);
             $('#quantiteEntre').html(server_responce.totalquantiteEnteeRange).show();
             $('#prixEntre').html(server_responce.totalprixEnteeRange).show();
@@ -34,7 +37,10 @@ $(document).ready(function () {
             end: b_
         },
         dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             console.log(server_responce);
             console.log(server_responce.con);
             assurance = server_responce.assurance.total;
@@ -148,7 +154,10 @@ $(function () {
                     end: b_
                 },
                 dataType: 'json',
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     console.log(server_responce);
                     console.log(server_responce.con);
                     assurance = server_responce.assurance.total;
@@ -255,7 +264,10 @@ $(function () {
                     end: b_
                 },
                 dataType: 'json',
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     console.log(server_responce);
                     $('#quantiteEntre').html(server_responce.totalquantiteEnteeRange).show();
                     $('#prixEntre').html(server_responce.totalprixEnteeRange).show();

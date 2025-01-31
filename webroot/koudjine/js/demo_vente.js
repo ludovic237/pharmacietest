@@ -37,7 +37,10 @@ $(function () {
                         idemploye: 0
                     },
                     // dataType: 'json',
-                    success: function (server_responce) {
+                    error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                         console.log(server_responce);
                         $('#tab_employe_id').html(server_responce);
 
@@ -60,7 +63,10 @@ $(function () {
                         idemploye: idemploye
                     },
                     // dataType: 'json',
-                    success: function (server_responce) {
+                    error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                         console.log(server_responce);
                         $('#tab_employe_id').html(server_responce);
 

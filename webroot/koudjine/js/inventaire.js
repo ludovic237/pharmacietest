@@ -101,7 +101,10 @@ function valider_row_inventaire(id) {
             employe_id: $("#recherche_inventaire").attr("data"),
             qteRestante: parseInt($("#" + id + " .qte_restante").html())
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(server_responce);
             $('#' + id + ' .valider_inventaire').attr("disabled", "disabled");
             $('#recherche_inventaire').focus();
@@ -129,7 +132,10 @@ function inventorier_row_inventaire(id) {
             employe_id: $("#recherche_inventaire").attr("data"),
             qteRestante: 0
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(server_responce);
             $('#' + id + ' .inventorier_inventaire').attr("disabled", "disabled");
             $('#' + id + ' .exclure_inventaire').attr("disabled", "disabled");
@@ -156,7 +162,10 @@ function exclure_row_inventaire(id) {
         data: {
             id: id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(server_responce);
             $('#' + id + ' .exclure_inventaire').attr("disabled", "disabled");
             $('#' + id + ' .inventorier_inventaire').attr("disabled", "disabled");
@@ -193,7 +202,10 @@ function ajouter_row_inventaire() {
             id: id,
             qte: qte
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(id);
             var val = ''+id;
             //alert($('#'+ id + ' .qteinventaire').html());

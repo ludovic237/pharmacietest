@@ -76,7 +76,10 @@ function imprimer_com(id, ref, nom) {
         data: {
             id: id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(server_responce);
             //$("#iconPreview .icon-preview").html(icon_preview);
 
@@ -105,7 +108,10 @@ function imprimer_com_recu(id, ref, nom, date, bordereau) {
             id: id,
             option: 'recu'
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             $('#tab_Bcommande_Recu').empty();
             $('#tab_Bcommande_Recu').html(server_responce);
             //alert($('#total_com').attr("data"));
@@ -172,7 +178,10 @@ function receptionner_commande(nbre) {
                         commentaire: $("#commentaire_commande").val(),
                         nbreProduit: nbre
                     },
-                    success: function (server_responce) {
+                    error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                         alert(server_responce);
                         /*if(data1.erreur == 'ok'){
                             var link = '/pharmacietest/users/logout';
@@ -193,7 +202,10 @@ function charger_produit_commande(id, etat, prix, ref, nom, dateC) {
         data: {
             id: id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(server_responce);
             //$("#iconPreview .icon-preview").html(icon_preview);
 
@@ -226,7 +238,10 @@ function charger_all_ticket_commande(id, etat, prix, ref, nom, dateC) {
             ticket: id
         },
         dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             console.log(server_responce.data);
             showAllPrintCmdList(server_responce.data);
 

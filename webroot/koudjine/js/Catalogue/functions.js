@@ -190,7 +190,10 @@ $(document).ready(function () {
                 type: "GET",
                 url: "/pharmacietest/koudjine/inc/resultdetail.php",
                 data: data,
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
 
                     $("#tab_produit_detail").show();
                     $("#tab_produit_detail_data").html(server_responce).show();

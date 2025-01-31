@@ -12,7 +12,10 @@ $(document).ready(function(){
                 type: "GET",
                 url: "/pharmacietest/koudjine/inc/result_produit_grossiste.php",
                 data: data,
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     $("#tab_Grecherche_grossiste").show();
                     $("#tab_Brecherche_grossiste").html(server_responce).show();
                     ////alert(server_responce);

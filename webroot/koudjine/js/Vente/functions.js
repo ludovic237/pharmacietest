@@ -389,7 +389,10 @@ $(document).ready(function () {
                     type: "GET",
                     url: "/pharmacietest/koudjine/inc/result.php",
                     data: data,
-                    success: function (server_responce) {
+                    error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                         $("#tab_Grecherche").show();
                         $("#tab_Brecherche").html(server_responce).show();
                         ////alert(server_responce);
@@ -415,7 +418,10 @@ $(document).ready(function () {
                     idemploye: 0
                 },
                 // dataType: 'json',
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     console.log(server_responce);
                     $('#tab_employe_id').html(server_responce);
 
@@ -433,7 +439,10 @@ $(document).ready(function () {
                     idemploye: idemploye
                 },
                 // dataType: 'json',
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     //console.log(server_responce);
                     $('#tab_employe_id').html(server_responce);
 
@@ -1035,7 +1044,10 @@ function valider_vente(type, etat) {
                                 reduction: reduction,
                                 etat: etat
                             },
-                            success: function (server_responce) {
+                            error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                                 console.log(server_responce);
                                 rec++;
                                 console.log(rec);
@@ -1075,7 +1087,10 @@ function valider_vente(type, etat) {
                                                 id: idv
                                             },
                                             dataType: 'json',
-                                            success: function (server_responce) {
+                                            error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                                                 let ventes = server_responce.data;
                                                 //$("#iconPreview .icon-preview").html(icon_preview);
                                                 $('#prixTotal').html(0);
@@ -1411,7 +1426,10 @@ function reimprime_ticket_caisse(id) {
             id: id
         },
         dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             let ventes = server_responce.data;
             qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
                 width: 90,

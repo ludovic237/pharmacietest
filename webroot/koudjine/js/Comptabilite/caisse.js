@@ -24,7 +24,10 @@ $(document).ready(function () {
                     val: $(this).val(),
                     type: "check"
                 },
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
 
                     if (server_responce == "OK") {
                         var cat = '<span class="label label-success">Code valide</span>';
@@ -47,7 +50,10 @@ $(document).ready(function () {
                     val: $(this).val(),
                     type:"check"
                 },
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     if (server_responce == "OK") {
                         alert("Success");
                         document.getElementById("btn_encaissement").disabled = false;
@@ -317,7 +323,10 @@ function encaisser_bon_caisse() {
             caisse_id: $("#tab_GBonCaisse").attr("data"),
             dateEncaisser: dateEncaisser
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             if (server_responce == "OK") {
                 document.getElementById("btn_encaissement").disabled = true;
                 noty({text: 'Encaissement effectué', layout: 'topRight', type: 'success'});
@@ -351,7 +360,10 @@ function encaisser_liste_bon(bon_id) {
             montant: null,
             dateEncaisser: dateEncaisser
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(server_responce);
 
             $("#bon" + bon_id).hide("slow");
@@ -377,7 +389,10 @@ function newDate() {
             end: b_
         },
         dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             console.log(server_responce);
         }
 
@@ -503,7 +518,10 @@ function reimprime_ticket_caisse(id) {
             id: id
         },
         dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer2  tr').each(function (i) {
@@ -546,7 +564,10 @@ function open_depense(caisse_id) {
             id: caisse_id,
             type: "open"
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             $('#tab_Gdepense').empty();
             $('#tab_Gdepense').html(server_responce);
             var total, prixTotal = 0, qteTotal = 0;
@@ -582,7 +603,10 @@ function modify_depense(caisse_id) {
             id: caisse_id,
             type: "modify"
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
 
             $('#tab_Gdepense').empty();
             $('#tab_Gdepense').html(server_responce);
@@ -814,7 +838,10 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                             typePaiement: typePaiement,
                             caisse_id: parseInt(caisse_id)
                         },
-                        success: function (server_responce) {
+                        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                             // alert(server_responce);
                             if (typePaiement == 'Mixte Espèce' || typePaiement == 'Mixte Electronique' || typePaiement == 'Mixte Ticketcaisse') {
                                 console.log('payement mixte');
@@ -845,7 +872,10 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                             vente_id: vente_id,
                                             qte: qte
                                         },
-                                        success: function (server_responce) {
+                                        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                                             console.log(server_responce);
                                             rec++;
                                             rafraichir_vente(caisse_id);
@@ -948,7 +978,10 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                     typePaiement: typePaiement,
                     caisse_id: parseInt(caisse_id)
                 },
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     //alert(server_responce);
                     if (typePaiement == 'Mixte Espèce' || typePaiement == 'Mixte Electronique' || typePaiement == 'Mixte Ticketcaisse') {
                         console.log('payement mixte');
@@ -984,7 +1017,10 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                     vente_id: vente_id,
                                     qte: qte
                                 },
-                                success: function (server_responce) {
+                                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                                     console.log(server_responce);
                                     rec++;
                                     rafraichir_vente(caisse_id);
@@ -1084,7 +1120,10 @@ function valider_une_depense() {
             qte: parseInt($("#-1 .qte").val()),
             prix: parseInt($("#-1 .prix").val())
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             //alert(server_responce);
             $.ajax({
                 type: "POST",
@@ -1092,7 +1131,10 @@ function valider_une_depense() {
                 data: {
                     id: caisse_id
                 },
-                success: function (server_responce) {
+                error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
                     //alert(server_responce);
 
                     $('#tab_RapportDepense').empty();
@@ -1136,6 +1178,9 @@ function valider_depense(caisse_id) {
                 qte: parseInt($("#" + id1 + " .qte").val()),
                 prix: parseInt($("#" + id1 + " .prix").val())
             },
+            error: function (e) {
+                loader(false);
+            },
             success: function (server_responce) {
 
                 //alert(server_responce);
@@ -1164,7 +1209,10 @@ function rafraichir_vente(id) {
         data: {
             id: id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             $('#tab_caisse').empty();
             $('#tab_caisse').html(server_responce);
 
@@ -1185,7 +1233,10 @@ function rafraichir_vente_data(id) {
         data: {
             id: id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             $('#tab_caisse').empty();
             $('#tab_caisse').html(server_responce);
 
@@ -1209,6 +1260,9 @@ function delete_row_caisse(row, e){
             url: "/pharmacietest/koudjine/inc/supprimer_vente.php",
             data: {
                 id: row
+            },
+            error: function (e) {
+                loader(false);
             },
             success: function (server_responce) {
                 console.log(server_responce);
@@ -1253,7 +1307,10 @@ function charger_vente(id) {
             id: id
         },
         dataType: 'json',
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_GGBfactureImprimer  tr').each(function (i) {
@@ -1308,6 +1365,9 @@ function valider_fermeture(caisse_id) {
             data: {
                 id: caisse_id,
             },
+            error: function (e) {
+                loader(false);
+            },
             success: function (server_responce) {
 
                 //alert(server_responce);
@@ -1325,6 +1385,9 @@ function valider_fermeture(caisse_id) {
                 id: caisse_id,
                 fermetureCaisse: detail_piece_billet,
                 fondCaisse: total,
+            },
+            error: function (e) {
+                loader(false);
             },
             success: function (server_responce) {
 
@@ -1357,7 +1420,10 @@ function valider_rapport() {
             id: caisse_id,
             etat: 'Clot'
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
 
             //alert(server_responce);
             var link = '/pharmacietest/users/logout';
@@ -1673,13 +1739,14 @@ function selectemploye(val, id) {
 }
 
 function close_caisse_row_valide(user_id) {
-
+    loader(true)
     var total = parseInt($('.totalaisse').html());
     var detail_piece_billet = ($("#argent_1").val()) + "-" + ($("#argent_2").val()) + "-" + ($("#argent_3").val()) + "-" + ($("#argent_4").val()) + "-" + ($("#argent_5").val()) + "-" + ($("#argent_6").val()) + "-" + ($("#argent_7").val()) + "-" + ($("#argent_8").val()) + "-" + ($("#argent_9").val()) + "-" + ($("#argent_10").val());
     var session = $('.session option:selected').text();
 
     if (total == 0) {
         //alert("Veuillez saisir votre fond de caisse")
+        loader(false)
     } else {
         $.ajax({
             type: "POST",
@@ -1691,8 +1758,11 @@ function close_caisse_row_valide(user_id) {
                 fondCaisse: total,
                 etat: "Ouvert",
             },
+            error: function (e) {
+                loader(false);
+            },
             success: function (server_responce) {
-
+                loader(true)
                 ////alert(server_responce);
                 var link = '/pharmacietest/bouwou/comptabilite/caisse';
                 window.location.href = link;
@@ -1713,7 +1783,10 @@ function close_caisse_row(id) {
         data: {
             id: id
         },
-        success: function (server_responce) {
+        error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
             console.log("server_responce");
             console.log(server_responce);
             server_responce = JSON.parse(server_responce);
