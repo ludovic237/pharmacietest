@@ -1465,7 +1465,7 @@ function liste_caisse(id) {
                         }
                     },
                     {
-                        "data": "dateVente", "bSortable": false, "render": function (data, type, row) {
+                        "data": "dateEncaissement", "bSortable": false, "render": function (data, type, row) {
                             return '<strong class="datevte">' + data + '</strong>';
                         }
                     },

@@ -30,7 +30,7 @@ $id = $_POST['id'];
 
 
 if (isset($_POST['id'])) {
-    $ventes = $manager->getListCaisseComplete($id);
+    $ventes = $manager->getListCaisseCompleteEncaissement($id);
     $count = 0;
     $reste=0;
     $typefacturation = "No exist";
