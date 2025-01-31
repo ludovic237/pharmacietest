@@ -1486,17 +1486,21 @@ function imprime_ticket(id, montantespece,
         dataType: 'json',
         success: function (server_responce) {
             let ventes = server_responce.data;
+            $('#qrcodeTicket').empty();
             console.log("server_responce");
             console.log(server_responce);
-            $('#iconPreviewFacture .reference').html(server_responce.reference+'');
-            $('#iconPreviewFacture .datevente').html(server_responce.datevente+'');
-            $('#iconPreviewFacture .heurevente').html(server_responce.heurevente+'');
-            $('#iconPreviewFacture .vendeur').html(server_responce.vendeur+'');
-            $('#iconPreviewFacture .acheteur').html(server_responce.acheteur+'');
-            $('#iconPreviewFacture .netapayer').html(server_responce.netapayer+'');
-            $('#iconPreviewFacture .montanttotal').html(server_responce.montanttotal+'');
-            $('#iconPreviewFacture .montantrendu').html(server_responce.montantrendu+'');
-            $('#iconPreviewFacture .remise').html(server_responce.remise+'');
+            $('#iconPreviewFacture .reference').html(server_response.reference+'');
+            $('#iconPreviewFacture .datevente').html(server_response.datevente+'');
+            $('#iconPreviewFacture .heurevente').html(server_response.heurevente+'');
+            $('#iconPreviewFacture .dateencaisser').html(server_response.dateencaisser+'');
+            $('#iconPreviewFacture .heureencaisser').html(server_response.heureencaisser+'');
+            $('#iconPreviewFacture .vendeur').html(server_response.vendeur+'');
+            $('#iconPreviewFacture .acheteur').html(server_response.acheteur+'');
+            $('#iconPreviewFacture .netapayer').html(server_response.netapayer+'');
+            $('#iconPreviewFacture .montanttotal').html(server_response.montanttotal+'');
+            $('#iconPreviewFacture .montantrendu').html(server_response.montantrendu+'');
+            $('#iconPreviewFacture .montanttotalencaisser').html(server_response.montanttotalencaisser+'');
+            $('#iconPreviewFacture .remise').html(server_response.remise+'');
 
             qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
                 width: 90,
@@ -1525,6 +1529,10 @@ function imprime_ticket(id, montantespece,
                         </tr>
                     `);
             };
+
+            $('#montantespece').html(server_response.montantfactureEspece);
+            $('#montantelectronique').html(server_response.montantfactureElectronique);
+            $('#montantticket').html(server_response.montantfactureTicket);
             $("#iconPreviewListeCaisse").modal('hide');
             $('#iconPreviewFacture').modal("show");
 
