@@ -357,17 +357,12 @@ if (isset($id)) {
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="4">Total</td>
-                                                        <td id="rapport_total_depense">
-                                                            0
-                                                        </td>
-                                                    </tr>
                                                     </tbody>
                                                 </table>
+                                                <div style="display:flex;padding: 5px">
+                                                    <p style="margin: 0px">Total: <span id="rapport_total_depense"></span></p>
+                                                </div>
                                             </div>
                                         </div>
 

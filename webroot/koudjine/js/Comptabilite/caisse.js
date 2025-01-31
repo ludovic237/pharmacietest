@@ -25,9 +25,9 @@ $(document).ready(function () {
                     type: "check"
                 },
                 error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+                    loader(false);
+                },
+                success: function (server_responce) {
 
                     if (server_responce == "OK") {
                         var cat = '<span class="label label-success">Code valide</span>';
@@ -106,10 +106,10 @@ $(document).ready(function () {
                         code: $("#" + id).val()
                     },
                     dataType: 'json',
-                   error: function (e) {
-                loader(false);
-            },
-            success: function (data) {
+                    error: function (e) {
+                        loader(false);
+                    },
+                    success: function (data) {
                         console.log(data.data);
                         var montantTtc = parseInt($('#facture_caisse').html());
                         if (data.etat != 'Encaisser') {
@@ -201,10 +201,10 @@ $(document).ready(function () {
                         id: recherche
                     },
                     dataType: 'json',
-                   error: function (e) {
-                loader(false);
-            },
-            success: function (data) {
+                    error: function (e) {
+                        loader(false);
+                    },
+                    success: function (data) {
                         //alert(data);
                         if (data.erreur == 'non') {
                             if (data.dateE != null) {
@@ -311,6 +311,7 @@ function showEncaissement() {
 }
 
 function encaisser_bon_caisse() {
+    loader(true);
     var code_encaissement = $("#encaisseCode").val();
     var dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
     console.log('Encaissemnt :' + dateEncaisser + '-' + $("#tab_GBonCaisse").attr("data") + '-' + code_encaissement);
@@ -324,15 +325,17 @@ function encaisser_bon_caisse() {
             dateEncaisser: dateEncaisser
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
+            loader(false);
             if (server_responce == "OK") {
                 document.getElementById("btn_encaissement").disabled = true;
                 noty({text: 'Encaissement effectué', layout: 'topRight', type: 'success'});
                 setTimeout(() => {
                     $("#iconPreviewBonCaisse").modal("show");
                     $("#iconPreviewEncaisserCaisse").modal("hide");
+
                 }, 5000);
 
 
@@ -350,6 +353,7 @@ function encaisser_bon_caisse() {
 
 function encaisser_liste_bon(bon_id) {
     var dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
+    loader(true);
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/gerer_bon_caisse.php',
@@ -361,11 +365,11 @@ function encaisser_liste_bon(bon_id) {
             dateEncaisser: dateEncaisser
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             //alert(server_responce);
-
+            loader(false);
             $("#bon" + bon_id).hide("slow");
 
         }
@@ -390,9 +394,9 @@ function newDate() {
         },
         dataType: 'json',
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             console.log(server_responce);
         }
 
@@ -402,6 +406,8 @@ function newDate() {
 
 
 function gerer_bon_caisse() {
+    $('#codebarreimp').empty();
+    loader(true)
     $('#tab_GBonCaisse  tr').each(function (i) {
         var dateEncaisser, datecode, id1 = $(this).attr("id");
         dateEncaisser = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -430,13 +436,15 @@ function gerer_bon_caisse() {
             $('#codebarrenulimp').html(datecode);
 
             $("#previewImprimerBonCaisse").modal("show");
+            loader(false);
         } else {
 
         }
         if (parseInt(id1) == 0 && $("#" + id1 + " .montant").val() == "") {
             alert("Veuillez entrer le montant");
-        }
-        else {
+            loader(false);
+        } else {
+            loader(true);
             $.ajax({
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/gerer_bon_caisse.php',
@@ -449,10 +457,11 @@ function gerer_bon_caisse() {
                     dateEncaisser: dateEncaisser
                 },
                 dataType: 'json',
-               error: function (e) {
-                loader(false);
-            },
-            success: function (data) {
+                error: function (e) {
+                    loader(false);
+                },
+                success: function (data) {
+                    loader(false);
                     console.log(data);
                     //$('#list_bon_caisse').empty();
                     //Bon de caisse généré
@@ -519,9 +528,9 @@ function reimprime_ticket_caisse(id) {
         },
         dataType: 'json',
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer2  tr').each(function (i) {
@@ -531,7 +540,7 @@ function reimprime_ticket_caisse(id) {
                 }
             });
             for (i in ventes) {
-                
+
                 $('#tab_BfactureImprimer2').prepend(`
                         <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
@@ -541,7 +550,8 @@ function reimprime_ticket_caisse(id) {
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
                         </tr>
                     `);
-            };
+            }
+            ;
             $('#iconPreviewFacture2').modal("show");
 
 
@@ -565,9 +575,9 @@ function open_depense(caisse_id) {
             type: "open"
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             $('#tab_Gdepense').empty();
             $('#tab_Gdepense').html(server_responce);
             var total, prixTotal = 0, qteTotal = 0;
@@ -604,9 +614,9 @@ function modify_depense(caisse_id) {
             type: "modify"
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
 
             $('#tab_Gdepense').empty();
             $('#tab_Gdepense').html(server_responce);
@@ -809,14 +819,13 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                     $('#rowmontantticket').show();
                 }
                 console.log()
-                if (!montant_espece ||montant_espece==null || montant_espece==0){
+                if (!montant_espece || montant_espece == null || montant_espece == 0) {
                     $('#message-box-danger p').html('Veuillez entrer un montant en espece!!!');
                     $("#message-box-danger").modal("show");
                     setTimeout(function () {
                         $("#message-box-danger").modal("hide");
                     }, 3000);
-                }
-                else {
+                } else {
                     console.log("mixte 1");
                     console.log(copytypePaiement);
                     $.ajax({
@@ -839,14 +848,13 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                             caisse_id: parseInt(caisse_id)
                         },
                         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+                            loader(false);
+                        },
+                        success: function (server_responce) {
                             // alert(server_responce);
                             if (typePaiement == 'Mixte Espèce' || typePaiement == 'Mixte Electronique' || typePaiement == 'Mixte Ticketcaisse') {
                                 console.log('payement mixte');
-                            }
-                            else {
+                            } else {
                                 $('#tab_vente_caisse  tr').each(function (i) {
                                     count++;
                                 });
@@ -873,9 +881,9 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                             qte: qte
                                         },
                                         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+                                            loader(false);
+                                        },
+                                        success: function (server_responce) {
                                             console.log(server_responce);
                                             rec++;
                                             rafraichir_vente(caisse_id);
@@ -885,7 +893,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                             console.log(rec);
                                             console.log(imprimer);
                                             if (imprimer && rec == count) {
-                                                imprime_ticket_direct(vente_id,montant_espece,montant_electronique,montant_ticket,reste);
+                                                imprime_ticket_direct(vente_id, montant_espece, montant_electronique, montant_ticket, reste);
                                                 $('#tab_vente_caisse').empty();
                                                 $('#Mixtecaisse1').val();
                                                 $('#Mixtecaisse2').val();
@@ -979,14 +987,13 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                     caisse_id: parseInt(caisse_id)
                 },
                 error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+                    loader(false);
+                },
+                success: function (server_responce) {
                     //alert(server_responce);
                     if (typePaiement == 'Mixte Espèce' || typePaiement == 'Mixte Electronique' || typePaiement == 'Mixte Ticketcaisse') {
                         console.log('payement mixte');
-                    }
-                    else {
+                    } else {
                         $('#tab_vente_caisse  tr').each(function (i) {
                             count++;
                         });
@@ -1018,9 +1025,9 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                     qte: qte
                                 },
                                 error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+                                    loader(false);
+                                },
+                                success: function (server_responce) {
                                     console.log(server_responce);
                                     rec++;
                                     rafraichir_vente(caisse_id);
@@ -1030,7 +1037,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                     console.log(rec);
                                     console.log(imprimer);
                                     if (imprimer && rec == count) {
-                                        imprime_ticket_direct(vente_id,montant_espece,montant_electronique,montant_ticket,reste);
+                                        imprime_ticket_direct(vente_id, montant_espece, montant_electronique, montant_ticket, reste);
                                         $('#tab_vente_caisse').empty();
                                         $(".caisse").val('');
                                     } else {
@@ -1121,9 +1128,9 @@ function valider_une_depense() {
             prix: parseInt($("#-1 .prix").val())
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             //alert(server_responce);
             $.ajax({
                 type: "POST",
@@ -1132,9 +1139,9 @@ function valider_une_depense() {
                     id: caisse_id
                 },
                 error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+                    loader(false);
+                },
+                success: function (server_responce) {
                     //alert(server_responce);
 
                     $('#tab_RapportDepense').empty();
@@ -1210,9 +1217,9 @@ function rafraichir_vente(id) {
             id: id
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             $('#tab_caisse').empty();
             $('#tab_caisse').html(server_responce);
 
@@ -1234,9 +1241,9 @@ function rafraichir_vente_data(id) {
             id: id
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             $('#tab_caisse').empty();
             $('#tab_caisse').html(server_responce);
 
@@ -1248,12 +1255,12 @@ function rafraichir_vente_data(id) {
 
 }
 
-function delete_row_caisse(row, e){
+function delete_row_caisse(row, e) {
     e.preventDefault();
     var box = $("#mb-remove-row");
     box.addClass("open");
 
-    box.find(".mb-control-yes").on("click",function(){
+    box.find(".mb-control-yes").on("click", function () {
         box.removeClass("open");
         $.ajax({
             type: "POST",
@@ -1266,7 +1273,7 @@ function delete_row_caisse(row, e){
             },
             success: function (server_responce) {
                 console.log(server_responce);
-                $("#"+row).hide("slow",function(){
+                $("#" + row).hide("slow", function () {
                     $(this).remove();
                 });
                 $('#tab_vente_caisse').empty();
@@ -1293,12 +1300,12 @@ function charger_vente(id) {
     $('#ticketCaisse .remise').html($("#" + id + " .reduction").html());
     $('#ticketCaisse .montanttotal').html(parseInt($("#" + id + " .reduction").html()) + parseInt($("#" + id + " .prixtotal").html()));
 
-   /* qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
-        width: 90,
-        height: 90
-    });
-    qrcode.clear();
-    qrcode.makeCode(id);*/
+    /* qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+         width: 90,
+         height: 90
+     });
+     qrcode.clear();
+     qrcode.makeCode(id);*/
 
     $.ajax({
         type: "POST",
@@ -1308,9 +1315,9 @@ function charger_vente(id) {
         },
         dataType: 'json',
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             let ventes = server_responce.data;
             $('#tab_vente_caisse').empty();
             $('#tab_GGBfactureImprimer  tr').each(function (i) {
@@ -1322,7 +1329,7 @@ function charger_vente(id) {
             $('#tab_vente_caisse').html(server_responce);
             $('#tab_BfactureImprimer').prepend(server_responce);
             for (i in ventes) {
-                
+
                 $('#tab_vente_caisse').prepend(`
                         <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
@@ -1341,7 +1348,8 @@ function charger_vente(id) {
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
                         </tr>
                     `);
-            };
+            }
+            ;
             $('.Espècecaisse1').focus();
 
 
@@ -1412,6 +1420,7 @@ function open_rapport(id) {
 }
 
 function valider_rapport() {
+    loader(true);
     var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
     $.ajax({
         type: "POST",
@@ -1421,10 +1430,10 @@ function valider_rapport() {
             etat: 'Clot'
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
-
+            loader(false);
+        },
+        success: function (server_responce) {
+            loader(false)
             //alert(server_responce);
             var link = '/pharmacietest/users/logout';
             window.location.href = link;
@@ -1441,54 +1450,54 @@ function liste_caisse(id) {
             id: id
         },
         dataType: 'json',
-       error: function (e) {
-                loader(false);
-            },
-            success: function (data) {
+        error: function (e) {
+            loader(false);
+        },
+        success: function (data) {
             //console.log(data.vente);
             $('#listeVenteId').dataTable({
-                destroy: true,
-                searching: true,
-                dFilter: true,
-                bInfo: true,
-                bPaginate: true,
-                data: data.vente,
-                columns: [
-                    {
-                        "data": "prixTotal", "bSortable": false, "render": function (data, type, row) {
-                            return '<strong class="prixt">' + data + '</strong>';
+                    destroy: true,
+                    searching: true,
+                    dFilter: true,
+                    bInfo: true,
+                    bPaginate: true,
+                    data: data.vente,
+                    columns: [
+                        {
+                            "data": "prixTotal", "bSortable": false, "render": function (data, type, row) {
+                                return '<strong class="prixt">' + data + '</strong>';
+                            }
+                        },
+                        {
+                            "data": "prixPercu", "bSortable": false, "render": function (data, type, row) {
+                                return '<strong class="prixp">' + data + '</strong>';
+                            }
+                        },
+                        {
+                            "data": "dateEncaissement", "bSortable": false, "render": function (data, type, row) {
+                                return '<strong class="datevte">' + data + '</strong>';
+                            }
+                        },
+                        {
+                            "data": "type_paiement", "bSortable": false, "render": function (data, type, row) {
+                                return '<strong class="typePaiement">' + data + '</strong>';
+                            }
+                        },
+                        {
+                            "data": "reference", "bSortable": false, "render": function (data, type, row) {
+                                return '<strong class="reference">' + data + '</strong>';
+                            }
+                        },
+                        {
+                            "data": "etat", "bSortable": false, "render": function (data, type, row) {
+                                return '<a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip"\n' +
+                                    '                                                   data-placement="top" title="Modifier"\n' +
+                                    '                                                   onclick="imprime_ticket(' + row.DT_RowId + ',\'' + row.montantfactureEspece + '\',\'' + row.montantfactureElectronique + '\',\'' + row.montantfactureTicket + '\',\'' + row.reste + '\')">Imprimer ticket</a>';
+                            }
                         }
-                    },
-                    {
-                        "data": "prixPercu", "bSortable": false, "render": function (data, type, row) {
-                            return '<strong class="prixp">' + data + '</strong>';
-                        }
-                    },
-                    {
-                        "data": "dateEncaissement", "bSortable": false, "render": function (data, type, row) {
-                            return '<strong class="datevte">' + data + '</strong>';
-                        }
-                    },
-                    {
-                        "data": "type_paiement", "bSortable": false, "render": function (data, type, row) {
-                            return '<strong class="typePaiement">' + data + '</strong>';
-                        }
-                    },
-                    {
-                        "data": "reference", "bSortable": false, "render": function (data, type, row) {
-                            return '<strong class="reference">' + data + '</strong>';
-                        }
-                    },
-                    {
-                        "data": "etat", "bSortable": false, "render": function (data, type, row) {
-                            return '<a class="btn btn-success btn-rounded btn-sm" data-toggle="tooltip"\n' +
-                                '                                                   data-placement="top" title="Modifier"\n' +
-                                '                                                   onclick="imprime_ticket(' + row.DT_RowId + ',\'' + row.montantfactureEspece + '\',\'' + row.montantfactureElectronique + '\',\'' + row.montantfactureTicket + '\',\'' + row.reste + '\')">Imprimer ticket</a>';
-                        }
-                    }
-                ],
-                    order:[[2,'desc']]
-            }
+                    ],
+                    order: [[2, 'desc']]
+                }
             );
             //$('#listeVenteId').dataTable().order([3,'desc']).draw();
             $("#iconPreviewListeCaisse").modal('show');
@@ -1504,7 +1513,7 @@ function backToModalListVente() {
 
 function imprime_ticket(id, montantespece,
                         montantelectronique,
-                        montantticket,reste) {
+                        montantticket, reste) {
     var datevte = $("#" + id + " .datevte").html();
     var yo = datevte;
     var date = yo.substr(0, 10);
@@ -1562,19 +1571,19 @@ function imprime_ticket(id, montantespece,
             $('#qrcodeTicket').empty();
             console.log("server_response");
             console.log(server_response);
-            $('#iconPreviewFacture .caissier').html(server_response.caissier+'');
-            $('#iconPreviewFacture .reference').html(server_response.reference+'');
-            $('#iconPreviewFacture .datevente').html(server_response.datevente+'');
-            $('#iconPreviewFacture .heurevente').html(server_response.heurevente+'');
-            $('#iconPreviewFacture .dateencaisser').html(server_response.dateencaisser+'');
-            $('#iconPreviewFacture .heureencaisser').html(server_response.heureencaisser+'');
-            $('#iconPreviewFacture .vendeur').html(server_response.vendeur+'');
-            $('#iconPreviewFacture .acheteur').html(server_response.acheteur+'');
-            $('#iconPreviewFacture .netapayer').html(server_response.netapayer+'');
-            $('#iconPreviewFacture .montanttotal').html(server_response.montanttotal+'');
-            $('#iconPreviewFacture .montantrendu').html(server_response.montantrendu+'');
-            $('#iconPreviewFacture .montanttotalencaisser').html(server_response.montanttotalencaisser+'');
-            $('#iconPreviewFacture .remise').html(server_response.remise+'');
+            $('#iconPreviewFacture .caissier').html(server_response.caissier + '');
+            $('#iconPreviewFacture .reference').html(server_response.reference + '');
+            $('#iconPreviewFacture .datevente').html(server_response.datevente + '');
+            $('#iconPreviewFacture .heurevente').html(server_response.heurevente + '');
+            $('#iconPreviewFacture .dateencaisser').html(server_response.dateencaisser + '');
+            $('#iconPreviewFacture .heureencaisser').html(server_response.heureencaisser + '');
+            $('#iconPreviewFacture .vendeur').html(server_response.vendeur + '');
+            $('#iconPreviewFacture .acheteur').html(server_response.acheteur + '');
+            $('#iconPreviewFacture .netapayer').html(server_response.netapayer + '');
+            $('#iconPreviewFacture .montanttotal').html(server_response.montanttotal + '');
+            $('#iconPreviewFacture .montantrendu').html(server_response.montantrendu + '');
+            $('#iconPreviewFacture .montanttotalencaisser').html(server_response.montanttotalencaisser + '');
+            $('#iconPreviewFacture .remise').html(server_response.remise + '');
 
             qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
                 width: 90,
@@ -1583,7 +1592,7 @@ function imprime_ticket(id, montantespece,
             qrcode.clear();
             qrcode.makeCode(id);
 
-         $('#tab_vente_caisse').empty();
+            $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
                     //alert("passe");
@@ -1592,7 +1601,7 @@ function imprime_ticket(id, montantespece,
             });
             //$('#tab_vente_caisse').html(server_response);
             for (i in ventes) {
-                
+
                 $('#tab_BfactureImprimer').prepend(`
                         <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
@@ -1602,7 +1611,8 @@ function imprime_ticket(id, montantespece,
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
                         </tr>
                     `);
-            };
+            }
+            ;
 
             $('#montantespece').html(server_response.montantfactureEspece);
             $('#montantelectronique').html(server_response.montantfactureElectronique);
@@ -1620,8 +1630,8 @@ function imprime_ticket(id, montantespece,
 }
 
 function imprime_ticket_direct(id, montantespece,
-                        montantelectronique,
-                        montantticket,reste) {
+                               montantelectronique,
+                               montantticket, reste) {
     loader(true);
     var typePaiement = $("#" + id + " .typePaiement").html();
     console.log(typePaiement);
@@ -1674,19 +1684,19 @@ function imprime_ticket_direct(id, montantespece,
             $('#qrcodeTicket').empty();
             console.log("server_response");
             console.log(server_response);
-            $('#ticketCaisse .caissier').html(server_response.caissier+'');
-            $('#ticketCaisse .reference').html(server_response.reference+'');
-            $('#ticketCaisse .datevente').html(server_response.datevente+'');
-            $('#ticketCaisse .heurevente').html(server_response.heurevente+'');
-            $('#ticketCaisse .dateencaisser').html(server_response.dateencaisser+'');
-            $('#ticketCaisse .heureencaisser').html(server_response.heureencaisser+'');
-            $('#ticketCaisse .vendeur').html(server_response.vendeur+'');
-            $('#ticketCaisse .acheteur').html(server_response.acheteur+'');
-            $('#ticketCaisse .netapayer').html(server_response.netapayer+'');
-            $('#ticketCaisse .montanttotal').html(server_response.montanttotal+'');
-            $('#ticketCaisse .montantrendu').html(server_response.montantrendu+'');
-            $('#ticketCaisse .montanttotalencaisser').html(server_response.montanttotalencaisser+'');
-            $('#ticketCaisse .remise').html(server_response.remise+'');
+            $('#ticketCaisse .caissier').html(server_response.caissier + '');
+            $('#ticketCaisse .reference').html(server_response.reference + '');
+            $('#ticketCaisse .datevente').html(server_response.datevente + '');
+            $('#ticketCaisse .heurevente').html(server_response.heurevente + '');
+            $('#ticketCaisse .dateencaisser').html(server_response.dateencaisser + '');
+            $('#ticketCaisse .heureencaisser').html(server_response.heureencaisser + '');
+            $('#ticketCaisse .vendeur').html(server_response.vendeur + '');
+            $('#ticketCaisse .acheteur').html(server_response.acheteur + '');
+            $('#ticketCaisse .netapayer').html(server_response.netapayer + '');
+            $('#ticketCaisse .montanttotal').html(server_response.montanttotal + '');
+            $('#ticketCaisse .montantrendu').html(server_response.montantrendu + '');
+            $('#ticketCaisse .montanttotalencaisser').html(server_response.montanttotalencaisser + '');
+            $('#ticketCaisse .remise').html(server_response.remise + '');
 
             qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
                 width: 90,
@@ -1695,7 +1705,7 @@ function imprime_ticket_direct(id, montantespece,
             qrcode.clear();
             qrcode.makeCode(id);
 
-         $('#tab_vente_caisse').empty();
+            $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer  tr').each(function (i) {
                 if ($(this).attr("class") == 'ligne_facture') {
                     //alert("passe");
@@ -1714,7 +1724,8 @@ function imprime_ticket_direct(id, montantespece,
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
                         </tr>
                     `);
-            };
+            }
+            ;
 
             $('#montantespece').html(server_response.montantfactureEspece);
             $('#montantelectronique').html(server_response.montantfactureElectronique);
@@ -1784,18 +1795,17 @@ function close_caisse_row(id) {
             id: id
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             console.log("server_responce");
             console.log(server_responce);
             server_responce = JSON.parse(server_responce);
-            if (server_responce.data.length==0){
+            if (server_responce.data.length == 0) {
                 console.log('passe');
                 $("#fermeture-caisse-confirmation").modal("show");
                 //$("#iconPreviewCaisseFermer").modal("show");
-            }
-            else {
+            } else {
                 $('#message-box-danger p').html('Des ventes n ont pas encore ete encaiisser');
                 $("#message-box-danger").modal("show");
                 setTimeout(function () {
@@ -1838,10 +1848,10 @@ function showRapportTest(id) {
             id: caisse_id,
         },
         dataType: 'json',
-       error: function (e) {
-                loader(false);
-            },
-            success: function (data) {
+        error: function (e) {
+            loader(false);
+        },
+        success: function (data) {
             //alert(data)
             //recap vente par fournisseur
             $("#rapport_vente_fournisseur_grossiste").html(data.vente_fg);
@@ -1967,7 +1977,7 @@ function showRapportTest(id) {
             $("#rapport_ec_solde_reel").html(data.ec_solde_reel);
             $("#rapport_ec_solde_system").html(data.ec_solde_system);
             $("#rapport_ec_difference").html(data.ec_difference);
-            $('#datesRapport').html(moment(data.date_ouverture).format("DD/MMM/YYYY hh:mm")+" au "+moment(data.date_fermeture).format("DD/MMM/YYYY hh:mm"));
+            $('#datesRapport').html(moment(data.date_ouverture).format("DD/MMM/YYYY hh:mm") + " au " + moment(data.date_fermeture).format("DD/MMM/YYYY hh:mm"));
         }
     });
 
