@@ -671,12 +671,6 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
     // Traitement Mixte
     var typePaiementFinal = 'Mixtes';
 
-    qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
-        width: 90,
-        height: 90
-    });
-    qrcode.clear();
-    qrcode.makeCode(vente_id);
     if (typePaiement == 'Mixte') {
 
         if (parseInt($('#' + onglet + ' .montant_espece').val()) > 0 && parseInt($('#' + onglet + ' .montant_electronique').val()) > 0
@@ -861,7 +855,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                             console.log(rec);
                                             console.log(imprimer);
                                             if (imprimer && rec == count) {
-                                                imprimer_bloc('ticketCaisse', 'ticketCaisse', typePaiement);
+                                                imprime_ticket_direct(vente_id,montant_espece,montant_electronique,montant_ticket,reste);
                                                 $('#tab_vente_caisse').empty();
                                                 $('#Mixtecaisse1').val();
                                                 $('#Mixtecaisse2').val();
@@ -1000,7 +994,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                     console.log(rec);
                                     console.log(imprimer);
                                     if (imprimer && rec == count) {
-                                        imprimer_bloc('ticketCaisse', 'ticketCaisse', typePaiement);
+                                        imprime_ticket_direct(vente_id,montant_espece,montant_electronique,montant_ticket,reste);
                                         $('#tab_vente_caisse').empty();
                                         $(".caisse").val('');
                                     } else {
@@ -1497,11 +1491,12 @@ function imprime_ticket(id, montantespece,
             id: id
         },
         dataType: 'json',
-        success: function (server_responce) {
-            let ventes = server_responce.data;
+        success: function (server_response) {
+            let ventes = server_response.data;
             $('#qrcodeTicket').empty();
-            console.log("server_responce");
-            console.log(server_responce);
+            console.log("server_response");
+            console.log(server_response);
+            $('#iconPreviewFacture .caissier').html(server_response.caissier+'');
             $('#iconPreviewFacture .reference').html(server_response.reference+'');
             $('#iconPreviewFacture .datevente').html(server_response.datevente+'');
             $('#iconPreviewFacture .heurevente').html(server_response.heurevente+'');
@@ -1529,7 +1524,7 @@ function imprime_ticket(id, montantespece,
                     $(this).remove();
                 }
             });
-            //$('#tab_vente_caisse').html(server_responce);
+            //$('#tab_vente_caisse').html(server_response);
             for (i in ventes) {
                 
                 $('#tab_BfactureImprimer').prepend(`
@@ -1548,6 +1543,118 @@ function imprime_ticket(id, montantespece,
             $('#montantticket').html(server_response.montantfactureTicket);
             $("#iconPreviewListeCaisse").modal('hide');
             $('#iconPreviewFacture').modal("show");
+
+
+        }
+
+
+    })
+
+
+}
+
+function imprime_ticket_direct(id, montantespece,
+                        montantelectronique,
+                        montantticket,reste) {
+    loader(true);
+    var typePaiement = $("#" + id + " .typePaiement").html();
+    console.log(typePaiement);
+    console.log(montantespece);
+    console.log(montantelectronique);
+    console.log(montantticket);
+    $('#montantespece').html(montantespece);
+    $('#montantelectronique').html(montantelectronique);
+    $('#montantticket').html(montantticket);
+    if (typePaiement == "Mixte Espèce Electronique Ticketcaisse") {
+        $('#montantespece').html(montantespece);
+        $('#montantelectronique').html(montantelectronique);
+        $('#montantticket').html(montantticket);
+        $('#rowmontantelectronique').css('display', '');
+        $('#rowmontantespece').css('display', '');
+        $('#rowmontantticket').css('display', '');
+    }
+    if (typePaiement == "Mixte Espèce Electronique") {
+        $('#montantespece').html(montantespece);
+        $('#montantelectronique').html(montantelectronique);
+        $('#rowmontantelectronique').css('display', '');
+        $('#rowmontantespece').css('display', '');
+        $('#rowmontantticket').css("display", "none");
+    }
+    if (typePaiement == "Mixte Electronique Ticketcaisse") {
+        $('#montantelectronique').html(montantelectronique);
+        $('#montantticket').html(montantticket);
+        $('#rowmontantelectronique').css('display', '');
+        $('#rowmontantespece').css("display", "none");
+        $('#rowmontantticket').css('display', '');
+    }
+    if (typePaiement == "Mixte Espèce Ticketcaisse") {
+        $('#montantespece').html(montantespece);
+        $('#montantticket').html(montantticket);
+        $('#rowmontantelectronique').css("display", "none");
+        $('#rowmontantespece').css('display', '');
+        $('#rowmontantticket').css('display', '');
+    }
+
+
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_vente.php',
+        data: {
+            id: id
+        },
+        dataType: 'json',
+        success: function (server_response) {
+            let ventes = server_response.data;
+            $('#qrcodeTicket').empty();
+            console.log("server_response");
+            console.log(server_response);
+            $('#ticketCaisse .caissier').html(server_response.caissier+'');
+            $('#ticketCaisse .reference').html(server_response.reference+'');
+            $('#ticketCaisse .datevente').html(server_response.datevente+'');
+            $('#ticketCaisse .heurevente').html(server_response.heurevente+'');
+            $('#ticketCaisse .dateencaisser').html(server_response.dateencaisser+'');
+            $('#ticketCaisse .heureencaisser').html(server_response.heureencaisser+'');
+            $('#ticketCaisse .vendeur').html(server_response.vendeur+'');
+            $('#ticketCaisse .acheteur').html(server_response.acheteur+'');
+            $('#ticketCaisse .netapayer').html(server_response.netapayer+'');
+            $('#ticketCaisse .montanttotal').html(server_response.montanttotal+'');
+            $('#ticketCaisse .montantrendu').html(server_response.montantrendu+'');
+            $('#ticketCaisse .montanttotalencaisser').html(server_response.montanttotalencaisser+'');
+            $('#ticketCaisse .remise').html(server_response.remise+'');
+
+            qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+                width: 90,
+                height: 90
+            });
+            qrcode.clear();
+            qrcode.makeCode(id);
+
+         $('#tab_vente_caisse').empty();
+            $('#tab_BfactureImprimer  tr').each(function (i) {
+                if ($(this).attr("class") == 'ligne_facture') {
+                    //alert("passe");
+                    $(this).remove();
+                }
+            });
+            //$('#tab_vente_caisse').html(server_responce);
+            for (i in ventes) {
+
+                $('#tab_BfactureImprimer').prepend(`
+                        <tr class="ligne_facture" id="${ventes[i].DT_RowId}">
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='nom'>${ventes[i].nom}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                        </tr>
+                    `);
+            };
+
+            $('#montantespece').html(server_response.montantfactureEspece);
+            $('#montantelectronique').html(server_response.montantfactureElectronique);
+            $('#montantticket').html(server_response.montantfactureTicket);
+            loader(false);
+            imprimer_bloc('ticketCaisse', 'ticketCaisse', typePaiement);
 
 
         }

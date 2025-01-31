@@ -7,6 +7,7 @@ require_once('../Class/produit.php');
 require_once('../Class/produit_detail.php');
 require_once('../Class/employe.php');
 require_once('../Class/user.php');
+require_once('../Class/caisse.php');
 
 require_once('../Class/facturation.php');
 require_once('../Class/facture_ticket.php');
@@ -18,6 +19,7 @@ global $pdo;
 
 $manager = new VenteManager($pdo);
 $managerEn = new En_rayonManager($pdo);
+$managerCaisse = new CaisseManager($pdo);
 $managerCo = new ConcernerManager($pdo);
 $managerPr = new ProduitManager($pdo);
 $managerPrDetail = new Produit_detailManager($pdo);
@@ -88,6 +90,9 @@ if (isset($_POST['id'])) {
     }
 
     $ventes = $manager->get($id);
+    $userId = $managerCaisse->get($ventes->caisse_id())->user_id();
+    $employeCaisse = $managerEmploye->get($userId);
+    $caissier = $employeCaisse->identifiant();
     if ( $ventes->dateEncaissement()){
         $dateTimeEncaisse = DateTime::createFromFormat('Y-m-d H:i:s', $ventes->dateEncaissement());
         $dateEncaisse = $dateTimeEncaisse->format('d-m-Y'); // Extrait uniquement la date (format : Année-Mois-Jour)
@@ -117,8 +122,7 @@ if (isset($_POST['id'])) {
         $client = $ventes->nouveau_info();
     }
     if($ventes->employe_id() != null){
-        $employ = $managerEmploye->get($ventes->employe_id());
-        $employe = $managerUser->get($employ->user_id())->nom();
+        $employe = $managerEmploye->get($ventes->employe_id())->identifiant();
     }else{
         $employe = null;
     }
@@ -131,6 +135,7 @@ if (isset($_POST['id'])) {
         'montantfactureTicket' => $montantfactureTicket,
         'reference' => $ventes->reference(),
         'datevente' => $dateVente,
+        'caissier' => $caissier,
         'dateencaisser' => $dateEncaisse,
         'heureencaisser' => $timeEncaisse,
         'heurevente' => $timeVente,

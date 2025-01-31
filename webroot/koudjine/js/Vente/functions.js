@@ -845,6 +845,7 @@ function reimprime_ticket(id, montantespece,
             console.log("ventes");
             console.log(ventes);
 
+            $('#iconPreviewFacture .caissier').html(server_response.caissier+'');
             $('#iconPreviewFacture .reference').html(server_response.reference+'');
             $('#iconPreviewFacture .datevente').html(server_response.datevente+'');
             $('#iconPreviewFacture .heurevente').html(server_response.heurevente+'');

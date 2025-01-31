@@ -339,7 +339,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                                 width="200"><strong>Libellé</strong>
                                             </th>
                                             <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                width="150"><strong></strong>
+                                                width="150"><strong>Prix U.</strong>
                                             </th>
                                             <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="100"><strong>Qte</strong>
@@ -382,6 +382,9 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                                 style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
                                                 <strong><span class="netapayer"></span> FCFA</strong>
                                             </td>
+                                        </tr>
+                                        <tr style="height: 20px">
+
                                         </tr>
                                         <tr type="hidden" id="rowmontantespece">
                                             <td colspan="1"
@@ -443,7 +446,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                             </div>
                             <a class="btn btn-circle blue"
                                style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
-                               onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print"
+                               onClick="imprimer_bloc('ticketListe2','ticketListe2')"><i class="fa fa-print"
                                                                                        style="font-size:10px"></i>&nbsp;Imprimer</a>
                         </div>
                     </div>
@@ -560,7 +563,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                                 width="200"><strong>Libelle</strong>
                                             </th>
                                             <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                width="150"><strong></strong>
+                                                width="150"><strong>Prix U.</strong>
                                             </th>
                                             <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                 width="100"><strong>Qte</strong>
@@ -603,6 +606,9 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                                 style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
                                                 <strong><span class="netapayer"></span> FCFA</strong>
                                             </td>
+                                        </tr>
+                                        <tr style="height: 20px">
+
                                         </tr>
                                         <tr type="hidden" id="rowmontantespece">
                                             <td colspan="1"
@@ -661,7 +667,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                             </div>
                             <a class="btn btn-circle blue"
                                style="text-align:center; float: left; font-size:10px; margin-top: 20px;"
-                               onClick="imprimer_bloc('ticketListe','ticketListe')"><i class="fa fa-print"
+                               onClick="imprimer_bloc('ticketListe2','ticketListe2')"><i class="fa fa-print"
                                                                                        style="font-size:10px"></i>&nbsp;Imprimer</a>
                         </div>
                     </div>

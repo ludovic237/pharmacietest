@@ -194,6 +194,13 @@ class EmployeManager
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Employe($donnees);
     }
+    public function getByUserId($info)
+    {
+
+        $q = $this->_db->query('SELECT * FROM employe WHERE supprimer = 0 AND user_id = ' . $info);
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Employe($donnees);
+    }
     public function getIdentifiant($info)
     {
 

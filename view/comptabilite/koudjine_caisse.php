@@ -1042,7 +1042,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     width="200"><strong>Libellé</strong>
                                                 </th>
                                                 <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
-                                                    width="150"><strong></strong>
+                                                    width="150"><strong>Prix U.</strong>
                                                 </th>
                                                 <th style="background-color: white;color: black;font-weight: 400; text-align: end;padding: 4px; text-align: start;font-family: 'Courier New', Courier, monospace;font-size: 10px;"
                                                     width="100"><strong>Qte</strong>
@@ -1085,6 +1085,9 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     style=" background-color: white;color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 10px;text-align: end;">
                                                     <strong><span class="netapayer"></span> FCFA</strong>
                                                 </td>
+                                            </tr>
+                                            <tr style="height: 20px">
+
                                             </tr>
                                             <tr type="hidden" id="rowmontantespece">
                                                 <td colspan="1"
@@ -2271,6 +2274,12 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                         <span id="rapport_vente_total">0</span>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td>Reduction</td>
+                                                    <td>
+                                                        <span id="reduction_total">0</span>
+                                                    </td>
+                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -2362,7 +2371,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             </div>
                         </div>
                         <div class="row divine">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="panel panel-default">
 
                                     <div class="panel-heading" style="background: #333;">
@@ -2397,7 +2406,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                 </div>
 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="panel panel-default">
 
                                     <div class="panel-heading" style="background: #333;">
@@ -2432,13 +2441,13 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                 </div>
 
                             </div>
-                            <div class="col-md-4">
+                            <!--<div class="col-md-4">
                                 <div class="panel panel-default">
 
                                     <div class="panel-heading" style="background: #333;">
                                         <div class="panel-title-box" style="color: aquamarine;">
                                             <h3 style="color: white;">Reduction</h3>
-                                            <!-- <span>Projects activity</span> -->
+
                                         </div>
                                     </div>
                                     <div class="panel-body panel-body-table">
@@ -2466,7 +2475,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
 
                                 </div>
 
-                            </div>
+                            </div>-->
                         </div>
                         <div class="row divine">
                             <div class="col-md-6">
