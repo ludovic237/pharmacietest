@@ -19,7 +19,9 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
 
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/inventaire.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/demo_tables.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Vente/functions.js"></script>
 <script>
                                         window.onload = function () {
                                             document.getElementById("recherche_inventaire").focus();
@@ -30,6 +32,7 @@ if (isset($inventaire) && !empty($inventaire)) {
 
 
 ?>
+
 
     <div class="panel panel-default">
         <div class="panel-body panel-body-table">
@@ -44,6 +47,37 @@ if (isset($inventaire) && !empty($inventaire)) {
                         <div class="tab-pane panel-body active" id="tab1">
                             <div class="block">
                                 <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="col-md-3 control-label">Categorie</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="col-md-3 control-label">Rayon</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="col-md-3 control-label">Magazin</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="col-md-3 control-label">Forme</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div class="panel-body" style="margin-bottom: 20px;background-color: #fff;
         border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 0 1px 1px rgba(0,0,0,.05);">
@@ -51,6 +85,35 @@ if (isset($inventaire) && !empty($inventaire)) {
                                                 <label class="control-label" style="margin-right: 30px;width: 150px;">Scanner un médicament:</label>
                                                 <div style="display: flex;flex:1;margin-right: 30px;">
                                                     <input type="text" class="form-control col-md-4" name="<?php echo $_SESSION['Users']->type; ?>" data="<?php echo $_SESSION['Users']->id; ?>" data1="<?php echo $_SESSION['Users']->identifiant; ?>" id="recherche_inventaire" value="" placeholder="Médicaments">
+                                                </div>
+                                                <div style="width: 150px;">
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                                                <label class="control-label" style="margin-right: 30px;width: 150px;"></label>
+                                                <div style="display: flex;flex:1;margin-right: 30px;">
+
+                                                    <div class="panel-body panel-body-table" style="width: 100%;" >
+
+                                                        <div class="table-responsive">
+                                                            <table id="tab_Grecherche" style="border-width: 2px;border-style: groove;display: block;max-height: 200px;overflow: auto;" class="table table-bordered table-striped table-actions">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th style="width: 100%;">Nom</th>
+                                                                    <th>Type</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody id="tab_Brecherche">
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div style="width: 150px;">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -356,6 +419,61 @@ if (isset($inventaire) && !empty($inventaire)) {
             <div class="modal-footer">
                 <button class="btn btn-success" onclick="ajouter_row_inventaire()">valider</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- END MODAL ICON PREVIEW -->
+
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="iconPreviewVente" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width: 85%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="panel panel-default">
+
+                            <div class="panel-body panel-body-table">
+
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table id="tab_load_produit" style="height: 200px;overflow: auto;" class="table datatable table-bordered table-actions">
+                                            <thead>
+                                            <tr>
+                                                <th width="200">Nom</th>
+                                                <th width="100">Prix Unitaire</th>
+                                                <th width="100">Quantité en Stock</th>
+                                                <th width="100">Stock générale</th>
+                                                <th width="100">Reduction (%)</th>
+                                                <th width="200">Date de Livraison</th>
+                                                <th width="200">Date de Peremption</th>
+                                                <th width="100">Actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tab_Bload_produit">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="ajouter_produit();">Valider</button>
+                <button type="button" class="btn btn-danger" onclick="focus_recherche()">Close</button>
             </div>
         </div>
     </div>
