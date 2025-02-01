@@ -1377,11 +1377,6 @@ function hide_alert_fermeture() {
 
 
 
-function fermeture_alert_caisse() {
-    var link = '/pharmacietest/users/logout';
-    window.location.href = link;
-}
-
 function valider_fermeture(caisse_id) {
     var detail_piece_billet = ($("#fargent_1").val()) + "-" + ($("#fargent_2").val()) + "-" + ($("#fargent_3").val()) + "-" + ($("#fargent_4").val()) + "-" + ($("#fargent_5").val()) + "-" + ($("#fargent_6").val()) + "-" + ($("#fargent_7").val()) + "-" + ($("#fargent_8").val()) + "-" + ($("#fargent_9").val()) + "-" + ($("#fargent_10").val());
 
@@ -1389,10 +1384,34 @@ function valider_fermeture(caisse_id) {
     var fermeture_bon = $('#fermeture_bon').val();
     var total = parseInt($('.ftotalaisse').html())+parseInt(fermeture_electronique)+ parseInt(fermeture_bon);
     if (total == 0) {
-        // noty({text: 'Veuillez remplir le billetage', layout: 'topRight', type: 'error'});
-        alert('Montant en espece obligatoire, veuillez inserer un montant en espece')
-        return;
+        //alert("Veuillez saisir votre fond de caisse");
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_session_caisse.php',
+            data: {
+                id: caisse_id,
+            },
+            error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
+
+                //alert(server_responce);
+                var link = '/pharmacietest/users/logout';
+                window.location.href = link;
+
+            }
+        });
     } else {
+        //alert('passe');
+        // Vérification des valeurs
+        if (!total || total <= 0 || !fermeture_electronique || fermeture_electronique <= 0 || !fermeture_bon || fermeture_bon <= 0) {
+            alert('Montant en espece obligatoire, veuillez inserer un montant en espece')
+            return;
+        }
+
+        $("#error-message").hide(); // Cacher le message d'erreur si tout est OK
+
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_session_caisse.php',
@@ -1426,11 +1445,33 @@ function valider_fermeture_final(caisse_id) {
     var fermeture_electronique = $('#fermeture_electronique').val();
     var fermeture_bon = $('#fermeture_bon').val();
     if (total == 0) {
-        noty({text: 'Montant espece insuffisant', layout: 'topRight', type: 'error'});
+        alert('Montant en espece obligatoire, veuillez inserer un montant en espece')
         return;
     } else {
 
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/enregistrer_session_caisse.php',
+            data: {
+                id: caisse_id,
+                fermetureCaisse: detail_piece_billet,
+                fondCaisse: total,
+                total_om: fermeture_electronique,
+                total_bon: fermeture_bon,
+                fermeture_electronique: fermeture_electronique,
+                fermeture_bon: fermeture_bon,
+            },
+            error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
 
+                //alert(server_responce);
+                $("#iconPreviewCaisseFermer").modal("hide");
+                open_rapport();
+
+            }
+        });
     }
 
 }
