@@ -53,9 +53,12 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/moment.min.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/functions.js"></script>
 <script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Vente/functions.js"></script>
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>
+
 <link rel="stylesheet" href="' . BASE_URL . '/koudjine/css/material-components-web.min.css">
-<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/material-components-web.min.js"></script>';
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/material-components-web.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/jquery.noty.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/plugins/noty/themes/default.js"></script>
+<script type="text/javascript" src="' . BASE_URL . '/koudjine/js/Comptabilite/caisse.js"></script>';
 
 if (isset($caisse) && $caisse == null) {
     //$employe = $caisse;
@@ -750,245 +753,231 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         <h4 class="modal-title " style="color: white">Fermer Caisse</h4>
                     </div>
                     <div class="modal-body" style="padding: 0px;">
-                        <div class="panel panel-default tabs">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Monnaie</a></li>
-                                <li><a href="#tab-second" role="tab" data-toggle="tab">Fiche </a></li>
-                            </ul>
-                            <div class="panel-body tab-content">
-                                <div class="tab-pane active" id="tab-first">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="panel panel-default" style="margin-bottom: 0px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default" style="margin-bottom: 0px;">
 
-                                                <div class="panel-body panel-body-table">
+                                    <div class="panel-body panel-body-table">
 
-                                                    <div class="panel-body"
-                                                         style="display: flex;flex-direction: column;padding: 0px;">
-                                                        <!-- <div style="display: flex;align-items: center;">
-                                    <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Session caisse</h4>
-                               </div> -->
+                                        <div class="panel-body"
+                                             style="display: flex;flex-direction: column;padding: 0px;">
+                                            <!-- <div style="display: flex;align-items: center;">
+                        <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">Session caisse</h4>
+                   </div> -->
 
-                                                        <div style="display: flex;align-items: center;">
-                                                            <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">
-                                                                Montant en caisse</h4>
-                                                            <p>Entrez le montant restant dans votre caisse</p>
-                                                        </div>
-                                                        <div>
-                                                            <table class="table  table-bordered table-striped table-actions">
-                                                                <thead>
-                                                                <tr>
-                                                                    <th width="150" colspan="2">Piece</th>
-                                                                    <th width="150" colspan="2">Billets</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                <tr>
-                                                                    <td class="inputcountdisable"><input type="number"
-                                                                                                         class="form-control fargent fargent1 x"
-                                                                                                         data="1"
-                                                                                                         value="0"
-                                                                                                         id="fargent_1"
-                                                                                                         placeholder="">
-                                                                    </td>
-                                                                    <td>500</td>
-                                                                    <td class="inputcountdisable"><input type="number"
-                                                                                                         class="form-control fargent fargent6 x"
-                                                                                                         data="6"
-                                                                                                         value="0"
-                                                                                                         id="fargent_2"
-                                                                                                         placeholder="">
-                                                                    </td>
-                                                                    <td>10000</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="inputcountdisable"><input type="number"
-                                                                                                         class="form-control fargent fargent2 x"
-                                                                                                         data="2"
-                                                                                                         value="0"
-                                                                                                         id="fargent_3"
-                                                                                                         placeholder="">
-                                                                    </td>
-                                                                    <td>100</td>
-                                                                    <td class="inputcountdisable"><input type="number"
-                                                                                                         class="form-control fargent fargent7 x"
-                                                                                                         data="7"
-                                                                                                         value="0"
-                                                                                                         id="fargent_4"
-                                                                                                         placeholder="">
-                                                                    </td>
-                                                                    <td>5000</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="inputcountdisable"><input type="number"
-                                                                                                         class="form-control fargent fargent3 x"
-                                                                                                         data="3"
-                                                                                                         value="0"
-                                                                                                         id="fargent_5"
-                                                                                                         placeholder="">
-                                                                    </td>
-                                                                    <td>50</td>
-                                                                    <td class="inputcountdisable"><input type="number"
-                                                                                                         class="form-control fargent fargent8 x"
-                                                                                                         data="8"
-                                                                                                         value="0"
-                                                                                                         id="fargent_6"
-                                                                                                         placeholder="">
-                                                                    </td>
-                                                                    <td>2000</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="inputcountdisable"><input type="number"
-                                                                                                         class="form-control fargent fargent4 x"
-                                                                                                         data="4"
-                                                                                                         value="0"
-                                                                                                         id="fargent_7"
-                                                                                                         placeholder="">
-                                                                    </td>
-                                                                    <td>25</td>
-                                                                    <td class="inputcountdisable"><input type="number"
-                                                                                                         class="form-control fargent fargent9 x"
-                                                                                                         data="9"
-                                                                                                         value="0"
-                                                                                                         id="fargent_8"
-                                                                                                         placeholder="">
-                                                                    </td>
-                                                                    <td>1000</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="inputcountdisable"><input type="number"
-                                                                                                         class="form-control fargent fargent5 x"
-                                                                                                         data="5"
-                                                                                                         value="0"
-                                                                                                         id="fargent_9"
-                                                                                                         placeholder="">
-                                                                    </td>
-                                                                    <td>10</td>
-                                                                    <td class="inputcountdisable"><input type="number"
-                                                                                                         class="form-control fargent fargent10 x"
-                                                                                                         data="10"
-                                                                                                         value="0"
-                                                                                                         id="fargent_10"
-                                                                                                         placeholder="">
-                                                                    </td>
-                                                                    <td>500</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <h6>
-                                                                            Sous total
-                                                                        </h6>
-                                                                    </td>
-                                                                    <td>
-                                                                        <h6 style="margin-bottom: 0px;"><span
-                                                                                    class="fsoustotalaisse1">0</span>
-                                                                        </h6>
-                                                                    </td>
-                                                                    <td>
-                                                                        <h6>
-                                                                            Sous total
-                                                                        </h6>
-                                                                    </td>
-                                                                    <td>
-                                                                        <h6 style="margin-bottom: 0px;"><span
-                                                                                    class="fsoustotalaisse2">0</span>
-                                                                        </h6>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="4">
-                                                                        <div style="justify-content: space-between;display:flex">
-                                                                            <p style="margin-bottom: 0px;"> Total</p>
-                                                                            <h4 style="margin-bottom: 0px;"><span
-                                                                                        class="ftotalaisse">0</span>
-                                                                            </h4>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
+                                            <div style="display: flex;align-items: center;">
+                                                <h4 style="padding: 10px 20px;background-color: #2d3945;color: white;">
+                                                    Montant en caisse</h4>
+                                                <p>Entrez le montant restant dans votre caisse</p>
                                             </div>
-
+                                            <div>
+                                                <table class="table  table-bordered table-striped table-actions">
+                                                    <thead>
+                                                    <tr>
+                                                        <th width="150" colspan="2">Piece</th>
+                                                        <th width="150" colspan="2">Billets</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="inputcountdisable"><input type="number"
+                                                                                             class="form-control fargent fargent1 x"
+                                                                                             data="1"
+                                                                                             value="0"
+                                                                                             id="fargent_1"
+                                                                                             placeholder="">
+                                                        </td>
+                                                        <td>500</td>
+                                                        <td class="inputcountdisable"><input type="number"
+                                                                                             class="form-control fargent fargent6 x"
+                                                                                             data="6"
+                                                                                             value="0"
+                                                                                             id="fargent_2"
+                                                                                             placeholder="">
+                                                        </td>
+                                                        <td>10000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="inputcountdisable"><input type="number"
+                                                                                             class="form-control fargent fargent2 x"
+                                                                                             data="2"
+                                                                                             value="0"
+                                                                                             id="fargent_3"
+                                                                                             placeholder="">
+                                                        </td>
+                                                        <td>100</td>
+                                                        <td class="inputcountdisable"><input type="number"
+                                                                                             class="form-control fargent fargent7 x"
+                                                                                             data="7"
+                                                                                             value="0"
+                                                                                             id="fargent_4"
+                                                                                             placeholder="">
+                                                        </td>
+                                                        <td>5000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="inputcountdisable"><input type="number"
+                                                                                             class="form-control fargent fargent3 x"
+                                                                                             data="3"
+                                                                                             value="0"
+                                                                                             id="fargent_5"
+                                                                                             placeholder="">
+                                                        </td>
+                                                        <td>50</td>
+                                                        <td class="inputcountdisable"><input type="number"
+                                                                                             class="form-control fargent fargent8 x"
+                                                                                             data="8"
+                                                                                             value="0"
+                                                                                             id="fargent_6"
+                                                                                             placeholder="">
+                                                        </td>
+                                                        <td>2000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="inputcountdisable"><input type="number"
+                                                                                             class="form-control fargent fargent4 x"
+                                                                                             data="4"
+                                                                                             value="0"
+                                                                                             id="fargent_7"
+                                                                                             placeholder="">
+                                                        </td>
+                                                        <td>25</td>
+                                                        <td class="inputcountdisable"><input type="number"
+                                                                                             class="form-control fargent fargent9 x"
+                                                                                             data="9"
+                                                                                             value="0"
+                                                                                             id="fargent_8"
+                                                                                             placeholder="">
+                                                        </td>
+                                                        <td>1000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="inputcountdisable"><input type="number"
+                                                                                             class="form-control fargent fargent5 x"
+                                                                                             data="5"
+                                                                                             value="0"
+                                                                                             id="fargent_9"
+                                                                                             placeholder="">
+                                                        </td>
+                                                        <td>10</td>
+                                                        <td class="inputcountdisable"><input type="number"
+                                                                                             class="form-control fargent fargent10 x"
+                                                                                             data="10"
+                                                                                             value="0"
+                                                                                             id="fargent_10"
+                                                                                             placeholder="">
+                                                        </td>
+                                                        <td>500</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h6>
+                                                                Sous total
+                                                            </h6>
+                                                        </td>
+                                                        <td>
+                                                            <h6 style="margin-bottom: 0px;"><span
+                                                                        class="fsoustotalaisse1">0</span>
+                                                            </h6>
+                                                        </td>
+                                                        <td>
+                                                            <h6>
+                                                                Sous total
+                                                            </h6>
+                                                        </td>
+                                                        <td>
+                                                            <h6 style="margin-bottom: 0px;"><span
+                                                                        class="fsoustotalaisse2">0</span>
+                                                            </h6>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4">
+                                                            <div style="justify-content: space-between;display:flex">
+                                                                <p style="margin-bottom: 0px;"> Total</p>
+                                                                <h4 style="margin-bottom: 0px;"><span
+                                                                            class="ftotalaisse">0</span>
+                                                                </h4>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
+
                                     </div>
-
                                 </div>
-                                <div class="tab-pane" id="tab-second">
-                                    <div class="panel panel-default">
 
-                                        <div class="panel-body" style="display: flex;flex-direction: column;">
+                            </div>
+                        </div>
+                        <div class="panel-body" style="display: flex;flex-direction: column;">
 
-                                            <div class="form-group">
-                                                <label class="col-md-3 col-xs-12 control-label">OM</label>
-                                                <div class="col-md-6 col-xs-12">
-                                                    <div class="input-group">
+                            <div class="form-group">
+                                <label class="col-md-3 col-xs-12 control-label">OM / MOMO  </label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
                                                         <span class="input-group-addon"><span
                                                                     class="fa fa-credit-card"></span></span>
-                                                        <input type="text" class="form-control"/>
-                                                    </div>
-                                                    <!-- <span class="help-block">This is sample of text field</span> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="col-md-3 col-xs-12 control-label">Espece</label>
-                                                <div class="col-md-6 col-xs-12">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><span
-                                                                    class="fa fa-money"></span></span>
-                                                        <input class="form-control"/>
-                                                    </div>
-                                                    <!-- <span class="help-block">Password field sample</span> -->
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 col-xs-12 control-label">En lettre</label>
-                                                <div class="col-md-6 col-xs-12">
-                                                    <div class="input-group">
-
-                                                        <input class="form-control"/>
-                                                    </div>
-                                                    <!-- <span class="help-block">Password field sample</span> -->
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 col-xs-12 control-label">En lettre</label>
-                                                <div class="col-md-6 col-xs-12">
-                                                    <div class="input-group">
-
-                                                        <input class="form-control"/>
-                                                    </div>
-                                                    <!-- <span class="help-block">Password field sample</span> -->
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                        <!-- <div class="panel-footer">
-                                   <button class="btn btn-default">Clear Form</button>
-                                   <button class="btn btn-primary pull-right">Submit</button>
-                              </div> -->
+                                        <input id="fermeture_electronique" value="0" type="number" class="fargent form-control"/>
                                     </div>
-
-
+                                    <!-- <span class="help-block">This is sample of text field</span> -->
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 col-xs-12 control-label">Bon de caisse</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span
+                                                                    class="fa fa-money"></span></span>
+                                        <input id="fermeture_bon" value="0" type="number" class="fargent form-control"/>
+                                    </div>
+                                    <!-- <span class="help-block">Password field sample</span> -->
+                                </div>
+                            </div>
+                            <!--                                            <div class="form-group">-->
+                            <!--                                                <label class="col-md-3 col-xs-12 control-label">En lettre</label>-->
+                            <!--                                                <div class="col-md-6 col-xs-12">-->
+                            <!--                                                    <div class="input-group">-->
+                            <!---->
+                            <!--                                                        <input class="form-control"/>-->
+                            <!--                                                    </div>-->
+                            <!-- <span class="help-block">Password field sample</span> -->
+                            <!--                                                </div>-->
+                            <!--                                            </div>-->
+                            <!--                                            <div class="form-group">-->
+                            <!--                                                <label class="col-md-3 col-xs-12 control-label">En lettre</label>-->
+                            <!--                                                <div class="col-md-6 col-xs-12">-->
+                            <!--                                                    <div class="input-group">-->
+                            <!---->
+                            <!--                                                        <input class="form-control"/>-->
+                            <!--                                                    </div>-->
+                            <!-- <span class="help-block">Password field sample</span> -->
+                            <!--                                                </div>-->
+                            <!--                                            </div>-->
+
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <?php if (!empty($action_fermeture->id)) { ?>
-                        <button type="button" class="btn btn-success" style="margin-right: 20px; "
-                                onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Valider
-                        </button>
-                        <?php } ?>
-                        <button onclick="close_modal_caisse_row()" type="button" class="btn btn-primary"
-                                data-dismiss="modal">Annuler
-                        </button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div style="display: flex;font-size: 16px">
+                                    Total : <span class="fargent" id="total_fermeture_final">0</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <?php if (!empty($action_fermeture->id)) { ?>
+                                    <button type="button" class="btn btn-success" style="margin-right: 20px; "
+                                            onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Valider
+                                    </button>
+                                <?php } ?>
+                                <button onclick="close_modal_caisse_row()" type="button" class="btn btn-primary"
+                                        data-dismiss="modal">Annuler
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1263,6 +1252,12 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                     <span id="rapport_vente_total">0</span>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td>Reduction</td>
+                                                <td>
+                                                    <span id="reduction_total">0</span>
+                                                </td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -1354,7 +1349,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         </div>
                     </div>
                     <div class="row divine">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="panel panel-default">
 
                                 <div class="panel-heading" style="background: #333;">
@@ -1389,7 +1384,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             </div>
 
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="panel panel-default">
 
                                 <div class="panel-heading" style="background: #333;">
@@ -1424,13 +1419,13 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             </div>
 
                         </div>
-                        <div class="col-md-4">
+                        <!--<div class="col-md-4">
                             <div class="panel panel-default">
 
                                 <div class="panel-heading" style="background: #333;">
                                     <div class="panel-title-box" style="color: aquamarine;">
                                         <h3 style="color: white;">Reduction</h3>
-                                        <!-- <span>Projects activity</span> -->
+
                                     </div>
                                 </div>
                                 <div class="panel-body panel-body-table">
@@ -1458,7 +1453,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
 
                             </div>
 
-                        </div>
+                        </div>-->
                     </div>
                     <div class="row divine">
                         <div class="col-md-6">
@@ -1483,17 +1478,12 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
 
-                                            </tr>
-                                            <tr>
-                                                <td colspan="4">Total</td>
-                                                <td id="rapport_total_depense">
-                                                    0
-                                                </td>
-                                            </tr>
                                             </tbody>
                                         </table>
+                                        <div style="display:flex;padding: 5px">
+                                            <p style="margin: 0px">Total: <span id="rapport_total_depense"></span></p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -1501,45 +1491,6 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
 
                         </div>
                         <div class="col-md-6">
-                            <div class="panel panel-default">
-
-                                <div class="panel-heading" style="background: #333;">
-                                    <div class="panel-title-box" style="color: aquamarine;">
-                                        <h3 style="color: white;">Etat de caisse</h3>
-                                        <!-- <span>Projects activity</span> -->
-                                    </div>
-                                </div>
-                                <div class="panel-body panel-body-table">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>Solde réel en caisse</th>
-                                                <th>Solde système</th>
-                                                <th>Différence</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td id="rapport_ec_solde_reel">0</td>
-                                                <td id="rapport_ec_solde_system">
-                                                    0
-                                                </td>
-                                                <td id="rapport_ec_difference">
-                                                    0
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row divine">
-                        <div class="col-md-12">
                             <div class="panel panel-default">
 
                                 <div class="panel-heading" style="background: #333;">
@@ -1553,10 +1504,10 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         <table  id="rapport_retour" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
-                                                <th>Reference</th>
+                                                <th style="width: 160px;">Reference</th>
                                                 <th>Produit</th>
-                                                <th>Quantité</th>
-                                                <th>Total</th>
+                                                <th style="width: 50px;">Quantité</th>
+                                                <th style="width: 100px;">Total</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -1568,6 +1519,106 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         <div style="display:flex;padding: 5px">
                                             <p style="margin: 0px">Total: <span id="rapport_retour_total"></span></p>
                                         </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row divine">
+
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+
+                                <div class="panel-heading" style="background: #333;">
+                                    <div class="panel-title-box" style="color: aquamarine;">
+                                        <h3 style="color: white;">Etat de caisse</h3>
+                                        <!-- <span>Projects activity</span> -->
+                                    </div>
+                                </div>
+                                <div class="panel-body panel-body-table">
+                                    <div class="table-responsive">
+                                        <!--                                                <table class="table table-bordered table-striped">-->
+                                        <!--                                                    <thead>-->
+                                        <!--                                                    <tr>-->
+                                        <!--                                                        <th>Solde réel en caisse</th>-->
+                                        <!--                                                        <th>Solde système</th>-->
+                                        <!--                                                        <th>Différence</th>-->
+                                        <!--                                                    </tr>-->
+                                        <!--                                                    </thead>-->
+                                        <!--                                                    <tbody>-->
+                                        <!--                                                    <tr>-->
+                                        <!--                                                        <td id="rapport_ec_solde_reel">0</td>-->
+                                        <!--                                                        <td id="rapport_ec_solde_system">-->
+                                        <!--                                                            0-->
+                                        <!--                                                        </td>-->
+                                        <!--                                                        <td id="rapport_ec_difference">-->
+                                        <!--                                                            0-->
+                                        <!--                                                        </td>-->
+                                        <!--                                                    </tr>-->
+                                        <!--                                                    </tbody>-->
+                                        <!--                                                </table>-->
+                                        <table border="1" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Solde réel</th>
+                                                <th>Solde système</th>
+                                                <th>Différence</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>Espèce</td>
+                                                <td>
+                                                    <span id="solde_reel_espece">0</span>
+                                                </td>
+                                                <td >
+                                                    <span id="solde_systeme_espece">0</span>
+                                                </td>
+                                                <td >
+                                                    <span id="solde_diff_espece">0</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Electronique</td>
+                                                <td >
+                                                    <span id="solde_reel_electronique">0</span>
+                                                </td>
+                                                <td >
+                                                    <span id="solde_systeme_electronique">0</span>
+                                                </td>
+                                                <td >
+                                                    <span id="solde_diff_electronique">0</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bon de caisse</td>
+                                                <td >
+                                                    <span id="solde_reel_ticket">0</span>
+                                                </td>
+                                                <td >
+                                                    <span id="solde_systeme_ticket">0</span>
+                                                </td>
+                                                <td >
+                                                    <span id="solde_diff_ticket">0</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total</td>
+                                                <td >
+                                                    <span id="solde_reel_total">0</span>
+                                                </td>
+                                                <td >
+                                                    <span id="solde_systeme_total">0</span>
+                                                </td>
+                                                <td >
+                                                    <span id="solde_diff_total">0</span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
 
@@ -2500,17 +2551,12 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
 
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="4">Total</td>
-                                                    <td id="rapport_total_depense">
-                                                        0
-                                                    </td>
-                                                </tr>
                                                 </tbody>
                                             </table>
+                                            <div style="display:flex;padding: 5px">
+                                                <p style="margin: 0px">Total: <span id="rapport_total_depense"></span></p>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -2518,45 +2564,6 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
 
                             </div>
                             <div class="col-md-6">
-                                <div class="panel panel-default">
-
-                                    <div class="panel-heading" style="background: #333;">
-                                        <div class="panel-title-box" style="color: aquamarine;">
-                                            <h3 style="color: white;">Etat de caisse</h3>
-                                            <!-- <span>Projects activity</span> -->
-                                        </div>
-                                    </div>
-                                    <div class="panel-body panel-body-table">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered table-striped">
-                                                <thead>
-                                                <tr>
-                                                    <th>Solde réel en caisse</th>
-                                                    <th>Solde système</th>
-                                                    <th>Différence</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td id="rapport_ec_solde_reel">0</td>
-                                                    <td id="rapport_ec_solde_system">
-                                                        0
-                                                    </td>
-                                                    <td id="rapport_ec_difference">
-                                                        0
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row divine">
-                            <div class="col-md-12">
                                 <div class="panel panel-default">
 
                                     <div class="panel-heading" style="background: #333;">
@@ -2570,10 +2577,10 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             <table  id="rapport_retour" class="table table-bordered table-striped">
                                                 <thead>
                                                 <tr>
-                                                    <th>Reference</th>
+                                                    <th style="width: 160px;">Reference</th>
                                                     <th>Produit</th>
-                                                    <th>Quantité</th>
-                                                    <th>Total</th>
+                                                    <th style="width: 50px;">Quantité</th>
+                                                    <th style="width: 100px;">Total</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -2585,6 +2592,106 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                             <div style="display:flex;padding: 5px">
                                                 <p style="margin: 0px">Total: <span id="rapport_retour_total"></span></p>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row divine">
+
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+
+                                    <div class="panel-heading" style="background: #333;">
+                                        <div class="panel-title-box" style="color: aquamarine;">
+                                            <h3 style="color: white;">Etat de caisse</h3>
+                                            <!-- <span>Projects activity</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="panel-body panel-body-table">
+                                        <div class="table-responsive">
+                                            <!--                                                <table class="table table-bordered table-striped">-->
+                                            <!--                                                    <thead>-->
+                                            <!--                                                    <tr>-->
+                                            <!--                                                        <th>Solde réel en caisse</th>-->
+                                            <!--                                                        <th>Solde système</th>-->
+                                            <!--                                                        <th>Différence</th>-->
+                                            <!--                                                    </tr>-->
+                                            <!--                                                    </thead>-->
+                                            <!--                                                    <tbody>-->
+                                            <!--                                                    <tr>-->
+                                            <!--                                                        <td id="rapport_ec_solde_reel">0</td>-->
+                                            <!--                                                        <td id="rapport_ec_solde_system">-->
+                                            <!--                                                            0-->
+                                            <!--                                                        </td>-->
+                                            <!--                                                        <td id="rapport_ec_difference">-->
+                                            <!--                                                            0-->
+                                            <!--                                                        </td>-->
+                                            <!--                                                    </tr>-->
+                                            <!--                                                    </tbody>-->
+                                            <!--                                                </table>-->
+                                            <table border="1" class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Solde réel</th>
+                                                    <th>Solde système</th>
+                                                    <th>Différence</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Espèce</td>
+                                                    <td>
+                                                        <span id="solde_reel_espece">0</span>
+                                                    </td>
+                                                    <td >
+                                                        <span id="solde_systeme_espece">0</span>
+                                                    </td>
+                                                    <td >
+                                                        <span id="solde_diff_espece">0</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Electronique</td>
+                                                    <td >
+                                                        <span id="solde_reel_electronique">0</span>
+                                                    </td>
+                                                    <td >
+                                                        <span id="solde_systeme_electronique">0</span>
+                                                    </td>
+                                                    <td >
+                                                        <span id="solde_diff_electronique">0</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Bon de caisse</td>
+                                                    <td >
+                                                        <span id="solde_reel_ticket">0</span>
+                                                    </td>
+                                                    <td >
+                                                        <span id="solde_systeme_ticket">0</span>
+                                                    </td>
+                                                    <td >
+                                                        <span id="solde_diff_ticket">0</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <td >
+                                                        <span id="solde_reel_total">0</span>
+                                                    </td>
+                                                    <td >
+                                                        <span id="solde_systeme_total">0</span>
+                                                    </td>
+                                                    <td >
+                                                        <span id="solde_diff_total">0</span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
 
@@ -2646,3 +2753,23 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
             </div>
         </div>
     </div>
+
+    <!-- MESSAGE BOX-->
+    <div class="message-box animated fadeIn" data-sound="alert" id="mb-verification-fermeture">
+        <div class="mb-container">
+            <div class="mb-middle">
+                <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+                <div class="mb-content">
+                    <p>Etes vous sur d'avoir bien fait votre billetage?</p>
+                    <p>Presser oui pour confirmer. Presser non pour continuer.</p>
+                </div>
+                <div class="mb-footer">
+                    <div class="pull-right">
+                        <a onclick="valider_fermeture_final('<?php echo $action_fermeture->id; ?>')" class="btn btn-success btn-lg">Oui</a>
+                        <button onclick="hide_alert_fermeture()" class="btn btn-default btn-lg mb-control-close">Non</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MESSAGE BOX-->

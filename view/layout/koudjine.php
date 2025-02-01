@@ -708,7 +708,8 @@
 
     <!-- START TEMPLATE -->
 
-
+    <script type="text/javascript" src="<?php echo BASE_URL . '/koudjine/js/qrcode.js'; ?>"></script>
+    <script type="text/javascript" src="<?php echo BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js'; ?>"></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js'; ?>"></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/tableexport/tableExport.js'; ?>"></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/tableexport/jquery.base64.js'; ?>"></script>
@@ -720,6 +721,7 @@
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins.js'; ?>"></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/actions.js'; ?>"></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/caisse.js'; ?>"></script>
+    <script type="text/javascript" src="<?php echo BASE_URL . '/koudjine/js/myFunction.js'; ?>"></script>
    <!-- <script type=" text/javascript" src="<?php /*echo BASE_URL . '/koudjine/js/settings.js'; */?>"></script>-->
     <script>
 

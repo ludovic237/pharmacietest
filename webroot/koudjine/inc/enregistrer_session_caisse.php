@@ -15,12 +15,14 @@ if (isset($_POST['id'])){
         $id=$_POST['id'];
         $fermetureCaisse=$_POST['fermetureCaisse'];
         $fondCaisse=$_POST['fondCaisse'];
+        $fermeture_electronique=$_POST['fermeture_electronique'];
+        $fermeture_bon=$_POST['fermeture_bon'];
         //echo $id;
         //$prod = new Departement();
         if ($manager->existsId($id)) {
             $caisse = $manager->getId($id);
 
-            $caisse->setfermetureCaisse($fermetureCaisse);
+            $caisse->setfermetureCaisse($fermetureCaisse."|".$fermeture_electronique."|".$fermeture_bon);
             $caisse->setfondCaisseFerme($fondCaisse);
             $caisse->setetat('En cours1');
             if($caisse->dateFerme() == null){

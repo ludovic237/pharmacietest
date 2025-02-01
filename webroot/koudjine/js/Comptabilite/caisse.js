@@ -71,7 +71,13 @@ $(document).ready(function () {
         var total = ($("#fargent_1").val() * 500) + ($("#fargent_2").val() * 10000) + ($("#fargent_3").val() * 100) + ($("#fargent_4").val() * 5000) + ($("#fargent_5").val() * 50) + ($("#fargent_6").val() * 2000) + ($("#fargent_7").val() * 25) + ($("#fargent_8").val() * 1000) + ($("#fargent_9").val() * 10) + ($("#fargent_10").val() * 500)
         var soustotal1 = ($("#fargent_1").val() * 500) + ($("#fargent_3").val() * 100) + ($("#fargent_5").val() * 50) + ($("#fargent_7").val() * 25) + ($("#fargent_9").val() * 10)
         var soustotal2 = ($("#fargent_2").val() * 10000) + ($("#fargent_4").val() * 5000) + ($("#fargent_6").val() * 2000) + ($("#fargent_8").val() * 1000) + ($("#fargent_10").val() * 500)
+        var fermeture_electronique = $('#fermeture_electronique').val();
+        var fermeture_bon = $('#fermeture_bon').val();
+        var total_final = parseInt(total)+parseInt(fermeture_bon)+parseInt(fermeture_electronique);
+        console.log("total_final");
+        console.log(total_final);
         $('.ftotalaisse').html(total);
+        $('#total_fermeture_final').html(total_final);
         $('.fsoustotalaisse1').html(soustotal1);
         $('.fsoustotalaisse2').html(soustotal2);
         if (event.keyCode == 13) {
@@ -243,13 +249,13 @@ $(document).ready(function () {
     });
 
 
-    // $('#iconPreviewCaisse').on('hidden.bs.modal', function () {
-    //     $("#iconPreviewCaisse").modal("show");
-    // })
+    $('#iconPreviewCaisse').on('hidden.bs.modal', function () {
+        $("#iconPreviewCaisse").modal("show");
+    })
 
-    // $('#iconPreviewCaisseFermer').on('hidden.bs.modal', function () {
-    //     $("#iconPreviewCaisseFermer").modal("show");
-    // })
+    $('#iconPreviewCaisseFermer').on('hidden.bs.modal', function () {
+        $("#iconPreviewCaisseFermer").modal("show");
+    })
 
     $('#iconPreviewRapport').on('hidden.bs.modal', function () {
         $("#iconPreviewRapport").modal("show");
@@ -1361,31 +1367,27 @@ function charger_vente(id) {
 
 }
 
+function alert_fermeture() {
+    $("#mb-verification-fermeture").modal("show");
+}
+function hide_alert_fermeture() {
+    $("#mb-verification-fermeture").modal("hide");
+}
+
+
+
+
 function valider_fermeture(caisse_id) {
-    var total = parseInt($('.ftotalaisse').html());
     var detail_piece_billet = ($("#fargent_1").val()) + "-" + ($("#fargent_2").val()) + "-" + ($("#fargent_3").val()) + "-" + ($("#fargent_4").val()) + "-" + ($("#fargent_5").val()) + "-" + ($("#fargent_6").val()) + "-" + ($("#fargent_7").val()) + "-" + ($("#fargent_8").val()) + "-" + ($("#fargent_9").val()) + "-" + ($("#fargent_10").val());
 
+    var fermeture_electronique = $('#fermeture_electronique').val();
+    var fermeture_bon = $('#fermeture_bon').val();
+    var total = parseInt($('.ftotalaisse').html())+parseInt(fermeture_electronique)+ parseInt(fermeture_bon);
     if (total == 0) {
-        //alert("Veuillez saisir votre fond de caisse");
-        $.ajax({
-            type: "POST",
-            url: '/pharmacietest/koudjine/inc/enregistrer_session_caisse.php',
-            data: {
-                id: caisse_id,
-            },
-            error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
-
-                //alert(server_responce);
-                var link = '/pharmacietest/users/logout';
-                window.location.href = link;
-
-            }
-        });
+        // noty({text: 'Veuillez remplir le billetage', layout: 'topRight', type: 'error'});
+        alert('Montant en espece obligatoire, veuillez inserer un montant en espece')
+        return;
     } else {
-        //alert('passe');
         $.ajax({
             type: "POST",
             url: '/pharmacietest/koudjine/inc/enregistrer_session_caisse.php',
@@ -1393,8 +1395,10 @@ function valider_fermeture(caisse_id) {
                 id: caisse_id,
                 fermetureCaisse: detail_piece_billet,
                 fondCaisse: total,
-                total_om: total,
-                total_bon: total,
+                total_om: fermeture_electronique,
+                total_bon: fermeture_bon,
+                fermeture_electronique: fermeture_electronique,
+                fermeture_bon: fermeture_bon,
             },
             error: function (e) {
                 loader(false);
@@ -1411,6 +1415,21 @@ function valider_fermeture(caisse_id) {
 
 }
 
+function valider_fermeture_final(caisse_id) {
+    var detail_piece_billet = ($("#fargent_1").val()) + "-" + ($("#fargent_2").val()) + "-" + ($("#fargent_3").val()) + "-" + ($("#fargent_4").val()) + "-" + ($("#fargent_5").val()) + "-" + ($("#fargent_6").val()) + "-" + ($("#fargent_7").val()) + "-" + ($("#fargent_8").val()) + "-" + ($("#fargent_9").val()) + "-" + ($("#fargent_10").val());
+    var total = parseInt($('.ftotalaisse').html());
+    var fermeture_electronique = $('#fermeture_electronique').val();
+    var fermeture_bon = $('#fermeture_bon').val();
+    if (total == 0) {
+        noty({text: 'Montant espece insuffisant', layout: 'topRight', type: 'error'});
+        return;
+    } else {
+
+
+    }
+
+}
+
 function open_rapport(id) {
     var caisse_id = parseInt($("#tab_GBonCaisse").attr("data"));
     if (id != null) {
@@ -1419,6 +1438,7 @@ function open_rapport(id) {
     //alert(caisse_id)
     showRapportTest(caisse_id);
     $("#iconPreviewRapport").modal("show");
+    $("#iconPreviewCaisseFermer").modal("hide");
 }
 
 function valider_rapport() {
