@@ -13,39 +13,52 @@ $managerEn = new En_rayonManager($pdo);
 
 $action = $_POST['action'];
 $id = $_POST['id'];
+$inventaire = $manager->get();
 
 
-
-if ($action == "creer"){
-
-    $qte = $_POST['qte'];
+if($action == "creer"){
+    //$qte = $_POST['qte'];
     $employe_id = $_POST['employe_id'];
     $qteRestante = $_POST['qteRestante'];
-    $inventaire = $manager->get();
 
     $produit = new Produit_inventaire(array(
         'inventaire_id' => $inventaire->id(),
         'employe_id' => $employe_id,
         'en_rayon_id' => $id,
         'stockAvant' => $qteRestante,
-        'stockValide' => $qte
+        'stockValide' => 0,
+        'type' => 'rayon',
+        'statut' => 'non valide'
     ));
     $managerPI->add($produit);
-    $en_rayon = $managerEn->get($id);
-    $en_rayon->setquantiteRestante($qte);
-    $managerEn->update($en_rayon);
+    $donnees = array('erreur' =>'nouveau produit en inventaire');
+    echo json_encode($donnees);
+}else if ($action == "valider"){
+
+    $qte = $_POST['qte'];
+    $date_fin = $_POST['date_fin'];
+
+    if($managerPI->existsEn_rayon($inventaire->id(), $id)){
+        $produit = $managerPI->getEn_rayon($inventaire->id(), $id);
+        $produit->setstockValide($produit->stockValide()+$qte);
+        $produit->setdate_fin($date_fin);
+        $produit->setstatut("valide");
+        $managerPI->update($produit);
+        /*$en_rayon = $managerEn->get($id);
+        $en_rayon->setquantiteRestante($en_rayon->quantiteRestante() + $qte);
+        $managerEn->update($en_rayon);*/
+    }
 
 }
 else{
     $qte = $_POST['qte'];
-    $inventaire = $manager->get();
     if($managerPI->existsEn_rayon($inventaire->id(), $id)){
         $produit = $managerPI->getEn_rayon($inventaire->id(), $id);
         $produit->setstockValide($produit->stockValide()+$qte);
         $managerPI->update($produit);
-        $en_rayon = $managerEn->get($id);
+        /*$en_rayon = $managerEn->get($id);
         $en_rayon->setquantiteRestante($en_rayon->quantiteRestante() + $qte);
-        $managerEn->update($en_rayon);
+        $managerEn->update($en_rayon);*/
     }
 
     if(true){

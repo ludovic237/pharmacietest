@@ -8,6 +8,10 @@ class Produit_inventaire
         $_en_rayon_id,
         $_stockAvant,
         $_stockValide,
+        $_date_debut,
+        $_date_fin,
+        $_type,
+        $_statut,
         $_supprimer;
 
     // CONSRUCTEUR
@@ -53,6 +57,22 @@ class Produit_inventaire
     {
         return $this->_stockValide;
     }
+    public function date_debut()
+    {
+        return $this->_date_debut;
+    }
+    public function date_fin()
+    {
+        return $this->_date_fin;
+    }
+    public function type()
+    {
+        return $this->_type;
+    }
+    public function statut()
+    {
+        return $this->_statut;
+    }
     public function supprimer()
     {
         return $this->_supprimer;
@@ -95,6 +115,22 @@ class Produit_inventaire
     {
             $this->_stockValide = $id;
     }
+    public function setdate_debut($id)
+    {
+        $this->_date_debut = $id;
+    }
+    public function setdate_fin($id)
+    {
+        $this->_date_fin = $id;
+    }
+    public function settype($id)
+    {
+        $this->_type = $id;
+    }
+    public function setstatut($id)
+    {
+        $this->_statut = $id;
+    }
     public function setsupprimer($value)
     {
 
@@ -114,13 +150,16 @@ class Produit_inventaireManager
     }
     public function add(Produit_inventaire $produit_inventaire)
     {
-        $q = $this->_db->prepare('INSERT INTO produit_inventaire SET id = :id, inventaire_id = :inventaire_id, employe_id = :employe_id, en_rayon_id = :en_rayon_id, stockAvant = :stockAvant, stockValide = :stockValide, supprimer=0');
+        $q = $this->_db->prepare('INSERT INTO produit_inventaire SET id = :id, inventaire_id = :inventaire_id, employe_id = :employe_id, en_rayon_id = :en_rayon_id, stockAvant = :stockAvant, stockValide = :stockValide, date_debut = now(), date_fin = :date_fin, type = :type, statut = :statut, supprimer=0');
         $q->bindValue(':id', $produit_inventaire->id(), PDO::PARAM_INT);
         $q->bindValue(':inventaire_id', $produit_inventaire->inventaire_id(), PDO::PARAM_INT);
         $q->bindValue(':employe_id', $produit_inventaire->employe_id(), PDO::PARAM_INT);
         $q->bindValue(':en_rayon_id', $produit_inventaire->en_rayon_id());
         $q->bindValue(':stockAvant', $produit_inventaire->stockAvant());
         $q->bindValue(':stockValide', $produit_inventaire->stockValide());
+        $q->bindValue(':date_fin', $produit_inventaire->date_fin());
+        $q->bindValue(':type', $produit_inventaire->type());
+        $q->bindValue(':statut', $produit_inventaire->statut());
         $q->execute();
     }
     public function count()
@@ -195,13 +234,17 @@ class Produit_inventaireManager
     public function update(Produit_inventaire $produit_inventaire)
     {
 
-        $q = $this->_db->prepare('UPDATE produit_inventaire SET inventaire_id = :inventaire_id, employe_id = :employe_id, en_rayon_id = :en_rayon_id, stockAvant = :stockAvant, stockValide = :stockValide WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE produit_inventaire SET inventaire_id = :inventaire_id, employe_id = :employe_id, en_rayon_id = :en_rayon_id, stockAvant = :stockAvant, stockValide = :stockValide, date_debut = :date_debut, date_fin = :date_fin, type = :type, statut = :statut WHERE id = :id');
         $q->bindValue(':id', $produit_inventaire->id(), PDO::PARAM_INT);
         $q->bindValue(':inventaire_id', $produit_inventaire->inventaire_id(), PDO::PARAM_INT);
         $q->bindValue(':employe_id', $produit_inventaire->employe_id(), PDO::PARAM_INT);
         $q->bindValue(':en_rayon_id', $produit_inventaire->en_rayon_id());
         $q->bindValue(':stockAvant', $produit_inventaire->stockAvant());
         $q->bindValue(':stockValide', $produit_inventaire->stockValide());
+        $q->bindValue(':date_debut', $produit_inventaire->date_debut());
+        $q->bindValue(':date_fin', $produit_inventaire->date_fin());
+        $q->bindValue(':type', $produit_inventaire->type());
+        $q->bindValue(':statut', $produit_inventaire->statut());
         $q->execute();
     }
     public function setDb(PDO $db)

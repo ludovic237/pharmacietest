@@ -56,7 +56,7 @@ class StockController extends Controller
                 //'fields' => 'DATE_DEBUT_CONCOURS,MODALITE_ADMISSION,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
                 'table' => 'produit_inventaire, en_rayon, produit, employe',
                 //'order' => 'DATE_DEBUT_CONCOURS-DESC',
-                'conditions' => array('inventaire_id' => $d['inventaire']->id, 'en_rayon.id' => 'produit_inventaire.en_rayon_id', 'produit.id' => 'en_rayon.produit_id', 'employe.id' => 'produit_inventaire.employe_id', 'en_rayon.supprimer' => 0, 'employe.supprimer' => 0, 'produit_inventaire.supprimer' => 0)
+                'conditions' => array('inventaire_id' => $d['inventaire']->id, 'en_rayon.id' => 'produit_inventaire.en_rayon_id', 'produit.id' => 'en_rayon.produit_id', 'employe.id' => 'produit_inventaire.employe_id', 'en_rayon.supprimer' => 0, 'employe.supprimer' => 0, 'produit_inventaire.statut' => '"valide"', 'produit_inventaire.supprimer' => 0)
             ));
                 $d['produits_nonI'] = $this->Stock->find(array(
                     'fields' => 'en_rayon.id as id, dateLivraison, prixVente, quantiteRestante, nom',

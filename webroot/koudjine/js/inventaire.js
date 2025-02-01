@@ -17,20 +17,25 @@ $(document).ready(function(){
                 loader(false);
             },
             success: function (data) {
-                        ////alert(data);
+                console.log(data);
                         if (data.erreur == 'non') {
                             var action = 0;
                             $('#tab_BIinventaire  tr').each(function (i) {
                                 var id1 = $(this).attr("id");
+
                                 if (id1 == recherche) {
+                                    console.log('passe')
                                     action = 1;
-                                    if($("#" + id1 + " .valider_inventaire").attr("disabled") == "disabled"){
+                                    //if($("#" + id1 + " .valider_inventaire").attr("disabled") == "disabled"){
                                         $('#message-box-danger p').html("Ce produit a déjà été inventorié, veuillez contacter l'administrateur pour toute modification !!!");
                                         $("#message-box-danger").modal("show");
                                         setTimeout(function () {
                                             $("#message-box-danger").modal("hide");
                                         }, 5000);
-                                    }
+                                    //}
+                                    $('#recherche_inventaire').val("");
+                                    $("#div_inventaire").show();
+                                    $('#recherche_inventaire').focus();
                                 }
 
                             });
@@ -47,7 +52,7 @@ $(document).ready(function(){
                                     }else
                                         $("#" + id1 + " .qte_inventaire").val(parseInt($("#" + id1 + " .qte_inventaire").val() )+ 1);
                                 }
-
+                                console.log(action)
                             });
                             if (action == 0) {
                                 var cat = '<tr id="' + recherche + '">'
@@ -59,13 +64,14 @@ $(document).ready(function(){
                                     + '<td>' + $("#recherche_inventaire").attr("data1")+ '</td>'
                                     + '<td><input class=\'qte_inventaire\' style="width: 50px;" type="number" value=\'1\'></td>'
                                     + '<td>'
-                                    + '<button class="btn btn-success btn-rounded btn-sm valider_inventaire" onClick="valider_row_inventaire(\'' + recherche + '\');">Valider</span></button>'
+                                    + '<button class="btn btn-success btn-rounded btn-sm valider_inventaire" onClick="valider_row_inventaire(\'' + recherche + '\',\'valider\');">Valider</span></button>'
                                     + '</td>'
                                     + '</tr>';
                                 $('#tab_Binventaire').prepend(cat);
                                 if($("#recherche_inventaire").attr("name") != 'Administrateur'){
                                     $('.ajouter_inventaire').hide();
                                 }
+                                valider_row_inventaire(recherche, 'creer');
                             }
 
                             $('#recherche_inventaire').val("");
@@ -90,33 +96,88 @@ $(document).ready(function(){
     })
 });
 
-function valider_row_inventaire(id) {
-    $.ajax({
-        type: "POST",
-        url: '/pharmacietest/koudjine/inc/gerer_produit_inventaire.php',
-        data: {
-            action: 'creer',
-            id: id,
-            qte: $("#" + id + " .qte_inventaire").val(),
-            employe_id: $("#recherche_inventaire").attr("data"),
-            qteRestante: parseInt($("#" + id + " .qte_restante").html())
-        },
-        error: function (e) {
+    function getFormattedDateTime() {
+        let now = new Date();
+        let year = now.getFullYear();
+        let month = String(now.getMonth() + 1).padStart(2, '0'); // Mois de 0 à 11
+        let day = String(now.getDate()).padStart(2, '0');
+        let hours = String(now.getHours()).padStart(2, '0');
+        let minutes = String(now.getMinutes()).padStart(2, '0');
+        let seconds = String(now.getSeconds()).padStart(2, '0');
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+
+
+
+function valider_row_inventaire(id, action) {
+    if(action == 'creer'){
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/gerer_produit_inventaire.php',
+            data: {
+                action: action,
+                id: id,
+                employe_id: $("#recherche_inventaire").attr("data"),
+                qteRestante: parseInt($("#" + id + " .qte_restante").html())
+            },
+            error: function (e) {
                 loader(false);
             },
             success: function (server_responce) {
-            //alert(server_responce);
-            $('#' + id + ' .valider_inventaire').attr("disabled", "disabled");
-            $('#recherche_inventaire').focus();
-        }
-    })
+                //alert(server_responce);
+                //$('#' + id + ' .valider_inventaire').attr("disabled", "disabled");
+                $('#recherche_inventaire').focus();
+            }
+        })
+    }else if(action == 'valider'){
+        let date_fin = getFormattedDateTime();
+        console.log(date_fin)
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/gerer_produit_inventaire.php',
+            data: {
+                action: action,
+                id: id,
+                qte: $("#" + id + " .qte_inventaire").val(),
+                date_fin: date_fin
+            },
+            error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
+                console.log(server_responce);
+                $('#' + id + ' .valider_inventaire').attr("disabled", "disabled");
+                $('#recherche_inventaire').focus();
+            }
+        })
+    }else{
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/gerer_produit_inventaire.php',
+            data: {
+                action: action,
+                id: id,
+                qte: $("#" + id + " .qte_inventaire").val()
+            },
+            error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
+                //alert(server_responce);
+                $('#' + id + ' .valider_inventaire').attr("disabled", "disabled");
+                $('#recherche_inventaire').focus();
+            }
+        })
+    }
 }
 function validers_row_inventaire() {
     $('#tab_Binventaire  tr').each(function (i) {
         var id1 = $(this).attr("id");
 
             if($("#" + id1 + " .valider_inventaire").attr("disabled") != "disabled"){
-                valider_row_inventaire(id1);
+                valider_row_inventaire(id1,'valider');
             }
 
     });
@@ -206,7 +267,7 @@ function ajouter_row_inventaire() {
                 loader(false);
             },
             success: function (server_responce) {
-            //alert(id);
+                console.log(server_responce);
             var val = ''+id;
             //alert($('#'+ id + ' .qteinventaire').html());
             //$('#' + id + ' .valider_inventaire').attr("disabled", "disabled");
