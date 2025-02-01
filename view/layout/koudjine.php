@@ -708,7 +708,6 @@
 
     <!-- START TEMPLATE -->
 
-    <script type="text/javascript" src="<?php echo BASE_URL . '/koudjine/js/qrcode.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo BASE_URL . '/koudjine/js/jquery-blockui/jquery.blockUI.js'; ?>"></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/datatables/jquery.dataTables.min.js'; ?>"></script>
     <script type=" text/javascript" src="<?php echo BASE_URL . '/koudjine/js/plugins/tableexport/tableExport.js'; ?>"></script>

@@ -73,7 +73,7 @@ $(document).ready(function () {
         var soustotal2 = ($("#fargent_2").val() * 10000) + ($("#fargent_4").val() * 5000) + ($("#fargent_6").val() * 2000) + ($("#fargent_8").val() * 1000) + ($("#fargent_10").val() * 500)
         var fermeture_electronique = $('#fermeture_electronique').val();
         var fermeture_bon = $('#fermeture_bon').val();
-        var total_final = parseInt(total)+parseInt(fermeture_bon)+parseInt(fermeture_electronique);
+        var total_final = parseInt(total) + parseInt(fermeture_bon) + parseInt(fermeture_electronique);
         console.log("total_final");
         console.log(total_final);
         $('.ftotalaisse').html(total);
@@ -710,7 +710,12 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
     console.log($('#' + onglet + ' .numero').val());
     // Traitement Mixte
     var typePaiementFinal = 'Mixtes';
-
+    qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+        width: 90,
+        height: 90
+    });
+    qrcode.clear();
+    qrcode.makeCode(vente_id);
     if (typePaiement == 'Mixte') {
 
         if (parseInt($('#' + onglet + ' .montant_espece').val()) > 0 && parseInt($('#' + onglet + ' .montant_electronique').val()) > 0
@@ -1079,6 +1084,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
 }
 
 function imprimer_bloc(titre, objet, typePaiement) {
+
     if (typePaiement == "Mixte Espèce Electronique Ticketcaisse") {
         $('#rowmontantelectronique').show();
         $('#rowmontantespece').show();
@@ -1100,26 +1106,28 @@ function imprimer_bloc(titre, objet, typePaiement) {
         $('#rowmontantticket').show();
     }
     // Définition de la zone à imprimer
+
     var zone = document.getElementById(objet).innerHTML;
     //alert("Hello");
-    // Ouverture du popup,
-    var fen = window.open("", "", "height=auto, width=auto,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=0, top=0");
+    var printWindow = window.open('', '', 'width=600,height=600');
+    printWindow.document.open();
+    printWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Imprimer avec QR Code</title>
+                       
+                    </head>
+                    <body>
+                        ${document.getElementById("ticketCaisse").outerHTML}
+                    </body>
+                </html>
+            `);
+    printWindow.document.close();
 
-    // style du popup
-    fen.document.body.style.color = '#000000';
-    fen.document.body.style.backgroundColor = '#FFFFFF';
-    fen.document.body.style.padding = "0px";
+    // Lancer l'impression
+    printWindow.print();
+    printWindow.close();
 
-    // Ajout des données a imprimer
-    fen.document.title = titre;
-    fen.document.body.innerHTML += " " + zone + " ";
-
-    // Impression du popup
-    fen.window.print();
-
-    //Fermeture du popup
-    fen.window.close();
-    return true;
 }
 
 function valider_une_depense() {
@@ -1307,12 +1315,12 @@ function charger_vente(id) {
     $('#ticketCaisse .remise').html($("#" + id + " .reduction").html());
     $('#ticketCaisse .montanttotal').html(parseInt($("#" + id + " .reduction").html()) + parseInt($("#" + id + " .prixtotal").html()));
 
-    /* qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
-         width: 90,
-         height: 90
-     });
-     qrcode.clear();
-     qrcode.makeCode(id);*/
+    qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+        width: 90,
+        height: 90
+    });
+    qrcode.clear();
+    qrcode.makeCode(id);
 
     $.ajax({
         type: "POST",
@@ -1371,10 +1379,10 @@ function charger_vente(id) {
 function alert_fermeture() {
     $("#mb-verification-fermeture").modal("show");
 }
+
 function hide_alert_fermeture() {
     $("#mb-verification-fermeture").modal("hide");
 }
-
 
 
 function valider_fermeture(caisse_id) {
@@ -1382,7 +1390,7 @@ function valider_fermeture(caisse_id) {
 
     var fermeture_electronique = $('#fermeture_electronique').val();
     var fermeture_bon = $('#fermeture_bon').val();
-    var total = parseInt($('.ftotalaisse').html())+parseInt(fermeture_electronique)+ parseInt(fermeture_bon);
+    var total = parseInt($('.ftotalaisse').html()) + parseInt(fermeture_electronique) + parseInt(fermeture_bon);
     if (total == 0) {
         //alert("Veuillez saisir votre fond de caisse");
         $.ajax({
@@ -1768,11 +1776,15 @@ function imprime_ticket_direct(id, montantespece,
             $('#ticketCaisse .remise').html(server_response.remise + '');
 
             qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
-                width: 90,
-                height: 90
+                text: ""+id,
+                width: 120,
+                height: 120,
+                // colorDark: "#FF5722",
+                colorLight: "#FFFFFF",
+                correctLevel: QRCode.CorrectLevel.H
             });
             qrcode.clear();
-            qrcode.makeCode(id);
+            qrcode.makeCode(""+id);
 
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer  tr').each(function (i) {
