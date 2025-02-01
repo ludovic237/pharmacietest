@@ -524,76 +524,94 @@ endforeach;
 
 //etat de la caisse
 
+$solde_reel_espece = 0;
+$solde_systeme_espece = 0;
+$solde_diff_espece = 0;
+$solde_reel_electronique = 0;
+$solde_systeme_electronique = 0;
+$solde_diff_electronique = 0;
+$solde_reel_ticket = 0;
+$solde_systeme_ticket = 0;
+$solde_diff_ticket = 0;
+$solde_reel_total = 0;
+$solde_systeme_total = 0;
+$solde_diff_total = 0;
+
 $fermeture = $managerCa->getId($id);
 $dataFermetureCaisse = $fermeture->fermetureCaisse();
-$listDataFermetureCaisse = explode("|",$dataFermetureCaisse);
-foreach ($listDataFermetureCaisse as $index => $valeur) {
-    if ($index==0){
-        $dataEspece = 0;
-        $listValeur =  explode("-",$valeur);
-        foreach ($listValeur as $index2 => $val) {
-            switch ($index) {
-                case 0:
-                    $dataEspece= $dataEspece+($val*500);
-                    break;
-                case 1:
-                    $dataEspece= $dataEspece+($val*10000);
-                    break;
-                case 2:
-                    $dataEspece= $dataEspece+($val*100);
-                    break;
-                case 3:
-                    $dataEspece= $dataEspece+($val*5000);
-                    break;
-                case 4:
-                    $dataEspece= $dataEspece+($val*50);
-                    break;
-                case 5:
-                    $dataEspece= $dataEspece+($val*2000);
-                    break;
-                case 6:
-                    $dataEspece= $dataEspece+($val*25);
-                    break;
-                case 7:
-                    $dataEspece= $dataEspece+($val*1000);
-                    break;
-                case 8:
-                    $dataEspece= $dataEspece+($val*10);
-                    break;
-                case 9:
-                    $dataEspece= $dataEspece+($val*500);
-                    break;
-//                default:
-//                    $compteur++;
-//                    break;
-            }
-        }
-    }
-    if ($index==1){
-        $dataElectronique = $valeur;
-    }
-    if ($index==2){
-        $dataBon = $valeur;
-    }
-}
+
+
 
 $montantFermeture = $fermeture->fondCaisseFerme();
 $montantSystem = ($totalfacturationEspece + $totalboncaisseGenerer) - ($totalboncaisseEncaisser + $totalDepense + $prixTotalRetourProduit);
 $differnce = $montantFermeture - $montantSystem;
 
 
-$solde_reel_espece=$dataEspece;
 $solde_systeme_espece=$totalfacturationEspece+$totalboncaisseGenerer-($totalDepense+$prixTotalRetourProduit+($totalboncaisseEncaisser-$totalfacturationTicket));
-$solde_diff_espece=$solde_reel_espece-$solde_systeme_espece;
-$solde_reel_electronique=$dataElectronique;
 $solde_systeme_electronique=$totalfacturationElectronique;
-$solde_diff_electronique=$solde_reel_electronique-$solde_systeme_electronique;
-$solde_reel_ticket=$dataBon;
 $solde_systeme_ticket=$totalboncaisseEncaisser;
-$solde_diff_ticket=$solde_reel_ticket-$solde_systeme_ticket;;
-$solde_reel_total=$solde_reel_espece+$solde_reel_electronique+$solde_reel_ticket;
 $solde_systeme_total=$solde_systeme_espece+$solde_systeme_electronique+$solde_systeme_ticket;
 $solde_diff_total=$solde_diff_espece+$solde_diff_electronique+$solde_diff_ticket;
+
+if ($fermeture->dateFerme()!=null){
+    $listDataFermetureCaisse = explode("|",$dataFermetureCaisse);
+    foreach ($listDataFermetureCaisse as $index => $valeur) {
+        if ($index==0){
+            $dataEspece = 0;
+            $listValeur =  explode("-",$valeur);
+            foreach ($listValeur as $index2 => $val) {
+                switch ($index) {
+                    case 0:
+                        $dataEspece= $dataEspece+($val*500);
+                        break;
+                    case 1:
+                        $dataEspece= $dataEspece+($val*10000);
+                        break;
+                    case 2:
+                        $dataEspece= $dataEspece+($val*100);
+                        break;
+                    case 3:
+                        $dataEspece= $dataEspece+($val*5000);
+                        break;
+                    case 4:
+                        $dataEspece= $dataEspece+($val*50);
+                        break;
+                    case 5:
+                        $dataEspece= $dataEspece+($val*2000);
+                        break;
+                    case 6:
+                        $dataEspece= $dataEspece+($val*25);
+                        break;
+                    case 7:
+                        $dataEspece= $dataEspece+($val*1000);
+                        break;
+                    case 8:
+                        $dataEspece= $dataEspece+($val*10);
+                        break;
+                    case 9:
+                        $dataEspece= $dataEspece+($val*500);
+                        break;
+//                default:
+//                    $compteur++;
+//                    break;
+                }
+            }
+        }
+        if ($index==1){
+            $dataElectronique = $valeur;
+        }
+        if ($index==2){
+            $dataBon = $valeur;
+        }
+    }
+    $solde_reel_espece=$dataEspece;
+    $solde_diff_espece=$solde_reel_espece-$solde_systeme_espece;
+    $solde_reel_electronique=$dataElectronique;
+    $solde_diff_electronique=$solde_reel_electronique-$solde_systeme_electronique;
+    $solde_reel_ticket=$dataBon;
+    $solde_diff_ticket=$solde_reel_ticket-$solde_systeme_ticket;;
+    $solde_reel_total=$solde_reel_espece+$solde_reel_electronique+$solde_reel_ticket;
+}
 
 $donnees = array(
     'vente_fg' => $prixGrossite,
