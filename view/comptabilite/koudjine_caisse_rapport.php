@@ -374,32 +374,70 @@ if (isset($id)) {
 
                                         <div class="panel-heading" style="background: #333;">
                                             <div class="panel-title-box" style="color: aquamarine;">
+                                                <h3 style="color: white;">Retour caisse</h3>
+                                                <!-- <span>Projects activity</span> -->
+                                            </div>
+                                        </div>
+                                        <div class="panel-body panel-body-table">
+                                            <div class="table-responsive">
+                                                <table  id="rapport_retour" class="table table-bordered table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th style="width: 160px;">Reference</th>
+                                                        <th>Produit</th>
+                                                        <th style="width: 50px;">Quantité</th>
+                                                        <th style="width: 100px;">Total</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div style="display:flex;padding: 5px">
+                                                    <p style="margin: 0px">Total: <span id="rapport_retour_total"></span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row divine">
+
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+
+                                        <div class="panel-heading" style="background: #333;">
+                                            <div class="panel-title-box" style="color: aquamarine;">
                                                 <h3 style="color: white;">Etat de caisse</h3>
                                                 <!-- <span>Projects activity</span> -->
                                             </div>
                                         </div>
                                         <div class="panel-body panel-body-table">
                                             <div class="table-responsive">
-<!--                                                <table class="table table-bordered table-striped">-->
-<!--                                                    <thead>-->
-<!--                                                    <tr>-->
-<!--                                                        <th>Solde réel en caisse</th>-->
-<!--                                                        <th>Solde système</th>-->
-<!--                                                        <th>Différence</th>-->
-<!--                                                    </tr>-->
-<!--                                                    </thead>-->
-<!--                                                    <tbody>-->
-<!--                                                    <tr>-->
-<!--                                                        <td id="rapport_ec_solde_reel">0</td>-->
-<!--                                                        <td id="rapport_ec_solde_system">-->
-<!--                                                            0-->
-<!--                                                        </td>-->
-<!--                                                        <td id="rapport_ec_difference">-->
-<!--                                                            0-->
-<!--                                                        </td>-->
-<!--                                                    </tr>-->
-<!--                                                    </tbody>-->
-<!--                                                </table>-->
+                                                <!--                                                <table class="table table-bordered table-striped">-->
+                                                <!--                                                    <thead>-->
+                                                <!--                                                    <tr>-->
+                                                <!--                                                        <th>Solde réel en caisse</th>-->
+                                                <!--                                                        <th>Solde système</th>-->
+                                                <!--                                                        <th>Différence</th>-->
+                                                <!--                                                    </tr>-->
+                                                <!--                                                    </thead>-->
+                                                <!--                                                    <tbody>-->
+                                                <!--                                                    <tr>-->
+                                                <!--                                                        <td id="rapport_ec_solde_reel">0</td>-->
+                                                <!--                                                        <td id="rapport_ec_solde_system">-->
+                                                <!--                                                            0-->
+                                                <!--                                                        </td>-->
+                                                <!--                                                        <td id="rapport_ec_difference">-->
+                                                <!--                                                            0-->
+                                                <!--                                                        </td>-->
+                                                <!--                                                    </tr>-->
+                                                <!--                                                    </tbody>-->
+                                                <!--                                                </table>-->
                                                 <table border="1" class="table table-bordered table-striped">
                                                     <thead>
                                                     <tr>
@@ -416,10 +454,10 @@ if (isset($id)) {
                                                             <span id="solde_reel_espece">0</span>
                                                         </td>
                                                         <td >
-                                                             <span id="solde_systeme_espece">0</span>
+                                                            <span id="solde_systeme_espece">0</span>
                                                         </td>
                                                         <td >
-                                                             <span id="solde_diff_espece">0</span>
+                                                            <span id="solde_diff_espece">0</span>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -435,7 +473,7 @@ if (isset($id)) {
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>BESC</td>
+                                                        <td>Bon de caisse</td>
                                                         <td >
                                                             <span id="solde_reel_ticket">0</span>
                                                         </td>
@@ -460,43 +498,6 @@ if (isset($id)) {
                                                     </tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="row divine">
-                                <div class="col-md-12">
-                                    <div class="panel panel-default">
-
-                                        <div class="panel-heading" style="background: #333;">
-                                            <div class="panel-title-box" style="color: aquamarine;">
-                                                <h3 style="color: white;">Retour caisse</h3>
-                                                <!-- <span>Projects activity</span> -->
-                                            </div>
-                                        </div>
-                                        <div class="panel-body panel-body-table">
-                                            <div class="table-responsive">
-                                                <table  id="rapport_retour" class="table table-bordered table-striped">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Reference</th>
-                                                        <th>Produit</th>
-                                                        <th>Quantité</th>
-                                                        <th>Total</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div style="display:flex;padding: 5px">
-                                                    <p style="margin: 0px">Total: <span id="rapport_retour_total"></span></p>
-                                                </div>
                                             </div>
                                         </div>
 
