@@ -472,7 +472,6 @@ if (isset($inventaire) && !empty($inventaire)) {
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="ajouter_produit();">Valider</button>
                 <button type="button" class="btn btn-danger" onclick="focus_recherche()">Close</button>
             </div>
         </div>
