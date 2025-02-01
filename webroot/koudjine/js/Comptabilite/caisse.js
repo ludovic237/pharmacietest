@@ -1377,6 +1377,10 @@ function hide_alert_fermeture() {
 
 
 
+function fermeture_alert_caisse() {
+    var link = '/pharmacietest/users/logout';
+    window.location.href = link;
+}
 
 function valider_fermeture(caisse_id) {
     var detail_piece_billet = ($("#fargent_1").val()) + "-" + ($("#fargent_2").val()) + "-" + ($("#fargent_3").val()) + "-" + ($("#fargent_4").val()) + "-" + ($("#fargent_5").val()) + "-" + ($("#fargent_6").val()) + "-" + ($("#fargent_7").val()) + "-" + ($("#fargent_8").val()) + "-" + ($("#fargent_9").val()) + "-" + ($("#fargent_10").val());
