@@ -978,6 +978,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                 type: "POST",
                 url: '/pharmacietest/koudjine/inc/valider_facture.php',
                 data: {
+                    montantPayer: montantPayer,
                     montant_espece: montant_espece,
                     montant_electronique: montant_electronique,
                     montant_ticket: montant_ticket,
