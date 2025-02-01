@@ -970,7 +970,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             <div class="col-md-6">
                                 <?php if (!empty($action_fermeture->id)) { ?>
                                     <button type="button" class="btn btn-success" style="margin-right: 20px; "
-                                            onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Valider
+                                            onclick="valider_fermeture_final('<?php echo $action_fermeture->id; ?>')">Valider
                                     </button>
                                 <?php } ?>
                                 <button onclick="close_modal_caisse_row()" type="button" class="btn btn-primary"
@@ -2746,7 +2746,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                 </div>
                 <div class="mb-footer">
                     <div class="pull-right">
-                        <a class="btn btn-success btn-lg" onclick="fermeture_alert_caisse()">Oui</a>
+                        <a class="btn btn-success btn-lg" onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Oui</a>
                         <button class="btn btn-default btn-lg mb-control-close" onclick="close_caisse_alert()" >Non</button>
                     </div>
                 </div>
