@@ -1393,6 +1393,8 @@ function valider_fermeture(caisse_id) {
                 id: caisse_id,
                 fermetureCaisse: detail_piece_billet,
                 fondCaisse: total,
+                total_om: total,
+                total_bon: total,
             },
             error: function (e) {
                 loader(false);
