@@ -962,12 +962,13 @@ function reimprime_ticket(id, montantespece,
         dataType: 'json',
         success: function (server_response) {
             $('#qrcodeTicket').empty();
-            qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+            qrcode = new QRCode(document.getElementById("qrcodeTicke"), {
+                text:""+id,
                 width: 90,
                 height: 90
             });
             qrcode.clear();
-            qrcode.makeCode(id);
+            qrcode.makeCode(""+id);
 
             $('#tab_vente_caisse').empty();
 
@@ -1552,12 +1553,13 @@ function reimprime_ticket_caisse(id) {
             },
             success: function (server_responce) {
             let ventes = server_responce.data;
-            qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
-                width: 90,
-                height: 90
-            });
-            qrcode.clear();
-            qrcode.makeCode(id);
+                qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
+                    text:""+id,
+                    width: 90,
+                    height: 90
+                });
+                qrcode.clear();
+                qrcode.makeCode(""+id);
 
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer2  tr').each(function (i) {
