@@ -130,7 +130,7 @@ if (isset($_POST['id'])) {
     $donnees = array(
         'data' => $data,
         "type_paiement" => $typefacturation,
-        'montantfactureEspece' => $montantfactureEspece+$ventes->reduction(),
+        'montantfactureEspece' => $montantfactureEspece+$facture->reste(),
         'montantfactureElectronique' => $montantfactureElectronique,
         'montantfactureTicket' => $montantfactureTicket,
         'reference' => $ventes->reference(),
