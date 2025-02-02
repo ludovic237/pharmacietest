@@ -1823,7 +1823,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                     <h3 style="padding: 10px;text-align: center;margin-bottom: 0px;">
                                         Bon de caisse</h3>
                                     <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Bon N° xxxxx</strong>
+                                        Bon N° : <span id="codebarrenulimp"></span></strong>
                                     <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         <span id="dateimp"></span>
                                     </strong>
