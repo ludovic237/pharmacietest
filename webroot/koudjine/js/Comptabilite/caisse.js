@@ -1084,7 +1084,9 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
 }
 
 function imprimer_bloc(titre, objet, typePaiement) {
-
+    if (objet=="ticket"){
+        $("#previewImprimerBonCaisse").modal("hide");
+    }
     if (typePaiement == "Mixte Espèce Electronique Ticketcaisse") {
         $('#rowmontantelectronique').show();
         $('#rowmontantespece').show();
