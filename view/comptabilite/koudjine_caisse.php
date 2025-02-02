@@ -1723,7 +1723,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                         Enregistrer
                     </button>
                     <?php }?>
-                    <button type="button" class="btn btn-primary" onclick="close_depense()">Ferler</button>
+                    <button type="button" class="btn btn-primary" onclick="close_depense()">Fermer</button>
                 </div>
             </div>
         </div>
