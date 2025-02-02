@@ -1190,7 +1190,7 @@ function imprimer_bloc(titre, objet, typePaiement) {
     </style>
                     </head>
                     <body>
-                        ${document.getElementById("ticketCaisse").outerHTML}
+                        ${document.getElementById(titre).outerHTML}
                     </body>
                 </html>
             `);
