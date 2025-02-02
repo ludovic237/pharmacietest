@@ -1123,8 +1123,8 @@ function imprimer_bloc(titre, objet, typePaiement) {
             padding: 0;
             background-color: #f0f0f0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: start;
+            align-items: start;
             height: 100vh;
         }
         .ticketfacture {
@@ -1771,7 +1771,7 @@ function imprime_ticket(id, montantespece,
             $('#montantelectronique').html(server_response.montantfactureElectronique);
             $('#montantticket').html(server_response.montantfactureTicket);
             $("#iconPreviewListeCaisse").modal('hide');
-            $('#ticketCaisse').modal("show");
+            $('#iconPreviewFacture').modal("show");
 
 
         }
