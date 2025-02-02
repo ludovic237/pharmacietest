@@ -33,7 +33,10 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
 <script>
                                         window.onload = function () {
                                             document.getElementById("recherche_inventaire").focus();
+                                            load_type_produit_inventaire()
                                         };
+                                        
+                                       
                                     </script>
 '.$script.$script1;
 if (isset($inventaire) && !empty($inventaire)) {
