@@ -919,7 +919,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                     <div class="input-group">
                                                         <span class="input-group-addon"><span
                                                                     class="fa fa-credit-card"></span></span>
-                                        <input id="fermeture_electronique" value="0" type="number" class="fargent form-control"/>
+                                        <input id="fermeture_electronique" min="0" type="number" class="fargent form-control"/>
                                     </div>
                                     <!-- <span class="help-block">This is sample of text field</span> -->
                                 </div>
@@ -931,7 +931,7 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                     <div class="input-group">
                                                         <span class="input-group-addon"><span
                                                                     class="fa fa-money"></span></span>
-                                        <input id="fermeture_bon" value="0" type="number" class="fargent form-control"/>
+                                        <input id="fermeture_bon" min="0" type="number" class="fargent form-control"/>
                                     </div>
                                     <!-- <span class="help-block">Password field sample</span> -->
                                 </div>
