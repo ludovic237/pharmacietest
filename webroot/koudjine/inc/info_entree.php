@@ -1,6 +1,8 @@
 <?php
 require_once('database.php');
 require_once('../Class/produit.php');
+require_once('../Class/commande.php');
+require_once('../Class/employe.php');
 require_once('../Class/fournisseur1.php');
 require_once('../Class/en_rayon.php');
 
@@ -12,9 +14,11 @@ global $conndb;
 $managerProduit = new ProduitManager($pdo);
 $managerFournisseur = new FournisseurManager($pdo);
 $managerEnRayon = new En_rayonManager($pdo);
- 
+$managerCommande = new CommandeManager($pdo);
+$managerEmployer = new EmployeManager($pdo);
+
 if (isset($_POST['id']))
-    $id=$_POST['id'];
+    $id = $_POST['id'];
 
 $enrayon = $managerEnRayon->get($id);
 $fournisseur = $managerFournisseur->get($enrayon->fournisseur_id());
@@ -22,11 +26,18 @@ $produit = $managerProduit->get($enrayon->produit_id());
 
 
 //echo "passe";
-if (isset($_POST['id'])||isset($_GET['id'])){
+if (isset($_POST['id']) || isset($_GET['id'])) {
 
-
-
-    if($managerEnRayon->existsId($id)){
+    $identifiant = "";
+    if ($managerEnRayon->existsId($id)) {
+        $enRayon = $managerEnRayon->get($id);
+        if ($managerCommande->existsId($enRayon->commande_id())) {
+            $commande = $managerCommande->get($enRayon->commande_id());
+            if ($managerEmployer->existsId($commande->employe_id())) {
+                $employe = $managerEmployer->get($commande->employe_id());
+                $identifiant = $employe->identifiant();
+            }
+        }
 
         //print_r($produit);
         $datelivraison = $enrayon->dateLivraison();
@@ -34,6 +45,7 @@ if (isset($_POST['id'])||isset($_GET['id'])){
         $datel = $date->format('d-m-Y');
         $dateCl = $date->format('dmY');
         $dateperemption = $enrayon->datePeremption();
+        $identifiant = $identifiant;
         $date = DateTime::createFromFormat('Y-m-d', $dateperemption);
         $datep = $date->format('d-m-Y');
         $dateCp = $date->format('mY');
@@ -48,14 +60,12 @@ if (isset($_POST['id'])||isset($_GET['id'])){
     //$code = cb($code_barre);
 
 
-    $donnees = array('nomP' => $produit->nom(), 'nomF' => $fournisseur->nom(), 'codeP' =>$produit->id(),  'code' => $fournisseur->code(), 'datel' => $datel, 'datep' => $datep, 'prixa' =>  $enrayon->prixAchat(), 'prixv' =>  $enrayon->prixVente(), 'quantite' =>  $enrayon->quantite(), 'quantiter' =>  $enrayon->quantiteRestante(), 'reduction' => $enrayon->reduction(),'codebarre' =>$code_barre);
+    $donnees = array('nomP' => $produit->nom(), 'nomF' => $fournisseur->nom(), 'codeP' => $produit->id(), 'code' => $fournisseur->code(), 'datel' => $datel, 'datep' => $datep, 'prixa' => $enrayon->prixAchat(), 'prixv' => $enrayon->prixVente(), 'quantite' => $enrayon->quantite(), 'quantiter' => $enrayon->quantiteRestante(), 'reduction' => $enrayon->reduction(), 'codebarre' => $code_barre);
     if (isset($_POST['id']))
         echo json_encode($donnees);
 
 
-
 }
-
 
 
 ?>

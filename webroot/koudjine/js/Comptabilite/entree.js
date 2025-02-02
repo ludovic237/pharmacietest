@@ -137,6 +137,7 @@ var etiquetteCode;
 var etiquetteDatel;
 var etiquetteDatep;
 var etiquettePrix;
+var etiquetteIdentifiant;
 var qrcode;
 function info_row_entree(row) {
     $('#qrcode').empty();
@@ -161,7 +162,7 @@ function info_row_entree(row) {
             etiquetteDatel = data.datel;
             etiquetteDatep = data.datep;
             etiquettePrix = data.prixv;
-
+            etiquetteIdentifiant = data.identifiant;
             $('#iconPreviewEntree .nomp').html(data.nomP);
             $("#iconPreviewEntree .nomf").html(etiquetteCode);
             $("#iconPreviewEntree .code").html(data.code);
@@ -223,11 +224,12 @@ function imprimer_bloc(titre, objet) {
     doc.text(19, 6, etiquettePrix + ' F');
     doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
     doc.setFontSize(5);
-    doc.text(19, 8, etiquetteNomF);
+    doc.text(19, 8, etiquetteNomF+" ("+etiquetteIdentifiant+")");
     doc.setFontSize(4);
     doc.text(19, 10, etiquetteDatel);
     doc.text(19, 12, etiquetteDatep);
-    doc.text(19, 16, etiquetteNomP);
+    doc.text(1, 18, etiquetteNomP);
+    // doc.text(19, 18, etiquetteIdentifiant);
     doc.save('hello1.pdf');
     //doc.print('hello');
     return true;

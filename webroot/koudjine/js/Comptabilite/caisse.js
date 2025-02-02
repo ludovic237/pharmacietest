@@ -1084,7 +1084,9 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
 }
 
 function imprimer_bloc(titre, objet, typePaiement) {
-
+    if (objet=="ticket"){
+        $("#previewImprimerBonCaisse").modal("hide");
+    }
     if (typePaiement == "Mixte Espèce Electronique Ticketcaisse") {
         $('#rowmontantelectronique').show();
         $('#rowmontantespece').show();
@@ -1123,8 +1125,8 @@ function imprimer_bloc(titre, objet, typePaiement) {
             padding: 0;
             background-color: #f0f0f0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: start;
+            align-items: start;
             height: 100vh;
         }
         .ticketfacture {
@@ -1190,7 +1192,7 @@ function imprimer_bloc(titre, objet, typePaiement) {
     </style>
                     </head>
                     <body>
-                        ${document.getElementById("ticketCaisse").outerHTML}
+                        ${document.getElementById(titre).outerHTML}
                     </body>
                 </html>
             `);
@@ -1771,7 +1773,7 @@ function imprime_ticket(id, montantespece,
             $('#montantelectronique').html(server_response.montantfactureElectronique);
             $('#montantticket').html(server_response.montantfactureTicket);
             $("#iconPreviewListeCaisse").modal('hide');
-            $('#ticketCaisse').modal("show");
+            $('#iconPreviewFacture').modal("show");
 
 
         }

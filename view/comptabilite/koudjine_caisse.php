@@ -1812,26 +1812,26 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                             <div class="icon-preview">
                                 <div style="width: 80mm;display:flex;flex-direction: column;text-align: left;"
                                      id="ticket">
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Pharmacie ALSAS</strong>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Dr GAMWO Sandrine</strong>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         BP 38 FOUMBOT</strong>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Tel :(+237) 233 267 487</strong>
                                     <h3 style="padding: 10px;text-align: center;margin-bottom: 0px;">
                                         Bon de caisse</h3>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
-                                        Bon N° xxxxx</strong>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                        Bon N° : <span id="codebarrenulimp"></span></strong>
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         <span id="dateimp"></span>
                                     </strong>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Caissier : <span id="caissierimp"> <?php echo $employe->nom; ?> </span></strong>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Client : <span id="nomclientimp"></span></strong>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Montant : <span id="montantimp"></span> FCFA</strong>
                                     </p>
                                     <div style="justify-content: left; display: flex;flex-direction: column;align-items: center;">
@@ -1843,11 +1843,11 @@ if ($employe->identifiant == $_SESSION['Users']->identifiant || $_SESSION['Users
                                         <strong style="font-weight: bold;text-align: center;margin-bottom: 0px;font-size: 12px;display: flex;margin: 0px;padding: 0px;overflow: auto;padding:4px"
                                            id="codebarrenulimp"></strong>
                                     </div>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Bon à retourner</strong>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         Merci et bonne santé</strong>
-                                    <strong style="margin: 0px; color: black;font-weight: 400;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
+                                    <strong style="margin: 0px; color: black;font-family: 'Courier New', Courier, monospace;font-size: 12px;">
                                         NoCT /P058512700488Z</strong>
 
                                     <!--<table style="table-layout: fixed; width: 80mm;display: flex;overflow: hidden;border-collapse: collapse;border-spacing: 0px;border: 0;">
