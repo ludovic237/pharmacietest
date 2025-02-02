@@ -734,5 +734,54 @@ function charger_inventaire() {
     window.location.href=link;
 }
 
+function load_type_produit_inventaire() {
+    $.ajax({
+        type: "GET",
+        url: "/pharmacietest/koudjine/inc/gerer_type_produit_inventaire.php",
+        dataType: 'json',
+        error: function (e) {
+            loader(false);
+        },
+        success: function (data) {
+            var datasForme = data.datasForme;
+            var datasCategorie = data.datasCategorie;
+            var datasRayon = data.datasRayon;
+            var datasMagasin = data.$datasMagasin;
+
+
+            let selectForme = $("#forme_inventaire");
+            selectForme.empty();
+            selectForme.append('<option value="">Sélectionnez une option</option>');
+            $.each(datasForme, function (index, item) {
+                selectForme.append(`<option value="${item.id}">${item.nom}</option>`);
+            });
+
+
+            let selectCategorie = $("#categorie_inventaire");
+            selectCategorie.empty();
+            selectCategorie.append('<option value="">Sélectionnez une option</option>');
+            $.each(datasCategorie, function (index, item) {
+                selectCategorie.append(`<option value="${item.id}">${item.nom}</option>`);
+            });
+
+
+            let selectRayon = $("#rayon_inventaire");
+            selectRayon.empty();
+            selectRayon.append('<option value="">Sélectionnez une option</option>');
+            $.each(datasRayon, function (index, item) {
+                selectRayon.append(`<option value="${item.id}">${item.nom}</option>`);
+            });
+
+
+            let selectMagasin = $("#magasin_inventaire");
+            selectMagasin.empty();
+            selectMagasin.append('<option value="">Sélectionnez une option</option>');
+            $.each(datasMagasin, function (index, item) {
+                selectMagasin.append(`<option value="${item.id}">${item.nom}</option>`);
+            });
+        }
+    })
+
+}
 
 
