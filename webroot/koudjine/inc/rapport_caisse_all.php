@@ -560,7 +560,7 @@ if ($fermeture->dateFerme()!=null){
             $dataEspece = 0;
             $listValeur =  explode("-",$valeur);
             foreach ($listValeur as $index2 => $val) {
-                switch ($index) {
+                switch ($index2) {
                     case 0:
                         $dataEspece= $dataEspece+($val*500);
                         break;
@@ -604,6 +604,7 @@ if ($fermeture->dateFerme()!=null){
             $dataBon = $valeur;
         }
     }
+
     $solde_reel_espece=$dataEspece;
     $solde_diff_espece=$solde_reel_espece-$solde_systeme_espece;
     $solde_reel_electronique=$dataElectronique;
