@@ -135,6 +135,15 @@ class InventaireManager
         return new Inventaire($donnees);
 
     }
+
+    public function getFini()
+    {
+
+        $q = $this->_db->query('SELECT * FROM inventaire WHERE supprimer = 0 AND etat = "Presque fini" ');
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        return new Inventaire($donnees);
+
+    }
     public function getList($info)
     {
         $inventaires = array();

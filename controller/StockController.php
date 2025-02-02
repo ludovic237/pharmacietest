@@ -50,6 +50,14 @@ class StockController extends Controller
             //'order' => 'DATE_DEBUT_CONCOURS-DESC',
             'conditions' => array('etat' => "'Clot'", 'supprimer' => 0)
         ));
+        if(empty($d['inventaire'])){
+            $d['inventaire'] = $this->Stock->findFirst(array(
+                //'fields' => 'DATE_DEBUT_CONCOURS,MODALITE_ADMISSION,DATE_FIN_CONCOURS,DESCRIPTION,NOM,DATE_DOSSIER,CONCOURS_ID',
+                'table' => 'inventaire',
+                //'order' => 'DATE_DEBUT_CONCOURS-DESC',
+                'conditions' => array('etat' => "'Presque fini'", 'supprimer' => 0)
+            ));
+        }
         if(!empty($d['inventaire'])){
             if($_SESSION['Users']->type == 'Administrateur'){
             $d['produits'] = $this->Stock->find(array(

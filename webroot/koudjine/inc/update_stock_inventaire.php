@@ -17,7 +17,7 @@ $listeProduitIds = [];
 $rayon_par_produit = [];
 $dataListProduit = [];
 
-$inventaire = $manager->get();
+$inventaire = $manager->getFini();
 $prd_inventaire = $managerPI->get(2);
 $produit_inventaire = $managerPI->getList($inventaire->id());
 foreach ($produit_inventaire as $k => $v){
@@ -39,33 +39,92 @@ foreach ($produit_inventaire as $k => $v){
         }
     }
 }
-foreach ($listeProduitIds as $k => $v){
-    $inventaire_par_produit = $managerPI->getListProduit($v);
-    $inventaire_par_produit->
-    $produit = $managerPr->get($v);
+$count=0;
+if (is_array($listeProduitIds)) {
+    foreach ($listeProduitIds as $k => $v){
+        //$inventaire_par_produit = $managerPI->getListProduit($v);
+        //$inventaire_par_produit->
+        $count++;
+        $produit = $managerPr->get($v);
+        if (is_array($rayon_par_produit[$v])) {
+            foreach ($rayon_par_produit[$v] as $a => $b){
+                $en_rayon1 = $managerEn->get($b);
+                $dataListRayon[$v][] = array(
+                    "DT_RowId" => $en_rayon1->id(),
+                    "id" =>  $en_rayon1->id(),
+                    "nom" =>  $produit->nom(),
+                    "qte" => $en_rayon1->quantiteRestante(),
+                    "dateL" => $en_rayon1->dateLivraison(),
+                    "dateP" => $en_rayon1->datePeremption()
+                );
+            }
+        }else{
+            $en_rayon1 = $managerEn->get($rayon_par_produit[$v]);
+            $dataListRayon[$v][] = array(
+                "DT_RowId" => $en_rayon1->id(),
+                "id" =>  $en_rayon1->id(),
+                "nom" =>  $produit->nom(),
+                "qte" => $en_rayon1->quantiteRestante(),
+                "dateL" => $en_rayon1->dateLivraison(),
+                "dateP" => $en_rayon1->datePeremption()
+            );
+        }
 
-    foreach ($rayon_par_produit[$v] as $a => $b){
-        $en_rayon1 = $managerEn->get($b);
-        $dataListRayon[] = array(
+        $tableau = ($dataListRayon[$v]) ;
+        $dataListProduit[] = array(
+            "DT_RowId" => $v,
+            "id" => $v,
+            "nom" => $produit->nom(),
+            "stock" => $produit->stock(),
+            "listeRayon" => $dataListRayon[$v]
+
+        );
+
+    }
+}else{
+    $count++;
+    $produit = $managerPr->get($listeProduitIds);
+    if (is_array($rayon_par_produit[$listeProduitIds])) {
+        foreach ($rayon_par_produit[$listeProduitIds] as $a => $b){
+            $en_rayon1 = $managerEn->get($b);
+            $dataListRayon[$listeProduitIds][] = array(
+                "DT_RowId" => $en_rayon1->id(),
+                "id" =>  $en_rayon1->id(),
+                "nom" =>  $produit->nom(),
+                "qte" => $en_rayon1->quantiteRestante(),
+                "dateL" => $en_rayon1->dateLivraison(),
+                "dateP" => $en_rayon1->datePeremption()
+            );
+        }
+    }else{
+        $en_rayon1 = $managerEn->get($rayon_par_produit[$listeProduitIds]);
+        $dataListRayon[$listeProduitIds][] = array(
             "DT_RowId" => $en_rayon1->id(),
             "id" =>  $en_rayon1->id(),
+            "nom" =>  $produit->nom(),
             "qte" => $en_rayon1->quantiteRestante(),
             "dateL" => $en_rayon1->dateLivraison(),
             "dateP" => $en_rayon1->datePeremption()
         );
     }
+
+    //$tableau = ($dataListRayon[$listeProduitIds]) ;
     $dataListProduit[] = array(
-        "DT_RowId" => $v,
-        "id" => $v,
+        "DT_RowId" => $listeProduitIds,
+        "id" => $listeProduitIds,
         "nom" => $produit->nom(),
         "stock" => $produit->stock(),
-        "listeRayon" => $dataListRayon
+        "listeRayon" => $dataListRayon[$listeProduitIds]
 
     );
-
 }
+
+/*$inventaire->setetat("Presque fini");
+$manager->update($inventaire);*/
+
 $donnees = array(
     'data' => $dataListProduit,
+    'data1' => $dataListRayon,
 );
 echo json_encode($donnees);
 

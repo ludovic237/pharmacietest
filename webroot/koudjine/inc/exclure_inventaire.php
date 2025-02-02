@@ -12,9 +12,10 @@ $managerEn = new En_rayonManager($pdo);
 $id = $_POST['id'];
 echo 'passe';
 
-$en_rayon = $managerEn->get($id);
-$produit = $manager->get($en_rayon->produit_id());
+//$en_rayon = $managerEn->get($id);
+$produit = $manager->get($id);
 $produit->setetat('Non utile');
+$produit->setstock(0);
 $manager->update($produit);
 
 

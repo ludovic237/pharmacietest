@@ -149,6 +149,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                             <th width="200">Date de livraison</th>
                             <th width="200">Employe</th>
                             <th width="200">Fournisseur</th>
+                            <th width="200">Bon de livraison</th>
                             <th width="100">Quantite commande</th>
                             <th width="100">Quantite recu</th>
                             <th width="100">Unité gratuite</th>
@@ -162,11 +163,14 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                         <tbody>
                         <?php foreach ($commande1 as $k => $v) : ?>
                             <tr id="<?php echo $v->id; ?>">
-                                <td><strong></strong></td>
+                                <td><strong><?php echo $v->dateCreation; ?></strong></td>
                                 <td><?php echo $v->dateLivraison; ?></td>
                                 <td><?php echo $v->nomu; ?></td>
                                 <td>
                                     <?php echo $v->nom; ?>
+                                </td>
+                                <td>
+                                    <?php echo $v->note; ?>
                                 </td>
                                 <td>
                                     <?php echo $v->qtiteCmd; ?>
@@ -219,11 +223,14 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                         <?php endforeach; ?>
                         <?php foreach ($commande as $k => $v) : ?>
                             <tr id="<?php echo $v->id; ?>">
-                                <td><strong></strong></td>
+                                <td><strong><strong><?php echo $v->dateCreation; ?></strong></td>
                                 <td><?php echo $v->dateLivraison; ?></td>
                                 <td></td>
                                 <td>
                                     <?php echo $v->nom; ?>
+                                </td>
+                                <td>
+                                    <?php echo $v->note; ?>
                                 </td>
                                 <td>
                                     <?php echo $v->qtiteCmd; ?>

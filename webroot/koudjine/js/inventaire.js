@@ -153,6 +153,7 @@ function addProductInventaireCaractere(id) {
 }
 $(document).ready(function(){
     //$("#div_inventaire").hide();
+    //mise_a_jour_inventaire();
 
     $("#recherche_inventaire").keyup(function (event) {
         var recherche = $(this).val(); // Récupère et nettoie la valeur saisie
@@ -509,49 +510,138 @@ function valider_row_inventaire(id, action) {
 }
 function validers_row_inventaire() {
     $('#tab_Binventaire  tr').each(function (i) {
-        $.ajax({
-            type: "POST",
-            url: '/pharmacietest/koudjine/inc/gerer_produit_inventaire.php',
-            data: {
-                action: action,
-                id: id,
-                qte: $("#" + id + " .qte_inventaire").val()
-            },
-            error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
-                //alert(server_responce);
-                $('#' + id + ' .valider_inventaire').attr("disabled", "disabled");
-                $('#recherche_inventaire').focus();
+        var id1 = $(this).attr("id");
+
+            if($("#" + id1 + " .valider_inventaire").attr("disabled") != "disabled"){
+                valider_row_inventaire(id1,'valider');
+                $("#" + id1 ).remove();
+            }else{
+                $("#" + id1 ).remove();
             }
-        })
 
     });
 }
+
+var data_stock_inventaire = [];
 function mise_a_jour_inventaire(){
-    $('#tab_BIinventaire  tr').each(function (i) {
-        var id1 = $(this).attr("id");
-
-        if($("#" + id1 + " .valider_inventaire").attr("disabled") != "disabled"){
-            valider_row_inventaire(id1,'valider');
-            $("#" + id1 ).remove();
-        }else{
-            $("#" + id1 ).remove();
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/update_stock_inventaire.php',
+        error: function (e) {
+            loader(false);
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+            data_stock_inventaire = data.data
+            $('#rapport_produit_inventaire').dataTable({
+                destroy: true,
+                searching: true,
+                dFilter: true,
+                bInfo: true,
+                bPaginate: true,
+                data: data_stock_inventaire,
+                columns: [
+                    {data: "nom"},
+                    {data: "stock"},
+                    {
+                        "data": "id", "bSortable": false, "render": function (data, type, row) {
+                            return '<button class="btn btn-default btn-rounded btn-sm" onClick="chargement_rayon_produit('+ data + ');"><span class="fa fa-info">Liste Rayon</span></button>';
+                        }
+                    }
+                ]
+            });
         }
+    })
+    /*$('#tab_Binventaire  tr').each(function (i) {
 
-    });
+
+    });*/
+}
+function charger_prdt_non_inventaire(id){
+    console.log('test')
+    $.ajax({
+        type: "POST",
+        url: '/pharmacietest/koudjine/inc/charger_produits_non_inv.php',
+        data: {
+            id: id
+        },
+        error: function (e) {
+            loader(false);
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+            data_stock_inventaire = data
+            $('#tab_NIinventaire').dataTable({
+                destroy: true,
+                /*searching: true,
+                dFilter: true,
+                bInfo: true,
+                bPaginate: true,*/
+                data: data_stock_inventaire,
+                columns: [
+                    {data: "nom"},
+                    {data: "qte"},
+                    {data: "id"},
+                    {data: "datel"},
+                    {
+                        "data": "id", "bSortable": false, "render": function (data, type, row) {
+                            return '<button class="btn btn-success btn-rounded btn-sm inventorier_inventaire" data-toggle="tooltip" data-placement="top" onclick="inventorier_row_inventaire(\'' +data+ '\')">' +
+                                'Maintenir Etat ' +
+                                '</button> ' +
+                            '<button class="btn btn-primary btn-rounded btn-sm exclure_inventaire" data-toggle="tooltip" data-placement="top" onclick="exclure_row_inventaire(\'' +data+ '\')">' +
+                            'Exclure des recherches ' +
+                            '</button>';
+                        }
+                    }
+                ]
+            });
+        }
+    })
+    /*$('#tab_Binventaire  tr').each(function (i) {
+
+
+    });*/
+}
+function chargement_rayon_produit(id) {
+    /*$.each(data, function(index, item) {
+        console.log("Élément " + index + " :", item);
+
+    });*/
+    var data = data_stock_inventaire.find(objet => objet.id == id)
+    console.log("data");
+    console.log(data);
+    if (data){
+        $('#tab_load_rayon_inventaire').dataTable({
+            destroy: true,
+            searching: true,
+            dFilter: true,
+            bInfo: true,
+            bPaginate: true,
+            data: data.listeRayon,
+            columns: [
+                {data: "nom"},
+                {data: "qte"},
+                {data: "dateL"},
+                {data: "dateP"},
+                // {
+                //     "data": "listeRayon", "bSortable": false, "render": function (data, type, row) {
+                //         return '<button class="btn btn-danger btn-rounded btn-sm" onClick="chargement_rayon_produit(\'' + data + '\');"><span class="fa fa-times">Liste Rayon</span></button>';
+                //     }
+                // }
+            ]
+        });
+        $("#modalRapportInventaire").modal("show");
+    }
+
 }
 function inventorier_row_inventaire(id) {
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/gerer_produit_inventaire.php',
         data: {
-            action: 'creer',
-            id: id,
-            qte: 0,
-            employe_id: $("#recherche_inventaire").attr("data"),
-            qteRestante: 0
+            id: id
         },
         error: function (e) {
                 loader(false);
@@ -568,7 +658,7 @@ function inventoriers_row_inventaire() {
     $('#tab_BNIinventaire  tr').each(function (i) {
         var id1 = $(this).attr("id");
 
-        if($("#" + id1 + " .inventorier_inventaire").attr("disabled") != "disabled"){
+        if($("#" + id1 + " .inventorier_inventaire").attr("disabled") != "disabled" || $("#" + id1 + " .exclure_inventaire").attr("disabled") != "disabled"){
             inventorier_row_inventaire(id1);
         }
 

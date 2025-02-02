@@ -26,9 +26,9 @@ if ($action == "lancer"){
 }
 else{
     $inventaire = $manager->get();
-    $inventaire->setetat('Clot');
+    $inventaire->setetat('Presque fini');
     $manager->update($inventaire);
-    $entrees = $managerPi->getList($inventaire->id());
+    /*$entrees = $managerPi->getList($inventaire->id());
     $produits = $managerPr->getList();
     foreach ($produits as $k => $v) :
         $act = 0;
@@ -43,7 +43,7 @@ else{
             $v->setetat('Non utile');
             $managerPr->update($v);
         }
-    endforeach;
+    endforeach;*/
 
 
     if(true){
