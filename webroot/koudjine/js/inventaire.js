@@ -509,11 +509,36 @@ function valider_row_inventaire(id, action) {
 }
 function validers_row_inventaire() {
     $('#tab_Binventaire  tr').each(function (i) {
+        $.ajax({
+            type: "POST",
+            url: '/pharmacietest/koudjine/inc/gerer_produit_inventaire.php',
+            data: {
+                action: action,
+                id: id,
+                qte: $("#" + id + " .qte_inventaire").val()
+            },
+            error: function (e) {
+                loader(false);
+            },
+            success: function (server_responce) {
+                //alert(server_responce);
+                $('#' + id + ' .valider_inventaire').attr("disabled", "disabled");
+                $('#recherche_inventaire').focus();
+            }
+        })
+
+    });
+}
+function mise_a_jour_inventaire(){
+    $('#tab_BIinventaire  tr').each(function (i) {
         var id1 = $(this).attr("id");
 
-            if($("#" + id1 + " .valider_inventaire").attr("disabled") != "disabled"){
-                valider_row_inventaire(id1,'valider');
-            }
+        if($("#" + id1 + " .valider_inventaire").attr("disabled") != "disabled"){
+            valider_row_inventaire(id1,'valider');
+            $("#" + id1 ).remove();
+        }else{
+            $("#" + id1 ).remove();
+        }
 
     });
 }

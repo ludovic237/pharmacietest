@@ -229,6 +229,7 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </div>
                             </div>
@@ -574,14 +575,21 @@ border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px r
             <div class="mb-title"><span class="fa fa-sign-out"></span> Confirmation <strong>Vente Perime</strong> ?</div>
             <div class="mb-content">
                 <p>Voulez vous vraiment ajouter ce produit perime a la caisse?</p>
-                <p>Cliquez sur oui si vous le voulez ou sur non pour pas maintenant.</p>
+                <p>Cliquez sur oui si vous le voulez ou sur annuler pour pas maintenant.</p>
             </div>
             <div class="mb-footer">
                 <div class="pull-right">
-                    <a class="btn btn-success btn-lg" onclick="valider_fermeture('<?php echo $action_fermeture->id; ?>')">Oui</a>
-                    <button class="btn btn-default btn-lg mb-control-close" onclick="close_caisse_alert()" >Non</button>
+                    <button class="btn btn-success btn-lg mb-control-yes">Oui</button>
+                    <button class="btn btn-default btn-lg mb-control-close">Annuler</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--<div id="mb-confirmation-caisse" class="mb-box">
+    <div class="mb-content">
+        <p id="confirmation-message">Êtes-vous sûr de vouloir procéder ?</p>
+        <button class="mb-control-yes">Oui</button>
+        <button class="mb-control-close">Fermer</button>
+    </div>
+</div>-->
