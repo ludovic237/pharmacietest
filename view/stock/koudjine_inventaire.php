@@ -56,32 +56,36 @@ if (isset($inventaire) && !empty($inventaire)) {
                         <div class="tab-pane panel-body active" id="tab1">
                             <div class="block">
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <label class="col-md-3 control-label">Categorie</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" class="form-control">
+                                    <div class="form-group">
+                                        <label class="col-md-1 control-label">Categrie:</label>
+                                        <div class="col-md-5">
+                                            <select class="form-control selectpicker" id="categorie_inventaire" name="<?php echo $_SESSION['Users']->faireReductionMax; ?>">
+                                                <option value="0">Veuillez selectionner</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label class="col-md-3 control-label">Rayon</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" class="form-control">
+                                    <div class="form-group">
+                                        <label class="col-md-1 control-label">Rayon:</label>
+                                        <div class="col-md-5">
+                                            <select class="form-control selectpicker" id="rayon_inventaire" name="<?php echo $_SESSION['Users']->faireReductionMax; ?>">
+                                                <option value="0">Veuillez selectionner</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label class="col-md-3 control-label">Magazin</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" class="form-control">
+                                    <div class="form-group">
+                                        <label class="col-md-1 control-label">Forme:</label>
+                                        <div class="col-md-5">
+                                            <select class="form-control selectpicker" id="forme_inventaire" name="<?php echo $_SESSION['Users']->faireReductionMax; ?>">
+                                                <option value="0">Veuillez selectionner</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label class="col-md-3 control-label">Forme</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" class="form-control">
+                                    <div class="form-group">
+                                        <label class="col-md-1 control-label">Magasin:</label>
+                                        <div class="col-md-5">
+                                            <select class="form-control selectpicker" id="magasin_inventaire" name="<?php echo $_SESSION['Users']->faireReductionMax; ?>">
+                                                <option value="0">Veuillez selectionner</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
