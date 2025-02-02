@@ -1115,7 +1115,79 @@ function imprimer_bloc(titre, objet, typePaiement) {
                 <html>
                     <head>
                         <title>Imprimer avec QR Code</title>
-                       
+ <style>
+        /* Styles pour l'affichage à l'écran */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .ticketfacture {
+            width: 80mm; /* Largeur fixe pour le ticket */
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .ticketfacture strong {
+            font-weight: 900;
+            color: black;
+            margin: 0;
+        }
+        .ticketfacture table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .ticketfacture th,
+        .ticketfacture td {
+            padding: 4px;
+            text-align: start;
+            font-size: 10px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .ticketfacture th {
+            background-color: white;
+            color: black;
+            font-weight: 900;
+        }
+        .ticketfacture td {
+            background-color: white;
+            color: black;
+            font-weight: 900;
+        }
+        #qrcodeTicket {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Styles pour l'impression */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: white;
+            }
+            .ticketfacture {
+                width: 100%; /* Largeur relative pour s'adapter au papier */
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin-right: 20px;
+            }
+            @page {
+                size: auto; /* S'adapte au format de papier */
+                margin: 5mm; /* Marges par défaut */
+            }
+        }
+    </style>
                     </head>
                     <body>
                         ${document.getElementById("ticketCaisse").outerHTML}
@@ -1647,27 +1719,31 @@ function imprime_ticket(id, montantespece,
             $('#qrcodeTicket').empty();
             console.log("server_response");
             console.log(server_response);
-            $('#iconPreviewFacture .caissier').html(server_response.caissier + '');
-            $('#iconPreviewFacture .reference').html(server_response.reference + '');
-            $('#iconPreviewFacture .datevente').html(server_response.datevente + '');
-            $('#iconPreviewFacture .heurevente').html(server_response.heurevente + '');
-            $('#iconPreviewFacture .dateencaisser').html(server_response.dateencaisser + '');
-            $('#iconPreviewFacture .heureencaisser').html(server_response.heureencaisser + '');
-            $('#iconPreviewFacture .vendeur').html(server_response.vendeur + '');
-            $('#iconPreviewFacture .acheteur').html(server_response.acheteur + '');
-            $('#iconPreviewFacture .netapayer').html(server_response.netapayer + '');
-            $('#iconPreviewFacture .montanttotal').html(server_response.montanttotal + '');
-            $('#iconPreviewFacture .montantrendu').html(server_response.montantrendu + '');
-            $('#iconPreviewFacture .montanttotalencaisser').html(server_response.montanttotalencaisser + '');
-            $('#iconPreviewFacture .remise').html(server_response.remise + '');
+            $('#ticketCaisse .caissier').html(server_response.caissier + '');
+            $('#ticketCaisse .reference').html(server_response.reference + '');
+            $('#ticketCaisse .datevente').html(server_response.datevente + '');
+            $('#ticketCaisse .heurevente').html(server_response.heurevente + '');
+            $('#ticketCaisse .dateencaisser').html(server_response.dateencaisser + '');
+            $('#ticketCaisse .heureencaisser').html(server_response.heureencaisser + '');
+            $('#ticketCaisse .vendeur').html(server_response.vendeur + '');
+            $('#ticketCaisse .acheteur').html(server_response.acheteur + '');
+            $('#ticketCaisse .netapayer').html(server_response.netapayer + '');
+            $('#ticketCaisse .montanttotal').html(server_response.montanttotal + '');
+            $('#ticketCaisse .montantrendu').html(server_response.montantrendu + '');
+            $('#ticketCaisse .montanttotalencaisser').html(server_response.montanttotalencaisser + '');
+            $('#ticketCaisse .remise').html(server_response.remise + '');
 
 
             qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
-                width: 90,
-                height: 90
+                text: ""+server_response.reference,
+                width: 120,
+                height: 120,
+                // colorDark: "#FF5722",
+                colorLight: "#FFFFFF",
+                correctLevel: QRCode.CorrectLevel.H
             });
             qrcode.clear();
-            qrcode.makeCode(id);
+            qrcode.makeCode(""+server_response.reference);
 
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer  tr').each(function (i) {
@@ -1685,7 +1761,7 @@ function imprime_ticket(id, montantespece,
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
-                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}%</strong></td>
                         </tr>
                     `);
             }
@@ -1695,7 +1771,7 @@ function imprime_ticket(id, montantespece,
             $('#montantelectronique').html(server_response.montantfactureElectronique);
             $('#montantticket').html(server_response.montantfactureTicket);
             $("#iconPreviewListeCaisse").modal('hide');
-            $('#iconPreviewFacture').modal("show");
+            $('#ticketCaisse').modal("show");
 
 
         }
@@ -1776,7 +1852,7 @@ function imprime_ticket_direct(id, montantespece,
             $('#ticketCaisse .remise').html(server_response.remise + '');
 
             qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
-                text: ""+id,
+                text: ""+server_response.reference,
                 width: 120,
                 height: 120,
                 // colorDark: "#FF5722",
@@ -1784,7 +1860,7 @@ function imprime_ticket_direct(id, montantespece,
                 correctLevel: QRCode.CorrectLevel.H
             });
             qrcode.clear();
-            qrcode.makeCode(""+id);
+            qrcode.makeCode(""+server_response.reference);
 
             $('#tab_vente_caisse').empty();
             $('#tab_BfactureImprimer  tr').each(function (i) {
@@ -1802,7 +1878,7 @@ function imprime_ticket_direct(id, montantespece,
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='prixUnit'>${ventes[i].prixUnit}</strong></td>
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='quantite'>${ventes[i].quantite}</strong></td>
                             <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='total'>${ventes[i].total}</strong></td>
-                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction}</strong></td>
+                            <td style='background-color: white;font-family: monospace;font-size: 10px;text-align: start;'><strong class='reduction'>${ventes[i].reduction} %</strong></td>
                         </tr>
                     `);
             }

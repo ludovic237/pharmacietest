@@ -36,7 +36,7 @@ $id = $_POST['id'];
 
 //echo $id;
 $data = [];
-
+$total = 0;
 if (isset($_POST['id'])) {
 
     $produits = $managerCo->getList($id);
@@ -60,7 +60,7 @@ if (isset($_POST['id'])) {
             "total" => ($v->prixUnit() * $v->quantite()),
             "reduction" => $v->reduction(),
         );
-
+        $total = $total + ($v->prixUnit() * $v->quantite());
 
 
     endforeach;
@@ -130,7 +130,7 @@ if (isset($_POST['id'])) {
     $donnees = array(
         'data' => $data,
         "type_paiement" => $typefacturation,
-        'montantfactureEspece' => $montantfactureEspece,
+        'montantfactureEspece' => $ventes->prixPercu(),
         'montantfactureElectronique' => $montantfactureElectronique,
         'montantfactureTicket' => $montantfactureTicket,
         'reference' => $ventes->reference(),
@@ -141,9 +141,10 @@ if (isset($_POST['id'])) {
         'heurevente' => $timeVente,
         'vendeur' => $employe,
         'acheteur' => $client,
-        'montanttotal' => $ventes->prixPercu(),
-        'montanttotalencaisser' => $montantfactureEspece+$montantfactureElectronique+$montantfactureTicket,
-        'netapayer' => $ventes->prixTotal(),
+        'montanttotal' => $total,
+//        'montanttotalencaisser' => $montantfactureEspece+$montantfactureElectronique+$montantfactureTicket,
+        'montanttotalencaisser' => $total,
+        'netapayer' => $total-( $ventes->reduction()),
         'montantrendu' => -( $ventes->prixTotal()- $ventes->prixPercu()),
         'remise' => -( $ventes->reduction()),
     );
