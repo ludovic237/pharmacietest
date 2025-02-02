@@ -42,6 +42,7 @@ if (isset($inventaire) && !empty($inventaire)) {
                         <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Inventaire</a></li>
                         <li class=""><a href="#tab2" data-toggle="tab" aria-expanded="false">Produits inventoriés</a></li>
                         <?php if($_SESSION['Users']->type == "Administrateur"){ ?><li class=""><a href="#tab3" data-toggle="tab" aria-expanded="false">Produits non inventoriés</a></li><?php } ?>
+                        <li class=""><a href="#tab4" data-toggle="tab" aria-expanded="false">Rapport inventaire</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane panel-body active" id="tab1">
@@ -275,6 +276,43 @@ if (isset($inventaire) && !empty($inventaire)) {
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane panel-body" id="tab4">
+                            <div class="block">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-heading">
+                                            Liste des produits inventories
+                                            <div/>
+                                        <div class="panel panel-default">
+
+                                            <div class="panel-body panel-body-table">
+
+                                                <div class="panel-body">
+                                                    <table class="table datatable table-bordered table-striped table-actions">
+                                                        <thead>
+                                                        <tr>
+                                                            <th width="200">Nom</th>
+                                                            <th width="100">Quantité en cours</th>
+                                                            <th width="100">Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="">
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-success" onclick="" >Imprimer</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -452,6 +490,54 @@ if (isset($inventaire) && !empty($inventaire)) {
                                                 <th width="100">Quantité en Stock</th>
                                                 <th width="100">Stock générale</th>
                                                 <th width="100">Reduction (%)</th>
+                                                <th width="200">Date de Livraison</th>
+                                                <th width="200">Date de Peremption</th>
+                                                <th width="100">Actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tab_Bload_produit">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="focus_recherche()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL ICON PREVIEW -->
+<!-- START MODAL ICON PREVIEW -->
+<div class="modal fade" id="modalRapportInventaire" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width: 85%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Produit</h4>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px);overflow-y: auto;">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="panel panel-default">
+
+                            <div class="panel-body panel-body-table">
+
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table id="tab_load_produit" style="height: 200px;overflow: auto;" class="table datatable table-bordered table-actions">
+                                            <thead>
+                                            <tr>
+                                                <th width="200">Nom</th>
+                                                <th width="100">Quantité</th>
                                                 <th width="200">Date de Livraison</th>
                                                 <th width="200">Date de Peremption</th>
                                                 <th width="100">Actions</th>
