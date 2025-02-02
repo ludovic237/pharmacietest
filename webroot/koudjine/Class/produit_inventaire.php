@@ -231,6 +231,19 @@ class Produit_inventaireManager
         }
         return $produit_inventaires;
     }
+    public function getListProduit($info)
+    {
+        $produit_inventaires = array();
+        $q = $this->_db->prepare('SELECT p.stockValide as qte, e.dateLivraison as dateL, e.datePeremtion as dateP FROM produit_inventaire p, en_rayon e, produit r WHERE p.supprimer = 0 AND p.en_rayon_id = e.id AND e.produit_id = r.id AND r.id = '.$info);
+        $q->execute();
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $produit_inventaires[] = new Produit_inventaire($donnees);
+        }
+        return $produit_inventaires;
+    }
+
+
     public function update(Produit_inventaire $produit_inventaire)
     {
 

@@ -100,7 +100,7 @@ $(document).ready(function () {
             success: function (data) {
                         ////alert(data);
                         if (data.statut_perime == 'oui') {
-                            var box = $("#mb-remove-row");
+                            var box = $("#confirmation-vente-perime");
                             box.addClass("open");
 
                             box.find(".mb-control-yes").on("click",function(){

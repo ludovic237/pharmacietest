@@ -1444,8 +1444,8 @@ function valider_fermeture_final(caisse_id) {
     var total = parseInt($('.ftotalaisse').html());
     var fermeture_electronique = $('#fermeture_electronique').val();
     var fermeture_bon = $('#fermeture_bon').val();
-    if (total == 0) {
-        alert('Montant en espece obligatoire, veuillez inserer un montant en espece')
+    if (total == 0 || $('#fermeture_electronique').val()!= '' || $('#fermeture_bon').val() != '') {
+        alert('Montant en espece obligatoire et veuillez remplir les champs OM/MOMO et bon de caisse meme si c\'est 0  veuillez inserer un montant en espece');
         return;
     } else {
 
