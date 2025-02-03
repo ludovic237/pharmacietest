@@ -618,6 +618,12 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Produits Detailles</td>
+                                            <td>
+                                                <span id="rapport_vente_produit_detaille">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td>Total</td>
                                             <td>
                                                 <span id="rapport_vente_fournisseur_total">0</span>
@@ -668,6 +674,12 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                             <td>Total</td>
                                             <td>
                                                 <span id="rapport_vente_total">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Reduction</td>
+                                            <td>
+                                                <span id="reduction_total">0</span>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -831,9 +843,44 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                         </div>
 
                     </div>
+                    <!--<div class="col-md-4">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Reduction</h3>
+
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped" id="reduction_list">
+                                        <thead>
+                                        <tr>
+                                            <th>Reference</th>
+                                            <th>Montant</th>
+                                            <th>Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div style="display:flex;padding: 5px">
+                                        <p style="margin: 0px">Total: <span id="reduction_total"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>-->
                 </div>
                 <div class="row divine">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="panel panel-default">
 
                             <div class="panel-heading" style="background: #333;">
@@ -855,56 +902,12 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
 
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4">Total</td>
-                                            <td id="rapport_total_depense">
-                                                0
-                                            </td>
-                                        </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row divine">
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-
-                            <div class="panel-heading" style="background: #333;">
-                                <div class="panel-title-box" style="color: aquamarine;">
-                                    <h3 style="color: white;">Etat de caisse</h3>
-                                    <!-- <span>Projects activity</span> -->
-                                </div>
-                            </div>
-                            <div class="panel-body panel-body-table">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>Solde réel en caisse</th>
-                                            <th>Solde système</th>
-                                            <th>Différence</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td id="rapport_ec_solde_reel">0</td>
-                                            <td id="rapport_ec_solde_system">
-                                                0
-                                            </td>
-                                            <td id="rapport_ec_difference">
-                                                0
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                    <div style="display:flex;padding: 5px">
+                                        <p style="margin: 0px">Total: <span id="rapport_total_depense"></span></p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -925,8 +928,10 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                     <table  id="rapport_retour" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th>Quantité</th>
-                                            <th>Total</th>
+                                            <th style="width: 160px;">Reference</th>
+                                            <th>Produit</th>
+                                            <th style="width: 50px;">Quantité</th>
+                                            <th style="width: 100px;">Total</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -938,6 +943,106 @@ $script_for_layout = '   <script type="text/javascript" src="' . BASE_URL . '/ko
                                     <div style="display:flex;padding: 5px">
                                         <p style="margin: 0px">Total: <span id="rapport_retour_total"></span></p>
                                     </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row divine">
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" style="background: #333;">
+                                <div class="panel-title-box" style="color: aquamarine;">
+                                    <h3 style="color: white;">Etat de caisse</h3>
+                                    <!-- <span>Projects activity</span> -->
+                                </div>
+                            </div>
+                            <div class="panel-body panel-body-table">
+                                <div class="table-responsive">
+                                    <!--                                                <table class="table table-bordered table-striped">-->
+                                    <!--                                                    <thead>-->
+                                    <!--                                                    <tr>-->
+                                    <!--                                                        <th>Solde réel en caisse</th>-->
+                                    <!--                                                        <th>Solde système</th>-->
+                                    <!--                                                        <th>Différence</th>-->
+                                    <!--                                                    </tr>-->
+                                    <!--                                                    </thead>-->
+                                    <!--                                                    <tbody>-->
+                                    <!--                                                    <tr>-->
+                                    <!--                                                        <td id="rapport_ec_solde_reel">0</td>-->
+                                    <!--                                                        <td id="rapport_ec_solde_system">-->
+                                    <!--                                                            0-->
+                                    <!--                                                        </td>-->
+                                    <!--                                                        <td id="rapport_ec_difference">-->
+                                    <!--                                                            0-->
+                                    <!--                                                        </td>-->
+                                    <!--                                                    </tr>-->
+                                    <!--                                                    </tbody>-->
+                                    <!--                                                </table>-->
+                                    <table border="1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Solde réel</th>
+                                            <th>Solde système</th>
+                                            <th>Différence</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Espèce</td>
+                                            <td>
+                                                <span id="solde_reel_espece">0</span>
+                                            </td>
+                                            <td >
+                                                <span id="solde_systeme_espece">0</span>
+                                            </td>
+                                            <td >
+                                                <span id="solde_diff_espece">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Electronique</td>
+                                            <td >
+                                                <span id="solde_reel_electronique">0</span>
+                                            </td>
+                                            <td >
+                                                <span id="solde_systeme_electronique">0</span>
+                                            </td>
+                                            <td >
+                                                <span id="solde_diff_electronique">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bon de caisse</td>
+                                            <td >
+                                                <span id="solde_reel_ticket">0</span>
+                                            </td>
+                                            <td >
+                                                <span id="solde_systeme_ticket">0</span>
+                                            </td>
+                                            <td >
+                                                <span id="solde_diff_ticket">0</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td >
+                                                <span id="solde_reel_total">0</span>
+                                            </td>
+                                            <td >
+                                                <span id="solde_systeme_total">0</span>
+                                            </td>
+                                            <td >
+                                                <span id="solde_diff_total">0</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
