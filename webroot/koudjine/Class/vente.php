@@ -252,6 +252,10 @@ class VenteManager
     {
         return $this->_db->query('SELECT COUNT(*) FROM vente WHERE supprimer = 0 AND MONTH(dateVente) = MONTH(NOW()) AND YEAR(dateVente) = YEAR(NOW()) ')->fetchColumn();
     }
+    public function countJour()
+    {
+        return $this->_db->query('SELECT COUNT(*) FROM vente WHERE supprimer = 0 AND DAY(dateVente) = DAY(NOW()) AND MONTH(dateVente) = MONTH(NOW()) AND YEAR(dateVente) = YEAR(NOW()) ')->fetchColumn();
+    }
     public function delete(Vente $vente)
     {
         $this->_db->exec('DELETE FROM vente WHERE id = '.$vente->id());

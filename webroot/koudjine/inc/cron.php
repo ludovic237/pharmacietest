@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 $database = 'pharmanet1';
 $user = 'user';
-$pass = '';
+$pass = 'root';
 $host = 'localhost';
 $dir = dirname(__FILE__) . '/dump.sql';
 
@@ -20,7 +20,7 @@ if(isset($_GET['token']) && $_GET['token']=='aaaa'){
 
     $database[0] ='pharmanet1';
     $user[0] ='root';
-    $pass[0] ='';
+    $pass[0] ='root';
     $server[0] ='localhost';
 
     //$database[1] ='';

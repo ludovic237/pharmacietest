@@ -1027,13 +1027,26 @@ function valider_vente(type, etat) {
     var idClient;
     var idPrescripteur;
     var idv, reference;
-    var prix, type, qte, prixReduit, id1, count = 0, rec = 0;
+    var prix, prixUnit = 0, type, qte, prixReduit, id1, count = 0, rec = 0;
 
     /**/
     // vérifier si le prix est > à 0
-    if (parseInt($('#prixTotal').html()) == 0) {
+    $('#tab_vente  tr').each(function (i) {
+        id1 = $(this).attr("id");
+        $("#" + id1 + " td").each(function (j) {
+            if (j == 1) {
+                prix = parseInt($(this).html());
+                if(prix == 0){
+                    prixUnit = 1;
+                }
+            }
+        });
+
+    });
+    console.log(prixUnit)
+    if (parseInt($('#prixTotal').html()) == 0 || prixUnit == 1) {
         //alert("test1");
-        $('#message-box-danger p').html('Le prix de la vente ne peut être nul');
+        $('#message-box-danger p').html('Verifier tous les produits du tableau vente car un produit ne pourrait avoir un prix 0');
         $("#message-box-danger").modal("show");
         setTimeout(function () {
             $("#message-box-danger").modal("hide");

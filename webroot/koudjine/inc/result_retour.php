@@ -17,9 +17,56 @@ if (isset($_POST["motclef"])) {
             ");
     $sth->execute();
     $count = $sth->rowCount();
+    // produits details
+    $sth1 = $pdo->prepare("
+              SELECT p.nom, c.quantite, c.prixUnit, c.reduction, v.id as idv, c.id as idc
+              FROM concerner c, vente v, produit_detail p
+              WHERE c.vente_id = v.id AND v.prixPercu <> 0 AND v.reference = '".$motclef."' AND c.en_rayon_id = p.id  
+              AND c.vente_id NOT IN (select vente_id from retour_produit where supprimer = 0 )
+              
+            ");
+    $sth1->execute();
+    $count1 = $sth1->rowCount();
 
     if ($count) {
         while ($result = $sth->fetch(PDO::FETCH_OBJ)) {
+            echo "<tr data='".$result->idv."' id=\"R".$result->idc."\">
+                                            <td class='nom'><strong>".$result->nom."</strong></td>
+                                            <td class='prix'>
+                                                ".$result->prixUnit."
+                                            </td>
+                                            <td class='stock'>
+                                                ".$result->quantite."
+                                            </td>
+                                             <td class='reduction'>
+                                                ".$result->reduction."
+                                            </td>
+                                            <td>
+                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit_retour('".$result->idc."','".$result->idv."')\"><span class=\"\">Charger</span></button>
+                                            </td>
+                                        </tr>";
+            //echo "<li  style=\"background-color: #fff; list-style-type: none; margin: 0; padding: 0;\"><tr><a href=\"update/".$result->id."\" style=\"display:block; height: 25px; color: #000; text-decoration: none;\"><td>$result->nom</td></a><td>$result->stock</td><tr>$result->reductionMax</tr></li>";
+        }
+        while ($result = $sth1->fetch(PDO::FETCH_OBJ)) {
+            echo "<tr data='".$result->idv."' id=\"R".$result->idc."\">
+                                            <td class='nom'><strong>".$result->nom."</strong></td>
+                                            <td class='prix'>
+                                                ".$result->prixUnit."
+                                            </td>
+                                            <td class='stock'>
+                                                ".$result->quantite."
+                                            </td>
+                                             <td class='reduction'>
+                                                ".$result->reduction."
+                                            </td>
+                                            <td>
+                                                <button class=\"btn btn-primary \" data-toggle=\"tooltip\" data-placement=\"top\" onclick=\"load_produit_retour('".$result->idc."','".$result->idv."')\"><span class=\"\">Charger</span></button>
+                                            </td>
+                                        </tr>";
+            //echo "<li  style=\"background-color: #fff; list-style-type: none; margin: 0; padding: 0;\"><tr><a href=\"update/".$result->id."\" style=\"display:block; height: 25px; color: #000; text-decoration: none;\"><td>$result->nom</td></a><td>$result->stock</td><tr>$result->reductionMax</tr></li>";
+        }
+    }elseif ($count1){
+        while ($result = $sth1->fetch(PDO::FETCH_OBJ)) {
             echo "<tr data='".$result->idv."' id=\"R".$result->idc."\">
                                             <td class='nom'><strong>".$result->nom."</strong></td>
                                             <td class='prix'>
