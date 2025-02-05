@@ -82,7 +82,7 @@ if (isset($_POST['idCaisse'])) {
 
         $idGen = genererID();
 
-        $num = $manager->countMois();
+        $num = $manager->countJour();
         $ref = genererreference($num);
         if ($etat == "Crédit") {
             $caisse = null;

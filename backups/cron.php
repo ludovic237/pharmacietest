@@ -5,7 +5,7 @@ if(isset($_GET['token']) && $_GET['token']=='aaa'){
 
     $database[0] ='pharmanet1';
     $user[0] ='root';
-    $pass[0] ='';
+    $pass[0] ='root';
     $server[0] ='localhost';
 
     //$database[1] ='';
