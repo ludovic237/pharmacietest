@@ -962,7 +962,7 @@ function reimprime_ticket(id, montantespece,
         dataType: 'json',
         success: function (server_response) {
             $('#qrcodeTicket').empty();
-            qrcode = new QRCode(document.getElementById("qrcodeTicke"), {
+            qrcode = new QRCode(document.getElementById("qrcodeTicket"), {
                 text:""+id,
                 width: 90,
                 height: 90
