@@ -103,7 +103,7 @@ class En_rayon
             $this->_fournisseur_id = $id;
 
     }
-    public function setcommaande_id($id)
+    public function setcommande_id($id)
     {
 
 
@@ -220,7 +220,7 @@ class En_rayonManager
             if ($donnees === false) {
                 $donnees = [];
             }
-            return new en_rayon($donnees);
+            return new En_rayon($donnees);
         }
         $donnees=array();
         return new en_rayon($donnees);

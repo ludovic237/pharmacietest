@@ -228,7 +228,7 @@ function imprimer_bloc(titre, objet) {
     doc.setFontSize(4);
     doc.text(19, 10, etiquetteDatel);
     doc.text(19, 12, etiquetteDatep);
-    doc.text(1, 18, etiquetteNomP);
+    doc.text(1, 19.5, etiquetteNomP);
     // doc.text(19, 18, etiquetteIdentifiant);
     doc.save('hello1.pdf');
     //doc.print('hello');
