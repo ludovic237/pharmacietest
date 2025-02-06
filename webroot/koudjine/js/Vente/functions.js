@@ -98,7 +98,7 @@ $(document).ready(function () {
                 loader(false);
             },
             success: function (data) {
-                        ////alert(data);
+                        //consol(data);
                         if (data.statut_perime == 'oui') {
                             var box = $("#confirmation-vente-perime");
                             box.addClass("open");

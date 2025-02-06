@@ -373,7 +373,7 @@ class En_rayonManager
     public function myupdate2($datePeremption, $prixAchat, $prixVente, $id,$quantiteRestante,$reduction)
     {
         // UPDATE `en_rayon` SET `datePeremption` = '2021-04-23', `prixAchat` = '420', `prixVente` = '105', `quantite` = '102', `quantiteRestante` = '74' WHERE `en_rayon`.`id` = '10010120171115';
-        $q = $this->_db->prepare('UPDATE en_rayon SET datePeremption = :datePeremption, prixAchat = :prixa, prixVente = :prixv, quantiteRestante = :quantiteRestante, reduction = :reduction WHERE `en_rayon`.`id` = :id');
+        $q = $this->_db->prepare('UPDATE en_rayon SET datePeremption = :datePeremption, prixAchat = :prixa, prixVente = :prixv, quantiteRestante = :quantiteRestante, reduction = :reduction WHERE `en_rayon`.`id` = :id and supprimer = 0');
         $q->bindValue(':id', $id, PDO::PARAM_INT);
         $q->bindValue(':datePeremption', $datePeremption);
         $q->bindValue(':prixv', $prixVente);
