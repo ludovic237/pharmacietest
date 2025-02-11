@@ -109,7 +109,7 @@ if (isset($_POST['id']) && isset($_POST['prixachat']) && isset($_POST['prixvente
             'quantiteRestante' => ($qte + $ug),
             'datePeremption' => $datep,
         ));
-        $en_rayon->setcommaande_id($idc);
+        $en_rayon->setcommande_id($idc);
         $managerEn->add($en_rayon);
         // on met à jour la quantité du stock produit
         $prod = $managerPr->get($idp);
