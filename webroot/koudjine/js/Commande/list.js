@@ -255,7 +255,7 @@ var qrcode;
 
 function showAllPrintCmdList(tableNew) {
     console.log(tableNew);
-    loaderTesxt(true,"Chargement impression");
+    loader(true);
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
@@ -315,6 +315,9 @@ function showAllPrintCmdList(tableNew) {
                         }*/
                         if (compteur < qtetotal - 1) {
                             doc.cellAddPage([30, 20], "l");
+                            $.blockUI({
+                                message:'<h1>'+parseInt((compteur/qtetotal)*100)+' %</h1>'
+                            })
                             compteur++;
                         }
 
@@ -323,6 +326,9 @@ function showAllPrintCmdList(tableNew) {
                         console.log(compteur);
                         console.log(compteur_total);
                         console.log(qtetotal);
+                        $.blockUI({
+                            message:'<h1>Chargement complet</h1>'
+                        })
                         loader(false);
                         doc.save(nom + '.pdf');
                     }
