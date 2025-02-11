@@ -33,7 +33,7 @@ $datep = $_POST['datep'];
     // on vérifie s'il y'a deja une entrée crée avec l'id
     if($managerEn->existsId($id)){
         $ent = $managerEn->get($id);
-        $ent->setcommaande_id($idc);
+        $ent->setcommande_id($idc);
         $ent->setprixAchat($prixa);
         $ent->setprixVente($prixv);
         $ent->setquantite(($ent->quantite() + ($qte)));
@@ -57,7 +57,7 @@ $datep = $_POST['datep'];
             'quantiteRestante' => $qte,
             'datePeremption' => $datep,
         ));
-        $en_rayon->setcommaande_id($idc);
+        $en_rayon->setcommande_id($idc);
         $managerEn->add($en_rayon);
         // on met à jour la quantité du stock produit
         $prod = $managerProd->get($idp);

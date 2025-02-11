@@ -603,7 +603,7 @@ function showPrintCmdProgramme(id) {
 }
 
 function imprimer_bloc(titre, objet) {
-
+    loader(true);
     let base64Image = $('#qrcode img').attr('src');
     console.log(base64Image);
     console.log(base64Image);
@@ -625,7 +625,7 @@ function imprimer_bloc(titre, objet) {
     doc.text(19, 12, etiquetteDatep);
     doc.text(19, 16, etiquetteNomP);
     doc.cellAddPage([30, 20], "l");
-
+    loader(false);
     doc.save('hello.pdf');
     //doc.print('hello');
     return true;
@@ -699,8 +699,8 @@ function printAllTicket() {
 }
 
 function printOneTicket(id) {
-    $.blockUI();
-    $('#loading-img').attr('display', 'yes')
+
+    loader(true)
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
@@ -754,27 +754,19 @@ function printOneTicket(id) {
             doc.text(19, 10, today);
             doc.text(19, 12, moment(datePerem).format("DD-MM-YYYY"));
             doc.setFontSize(3);
-            var line1 = nom.substring(0, 14);
-            var line2 = nom.substring(14, 28);
-            var line3 = nom.substring(28, 42);
-            var line4 = nom.substring(42, 56);
-            doc.text(19, 15, line1);
-            doc.text(19, 16, line2);
-            doc.text(19, 17, line3);
-            doc.text(19, 18, line4);
+            doc.text(1, 19.5, nom);
             if (i < qte - 1) {
                 doc.cellAddPage([30, 20], "l");
             }
         }
-        $.unblockUI();
-        $('#loading-img').attr('display', 'no')
+        loader(false)
         doc.save(nom + '.pdf');
     }, 2500);
 
 }
 
 function showAllPrintCmdProgramme(tableNew) {
-    $('#loading-img').attr('display', 'yes')
+   loader(true)
     console.log(tableNew);
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20
@@ -838,14 +830,7 @@ function showAllPrintCmdProgramme(tableNew) {
                         doc.text(19, 10, today);
                         doc.text(19, 12, moment(datePerem).format("DD-MM-YYYY"));
                         doc.setFontSize(4);
-                        var line1 = nom.substring(0, 14);
-                        var line2 = nom.substring(14, 28);
-                        var line3 = nom.substring(28, 42);
-                        var line4 = nom.substring(42, 56);
-                        doc.text(19, 15, line1);
-                        doc.text(19, 16, line2);
-                        doc.text(19, 17, line3);
-                        doc.text(19, 18, line4);
+                        doc.text(1, 19.5, nom);
                         console.log(compteur + " - " + compteur_total)
                         /*if (i != qte - 1 && ind != tableNew.length - 1) {
                             doc.cellAddPage([30, 20], "l");
@@ -853,6 +838,9 @@ function showAllPrintCmdProgramme(tableNew) {
                         }*/
                         if (compteur < qtetotal - 1) {
                             doc.cellAddPage([30, 20], "l");
+                            $.blockUI({
+                                message:'<h1>'+parseInt((compteur/qtetotal)*100)+' %</h1>'
+                            })
                             compteur++;
                         }
 
@@ -860,7 +848,10 @@ function showAllPrintCmdProgramme(tableNew) {
                     if (ind === tableNew.length - 1) {
                         console.log(compteur);
                         console.log(compteur_total);
-                        $('#loading-img').attr('display', 'no')
+                        $.blockUI({
+                            message:'<h1>Chargement complet</h1>'
+                        })
+                        loader(false)
                         doc.save(nom + '.pdf');
                         var link = '/pharmacietest/bouwou/commande/cmdprogramme';
                         window.location.href = link;
@@ -873,6 +864,7 @@ function showAllPrintCmdProgramme(tableNew) {
 
 
 function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
+    loader(true);
     let base64Image = $('#qrcode img').attr('src');
 
     console.log(base64Image);
@@ -892,15 +884,9 @@ function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
     doc.text(19, 10, today);
     doc.text(19, 12, datePerem);
     doc.setFontSize(4);
-    var line1 = nom.substring(0, 14);
-    var line2 = nom.substring(14, 28);
-    var line3 = nom.substring(28, 42);
-    var line4 = nom.substring(42, 56);
-    doc.text(19, 16, line1);
-    doc.text(19, 17, line2);
-    doc.text(19, 18, line3);
-    doc.text(19, 19, line4);
+    doc.text(1, 19.5, nom);
     doc.cellAddPage([30, 20], "l");
+    loader(false);
     doc.save('hello.pdf');
     //doc.print('hello');
     return true;

@@ -28,16 +28,22 @@ $produit = $managerProduit->get($enrayon->produit_id());
 //echo "passe";
 if (isset($_POST['id']) || isset($_GET['id'])) {
 
-    $identifiant = "";
+    $identifiant = "None";
     if ($managerEnRayon->existsId($id)) {
         $enRayon = $managerEnRayon->get($id);
-        if ($managerCommande->existsId($enRayon->commande_id())) {
-            $commande = $managerCommande->get($enRayon->commande_id());
-            if ($managerEmployer->existsId($commande->employe_id())) {
-                $employe = $managerEmployer->get($commande->employe_id());
-                $identifiant = $employe->identifiant();
+        if ($enRayon->commande_id()!=null) {
+            if ($managerCommande->existsId($enRayon->commande_id())) {
+                $commande = $managerCommande->get($enRayon->commande_id());
+                if ($commande->employe_id()!=null){
+                    if ($managerEmployer->existsId($commande->employe_id())) {
+                        $employe = $managerEmployer->get($commande->employe_id());
+                        $identifiant = $employe->identifiant();
+                    }
+                }
+
             }
         }
+
 
         //print_r($produit);
         $datelivraison = $enrayon->dateLivraison();
@@ -60,7 +66,7 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
     //$code = cb($code_barre);
 
 
-    $donnees = array('nomP' => $produit->nom(), 'nomF' => $fournisseur->nom(), 'codeP' => $produit->id(), 'code' => $fournisseur->code(), 'datel' => $datel, 'datep' => $datep, 'prixa' => $enrayon->prixAchat(), 'prixv' => $enrayon->prixVente(), 'quantite' => $enrayon->quantite(), 'quantiter' => $enrayon->quantiteRestante(), 'reduction' => $enrayon->reduction(), 'codebarre' => $code_barre);
+    $donnees = array('nomP' => $produit->nom(), 'nomF' => $fournisseur->nom(), 'codeP' => $produit->id(), 'code' => $fournisseur->code(), 'datel' => $datel, 'datep' => $datep, 'prixa' => $enrayon->prixAchat(), 'prixv' => $enrayon->prixVente(), 'quantite' => $enrayon->quantite(), 'quantiter' => $enrayon->quantiteRestante(), 'reduction' => $enrayon->reduction(), 'codebarre' => $code_barre, 'identifiant' => $identifiant);
     if (isset($_POST['id']))
         echo json_encode($donnees);
 

@@ -1300,6 +1300,7 @@ function valider_vente(type, etat) {
                         })
 
                     });
+                    loader(false);
 
 
                 } else {

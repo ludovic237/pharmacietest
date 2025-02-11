@@ -2471,6 +2471,7 @@ function info_row_entree(row) {
 }
 
 function imprimer_bloc(titre, objet) {
+    loader(true);
     var qte = parseInt($("#qte_etiquette_table").val());
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20
@@ -2497,9 +2498,10 @@ function imprimer_bloc(titre, objet) {
                 doc.setFontSize(4);
                 doc.text(19, 10, etiquetteDatel);
                 doc.text(19, 12, etiquetteDatep);
-                doc.text(1, 18, etiquetteNomP);
+                doc.text(1, 19.5, etiquetteNomP);
                 // doc.text(19, 18, etiquetteIdentifiant);
                 if (i < qte - 1) {
+                    loader(false);
                     doc.cellAddPage([30, 20], "l");
                 }
             }
@@ -2521,6 +2523,7 @@ function imprimer_bloc(titre, objet) {
         doc.text(19, 12, etiquetteDatep);
         doc.text(1, 18, etiquetteNomP);
         // doc.text(19, 18, etiquetteIdentifiant);
+        loader(false);
         doc.save('hello.pdf');
         //doc.print('hello');
     }

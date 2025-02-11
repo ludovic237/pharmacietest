@@ -196,6 +196,7 @@ function receptionner_commande(nbre) {
 }
 function charger_produit_commande(id, etat, prix, ref, nom, dateC) {
     //alert('passe');
+    loader(true);
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/charger_commande.php',
@@ -208,7 +209,7 @@ function charger_produit_commande(id, etat, prix, ref, nom, dateC) {
             success: function (server_responce) {
             //alert(server_responce);
             //$("#iconPreview .icon-preview").html(icon_preview);
-
+                loader(false);
             $('#tab_produit_commande').empty();
             $('#tab_produit_commande').html(server_responce);
             //$('#tab_BfactureImprimer').prepend(server_responce);
@@ -230,6 +231,7 @@ function charger_produit_commande(id, etat, prix, ref, nom, dateC) {
 
 function charger_all_ticket_commande(id, etat, prix, ref, nom, dateC) {
     //alert('passe');
+    loader(true);
     $.ajax({
         type: "POST",
         url: '/pharmacietest/koudjine/inc/charger_commande.php',
@@ -243,6 +245,7 @@ function charger_all_ticket_commande(id, etat, prix, ref, nom, dateC) {
             },
             success: function (server_responce) {
             console.log(server_responce.data);
+                loader(false);
             showAllPrintCmdList(server_responce.data);
 
         }
@@ -252,6 +255,7 @@ var qrcode;
 
 function showAllPrintCmdList(tableNew) {
     console.log(tableNew);
+    loaderTesxt(true,"Chargement impression");
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20
         ]
@@ -303,14 +307,7 @@ function showAllPrintCmdList(tableNew) {
                         doc.text(19, 10, today);
                         doc.text(19, 12, datePerem);
                         doc.setFontSize(4);
-                        var line1 = nom.substring(0, 14);
-                        var line2 = nom.substring(14, 28);
-                        var line3 = nom.substring(28, 42);
-                        var line4 = nom.substring(42, 56);
-                        doc.text(19, 16, line1);
-                        doc.text(19, 17, line2);
-                        doc.text(19, 18, line3);
-                        doc.text(19, 19, line4);
+                        doc.text(1, 19.5, nom);
                         console.log(compteur + " - " + compteur_total)
                         /*if (i != qte - 1 && ind != tableNew.length - 1) {
                             doc.cellAddPage([30, 20], "l");
@@ -326,7 +323,7 @@ function showAllPrintCmdList(tableNew) {
                         console.log(compteur);
                         console.log(compteur_total);
                         console.log(qtetotal);
-                        $.unblockUI();
+                        loader(false);
                         doc.save(nom + '.pdf');
                     }
                 }, 500);

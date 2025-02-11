@@ -191,6 +191,7 @@ function info_row_entree(row) {
 }
 
 function imprimer_bloc(titre, objet) {
+    loader(true);
     $('#qrcode').empty();
     /*// Définition de la zone à imprimer
     var zone = document.getElementById(objet).innerHTML;
@@ -228,8 +229,9 @@ function imprimer_bloc(titre, objet) {
     doc.setFontSize(4);
     doc.text(19, 10, etiquetteDatel);
     doc.text(19, 12, etiquetteDatep);
-    doc.text(1, 18, etiquetteNomP);
+    doc.text(1, 19.5, etiquetteNomP);
     // doc.text(19, 18, etiquetteIdentifiant);
+    loader(false);
     doc.save('hello1.pdf');
     //doc.print('hello');
     return true;

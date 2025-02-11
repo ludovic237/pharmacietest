@@ -16,9 +16,9 @@ $(document).ready(function () {
                 url: "/pharmacietest/koudjine/inc/result_commande.php",
                 data: data,
                 error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+                    loader(false);
+                },
+                success: function (server_responce) {
                     $("#tab_GCrecherche").show();
                     $("#tab_BCrecherche").html(server_responce).show();
                     ////alert(server_responce);
@@ -36,9 +36,15 @@ function ajouter_commande(id) {
     var nom, prix, qte;
     $("#" + id + " td").each(function (j) {
         ////alert($(this).html());
-        if (j == 0) { nom = $(this).html(); }
-        if (j == 4) { prix = parseInt($("#inputPrix" + id).val()); }
-        if (j == 5) { qte = parseInt($("#inputQte" + id).val()); }
+        if (j == 0) {
+            nom = $(this).html();
+        }
+        if (j == 4) {
+            prix = parseInt($("#inputPrix" + id).val());
+        }
+        if (j == 5) {
+            qte = parseInt($("#inputQte" + id).val());
+        }
 
     });
     $('#tab_commande  tr').each(function (i) {
@@ -67,8 +73,14 @@ function ajouter_commande(id) {
 
         $("#" + id1 + " td").each(function (j) {
             ////alert($(this).html());
-            if (j == 2) { qte = parseInt($(this).html()); qteTotal = qteTotal + qte; }
-            if (j == 3) { total = parseInt($(this).html()); prixTotal = prixTotal + total; }
+            if (j == 2) {
+                qte = parseInt($(this).html());
+                qteTotal = qteTotal + qte;
+            }
+            if (j == 3) {
+                total = parseInt($(this).html());
+                prixTotal = prixTotal + total;
+            }
 
         });
 
@@ -78,6 +90,7 @@ function ajouter_commande(id) {
     $('#btn-modifier' + id).show();
     $('#btn-ajouter' + id).attr("disabled", "disabled");
 }
+
 function modifier_commande(id) {
     $('#btn-modifier' + id).hide();
     $('#btn-ajouter' + id).removeAttr("disabled");
@@ -85,19 +98,22 @@ function modifier_commande(id) {
 }
 
 function valider_commande(imprimer) {
+    loader(true);
     var prixTotal, idc, ref;
     prixTotal = parseInt($('#prixTotal').html());
     var today = new Date();
-    var dd = String(today.getDate()).padStart(2,'0');
-    var mm = String(today.getMonth()+1).padStart(2,'0');
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
-    var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-    today = dd+"-"+mm+"-"+yyyy+"  "+time
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    today = dd + "-" + mm + "-" + yyyy + "  " + time
     $("#date").html(today);
     if (prixTotal == 0) {
         alert('Veuillez sélectionner des produits !!!');
+        loader(false);
     } else if ($("#fournisseur_commande").val() == 0) {
         alert('Veuillez sélectionner un fournisseur!!!');
+        loader(false);
     } else {
         $.ajax({
             type: "POST",
@@ -108,7 +124,7 @@ function valider_commande(imprimer) {
                 qte: parseInt($("#prixTotal").attr("data"))
             },
             dataType: 'json',
-           error: function (e) {
+            error: function (e) {
                 loader(false);
             },
             success: function (data) {
@@ -124,8 +140,12 @@ function valider_commande(imprimer) {
 
                         $("#" + id1 + " td").each(function (j) {
                             ////alert($(this).html());
-                            if (j == 1) { prix = parseInt($(this).html()); }
-                            if (j == 2) { qte = parseInt($(this).html()); }
+                            if (j == 1) {
+                                prix = parseInt($(this).html());
+                            }
+                            if (j == 2) {
+                                qte = parseInt($(this).html());
+                            }
 
 
                         });
@@ -139,21 +159,21 @@ function valider_commande(imprimer) {
                                 qte: qte
                             },
                             error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+                                loader(false);
+                            },
+                            success: function (server_responce) {
                                 //alert(server_responce);
                                 alert(idc);
                                 $("#mb-confirmation").attr("data", idc);
                                 //alert($("#mb-confirmation").attr("data"));
-                                if(!imprimer){
+                                if (!imprimer) {
                                     $("#mb-confirmation").modal("show");
                                 }
                             }
                         })
 
                     });
-                    if(imprimer){
+                    if (imprimer) {
                         //imprimer_com(idc, ref, $('#fournisseur_commande option:selected').text());
                         $.ajax({
                             type: "POST",
@@ -162,12 +182,12 @@ function valider_commande(imprimer) {
                                 id: idc
                             },
                             error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+                                loader(false);
+                            },
+                            success: function (server_responce) {
                                 //alert(server_responce);
                                 //$("#iconPreview .icon-preview").html(icon_preview);
-
+                                loader(false);
                                 $('#tab_Bcommande_com').empty();
                                 $('#tab_Bcommande_com').html(server_responce);
                                 //alert($('#total_com').attr("data"));
@@ -184,7 +204,7 @@ function valider_commande(imprimer) {
                         $("#iconPreviewBonCommande").modal("show");
                     }
                 }
-
+                else loader(false);
 
             }
         })
@@ -201,7 +221,7 @@ function valider_reception_commande(condition) {
         var link = '/pharmacietest/bouwou/commande/simplereappro';
         window.location.href = link;
     }
-   
+
 }
 
 function delete_row_commande(id) {
@@ -214,7 +234,10 @@ function delete_row_commande(id) {
 
         $("#" + id1 + " td").each(function (j) {
             ////alert($(this).html());
-            if (j == 3) { total = parseInt($(this).html()); prixTotal = prixTotal + total; }
+            if (j == 3) {
+                total = parseInt($(this).html());
+                prixTotal = prixTotal + total;
+            }
 
         });
 
@@ -225,20 +248,19 @@ function delete_row_commande(id) {
 function change_input(option, id) {
     if (option == 'plus') {
         $("#" + id).val(parseInt($("#" + id).val()) + 1);
-    }
-    else {
+    } else {
         if (parseInt($("#" + id).val()) != 0)
             $("#" + id).val(parseInt($("#" + id).val()) - 1);
     }
 }
+
 function charger_commande() {
     var idf = $("#fournisseur_commande").val();
     var jour_vente = $("#jour_vente").val();
     if (jour_vente != "" && $.isNumeric(jour_vente)) {
         var link = '/pharmacietest/bouwou/commande/simplereappro/' + idf + '/' + jour_vente;
         window.location.href = link;
-    }
-    else {
+    } else {
         alert('Vérifier vos informations');
     }
 }
@@ -316,9 +338,9 @@ function inventorier_row_inventaire(id) {
             qteRestante: 0
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             //alert(server_responce);
             $('#' + id + ' .inventorier_inventaire').attr("disabled", "disabled");
             $('#' + id + ' .exclure_inventaire').attr("disabled", "disabled");
@@ -326,6 +348,7 @@ function inventorier_row_inventaire(id) {
         }
     })
 }
+
 function inventoriers_row_inventaire() {
     $('#tab_BNIinventaire  tr').each(function (i) {
         var id1 = $(this).attr("id");
@@ -338,6 +361,7 @@ function inventoriers_row_inventaire() {
     var link = '/pharmacietest/bouwou/stock/inventaire';
     window.location.href = link;
 }
+
 function exclure_row_inventaire(id) {
     $.ajax({
         type: "POST",
@@ -346,9 +370,9 @@ function exclure_row_inventaire(id) {
             id: id
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             //alert(server_responce);
             $('#' + id + ' .exclure_inventaire').attr("disabled", "disabled");
             $('#' + id + ' .inventorier_inventaire').attr("disabled", "disabled");
@@ -356,6 +380,7 @@ function exclure_row_inventaire(id) {
         }
     })
 }
+
 function exclures_row_inventaire() {
     $('#tab_BNIinventaire  tr').each(function (i) {
         var id1 = $(this).attr("id");
@@ -370,11 +395,14 @@ function exclures_row_inventaire() {
     var link = '/pharmacietest/bouwou/stock/inventaire';
     window.location.href = link;
 }
+
 function ajouter_inventaire(id) {
     $("#quantiteajoute").attr("data", id);
     $("#iconPreviewInventaire").modal("show");
 }
+
 function ajouter_row_inventaire() {
+    loader(true);
     var id = $("#quantiteajoute").attr("data");
     var qte = parseInt($("#quantiteajoute").val());
     $.ajax({
@@ -386,17 +414,19 @@ function ajouter_row_inventaire() {
             qte: qte
         },
         error: function (e) {
-                loader(false);
-            },
-            success: function (server_responce) {
+            loader(false);
+        },
+        success: function (server_responce) {
             //alert(id);
             var val = '' + id;
             $("#iconPreviewInventaire").modal("hide");
+            loader(false);
             var link = '/pharmacietest/bouwou/stock/inventaire';
             window.location.href = link;
         }
     })
 }
+
 function charger_inventaire() {
     id = $('#select_inventaire').val();
     var link = '/pharmacietest/bouwou/stock/inventaire/' + id;
