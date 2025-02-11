@@ -603,7 +603,7 @@ function showPrintCmdProgramme(id) {
 }
 
 function imprimer_bloc(titre, objet) {
-
+    loader(true);
     let base64Image = $('#qrcode img').attr('src');
     console.log(base64Image);
     console.log(base64Image);
@@ -625,7 +625,7 @@ function imprimer_bloc(titre, objet) {
     doc.text(19, 12, etiquetteDatep);
     doc.text(19, 16, etiquetteNomP);
     doc.cellAddPage([30, 20], "l");
-
+    loader(false);
     doc.save('hello.pdf');
     //doc.print('hello');
     return true;
@@ -699,7 +699,7 @@ function printAllTicket() {
 }
 
 function printOneTicket(id) {
-    $.blockUI();
+
     $('#loading-img').attr('display', 'yes')
     var doc = new jspdf.jsPDF({
         orientation: 'landscape', unit: 'mm', format: [30, 20
@@ -766,7 +766,6 @@ function printOneTicket(id) {
                 doc.cellAddPage([30, 20], "l");
             }
         }
-        $.unblockUI();
         $('#loading-img').attr('display', 'no')
         doc.save(nom + '.pdf');
     }, 2500);
@@ -873,6 +872,7 @@ function showAllPrintCmdProgramme(tableNew) {
 
 
 function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
+    loader(true);
     let base64Image = $('#qrcode img').attr('src');
 
     console.log(base64Image);
@@ -901,6 +901,7 @@ function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
     doc.text(19, 18, line3);
     doc.text(19, 19, line4);
     doc.cellAddPage([30, 20], "l");
+    loader(false);
     doc.save('hello.pdf');
     //doc.print('hello');
     return true;

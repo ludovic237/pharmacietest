@@ -696,6 +696,7 @@ function ajouter_une_depense() {
 }
 
 function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
+    loader(true);
     var telephone, ticket_id, montantTtc = parseInt($('#facture_caisse').html()), count = 0, rec = 0;
     var reduction = parseInt($('#facture_caisse').attr('data'));
     var montantPayer = parseInt($('#facture_caisse').html());
@@ -795,6 +796,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                 $("#message-box-danger").modal("show");
                 setTimeout(function () {
                     $("#message-box-danger").modal("hide");
+                    loader(false);
                 }, 3000);
             } else {
                 $('#montantespece').html(montant_espece);
@@ -835,6 +837,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                     $("#message-box-danger").modal("show");
                     setTimeout(function () {
                         $("#message-box-danger").modal("hide");
+                        loader(false);
                     }, 3000);
                 } else {
                     console.log("mixte 1");
@@ -895,6 +898,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                             loader(false);
                                         },
                                         success: function (server_responce) {
+                                            loader(false);
                                             console.log(server_responce);
                                             rec++;
                                             rafraichir_vente(caisse_id);
@@ -929,7 +933,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                             // Réactiver tab1
                             $('.nav-tabs li:first-child').addClass('active');
                             $('#tab1').addClass('active in');
-
+                            loader(false);
                             $('#Mixtecaisse1').val("");
                             $('#Mixtecaisse2').val("");
                             $('#Mixtecaisse3').val("");
@@ -946,6 +950,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
             $("#message-box-danger").modal("show");
             setTimeout(function () {
                 $("#message-box-danger").modal("hide");
+                loader(false);
             }, 3000);
         }
     } else {
@@ -955,6 +960,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
             $("#message-box-danger").modal("show");
             setTimeout(function () {
                 $("#message-box-danger").modal("hide");
+                loader(false);
             }, 3000);
         } else {
             console.log("autre");
@@ -1005,6 +1011,7 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                     //alert(server_responce);
                     if (typePaiement == 'Mixte Espèce' || typePaiement == 'Mixte Electronique' || typePaiement == 'Mixte Ticketcaisse') {
                         console.log('payement mixte');
+                        loader(false);
                     } else {
                         $('#tab_vente_caisse  tr').each(function (i) {
                             count++;
@@ -1052,9 +1059,11 @@ function valider_facture(typePaiement, onglet, caisse_id, imprimer) {
                                         imprime_ticket_direct(vente_id, montant_espece, montant_electronique, montant_ticket, reste);
                                         $('#tab_vente_caisse').empty();
                                         $(".caisse").val('');
+                                        loader(false);
                                     } else {
                                         $('#tab_vente_caisse').empty();
                                         $(".caisse").val('');
+                                        loader(false);
                                     }
                                 }
                             })

@@ -5,6 +5,7 @@ require_once('../Class/produitcmd.php');
 require_once('../Class/produit.php');
 require_once('../Class/en_rayon.php');
 require_once('../Class/fournisseur.php');
+require_once('../Class/employe.php');
 
 global $pdo;
 
@@ -14,6 +15,7 @@ $managerPc = new Produit_cmdManager($pdo);
 $managerPr = new ProduitManager($pdo);
 $managerPrayon = new En_rayonManager($pdo);
 $managerFourn = new FournisseurManager($pdo);
+$managerEmployer = new EmployeManager($pdo);
 
 $id = $_POST['id'];
 //echo $id;
@@ -22,15 +24,41 @@ if (isset($_POST['ticket']) && isset($_POST['id'])) {
     $med = [];
     foreach ($en_rayon_List as $k => $v) :
         //echo $v->en_rayon_id();
+        $identifiant = "None";
+        if ($v->commande_id()!=null) {
+            if ($manager->existsId($v->commande_id())) {
+                $commande = $manager->get($v->commande_id());
+                if ($commande->employe_id()!=null){
+                    if ($managerEmployer->existsId($commande->employe_id())) {
+                        $employe = $managerEmployer->get($commande->employe_id());
+                        $identifiant = $employe->identifiant();
+                    }
+                }
+
+            }
+        }
         $nom = $managerPr->get($v->produit_id())->nom();
         //echo $nom;
+        $datelivraison = $v->dateLivraison();
+        $date = DateTime::createFromFormat('Y-m-d H:i:s', $datelivraison);
+        $datel = $date->format('d-m-Y');
+        $dateCl = $date->format('dmY');
+        $dateperemption = $v->datePeremption();
+        $identifiant = $identifiant;
+        $date = DateTime::createFromFormat('Y-m-d', $dateperemption);
+        $datep = $date->format('d-m-Y');
+        $dateCp = $date->format('mY');
+
         $med[] = array('nom' => $nom,
             'id' => $v->id(),
             'produit_id' => $v->produit_id(),
             'fournisseur_code' => $managerFourn->get($v->fournisseur_id())->code(),
             'commande_id' => $v->commande_id(),
-            'dateLivraison' => $v->dateLivraison(),
-            'datePeremption' => $v->datePeremption(),
+            'identifiant' => $identifiant,
+            'dateLivraison' => $datel,
+            'heureLivraison' => $dateCl,
+            'datePeremption' => $datep,
+            'heurePeremption' => $dateCp,
             'prixAchat' => $v->prixAchat(),
             'prixVente' => $v->prixVente(),
             'quantite' => $v->quantite(),
