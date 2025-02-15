@@ -300,14 +300,14 @@ function showAllPrintCmdList(tableNew) {
                         doc.setFontSize(2);
                         doc.setFontSize(7);
                         doc.text(19, 6, prix + ' F');
-                        doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
+                        doc.addImage(base64Image, "JPEG", 1, 1, 16, 16);
                         doc.setFontSize(5);
                         doc.text(19, 8, codefournisseur);
                         doc.setFontSize(4);
                         doc.text(19, 10, today);
                         doc.text(19, 12, datePerem);
                         doc.setFontSize(4);
-                        doc.text(1, 19.5, nom);
+                        doc.text(1, 19, nom);
                         console.log(compteur + " - " + compteur_total)
                         /*if (i != qte - 1 && ind != tableNew.length - 1) {
                             doc.cellAddPage([30, 20], "l");
