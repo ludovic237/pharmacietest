@@ -617,13 +617,13 @@ function imprimer_bloc(titre, objet) {
     doc.setFontSize(2);
     doc.setFontSize(7);
     doc.text(19, 6, etiquettePrix + ' F');
-    doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
+    doc.addImage(base64Image, "JPEG", 1, 1, 16, 16);
     doc.setFontSize(5);
     doc.text(19, 8, etiquetteNomF);
     doc.setFontSize(4);
     doc.text(19, 10, etiquetteDatel);
     doc.text(19, 12, etiquetteDatep);
-    doc.text(19, 16, etiquetteNomP);
+    doc.text(1, 19, etiquetteNomP);
     doc.cellAddPage([30, 20], "l");
     loader(false);
     doc.save('hello.pdf');
@@ -747,14 +747,14 @@ function printOneTicket(id) {
             doc.setFontSize(2);
             doc.setFontSize(7);
             doc.text(19, 6, prix + ' F');
-            doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
+            doc.addImage(base64Image, "JPEG", 1, 1, 16, 16);
             doc.setFontSize(5);
             doc.text(19, 8, reference + "(" + codefournisseur + ")" + numcmd);
             doc.setFontSize(4);
             doc.text(19, 10, today);
             doc.text(19, 12, moment(datePerem).format("DD-MM-YYYY"));
             doc.setFontSize(3);
-            doc.text(1, 19.5, nom);
+            doc.text(1, 19, nom);
             if (i < qte - 1) {
                 doc.cellAddPage([30, 20], "l");
             }
@@ -823,14 +823,14 @@ function showAllPrintCmdProgramme(tableNew) {
                         doc.setFontSize(2);
                         doc.setFontSize(7);
                         doc.text(19, 6, prix + ' F');
-                        doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
+                        doc.addImage(base64Image, "JPEG", 1, 1, 16, 16);
                         doc.setFontSize(5);
                         doc.text(19, 8, codefournisseur);
                         doc.setFontSize(4);
                         doc.text(19, 10, today);
                         doc.text(19, 12, moment(datePerem).format("DD-MM-YYYY"));
                         doc.setFontSize(4);
-                        doc.text(1, 19.5, nom);
+                        doc.text(1, 19, nom);
                         console.log(compteur + " - " + compteur_total)
                         /*if (i != qte - 1 && ind != tableNew.length - 1) {
                             doc.cellAddPage([30, 20], "l");
@@ -877,14 +877,14 @@ function imprimer_bloc_new(nom, datePerem, prix, codefournisseur, date) {
     doc.setFontSize(2);
     doc.setFontSize(7);
     doc.text(19, 6, prix + ' F');
-    doc.addImage(base64Image, "JPEG", 1, 1, 17, 17);
+    doc.addImage(base64Image, "JPEG", 1, 1, 16, 16);
     doc.setFontSize(5);
     doc.text(19, 8, codefournisseur);
     doc.setFontSize(4);
     doc.text(19, 10, today);
     doc.text(19, 12, datePerem);
     doc.setFontSize(4);
-    doc.text(1, 19.5, nom);
+    doc.text(1, 19, nom);
     doc.cellAddPage([30, 20], "l");
     loader(false);
     doc.save('hello.pdf');
